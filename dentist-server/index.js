@@ -8,6 +8,7 @@ const AccountModel = require("./models/Account");
 
 app.use(express.json());
 app.use(cors());
+// connect to MongoDB
 mongoose.connect("mongodb+srv://dape:PASSWORD@cluster0.i733ls2.mongodb.net/UserAccount?retryWrites=true&w=majority", {
     useNewUrlParser: true,
 });

@@ -1,38 +1,342 @@
-.App {
-  text-align: center;
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+
+/*======= GOOGLE FONTS =======*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap%27");
+:root {
+    --header-height: 3rem;
+    /*======= NAV BARS =======*/
+    /*======= VARIABLES CSS =======*/
+    /*---------- colors ----------*/
+    --primary-color: #5d5fef;
+    --secondary-color: #7879f1;
+    --tertiary-color: #a5a6f6;
+    --text-color: #25282b;
+    --text-color-alt: #52575c;
+    --text-color-light: #fff;
+    --bg-color: #fafafa;
+    --button-color-success: #064e3b;
+    --button-color-info: #1e2a8a;
+    --button-color-warning: #78350f;
+    --button-color-error: #7f1d1d;
+    --button-color-resched: #6c0986;
+    /*----------font and typography ----------*/
+    --body-font: "Montserrat", sans-serif;
+    --biggest-font-size: 6rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --h4-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+    /*---------- font weight ----------*/
+    --font-light: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    /*---------- margins ----------*/
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
+    --mb-6: 3rem;
+    /*---------- base ----------*/
+    --box-shadow-normal: 0px 13px 19px rgba(0, 0, 0, 0.07);
+    --border-edge: 1px solid var(--primary-color);
+    --border-radius-soft: 6px;
+    /*======= RESPONSIVE =======*/
+    @media screen and (min-width: 768px) {
+         :root {
+            --biggest-font-size: 6rem;
+            --h1-font-size: 2.25rem;
+            --h2-font-size: 1.5rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --smaller-font-size: 0.813rem;
+        }
+    }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*========== STYLE.CSS ==========*/
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background: var(--bg-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  color: var(--primary-color);
+  text-decoration: none !important;
+  font-family: var(--body-font) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+p {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--body-font);
+}
+
+/*--------------------------------------------------------------
+# Top Bar
+--------------------------------------------------------------*/
+
+#topbar {
+  background: var(--bg-color);
+  height: 40px;
+  font-size: var(--small-font-size);
+  font-family: var(--body-font);
+  transition: all 0.5s;
+  z-index: 996;
+}
+
+#topbar.topbar-scrolled {
+  top: -40px;
+}
+
+#topbar .info a {
+  line-height: 1;
+  color: var(--text-color);
+  transition: 0.3s;
+}
+
+#topbar .info a:hover {
+  color: var(--primary-color);
+}
+
+#topbar .info i {
+  color: var(--primary-color);
+  padding-right: 4px;
+  margin-left: 15px;
+  line-height: 0;
+}
+
+#topbar .info i:first-child {
+  margin-left: 0;
+}
+
+#topbar .social-links a {
+  color: var(--primary-color);
+  padding-left: 15px;
+  display: inline-block;
+  line-height: 1px;
+  transition: 0.3s;
+}
+
+#topbar .social-links a:hover {
+  color: var(--primary-color);
+}
+
+#topbar .social-links a:first-child {
+  border-left: 0;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+
+#header {
+  background: var(--bg-color);
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  top: 40px;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
+}
+
+#header.header-scrolled {
+  top: 0;
+}
+
+#header .logo {
+  font-size: var(--h1-font-size);
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: var(--body-font);
+}
+
+#header .logo a {
+  color: var(--text-color);
+}
+
+#header .logo img {
+  max-height: 40px;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+
+
+/**
+* Desktop Navigation 
+*/
+
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: column;
+  list-style: none;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar li {
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar>ul>li {
+  position: relative;
+  white-space: nowrap;
+  padding: 8px 0 8px 20px;
+}
+
+.navbar a,
+.navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: var(--font-medium);
+  font-size: 14px;
+  color: var(--text-color-alt);
+  white-space: nowrap;
+  transition: 0.3s;
+  border-bottom: 2px solid var(--bg-color);
+  padding: 5px 2px;
+}
+
+.navbar a i,
+.navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: 0.3s;
+}
+
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--text-color);
+  border: none;
+}
+
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover>a {
+  color: var(--primary-color);
+}
+
+.navbar .dropdown:hover>ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+
+.navbar .dropdown .dropdown:hover>ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+      left: -90%;
   }
-  to {
-    transform: rotate(360deg);
+  .navbar .dropdown .dropdown:hover>ul {
+      left: -100%;
   }
 }
+
+
+/**
+* Login Button *
+*/
+
+.login-btn {
+  margin-left: 25px;
+  background: var(--primary-color);
+  color: var(--text-color-light);
+  border-radius: 50px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: var(--normal-font-size);
+  display: inline-block;
+}
+
+.login-btn:hover {
+  background: var(--secondary-color);
+  color: var(--text-color-light);
+}
+
+@media (max-width: 768px) {
+  .login-btn {
+      margin: 0 15px 0 0;
+      padding: 6px 18px;
+  }
+}
+
