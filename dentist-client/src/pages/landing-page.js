@@ -1,11 +1,8 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-bootstrap-icons';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'aos/dist/aos.css';
 import Footer from "../components/footer";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, icon, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-
 
 function LandingPage(){
     return(
@@ -14,9 +11,9 @@ function LandingPage(){
             <div id="topbar" className="d-flex align-items-center fixed-top">
                 <div className="container d-flex justify-content-between">
                     <div className="info d-flex align-items-center">
-                        <i className="bi bi-envelope" />
+                        <i class="bi bi-envelope" />
                         <a href="mailto:contact@example.com">rimorin.dental@gmail.com</a>
-                        <i className="bi bi-phone" /> +639 265 785 456 
+                        <i class="bi bi-phone" /> +639 265 785 456 
                     </div>
                 </div>
             </div>
@@ -35,7 +32,6 @@ function LandingPage(){
                                 <li><a class="nav-link scrollto" href="#faq">FAQs</a></li>
                                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                             </ul>
-                            <i class="bi bi-list mobile-nav-toggle"></i>
                         </nav>
 
                         <a href="login.html" class="login-btn scrollto">Login</a>
@@ -48,19 +44,13 @@ function LandingPage(){
                     <div class="row">
                         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
                             <h1>A Great Place to Receive Care</h1>
-                            <h1>
-                            <FontAwesomeIcon icon={solid('user-secret')} />
-                            <FontAwesomeIcon icon={regular('coffee')} />
-                            <FontAwesomeIcon icon={icon({name: 'coffee', style: 'solid'})} />
-                            <FontAwesomeIcon icon={brands('twitter')} />
-                            </h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
                             <div>
                                 <a href="login.html" class="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
                         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-                            <img src="../assets/img/hero-img.png" class="img-fluid animated" alt="" />
+                            <img src={'./img/hero-img.png'} class="img-fluid animated"/>
                         </div>
                     </div>
                 </div>
@@ -117,13 +107,13 @@ function LandingPage(){
 
                     <div class="row">
                             <div class="col-lg-5 d-flex about-img align-items-stretch aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200"> 
-                                <img src="./assets/img/about-img.png" class="img-fluid" alt=""/>
+                                <img src={"./img/about-img.png"} class="img-fluid" alt=""/>
                             </div>
 
                             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
 
                             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                                <div class="icon"><i class="ri-emotion-laugh-line"></i></div>
+                                <div class="icon"><i class="fa-solid fa-face-smile"></i></div>
                                 <h4 class="title"><a href="">Modern care with a smile</a></h4>
                                 <p class="description">The clinic will ensure that the services will bring smile and make you feel and look confident.</p>
                             </div>
@@ -293,7 +283,7 @@ function LandingPage(){
 
             <div class="col-md-4">
                 <div class="contact-address">
-                    <i class="bi bi-geo-alt"></i>
+                    <i class="fa-solid fa-location-dot"></i>
                     <h3>Location:</h3>
                     <p>Victoria St., Mabini, Upper Session Road Baguio City, Philippines</p>
                 </div>
