@@ -1,6 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'aos/dist/aos.css';
 import Footer from "../components/footer";
 
@@ -11,9 +10,9 @@ function LandingPage(){
             <div id="topbar" className="d-flex align-items-center fixed-top">
                 <div className="container d-flex justify-content-between">
                     <div className="info d-flex align-items-center">
-                        <i class="bi bi-envelope" />
+                        <i class="fa-regular fa-envelope fa-sm"></i>
                         <a href="mailto:contact@example.com">rimorin.dental@gmail.com</a>
-                        <i class="bi bi-phone" /> +639 265 785 456 
+                        <i class="fa-regular fa-mobile-screen fa-sm"></i> +639 265 785 456 
                     </div>
                 </div>
             </div>
@@ -221,8 +220,8 @@ function LandingPage(){
 
                         <li data-aos="fade-up" data-aos-delay="100">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">What should I do if I require premedication?
-                                <i class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
+                                <i class="bx bx-chevron-down icon-show"></i>
+                                <i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     Please be sure to request a prescription prior to your appointment, or if you are unsure, contact us and we can help.
@@ -291,7 +290,7 @@ function LandingPage(){
 
             <div class="col-md-4">
                 <div class="contact-phone">
-                    <i class="bi bi-phone"></i>
+                    <i class="fa-regular fa-phone"></i>
                     <h3>Call:</h3>
                     <p>+639 123 456 789</p>
                 </div>
@@ -299,7 +298,7 @@ function LandingPage(){
 
             <div class="col-md-4">
                 <div class="contact-email">
-                    <i class="bi bi-envelope"></i>
+                    <i class="fa-regular fa-envelope"></i>
                     <h3>Email:</h3>
                     <p>rimorin.dental@gmail.com</p>
                 </div>
