@@ -4,7 +4,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import LandingPage from "./pages/landing-page";
+import LoginPage from "./pages/login-page";
 
 
 function App() {
@@ -114,7 +116,7 @@ function App() {
         onscroll(document, toggleBacktotop)
     }
 
-  // AOS animation
+  // Animation on Scroll (AOS)
   useEffect(() => {
     AOS.init({
       duration: 900,
@@ -126,13 +128,20 @@ function App() {
     }, []);
 
 
-
   // Pages
   return(
+    <Router>
     <div className="App" >
-      < LandingPage />
-
+            <Routes>
+                {/* <Route exact path="/" element={<LandingPage />} /> */}
+                <Route path="/" exact element= {< LandingPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                {/* <route exact path="/" element={<Text />} />
+                <route exact path="/" element={<Text />} /> */}
+                </Routes>
+    
     </div>
+    </Router>
     )
 
 }

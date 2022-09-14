@@ -1,31 +1,32 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
-import FooterLogin from "../components/footerlogin";
+import Footer from "../components/footer.jsx";
+import style from '../styles/Login.css';
 
 function LoginPage() {
     return (
         <div className="LoginPage">
             <title>Rimorin Dental Clinic</title>
             {/* ======= Header ======= */}
-            <header id="header" className="fixed-top">
+            <header id="headerlogin" className="fixed-top">
                 <div className="container d-flex align-items-center">
                     <h1 className="logo me-auto">
-                        <a href="index.html">Rimorin Dental Clinic</a>
+                        <a href="/">Rimorin Dental Clinic</a>
                     </h1>
                 </div>
             </header>
             
             {/* Hero Image AND Login Form */}
-            <section id="hero" className="d-flex align-items-center">
+            <section id="herologin" className="d-flex align-items-center">
                 {/* Hero's Image Login  */}
                 <div className="img_hero_login">
-                    <img src="/assets/img/hero-img.png" />
+                <img src={'./img/hero-img.png'} />
                 </div>
 
                 {/* ======= Login Form ======= */}
                 <div className="center">
-                    <h1>Rimorin Dental Clinic</h1>
+                    <p id="titleform"><h3>Rimorin Dental Clinic</h3></p>
                     <p id="sub">Log in with your account</p>
                     <form method="post">
                         <div className="txt_field">
@@ -52,7 +53,7 @@ function LoginPage() {
                 </div>
             </section>
             {/* ======= Footer ======= */}
-            <FooterLogin/>
+            <Footer/>
         </div>
     );
 }

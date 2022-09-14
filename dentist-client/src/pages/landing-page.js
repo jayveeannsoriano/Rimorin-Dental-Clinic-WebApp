@@ -2,6 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import Footer from "../components/footer";
+import style from '../styles/LandingPage.css';
 
 function LandingPage(){
     return(
@@ -21,7 +22,7 @@ function LandingPage(){
             <header id="header" class="fixed-top">
                     <div class="container d-flex align-items-center">
 
-                        <h1 class="logo me-auto"><a href={"index.html"}>Rimorin Dental Clinic</a></h1>
+                        <h1 class="logo me-auto"><a href="/">Rimorin Dental Clinic</a></h1>
 
                         <nav id="navbar" class="navbar order-last order-lg-0">
                             <ul>
@@ -33,7 +34,7 @@ function LandingPage(){
                             </ul>
                         </nav>
 
-                        <a href={"login.html"} class="login-btn scrollto">Login</a>
+                        <a href="/login" class="login-btn scrollto">Login</a>
                     </div>
                 </header>
 
@@ -45,7 +46,7 @@ function LandingPage(){
                             <h1>A Great Place to Receive Care</h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
                             <div>
-                                <a href={"login.html"} class="btn-get-started scrollto">Make an Appointment</a>
+                                <a href="/login" class="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
                         <div class="col-lg-6 order-1 order-lg-2 hero-img">
