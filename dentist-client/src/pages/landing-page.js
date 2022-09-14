@@ -11,7 +11,7 @@ function LandingPage(){
                 <div className="container d-flex justify-content-between">
                     <div className="info d-flex align-items-center">
                         <i class="fa-regular fa-envelope fa-sm"></i>
-                        <a href="mailto:contact@example.com">rimorin.dental@gmail.com</a>
+                        <a href={"mailto:contact@example.com"}>rimorin.dental@gmail.com</a>
                         <i class="fa-regular fa-mobile-screen fa-sm"></i> +639 265 785 456 
                     </div>
                 </div>
@@ -21,19 +21,19 @@ function LandingPage(){
             <header id="header" class="fixed-top">
                     <div class="container d-flex align-items-center">
 
-                        <h1 class="logo me-auto"><a href="index.html">Rimorin Dental Clinic</a></h1>
+                        <h1 class="logo me-auto"><a href={"index.html"}>Rimorin Dental Clinic</a></h1>
 
                         <nav id="navbar" class="navbar order-last order-lg-0">
                             <ul>
-                                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                                <li><a class="nav-link scrollto" href="#faq">FAQs</a></li>
-                                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                                <li><a class="nav-link scrollto active" href={'#hero'}>Home</a></li>
+                                <li><a class="nav-link scroll" href={'#about'}>About</a></li>
+                                <li><a class="nav-link scrollto" href={'#services'}>Services</a></li>
+                                <li><a class="nav-link scrollto" href={'#faq'}>FAQs</a></li>
+                                <li><a class="nav-link scrollto" href={'#contact'}>Contact</a></li>
                             </ul>
                         </nav>
 
-                        <a href="login.html" class="login-btn scrollto">Login</a>
+                        <a href={"login.html"} class="login-btn scrollto">Login</a>
                     </div>
                 </header>
 
@@ -45,7 +45,7 @@ function LandingPage(){
                             <h1>A Great Place to Receive Care</h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
                             <div>
-                                <a href="login.html" class="btn-get-started scrollto">Make an Appointment</a>
+                                <a href={"login.html"} class="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
                         <div class="col-lg-6 order-1 order-lg-2 hero-img">
@@ -63,7 +63,7 @@ function LandingPage(){
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                             <div class="icon"><i class="fa-solid fa-calendar-check fa-sm"></i></div>
-                            <h4 class="title"><a href="">Online Booking Appoinment</a></h4>
+                            <h4 class="title">Online Booking Appoinment</h4>
                             <p class="description">Book an appointment at your earliest convenience.</p>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ function LandingPage(){
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon"><i class="fa-solid fa-file fa-sm"></i></div>
-                            <h4 class="title"><a href="">Patient Records</a></h4>
+                            <h4 class="title">Patient Records</h4>
                             <p class="description">Accessibility and manageability of records with just a click.</p>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ function LandingPage(){
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                             <div class="icon"><i class="fa-solid fa-file-prescription fa-sm"></i></div>
-                            <h4 class="title"><a href="">E-Prescription</a></h4>
+                            <h4 class="title">E-Prescription</h4>
                             <p class="description">Go paperless! Prescriptions are now provided to you digitally.</p>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ function LandingPage(){
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                             <div class="icon"><i class="fas solid fa-message"></i></div>
-                            <h4 class="title"><a href="">Receive SMS Reminders</a></h4>
+                            <h4 class="title">Receive SMS Reminders</h4>
                             <p class="description">Receive a text message reminding you of your upcoming appointment schedule so you never have to.</p>
                         </div>
                     </div>
@@ -113,19 +113,19 @@ function LandingPage(){
 
                             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                                 <div class="icon"><i class="fa-solid fa-face-smile"></i></div>
-                                <h4 class="title"><a href="">Modern care with a smile</a></h4>
+                                <h4 class="title">Modern care with a smile</h4>
                                 <p class="description">The clinic will ensure that the services will bring smile and make you feel and look confident.</p>
                             </div>
 
                             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                                 <div class="icon"><i class="fa-solid fa-peso-sign"></i></div>
-                                <h4 class="title"><a href="">Transparent Pricing</a></h4>
+                                <h4 class="title">Transparent Pricing</h4>
                                 <p class="description">Our clinic believes in accessible dental care. Rimorin Dental offers straightforward pricing.</p>
                             </div>
 
                             <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                                 <div class="icon"><i class="fa-solid fa-laptop-medical"></i></div>
-                                <h4 class="title"><a href="">Accessibility</a></h4>
+                                <h4 class="title">Accessibility</h4>
                                 <p class="description">We believe that having an account will help the clinic's patients to keep up with your records and schedules.</p>
                             </div>
                         </div>
@@ -146,7 +146,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-user-doctor"></i></div>
-                            <h4><a href="">Consultations</a></h4>
+                            <h4>Consultations</h4>
                             <p>Don’t know where to start? Book a consultation to know more about your oral health.</p>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-tooth"></i></div>
-                            <h4><a href="">Filling</a></h4>
+                            <h4>Filling</h4>
                             <p>A procedure to restore the tooth that has cavity or small fracture using tooth-colored fillings.
                             </p>
                         </div>
@@ -163,7 +163,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-teeth-open"></i></div>
-                            <h4><a href="">Dental Surgery</a></h4>
+                            <h4>Dental Surgery</h4>
                             <p>Procedures would include teeth extraction, correction, and implants.</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-dna"></i></div>
-                            <h4><a href="">Prosthodontics</a></h4>
+                            <h4>Prosthodontics</h4>
                             <p>Maintenance of the oral function, comfort, appearance, and health of patient.</p>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-wheelchair"></i></div>
-                            <h4><a href="">Oral Prophylaxis</a></h4>
+                            <h4>Oral Prophylaxis</h4>
                             <p>Involves removal of plaque and tartar which accumulates in areas</p>
                         </div>
                     </div>
@@ -187,7 +187,7 @@ function LandingPage(){
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div class="icon-box">
                             <div class="icon"><i class="fas fa-notes-medical"></i></div>
-                            <h4><a href="">Teledentistry</a></h4>
+                            <h4>Teledentistry</h4>
                             <p>Connect and communicate with your dentist on screen.</p>
                         </div>
                     </div>
@@ -274,7 +274,7 @@ function LandingPage(){
 
             {/* Fix google maps embed */}
             {/* <div>
-                <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.224045019263!2d120.5919813292672!3d16.413443898252492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1678f3bd46d%3A0xc35a5159b3cb4c02!2sVictoria%20Supermart%20Session%20Rd.!5e0!3m2!1sen!2sus!4v1662108057381!5m2!1sen!2sus"
+                <iframe style="border:0; width: 100%; height: 350px;" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.224045019263!2d120.5919813292672!3d16.413443898252492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1678f3bd46d%3A0xc35a5159b3cb4c02!2sVictoria%20Supermart%20Session%20Rd.!5e0!3m2!1sen!2sus!4v1662108057381!5m2!1sen!2sus"}
                     frameborder="0" allowfullscreen></iframe>
             </div> */}
 
@@ -305,6 +305,10 @@ function LandingPage(){
             </div>
          </div>
     </section>
+
+    {/* <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i></a> */}
 
         <Footer />
     </div>
