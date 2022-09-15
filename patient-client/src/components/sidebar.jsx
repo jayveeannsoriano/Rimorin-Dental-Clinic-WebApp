@@ -14,9 +14,9 @@ function Sidebar(){
                         </a>
                     </li>
 
-                    {/* Appointments NAv */}
+                    {/* Appointments Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="appointments-page.jsx">
                         <i class="bi bi-card-checklist"></i>
                             <span>Appointments</span>
                         </a>
