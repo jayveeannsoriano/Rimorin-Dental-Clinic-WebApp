@@ -173,6 +173,74 @@ function DashboardPage(){
                 </nav> {/*End Icons Navigation*/}
 
             </header> {/*End Header*/}
+
+
+
+            {/*=====Sidebar=====*/}
+            <aside id="sidebar" class="sidebar">
+
+                <ul class="sidebar-nav" id="sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-grid"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li> {/*<End Dashboard Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                            <i class="bi bi-card-checklist"></i><span>Appointments</span>
+                        </a>
+                    </li> {/*End Appointments Nav */}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#forms-nav" href="DentistCalendar.html">
+                            <i class="bi bi-calendar3"></i><span>Calendar</span>
+                        </a>
+                    </li> {/*End Calendar Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                            <i class="bi bi-layout-text-window-reverse"></i><span>Patients</span>
+                        </a>
+                    </li> {/*End Patients Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+                            <i class="bi bi-file-medical"></i><span>Patient Records</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                    </li> {/*End E-prescription Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="users-profile.html">
+                            <i class="bi bi-credit-card"></i><span>Payment Records</span>
+                        </a>
+                    </li> {/*End Payment Records Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="users-profile.html">
+                            <i class="bi bi-person-circle"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li> {/*End My Profile Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="users-profile.html">
+                            <i class="bi bi-gear"></i>
+                            <span>Profile Settings</span>
+                        </a>
+                    </li> {/*End Profile Settings Nav*/}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="pages-login.html">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li> {/*End Login Page Nav*/}
+
+                </ul>
+            </aside> {/*End Sidebar*/}
+
         </div>
     )
 }
