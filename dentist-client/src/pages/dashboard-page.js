@@ -241,6 +241,131 @@ function DashboardPage(){
                 </ul>
             </aside> {/*End Sidebar*/}
 
+
+            {/* DASHBOARD */}
+            <main id="main" class="main">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </nav>
+
+                {/*Page Title*/}
+                <div class="pagetitle">
+                    <h2>Welcome Back Doctor!</h2> 
+                    <h1>8/26/2022</h1>  
+                    <p>Time (AM/PM)</p> {/*24hr Time Format*/}
+                </div>
+                {/* End Page Title */}
+
+
+                <section class="section dashboard">
+                    <div class="row">
+
+                        {/* Today's Appointments Card */}
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Appointments</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-calendar-week"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>4</h6>
+                                        </div>
+                                    </div>
+                                </div>  
+
+                            </div>
+                        </div> {/*End Today's Appointment Card*/}
+
+                        {/* Total Patients Card */}
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Patients</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>24</h6>
+                                        </div>
+                                    </div>
+                                </div>   
+
+                            </div>
+                        </div> {/*Total Patients Card*/}
+
+                        {/*Pending Appointment Requests*/}
+                        <div class="col-xxl-4 col-xl-12">
+                            <div class="card info-card customers-card">
+
+                                <div class="card-body">
+                                    <h4 class="card-title">Pending Appointment Requests</h4>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-clock-history"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>10</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> {/*End Pending Appointment Requests*/}
+
+                        {/* Today's Appointment */}
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <div class="nav-bar"><span>Today | Upcomming</span></div>
+                                    <h5 class="card-title">Today's Appointments</h5>
+
+                                    <table class="table table-borderless datatable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Patient Name</th>
+                                                <th scope="col">Appt #</th>
+                                                <th scope="col">Date and Time</th>
+                                                <th scope="col">Appt. Status</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div> {/*Today's Appointment*/}
+
+                    </div>
+                </section>
+
+            </main> {/*End #main*/}
+
         </div>
     )
 }
