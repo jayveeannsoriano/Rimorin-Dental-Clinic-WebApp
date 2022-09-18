@@ -60,6 +60,7 @@
     border-radius: var(--border-radius-soft);
     box-shadow: var(--box-shadow-normal);
     font: var(--body-font);
+    background: white;
    
 }
 
@@ -83,6 +84,7 @@
 #titleform {
     text-align: center;
     color: var(--text-color-alt);
+    padding-top:8%;
 }
 
 form .txt_field {
@@ -193,5 +195,6 @@ input[type="submit"]:hover {
     margin: 10px 0 0 130px;
   }
 
-  
-
+section{
+    padding: 0;
+}

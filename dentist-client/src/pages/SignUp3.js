@@ -20,7 +20,7 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
             <img src={'./img/hero-img.png'}/>
         </div>
     <form className='auth-inner'>
-        <h3>Sign Up</h3>
+    <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
 
         <div className="mb-3">
             <label> Name any medications or maintenance you're taking. </label>

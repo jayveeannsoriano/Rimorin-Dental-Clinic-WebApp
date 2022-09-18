@@ -77,18 +77,17 @@ body {
   background: var(--bg-color);
   min-height: 100vh;
   display: flex;
-  font-weight: 400;
 }
 
-label,
+/* label,
 span {
   font-weight: 500;
-}
+} */
 
 body, html, .App, #root,.auth-wrapper {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .auth-wrapper {
@@ -179,12 +178,6 @@ body, html, .App, #root,.auth-wrapper {
 }
 
 .image-banner {
-  /* position: relative;
-  height: 100vh;
-  width: 1194px;
-  background: url("") no-repeat center center scroll;
-  background-size: cover;
-  float: left; */
   position: relative;
   width: 733.97px;
   height: 757px;
