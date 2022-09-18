@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import LandingPage from "./pages/landing-page";
 import LoginPage from "./pages/login-page";
+import SignupMain from './pages/SignUpMain';
 
 
 function App() {
@@ -131,16 +132,14 @@ function App() {
   // Pages
   return(
     <Router>
-    <div className="App" >
-            <Routes>
-                {/* <Route exact path="/" element={<LandingPage />} /> */}
-                <Route path="/" exact element= {< LandingPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                {/* <route exact path="/" element={<Text />} />
-                <route exact path="/" element={<Text />} /> */}
+        <div className="App" >
+                <Routes>
+                    <Route path="/" exact element= {< LandingPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignupMain />} />
                 </Routes>
-    
-    </div>
+                
+            </div>
     </Router>
     )
 
