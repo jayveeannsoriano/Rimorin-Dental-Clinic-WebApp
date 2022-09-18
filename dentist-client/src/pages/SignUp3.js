@@ -16,6 +16,9 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
 
   return (
 <div className='auth-wrapper'>
+    <div className='image-banner'>
+            <img src={'./img/hero-img.png'}/>
+        </div>
     <form className='auth-inner'>
         <h3>Sign Up</h3>
 
@@ -24,7 +27,7 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
             <input
             type="text"
             className="form-control"
-            placeholder="e.g. 98 Felipe St."
+            placeholder="e.g. Antidepressants, Oral Contraceptives, Antihypertensives, etc"
             // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
             />
@@ -34,7 +37,7 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
             <input
             type="text"
             className="form-control"
-            placeholder="e.g. Lower Quarry"
+            placeholder="e.g. Hives, Pollen, etc"
             // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
             />

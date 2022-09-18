@@ -14,6 +14,9 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
 
   return (
     <div className='auth-wrapper'>
+        <div className='image-banner'>
+            <img src={'./img/hero-img.png'}/>
+        </div>
         <form className='auth-inner'>
             <h3>Sign Up</h3>
 

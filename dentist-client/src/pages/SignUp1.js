@@ -1,4 +1,5 @@
 import React from 'react'
+import style from '../styles/SignUp.css';
 
 const SignUp1 = ({ nextStep, handleChange, values}) => {
   
@@ -9,9 +10,11 @@ const SignUp1 = ({ nextStep, handleChange, values}) => {
   
   return (
     <div className='auth-wrapper'>
-        <form className='auth-inner'>
-            <h3>Sign Up</h3>
-
+        <div className='image-banner'>
+            <img src={'./img/hero-img.png'}/>
+        </div>
+        <form className='auth-inner'>   
+        <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
             <div className="mb-3">
             <label>First name</label>
             <input
@@ -24,28 +27,25 @@ const SignUp1 = ({ nextStep, handleChange, values}) => {
             </div>
 
             <div className='row'>
-            <div className='col-8'>
-                <div className="mb-3">
-                <label>Last name</label>
-                <input type="text" className="form-control" placeholder="Last name"
-                // onChange={(e) => this.setState({ lname: e.target.value})} 
-                // required
-                />
+                <div className='col-8'>
+                    <div className="mb-3">
+                    <label>Last name</label>
+                    <input type="text" className="form-control" placeholder="Last name"
+                    // onChange={(e) => this.setState({ lname: e.target.value})} 
+                    // required
+                    />
+                    </div>
+                </div>
+
+                <div className='col-4'>
+                    <div className="mb-3 suffix">
+                    <label>Suffix</label>
+                    <input type="text" className="form-control suffix" placeholder="(e.g. Jr. , Sr., II)"
+                    // onChange={(e) => this.setState({ suffix: e.target.value})} 
+                    />
+                    </div>
                 </div>
             </div>
-
-            <div className='col-4'>
-                <div className="mb-3 suffix">
-                <label>Suffix</label>
-                <input type="text" className="form-control suffix" placeholder="(e.g. Jr. , Sr., II)"
-                // onChange={(e) => this.setState({ suffix: e.target.value})} 
-                />
-                </div>
-            </div>
-            </div>
-
-
-
 
             <div className="mb-3">
             <label>Email address</label>
@@ -102,27 +102,34 @@ const SignUp1 = ({ nextStep, handleChange, values}) => {
             </div>
             </div>
 
-            <div className="mb-3">
-            <label>Date of Birth</label>
-            <input
-                type="date"
-                className="form-control"
-                placeholder="Enter birthday"
-                // onChange={(e) => this.setState({ email: e.target.value})}
-                // required
-            />
+            <div className='row'>
+                <div className='col-7'>
+                <div className="mb-3">
+                <label>Mobile Number</label>
+                <input
+                    type="number"
+                    className="form-control"
+                    placeholder="09XXXXXXXXX"
+                    // onChange={(e) => this.setState({ fname: e.target.value})}
+                    // required
+                />
+                </div>
+                </div>
+
+                <div className='col-5'>
+                <div className="mb-3">
+                <label>Date of Birth</label>
+                <input
+                    type="date"
+                    className="form-control"
+                    placeholder="Enter birthday"
+                    // onChange={(e) => this.setState({ email: e.target.value})}
+                    // required
+                />
+                </div>
+                </div>
             </div>
 
-            <div className="mb-3">
-            <label>Mobile Number</label>
-            <input
-                type="number"
-                className="form-control"
-                placeholder="09XXXXXXXXX"
-                // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
-            />
-            </div>
 
             <div className="d-grid justify-content-center">
             <button 
