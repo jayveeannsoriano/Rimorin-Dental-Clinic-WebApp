@@ -1,10 +1,12 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './pages/dashboard';
-// import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom;'
+import {BrowserRouter as Routes, Route} from "react-router-dom";
 import {DataTable} from "simple-datatables"
+import AppointmentPage from './pages/appointment-page';
 
-/*eslint no-unused-vars: "off"*/
+
 function App() {
 
   // Data Table for Appointments
@@ -14,7 +16,12 @@ function App() {
   // Pages
   return (
     <div className="App">
-        <Dashboard />
+            <Routes>
+                {/* <Route exact path="/" element={<LandingPage />} /> */}
+                <Route path="/" exact element= {< Dashboard />} />
+                <Route path="/" element={< AppointmentPage />} />
+
+            </Routes>
     </div>
   );
 }
