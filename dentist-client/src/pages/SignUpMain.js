@@ -11,8 +11,8 @@ class SignupMain extends Component {
 
     state = {
         step: 1,
-        firstName:"",
-        mi:"",
+        fname:"",
+        minitial:"",
         lname:"",
         suffix:"",
         email:"",
@@ -20,15 +20,27 @@ class SignupMain extends Component {
         gender:"",
         bday:"",
         mobile:"",
-        address:"",
+        house:"",
         brgy:"",
         municipality:"",
-        city:"",
+        province:"",
         country:"",
-        zipCode:"",
-        remarks1:"",
-        remarks2:"",
-        remarks3:"",
+        medications:"",
+        allergies:"",
+        conditions: {
+            heartDisease: false,
+            highBlood: false,
+            rheumatic: false,
+            bloodDisorders: false,
+            diabetes: false,
+            seizures: false,
+            tuberculosis: false,
+            tumors: false,
+            asthma: false,
+            hepatitis: false,
+            std: false,
+            stroke: false,
+        }
     }
 
     prevStep = () => {
@@ -49,8 +61,8 @@ class SignupMain extends Component {
 
     render() {
         const {step} = this.state;
-        const{firstName, mi, lname, suffix, email, password, gender, bday,  mobile, address, brgy, municipality, city, country, zipCode, remarks1, remarks2, remarks3} = this.state;
-        const values = {firstName, mi, lname, suffix, email, password, gender, bday,  mobile, address, brgy, municipality, city, country, zipCode, remarks1, remarks2, remarks3};
+        const{fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, allergies, conditions} = this.state;
+        const values = {fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, allergies, conditions};
         
         switch (step) {
             case 1:

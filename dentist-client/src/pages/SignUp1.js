@@ -2,11 +2,12 @@ import React from 'react'
 import style from '../styles/SignUp.css';
 
 const SignUp1 = ({ nextStep, handleChange, values}) => {
-  
-  const Continue = e => {
-    e.preventDefault();
-    nextStep();
-  }
+
+    
+    const Continue = e => {
+        e.preventDefault();
+        nextStep();
+    }
   
   return (
     <div className='auth-wrapper'>
