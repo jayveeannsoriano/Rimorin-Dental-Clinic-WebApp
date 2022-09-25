@@ -1,4 +1,6 @@
 import React from 'react';
+import AppointmentPage from '../pages/appointments';
+// import { Link } from 'react-router-dom';
 
 function Sidebar(){
     return(
@@ -8,7 +10,7 @@ function Sidebar(){
 
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link " href="index.html">
+                        <a className="nav-link " href="/">
                         <i className="bi bi-grid"></i>
                             <span>Dashboard</span>
                         </a>
@@ -16,7 +18,7 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="appointments-page.jsx">
+                        <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="/appointments">
                         <i className="bi bi-card-checklist"></i>
                             <span>Appointments</span>
                         </a>

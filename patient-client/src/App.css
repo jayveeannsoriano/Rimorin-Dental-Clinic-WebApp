@@ -104,6 +104,7 @@ h6 {
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
+  background-color: #F6F8FB;
 }
 
 @media (max-width: 1199px) {
@@ -277,9 +278,9 @@ h6 {
 
 .card-title {
   padding: 20px 0 15px 0;
-  font-size: 18px;
-  font-weight: 500;
-  color: #012970;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-color);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -290,7 +291,9 @@ h6 {
 }
 
 .card-body {
-  padding: 50 20px 40px 20px;
+  padding: 50px 20px 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 7px 23px rgba(0, 0, 0, 0.05);
 }
 
 .card-img-overlay {
