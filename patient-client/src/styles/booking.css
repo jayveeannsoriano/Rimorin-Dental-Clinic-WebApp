@@ -1,0 +1,35 @@
+/*--------------------------------------------------------------
+# Booking
+--------------------------------------------------------------*/
+.doctor-info {
+    padding: 0.3in;
+}
+
+.doctor-info h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.doctor-info h2 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    color: #5d5fef;
+}
+
+.doctor-info h3 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.appointment-date{
+    padding: 0.3in;
+}
+.appointment-date h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+}

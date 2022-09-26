@@ -1,5 +1,4 @@
 import React from 'react';
-import AppointmentPage from '../pages/appointments';
 // import { Link } from 'react-router-dom';
 
 function Sidebar(){
