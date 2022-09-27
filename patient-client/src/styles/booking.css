@@ -24,12 +24,19 @@
     line-height: 23px;
 }
 
-.appointment-date{
-    padding: 0.3in;
+.appointment-form{
+    padding-top: 10px;
+    padding-left: 0.3in;
+    padding-bottom: 0.4in;
 }
-.appointment-date h1 {
+
+.appointment-form .col-md-4{
+    margin-bottom: 20px;
+}
+
+.appointment-form .form-label{
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 20px;
 }

@@ -146,7 +146,7 @@ h6 {
 .dropdown-menu .dropdown-header,
 .dropdown-menu .dropdown-footer {
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   padding: 10px 25px;
 }
 
@@ -697,24 +697,25 @@ h6 {
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: #4154f1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-color);
   transition: 0.3;
   background: #f6f9ff;
-  padding: 10px 15px;
+  padding: 14px 15px;
   border-radius: 4px;
 }
 
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: var(--primary-color);
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #52575C;
   background: #fff;
+  font-weight: 700;
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -722,12 +723,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: var(--primary-color);
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: var(--primary-color);
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {

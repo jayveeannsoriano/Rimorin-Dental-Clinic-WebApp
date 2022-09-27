@@ -5,7 +5,7 @@ import Footer from "../components/footer.jsx";
 import '../styles/booking.css';
 import 'react-bootstrap';
 
-// import '../js/booking.js';
+import '../js/booking.js';
 // import Stepper from 'bs-stepper'
 
 function Booking(){
@@ -39,21 +39,29 @@ function Booking(){
                         <h3 id="clinic-location">Victoria Shoppesville, Upper Mabini Street, Baguio City, Philippines</h3>
                     </div>
 
-
-                    <div className="appointment-date" id="appointment-date">
+                    {/* Booking deets */}
+                    <div className="appointment-form" id="appointment-form">
 
                     <form className="row g-3 needs-validation" noValidate/>
                         <div className="col-md-4">
                             <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-                            <input data-provide="datepicker" className="form-control" id="validationCustom01" required/>
+                            <input type="date" className="form-control" id="appointment-date" required/>
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
                         <div className="col-md-4">
+                            <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
+                            <input type="time" className="form-control" id="appointment-time" required/>
+                            <div className="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div className="col-12">
                             <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write reason here..."></textarea>
+                            <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..."></textarea>
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -63,15 +71,18 @@ function Booking(){
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
                                 <label className="form-check-label" htmlFor="invalidCheck">
-                                    Agree to terms and conditions
+                                    Agree to the <a href="/">Terms and Conditions.</a>
                                 </label>
                                 <div className="invalid-feedback">
-                                    You must agree before submitting.
+                                    You must agree before proceeding.
                                  </div>
                             </div>
                         </div>
+
                         <div className="col-12">
+                            <button className="btn btn-outline-secondary" type="submit">Cancel</button>
                             <button className="btn btn-primary" type="submit">Next</button>
+                            
                         </div>
                     </div>
 
