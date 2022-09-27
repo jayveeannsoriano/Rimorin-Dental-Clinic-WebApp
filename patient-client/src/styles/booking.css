@@ -25,9 +25,12 @@
 }
 
 .appointment-form{
-    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* padding-top: 10px;
     padding-left: 0.3in;
-    padding-bottom: 0.4in;
+    padding-bottom: 0.4in; */
 }
 
 .appointment-form .col-md-4{
@@ -39,4 +42,25 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
+}
+
+.timeslot{
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+.timeslot .time{
+    background-color: #fff;
+    color: #5d5fef;
+    border-color: #5d5fef;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 30px
+}
+
+.timeslot .time:hover{
+    background-color: #5d5fef;
 }

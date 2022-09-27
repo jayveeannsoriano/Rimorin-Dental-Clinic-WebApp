@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar.jsx";
 import Footer from "../components/footer.jsx";
 import '../styles/booking.css';
 import 'react-bootstrap';
-
+import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
 // import Stepper from 'bs-stepper'
 
@@ -51,13 +51,12 @@ function Booking(){
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                             <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
-                            <input type="time" className="form-control" id="appointment-time" required/>
-                            <div className="valid-feedback">
-                                Looks good!
-                            </div>
+                            <p> Available Times </p>
+                            <Timeslot/>
                         </div>
+                    </div>
 
                         <div className="col-12">
                             <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
@@ -82,9 +81,7 @@ function Booking(){
                         <div className="col-12">
                             <button className="btn btn-outline-secondary" type="submit">Cancel</button>
                             <button className="btn btn-primary" type="submit">Next</button>
-                            
                         </div>
-                    </div>
 
                     </div> {/* End of card-body */}
 
