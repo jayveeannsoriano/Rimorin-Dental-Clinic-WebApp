@@ -209,6 +209,25 @@ function DashboardPage(){
                         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
                             <i class="bi bi-file-medical"></i><span>Patient Records</span><i class="bi bi-chevron-down ms-auto"></i>
                         </a>
+                        <ul id="patient-records-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <a href="DentistPatientInformation.html">
+                                    <i class="bi bi-circle"></i><span>Patient Information</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="DentalRecords.html">
+                                    <i class="bi bi-circle"></i><span>Dental Records</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> {/* End Patient Records/Patient Information */}
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#" data-bs-toggle="collapse" href="#">
+                            <i class="bi bi-file-medical"></i><span>E-prescription</span>
+                        </a>
                     </li> {/*End E-prescription Nav*/}
 
                     <li class="nav-item">
