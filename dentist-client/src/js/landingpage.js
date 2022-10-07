@@ -1,21 +1,12 @@
-// import logo from './logo.svg';
-import React, { useEffect } from "react";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/landing-page";
-import LoginPage from "./pages/login-page";
-import SignupMain from "./pages/SignUpMain";
-// import DashboardPage from "./pages/dashboard-page";
-import DashboardPageTest from "./pages/dashboard-test";
+import React from "react";
 
-function App() {
+(function() {
+    "use strict";
+  
   /**
    * Easy selector helper function
    */
-   const select = (el, all = false) => {
+  const select = (el, all = false) => {
     el = el.trim();
     if (all) {
       return [...document.querySelectorAll(el)];
@@ -159,31 +150,5 @@ function App() {
       preloader.remove()
     });
   }
-  
-  // Animation on Scroll (AOS)
-  useEffect(() => {
-    AOS.init({
-      duration: 900,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-    });
-    AOS.refresh();
-  }, []);
 
-  // Pages
-  return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" exact element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupMain />} />
-          <Route path="/dashboardpage" element={<DashboardPageTest />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
-export default App;
+})()
