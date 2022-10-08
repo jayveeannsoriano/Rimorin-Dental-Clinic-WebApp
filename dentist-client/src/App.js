@@ -10,6 +10,7 @@ import LoginPage from "./pages/login-page";
 import SignupMain from "./pages/SignUpMain";
 import DashboardPage from "./pages/dashboard-page";
 import DashboardPageTest from "./pages/dashboard-test";
+import EPrescription from "./pages/EPrescription";
 
 function App() {
   /**
@@ -181,6 +182,7 @@ function App() {
           <Route path="/signup" element={<SignupMain />} />
           <Route path="/dashboardpage" element={<DashboardPageTest />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/eprescription" element={<EPrescription />} />
 
         </Routes>
       </div>
