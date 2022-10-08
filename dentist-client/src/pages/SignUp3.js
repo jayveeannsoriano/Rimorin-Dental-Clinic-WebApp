@@ -1,13 +1,6 @@
 import React from 'react'
 
-const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
-    
-    const handleCheckbox = e => {
-        console.log(e.target.value);
-        let state = this.state
-        state.conditions[e.target.value] = e.target.checked;
-        this.setState(state);
-    }
+const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => {
 
     const Continue = e => {
         e.preventDefault();
@@ -34,8 +27,8 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values}) => {
             type="text"
             className="form-control"
             placeholder="e.g. Antidepressants, Oral Contraceptives, Antihypertensives, etc"
-            // onChange = {handleChange('medications')}
-            // defaultValue={values.medications}
+            onChange = {handleChange("medications")}
+            defaultValue={values.medications}
             // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
             />

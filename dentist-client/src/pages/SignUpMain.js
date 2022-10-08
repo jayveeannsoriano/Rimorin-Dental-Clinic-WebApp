@@ -57,6 +57,14 @@ class SignupMain extends Component {
     handleChange = input => e => {
         this.setState({[input]: e.target.value});
     }
+    
+    //checkbox for sign up 3
+    handleCheckbox = e => {
+        console.log(e.target.value);
+        let state = this.state
+        state.conditions[e.target.value] = e.target.checked;
+        this.setState(state);
+    }
 
 
     render() {
@@ -70,7 +78,7 @@ class SignupMain extends Component {
                     <SignUp1
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
-                    values = {this.values}
+                    values = {values}
                     />
                 )
 
