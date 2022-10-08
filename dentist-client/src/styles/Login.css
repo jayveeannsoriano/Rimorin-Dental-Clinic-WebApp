@@ -61,7 +61,7 @@
     box-shadow: var(--box-shadow-normal);
     font: var(--body-font);
     background: white;
-   
+   padding: 3%;
 }
 
 .center h1 {
@@ -89,7 +89,7 @@
 
 form .txt_field {
     position: relative;
-    margin: 30px 0;
+    margin: 20px;
 }
 
 .txt_field input {

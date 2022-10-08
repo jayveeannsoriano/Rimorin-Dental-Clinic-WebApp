@@ -1,5 +1,6 @@
 import React from "react";
 import DataTable from 'react-data-table-component';
+import style from "../styles/dashboard-test.css";
 
 function DashboardPageTest(){
 
@@ -18,6 +19,7 @@ function DashboardPageTest(){
         },
         {
             name: 'Appt. Status',
+            class: "btn-outline-warning btn-rounded",
             selector: row => row.status,
         },
         {

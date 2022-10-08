@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing-page";
 import LoginPage from "./pages/login-page";
 import SignupMain from "./pages/SignUpMain";
-// import DashboardPage from "./pages/dashboard-page";
+import DashboardPage from "./pages/dashboard-page";
 import DashboardPageTest from "./pages/dashboard-test";
 
 function App() {
@@ -180,6 +180,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupMain />} />
           <Route path="/dashboardpage" element={<DashboardPageTest />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+
         </Routes>
       </div>
     </Router>

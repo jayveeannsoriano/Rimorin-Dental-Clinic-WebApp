@@ -27,9 +27,6 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => 
             type="text"
             className="form-control"
             placeholder="e.g. Antidepressants, Oral Contraceptives, Antihypertensives, etc"
-            onChange = {handleChange("medications")}
-            defaultValue={values.medications}
-            // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
             />
         </div>
@@ -39,9 +36,6 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => 
             type="text"
             className="form-control"
             placeholder="e.g. Hives, Pollen, etc"
-            // defaultValue={values.allergies}
-
-            // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
             />
         </div>
@@ -52,58 +46,58 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => 
             <div class="row">
                 <div class="col-sm">
                 <div className='form-check '>
-                    <input class="form-check-input" type="checkbox" defaultValue={values.conditions.heartDisease} id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.heartDisease}/>
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label class="form-check-label px-1" for="flexCheckDefault"> Heart Disease </label>
                 </div>
 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="High Blood Pressure" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.highBlood}/>
+                    <input class="form-check-input" type="checkbox" value="High Blood Pressure" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> High Blood Pressure</label> 
                 </div>
 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.rheumatic} />
+                    <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Rheumatic </label>
                 </div>
                 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.bloodDisorders} />
+                    <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Blood Disorders </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.diabetes} />
+                    <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Diabetes </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.seizures} />
+                    <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Seizures </label>
                 </div>
                 </div>
                 
                 <div class="col-sm">
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.tuberculosis} />
+                    <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Tuberculosis </label>
                 </div>
                 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.tumors}/>
+                    <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Tumors/Growths </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.asthma}/>
+                    <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Asthma </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.hepatitis}/>
+                    <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Hepatitis </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.std}/>
+                    <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault"/>
                     <label class="form-check-label px-1" for="flexCheckDefault"> STD </label>
                 </div>
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" onChange={this.handleCheckbox} checked={this.state.conditions.stroke}/>
+                    <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault"/>
                     <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
                 </div>
 
