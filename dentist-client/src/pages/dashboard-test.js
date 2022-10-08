@@ -36,7 +36,6 @@ function DashboardPageTest(){
             datetime: 'May 12,2023 2:30PM',
             status: 'Ongoing',
             action: 'IDK'
-
         },
     ]
     return(

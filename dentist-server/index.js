@@ -1,51 +1,3 @@
-// const express = require('express'); // import express
-// const mongoose = require('mongoose'); //import moongoose
-// const cors = require('cors');
-// const app = express();
-
-// const AccountModel = require("./models/Account");
-
-// app.use(express.json());
-// app.use(cors());
-// // connect to MongoDB
-// mongoose.connect("mongodb+srv://dape:PASSWORD@cluster0.i733ls2.mongodb.net/UserAccount?retryWrites=true&w=majority", {
-//     useNewUrlParser: true,
-// });
-
-// //create (C)
-// app.post("/insert", async (req, res)=>{
-
-//     const title = req.body.title
-//     const firstName = req.body.firstName
-//     const account = new AccountModel({Title: title, first_name: firstName});
-
-//     try{
-//         await account.save();
-//     }catch (err){
-//         console.log(err);
-//     }
-// });
-
-// //read (R)
-// app.get("/read", async (req, res)=>{
-
-//  AccountModel.find({}, (err,result) => {
-//     if (err) {
-//         res.send(err);
-//     }
-
-//     res.send(result);
-
-//  }
-//  )
-
-// });
-
-// //connect to localhost
-// app.listen(3001, ()=>{
-//     console.log("Server is runnning on port 3001");
-// });
-
 //import
 const express = require("express");
 const app = express();
@@ -147,6 +99,7 @@ app.post("/login-user", async (req, res) => {
   res.json({ status: "error", error: "invalid password" });
 });
 
+//read user data
 app.post("/userData", async (req, res) => {
   const { token } = req.body;
   try {
@@ -165,3 +118,100 @@ app.post("/userData", async (req, res) => {
     alert("There is some error");
   }
 });
+
+//update function
+
+app.put("/update", async (req, res) => {
+  const {newDocument} = req.body; // still not used, just incase frontend needs update functions
+  const { token } = req.body;
+  const id = req.body.id;
+  try {
+    const user = jwt.verify(token, JWT_SECRET);
+    console.log(user);
+
+    await User.findById(id, (err,updatedDocument)=>{
+      updatedDocument.insertValuehere = newDocument;
+      updatedDocument.save();
+      res.send("update");
+    });
+  } catch (err) {
+    alert("There is some error");
+    console.log(err)
+  }
+});
+
+//delete function
+app.get("/delete/:id", async (req, res) => {
+  
+  const id = req.params.id; 
+
+  await User.findByIdAndRemove(id).exec(); // still not used, just incase frontend needs delete functions
+  res.send("Document is deleted from the database");
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require('express'); // import express
+// const mongoose = require('mongoose'); //import moongoose
+// const cors = require('cors');
+// const app = express();
+
+// const AccountModel = require("./models/Account");
+
+// app.use(express.json());
+// app.use(cors());
+// // connect to MongoDB
+// mongoose.connect("mongodb+srv://dape:PASSWORD@cluster0.i733ls2.mongodb.net/UserAccount?retryWrites=true&w=majority", {
+//     useNewUrlParser: true,
+// });
+
+// //create (C)
+// app.post("/insert", async (req, res)=>{
+
+//     const title = req.body.title
+//     const firstName = req.body.firstName
+//     const account = new AccountModel({Title: title, first_name: firstName});
+
+//     try{
+//         await account.save();
+//     }catch (err){
+//         console.log(err);
+//     }
+// });
+
+// //read (R)
+// app.get("/read", async (req, res)=>{
+
+//  AccountModel.find({}, (err,result) => {
+//     if (err) {
+//         res.send(err);
+//     }
+
+//     res.send(result);
+
+//  }
+//  )
+
+// });
+
+// //connect to localhost
+// app.listen(3001, ()=>{
+//     console.log("Server is runnning on port 3001");
+// });
