@@ -114,6 +114,7 @@ function DentistCalendar(){
                         </button>
                     </form>
                 </div>
+                {/* End Search Bar */}
 
                 {/*----Search Icon---- */}
                 <nav class="header-nav ms-auto">
@@ -132,6 +133,7 @@ function DentistCalendar(){
                                 <i class="bi bi-bell"></i>
                                 <span class="badge bg-primary badge-number">4</span>
                             </a>
+                            {/* End Notification Icon */}
 
                             {/* Notification Dropdown */}
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -212,6 +214,7 @@ function DentistCalendar(){
                                 <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"/>
                                 <span class="d-none d-md-block dropdown-toggle ps-2">P. Concepcion</span>
                             </a>
+                            {/* End Profile Image Icon */}
 
                             {/* Profile Dropdown Menu */}
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

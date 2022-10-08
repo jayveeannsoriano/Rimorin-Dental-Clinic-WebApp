@@ -427,7 +427,7 @@ h6 {
 
 #hero {
   width: 100%;
-  height: 92vh;
+  height: 90vh;
 }
 
 #hero .container {
@@ -435,8 +435,8 @@ h6 {
 }
 
 #hero h1 {
-  width: 542px;
-  height: 200px;
+  /* width: 542px;
+  height: 200px; */
   margin: 0;
   font-size: 58px;
   font-weight: var(--font-semi-bold);
@@ -509,7 +509,7 @@ h6 {
 --------------------------------------------------------------*/
 
 section {
-  padding: 60px 0;
+  padding: 60px !important;
   overflow: hidden;
 }
 
