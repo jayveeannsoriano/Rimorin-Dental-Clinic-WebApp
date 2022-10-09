@@ -144,10 +144,17 @@ app.put("/update", async (req, res) => {
 app.get("/delete/:id", async (req, res) => {
   
   const id = req.params.id; 
+  
+  try{
+    const user = jwt.verify(token, JWT_SECRET);
+    console.log(user);
 
-  await User.findByIdAndRemove(id).exec(); // still not used, just incase frontend needs delete functions
-  res.send("Document is deleted from the database");
-
+    await User.findByIdAndRemove(id).exec(); // still not used, just incase frontend needs delete functions
+    res.send("Document is deleted from the database");
+  }catch(err){
+    alert("There is some error");
+    console.log(err)
+  }
 });
 
 
