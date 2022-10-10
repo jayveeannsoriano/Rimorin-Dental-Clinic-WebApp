@@ -22,7 +22,7 @@
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^2.1.8",
     "simple-datatables": "^3.2.2",
     "web-vitals": "^2.1.4"
   },

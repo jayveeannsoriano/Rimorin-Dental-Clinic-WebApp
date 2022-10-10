@@ -15,6 +15,7 @@ import DentistCalendar from "./pages/dentist-calendar";
 import EPrescription from "./pages/EPrescription";
 import AppointmentPage from "./pages/appointments";
 import PatientRecords from "./pages/patientrecords";
+import UserProfile from "./pages/userprofile";
 
 function App() {
     // Data Table for Appointments
@@ -193,6 +194,7 @@ function App() {
           <Route path="/dentistcalendar" element={<DentistCalendar/>} />
           <Route path="/patientrecords" element={<PatientRecords />} />
           <Route path="/eprescription" element={<EPrescription />} />
+          <Route path="/userprofile" element={<UserProfile />} />
 
         </Routes>
       </div>
