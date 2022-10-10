@@ -15,7 +15,7 @@ forgotpassword.post ("/forgot-password", async (req, res) => {
 try {
     const oldUser = await user.findOne({ email });
     if (!oldUser) {
-        return res.send("User does not exist.");
+        return res.json({status:"User does not exist."});
     }
     const secret = JWT_SECRET + oldUser.password;
     const token = jwt.sign( { email: oldUser.email, id: oldUser._id }, secret, {
