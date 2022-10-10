@@ -20,23 +20,19 @@ function dashboardHeader(){
                     <div className="search-bar">
                         <form className="search-form d-flex align-items-center" method="POST" action="#">
                             <input type="text" name="query" placeholder="Search" title="Enter search keyword"/>
-                            <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                            <button type="submit" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
 
                     {/* <!-- Search Icon --> */}
                     <nav className="header-nav ms-auto">
                         <ul className="d-flex align-items-center">
-                            <li className="nav-item d-block d-lg-none">
-                                <a className="nav-link nav-icon search-bar-toggle " href="#">
-                                    <i className="bi bi-search"></i>
-                                </a>
-                            </li>
+
 
                         {/* <!-- Notification Icon --> */}
                         <li className="nav-item dropdown">
                             <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                                <i className="bi bi-bell"></i>
+                            <i class="fa-solid fa-bell"></i>
                                 <span className="badge bg-primary badge-number">4</span>
                             </a>
 

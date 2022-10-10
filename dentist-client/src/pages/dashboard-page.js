@@ -4,7 +4,7 @@ import Header from "../components/dashboard-header.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import Footer from "../components/footer.jsx";
 import '../styles/dashboard.css';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 
 export default function Dashboard() {  
   return (
@@ -51,7 +51,7 @@ export default function Dashboard() {
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-calendar-week"></i>
+                    <i class="fa-solid fa-stethoscope"></i>
                     </div>
                     <div class="ps-3">
                       <h6>4</h6>
@@ -86,7 +86,7 @@ export default function Dashboard() {
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
+                    <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="ps-3">
                       <h6>24</h6>
@@ -122,7 +122,7 @@ export default function Dashboard() {
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-clock-history"></i>
+                    <i class="fa-solid fa-calendar-check"></i>
                     </div>
                     <div class="ps-3">
                       <h6>10</h6>
@@ -156,7 +156,10 @@ export default function Dashboard() {
                 </div>
 
                 <div class="card-body">
-                  <div class="nav-bar"><span>Today | Upcomming</span></div>
+                  <div class="nav-bar">
+                  <Button>TODAY</Button>
+                    <Button>UPCOMING</Button>
+                  </div>
                   <h5 class="card-title">Today's Appointments</h5>
 
                   <table class="table table-borderless datatable">

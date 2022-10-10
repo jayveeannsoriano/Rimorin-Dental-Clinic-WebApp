@@ -8,9 +8,10 @@ function Sidebar(){
                 <ul className="sidebar-nav" id="sidebar-nav">
 
                     {/* Dashboard Nav */}
+                    {/* <h2>MENU</h2> */}
                       <li className="nav-item">
                         <a className="nav-link " href="/dashboard">
-                        <i className="bi bi-grid"></i>
+                        <i class="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -18,7 +19,7 @@ function Sidebar(){
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="/appointments">
-                        <i className="bi bi-card-checklist"></i>
+                        <i class="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
                         </a>
                     </li>
@@ -26,7 +27,7 @@ function Sidebar(){
                     {/* Calendar Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" data-bs-target="#forms-nav" href="/dentistcalendar">
-                        <i className="bi bi-calendar3"></i>
+                        <i class="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
                     </li>
@@ -34,16 +35,16 @@ function Sidebar(){
                     {/* Patient Records Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="/patientrecords">
-                        <i className="bi bi-file-medical"></i>
+                        <i class="fa-solid fa-file-medical"></i>
                             <span>Patient Records</span>
-                            <i className="bi bi-chevron-down ms-auto"></i>
+                            <i class="fa-solid fa-chevron-down"></i>
                         </a>
                     </li>
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/eprescription">
-                        <i className="bi bi-credit-card"></i>
+                        <i class="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
                     </li>
@@ -51,7 +52,7 @@ function Sidebar(){
                     {/* Paymnent Records Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/paymentrecords">
-                        <i className="bi bi-credit-card"></i>
+                        <i class="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
                     </li>
@@ -59,7 +60,7 @@ function Sidebar(){
                     {/* My Profile Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/userprofile">
-                        <i className="bi bi-person-circle"></i>
+                        <i class="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
                     </li>
@@ -67,7 +68,7 @@ function Sidebar(){
                     {/* Profile Settings Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/profilesettings">
-                        <i className="bi bi-gear"></i>
+                        <i class="fa-solid fa-gear"></i>
                             <span>Profile Settings</span>
                         </a>
                     </li>
@@ -75,7 +76,7 @@ function Sidebar(){
                     {/* Log Out Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/logout">
-                        <i className="bi bi-box-arrow-in-right"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>
                     </li>

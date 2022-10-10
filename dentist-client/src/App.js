@@ -4,6 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+// import {DataTable} from "simple-datatables";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing-page";
 import LoginPage from "./pages/login-page";
@@ -12,8 +13,13 @@ import DashboardPage from "./pages/dashboard-page";
 import DashboardPageTest from "./pages/dashboard-test";
 import DentistCalendar from "./pages/dentist-calendar";
 import EPrescription from "./pages/EPrescription";
+import AppointmentPage from "./pages/appointments";
+import PatientRecords from "./pages/patientrecords";
 
 function App() {
+    // Data Table for Appointments
+    // const myTable = document.querySelector(".table");
+    // const dataTable = new DataTable(".table");
   /**
    * Easy selector helper function
    */
@@ -183,7 +189,9 @@ function App() {
           <Route path="/signup" element={<SignupMain />} />
           <Route path="/dashboardpage" element={<DashboardPageTest />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/calendar" element={<DentistCalendar/>} />
+          <Route path="/appointments" element={<AppointmentPage/>} />
+          <Route path="/dentistcalendar" element={<DentistCalendar/>} />
+          <Route path="/patientrecords" element={<PatientRecords />} />
           <Route path="/eprescription" element={<EPrescription />} />
 
         </Routes>
