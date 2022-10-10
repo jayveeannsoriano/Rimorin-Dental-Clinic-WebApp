@@ -176,37 +176,37 @@ export default function Dashboard() {
                       <tr>
                         <th scope="row"><a href="#">#2457</a></th>
                         <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td></td>
+                        <td><a href="#" class="text-primary">22/04/2022 9:00 AM</a></td>
                         <td><span class="badge bg-success">Approved</span></td>
+                        <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><a href="#">#2147</a></th>
                         <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td></td>
+                        <td><a href="#" class="text-primary">22/04/2022 10:00 AM</a></td>
                         <td><span class="badge bg-warning">Pending</span></td>
+                        <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><a href="#">#2049</a></th>
                         <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td></td>
+                        <td><a href="#" class="text-primary">22/04/2022 11:00 AM</a></td>
                         <td><span class="badge bg-success">Approved</span></td>
+                        <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><a href="#">#2644</a></th>
                         <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td></td>
+                        <td><a href="#" class="text-primar">22/04/2022 1:00 PM</a></td>
                         <td><span class="badge bg-danger">Rejected</span></td>
+                        <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><a href="#">#2644</a></th>
                         <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td></td>
+                        <td><a href="#" class="text-primary">22/04/2022 2:00 PM</a></td>
                         <td><span class="badge bg-success">Approved</span></td>
+                        <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                     </tbody>
                   </table>

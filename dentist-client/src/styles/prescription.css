@@ -8,7 +8,7 @@
 }
 
 .add-more-item a {
-    color: #0de0fe;
+    color: #5d5fef;
     font-weight: 500;
 }
 
@@ -57,4 +57,8 @@
 
 .pat-widget-profile .booking-date li span {
     font-size: .875rem;
+}
+
+.submit-btn{
+    margin-right: 1%; 
 }
