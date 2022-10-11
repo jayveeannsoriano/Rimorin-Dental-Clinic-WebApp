@@ -43,10 +43,6 @@ function dashboardHeader(){
                                 <a href="#"><span className="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                             </li>
 
-                            <li>
-                                <hr className="dropdown-divider"/>
-                            </li>
-
                             <li className="notification-item">
                                 <i className="bi bi-exclamation-circle text-warning"></i>
                                 <div>
@@ -54,10 +50,6 @@ function dashboardHeader(){
                                     <p>Quae dolorem earum veritatis oditseno</p>
                                     <p>30 min. ago</p>
                                 </div>
-                            </li>
-
-                            <li>
-                                <hr className="dropdown-divider"/>
                             </li>
 
                             <li className="notification-item">
@@ -69,10 +61,6 @@ function dashboardHeader(){
                                 </div>
                             </li>
 
-                            <li>
-                                <hr className="dropdown-divider"/>
-                            </li>
-
                             <li className="notification-item">
                                 <i className="bi bi-check-circle text-success"></i>
                                 <div>
@@ -82,10 +70,6 @@ function dashboardHeader(){
                                 </div>
                             </li>
 
-                            <li>
-                                <hr className="dropdown-divider"/>
-                            </li>
-
                             <li className="notification-item">
                                 <i className="bi bi-info-circle text-primary"></i>
                                 <div>
@@ -93,10 +77,6 @@ function dashboardHeader(){
                                     <p>Quae dolorem earum veritatis oditseno</p>
                                     <p>4 hrs. ago</p>
                                 </div>
-                            </li>
-
-                            <li>
-                                <hr className="dropdown-divider"/>
                             </li>
 
                             <li className="dropdown-footer">
@@ -113,7 +93,7 @@ function dashboardHeader(){
 
                         {/* <!-- Profile Image Icon --> */}
                         <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle"/>
+                            <img src="" alt="Profile" className="rounded-circle"/>
                             <span className="d-none d-md-block dropdown-toggle ps-2">P. Concepcion</span>
                         </a>
                         {/* <!-- End Profile Image Icon --> */}
@@ -125,20 +105,12 @@ function dashboardHeader(){
                                 <span>Dentist</span>
                             </li>
 
-                        <li>
-                            <hr className="dropdown-divider"/>
-                        </li>
-
                         {/* <!-- My Profile --> */}
                         <li>
                             <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i className="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
-                        </li>
-
-                        <li>
-                            <hr className="dropdown-divider"/>
                         </li>
 
                         {/* <!-- Account Settings --> */}
@@ -149,9 +121,6 @@ function dashboardHeader(){
                             </a>
                         </li>
 
-                        <li>
-                            <hr className="dropdown-divider"/>
-                        </li>
 
                         {/* <!-- Need Help --> */}
                         <li>
@@ -159,10 +128,6 @@ function dashboardHeader(){
                                 <i className="bi bi-question-circle"></i>
                                 <span>Need Help?</span>
                             </a>
-                        </li>
-
-                        <li>
-                            <hr className="dropdown-divider"/>
                         </li>
 
                         {/* <!-- Sign Out --> */}
