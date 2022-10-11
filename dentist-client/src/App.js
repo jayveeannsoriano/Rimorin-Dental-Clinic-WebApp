@@ -18,9 +18,6 @@ import PatientRecords from "./pages/patientrecords";
 import UserProfile from "./pages/userprofile";
 
 function App() {
-    // Data Table for Appointments
-    // const myTable = document.querySelector(".table");
-    // const dataTable = new DataTable(".table");
   /**
    * Easy selector helper function
    */
