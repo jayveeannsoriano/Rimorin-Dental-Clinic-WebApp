@@ -64,3 +64,10 @@
 .timeslot .time:hover{
     background-color: #5d5fef;
 }
+
+.slots{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
