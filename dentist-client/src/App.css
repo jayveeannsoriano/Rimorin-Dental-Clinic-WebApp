@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
 /*======= GOOGLE FONTS =======*/
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap%27');
@@ -58,6 +62,36 @@
     }
 }
 
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background: var(--bg-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none !important;
+  font-family: var(--body-font) !important;
+}
+
+p {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--body-font);
+}
 
 /* *,
  ::after,
@@ -73,29 +107,46 @@ body {
     overflow: hidden;
 } */
 
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
 
-/* Bordered Tabs */
-.nav-tabs-bordered {
-  border-bottom: 2px solid #ebeef4;
+#header {
+  background: var(--bg-color);
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  top: 40px;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
 }
 
-.nav-tabs-bordered .nav-link {
-  margin-bottom: -2px;
-  border: none;
-  color: #2c384e;
+#header .header-scrolled {
+  top: 0;
 }
 
-.nav-tabs-bordered .nav-link:hover,
-.nav-tabs-bordered .nav-link:focus {
-  color: #4154f1;
+#header .logo {
+  font-size: var(--h1-font-size);
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: var(--body-font);
 }
 
-.nav-tabs-bordered .nav-link.active {
-  background-color: #fff;
-  color: #4154f1;
-  border-bottom: 2px solid #4154f1;
+#header .logo a {
+  color: var(--text-color);
 }
 
+#header .logo img {
+  max-height: 40px;
+}
+
+
+.divider{
+  border-top: 1px solid #f0f0f0;
+  margin: 10pt;
+}
 
 /*--------------------------------------------------------------
 # Profie Page

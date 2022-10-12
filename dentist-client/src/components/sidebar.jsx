@@ -34,7 +34,7 @@ function Sidebar(){
 
                     {/* Patients Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="#">
+                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
                             <i class="fa-solid fa-file-medical"></i>
                             <span>Patients</span>
                         </a>
@@ -55,7 +55,7 @@ function Sidebar(){
                             </li>
 
                             <li>
-                                <a href="">
+                                <a href="/dentalrecords">
                                     <i class="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -78,6 +78,8 @@ function Sidebar(){
                             <span>Payment Records</span>
                         </a>
                     </li>
+
+                    <div className="divider"></div>
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
