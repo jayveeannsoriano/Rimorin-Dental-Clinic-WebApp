@@ -184,13 +184,8 @@
 }
 .md-stepper-horizontal .md-step .md-step-bar-left {
 	left:0;
-	right:50%;
+	right:50%; 
 	margin-right:20px;
-}
-.slots{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
 }
 
 

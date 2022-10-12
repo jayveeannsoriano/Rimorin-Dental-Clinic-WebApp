@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/header.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import Footer from "../components/footer.jsx";
-import '../styles/booking.css';
+import style from "../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
@@ -105,6 +105,12 @@ function Booking(){
                         <div className="col-12">
                             <button className="btn btn-outline-secondary" type="submit">Cancel</button>
                             <button className="btn btn-primary" type="submit">Next</button>
+                        </div>
+
+                        {/* Review Appointment Details */}
+
+                        <div id="review-details" className="review-details">
+                            
                         </div>
 
                     </div> {/* End of card-body */}
