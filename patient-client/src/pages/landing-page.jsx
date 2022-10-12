@@ -2,8 +2,8 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import Footer from "../components/footer";
-import style from '../styles/landing-page.css';
-import LandingHeader from '../components/landing-header';
+import '../styles/landing-page.css';
+import '../components/landing-header';
 
 function LandingPage(){
     return(
