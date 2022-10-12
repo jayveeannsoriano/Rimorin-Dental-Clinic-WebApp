@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header.jsx";
-import Sidebar from "../components/sidebar.jsx";
-import Footer from "../components/footer.jsx";
+import Header from "../components/dashboard-header";
+import Sidebar from "../components/sidebar";
+import Footer from "../components/dashboard-footer";
 import '../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 

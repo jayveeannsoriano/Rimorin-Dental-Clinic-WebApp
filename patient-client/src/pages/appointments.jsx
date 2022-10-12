@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../components/header.jsx";
+import Header from "../components/dashboard-header.jsx";
 import Sidebar from "../components/sidebar.jsx";
-import Footer from "../components/footer.jsx";
 import '../styles/dashboard.css';
 // import Button from 'react-bootstrap/Button';
 
@@ -215,10 +214,6 @@ export default function AppointmentPage() {
               </div>
               {/* End of Appointment History */}
 
-
-
-
-
             </div>
           </div>
           {/* <!-- Today's Appointment --> */}
@@ -228,7 +223,7 @@ export default function AppointmentPage() {
 
       <Header />
       <Sidebar />
-      <Footer />
+
     </div>
   );
 }

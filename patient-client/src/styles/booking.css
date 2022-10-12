@@ -1,6 +1,15 @@
 /*--------------------------------------------------------------
 # Booking
 --------------------------------------------------------------*/
+.appt-title{
+	padding: 20px 0 15px 0;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--text-color);
+	font-family: "Montserrat", sans-serif;
+}
+
 .doctor-info {
     padding: 0.3in;
 }
@@ -44,39 +53,65 @@
     line-height: 20px;
 }
 
+.reason-form{
+	margin-top: 1in;
+	font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+	padding: 0.3in;
+}
+
+.form-check{
+	padding-left: 0.55in;
+}
+
+.appt-bttns{
+	padding-right: 0.3in;
+	float: right;
+}
+
+.appt-bttns .btn{
+	margin-left: 6px;
+}
+
+/* Timeslot */
 .timeslot{
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 5px;
+    padding: 2px;
 }
 
 .timeslot .time{
-    background-color: #fff;
+    background-color: #ffffff;
     color: #5d5fef;
     border-color: #5d5fef;
     font-size: 15px;
+	font-weight: 500;
     border-radius: 5px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 10px 30px
+    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
+    padding: 10px 30px;
+	width: 95%;
 }
 
 .timeslot .time:hover{
-    background-color: #5d5fef;
+    background-color: var(--primary-color);
+	color: #fff;
 }
 
 .slots{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+	gap: 5px 0px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
+/* Stepper */
 .md-stepper-horizontal {
 	display:table;
-	width:100%;
+	width:60%;
 	margin:0 auto;
-	background-color:#FFFFFF;
-	box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
 }
 .md-stepper-horizontal .md-step {
 	display:table-cell;

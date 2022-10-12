@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../components/header.jsx";
+import Header from "../components/dashboard-header.jsx";
 import Sidebar from "../components/sidebar.jsx";
-import Footer from "../components/footer.jsx";
 import style from "../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
@@ -21,7 +20,6 @@ function Booking(){
                             <a href="/appointments">Appointments</a>
                         </li>
                         <li className="breadcrumb-item active">Request Appointment</li>
-                        
                     </ol>
                 </nav>
 
@@ -30,30 +28,32 @@ function Booking(){
                 
                     {/* Card Title*/}
                     <div className="card-body">
-                    <h5 className="card-title">REQUEST APPOINTMENT</h5>
+                    <h5 className="appt-title">REQUEST APPOINTMENT</h5>
 
                     {/* Stepper */}
                     <div className="md-stepper-horizontal orange">
-                        <div className="md-step active done">
+                        <div className="md-step active">
                         <div className="md-step-circle"><span>1</span></div>
-                        <div className="md-step-title">Fill-up Appointment Form</div>
+                        <div className="md-step-title">Fill-up</div>
                         <div className="md-step-bar-left"></div>
                         <div className="md-step-bar-right"></div>
                         </div>
-                        <div className="md-step active editable">
+                        <div className="md-step">
                         <div className="md-step-circle"><span>2</span></div>
                         <div className="md-step-title">Review Appointment Details</div>
-                        <div className="md-step-optional">Optional</div>
+                        {/* <div className="md-step-optional">Optional</div> */}
                         <div className="md-step-bar-left"></div>
                         <div className="md-step-bar-right"></div>
                         </div>
-                        <div className="md-step active">
+                        <div className="md-step">
                         <div className="md-step-circle"><span>3</span></div>
                         <div className="md-step-title">Done</div>
                         <div className="md-step-bar-left"></div>
                         <div className="md-step-bar-right"></div>
                         </div>
                     </div>
+
+                    <div className="divider"></div>
 
                     <div className="doctor-info">
                         <h1>DOCTOR INFORMATION</h1>
@@ -82,7 +82,7 @@ function Booking(){
                         </div>
                     </div>
 
-                        <div className="col-12">
+                        <div className="col-12 reason-form">
                             <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
                             <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..."></textarea>
                             <div className="valid-feedback">
@@ -103,8 +103,10 @@ function Booking(){
                         </div>
 
                         <div className="col-12">
+                            <div className="appt-bttns">
                             <button className="btn btn-outline-secondary" type="submit">Cancel</button>
                             <button className="btn btn-primary" type="submit">Next</button>
+                            </div>
                         </div>
 
                         {/* Review Appointment Details */}
@@ -121,7 +123,7 @@ function Booking(){
 
             <Header/>
             <Sidebar />
-            <Footer />
+
         </div>
     )
 }
