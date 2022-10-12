@@ -32,14 +32,36 @@ function Sidebar(){
                         </a>
                     </li>
 
-                    {/* Patient Records Nav */}
+                    {/* Patients Nav */}
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
+                            <i class="fa-solid fa-file-medical"></i>
+                            <span>Patients</span>
+                        </a>
+                    </li>
+
+                    {/* Patient Records Nav/Patient Information/Dental Records */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="/patientrecords">
+                        <a className="nav-link collapsed" data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
                         <i class="fa-solid fa-file-medical"></i>
                             <span>Patient Records</span>
                             <i class="fa-solid fa-chevron-down"></i>
                         </a>
+                        <ul id="patient-records-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <a href="/patientrecords">
+                                    <i class="bi bi-circle"></i><span>Patient Information</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/dentalrecords">
+                                    <i class="bi bi-circle"></i><span>Dental Records</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    {/* /patientrecords */}
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
@@ -56,6 +78,8 @@ function Sidebar(){
                             <span>Payment Records</span>
                         </a>
                     </li>
+
+                    <div className="divider"></div>
 
                     {/* My Profile Nav */}
                     <li className="nav-item">

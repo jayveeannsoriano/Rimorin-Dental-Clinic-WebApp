@@ -162,7 +162,7 @@ export default function Dashboard() {
                   </div>
                   <h5 class="card-title">Today's Appointments</h5>
 
-                  <table class="table table-borderless datatable">
+                  <table className="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">Patient Name</th>
