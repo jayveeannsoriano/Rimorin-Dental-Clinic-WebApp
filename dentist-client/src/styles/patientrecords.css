@@ -1,0 +1,56 @@
+.profile-sidebar {
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.pro-widget-content {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-info-widget {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: left;
+}
+
+.profile-info-widget .booking-doc-img {
+    margin-right: 15px;
+}
+
+.profile-info-widget .booking-doc-img img {
+    border-radius: 4px;
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+}
+
+.profile-det-info {
+    overflow: hidden;
+}
+
+.profile-det-info h3 {
+    font-size: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.patient-details h5 {
+    color: #757575;
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.patient-details h5 i {
+    width: 18px;
+}
