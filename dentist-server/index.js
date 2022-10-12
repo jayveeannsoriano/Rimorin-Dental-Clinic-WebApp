@@ -29,8 +29,10 @@ mongoose
   .catch((e) => console.log(e));
 
 require("./models/userDetails");
+require("./models/appointmentDetails");
 // const User = mongoose.model("userRegister"); //encodes model
 const User = mongoose.model("UserInfo");
+const AppDetails = mongoose.model("AppointmentDetails");
 
 //sign up
 app.post("/register", async (req, res) => {
@@ -157,7 +159,34 @@ app.get("/delete/:id", async (req, res) => {
   }
 });
 
+//create appointment (patient)
 
+app.post("/createAppointment", async (req,res) => {
+  const { name, appt, datetime,status,action } = req.body;
+  try{
+  await AppDetails.create({
+    name, appt, datetime,status,action
+  });
+  res.send({ status: "ok" });
+} catch (error) {
+  res.send({ status: "Cannot create appointment" });
+}
+});
+
+//get appointment details
+
+app.get("/getAppointmentDetails", async(req,res) => {
+  const id = req.body;
+  
+  AppDetails.findOne({ id})
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+
+})
 
 
 
