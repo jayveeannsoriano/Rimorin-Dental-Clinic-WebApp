@@ -187,3 +187,10 @@
 	right:50%;
 	margin-right:20px;
 }
+.slots{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+

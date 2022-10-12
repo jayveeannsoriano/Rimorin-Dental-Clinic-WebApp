@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import moment from 'moment';
 import { Button } from 'react-bootstrap';
 
+
 const Timeslot = () => {
-  let intime = "12:00 PM"
+  let intime = "09:00 AM"
   let outtime = "05:00 PM"
   const [result, setResult] = useState([])
   console.log("Array", result)
