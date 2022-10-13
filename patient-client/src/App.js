@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from './pages/dashboard';
 import LandingPage from './pages/landing-page';
 import LoginPage from "./pages/login-page";
-// import SignupMain from "./pages/SignUpMain";
+import SignUpMain from "./pages/signupmain";
 import AppointmentPage from './pages/appointments';
 import Booking from './pages/booking';
 import UserProfile from './pages/userprofile';
@@ -36,7 +36,7 @@ function App() {
            <Routes>
                 <Route path="/" exact element={<LandingPage />} />
                 <Route path="/login" element={<LoginPage />} />
-                {/* <Route path="/signup" element={<SignupMain />} /> */}
+                <Route path="/signup" element={<SignUpMain />} />
                 <Route path="/dashboard" element={< Dashboard />}/>
                 <Route path="/appointments" element={< AppointmentPage />}/>
                 <Route path="/booking" element={< Booking />}/>

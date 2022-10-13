@@ -88,14 +88,6 @@ function Sidebar(){
                         </a>
                     </li>
 
-                    {/* Profile Settings Nav */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="/profilesettings">
-                        <i className="fa-solid fa-gear"></i>
-                            <span>Profile Settings</span>
-                        </a>
-                    </li>
-
                     {/* Log Out Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="/logout">
