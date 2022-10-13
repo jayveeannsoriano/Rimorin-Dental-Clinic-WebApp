@@ -48,12 +48,18 @@
 }
 
 
+/* Remove scrollbar */
+/* body {
+    overflow-x:hidden;
+    overflow-y:hidden;
+ } */
+
 /* Login Form Box */
 .center {
     position: relative;
     /* top: 5%; */
     margin-top: 370px;
-    left: 20%;
+    left: 30%;
     transform: translate(-50%, -50%);
     width: 500px;
     border-radius: var(--border-radius-soft);
@@ -176,19 +182,29 @@ input[type="submit"]:hover {
 
 .img_hero_login {
     position: relative;
-    width: 733.97px;
+    width: 733px;
     height: 757px;
-    left: 26px;
+    left: 60px;
     top: -10px;
     
   }
 
 .img_hero_login img {
-    width: 620px;
-    height: 650px;
-    margin: 10px 0 0 130px;
+    width: 650px;
+    height: 670px;
+    margin: -20px 0 0 130px;
   }
 
-/* section{
+ #herologin {
     padding: 0;
-} */
+    margin: 0;
+    /* min-height: calc (100vh - 984.6px - 986.4px); */
+    min-height: 100%;
+ } 
+
+
+ section {
+    padding: 0!important;
+    margin: 0 !important;
+ }
+

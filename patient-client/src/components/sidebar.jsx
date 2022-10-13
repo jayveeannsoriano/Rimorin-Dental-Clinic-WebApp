@@ -37,15 +37,7 @@ function Sidebar(){
                             <span>Calendar</span>
                         </a>
                     </li>
-
-                    {/* Patients Nav */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
-                            <i className="fa-solid fa-file-medical"></i>
-                            <span>Patients</span>
-                        </a>
-                    </li>
-
+                    
                     {/* Patient Records Nav/Patient Information/Dental Records */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
@@ -55,7 +47,7 @@ function Sidebar(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/patientrecords">
+                                <a href="/patientinfo">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>

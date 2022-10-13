@@ -50,6 +50,7 @@ export default class LoginPage extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="LoginPage">
           <title>Rimorin Dental Clinic</title>
+          
           {/* ======= Header ======= */}
           <header id="headerlogin" className="fixed-top">
             <div className="container d-flex align-items-center">

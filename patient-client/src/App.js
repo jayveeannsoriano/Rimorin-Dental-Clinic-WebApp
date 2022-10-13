@@ -11,6 +11,7 @@ import SignUpMain from "./pages/signupmain";
 import AppointmentPage from './pages/appointments';
 import UserProfile from './pages/userprofile';
 import BookingMain from "./pages/booking-main";
+import PatientInfo from "./pages/patient-info";
 
 function App() {
   "use strict";
@@ -138,6 +139,7 @@ function App() {
                 <Route path="/appointments" element={< AppointmentPage />}/>
                 <Route path="/userprofile" element={< UserProfile />}/>
                 <Route path="/booking" element={< BookingMain />}/>
+                <Route path="/patientinfo" element={< PatientInfo />}/>
            </Routes>
         </div>
     </Router>

@@ -90,6 +90,23 @@ export default function UserProfile() {
                                                 <div class="col-lg-9 col-md-8">jessica.mcbell@email.com</div>
                                             </div>
 
+                                            <h5 class="card-title">Basic Medical Information</h5>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Medications or maintenance</div>
+                                                <div class="col-lg-9 col-md-8">Metformin</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Allergies</div>
+                                                <div class="col-lg-9 col-md-8">Hives</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Conditions</div>
+                                                <div class="col-lg-9 col-md-8">Diabetes</div>
+                                            </div>
+
                                         </div>
 
                                         {/* Profile Edit */}
@@ -147,6 +164,29 @@ export default function UserProfile() {
                                                         <input name="email" type="email" class="form-control" id="Email" value="jessica.mcbell@email.com"/>
                                                     </div>
                                                     </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Medications" class="col-md-4 col-lg-3 col-form-label">Medications</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Allergies" class="col-md-4 col-lg-3 col-form-label">Allergies</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Conditions" class="col-md-4 col-lg-3 col-form-label">Conditions</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
+                                                    </div>
+                                                    </div>
+
+
 
                                                     <div class="text-right">
                                                     <button type="submit" class="btn btn-outline-secondary">Cancel</button>
