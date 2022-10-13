@@ -93,21 +93,20 @@ function dashboardHeader(){
 
                         {/* <!-- Profile Image Icon --> */}
                         <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img src="" alt="Profile" className="rounded-circle"/>
-                            <span className="d-none d-md-block dropdown-toggle ps-2">P. Concepcion</span>
+                            <img src="assets/img/messages-1.jpg" alt="Profile" className="rounded-circle"/>
+                            <span className="d-none d-md-block dropdown-toggle ps-2">Jessica McBell</span>
                         </a>
                         {/* <!-- End Profile Image Icon --> */}
 
                         {/* <!-- Profile Dropdown Menu --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li className="dropdown-header">
-                                <h6 className="userName">Pamela Concepcion</h6> 
-                                <span>Dentist</span>
+                                <h6 className="userName">Jessica McBell</h6> 
                             </li>
 
                         {/* <!-- My Profile --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a className="dropdown-item d-flex align-items-center"  href="/userprofile">
                                 <i className="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -132,7 +131,7 @@ function dashboardHeader(){
 
                         {/* <!-- Sign Out --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center" href="#">
+                            <a className="dropdown-item d-flex align-items-center" href="/login">
                                 <i className="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>

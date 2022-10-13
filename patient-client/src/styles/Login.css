@@ -52,7 +52,7 @@
 .center {
     position: relative;
     /* top: 5%; */
-    margin-top: 390px;
+    margin-top: 370px;
     left: 20%;
     transform: translate(-50%, -50%);
     width: 500px;
@@ -60,7 +60,7 @@
     box-shadow: var(--box-shadow-normal);
     font: var(--body-font);
     background: white;
-   padding: 3%;
+    padding: 3%;
 }
 
 .center h1 {
@@ -74,6 +74,7 @@
     padding: 0 90px;
     box-sizing: border-box;
 }
+
 
 #sub {
     text-align: center;
@@ -174,12 +175,6 @@ input[type="submit"]:hover {
 }
 
 .img_hero_login {
-    /* position: relative;
-    height: 100vh;
-    width: 1194px;
-    background: url("") no-repeat center center scroll;
-    background-size: cover;
-    float: left; */
     position: relative;
     width: 733.97px;
     height: 757px;

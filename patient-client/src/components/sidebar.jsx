@@ -1,15 +1,22 @@
 import React from 'react';
+import '../App.css';
+import style from '../App.css';
 
 function Sidebar(){
     return(
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
+                    <a href="/dashboard" class="logo d-flex align-items-center">
+                        <img src="./img/logo.png" alt=""/>
+                        <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
+                    </a>
+                    <div className='divider'></div>
+                    <h4>MENU</h4>
 
                     {/* Dashboard Nav */}
-                    {/* <h2>MENU</h2> */}
                       <li className="nav-item">
-                        <a className="nav-link " href="/dashboard">
+                        <a className="nav-link" href="/dashboard">
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -17,7 +24,7 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="/appointments">
+                        <a className="nav-link collapsed" href="/appointments" data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
                         </a>
@@ -90,7 +97,7 @@ function Sidebar(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/logout">
+                        <a className="nav-link collapsed" href={"/login"}>
                         <i className="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

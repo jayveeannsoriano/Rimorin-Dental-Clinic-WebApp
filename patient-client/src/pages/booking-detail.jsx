@@ -1,14 +1,22 @@
-import React, {Component} from "react";
+// SCRATCH!!!
+import React from 'react';
 import Header from "../components/dashboard-header.jsx";
 import Sidebar from "../components/sidebar.jsx";
-import style from "../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
-// import Stepper from 'bs-stepper'
 
+const BookingDetail = ({nextStep, prevStep}) => {
+    const Continue = (e) => {
+        e.preventDefault();
+        nextStep();
+    };
 
-function Booking(){
+    const Previous = e => {
+        e.preventDefault();
+        prevStep();
+    }
+
     return(
         <div>
             <main id="main" className="main">
@@ -33,13 +41,13 @@ function Booking(){
 
                     {/* Stepper */}
                     <div className="md-stepper-horizontal orange">
-                        <div className="md-step active">
+                        <div className="md-step">
                         <div className="md-step-circle"><span>1</span></div>
                         <div className="md-step-title">Fill-up</div>
                         <div className="md-step-bar-left"></div>
                         <div className="md-step-bar-right"></div>
                         </div>
-                        <div className="md-step">
+                        <div className="md-step active">
                         <div className="md-step-circle"><span>2</span></div>
                         <div className="md-step-title">Review Appointment Details</div>
                         {/* <div className="md-step-optional">Optional</div> */}
@@ -65,7 +73,7 @@ function Booking(){
                     </div>
 
                     {/* Booking deets */}
-                    <div className="appointment-form" id="appointment-form">
+                    {/* <div className="appointment-form" id="appointment-form">
 
                     <form className="row g-3 needs-validation" noValidate/>
                         <div className="col-md-4">
@@ -105,15 +113,22 @@ function Booking(){
 
                         <div className="col-12">
                             <div className="appt-bttns">
-                            <button className="btn btn-outline-secondary" type="submit">Cancel</button>
-                            <button className="btn btn-primary" type="submit">Next</button>
+                            <button onClick={Previous} className="btn btn-outline-secondary" type="submit">Previous</button>
+                            <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Review Appointment Details */}
 
                         <div id="review-details" className="review-details">
-                            
+                            <h1>APPOINTMENT DETAILS</h1>
+
+                                <div className="col-12">
+                                    <div className="appt-bttns">
+                                    <button onClick={Previous} className="btn btn-outline-secondary" type="submit">Previous</button>
+                                    <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
+                                    </div>
+                                </div> 
                         </div>
 
                     </div> {/* End of card-body */}
@@ -129,4 +144,4 @@ function Booking(){
     )
 }
 
-export default Booking;
+export default BookingDetail;

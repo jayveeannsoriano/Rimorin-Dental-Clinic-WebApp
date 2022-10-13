@@ -28,7 +28,7 @@ function LandingPage(){
                         <nav id="navbar" className="navbar order-last order-lg-0">
                             <ul>
                                 <li><a className="nav-link scrollto active" href={'#hero'}>Home</a></li>
-                                <li><a className="nav-link scroll" href={'#about'}>About</a></li>
+                                <li><a className="nav-link scrollto" href={'#about'}>About</a></li>
                                 <li><a className="nav-link scrollto" href={'#services'}>Services</a></li>
                                 <li><a className="nav-link scrollto" href={'#faq'}>FAQs</a></li>
                                 <li><a className="nav-link scrollto" href={'#contact'}>Contact</a></li>
@@ -311,8 +311,9 @@ function LandingPage(){
     {/* <div id="preloader"></div>
     <a href="#" className="back-to-top d-flex align-items-center justify-content-center">
         <i className="bi bi-arrow-up-short"></i></a> */}
-
+        
         <Footer />
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi-arrow-up-short"></i></a>
     </div>
     );
 }

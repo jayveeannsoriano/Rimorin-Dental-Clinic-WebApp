@@ -1,14 +1,17 @@
-import React, {Component} from "react";
+// SCRATCH!!!
+import React from 'react';
 import Header from "../components/dashboard-header.jsx";
 import Sidebar from "../components/sidebar.jsx";
-import style from "../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
-// import Stepper from 'bs-stepper'
 
+const BookingInput = ({nextStep}) => {
+    const Continue = (e) => {
+        e.preventDefault();
+        nextStep();
+    };
 
-function Booking(){
     return(
         <div>
             <main id="main" className="main">
@@ -105,8 +108,8 @@ function Booking(){
 
                         <div className="col-12">
                             <div className="appt-bttns">
-                            <button className="btn btn-outline-secondary" type="submit">Cancel</button>
-                            <button className="btn btn-primary" type="submit">Next</button>
+                            <a href='/appointments'><button className="btn btn-outline-secondary" type="submit">Cancel</button></a>
+                            <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
                             </div>
                         </div>
 
@@ -129,4 +132,4 @@ function Booking(){
     )
 }
 
-export default Booking;
+export default BookingInput;

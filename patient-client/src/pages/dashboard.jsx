@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/dashboard-header";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/dashboard-footer";
-import '../styles/dashboard.css';
+// import '../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 
 export default function Dashboard() {  
@@ -35,7 +35,7 @@ export default function Dashboard() {
 
               <div className="card-body">
                 <div className="nav-bar">
-                    <Button>TODAY</Button>
+                    <Button>TODAY</Button> <span/>
                     <Button>UPCOMING</Button>
                 </div>
                 <h5 className="card-title">TODAY&apos;S APPOINTMENTS</h5>
@@ -221,7 +221,7 @@ export default function Dashboard() {
       <Header />
       <Sidebar />
       <Footer />
-
+      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi-arrow-up-short"></i></a>
     </div>
 
   );

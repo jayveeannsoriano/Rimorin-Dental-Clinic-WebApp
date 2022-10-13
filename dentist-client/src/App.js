@@ -10,12 +10,13 @@ import LandingPage from "./pages/landing-page";
 import LoginPage from "./pages/login-page";
 import SignupMain from "./pages/SignUpMain";
 import DashboardPage from "./pages/dashboard-page";
-// import DashboardPageTest from "./pages/dashboard-test";
+import DashboardPageTest from "./pages/dashboard-test";
 import DentistCalendar from "./pages/dentist-calendar";
 import EPrescription from "./pages/EPrescription";
 import AppointmentPage from "./pages/appointments";
 import PatientRecords from "./pages/patientrecords";
 import UserProfile from "./pages/userprofile";
+import Calendar from "./pages/userprofile";
 
 function App() {
   /**
@@ -192,6 +193,7 @@ function App() {
           <Route path="/patientrecords" element={<PatientRecords />} />
           <Route path="/eprescription" element={<EPrescription />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/dashboardTEST" element={<DashboardPageTest />} />
 
         </Routes>
       </div>

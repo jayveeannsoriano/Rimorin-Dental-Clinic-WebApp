@@ -8,11 +8,11 @@ export default function UserProfile() {
         <div>
             <main id="main" className="main">
                 <div class="pagetitle">
-                    <h1>Profile</h1>
+                    <h1>My Profile</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active">Profile</li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active">My Profile</li>
                         </ol>
                     </nav>
                 </div>
@@ -24,6 +24,7 @@ export default function UserProfile() {
                                     <img src="assets/img/messages-1.jpg" alt="Profile" class="rounded-circle" />
                                     <h2 id="">Jessica McBell</h2>
                                     <h3>Patient ID: <span id="">PT0001</span></h3>
+                                    <div className="divider"></div>
                                     <div class="patient-info">
                                         <ul>
                                             <li>Phone <span>(+63) 956 793 5590</span></li>
@@ -47,10 +48,6 @@ export default function UserProfile() {
 
                                         <li class="nav-item">
                                             <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
                                         </li>
 
                                         <li class="nav-item">
@@ -96,15 +93,15 @@ export default function UserProfile() {
                                         </div>
 
                                         {/* Profile Edit */}
-                                        {/* <div class="tab-pane fade profile-edit pt-3" id="profile-edit">        
+                                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">        
                                                 <form>
                                                     <div class="row mb-3">
                                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <img src="assets/img/profile-img.jpg" alt="Profile"/>
+                                                        <img src="assets/img/messages-1.jpg" alt="Profile"/>
                                                         <div class="pt-2">
-                                                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="fa-solid fa-upload"></i></a>
+                                                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="fa-solid fa-trash"></i></a>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -112,37 +109,23 @@ export default function UserProfile() {
                                                     <div class="row mb-3">
                                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson"/>
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="Jessica McBell"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                    <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                                                    <label for="Date of Birth" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                                                        <input name="country" type="text" class="form-control" id="Birthday" value="June 01, 2000"/>
                                                     </div>
                                                     </div>
-
+                                                    {/*                                                     
                                                     <div class="row mb-3">
-                                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                                                    <label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022"/>
                                                     </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer"/>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="country" type="text" class="form-control" id="Country" value="USA"/>
-                                                    </div>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
@@ -154,50 +137,53 @@ export default function UserProfile() {
                                                     <div class="row mb-3">
                                                     <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071"/>
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value="(+63) 956 793 5590"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com"/>
+                                                        <input name="email" type="email" class="form-control" id="Email" value="jessica.mcbell@email.com"/>
                                                     </div>
                                                     </div>
 
-                                                    <div class="row mb-3">
-                                                    <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#"/>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#"/>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#"/>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#"/>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="text-center">
+                                                    <div class="text-right">
+                                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
                                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                                     </div>
                                                 </form>
-                                            </div> */}
+                                            </div>
+
+                                            {/* Change Password */}
+                                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                                                <form>
+                                                    <div class="row mb-3">
+                                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="password" type="password" class="form-control" id="currentPassword"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="newpassword" type="password" class="form-control" id="newPassword"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="text-right">
+                                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

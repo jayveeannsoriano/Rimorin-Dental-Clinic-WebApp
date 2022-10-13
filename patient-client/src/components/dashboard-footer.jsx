@@ -4,7 +4,7 @@ function dashboardFooter(){
     return(
         <div>
             <div>
-            <footer className="footer">
+            <footer className="dashboard-footer">
                 <div className="copyright">
                 &copy; Copyright <strong><span>Naevis</span></strong>. All Rights Reserved
                 </div>
