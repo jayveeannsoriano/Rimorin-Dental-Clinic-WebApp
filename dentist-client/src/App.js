@@ -186,7 +186,6 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupMain />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/appointments" element={<AppointmentPage/>} />
           <Route path="/dentistcalendar" element={<DentistCalendar/>} />
           <Route path="/patientrecords" element={<PatientRecords />} />
