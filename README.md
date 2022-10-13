@@ -9,8 +9,5 @@ npm i react-data-table-component
 
 #SERVER-SIDE INSTALLATION
 ```
-npm i express mongoose
-npm i cors
-npm i bcryptjs
-npm i jsonwebtoken
+npm i express mongoose axios morgan cors bcryptjs jsonwebtoken concurrently -S
 ```
