@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar.jsx";
 import Footer from "../components/footer.jsx";
 import '../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
+import DashboardTable from '../components/dashboardTable';
 
 export default function Dashboard() {  
   return (
@@ -162,7 +163,11 @@ export default function Dashboard() {
                   </div>
                   <h5 class="card-title">Today's Appointments</h5>
 
-                  <table className="table table-borderless datatable">
+                  <div>
+                    <DashboardTable/>
+                 </div>
+
+                  {/* <table className="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">Patient Name</th>
@@ -209,7 +214,7 @@ export default function Dashboard() {
                         <td><span class="badge bg-primary">Reschedule</span> <span class="badge bg-secondary">View</span></td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> */}
 
                 </div>
 
