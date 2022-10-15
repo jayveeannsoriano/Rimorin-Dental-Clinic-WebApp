@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // (function () {
 //   "use strict";
 
 //   /**
 //    * Easy selector helper function
-//    */
+//    */s
 //   const select = (el, all = false) => {
 //     el = el.trim()
 //     if (all) {
