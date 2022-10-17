@@ -135,7 +135,7 @@ function App() {
                 <Route path="/" exact element={<LandingPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpMain />} />
-                <Route path="/dashboard" element={< Dashboard />}/>
+                <Route path="/dashboardpage" element={< Dashboard />}/>
                 <Route path="/appointments" element={< AppointmentPage />}/>
                 <Route path="/userprofile" element={< UserProfile />}/>
                 <Route path="/booking" element={< BookingMain />}/>
