@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/dashboard-footer";
 import "../styles/patient-info.css"
 
-export default function PatientInfo(){
+export default function DentalRecords(){
     return(
         <div>
             <main id="main" className="main">

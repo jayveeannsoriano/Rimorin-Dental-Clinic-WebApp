@@ -12,6 +12,7 @@ import AppointmentPage from './pages/appointments';
 import UserProfile from './pages/userprofile';
 import BookingMain from "./pages/booking-main";
 import PatientInfo from "./pages/patient-info";
+import DentalRecords from "./pages/dentalrecord";
 
 function App() {
   "use strict";
@@ -140,6 +141,7 @@ function App() {
                 <Route path="/userprofile" element={< UserProfile />}/>
                 <Route path="/booking" element={< BookingMain />}/>
                 <Route path="/patientinfo" element={< PatientInfo />}/>
+                <Route path="/dentalrecords" element={< DentalRecords />}/>
            </Routes>
         </div>
     </Router>
