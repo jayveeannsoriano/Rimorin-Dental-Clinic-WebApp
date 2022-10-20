@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
+// import ApptDetails from "./appt-details";
+// import ReschedConfirmation from "./reschedule";
+// import ApptStatus from "./appt-status";
 
 
 const DashboardTable = () => {
@@ -22,7 +25,7 @@ const DashboardTable = () => {
 
     const columns = [
         {
-            name: 'Patient Name',
+            name: 'Doctor',
             selector: (row) => row.pName,
             sortable: true,
         },
@@ -39,15 +42,21 @@ const DashboardTable = () => {
         {
             name: "Appt. Status",
             //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
-            selector: row => <div>Accepted <button className="eugene" onClick={() => alert("SHEEEEEEEEEESH")}>Update</button></div>,
+            selector: row => <div>
+                <span id="appointment_status"> Accepted </span> 
+                {/* < ApptStatus /> */}
+                </div>,
         },
         {
             name: "Action",
-            selector: row => <div><button className="eugene" onClick={() => alert("SHEEEEEEEEEESH")}>Reschedule</button> <button className="eugene" onClick={() => alert("SHEEEEEEEEEESH")}>View</button></div>
+            selector: row => <div>
+                {/* < ReschedConfirmation/>
+                < ApptDetails/> */}
+                </div>
         },
     ];
 
-
+    
     useEffect(() => {
         getAppointment();
     }, []);

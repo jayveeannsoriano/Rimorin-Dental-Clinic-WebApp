@@ -16,7 +16,7 @@ function Sidebar(){
 
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link" href="/dashboard">
+                        <a className="nav-link" href="/dashboardpage">
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
