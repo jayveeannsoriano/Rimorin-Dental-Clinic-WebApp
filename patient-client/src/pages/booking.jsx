@@ -68,7 +68,7 @@ function Booking(){
                     <div className="appointment-form" id="appointment-form">
 
                     <form className="row g-3 needs-validation" noValidate/>
-                        <div className="col-md-4">
+                        <div className="col">
                             <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
                             <input type="date" className="form-control" id="appointment-date" required/>
                             <div className="valid-feedback">
@@ -76,7 +76,7 @@ function Booking(){
                             </div>
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="col">
                             <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                             <p> Available Times </p>
                             <Timeslot/>
@@ -108,12 +108,6 @@ function Booking(){
                             <button className="btn btn-outline-secondary" type="submit">Cancel</button>
                             <button className="btn btn-primary" type="submit">Next</button>
                             </div>
-                        </div>
-
-                        {/* Review Appointment Details */}
-
-                        <div id="review-details" className="review-details">
-                            
                         </div>
 
                     </div> {/* End of card-body */}

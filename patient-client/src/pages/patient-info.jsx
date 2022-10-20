@@ -3,6 +3,7 @@ import Header from "../components/dashboard-header";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/dashboard-footer";
 import "../styles/patient-info.css"
+import 'react-bootstrap';
 
 export default function PatientInfo(){
     return(
@@ -41,7 +42,12 @@ export default function PatientInfo(){
                         <div class="col-xl-8">
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
+
                                     <h5 className="card-title">Patient Information</h5>
+                                    {/* buttons to be edited later */}
+                                    <button className="btn btn-primary" type="submit">Print</button>
+                                    <button className="btn btn-primary" type="submit">Export</button>
+
                                     <div className="divider"></div>
 
                                     {/* Patient information */}
@@ -76,18 +82,18 @@ export default function PatientInfo(){
                                     {/* Address information */}
                                     <div class="row">
                                             <h4>Address Information</h4>
-                                            <div class="col-lg-3 col-md-4 label">House No. & Street Name</div>
-                                            <div id="houseno" class="col-lg-3">#10 Cirineo Subdivision</div>
+                                            <div class="col-lg-auto col-md-auto label">House No. & Street Name</div>
+                                            <div id="houseno" class="col-lg-auto col-md-auto">#10 Cirineo Subdivision</div>
                                     </div>
 
                                     <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Municipality/City</div>
-                                            <div id="municipality" class="col-lg-3">Dagupan</div>
+                                            <div class="col-lg-auto col-md-auto label">Municipality/City</div>
+                                            <div id="municipality" class="col-lg-auto col-md-auto">Dagupan</div>
                                     </div>
 
                                     <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Country</div>
-                                            <div id="country" class="col-lg-3">Philippines</div>
+                                            <div class="col-lg-auto col-md-auto label">Country</div>
+                                            <div id="country" class="col-lg-auto col-md-auto">Philippines</div>
                                     </div>
 
                                     <div className="divider"></div>

@@ -63,7 +63,7 @@ function Sidebar(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/eprescription">
+                        <a className="nav-link collapsed" href="/prescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
