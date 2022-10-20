@@ -45,7 +45,7 @@ export default function PatientInfo(){
 
                                     <h5 className="card-title">Patient Information</h5>
                                     {/* buttons to be edited later */}
-                                    <button className="btn btn-primary" type="submit">Print</button>
+                                    <button className="btn btn-primary" type="submit">Print</button> <span/>
                                     <button className="btn btn-primary" type="submit">Export</button>
 
                                     <div className="divider"></div>
