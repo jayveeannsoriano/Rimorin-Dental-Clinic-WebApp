@@ -186,4 +186,19 @@ app.get("/getAppointmentDetails", async(req,res) => {
       });
     });
 
+//add AppDetails
+
+app.post("/addAppDetails", async(req, res) => {
+
+  const newAppDetails = new AppDetails(req.body);
+
+  try{
+      await newAppDetails.save();
+      res.send(newAppDetails);
+  }
+  catch(err){
+      console.log(err);
+      res.status(500).send(error);
+  }
+});
 
