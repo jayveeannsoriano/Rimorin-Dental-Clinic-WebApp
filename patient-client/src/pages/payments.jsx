@@ -3,6 +3,7 @@ import Header from "../components/dashboard-header";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/dashboard-footer";
 import "../styles/payments.css"
+import ProfileWidget from "../components/profile-widget";
 
 export default function Payments(){
     return(
@@ -20,9 +21,10 @@ export default function Payments(){
 
                 {/* Profile */}
                 <section class="section profile">
-                    
+                <div class="row">
+                        <ProfileWidget/>
                         {/* end of profile widget */}
-
+                
                         <div class="col-xl">
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
@@ -55,7 +57,7 @@ export default function Payments(){
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
                 </section>
             </main>
 

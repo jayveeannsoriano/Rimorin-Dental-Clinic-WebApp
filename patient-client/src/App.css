@@ -657,34 +657,56 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Page
+# Profie Widget
 --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
 }
 
 .profile .profile-card h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2c384e;
-  margin: 10px 0 0 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  color: #242D35;
+  margin: 10px 0 10px 0;
 }
 
 .profile .profile-card h3 {
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  color: #4F5B67;
+  margin-bottom: 10px;
 }
 
-.profile .profile-card .social-links a {
-  font-size: 20px;
-  display: inline-block;
-  color: rgba(1, 41, 112, 0.5);
-  line-height: 0;
-  margin-right: 10px;
-  transition: 0.3s;
+.profile .profile-card span {
+  font-weight: 400;
 }
 
-.profile .profile-card .social-links a:hover {
-  color: #012970;
+.profile .profile-card .divider{
+  border-top: 4px solid #000000;
+}
+
+.profile .profile-card .patient-info{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile .profile-card .patient-info h3 {
+  width: 30%;
+  height: 18px;
+  font-weight: 400;
+  float: left;
+  color: #A8B0B9;
+}
+
+.profile .profile-card .patient-info p{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #373F47;
 }
 
 .profile .profile-overview .row {
