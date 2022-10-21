@@ -3,6 +3,7 @@ import Header from "../components/dashboard-header";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/dashboard-footer";
 import "../styles/dental-record.css"
+import ProfileWidget from "../components/profile-widget";
 
 export default function Prescription(){
     return(
@@ -21,7 +22,8 @@ export default function Prescription(){
 
                 {/* Profile */}
                 <section class="section profile">
-                    
+                <div class="row">
+                        <ProfileWidget/>
                         {/* end of profile widget */}
 
                         <div class="col-xl">
@@ -58,7 +60,7 @@ export default function Prescription(){
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
                 </section>
             </main>
 
