@@ -191,3 +191,8 @@ body, html, .App, #root,.auth-wrapper {
   height: 650px;
   margin: 10px 0 0 130px;
 }
+
+.label{
+  font-weight: 600;
+  color: rgba(1, 41, 112, 0.6);
+}

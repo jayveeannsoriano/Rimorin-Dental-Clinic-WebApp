@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import "../styles/sign-up.css";
 
 const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
 
@@ -26,6 +27,8 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 type="text"
                 className="form-control"
                 placeholder="e.g. 98 Felipe St."
+                onChange={handleChange('house')}
+                defaultValue={values.house}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
                 />
@@ -36,6 +39,8 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 type="text"
                 className="form-control"
                 placeholder="e.g. Lower Quarry"
+                onChange={handleChange('brgy')}
+                defaultValue={values.brgy}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
                 />
@@ -46,6 +51,8 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 type="text"
                 className="form-control"
                 placeholder="e.g. Baguio City"
+                onChange={handleChange('municipality')}
+                defaultValue={values.municipality}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
                 />
@@ -56,6 +63,8 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 type="text"
                 className="form-control"
                 placeholder="e.g. Benguet"
+                onChange={handleChange('province')}
+                defaultValue={values.province}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
                 />
@@ -66,6 +75,8 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 type="text"
                 className="form-control"
                 placeholder="e.g. Philippines"
+                onChange={handleChange('country')}
+                defaultValue={values.country}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
                 />

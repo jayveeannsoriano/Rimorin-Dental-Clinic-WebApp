@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/sign-up.css";
 
-const SignUp1 = ({ nextStep, handleChange, values }) => {
+const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -16,12 +16,15 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
         <p id="titleform">
           <h4>Rimorin Dental Clinic</h4>
         </p>
+        
         <div className="mb-3">
           <label>First name</label>
           <input
             type="text"
             className="form-control"
             placeholder="First name"
+            onChange={handleChange('fname')}
+            defaultValue={values.fname}
             // onChange={(e) => this.setState({ fname: e.target.value})}
             // required
           />
@@ -35,6 +38,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 type="text"
                 className="form-control"
                 placeholder="Last name"
+                onChange={handleChange('lname')}
+                defaultValue={values.lname}
                 // onChange={(e) => this.setState({ lname: e.target.value})}
                 // required
               />
@@ -48,6 +53,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 type="text"
                 className="form-control suffix"
                 placeholder="(e.g. Jr. , Sr., II)"
+                onChange={handleChange('suffix')}
+                defaultValue={values.suffix}
                 // onChange={(e) => this.setState({ suffix: e.target.value})}
               />
             </div>
@@ -60,6 +67,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            onChange={handleChange('email')}
+            defaultValue={values.email}
             // onChange={(e) => this.setState({ email: e.target.value})}
             // required
           />
@@ -71,6 +80,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            onChange={handleChange('password')}
+            defaultValue={values.password}
             // onChange={(e) => this.setState({ password: e.target.value})}
             // required
           />
@@ -83,13 +94,15 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
               <label>
                 <input
                   type="radio"
-                  // checked = {this.state.gender === "female"}
-                  // onChange = {this.onValueChange}
+                  // checked = {this.state.values.gender === "female"}
+                  onChange={handleChange('gender')}
+                  // onChange={e=>{setRadio(e.target.value)}}
+                  defaultValue={values.gender}
                   className="form-check-input"
                   value="female"
                   name="gender"
                   // required
-                />{" "}
+                />
                 <span>Female</span>
               </label>
             </div>
@@ -98,7 +111,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             <div className="form-check">
               <input
                 type="radio"
-                // checked = {this.state.gender === "male"}
+                onChange={handleChange('gender')}
                 // onChange = {this.onValueChange}
                 className="form-check-input"
                 name="gender"
@@ -118,6 +131,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 type="number"
                 className="form-control"
                 placeholder="09XXXXXXXXX"
+                onChange={handleChange('mobile')}
+                defaultValue={values.mobile}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
               />
@@ -131,6 +146,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 type="date"
                 className="form-control"
                 placeholder="Enter birthday"
+                onChange={handleChange('bday')}
+                defaultValue={values.bday}
                 // onChange={(e) => this.setState({ email: e.target.value})}
                 // required
               />
