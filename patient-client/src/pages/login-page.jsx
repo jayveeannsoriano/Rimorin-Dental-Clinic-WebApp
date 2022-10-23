@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
-import Footer from "../components/footer.jsx";
+import Footer from "../layout/LandingPageLayout/footer";
 import styles from "../styles/Login.css";
 
 export default class LoginPage extends Component {

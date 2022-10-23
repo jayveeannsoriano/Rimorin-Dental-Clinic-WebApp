@@ -1,7 +1,5 @@
 // SCRATCH!!!
 import React from 'react';
-import Header from "../components/dashboard-header.jsx";
-import Sidebar from "../components/sidebar.jsx";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
@@ -136,10 +134,6 @@ const BookingDetail = ({nextStep, prevStep}) => {
                 </div>
             </section>
             </main>
-
-            <Header/>
-            <Sidebar />
-
         </div>
     )
 }

@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../components/dashboard-header";
-import Sidebar from "../components/sidebar";
-import Footer from "../components/dashboard-footer";
+// import Footer from "../components/dashboard-footer";
 import "../styles/patient-info.css"
 
 export default function PatientInfo(){
@@ -115,10 +113,6 @@ export default function PatientInfo(){
                     </div>
                 </section>
             </main>
-
-            <Header />
-            <Sidebar />
-            {/* <Footer /> */}
         </div>
 
     );

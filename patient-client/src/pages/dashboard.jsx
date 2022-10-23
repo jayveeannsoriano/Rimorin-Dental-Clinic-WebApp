@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../components/dashboard-header";
-import Sidebar from "../components/sidebar";
-import Footer from "../components/dashboard-footer";
+// import Footer from "../components/dashboard-footer";
 // import '../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DashboardTable from '../components/dashboardTable';
@@ -54,12 +52,6 @@ export default function Dashboard() {
         </div>
       </section>
     </main>
-
-
-      <Header />
-      <Sidebar />
-      <Footer />
-      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi-arrow-up-short"></i></a>
     </div>
 
   );

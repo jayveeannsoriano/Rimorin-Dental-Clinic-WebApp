@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../components/dashboard-header";
-import Sidebar from "../components/sidebar";
-import Footer from "../components/dashboard-footer";
+// import Footer from "../components/dashboard-footer";
 import "../styles/dental-record.css"
 import ProfileWidget from "../components/profile-widget";
 
@@ -65,10 +63,6 @@ export default function DentalRecord(){
                     </div>
                 </section>
             </main>
-
-            <Header />
-            <Sidebar />
-            {/* <Footer /> */}
         </div>
 
     );

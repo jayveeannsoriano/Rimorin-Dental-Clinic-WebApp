@@ -1,7 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "../components/dashboard-header.jsx";
-import Sidebar from "../components/sidebar.jsx";
 import ProfileWidget from "../components/profile-widget.jsx";
 
 export default function UserProfile() {  
@@ -216,9 +214,6 @@ export default function UserProfile() {
                     </div>
                 </section>
             </main>
-
-            <Header />
-            <Sidebar />
         </div>
 
     );

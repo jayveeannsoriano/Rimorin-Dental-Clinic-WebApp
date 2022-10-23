@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../components/dashboard-header";
-import Sidebar from "../components/sidebar";
-import Footer from "../components/dashboard-footer";
+// import Footer from "../components/dashboard-footer";
 import "../styles/payments.css"
 import ProfileWidget from "../components/profile-widget";
 
@@ -60,10 +58,6 @@ export default function Payments(){
                     </div>
                 </section>
             </main>
-
-            <Header />
-            <Sidebar />
-            {/* <Footer /> */}
         </div>
 
     );

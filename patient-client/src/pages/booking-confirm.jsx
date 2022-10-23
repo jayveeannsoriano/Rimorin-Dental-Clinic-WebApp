@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from "../components/dashboard-header.jsx";
-import Sidebar from "../components/sidebar.jsx";
 import style from "../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
@@ -84,10 +82,6 @@ const BookingConfirm = ({nextStep, prevStep}) => {
                 </div> 
             </section>
             </main>
-
-            <Header/>
-            <Sidebar />
-
         </div>
     )
 }
