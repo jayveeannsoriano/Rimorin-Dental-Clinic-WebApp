@@ -14,7 +14,7 @@ const mongooseURL =
   "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 //server
-app.listen(5000, () => {
+app.listen(5001, () => {
   console.log("Server started successfully.");
 });
 
@@ -188,17 +188,61 @@ app.get("/getAppointmentDetails", async(req,res) => {
 
 //add AppDetails
 
-app.post("/addAppDetails", async(req, res) => {
+// app.post("/addAppDetails", async(req, res) => {
 
-  const newAppDetails = new AppDetails(req.body);
+//   const newAppDetails = new AppDetails(req.body);
+
+//   try{
+//       await newAppDetails.save();
+//       res.send(newAppDetails);
+//   }
+//   catch(err){
+//       console.log(err);
+//       res.status(500).send(error);
+//   }
+// });
+
+//CRUD FOR BOOKING APPOINTMENT
+
+//book an appointment
+app.post("/insertAppointment", async(req,res) => {
+  
+  //date value
+  const startDate = req.body.startDate;
+  const slicedDate = startDate.slice(0,10)//removes unnecessary data
+  console.log(slicedDate)
+
+  //insterting all data
+  const AppData = new AppDetails({date: slicedDate});
 
   try{
-      await newAppDetails.save();
-      res.send(newAppDetails);
-  }
-  catch(err){
-      console.log(err);
-      res.status(500).send(error);
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.")
+  } catch(err){
+    console.log(err);
   }
 });
+
+//test add to db time, will delete later, 
+app.post("/insertTime", async(req,res) => {
+  
+  //date value
+  const getTime = req.body.getTime;
+  console.log(getTime)
+  
+  //insterting all data
+  const AppData = new AppDetails({time: getTime});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.")
+  } catch(err){
+    console.log(err);
+  }
+});
+
+
+
+
+
 

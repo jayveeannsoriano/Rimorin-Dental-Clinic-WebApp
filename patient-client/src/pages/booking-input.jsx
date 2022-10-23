@@ -3,12 +3,30 @@ import React from 'react';
 import 'react-bootstrap';
 import Timeslot from "../components/timeslot.jsx";
 import '../js/booking.js';
+import {useState,} from 'react';
+//datepicker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+//Axios
+import Axios from 'axios';
 
 const BookingInput = ({nextStep}) => {
     const Continue = (e) => {
         e.preventDefault();
-        nextStep();
+
+        //adds data
+        console.log("Inserting ",startDate, " to the database.");
+
+        Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate})
+
+        //go to next modal
+        //nextStep();
     };
+
+    //functionality
+
+    //calendar input
+    const [startDate, setStartDate] = useState(new Date());
 
     return(
         <div>
@@ -71,7 +89,20 @@ const BookingInput = ({nextStep}) => {
                     <form className="row g-3 needs-validation" noValidate/>
                         <div className="col-md-4">
                             <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-                            <input type="date" className="form-control" id="appointment-date" required/>
+                            {/* New Calendar from https://reactdatepicker.com/#example-default */}
+                            <DatePicker 
+                            selected={startDate} 
+                            onChange={(date) => {
+                                setStartDate(date);
+                                console.log("This is the calendar data:", date)
+                            }}
+                            isClearable
+                            placeholderText="Choose a date"
+                            minDate={new Date()}
+                            shouldCloseOnSelect={false}
+                            withPortal
+                            />
+
                             <div className="valid-feedback">
                                 Looks good!
                             </div>

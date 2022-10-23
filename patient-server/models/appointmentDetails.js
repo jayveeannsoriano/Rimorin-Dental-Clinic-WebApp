@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 const AppointmentDetails = new mongoose.Schema(
   {
-    pName: {
-      type: String,
-    required: true,
-  },
-    apptNumber: Number,
-    dateTime: String,
+    pName: String,
+    appNum: String,
+    date: String,
+    time: String,
     status: String,
     action: String,
   },

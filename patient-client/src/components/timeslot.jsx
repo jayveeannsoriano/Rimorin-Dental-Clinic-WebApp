@@ -1,43 +1,25 @@
 import React, { useState } from 'react'
 import moment from 'moment';
 import { Button } from 'react-bootstrap';
-
-// class TimeSlotButton{
-//   constructor(props) {
-//     super(props);
-//     this.state = {ClickedButton: ''};
-//     this.handleChange = this.handleChange.bind(this);
-//   }
-
-//   handleChange(id) {
-
-//     this.setState({ClickedButton: id})
-//     this.props.selectedtype.bind(this, id)()
-
-//   }
-
-//   render() {
-
-//   return this.props.resumetypes.map((resumetype, selectedtype) => (
-//        <input type="button" 
-//        className={resumetype.id === this.state.ClickedButton ? "App-Button-Active" : "App-Button-Default"}
-//        style={{width: '25%', border: "none"}} 
-//        id={resumetype.id} 
-//        key={resumetype.id} 
-//        value={ resumetype.type} 
-//        onClick={ () => this.handleChange(resumetype.id)}/>
-//        //onClick={this.props.selectedtype.bind(this, resumetype.id)}/>      
-
-//     ));
-
-//   }
-// }
+import Axios from 'axios';
 
 const Timeslot = () => {
   let intime = "09:00 AM"
   let outtime = "05:00 PM"
   const [result, setResult] = useState([])
-  console.log("Array", result)
+
+  const [getTime, setGetTime] = useState("");
+
+  const testSubmitTime = (e) =>{
+    e.preventDefault();
+
+    //adds data
+    console.log("Inserting ",getTime, " to the database.");
+
+    Axios.post("http://localhost:5001/insertTime", {getTime: getTime})
+  }
+
+
 
   function intervals(startString, endString) {
     var start = moment(startString, 'hh:mm a');
@@ -66,11 +48,20 @@ const Timeslot = () => {
         result && result.length > 0 ? result.map((time, index) => {
           return (
             <div className="timeslot" key={index}>
-                <Button className="time">{time}</Button>
+                <Button 
+                className="time" 
+                value={time}
+                onClick={(e)=>{
+                  e.preventDefault();
+                  setGetTime(e.target.value)
+                  console.log(time);
+                  }}>{time}</Button>
+                  
             </div>
           )
         }) : null
       }
+      <button onClick={testSubmitTime}>test input time</button>
     </div>
   )
 }
