@@ -1,10 +1,22 @@
-// import React from 'react'
+import React, { useState } from "react";
+import Header from './dashboard-header'
+import Footer from './dashboard-footer'
+import Sidebar from "./sidebar";
+import { Outlet } from 'react-router-dom';
 
-// const Dashboard = () => {
+const DashboardLayout = () => {
+    const [isSidebar] = useState(true);
 
-//     return(
+    return(
+        <>
+        <Sidebar isSidebar={isSidebar} />
+            <main id="main" className="main">
+                <Header />
+                <Outlet />
+                <Footer />
+            </main>
+        </>
+    );
+};
 
-//     );
-// };
-
-// export default Dashboard;
+export default DashboardLayout;

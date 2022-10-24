@@ -1,12 +1,11 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../styles/payments.css"
-import ProfileWidget from "../components/profile-widget";
+import "../../styles/payments.css";
+import ProfileWidget from "../../components/profile-widget";
 
-export default function Payments(){
+const Payments = () => {
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <div class="pagetitle">
                     <h1>E-Prescription</h1>
                     <nav>
@@ -57,8 +56,7 @@ export default function Payments(){
                         </div>
                     </div>
                 </section>
-            </main>
-        </div>
-
+        </>
     );
 }
+export default Payments;

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
 // import style from '../App.css';
+import {Link} from 'react-router-dom';
 
 function Sidebar(){
     return(
@@ -24,7 +25,9 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/appointments" data-bs-target="#navbar">
+                        <a className="nav-link collapsed" 
+                        href="/appointments" 
+                        data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
                         </a>
@@ -47,7 +50,7 @@ function Sidebar(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/patientinfo">
+                                <a href="patientinfo">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
@@ -63,15 +66,15 @@ function Sidebar(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/prescription">
+                        <a className="nav-link collapsed" href="/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
                     </li>
 
-                    {/* Paymnent Records Nav */}
+                    {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/paymentrecords">
+                        <a className="nav-link collapsed" href="/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>

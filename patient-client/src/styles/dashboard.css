@@ -24,6 +24,7 @@
 }
 
 .header {
+  position: fixed !important;
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);

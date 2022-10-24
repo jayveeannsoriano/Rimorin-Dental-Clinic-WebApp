@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "../styles/booking.css";
 import 'react-bootstrap';
-import Timeslot from "../components/timeslot.jsx";
+import Timeslot from "../../../components/timeslot.jsx";
 import '../js/booking.js';
 // import Stepper from 'bs-stepper'
 

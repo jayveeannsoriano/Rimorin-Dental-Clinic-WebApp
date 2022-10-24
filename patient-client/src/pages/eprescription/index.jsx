@@ -1,12 +1,11 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../styles/dental-record.css"
-import ProfileWidget from "../components/profile-widget";
+import "../../styles/dental-record.css"
+import ProfileWidget from "../../components/profile-widget";
 
-export default function Prescription(){
+const Eprescription = () => {
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <div class="pagetitle">
                     <h1>E-Prescription</h1>
                     <nav>
@@ -60,8 +59,7 @@ export default function Prescription(){
                         </div>
                     </div>
                 </section>
-            </main>
-        </div>
-
+        </>
     );
 }
+export default Eprescription;

@@ -1,6 +1,7 @@
 import React from 'react';
+import styles from '../../styles/dashboard.css'
 
-/*eslint no-unused-vars: "off"*/
+
 function dashboardHeader(){
     return (
         <div>

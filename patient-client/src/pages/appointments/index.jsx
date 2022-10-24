@@ -1,16 +1,16 @@
 import React from "react";
-import CancelAppointment from "../components/modals/cancel-appointment.jsx";
-import RescheduleAppointment from "../components/modals/reschedule-appointment.jsx";
-import '../styles/dashboard.css';
-import '../styles/modals.css';
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import CancelAppointment from "../../components/modals/cancel-appointment.jsx";
+import RescheduleAppointment from "../../components/modals/reschedule-appointment.jsx";
+import '../../styles/dashboard.css';
+import '../../styles/modals.css';
 
 export default function AppointmentPage() {  
+  let navigate = useNavigate();
 
   return (
     <div>
-
-      <main id="main" className="main">
-
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -21,7 +21,9 @@ export default function AppointmentPage() {
       </nav>
         
       <div className="col-6 .col-md-4">
-      <a href="/booking" className="btn btn-primary" role="button">Request Appointment</a>
+        <Button onClick={() => {navigate("request-appointment")}}>
+          Request Appointment
+        </Button>
       </div>
 
       <section className="section dashboard">
@@ -144,7 +146,6 @@ export default function AppointmentPage() {
           {/* <!-- Today's Appointment --> */}
         </div>
       </section>
-    </main>
     </div>
   );
 }

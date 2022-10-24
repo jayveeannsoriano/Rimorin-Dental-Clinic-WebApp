@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 /*======= GOOGLE FONTS =======*/
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap%27");
 
 :root {
@@ -67,6 +67,7 @@
 /*========== STYLE.CSS ==========*/
 
 body {
+  width: 100vw;
   font-family: var(--body-font) !important;
   color: var(--text-color) !important;
   background: var(--bg-color) !important;
@@ -134,7 +135,6 @@ h6 {
 # Section
 --------------------------------------------------------------*/
 .section {
-  
   padding: 25px !important;
 }
 
@@ -491,7 +491,7 @@ h6 {
   }
 }
 
-/* @media (max-width: 1199px) {
+@media (max-width: 1199px) {
   .toggle-sidebar .sidebar {
     left: 0;
   }
@@ -507,7 +507,7 @@ h6 {
   .toggle-sidebar .sidebar {
     left: -300px;
   }
-} */
+}
 
 .sidebar-nav {
   padding: 0;

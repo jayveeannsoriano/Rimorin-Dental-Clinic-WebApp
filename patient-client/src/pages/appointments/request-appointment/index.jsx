@@ -1,17 +1,12 @@
-import React, {Component} from "react";
-import Header from "../components/dashboard-header.jsx";
-import Sidebar from "../components/sidebar.jsx";
-import style from "../styles/booking.css";
+import React from "react";
+import "../../../styles/booking.css";
 import 'react-bootstrap';
-import Timeslot from "../components/timeslot.jsx";
-import '../js/booking.js';
+import Timeslot from "../../../components/timeslot.jsx";
 // import Stepper from 'bs-stepper'
 
-
-function Booking(){
+const Booking = () => {
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <nav>
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
@@ -114,12 +109,7 @@ function Booking(){
 
                 </div>
             </section>
-            </main>
-
-            <Header/>
-            <Sidebar />
-
-        </div>
+        </>
     )
 }
 

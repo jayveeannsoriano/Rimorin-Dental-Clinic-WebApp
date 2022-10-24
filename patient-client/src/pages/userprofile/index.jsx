@@ -1,11 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfileWidget from "../components/profile-widget.jsx";
+import ProfileWidget from "../../components/profile-widget.jsx";
 
-export default function UserProfile() {  
+const UserProfile = () => {  
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <div class="pagetitle">
                     <h1>My Profile</h1>
                     <nav>
@@ -213,8 +212,8 @@ export default function UserProfile() {
                         </div>
                     </div>
                 </section>
-            </main>
-        </div>
-
+        </>
     );
 }
+
+export default UserProfile;

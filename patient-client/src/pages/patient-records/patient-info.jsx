@@ -1,13 +1,12 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../styles/patient-info.css"
+import "../../styles/patient-info.css"
 import 'react-bootstrap';
-import ProfileWidget from "../components/profile-widget";
+import ProfileWidget from "../../components/profile-widget";
 
-export default function PatientInfo(){
+const PatientInfo = () =>{
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <div class="pagetitle">
                     <h1>Patient Information</h1>
                     <nav>
@@ -104,8 +103,9 @@ export default function PatientInfo(){
                         </div>
                     </div>
                 </section>
-            </main>
-        </div>
+        </>
 
     );
 }
+
+export default PatientInfo;
