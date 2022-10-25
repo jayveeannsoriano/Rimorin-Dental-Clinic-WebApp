@@ -21,7 +21,7 @@ export default function AppointmentPage() {
       </nav>
         
       <div className="col-6 .col-md-4">
-        <Button onClick={() => {navigate("request-appointment")}}>
+        <Button onClick={() => {navigate("/dashboard/appointments/request-appointment")}}>
           Request Appointment
         </Button>
       </div>

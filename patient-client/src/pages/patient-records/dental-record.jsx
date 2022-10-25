@@ -1,12 +1,11 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../styles/dental-record.css"
+import "../../styles/dental-record.css"
 import ProfileWidget from "../../components/profile-widget";
 
 export default function DentalRecord(){
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <div class="pagetitle">
                     <h1>Dental Records</h1>
                     <nav>
@@ -62,8 +61,7 @@ export default function DentalRecord(){
                         </div>
                     </div>
                 </section>
-            </main>
-        </div>
+        </>
 
     );
 }

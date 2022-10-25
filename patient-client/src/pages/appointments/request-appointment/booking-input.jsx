@@ -1,8 +1,8 @@
 // SCRATCH!!!
 import React from 'react';
 import 'react-bootstrap';
-import Timeslot from "../components/timeslot.jsx";
-import '../js/booking.js';
+import Timeslot from "../../../components/timeslot.jsx";
+import "../../../styles/booking.css";
 import {useState,} from 'react';
 //datepicker
 import DatePicker from "react-datepicker";
@@ -10,27 +10,32 @@ import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import Axios from 'axios';
 
-const BookingInput = ({nextStep}) => {
-    const Continue = (e) => {
-        e.preventDefault();
-
-        //adds data
-        console.log("Inserting ",startDate, " to the database.");
-
-        Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate})
-
-        //go to next modal
-        //nextStep();
-    };
-
-    //functionality
+const BookingInput = ({nextStep,timeData}) => {
 
     //calendar input
     const [startDate, setStartDate] = useState(new Date());
 
+    //reasonforconsultation input
+    const [consulInput, setConsulInput] = useState("");
+
+    //time input
+
+    const Continue = (e) => {
+        e.preventDefault();
+
+        //adds data
+        // console.log("Inserting ",startDate, " to the database.");
+        // console.log("Inserting ",consulInput, " to the database.");
+
+
+        // Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate, consulInput: consulInput})
+
+        //go to next modal
+        nextStep();
+    };
+
     return(
-        <div>
-            <main id="main" className="main">
+            <>
                 <nav>
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
@@ -117,7 +122,13 @@ const BookingInput = ({nextStep}) => {
 
                         <div className="col-12 reason-form">
                             <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
-                            <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..."></textarea>
+                            <textarea className="form-control" 
+                            value={consulInput} 
+                            onChange= {(e) => {
+                                setConsulInput(e.target.value); 
+                                console.log(consulInput);
+                                }} 
+                                id="reason" rows="5" placeholder="Write reason here..."></textarea>
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -152,8 +163,8 @@ const BookingInput = ({nextStep}) => {
 
                 </div>
             </section>
-            </main>
-        </div>
+
+        </>
     )
 }
 

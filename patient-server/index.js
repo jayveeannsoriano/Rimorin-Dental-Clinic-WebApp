@@ -212,8 +212,12 @@ app.post("/insertAppointment", async(req,res) => {
   const slicedDate = startDate.slice(0,10)//removes unnecessary data
   console.log(slicedDate)
 
+  //consul value
+  const consulInput = req.body.consulInput;
+  console.log(consulInput)
+
   //insterting all data
-  const AppData = new AppDetails({date: slicedDate});
+  const AppData = new AppDetails({date: slicedDate, consultation: consulInput});
 
   try{
     await AppData.save();

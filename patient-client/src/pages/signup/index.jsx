@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
-import LoginPage from './login-page';
-import SignUp1 from './signup1';
-import SignUp2 from './signup2';
-import SignUp3 from './signup3';
-import SignUpConfirm from './signup-confirm';
-import "../styles/sign-up.css";
+import LoginPage from '../../pages/login';
+import SignUp1 from '../signup/signup1';
+import SignUp2 from '../signup/signup2';
+import SignUp3 from '../signup/signup3';
+import SignUpConfirm from '../signup/signup-confirm';
+import "../../styles/sign-up.css";
 
 
 //serves as the navigation for multi-page

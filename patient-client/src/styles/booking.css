@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 # Booking
 --------------------------------------------------------------*/
-.appt-title{
+.appt-title {
 	padding: 20px 0 15px 0;
 	text-align: center;
 	font-size: 24px;
@@ -11,254 +11,297 @@
 }
 
 .doctor-info {
-    padding: 0.3in;
+	padding: 0.3in;
 }
 
 .doctor-info h1 {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 23px;
 }
 
 .doctor-info h2 {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 23px;
-    color: #5d5fef;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 23px;
+	color: #5d5fef;
 }
 
 .doctor-info h3 {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 23px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 23px;
 }
 
-.appointment-form{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    /* padding-top: 10px;
+.appointment-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	/* padding-top: 10px;
     padding-left: 0.3in;
     padding-bottom: 0.4in; */
 }
 
-.appointment-form .col-md-4{
-    margin-bottom: 20px;
+.appointment-form .col-md-4 {
+	margin-bottom: 20px;
 }
 
-.appointment-form .form-label{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
+.appointment-form .form-label {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
 }
 
-.reason-form{
+.reason-form {
 	margin-top: 1in;
 	font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
 	padding: 0.3in;
 }
 
-.form-check{
+.form-check {
 	padding-left: 0.55in;
 }
 
-.appt-bttns{
+.appt-bttns {
 	padding-right: 0.3in;
 	float: right;
 }
 
-.appt-bttns .btn{
+.appt-bttns .btn {
 	margin-left: 6px;
 }
 
 /* Timeslot */
-.timeslot{
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 2px;
+.timeslot {
+	flex-direction: row;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	padding: 2px;
 }
 
-.timeslot .time{
-    background-color: #ffffff;
-    color: #5d5fef;
-    border-color: #5d5fef;
-    font-size: 15px;
+.timeslot .time {
+	background-color: #ffffff;
+	color: #5d5fef;
+	border-color: #5d5fef;
+	font-size: 15px;
 	font-weight: 500;
-    border-radius: 5px;
-    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
-    padding: 10px 30px;
+	border-radius: 5px;
+	/* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
+	padding: 10px 30px;
 	width: 95%;
 }
 
-.timeslot .time:hover{
-    background-color: var(--primary-color);
+.timeslot .time:hover {
+	background-color: var(--primary-color);
 	color: #fff;
 }
 
-.slots{
-    width: 100%;
-    display: grid;
+.slots {
+	width: 100%;
+	display: grid;
 	gap: 5px 0px;
-    grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 }
 
 /* Stepper */
 .md-stepper-horizontal {
-	display:table;
-	width:60%;
-	margin:0 auto;
+	display: table;
+	width: 60%;
+	margin: 0 auto;
 }
+
 .md-stepper-horizontal .md-step {
-	display:table-cell;
-	position:relative;
-	padding:24px;
+	display: table-cell;
+	position: relative;
+	padding: 24px;
 }
+
 /* .md-stepper-horizontal .md-step:hover,
 .md-stepper-horizontal .md-step:active {
 	background-color:rgba(0,0,0,0.04);
 } */
 .md-stepper-horizontal .md-step:active {
 	border-radius: 15% / 75%;
-} 
+}
+
 .md-stepper-horizontal .md-step:first-child:active {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
+
 .md-stepper-horizontal .md-step:last-child:active {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
+
 .md-stepper-horizontal .md-step:hover .md-step-circle {
-	background-color:#757575;
+	background-color: #757575;
 }
+
 .md-stepper-horizontal .md-step:first-child .md-step-bar-left,
 .md-stepper-horizontal .md-step:last-child .md-step-bar-right {
-	display:none;
+	display: none;
 }
+
 .md-stepper-horizontal .md-step .md-step-circle {
-	width:30px;
-	height:30px;
-	margin:0 auto;
-	background-color:#999999;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
+	background-color: #999999;
 	border-radius: 50%;
 	text-align: center;
-	line-height:30px;
+	line-height: 30px;
 	font-size: 16px;
 	font-weight: 600;
-	color:#FFFFFF;
+	color: #FFFFFF;
 }
+
 .md-stepper-horizontal.green .md-step.active .md-step-circle {
-	background-color:#00AE4D;
+	background-color: #00AE4D;
 }
+
 .md-stepper-horizontal.orange .md-step.active .md-step-circle {
 	background-color: var(--primary-color);
 }
+
 .md-stepper-horizontal .md-step.active .md-step-circle {
-	background-color: rgb(33,150,243);
+	background-color: rgb(33, 150, 243);
 }
+
 .md-stepper-horizontal .md-step.done .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
+	font-family: 'FontAwesome';
+	font-weight: 100;
 	content: "\f00c";
 }
+
 .md-stepper-horizontal .md-step.done .md-step-circle *,
 .md-stepper-horizontal .md-step.editable .md-step-circle * {
-	display:none;
+	display: none;
 }
+
 .md-stepper-horizontal .md-step.editable .md-step-circle {
 	-moz-transform: scaleX(-1);
 	-o-transform: scaleX(-1);
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
+
 .md-stepper-horizontal .md-step.editable .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
+	font-family: 'FontAwesome';
+	font-weight: 100;
 	content: "\f040";
 }
+
 .md-stepper-horizontal .md-step .md-step-title {
-	margin-top:16px;
-	font-size:16px;
-	font-weight:600;
+	margin-top: 16px;
+	font-size: 16px;
+	font-weight: 600;
 }
+
 .md-stepper-horizontal .md-step .md-step-title,
 .md-stepper-horizontal .md-step .md-step-optional {
 	text-align: center;
-	color:rgba(0,0,0,.26);
+	color: rgba(0, 0, 0, .26);
 }
+
 .md-stepper-horizontal .md-step.active .md-step-title {
 	font-weight: 600;
-	color:rgba(0,0,0,.87);
+	color: rgba(0, 0, 0, .87);
 }
+
 .md-stepper-horizontal .md-step.active.done .md-step-title,
 .md-stepper-horizontal .md-step.active.editable .md-step-title {
-	font-weight:600;
+	font-weight: 600;
 }
+
 .md-stepper-horizontal .md-step .md-step-optional {
-	font-size:12px;
+	font-size: 12px;
 }
+
 .md-stepper-horizontal .md-step.active .md-step-optional {
-	color:rgba(0,0,0,.54);
+	color: rgba(0, 0, 0, .54);
 }
+
 .md-stepper-horizontal .md-step .md-step-bar-left,
 .md-stepper-horizontal .md-step .md-step-bar-right {
-	position:absolute;
-	top:36px;
-	height:1px;
-	border-top:1px solid #DDDDDD;
+	position: absolute;
+	top: 36px;
+	height: 1px;
+	border-top: 1px solid #DDDDDD;
 }
+
 .md-stepper-horizontal .md-step .md-step-bar-right {
-	right:0;
-	left:50%;
-	margin-left:20px;
+	right: 0;
+	left: 50%;
+	margin-left: 20px;
 }
+
 .md-stepper-horizontal .md-step .md-step-bar-left {
-	left:0;
-	right:50%; 
-	margin-right:20px;
+	left: 0;
+	right: 50%;
+	margin-right: 20px;
 }
 
 /* Booking Confirm Image */
 
 .stepdone {
 	display: flex;
-  	align-items: center;
-  	justify-content: center;
-    
-  }
+	align-items: center;
+	justify-content: center;
+
+}
 
 .stepdone img {
-    width: 620px;
-    height: 650px;
-	margin-top:-90px;
+	width: 620px;
+	height: 650px;
+	margin-top: -90px;
 	margin-bottom: 20px;
-}	
+}
 
 /* Booking Confirm */
 
-.stepdoneconfirm h2{
+.stepdoneconfirm h2 {
 	text-align: center;
 	font-weight: 700;
-    font-size: 16px;
-    line-height: 23px;
-    color: #5d5fef;
+	font-size: 16px;
+	line-height: 23px;
+	color: #5d5fef;
 	margin-top: -100px;
 }
 
-.stepdoneconfirm p{
+.stepdoneconfirm p {
 	text-align: center;
 	font-size: 16px;
 }
 
-.stepdonebtn{
+.stepdonebtn {
 	padding-right: 0.3in;
 	/* float: right; */
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 
+}
+
+/*--------------------------------------------------------------
+# Overrides
+--------------------------------------------------------------*/
+.btn-primary {
+	--bs-btn-color: #fff;
+	--bs-btn-bg: var(--secondary-color);
+	--bs-btn-border-color: var(--secondary-color);
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: var(--primary-color); 
+	--bs-btn-hover-border-color: #0a58ca;
+	--bs-btn-focus-shadow-rgb: 49, 132, 253;
+	--bs-btn-active-color: #fff;
+	--bs-btn-active-bg: var(--primary-color);
+	--bs-btn-active-border-color: var(--primary-color);
+	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	--bs-btn-disabled-color: #fff;
+	--bs-btn-disabled-bg: var(--primary-color);
+	--bs-btn-disabled-border-color: var(--primary-color);
 }

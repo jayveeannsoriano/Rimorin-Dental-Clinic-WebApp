@@ -10,21 +10,21 @@ const DashboardPage = lazy(() => import('../pages/dashboard/index'));
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
-// const Calendar = lazy(() => import('../pages/calendar/index'));
-// const PatientRecords = lazy(() => import('../pages/patient-records/index'));
+const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
-// const DentalRecords = lazy(() => import('../pages/dentalrecords/index'));
+const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
 // appointment request routing
-const RequestAppointment = lazy(() => import('../pages/appointments/request-appointment/index.jsx'));
+const RequestAppointment = lazy(() => import('../pages/appointments/request-appointment'));
+
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
-const MainRoutes = {
-    path: '/',
+const DashboardRoutes = {
+    path: '/dashboard',
     element: <DashboardLayout />,
     children: [
         {
@@ -32,58 +32,57 @@ const MainRoutes = {
             element: <ErrorPage />
         },
         {
-            path: 'dashboard',
+            path: '/dashboard',
             element: <DashboardPage />
         },
         {
-            path: 'appointments',
+            path: '/dashboard/appointments',
             element: <Appointments />
         },
         {
-            path: 'appointments',
+            path: '/dashboard/appointments',
             children: [
                 {
-                    path: 'request-appointment',
+                    path: '/dashboard/appointments/request-appointment',
                     element: <RequestAppointment />
-                }
+                },
             ]
         },
-        
-        // {
-        //     path: 'calendar',
-        //     element: <Calendar/>
-        // },
         {
-            path: 'patientrecords',
+            path: '/dashboard/calendar',
+            element: <Calendar/>
+        },
+        {
+            path: '/dashboard/patient-records',
             children: [
                 {
-                    path: 'patientinfo',
+                    path: '/dashboard/patient-records/patient-info',
                     element: <PatientInfo />
                 }
             ]
         },
-        // {
-        //     path: 'patientrecords',
-        //     children: [
-        //         {
-        //             path: '/dentalrecord',
-        //             element: <DentalRecords />
-        //         }
-        //     ]
-        // },
         {
-            path: 'eprescription',
+            path: '/dashboard/patient-records',
+            children: [
+                {
+                    path: '/dashboard/patient-records/dental-record',
+                    element: <DentalRecords />
+                }
+            ]
+        },
+        {
+            path: '/dashboard/eprescription',
             element: <Eprescription />
         },
         {
-            path: 'payment-records',
+            path: '/dashboard/payment-records',
             element: <PaymentRecords />
         },
         {
-            path: 'userprofile',
+            path: '/dashboard/userprofile',
             element: <UserProfile />
         }
     ]
 };
 
-export default MainRoutes;
+export default DashboardRoutes;

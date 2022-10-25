@@ -1,11 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
-import Footer from "../../layout/LandingPageLayout/footer";
-import '../styles/landing-page.css';
-import '../../layout/LandingPageLayout/landing-header';
+import '../../styles/landing-page.css';
 
-function LandingPage(){
+const LandingPage = () => {
     return(
         <div className="LandingPage" >
             {/* Top Bar */}
@@ -35,7 +33,7 @@ function LandingPage(){
                             </ul>
                         </nav>
 
-                        <a href="/login" className="login-btn scrollto">Login</a>
+                        <a href="login" className="login-btn scrollto">Login</a>
                     </div>
                 </header>
 
@@ -307,13 +305,6 @@ function LandingPage(){
             </div>
          </div>
     </section>
-
-    {/* <div id="preloader"></div>
-    <a href="#" className="back-to-top d-flex align-items-center justify-content-center">
-        <i className="bi bi-arrow-up-short"></i></a> */}
-        
-        <Footer />
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi-arrow-up-short"></i></a>
     </div>
     );
 }

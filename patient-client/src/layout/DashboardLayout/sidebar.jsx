@@ -26,7 +26,7 @@ function Sidebar(){
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
-                        href="/appointments" 
+                        href="/dashboard/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
@@ -35,7 +35,9 @@ function Sidebar(){
 
                     {/* Calendar Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#forms-nav" href="/calendar">
+                        <a className="nav-link collapsed" 
+                        data-bs-target="#forms-nav"
+                        href="/dashboard/calendar">
                         <i className="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
@@ -50,13 +52,13 @@ function Sidebar(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="patientinfo">
+                                <a href="/dashboard/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/dentalrecords">
+                                <a href="/dashboard/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -66,7 +68,7 @@ function Sidebar(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/eprescription">
+                        <a className="nav-link collapsed" href="/dashboard/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -74,7 +76,7 @@ function Sidebar(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/payment-records">
+                        <a className="nav-link collapsed" href="/dashboard/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -84,7 +86,7 @@ function Sidebar(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/userprofile">
+                        <a className="nav-link collapsed" href="/dashboard/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
@@ -97,7 +99,6 @@ function Sidebar(){
                             <span>Log Out</span>
                         </a>
                     </li>
-
                 </ul>
             </aside>
         </div>

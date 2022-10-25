@@ -1,8 +1,7 @@
 // SCRATCH!!!
 import React from 'react';
 import 'react-bootstrap';
-import Timeslot from "../components/timeslot.jsx";
-import '../js/booking.js';
+import Timeslot from "../../../components/timeslot.jsx";
 
 const BookingDetail = ({nextStep, prevStep}) => {
     const Continue = (e) => {
@@ -16,8 +15,7 @@ const BookingDetail = ({nextStep, prevStep}) => {
     }
 
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <nav>
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
@@ -133,8 +131,7 @@ const BookingDetail = ({nextStep, prevStep}) => {
 
                 </div>
             </section>
-            </main>
-        </div>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/sign-up.css";
+import "../../styles/sign-up.css";
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {

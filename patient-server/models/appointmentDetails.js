@@ -5,6 +5,7 @@ const AppointmentDetails = new mongoose.Schema(
     appNum: String,
     date: String,
     time: String,
+    consultation: String,
     status: String,
     action: String,
   },

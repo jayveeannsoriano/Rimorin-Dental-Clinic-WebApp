@@ -19,21 +19,19 @@
   --text-color-alt: #52575c;
   --text-color-light: #fff;
   --bg-color: #fafafa;
-  --button-color-success: #064e3b;
-  --button-color-info: #1e2a8a;
-  --button-color-warning: #78350f;
-  --button-color-error: #7f1d1d;
-  --button-color-resched: #6c0986;
+  --info-color:#1e2a8a;
+  --error-color:#7f1d1d;
+  --warning-color:#78350f;
   /*----------font and typography ----------*/
   --body-font: "Montserrat", sans-serif;
   --biggest-font-size: 6rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
-  --h3-font-size: 1rem;
-  --h4-font-size: 1rem;
-  --normal-font-size: 0.938rem;
-  --small-font-size: 0.813rem;
-  --smaller-font-size: 0.75rem;
+  --h3-font-size: 1.75rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.938rem;
+  --smaller-font-size: 0.813rem;
+  --smallest-font-size: 0.75rem;
   /*---------- font weight ----------*/
   --font-light: 400;
   --font-medium: 500;
@@ -65,7 +63,10 @@
 }
 
 /*========== STYLE.CSS ==========*/
-
+*{
+  margin:0;
+  padding:0;
+}
 body {
   width: 100vw;
   font-family: var(--body-font) !important;
@@ -829,4 +830,24 @@ h6 {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+/*--------------------------------------------------------------
+# Overrides
+--------------------------------------------------------------*/
+.btn-primary{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--secondary-color);
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--primary-color);
+    --bs-btn-active-border-color: var(--primary-color);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--primary-color);
+    --bs-btn-disabled-border-color: var(--primary-color);
 }

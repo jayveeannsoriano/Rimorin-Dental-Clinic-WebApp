@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "aos/dist/aos.css";
-import Footer from "../layout/LandingPageLayout/footer";
-import styles from "../styles/Login.css";
+import styles from "../../styles/Login.css";
 
 export default class LoginPage extends Component {
   constructor(props) {
@@ -111,9 +109,6 @@ export default class LoginPage extends Component {
               </div>
             </div>
           </section>
-
-          {/* ======= Footer ======= */}
-          <Footer />
         </div>
       </form>
     );

@@ -1,8 +1,7 @@
 import React from 'react';
-import style from "../styles/booking.css";
+import style from "../../../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
-import '../js/booking.js';
 // import Stepper from 'bs-stepper'
 
 
@@ -18,8 +17,7 @@ const BookingConfirm = ({nextStep, prevStep}) => {
     }
     
     return(
-        <div>
-            <main id="main" className="main">
+        <>
                 <nav>
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
@@ -81,8 +79,7 @@ const BookingConfirm = ({nextStep, prevStep}) => {
                     </div> {/* End of card-body */}
                 </div> 
             </section>
-            </main>
-        </div>
+        </>
     )
 }
 
