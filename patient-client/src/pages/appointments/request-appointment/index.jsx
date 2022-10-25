@@ -1,19 +1,16 @@
-// SCRATCH!!!
-
 import React, {Component} from "react";
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
+
 import BookingInput from './booking-input';
-import BookingDetail from "./booking-detail.jsx";
-import BookingConfirm from "./booking-confirm.jsx";
+import BookingDetail from "./booking-detail";
+import BookingConfirm from "./booking-confirm";
 import AppointmentPage from "../../appointments";
+
 
 class BookingMain extends Component {
     state = {
-        step: 1,
-        startDate: "",
-        consulInput: "",
-        timeData:"",
+        step: 1
     }
 
     prevStep = () => {
@@ -42,8 +39,7 @@ class BookingMain extends Component {
                 return (
                     <BookingInput 
                     nextStep = {this.nextStep}
-                    // handleChange = {this.handleChange}
-                    // values = {values}
+                    handleChange = {this.handleChange}
                     />
                 )
 

@@ -7,6 +7,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
     nextStep();
   };
 
+
   return (
     <div className="auth-wrapper">
       <div className="image-banner">
@@ -133,6 +134,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="09XXXXXXXXX"
                 onChange={handleChange('mobile')}
                 defaultValue={values.mobile}
+                maxLength={11}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
                 // required
               />

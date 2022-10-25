@@ -49,7 +49,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="col-lg-6 order-1 order-lg-2 hero-img">
-                            <img src={'./img/hero-img.png'} className="img-fluid animated"/>
+                            <img src={'../../assets/img/hero-img.png'} className="img-fluid animated"/>
                         </div>
                     </div>
                 </div>
@@ -91,9 +91,9 @@ const LandingPage = () => {
                             <p className="description">Receive a text message reminding you of your upcoming appointment schedule so you never have to.</p>
                         </div>
                     </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
         {/* About Section */}
         <section id="about" className="about">
@@ -128,10 +128,10 @@ const LandingPage = () => {
                                 <h4 className="title">Accessibility</h4>
                                 <p className="description">We believe that having an account will help the clinic`s patients to keep up with your records and schedules.</p>
                             </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-        </section>
+            </section>
 
         {/* Services Section */}
         <section id="services" className="services">
@@ -208,9 +208,9 @@ const LandingPage = () => {
                 <div className="faq-list">
                     <ul>
                         <li data-aos="fade-up">
-                            <i className="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" className="collapse" data-bs-target="#faq-list-1">Do I need to arrive early for my first appointment? <i
-                                    className="bx bx-chevron-down icon-show"></i><i
-                                    className="bx bx-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" className="collapse" data-bs-target="#faq-list-1">Do I need to arrive early for my first appointment? <i
+                                    className="fa-solid fa-chevron-down icon-show"></i><i
+                                    className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-1" className="collapse show" data-bs-parent=".faq-list">
                                 <p>
                                     Yes. Please arrive 10-15 minutes early to fill out any remaining patient forms.
@@ -219,9 +219,9 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
-                            <i className="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" className="collapsed">What should I do if I require premedication?
-                                <i className="bx bx-chevron-down icon-show"></i>
-                                <i className="bx bx-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" className="collapsed">What should I do if I require premedication?
+                                <i className="fa-solid fa-chevron-down icon-show"></i>
+                                <i className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-2" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     Please be sure to request a prescription prior to your appointment, or if you are unsure, contact us and we can help.
@@ -230,8 +230,8 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="200">
-                            <i className="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" className="collapsed">How long will my first appointment last? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="bx bx-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" className="collapsed">How long will my first appointment last? <i className="bx bx-chevron-down icon-show"></i><i
+                                    className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-3" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     It varies, but please plan on 30mins to 1 hours for the first visit.
@@ -240,8 +240,8 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
-                            <i className="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" className="collapsed">How to make an appointment? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="bx bx-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" className="collapsed">How to make an appointment? <i className="bx bx-chevron-down icon-show"></i><i
+                                    className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-4" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     The clinic is entertaining online appointments only except for emergency cases. To book an appointment, begin by signing up a patient account (free) if you don`t have an account yet.
@@ -250,8 +250,8 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="400">
-                            <i className="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" className="collapsed">I forgot my password. How to recover account? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="bx bx-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" className="collapsed">I forgot my password. How to recover account? <i className="bx bx-chevron-down icon-show"></i><i
+                                    className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-5" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     If you have forgotten your password, click the `forgot password` on the login screen. Follow the instructions given to you such as email verification, etc.
@@ -264,7 +264,7 @@ const LandingPage = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact">
+        <section className="contact" id="contact">
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Contact Us</h2>
@@ -273,10 +273,11 @@ const LandingPage = () => {
             </div>
 
             {/* Fix google maps embed */}
-            {/* <div>
-                <iframe style="border:0; width: 100%; height: 350px;" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.224045019263!2d120.5919813292672!3d16.413443898252492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1678f3bd46d%3A0xc35a5159b3cb4c02!2sVictoria%20Supermart%20Session%20Rd.!5e0!3m2!1sen!2sus!4v1662108057381!5m2!1sen!2sus"}
-                    frameborder="0" allowfullscreen></iframe>
-            </div> */}
+                {/* <iframe style="border:0; width: 100%; height: 350px;" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.224045019263!2d120.5919813292672!3d16.413443898252492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1678f3bd46d%3A0xc35a5159b3cb4c02!2sVictoria%20Supermart%20Session%20Rd.!5e0!3m2!1sen!2sus!4v1662108057381!5m2!1sen!2sus"}
+                    frameborder="0" allowfullscreen>
+
+                    </iframe> */}
+
 
             <div className="row contact-info">
 

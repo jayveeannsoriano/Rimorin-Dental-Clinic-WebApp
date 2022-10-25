@@ -2,8 +2,6 @@
 # General
 --------------------------------------------------------------*/
 /*======= GOOGLE FONTS =======*/
-
-/* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap%27");
 
 :root {
@@ -18,7 +16,7 @@
   --text-color: #25282b;
   --text-color-alt: #52575c;
   --text-color-light: #fff;
-  --bg-color: #fafafa;
+  --bg-color: #fff;
   --info-color:#1e2a8a;
   --error-color:#7f1d1d;
   --warning-color:#78350f;
@@ -103,7 +101,7 @@ h6 {
   margin: 0px;
 }
 /*--------------------------------------------------------------
-# Main
+# Dahsboard Main
 --------------------------------------------------------------*/
 #main {
   margin-top: 60px;
@@ -117,6 +115,7 @@ h6 {
     padding: 20px;
   }
 }
+
 
 /*--------------------------------------------------------------
 # Page Title

@@ -12,23 +12,24 @@ import Axios from 'axios';
 
 const BookingInput = ({nextStep,timeData}) => {
 
-    //calendar input
-    const [startDate, setStartDate] = useState(new Date());
+        //calendar input
+        const [startDate, setStartDate] = useState(new Date());
 
-    //reasonforconsultation input
-    const [consulInput, setConsulInput] = useState("");
+        //reasonforconsultation input
+        const [consulInput, setConsulInput] = useState("");
+    
+        //time input
+        const [getTime, setGetTime] = useState("");
 
-    //time input
-
-    const Continue = (e) => {
+        const Continue = (e) => {
         e.preventDefault();
 
         //adds data
-        // console.log("Inserting ",startDate, " to the database.");
-        // console.log("Inserting ",consulInput, " to the database.");
+         console.log("Inserting ",startDate, " to the database.");
+         console.log("Inserting ",consulInput, " to the database.");
 
 
-        // Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate, consulInput: consulInput})
+         Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate, consulInput: consulInput})
 
         //go to next modal
         nextStep();

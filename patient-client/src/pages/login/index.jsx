@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Login.css";
 
+
+
+
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +19,7 @@ export default class LoginPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    fetch("http://localhost:5000/login-user", {
+    fetch("http://localhost:5001/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -34,8 +37,9 @@ export default class LoginPage extends Component {
         console.log(data, "userRegister");
         if (data.status === "ok") {
           alert("Login Successful");
-          window.localStorage.setItem("token", data.data);
+          window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
           window.location.href = "./dashboardpage";
+          console.log(data.data);
         } else {
           alert("Email or Password is incorrect");
           window.location.href = "./login";
@@ -99,7 +103,7 @@ export default class LoginPage extends Component {
               <div className="pass">Forgot Password?</div>
               <div className="d-grid">
                 <button type="submit" className="btn btn-primary">
-                  Submit
+                  Login
                 </button>
               </div>
               <div className="signup_link">

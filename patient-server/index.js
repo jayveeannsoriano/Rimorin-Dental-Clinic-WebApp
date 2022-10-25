@@ -34,54 +34,6 @@ require("./models/appointmentDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 
-//sign up
-app.post("/register", async (req, res) => {
-  const {
-    fname,
-    lname,
-    suffix,
-    email,
-    password,
-    gender,
-    mobile,
-    bday,
-    house,
-    brgy,
-    municipality,
-    province,
-    country,
-    allergies,
-    conditions,
-  } = req.body;
-  const encryptedPassword = await bcrypt.hash(password, 10);
-  try {
-    const oldUser = await User.findOne({ email });
-    if (oldUser) {
-      return res.json({ error: "User already exists!" });
-    }
-    await User.create({
-      fname,
-      lname,
-      suffix,
-      email,
-      password: encryptedPassword,
-      gender,
-      mobile,
-      bday,
-      house,
-      brgy,
-      municipality,
-      province,
-      country,
-      allergies,
-      conditions,
-    });
-    res.send({ status: "ok" });
-  } catch (error) {
-    res.send({ status: "sign up error" });
-  }
-});
-
 //sign in
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
@@ -106,12 +58,14 @@ app.post("/userData", async (req, res) => {
   const { token } = req.body;
   try {
     const user = jwt.verify(token, JWT_SECRET);
+    //delete user.password;
     console.log(user);
-
+    
     const useremail = user.email;
-    User.findOne({ email: useremail })
-      .then((data) => {
+    User.findOne({ email: useremail });
+      then((data) => {
         res.send({ status: "ok", data: data });
+        //window.localStorage.setItem('user-info',user);
       })
       .catch((error) => {
         res.send({ status: "error", data: error });
@@ -242,6 +196,62 @@ app.post("/insertTime", async(req,res) => {
     console.log("Successfully inserted ", AppData, " to the database.")
   } catch(err){
     console.log(err);
+  }
+});
+
+//sign up
+app.post("/RegisterUser", async (req, res) => {
+  const {
+    fname,
+    lname,
+    suffix,
+    email,
+    password,
+    gender,
+    mobile,
+    bday,
+    house,
+    brgy,
+    municipality,
+    province,
+    country,
+    medications,
+    allergies,
+    conditions,
+  } = req.body;
+
+  const encryptedPassword = await bcrypt.hash(password, 10);
+
+  const UserData = new User({
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    house:house,
+    brgy:brgy,
+    municipality:municipality,
+    province:province,
+    country:country,
+    medications:medications,
+    allergies:allergies,
+    conditions:conditions
+  });
+  console.log("Sign up Details for User Data: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" });
   }
 });
 

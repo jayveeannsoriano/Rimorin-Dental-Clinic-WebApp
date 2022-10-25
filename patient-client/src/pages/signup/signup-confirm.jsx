@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { List, ListItem, ListItemText } from '@material-ui/core';
 import "../../styles/sign-up.css";
+import Axios from 'axios';
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     console.log(values);
     const { fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions } = values;
+
+
     const Previous = e => {
         e.preventDefault();
         prevStep();
     }
 
     const Continue = e => {
+
+        Axios.post("http://localhost:5001/RegisterUser", {
+            fname:fname,
+            suffix:suffix,
+            lname:lname,
+            email:email,
+            password:password,
+            gender:gender,
+            mobile:mobile,
+            bday:bday,
+            house:house,
+            brgy:brgy,
+            municipality:municipality,
+            province:province,
+            country:country,
+            medications:medications,
+            allergies:allergies,
+            conditions:conditions
+        })
         e.preventDefault();
         nextStep();
+        console.log(conditions)
     }
 
 
@@ -104,6 +127,8 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         <label className='label'>Conditions</label>
                     </div>
                     <div class="col">
+                        {/* {conditions.map(conditions => 
+                            {return <p>{conditions}</p> })} */}
                         <p>{conditions}</p>
                     </div>
                 </div>

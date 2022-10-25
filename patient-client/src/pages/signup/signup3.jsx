@@ -50,7 +50,7 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => 
             <div class="row">
                 <div class="col-sm">
                 <div className='form-check '>
-                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" onChange={handleCheckbox}  name='Heart Disease' value='Heart Disease' />
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" onChange={handleCheckbox} value='Heart Disease' />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Heart Disease </label>
                 </div>
 

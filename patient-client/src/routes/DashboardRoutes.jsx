@@ -79,7 +79,8 @@ const DashboardRoutes = {
             element: <PaymentRecords />
         },
         {
-            path: '/dashboard/userprofile',
+            path: '/dashboard/userprofile/',
+            // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
             element: <UserProfile />
         }
     ]

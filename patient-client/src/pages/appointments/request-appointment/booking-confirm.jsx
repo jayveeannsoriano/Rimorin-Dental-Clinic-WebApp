@@ -48,7 +48,6 @@ const BookingConfirm = ({nextStep, prevStep}) => {
                         <div className="md-step ">
                         <div className="md-step-circle"><span>2</span></div>
                         <div className="md-step-title">Review Appointment Details</div>
-                        {/* <div className="md-step-optional">Optional</div> */}
                         <div className="md-step-bar-left"></div>
                         <div className="md-step-bar-right"></div>
                         </div>
@@ -64,7 +63,8 @@ const BookingConfirm = ({nextStep, prevStep}) => {
                     
                     {/* Image */}
                     <div className="stepdone">
-                        <img src={"./img/done-img.png"}/>
+                        {/* <img src={"./img/done-img.png"}/> */}
+                        <img src={"./assets/img/done-img.png"}/>
                     </div>
 
                     <div className="stepdoneconfirm">
