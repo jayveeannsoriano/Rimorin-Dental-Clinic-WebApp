@@ -31,7 +31,7 @@ const events = [
     { title: "Happy Hour", start: getDate("YEAR-MONTH-18T17:30:00+00:00") },
     { title: "Dinner", start: getDate("YEAR-MONTH-18T20:00:00+00:00") }
   ];
-  
+    
   function getDate(dayString) {
     const today = new Date();
     const year = today.getFullYear().toString();
