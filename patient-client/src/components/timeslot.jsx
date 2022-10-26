@@ -3,23 +3,12 @@ import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import Axios from 'axios';
 
-const Timeslot = () => {
+const Timeslot = (props) => {
   let intime = "09:00 AM"
   let outtime = "05:00 PM"
   const [result, setResult] = useState([])
 
   const [getTime, setGetTime] = useState("");
-
-  const testSubmitTime = (e) =>{
-    e.preventDefault();
-
-    //adds data
-    console.log("Inserting ",getTime, " to the database.");
-
-    Axios.post("http://localhost:5001/insertTime", {getTime: getTime})
-  }
-
-
 
   function intervals(startString, endString) {
     var start = moment(startString, 'hh:mm a');
@@ -54,6 +43,7 @@ const Timeslot = () => {
                 onClick={(e)=>{
                   e.preventDefault();
                   setGetTime(e.target.value)
+                  props.onSubmit(time)
                   console.log(time);
                   }}>{time}</Button>
                   
@@ -61,7 +51,6 @@ const Timeslot = () => {
           )
         }) : null
       }
-      <button onClick={testSubmitTime}>test input time</button>
     </div>
   )
 }

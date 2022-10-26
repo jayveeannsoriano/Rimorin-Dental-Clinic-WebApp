@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import Axios from 'axios';
 
-const BookingInput = ({nextStep,timeData}) => {
+const BookingInput = ({nextStep}) => {
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
@@ -21,15 +21,23 @@ const BookingInput = ({nextStep,timeData}) => {
         //time input
         const [getTime, setGetTime] = useState("");
 
+        //retrieve Time data from Timeslot
+        const getBookingData = (data)=>{
+            console.log('Retrieving Data from Booking Input: ', data)
+            setGetTime(data);
+        }
+
         const Continue = (e) => {
         e.preventDefault();
 
         //adds data
          console.log("Inserting ",startDate, " to the database.");
          console.log("Inserting ",consulInput, " to the database.");
+         console.log("Inserting ",getTime, " to the database.");
+         
 
-
-         Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate, consulInput: consulInput})
+         //insert data
+         //Axios.post("http://localhost:5001/insertAppointment", {startDate: startDate, consulInput: consulInput, getTime:getTime})
 
         //go to next modal
         nextStep();
@@ -117,7 +125,7 @@ const BookingInput = ({nextStep,timeData}) => {
                         <div className="col-md-6">
                             <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                             <p> Available Times </p>
-                            <Timeslot/>
+                            <Timeslot onSubmit={getBookingData}/>
                         </div>
                     </div>
 

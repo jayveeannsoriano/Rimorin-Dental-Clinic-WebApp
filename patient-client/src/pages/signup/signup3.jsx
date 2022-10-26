@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => {
+const SignUp3 = ({prevStep, nextStep, handleChange, values,handleChangeCheckbox, handleCheckbox}) => {
 
     const Continue = e => {
         e.preventDefault();
@@ -55,12 +55,12 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values, handleCheckbox}) => 
                 </div>
 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="High Blood Pressure" id="flexCheckDefault" onChange={handleChange('conditions')} />
+                    <input class="form-check-input" name="YESSIRSKI" type="checkbox" value="High Blood Pressure" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} />
                     <label class="form-check-label px-1" for="flexCheckDefault"> High Blood Pressure</label> 
                 </div>
 
                 <div className='form-check'>
-                    <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" onChange={handleChange('conditions')} />
+                    <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} />
                     <label class="form-check-label px-1" for="flexCheckDefault"> Rheumatic </label>
                 </div>
                 

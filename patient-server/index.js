@@ -170,26 +170,12 @@ app.post("/insertAppointment", async(req,res) => {
   const consulInput = req.body.consulInput;
   console.log(consulInput)
 
-  //insterting all data
-  const AppData = new AppDetails({date: slicedDate, consultation: consulInput});
-
-  try{
-    await AppData.save();
-    console.log("Successfully inserted ", AppData, " to the database.")
-  } catch(err){
-    console.log(err);
-  }
-});
-
-//test add to db time, will delete later, 
-app.post("/insertTime", async(req,res) => {
-  
-  //date value
+  //time value
   const getTime = req.body.getTime;
-  console.log(getTime)
-  
+  console.log(getTime);
+
   //insterting all data
-  const AppData = new AppDetails({time: getTime});
+  const AppData = new AppDetails({date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();

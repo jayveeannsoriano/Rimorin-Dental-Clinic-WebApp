@@ -15,7 +15,7 @@ const DashboardTable = () => {
     const getAppointment = async() => {
 
         try{
-            const response = await axios.get('http://localhost:5000/getAppointmentDetails')
+            const response = await axios.get('http://localhost:5001/getAppointmentDetails')
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
@@ -36,7 +36,7 @@ const DashboardTable = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.datetime,
+            selector: (row) => row.date,
             sortable: true,
         },
         {

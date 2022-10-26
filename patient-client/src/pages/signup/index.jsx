@@ -41,7 +41,7 @@ class SignUpMain extends Component {
             hepatitis: false,
             std: false,
             stroke: false,
-        }
+        },
     }
 
     prevStep = () => {
@@ -61,54 +61,24 @@ class SignUpMain extends Component {
         
     }
     
-    
+    //handlebox for checkbox
+      
     handleChangeCheckbox = input => e =>{
-        this.setState({[input]: e.target.value});
-        console.log(input);
-        //check if box is checked or not
         const checked = e.target.checked;
-        console.log('The box is: ', checked);
-    }
-
-    // maxLengthCheck = (PhoneNumber) => {
-    //     if (PhoneNumber.target.value.length > PhoneNumber.target.maxLength) {
-    //       PhoneNumber.target.value = PhoneNumber.target.value.slice(0, PhoneNumber.target.maxLength)
-    //       }
-    //     }
-    //checkbox for sign up 3
-    // handleCheckbox = e => {
-    //     // console.log(e.target.value);
-    //     let state = this.state
-    //     state.conditions[e.target.value] = e.target.checked;
-    //     this.setState(state);
-    // }
-
-    handleCheckbox (e) {
-
-        //value
-        const input = e.target.value;
-        console.log (input)
+        this.setState({[input]: [e.target.value]});
+        console.log(input, checked);
         //check if box is checked or not
-        const checked = e.target.checked;
-        console.log('The box is: ', checked);
-        // this.setState(
-        //     {
-        //         value: this.state.value.includes(input)
-        //             ? this.state.value.filter((item) => item !== input)
-        //             : [...this.state.value, input]
-        //     },
-        //     () => {
-        //         console.log(this.state.value);
-        //     }
-        // );
+   
+
+
+        
     }
 
     render() {
         
         const {step} = this.state;
-        const{fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country,medications, allergies, conditions} = this.state;
+        const{fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country,medications, allergies,conditions} = this.state;
         const values = {fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions};
-        
         switch (step) {
             case 1:
                 return(
@@ -135,6 +105,7 @@ class SignUpMain extends Component {
                     prevStep = {this.prevStep}
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
+                    handleChangeCheckbox = {this.handleChangeCheckbox}
                     values = {values}
                     />
                 )
