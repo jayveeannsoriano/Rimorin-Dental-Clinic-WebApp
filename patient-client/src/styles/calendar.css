@@ -105,10 +105,12 @@
 }
 
 .fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #5d5fef;
     border-color: #2c3e5000;
 }
 
 .fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #5d5fef;
     border-color: #2c3e5000;
 }
 
