@@ -116,16 +116,37 @@ const BookingDetail = ({nextStep, prevStep}) => {
 
                         {/* Review Appointment Details */}
 
-                        <div id="review-details" className="review-details">
+                        
+                        {/* <div id="review-details" className="review-details">
                             <h1>APPOINTMENT DETAILS</h1>
 
+                        </div> */}
+
+                    <div className="doctor-info">
+                        <h1>APPOINTMENT DETAILS</h1>
+                        <h2>Date of Consultation</h2>
+                        
+                        <h2>Reason for Consultation</h2>
+                        
+                    </div>
+                        
+                        <div className="divider"></div>
+                            <div className="doctor-info">
+                            <h1>Notes to Patient:</h1>
+                                <ol>
+                                    <li>The information above will be sent to dentist.</li>
+                                    <li>You will receive a notification containing the clinic’s response, including other reminders. Please check your Spam mailbox as well.</li>
+                                    <li>Wait for the dentist’s approval of your appointment request.</li>
+                                    <li>In the event that you could not come to your appointment, immediately rebook/contact the dentist.</li>
+                                    <li>If there is a conflict with your appointment, the dentist will notify and reschedule you at the earliest time of your convenience.</li>
+                                </ol>
                                 <div className="col-12">
                                     <div className="appt-bttns">
                                     <button onClick={Previous} className="btn btn-outline-secondary" type="submit">Previous</button>
                                     <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
                                     </div>
-                                </div> 
-                        </div>
+                                </div>         
+                            </div>
 
                     </div> {/* End of card-body */}
 

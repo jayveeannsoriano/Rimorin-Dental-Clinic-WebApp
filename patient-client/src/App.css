@@ -832,6 +832,152 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Datatable action buttons
+--------------------------------------------------------------*/
+.view-button{
+  width: 80px !important;
+  height: 32px !important;
+  padding: 8px 15px !important;
+  background: #EFF6FF !important;
+  border-radius: 22px !important;
+  color: #3B82F6 !important;
+  border: none !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+}
+
+.view-button i, 
+.update-button i,
+.resched-button i {
+padding-right: 5px;
+}
+
+.update-button{
+  width: 96px !important;
+  height: 32px !important;
+  padding: 8px 15px !important;
+  background: #FFFBEB !important;
+  border-radius: 22px !important;
+  color: #D97706 !important;
+  border: none !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+}
+
+.resched-button{
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 15px !important;
+  background: #F9DBFE!important;
+  border-radius: 22px !important;
+  color: #6C0386!important;
+  border: none !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+}
+
+/* .btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: black !important;
+  color: white !important;
+} */
+
+/* Appointment Status */
+.appt_status[data-status="Accepted"]:after{
+  content: "Accepted";
+  color: #1F9254;
+  background: #EBF9F1;
+  border-radius: 22px;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 10px;
+}
+
+.appt_status[data-status="Cancelled"]:after{
+  content: "Cancelled";
+  color: #fff;
+  background: #DC2626;
+  border-radius: 22px;
+  padding: 6px 12px;
+  gap: 10px;
+}
+
+.appt_status[data-status="Finished"]:after{
+  content: "Finished";
+  color: #fff;
+  background: #1F9254;
+  border-radius: 22px;
+  padding: 6px 12px;
+  gap: 10px;
+}
+
+.appt_status[data-status="Rescheduled"]:after{
+  content: "Rescheduled";
+  color: #6C0386;
+  background: #F9DBFE;
+  border-radius: 22px;
+  padding: 6px 12px;
+  gap: 10px;
+}
+
+/*--------------------------------------------------------------
+# Override React Datatable CSS
+--------------------------------------------------------------*/
+/* col titles */
+.rdt_TableCol { 
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color);
+  align-items: center ;
+}
+
+.rdt_TableCol:hover,
+.rdt_TableCol:focus{
+  color: var(--primary-color);
+  opacity: 100% !important;
+}
+
+/* data row content */
+.rdt_TableRow,
+.dtqzBx div:first-child{
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 17px !important;
+  color: var(--text-color) !important;
+  text-overflow: unset !important;
+}
+
+.rdt_TableRow:hover{
+  background: #F7F6FE !important;
+}
+
+.datatable-search{
+  border: 1px solid #DBDDE0 !important;
+  border-radius: 8px !important;
+}
+
+/* Pagination */
+.gKbhqU{
+  color: var(--text-color-alt) !important;
+}
+
+/* Row per page dropdown [10, 15, 20, 25, 30] */
+.jaZsat{
+  background: #DBDDE0 !important;
+  border-radius: 5px !important;
+}
+
+/*--------------------------------------------------------------
 # Overrides
 --------------------------------------------------------------*/
 .btn-primary{

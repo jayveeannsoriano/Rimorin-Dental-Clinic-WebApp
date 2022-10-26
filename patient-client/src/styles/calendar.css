@@ -1,5 +1,9 @@
-/* Calendar Style */
 /*------Calendar------*/
+.card-body{
+    padding: 50px;
+}
+
+
 .calendar-breadcrumb{
     margin: 20px;
     margin-top: -5px;
@@ -73,20 +77,5 @@
     margin-right: 20px;
 }
 
-
-/* Container */
-.calendarContainer {
-    height: 80vh;
-}
-
-.Kalend__HeaderCalendarTitle__container {
-    margin-left: 30vh; 
-    margin-right: 30vh;
-}
-
-.Kalend__text.Kalend__HeaderCalendarTitle {
-    color: rgba(110, 92, 245);
-
-}
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-// import style from '../App.css';
 import {Link} from 'react-router-dom';
 
 function Sidebar(){
@@ -9,7 +8,7 @@ function Sidebar(){
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
                     <a href="/dashboard" class="logo d-flex align-items-center">
-                        <img src="./img/logo.png" alt=""/>
+                        <img src="../../assets/img/logo.png" alt=""/>
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
                     <div className='divider'></div>

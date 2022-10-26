@@ -49,7 +49,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="col-lg-6 order-1 order-lg-2 hero-img">
-                            <img src={'../../assets/img/hero-img.png'} className="img-fluid animated"/>
+                            <img src={'./img/hero-img.png'} className="img-fluid animated"/>
                         </div>
                     </div>
                 </div>
@@ -230,8 +230,9 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="200">
-                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" className="collapsed">How long will my first appointment last? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="fa-solid fa-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" className="collapsed">How long will my first appointment last? 
+                            <i className="fa-solid fa-chevron-down icon-show"></i>
+                            <i className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-3" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     It varies, but please plan on 30mins to 1 hours for the first visit.
@@ -240,8 +241,9 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
-                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" className="collapsed">How to make an appointment? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="fa-solid fa-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" className="collapsed">How to make an appointment? 
+                            <i className="fa-solid fa-chevron-down icon-show"></i>
+                            <i className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-4" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     The clinic is entertaining online appointments only except for emergency cases. To book an appointment, begin by signing up a patient account (free) if you don`t have an account yet.
@@ -250,8 +252,9 @@ const LandingPage = () => {
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="400">
-                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" className="collapsed">I forgot my password. How to recover account? <i className="bx bx-chevron-down icon-show"></i><i
-                                    className="fa-solid fa-chevron-up icon-close"></i></a>
+                            <i className="fa-solid fa-circle-info icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" className="collapsed">I forgot my password. How to recover account? 
+                            <i className="fa-solid fa-chevron-down icon-show"></i>
+                            <i className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-5" className="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     If you have forgotten your password, click the `forgot password` on the login screen. Follow the instructions given to you such as email verification, etc.
