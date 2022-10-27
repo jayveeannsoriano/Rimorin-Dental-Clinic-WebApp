@@ -3,26 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Login.css";
 import axios from "axios";
 
-const mongoose = require("mongoose");
-
-
-//connect with DB
-mongoose
-  .connect(mongooseURL, {
-    useNewUrlParser: true,
-  })
-  .then(() => {
-    console.log("Connected to database successfully");
-  })
-  .catch((e) => console.log(e));
-
-require("./models/userDetails");
-require("./models/appointmentDetails");
-// const User = mongoose.model("userRegister"); //encodes model
-const User = mongoose.model("UserInfo");
-const AppDetails = mongoose.model("AppointmentDetails");
-
-
 
 
 export default class LoginPage extends Component {
@@ -40,16 +20,13 @@ export default class LoginPage extends Component {
     const { email, password } = this.state;
     console.log(email, password);
 
-    axios({
-      method: "GET",
-      url: "https://rimorin-dental-clinic.herokuapp.com/login-user",
-      data:{email,password},
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    }).then((data) => {
+    axios.get('/api/updatecart', {
+      params: {
+        email: email,
+        password: password
+      }
+    })
+    .then((data) => {
         console.log(data);
         if (data.status == "200") {
           alert("Login Successful");
