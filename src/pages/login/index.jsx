@@ -32,7 +32,7 @@ export default class LoginPage extends Component {
       },
     }).then((data) => {
         console.log(data, "userRegister");
-        if (data.status === "ok") {
+        if (data.status === "200") {
           alert("Login Successful");
           window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
           window.location.href = "./dashboard";
