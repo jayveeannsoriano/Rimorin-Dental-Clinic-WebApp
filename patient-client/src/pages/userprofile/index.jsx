@@ -42,9 +42,24 @@ const UserProfile = () => {
                                         
                                             <h5 class="card-title">Profile Details</h5>
 
-                                            <div class="row">
+                                            {/* <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Full Name</div>
                                                 <div class="col-lg-9 col-md-8">Jessica McBell</div>
+                                            </div> */}
+    
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">First Name</div>
+                                                <div class="col-lg-9 col-md-8">Jessica </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Middle Name</div>
+                                                <div class="col-lg-9 col-md-8"> </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Last Name</div>
+                                                <div class="col-lg-9 col-md-8"> McBell</div>
                                             </div>
 
                                             <div class="row">
@@ -57,9 +72,39 @@ const UserProfile = () => {
                                                 <div class="col-lg-9 col-md-8">Female</div>
                                             </div>
 
-                                            <div class="row">
+                                            {/* <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Address</div>
                                                 <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                                            </div> */}
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">House No. & Name of Street</div>
+                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">District/Barangay</div>
+                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Municipality/City</div>
+                                                <div class="col-lg-9 col-md-8">New York City</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Province</div>
+                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Country</div>
+                                                <div class="col-lg-9 col-md-8">USA</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Zipcode</div>
+                                                <div class="col-lg-9 col-md-8">535022</div>
                                             </div>
 
                                             <div class="row">
@@ -105,17 +150,46 @@ const UserProfile = () => {
                                                     </div>
                                                     </div>
 
-                                                    <div class="row mb-3">
+                                                    {/* <div class="row mb-3">
                                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                                     <div class="col-md-8 col-lg-9">
                                                         <input name="fullName" type="text" class="form-control" id="fullName" value="Jessica McBell"/>
+                                                    </div>
+                                                    </div> */}
+
+                                                     <h5 class="card-title">Personal Information</h5>   
+                                                    <div class="row mb-3">
+                                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="Jessica"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Middle Name</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value=""/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value=" McBell"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Date of Birth" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="country" type="text" class="form-control" id="Birthday" value="June 01, 2000"/>
+                                                        <input name="date" type="text" class="form-control" id="Birthday" value="June 01, 2000"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Date of Birth" class="col-md-4 col-lg-3 col-form-label">Age</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="date" type="text" class="form-control" id="Birthday" value="24"/>
                                                     </div>
                                                     </div>
                                                     {/*                                                     
@@ -126,49 +200,131 @@ const UserProfile = () => {
                                                     </div>
                                                     </div> */}
 
-                                                    <div class="row mb-3">
+                                                    {/* <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                                     <div class="col-md-8 col-lg-9">
                                                         <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022"/>
+                                                    </div>
+                                                    </div> */}
+
+                                                <h5 class="card-title">Address Information</h5> 
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">House No. & Name of Street</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">District/Barangay</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Municipality/City</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="New York City"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Province</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="USA"/>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Zipcode</label>
+                                                    <div class="col-md-8 col-lg-9">
+                                                        <input name="address" type="text" class="form-control" id="Address" value="535022"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value="(+63) 956 793 5590"/>
+                                                        <input name="phone" type="tel" class="form-control" id="Phone" value="(+63) 956 793 5590"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email Address</label>
                                                     <div class="col-md-8 col-lg-9">
                                                         <input name="email" type="email" class="form-control" id="Email" value="jessica.mcbell@email.com"/>
                                                     </div>
                                                     </div>
 
+                                                <h5 class="card-title">Medical Conditions</h5>
                                                     <div class="row mb-3">
-                                                    <label for="Medications" class="col-md-4 col-lg-3 col-form-label">Medications</label>
+                                                    <label for="Medications" class="col-md-4 col-lg-3 col-form-label">Medications or maintenance</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
+                                                        <input type="text" class="form-control" id="Medications" value="Metformin"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Allergies" class="col-md-4 col-lg-3 col-form-label">Allergies</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value="Hives"/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Conditions" class="col-md-4 col-lg-3 col-form-label">Conditions</label>
-                                                    <div class="col-md-8 col-lg-9">
+                                                    {/* <div class="col-md-8 col-lg-9">
                                                         <input name="phone" type="text" class="form-control" id="Phone" value=""/>
-                                                    </div>
+                                                    </div> */}
                                                     </div>
 
+                                                    {/* Conditions Checkboxes */}
 
+                                                    <div class="form-inline">
+                                                        <div class="form-group">
+                                                            <div class="col-md-4">
+                                                                <label class="radio-inline" id="labelcheckbox">
+                                                                    <input type="checkbox" id="Checkbox0" value=""/>Heart Disease</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox1" value=""/>High Blood Pressure</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox2" value=""/>Rheumatic</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox3" value=""/>Blood Disorders</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox4" value=""/>Diabetes</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox5" value=""/>Seizures</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox6" value=""/>Tuberculosis</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox7" value=""/>Blood Tumors/Growth</label>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox8" value=""/>Asthma</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox9" value=""/>Hepatitis</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox10" value=""/>Sexually Transmitted Disease</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" id="Checkbox11" value=""/>Stroke</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
 
                                                     <div class="text-right">
                                                     <button type="submit" class="btn btn-outline-secondary">Cancel</button>

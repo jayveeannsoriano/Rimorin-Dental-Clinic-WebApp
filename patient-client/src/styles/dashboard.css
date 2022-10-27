@@ -44,7 +44,7 @@
 .header .search-form input {
   border: 0;
   font-size: 14px;
-  color: #012970;
+  color: var(--text-color);
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
   border-radius: 100px;

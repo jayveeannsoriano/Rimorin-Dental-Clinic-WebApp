@@ -63,8 +63,7 @@ const BookingConfirm = ({nextStep, prevStep}) => {
                     
                     {/* Image */}
                     <div className="stepdone">
-                        {/* <img src={"./img/done-img.png"}/> */}
-                        <img src={"./assets/img/done-img.png"}/>
+                        <img src={"../../../../img/done-img.png"}/>
                     </div>
 
                     <div className="stepdoneconfirm">

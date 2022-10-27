@@ -28,7 +28,7 @@ export default function DentalRecord(){
 
                                     {/* Dental Record */}
                                     <div class="row">
-                                        <img src="img/dentalchart1.png" alt="" />
+                                        <img src="../../img/dentalchart1.png" alt="" />
                                     </div>
 
                                     <div className="divider"></div>
