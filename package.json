@@ -35,14 +35,14 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "build": "react-scripts build && (cd patient-server && yarn install)",
+    "build": "react-scripts build && (cd patient-server && npm install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "cd patient-server && node patient-server/index.js && yarn start"
+    "start": "cd patient-server && npm start"
   },
    "engines": { 
     "node": "16.17.0",
-    "yarn": "1.19.1"
+    "npm": "8.19.2"
   },
   "browserslist": {
     "production": [
