@@ -10,8 +10,6 @@ app.use(express.json()); //prints body request
 app.use(cors());
 
 const JWT_SECRET = "sdaikdhjiIHDiu8987J(@?!dDSF8645DAsadA[]ds54aASD()21asd1SFP";
-const mongooseURL =
-  "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 //server
 app.listen(5000, () => {
