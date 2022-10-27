@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list"
+import interactionPlugin from "@fullcalendar/interaction";
 
 // // import "@fullcalendar/core/main.css";
 // import "@fullcalendar/daygrid/main.css";
@@ -26,13 +27,18 @@ export default class Calendar extends React.Component {
         <CalendarCheckbox/>
           <FullCalendar
             contentHeight={750}
-            plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
+            plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
             events={events}
+            eventColor='purple'
             initialView="dayGridMonth"
+            selectable = "true"
+            nowIndicator
+            dateClick={(e) => console.log(e.dateStr)}
+            eventClick={(e) => console.log(e.event.id)}
             headerToolbar={{
-              right: "prev,next",
+              right: "dayGridMonth timeGridWeek timeGridDay",
               center: "title",
-              left: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+              left: "prev next today"
             }}
           />
         </div>

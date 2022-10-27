@@ -1,6 +1,6 @@
 /*------Calendar------*/
 .card-body{
-    padding: 50px;
+    padding: 30px;
 }
 
 .calendar-breadcrumb{
@@ -12,9 +12,10 @@
 
 /*------Calendar-Checkbox------*/
 .calendar-checkbox{
-    margin-left: 300px;
-    margin-top: 20px;
+    margin-left: 250px;
+    margin-top: 10px;
     font-size: 15px;
+    padding-bottom: 40px;
 }
 
 /*----Calendar Checkbox inputs/labels----*/
@@ -73,6 +74,79 @@
 .bg-danger{
     margin-left: -30px;
     margin-right: 20px;
+}
+
+.fc-today-button.fc-button.fc-button-primary {
+    background-color: #2c3e5000;
+    color: black;
+    border-color: #2c3e5000;
+}
+
+.fc-today-button.fc-button.fc-button-primary:active{
+    background-color: #2c3e5000;
+    color: black;
+}
+
+#fc-dom-2.fc-toolbar-title{
+    margin-left: 3px;
+    color: rgba(110, 92, 245);
+    font-family: var(--body-font);
+    font-size: 25px;
+    
+
+}
+
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #5d5fef;
+    border-color: #2c3e5000;
+    
+}
+
+.fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #5d5fef;
+    border-color: #2c3e5000;
+}
+
+.fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #5d5fef;
+    border-color: #2c3e5000;
+}
+
+.fc-dayGridMonth-button.fc-button.fc-button-primary {
+    background-color: #ffffff;
+    color: black;
+}
+
+.fc-timeGridWeek-button.fc-button.fc-button-primary {
+    background-color: #ffffff;
+    color: black;
+}
+
+.fc-timeGridDay-button.fc-button.fc-button-primary {
+    background-color: #ffffff;
+    color: black;
+}
+
+.fc-prev-button.fc-button.fc-button-primary {
+    background-color: #ffffff;
+    color: black;
+    border-color: #2c3e5000;
+}
+
+.fc-prev-button.fc-button.fc-button-primary:active {
+    background-color: #2c3e5000;
+    color: black;
+}
+
+.fc-next-button.fc-button.fc-button-primary{
+    background-color: #ffffff;
+    color: black;
+    border-color: #2c3e5000;
+}
+
+.fc-next-button.fc-button.fc-button-primary:active {
+    background-color: #2c3e5000;
+    color: black;
 }
 
 
