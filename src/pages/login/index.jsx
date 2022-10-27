@@ -30,7 +30,19 @@ export default class LoginPage extends Component {
         Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
       },
-    });
+    }).then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status === "ok") {
+          alert("Login Successful");
+          window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
+          window.location.href = "./dashboard";
+          console.log(data.data);
+        } else {
+          alert("Email or Password is incorrect");
+          window.location.href = "./login";
+        }
+      });
 
     
     // axios.post('https://rimorin-dental-clinic.herokuapp.com/login-user', {
