@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    axios.post('https://rimorin-dental-clinic.herokuapp.com/login-user', {
+    axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user', {
       method: "POST",
       mode: 'cors', 
       headers: {
