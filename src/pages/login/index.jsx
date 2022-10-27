@@ -31,8 +31,7 @@ export default class LoginPage extends Component {
         "Access-Control-Allow-Origin": "*",
       },
     }).then((data) => {
-        console.log(data, "userRegister");
-        console.log(data.status);
+        console.log(data);
         if (data.status == "200") {
           alert("Login Successful");
           window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
