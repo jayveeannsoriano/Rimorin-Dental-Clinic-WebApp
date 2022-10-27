@@ -12,8 +12,8 @@ app.use(cors());
 const JWT_SECRET = "sdaikdhjiIHDiu8987J(@?!dDSF8645DAsadA[]ds54aASD()21asd1SFP";
 const PORT = process.env.PORT || 5000;
 
-const buildPath = path.join(__dirname, '..', 'build');
-app.use(express.static(buildPath));
+// const buildPath = path.join(__dirname, '..', 'build');
+// app.use(express.static(buildPath));
 
 //server
 app.listen(PORT, () => {
