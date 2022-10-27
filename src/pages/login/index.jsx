@@ -30,8 +30,7 @@ export default class LoginPage extends Component {
         Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
       },
-    }).then((res) => res.json())
-      .then((data) => {
+    }).then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
           alert("Login Successful");
