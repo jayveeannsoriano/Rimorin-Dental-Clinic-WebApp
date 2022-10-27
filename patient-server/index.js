@@ -10,10 +10,14 @@ app.use(express.json()); //prints body request
 app.use(cors());
 
 const JWT_SECRET = "sdaikdhjiIHDiu8987J(@?!dDSF8645DAsadA[]ds54aASD()21asd1SFP";
+const PORT = process.env.PORT || 5000;
+
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
 
 //server
-app.listen(5000, () => {
-  console.log("Server started successfully.");
+app.listen(PORT, () => {
+  console.log('Server started successfully on ' + PORT);
 });
 
 //connect with DB
