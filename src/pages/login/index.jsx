@@ -21,12 +21,22 @@ export default class LoginPage extends Component {
     const { email, password } = this.state;
     console.log(email, password);
 
-    axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user')
-    .then(function (response) {
-      console.log(response);
+    axios({
+      method: "POST",
+      url: "https://rimorin-dental-clinic.herokuapp.com/login-user",
+      data:JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     });
 
-    // axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user', {
+    
+    // axios.post('https://rimorin-dental-clinic.herokuapp.com/login-user', {
     //   method: "POST",
     //   mode: 'cors', 
     //   headers: {
