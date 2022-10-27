@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
     const { email, password } = this.state;
     console.log(email, password);
 
-    axios.get('/api/updatecart', {
+    axios.get('/login-user', {
       params: {
         email: email,
         password: password
