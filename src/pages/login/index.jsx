@@ -27,7 +27,7 @@ export default class LoginPage extends Component {
       }
     })
     .then((res) => {
-        data = res.data;
+        var data = res.data;
         console.log(data);
         if (data.status == "200") {
           alert("Login Successful");
