@@ -8,6 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
     "@fullcalendar/react": "^5.11.2",
     "@fullcalendar/timegrid": "^5.11.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -37,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-   "engines": { 
+  "engines": {
     "node": "16.17.0",
     "npm": "8.15.0"
   },
