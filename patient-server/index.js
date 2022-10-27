@@ -37,22 +37,26 @@ const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 
 //sign in
-app.get("https://rimorin-dental-clinic.herokuapp.com/login-user", async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res.json({ error: "User not found!" });
-  }
-  if (await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign({}, JWT_SECRET);
+// app.get("https://rimorin-dental-clinic.herokuapp.com/login-user", async (req, res) => {
+//   const { email, password } = req.body;
+//   const user = await User.findOne({ email });
+//   if (!user) {
+//     return res.json({ error: "User not found!" });
+//   }
+//   if (await bcrypt.compare(password, user.password)) {
+//     const token = jwt.sign({}, JWT_SECRET);
 
-    if (res.status(201)) {
-      return res.json({ status: "ok", data: token });
-    } else {
-      return res.json({ status: "error" });
-    }
-  }
-  res.json({ status: "error", error: "invalid password" });
+//     if (res.status(201)) {
+//       return res.json({ status: "ok", data: token });
+//     } else {
+//       return res.json({ status: "error" });
+//     }
+//   }
+//   res.json({ status: "error", error: "invalid password" });
+// });
+
+app.get("/login-user", (req, res) => {
+  res.json({ message: "Hello from server!" });
 });
 
 //read user data
