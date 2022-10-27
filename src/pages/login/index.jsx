@@ -21,6 +21,7 @@ export default class LoginPage extends Component {
     console.log(email, password);
     fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
       method: "POST",
+      mode: 'cors', 
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
