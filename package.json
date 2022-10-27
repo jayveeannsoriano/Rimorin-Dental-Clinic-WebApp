@@ -35,10 +35,10 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "build": "react-scripts build && (cd patient-server && npm install)",
+    "build": "react-scripts build && (cd patient-server && yarn install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "cd patient-server && npm start"
+    "start": "cd patient-server && yarn start"
   },
    "engines": { 
     "node": "16.17.0",

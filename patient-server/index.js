@@ -12,12 +12,12 @@ app.use(cors());
 const JWT_SECRET = "sdaikdhjiIHDiu8987J(@?!dDSF8645DAsadA[]ds54aASD()21asd1SFP";
 const PORT = process.env.PORT || 5000;
 
-// const buildPath = path.join(__dirname, '..', 'build');
-// app.use(express.static(buildPath));
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
 
 //server
 app.listen(PORT, () => {
-  console.log('Server started successfully on ' + PORT);
+  console.log(`server started on port ${PORT}`);
 });
 
 //connect with DB
@@ -55,7 +55,7 @@ const AppDetails = mongoose.model("AppointmentDetails");
 //   res.json({ status: "error", error: "invalid password" });
 // });
 
-app.get("https://rimorin-dental-clinic.herokuapp.com/login-user", (req, res) => {
+app.get("/login-user", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
