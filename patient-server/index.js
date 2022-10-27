@@ -14,7 +14,7 @@ const mongooseURL =
   "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 //server
-app.listen(5001, () => {
+app.listen(5000, () => {
   console.log("Server started successfully.");
 });
 
