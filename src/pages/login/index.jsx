@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Login.css";
 import axios from "axios";
 
+const mongoose = require("mongoose");
+
+
 //connect with DB
 mongoose
   .connect(mongooseURL, {
