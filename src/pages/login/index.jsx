@@ -3,6 +3,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Login.css";
 import axios from "axios";
 
+//connect with DB
+mongoose
+  .connect(mongooseURL, {
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log("Connected to database successfully");
+  })
+  .catch((e) => console.log(e));
+
+require("./models/userDetails");
+require("./models/appointmentDetails");
+// const User = mongoose.model("userRegister"); //encodes model
+const User = mongoose.model("UserInfo");
+const AppDetails = mongoose.model("AppointmentDetails");
+
 
 
 
