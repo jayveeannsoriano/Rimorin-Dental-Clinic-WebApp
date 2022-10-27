@@ -27,9 +27,9 @@ export default class LoginPage extends Component {
       }
     })
     .then((res) => {
-        var data = res.data;
+        var data = res;
         console.log(data);
-        if (data.status == "200") {
+        if (data.status === "ok") {
           alert("Login Successful");
           window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
           window.location.href = "./dashboard";
