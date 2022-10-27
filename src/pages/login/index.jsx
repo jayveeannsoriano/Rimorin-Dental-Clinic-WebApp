@@ -20,8 +20,7 @@ export default class LoginPage extends Component {
     const { email, password } = this.state;
     console.log(email, password);
     fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
-      method: "GET",
-      crossDomain: true,
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
