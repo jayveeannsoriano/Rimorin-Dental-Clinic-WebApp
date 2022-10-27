@@ -20,32 +20,38 @@ export default class LoginPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user', {
-      method: "POST",
-      mode: 'cors', 
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "ok") {
-          alert("Login Successful");
-          window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
-          window.location.href = "./dashboard";
-          console.log(data.data);
-        } else {
-          alert("Email or Password is incorrect");
-          window.location.href = "./login";
-        }
-      });
+
+    axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user')
+    .then(function (response) {
+      console.log(response);
+    });
+
+    // axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user', {
+    //   method: "POST",
+    //   mode: 'cors', 
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    //   body: JSON.stringify({
+    //     email,
+    //     password,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data, "userRegister");
+    //     if (data.status === "ok") {
+    //       alert("Login Successful");
+    //       window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
+    //       window.location.href = "./dashboard";
+    //       console.log(data.data);
+    //     } else {
+    //       alert("Email or Password is incorrect");
+    //       window.location.href = "./login";
+    //     }
+    //   });
   }
 
   render() {
