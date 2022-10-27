@@ -37,7 +37,7 @@ const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 
 //sign in
-app.post("/login-user", async (req, res) => {
+app.get("https://rimorin-dental-clinic.herokuapp.com/login-user", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
