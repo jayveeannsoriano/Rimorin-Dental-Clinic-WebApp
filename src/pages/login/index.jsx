@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Login.css";
+import axios from "axios";
 
 
 
@@ -19,7 +20,7 @@ export default class LoginPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
+    axios.post('https://rimorin-dental-clinic.herokuapp.com/login-user', {
       method: "POST",
       mode: 'cors', 
       headers: {
