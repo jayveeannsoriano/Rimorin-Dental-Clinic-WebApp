@@ -28,7 +28,7 @@ export default class LoginPage extends Component {
         password: password
       }
     
-    }).then((res) => res.json())
+    })
     .then((data) => {
       console.log(data);
       if (data.status == "200") {
