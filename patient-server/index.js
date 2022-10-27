@@ -55,7 +55,7 @@ const AppDetails = mongoose.model("AppointmentDetails");
 //   res.json({ status: "error", error: "invalid password" });
 // });
 
-app.get("/login-user", (req, res) => {
+app.get("https://rimorin-dental-clinic.herokuapp.com/login-user", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
