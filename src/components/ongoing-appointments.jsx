@@ -15,7 +15,7 @@ const OngoingAppointment = () => {
     const getAppointment = async() => {
 
         try{
-            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails')
+            const response = await axios.get('https://localhost:5000/getAppointmentDetails')
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
