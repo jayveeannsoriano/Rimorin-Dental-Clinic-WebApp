@@ -15,7 +15,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
     const Continue = e => {
 
-        Axios.post("https://localhost:5000/RegisterUser", {
+        Axios.post("https://rimorin-dental-clinic.herokuapp.com/RegisterUser", {
             fname:fname,
             suffix:suffix,
             lname:lname,

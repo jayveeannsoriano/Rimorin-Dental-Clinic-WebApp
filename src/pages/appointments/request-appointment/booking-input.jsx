@@ -37,7 +37,7 @@ const BookingInput = ({nextStep}) => {
          
 
          //insert data
-         //Axios.post("https://localhost:5000/insertAppointment", {startDate: startDate, consulInput: consulInput, getTime:getTime})
+         //Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {startDate: startDate, consulInput: consulInput, getTime:getTime})
 
         //go to next modal
         nextStep();
