@@ -22,7 +22,7 @@ export default class LoginPage extends Component {
     console.log(email, password);
 
     axios({
-      method: "post",
+      method: "GET",
       url: "https://rimorin-dental-clinic.herokuapp.com/login-user",
       data:{email,password},
       headers: {
