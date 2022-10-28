@@ -196,7 +196,20 @@
 
 .fc-daygrid-day.fc-day.fc-day-sun.fc-day-future {
     background-color: rgb(237, 237, 237);
+    
 }
+
+.fc .fc-highlight {
+    background: #5D5FEF;
+    opacity: 15%;
+    
+}
+
+.fc-view-harness.fc-view-harness-active {
+    height: 550px !important;
+}
+
+
 
 
 

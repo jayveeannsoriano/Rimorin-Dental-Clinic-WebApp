@@ -33,6 +33,7 @@ export default class Calendar extends React.Component {
             initialView="dayGridMonth"
             selectable = "true"
             nowIndicator
+            droppable = 'true'
             dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
             headerToolbar={{
