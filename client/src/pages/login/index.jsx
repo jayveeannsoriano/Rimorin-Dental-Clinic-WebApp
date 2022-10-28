@@ -19,26 +19,27 @@ export default class LoginPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
+    console.log('UPDATED 1');
 
-    axios.get('http://localhost:3000/login-user', {
-      params: {
-        email: email,
-        password: password
-      }
-    })
-    .then((res) => {
-        var data = res;
-        console.log(data);
-        if (data.status === "ok") {
-          alert("Login Successful");
-          window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
-          window.location.href = "./dashboard";
-          console.log(data.data);
-        } else {
-          alert("Email or Password is incorrect");
-          window.location.href = "./login";
-        }
-      });
+    // axios.get('http://localhost:3000/login-user', {
+    //   params: {
+    //     email: email,
+    //     password: password
+    //   }
+    // })
+    // .then((res) => {
+    //     var data = res;
+    //     console.log(data);
+    //     if (data.status === "ok") {
+    //       alert("Login Successful");
+    //       window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
+    //       window.location.href = "./dashboard";
+    //       console.log(data.data);
+    //     } else {
+    //       alert("Email or Password is incorrect");
+    //       window.location.href = "./login";
+    //     }
+    //   });
 
     
     // axios.post('http://localhost:3000/login-user', {
@@ -54,19 +55,32 @@ export default class LoginPage extends Component {
     //     password,
     //   }),
     // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data, "userRegister");
-    //     if (data.status === "ok") {
-    //       alert("Login Successful");
-    //       window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
-    //       window.location.href = "./dashboard";
-    //       console.log(data.data);
-    //     } else {
-    //       alert("Email or Password is incorrect");
-    //       window.location.href = "./login";
-    //     }
-    //   });
+    fetch("/login-user", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status === "ok") {
+          alert("Login Successful");
+          window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
+          window.location.href = "./dashboard";
+          console.log(data.data);
+        } else {
+          alert("Email or Password is incorrect");
+          window.location.href = "./login";
+        }
+      });
   }
 
   render() {
