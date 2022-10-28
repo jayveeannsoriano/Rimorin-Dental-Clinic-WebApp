@@ -25,8 +25,9 @@ export default class LoginPage extends Component {
       crossDomain: true,
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
         "Access-Control-Allow-Origin": "*",
+        "Origin": "https://rimorin-dental-clinic"
       },
       body: JSON.stringify({
         email,
