@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
     const { email, password } = this.state;
     console.log(email, password);
 
-    axios.get('https://localhost:5000/login-user', {
+    axios.get('https://rimorin-dental-clinic.herokuapp.com/login-user', {
       params: {
         email: email,
         password: password
