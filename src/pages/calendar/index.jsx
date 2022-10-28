@@ -23,8 +23,8 @@ export default class Calendar extends React.Component {
     return (
       <>
       <CalendarBreadcrumbs/>
+      <CalendarCheckbox/>
         <div className='card-body'>
-        <CalendarCheckbox/>
           <FullCalendar
             contentHeight={750}
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
