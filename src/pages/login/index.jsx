@@ -27,7 +27,8 @@ export default class LoginPage extends Component {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Origin": "https://rimorin-dental-clinic"
+        "Origin": "https://rimorin-dental-clinic",
+        "X-Requested-With": 'XMLHttpRequest'
       },
       body: JSON.stringify({
         email,
