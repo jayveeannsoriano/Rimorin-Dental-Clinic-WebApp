@@ -6,6 +6,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const path = require("path")
+const fs = require("fs");
 
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
@@ -20,6 +21,19 @@ const PORT = process.env.PORT || 3000;
 // const buildPath = path.join(__dirname, '..', 'build');
 // app.use(express.static(buildPath));
 
+const PUBLIC_PATH = path.resolve(__dirname, "client/src/pages/login");
+const PUBLIC_URL = process.env.PUBLIC_URL || `http://localhost:${PORT}`;
+
+const indexHtml = path.join(PUBLIC_PATH, "index.jsx");
+const indexHtmlContent = fs
+  .readFileSync(indexHtml, "utf-8")
+  .replace(/__PUBLIC_URL_PLACEHOLDER__/g, PUBLIC_URL);
+
+app.get("/", (req, res) => {
+  res.send(indexHtmlContent);
+});
+
+app.use(express.static(path.join(PUBLIC_PATH)));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
