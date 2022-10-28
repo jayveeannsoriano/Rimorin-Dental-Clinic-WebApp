@@ -1,0 +1,13 @@
+export declare const EVENT_TABLE_DELIMITER_SPACE = 8;
+export declare const FLOATING_DATETIME = "floating";
+export declare const UTC_TIMEZONE = "UTC";
+export declare const CALENDAR_OFFSET_LEFT = 40;
+export declare const EVENT_MIN_HEIGHT = 8;
+export declare const SCROLLBAR_WIDTH = 15;
+export declare const SHOW_TIME_THRESHOLD = 60;
+export declare const ONE_DAY = 1;
+export declare const THREE_DAYS = 3;
+export declare const SEVEN_DAYS = 7;
+export declare const MONTH_EVENT_HEIGHT = 17;
+export declare const HEADER_EVENT_HEIGHT = 20;
+export declare const getEventHeight: (isHeaderEvents?: boolean) => 17 | 20;
