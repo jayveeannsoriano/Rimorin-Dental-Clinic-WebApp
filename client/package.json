@@ -43,7 +43,7 @@
     "node": "16.17.0",
     "npm": "8.19.2"
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "https://rimorin-dental-clinic.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",
