@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "build": "react-scripts build && (cd patient-server && npm install)",
+    "build": "react-scripts build && (cd patient-server && npm install && npm start)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "react-scripts start"
