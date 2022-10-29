@@ -6,8 +6,8 @@
   "scripts": {
     "build": "cd client && npm install && npm run build",
     "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build && node index.js",
-    "server": "nodemon index.js",
+    "heroku-postbuild": "npm run install-client && node index.js && npm run build",
+    "server": "node index.js",
     "develop": "--kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "npm run install-client && npm run build && node index.js"
   },
