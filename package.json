@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build &&  node index.js",
+    "install-client": "cd client",
+    "heroku-postbuild": "npm run build",
     "server": "nodemon index.js",
-    "develop": "--kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "develop": "--kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "start": "npm run install-client && npm run build && node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +25,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "nodemon": "^2.0.20"
-  }
+  } 
 }
