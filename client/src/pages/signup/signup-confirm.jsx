@@ -35,7 +35,6 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
         })
         e.preventDefault();
         nextStep();
-        console.log(conditions)
     }
 
 

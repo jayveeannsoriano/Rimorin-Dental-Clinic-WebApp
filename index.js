@@ -208,7 +208,7 @@ app.post("/RegisterUser", async (req, res) => {
     country,
     medications,
     allergies,
-    conditions,
+    conditions 
   } = req.body;
 
   const encryptedPassword = await bcrypt.hash(password, 10);
