@@ -35,7 +35,6 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
         })
         e.preventDefault();
         nextStep();
-        //console.log(conditions)
     }
 
 
@@ -127,14 +126,14 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         <label className='label'>Conditions</label>
                     </div>
                     <div class="col">
-                       {/* {conditions.map((conditions,index) => {
+                       {conditions.map((conditions,index) => {
                         return(
                             <div key={index} class="col">
                                 <p>{conditions}</p>
                             </div>
                         );
-                       })} */}
-                       <p>{conditions}</p>
+                       })}
+                    
                     </div>
                 </div>
 
