@@ -18,7 +18,7 @@ export default class LoginPage extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch("https://rimorin-dental-clinic/login-user", {
+    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
