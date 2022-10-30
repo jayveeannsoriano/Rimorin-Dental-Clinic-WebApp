@@ -18,8 +18,6 @@ export default class LoginPage extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    console.log(email, password);
-
     fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
       method: "POST",
       crossDomain: true,
@@ -38,8 +36,8 @@ export default class LoginPage extends Component {
         if (data.status === "ok") {
           alert("Login Successful");
           window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
-          window.location.href = "./dashboard";
           console.log(data.data);
+          window.location.href = "./dashboard";
         } else {
           alert("Email or Password is incorrect");
           window.location.href = "./login";
