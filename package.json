@@ -8,7 +8,7 @@
     "install-client": "npm install && cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node index.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "develop": "npm run heroku-postbuild && npm run server",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
   "author": "",
