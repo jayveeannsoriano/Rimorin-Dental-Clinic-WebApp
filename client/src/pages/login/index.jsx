@@ -34,9 +34,9 @@ export default class LoginPage extends Component {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
+          console.log(data.data);
           alert("Login Successful");
           window.localStorage.setItem("token", data.data); //Session handling item, Access all login data with window.localStorage.getItem('token')
-          console.log(data.data);
           window.location.href = "./dashboard";
         } else {
           alert("Email or Password is incorrect");
