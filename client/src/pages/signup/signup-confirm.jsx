@@ -15,7 +15,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
     const Continue = e => {
 
-        Axios.post("https://rimorin-dental-clinic.herokuapp.com/RegisterUser", {
+        Axios.post("http://localhost:3001/RegisterUser", {
             fname:fname,
             suffix:suffix,
             lname:lname,
@@ -35,7 +35,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
         })
         e.preventDefault();
         nextStep();
-        //console.log(conditions)
+        console.log(conditions)
     }
 
 
@@ -127,14 +127,14 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         <label className='label'>Conditions</label>
                     </div>
                     <div class="col">
-                       {/* {conditions.map((conditions,index) => {
+                       {conditions.map((conditions,index) => {
                         return(
                             <div key={index} class="col">
                                 <p>{conditions}</p>
                             </div>
                         );
-                       })} */}
-                       <p>{conditions}</p>
+                       })}
+                    
                     </div>
                 </div>
 

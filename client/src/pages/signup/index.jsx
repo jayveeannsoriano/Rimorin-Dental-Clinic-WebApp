@@ -28,20 +28,7 @@ class SignUpMain extends Component {
         country:"",
         medications:"",
         allergies:"",
-        conditions: {
-            heartDisease: false,
-            highBlood: false,
-            rheumatic: false,
-            bloodDisorders: false,
-            diabetes: false,
-            seizures: false,
-            tuberculosis: false,
-            tumors: false,
-            asthma: false,
-            hepatitis: false,
-            std: false,
-            stroke: false,
-        },
+        conditions: [],
     }
 
     prevStep = () => {
@@ -62,16 +49,21 @@ class SignUpMain extends Component {
     }
     
     //handlebox for checkbox
-      
+    tempArr = [];
     handleChangeCheckbox = input => e =>{
-        const checked = e.target.checked;
-        this.setState({[input]: [e.target.value]});
-        console.log(input, checked);
-        //check if box is checked or not
-   
-
-
         
+        const checked = e.target.checked;
+        let { conditions } = this.state;
+        if(checked){
+            conditions.push(e.target.value);
+        }else{
+            const index = conditions.indexOf(e.target.value);
+            if (index > -1) { // only splice array when item is found
+                conditions.splice(index, 1); // 2nd parameter means remove one item only
+            }
+        }
+
+        console.log(conditions);
     }
 
     render() {

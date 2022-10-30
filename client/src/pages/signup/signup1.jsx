@@ -71,7 +71,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             onChange={handleChange('email')}
             defaultValue={values.email}
             // onChange={(e) => this.setState({ email: e.target.value})}
-            // required
+            required
           />
         </div>
 
