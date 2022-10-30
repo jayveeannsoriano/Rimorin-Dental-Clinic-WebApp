@@ -268,25 +268,3 @@
   color: #4154f1;
   border-bottom: 2px solid #4154f1;
 }
-
-/*--------------------------------------------------------------
-# Dashboard Footer
---------------------------------------------------------------*/
-.dashboard-footer {
-  padding: 20px 0;
-  font-size: 14px;
-  transition: all 0.3s;
-  border-top: 1px solid #cddfff;
-}
-
-.dashboard-footer .copyright {
-  text-align: center;
-  color: #012970;
-}
-
-.dashboard-footer .credits {
-  padding-top: 5px;
-  text-align: center;
-  font-size: 13px;
-  color: #012970;
-}
