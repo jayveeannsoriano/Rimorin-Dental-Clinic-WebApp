@@ -137,7 +137,42 @@
   #topbar .social-links a:first-child {
     border-left: 0;
   }
-  
+
+/*--------------------------------------------------------------
+# Landing Page Header
+--------------------------------------------------------------*/
+
+#header {
+  background: var(--bg-color);
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  top: 40px;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
+}
+
+#header .header-scrolled {
+  top: 0;
+}
+
+#header .logo {
+  font-size: var(--h1-font-size);
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: var(--body-font);
+}
+
+#header .logo a {
+  color: var(--text-color);
+}
+
+#header .logo img {
+  max-height: 40px;
+}
+
   /*--------------------------------------------------------------
   # Navigation Menu
   --------------------------------------------------------------*/
@@ -302,8 +337,6 @@
   }
   
   #hero h1 {
-    /* width: 542px;
-    height: 200px; */
     margin: 0;
     font-size: 58px;
     font-weight: var(--font-semi-bold);
@@ -342,7 +375,7 @@
   
   @media (max-width: 991px) {
     #hero {
-        height: 100vh;
+        height: auto;
     }
     #hero .animated {
         -webkit-animation: none;
@@ -806,4 +839,41 @@
         border-right: 2px solid #ddd;
       }
     }
+
+/*--------------------------------------------------------------
+# Landing Page Footer
+--------------------------------------------------------------*/
+
+#footer {
+  background: var(--primary-color);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#footer .credits {
+  padding-top: 5px;
+  font-size: 13px;
+  color: #fff;
+}
+
+#footer .copyright {
+  font-family: var(--body-font);
+}
+
+#footer .footer-links a {
+  color: #fff;
+  padding-left: 15px;
+}
+
+#footer .footer-links a:first-child {
+  padding-left: 0;
+}
+
+#footer .footer-links a:hover {
+  color: var(--tertiary-color);
+}
+
+
   

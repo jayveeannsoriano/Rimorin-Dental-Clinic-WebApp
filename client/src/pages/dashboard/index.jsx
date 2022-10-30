@@ -2,7 +2,7 @@ import React from "react";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DashboardTable from '../../components/dashboardTable';
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {  
   return (
@@ -28,14 +28,16 @@ const Dashboard = () => {
             
             {/* <!-- Appointments --> */}
             <div className="col-12">
-              <div className="card recent-sales overflow-auto">
+              <div className="card overflow-auto">
 
-                <div className="card-body">
+                <div className="card-body datatable">
                   <div className="nav-bar">
-                      <Button>TODAY</Button> <span/>
+                      <Button>TODAY</Button>
                       <Button>UPCOMING</Button>
                   </div>
-                  <h5 className="card-title">TODAY&apos;S APPOINTMENTS</h5>
+                  <h5 className="card-title">
+                    TODAY&apos;S APPOINTMENTS
+                  </h5>
 
                   <div>
                       <DashboardTable/>
@@ -45,11 +47,11 @@ const Dashboard = () => {
               </div>
             </div>
             {/* <!-- End of Appointments --> */}
+
           </div>
         </section>
-        <Outlet/>
-        </>
 
+        </>
   );
 }
 export default Dashboard;

@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-# Header
+# Header Login Page
 --------------------------------------------------------------*/
 
 #headerlogin {
@@ -202,9 +202,11 @@ input[type="submit"]:hover {
     min-height: 100%;
  } 
 
+/* call section under login only
+or it would affect sections in landing page */
 
- section {
+ /* section {
     padding: 0!important;
     margin: 0 !important;
- }
+ } */
 

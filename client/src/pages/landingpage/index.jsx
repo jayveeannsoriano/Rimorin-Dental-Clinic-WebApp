@@ -12,7 +12,7 @@ const LandingPage = () => {
                     <div className="info d-flex align-items-center">
                         <i className="fa-regular fa-envelope fa-sm"></i>
                         <a href={"mailto:contact@example.com"}>rimorin.dental@gmail.com</a>
-                        <i className="fa-regular fa-mobile-screen fa-sm"></i> +639 265 785 456 
+                        <i className="fa-regular fa-phone fa-sm"></i> +639 265 785 456 
                     </div>
                 </div>
             </div>

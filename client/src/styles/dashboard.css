@@ -213,14 +213,15 @@
   padding: 8px 15px;
 }
 
-/* Info Cards */
+/* Stat Cards */
 .dashboard .info-card {
   padding-bottom: 10px;
+  background-color:  #DDDDFB;
 }
 
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #012970;
+  color: var(--primary-color);
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -235,149 +236,19 @@
   flex-grow: 0;
 }
 
-.dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+.dashboard .appointments-card .card-icon,
+.dashboard .total-patients-card .card-icon,
+.dashboard .pending-appts-card .card-icon
+{
+  color: #7879F1;
 }
 
-.dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
-}
-
-.dashboard .customers-card .card-icon {
-  color: #ff771d;
-  background: #ffecdf;
-}
-
-.card-body {
-  padding-bottom: 2%;
-}
-/* Activity */
-.dashboard .activity {
-  font-size: 14px;
-}
-
-.dashboard .activity .activity-item .activite-label {
-  color: #888;
-  position: relative;
-  flex-shrink: 0;
-  flex-grow: 0;
-  min-width: 64px;
-}
-
-.dashboard .activity .activity-item .activite-label::before {
-  content: "";
-  position: absolute;
-  right: -11px;
-  width: 4px;
-  top: 0;
-  bottom: 0;
-  background-color: #eceefe;
-}
-
-.dashboard .activity .activity-item .activity-badge {
-  margin-top: 3px;
-  z-index: 1;
-  font-size: 11px;
-  line-height: 0;
-  border-radius: 50%;
-  flex-shrink: 0;
-  border: 3px solid #fff;
-  flex-grow: 0;
-}
-
-.dashboard .activity .activity-item .activity-content {
-  padding-left: 10px;
-  padding-bottom: 20px;
-}
-
-.dashboard .activity .activity-item:first-child .activite-label::before {
-  top: 5px;
-}
-
-.dashboard .activity .activity-item:last-child .activity-content {
-  padding-bottom: 0;
-}
-
-/* News & Updates */
-.dashboard .news .post-item+.post-item {
-  margin-top: 15px;
-}
-
-.dashboard .news img {
-  width: 80px;
-  float: left;
-  border-radius: 5px;
-}
-
-.dashboard .news h4 {
-  font-size: 15px;
-  margin-left: 95px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.dashboard .news h4 a {
-  color: #012970;
-  transition: 0.3s;
-}
-
-.dashboard .news h4 a:hover {
-  color: #4154f1;
-}
-
-.dashboard .news p {
-  font-size: 14px;
-  color: #777777;
-  margin-left: 95px;
-}
-
-/* Recent Sales */
-.dashboard .recent-sales {
-  font-size: 14px;
-}
-
-.dashboard .recent-sales .table thead {
-  background: #f6f6fe;
-}
-
-.dashboard .recent-sales .table thead th {
-  border: 0;
-}
-
-.dashboard .recent-sales .dataTable-top {
-  padding: 0 0 10px 0;
-}
-
-.dashboard .recent-sales .dataTable-bottom {
-  padding: 10px 0 0 0;
-}
-
-/* Top Selling */
-.dashboard .top-selling {
-  font-size: 14px;
-}
-
-.dashboard .top-selling .table thead {
-  background: #f6f6fe;
-}
-
-.dashboard .top-selling .table thead th {
-  border: 0;
-}
-
-.dashboard .top-selling .table tbody td {
-  vertical-align: middle;
-}
-
-.dashboard .top-selling img {
-  border-radius: 5px;
-  max-width: 60px;
+.datatable{
+  padding: 30px 20px 40px 20px;
 }
 
 /* Bordered Tabs */
-/* .nav-tabs-bordered {
+.nav-tabs-bordered {
   border-bottom: 2px solid #ebeef4;
 }
 
@@ -396,4 +267,26 @@
   background-color: #fff;
   color: #4154f1;
   border-bottom: 2px solid #4154f1;
-} */
+}
+
+/*--------------------------------------------------------------
+# Dashboard Footer
+--------------------------------------------------------------*/
+.dashboard-footer {
+  padding: 20px 0;
+  font-size: 14px;
+  transition: all 0.3s;
+  border-top: 1px solid #cddfff;
+}
+
+.dashboard-footer .copyright {
+  text-align: center;
+  color: #012970;
+}
+
+.dashboard-footer .credits {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 13px;
+  color: #012970;
+}
