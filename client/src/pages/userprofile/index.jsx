@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileWidget from "../../components/profile-widget.jsx";
 
 const UserProfile = () => {  
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     return(
         <>
                 <div class="pagetitle">
@@ -44,12 +45,12 @@ const UserProfile = () => {
 
                                             {/* <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                                <div class="col-lg-9 col-md-8">Jessica McBell</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['email']} McBell</div>
                                             </div> */}
     
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                                <div class="col-lg-9 col-md-8">Jessica </div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['fname']} </div>
                                             </div>
 
                                             <div class="row">
@@ -59,7 +60,7 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Last Name</div>
-                                                <div class="col-lg-9 col-md-8"> McBell</div>
+                                                <div class="col-lg-9 col-md-8"> {userInfo['lname']}</div>
                                             </div>
 
                                             <div class="row">
@@ -114,7 +115,7 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Email</div>
-                                                <div class="col-lg-9 col-md-8">jessica.mcbell@email.com</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['email']}</div>
                                             </div>
 
                                             <h5 class="card-title">Basic Medical Information</h5>
@@ -153,7 +154,7 @@ const UserProfile = () => {
                                                     {/* <div class="row mb-3">
                                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="Jessica McBell"/>
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="{userInfo['email']} McBell"/>
                                                     </div>
                                                     </div> */}
 
@@ -161,7 +162,7 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="Jessica"/>
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value={userInfo['fname']}/>
                                                     </div>
                                                     </div>
 
@@ -261,9 +262,9 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email Address</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="email" type="email" class="form-control" id="Email" value="jessica.mcbell@email.com"/>
+                                                        <input name="email" type="email" class="form-control" id="Email" value={userInfo['email']}/>
                                                     </div>
-                                                    </div>
+                                                    </div>  
 
                                                 <h5 class="card-title">Medical Conditions</h5>
                                                     <div class="row mb-3">

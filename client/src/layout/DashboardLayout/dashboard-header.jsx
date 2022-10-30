@@ -3,6 +3,7 @@ import styles from '../../styles/dashboard.css'
 
 
 function dashboardHeader(){
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     return (
         <div>
                 {/* <!-- ======= Dashboard Header ======= --> */}
@@ -95,14 +96,14 @@ function dashboardHeader(){
                         {/* <!-- Profile Image Icon --> */}
                         <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                             <img src="assets/img/messages-1.jpg" alt="Profile" className="rounded-circle"/>
-                            <span className="d-none d-md-block dropdown-toggle ps-2">Jessica McBell</span>
+                            <span className="d-none d-md-block dropdown-toggle ps-2">{userInfo['fname'] + " " + userInfo['fname']}</span>
                         </a>
                         {/* <!-- End Profile Image Icon --> */}
 
                         {/* <!-- Profile Dropdown Menu --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li className="dropdown-header">
-                                <h6 className="userName">Jessica McBell</h6> 
+                                <h6 className="userName">{userInfo['fname'] + " " + userInfo['fname']}</h6> 
                             </li>
 
                         {/* <!-- My Profile --> */}

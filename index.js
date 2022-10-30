@@ -46,14 +46,14 @@ const AppDetails = mongoose.model("AppointmentDetails");
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
+
   if (!user) {
     return res.json({ error: "User not found!" });
   }
   if (await bcrypt.compare(password, user.password)) {
     const token = jwt.sign({}, JWT_SECRET);
-
+  
     if (res.status(201)) {
-      window.localStorage.setItem('user-info',user);
       return res.json({ status: "ok", data: token, user:user});
     } else {
       return res.json({ status: "error" });
@@ -68,13 +68,11 @@ app.post("/userData", async (req, res) => {
   try {
     const user = jwt.verify(token, JWT_SECRET);
     //delete user.password;
-    console.log(user);
     
     const useremail = user.email;
     User.findOne({ email: useremail });
       then((data) => {
         res.send({ status: "ok", data: data });
-        //window.localStorage.setItem('user-info',user);
       })
       .catch((error) => {
         res.send({ status: "error", data: error });
@@ -92,7 +90,6 @@ app.put("/update", async (req, res) => {
   const id = req.body.id;
   try {
     const user = jwt.verify(token, JWT_SECRET);
-    console.log(user);
 
     await User.findById(id, (err,updatedDocument)=>{
       updatedDocument.insertValuehere = newDocument;
@@ -112,7 +109,6 @@ app.get("/delete/:id", async (req, res) => {
   
   try{
     const user = jwt.verify(token, JWT_SECRET);
-    console.log(user);
 
     await User.findByIdAndRemove(id).exec(); // still not used, just incase frontend needs delete functions
     res.send("Document is deleted from the database");
