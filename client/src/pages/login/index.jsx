@@ -32,7 +32,7 @@ export default class LoginPage extends Component {
       }),
     }).then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
+        console.log(data);
         if (data.status === "ok") {
           console.log(data.data);
           alert("Login Successful");
