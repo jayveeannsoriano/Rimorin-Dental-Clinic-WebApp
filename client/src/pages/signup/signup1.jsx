@@ -100,7 +100,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                   // onChange={e=>{setRadio(e.target.value)}}
                   defaultValue={values.gender}
                   className="form-check-input"
-                  value="female"
+                  value="Female"
                   name="gender"
                   // required
                 />
@@ -116,7 +116,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 // onChange = {this.onValueChange}
                 className="form-check-input"
                 name="gender"
-                value="male"
+                value="Male"
                 // required
               />{" "}
               Male

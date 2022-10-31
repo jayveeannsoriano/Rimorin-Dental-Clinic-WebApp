@@ -17,18 +17,20 @@ function Sidebar_Admin(){
                     <div className='divider'></div>
                     <h4>ADMIN MENU</h4>
 
-                    <li className="nav-item active">
-                        <a className='nav-link collapsed' id="dashboard-button" href='./dashboardpage'>
-                        <i class="fa-solid fa-table-columns"></i>
-                        <span>Dashboard</span>
-                        </a>
-                        </li>
-
+                
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" bs-toggle="collapsed" href="/appointments" id="appointment-button">
                         <i class="fa-solid fa-stethoscope"></i>
                         <span data-bs-target="#components-nav">Appointments</span>
+                        </a>
+                    </li>
+
+                     {/* Appointments Nav */}
+                     <li className="nav-item">
+                        <a className="nav-link collapsed" bs-toggle="collapsed" href="/appointments" id="appointment-button">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <span data-bs-target="#components-nav">Clinic Hours</span>
                         </a>
                     </li>
 

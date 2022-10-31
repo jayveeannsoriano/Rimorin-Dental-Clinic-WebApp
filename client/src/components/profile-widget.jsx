@@ -7,7 +7,7 @@ export default function ProfileWidget() {
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <img id="avatar-profile" src="assets/img/messages-1.jpg" alt="Profile" class="rounded-circle" />
-                    <h2 id="">{userInfo['fname'] + " " + userInfo['fname']}</h2>
+                    <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2>
                     <h3>Patient ID: <span id="">PT0001</span></h3>
                     <div className="divider"></div>
                     <div class="row patient-info">

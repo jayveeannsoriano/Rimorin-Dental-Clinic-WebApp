@@ -55,7 +55,7 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Middle Name</div>
-                                                <div class="col-lg-9 col-md-8"> </div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['mname']}</div>
                                             </div>
 
                                             <div class="row">
@@ -65,12 +65,12 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Date of Birth</div>
-                                                <div class="col-lg-9 col-md-8">June 01, 2000</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['bday']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Gender</div>
-                                                <div class="col-lg-9 col-md-8">Female</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['gender']}</div>
                                             </div>
 
                                             {/* <div class="row">
@@ -80,27 +80,27 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">House No. & Name of Street</div>
-                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['house']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">District/Barangay</div>
-                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['brgy']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Municipality/City</div>
-                                                <div class="col-lg-9 col-md-8">New York City</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['municipality']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Province</div>
-                                                <div class="col-lg-9 col-md-8">A108 Adam Street</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['province']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Country</div>
-                                                <div class="col-lg-9 col-md-8">USA</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['country']}</div>
                                             </div>
 
                                             <div class="row">
@@ -110,7 +110,7 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Phone</div>
-                                                <div class="col-lg-9 col-md-8">(+63) 956 793 5590</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['mobile']}</div>
                                             </div>
 
                                             <div class="row">
@@ -122,17 +122,17 @@ const UserProfile = () => {
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Medications or maintenance</div>
-                                                <div class="col-lg-9 col-md-8">Metformin</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['medications']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Allergies</div>
-                                                <div class="col-lg-9 col-md-8">Hives</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['allergies']}</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label ">Conditions</div>
-                                                <div class="col-lg-9 col-md-8">Diabetes</div>
+                                                <div class="col-lg-9 col-md-8">{userInfo['conditions']}</div>
                                             </div>
 
                                         </div>
@@ -176,23 +176,17 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="fullName" type="text" class="form-control" id="fullName" value=" McBell"/>
+                                                        <input name="fullName" type="text" class="form-control" id="fullName" value={userInfo['lname']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Date of Birth" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="date" type="text" class="form-control" id="Birthday" value="June 01, 2000"/>
+                                                        <input name="date" type="text" class="form-control" id="Birthday" value={userInfo['bday']}/>
                                                     </div>
                                                     </div>
 
-                                                    <div class="row mb-3">
-                                                    <label for="Date of Birth" class="col-md-4 col-lg-3 col-form-label">Age</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="date" type="text" class="form-control" id="Birthday" value="24"/>
-                                                    </div>
-                                                    </div>
                                                     {/*                                                     
                                                     <div class="row mb-3">
                                                     <label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
@@ -213,35 +207,35 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">House No. & Name of Street</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value={userInfo['house']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">District/Barangay</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value={userInfo['brgy']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Municipality/City</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="New York City"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value={userInfo['municipality']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Province</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value={userInfo['province']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Country</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="USA"/>
+                                                        <input name="address" type="text" class="form-control" id="Address" value={userInfo['country']}/>
                                                     </div>
                                                     </div>
 
@@ -255,7 +249,7 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="tel" class="form-control" id="Phone" value="(+63) 956 793 5590"/>
+                                                        <input name="phone" type="tel" class="form-control" id="Phone" value={userInfo['mobile']}/>
                                                     </div>
                                                     </div>
 
@@ -270,22 +264,20 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="Medications" class="col-md-4 col-lg-3 col-form-label">Medications or maintenance</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input type="text" class="form-control" id="Medications" value="Metformin"/>
+                                                        <input type="text" class="form-control" id="Medications" value={userInfo['medications']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Allergies" class="col-md-4 col-lg-3 col-form-label">Allergies</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value="Hives"/>
+                                                        <input name="phone" type="text" class="form-control" id="Phone" value={userInfo['allergies']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="Conditions" class="col-md-4 col-lg-3 col-form-label">Conditions</label>
-                                                    {/* <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value=""/>
-                                                    </div> */}
+                                                   
                                                     </div>
 
                                                     {/* Conditions Checkboxes */}

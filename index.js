@@ -208,7 +208,7 @@ app.post("/RegisterUser", async (req, res) => {
     country,
     medications,
     allergies,
-    conditions 
+    conditions,
   } = req.body;
 
   const encryptedPassword = await bcrypt.hash(password, 10);
@@ -229,7 +229,7 @@ app.post("/RegisterUser", async (req, res) => {
     country:country,
     medications:medications,
     allergies:allergies,
-    conditions:conditions
+    conditions:conditions.toString(),
   });
   console.log("Sign up Details for User Data: ", UserData);
   try {
@@ -242,7 +242,7 @@ app.post("/RegisterUser", async (req, res) => {
     res.send({ status: "ok" });
 
   } catch (error) {
-    res.send({ status: "sign up error" });
+    res.send({ status: "sign up error" + error });
   }
 });
 
