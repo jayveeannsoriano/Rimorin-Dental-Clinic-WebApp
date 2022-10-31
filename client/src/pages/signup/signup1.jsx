@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/sign-up.css";
+import "../../styles/login-signup.css";
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
@@ -10,6 +10,14 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
   return (
     <div className="auth-wrapper">
+      {/* ======= Header ======= */}
+      <header id="headerlogin" className="fixed-top">
+        <div className="container d-flex align-items-center">
+          <h1 className="logo me-auto">
+            <a href="/">Rimorin Dental Clinic</a>
+          </h1>
+        </div>
+      </header>
       <div className="image-banner">
         <img src={"./img/hero-img.png"} />
       </div>
