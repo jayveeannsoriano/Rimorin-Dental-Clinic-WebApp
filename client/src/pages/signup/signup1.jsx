@@ -35,7 +35,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             onChange={handleChange('fname')}
             defaultValue={values.fname}
             // onChange={(e) => this.setState({ fname: e.target.value})}
-            // required
+            required
           />
         </div>
 
@@ -50,7 +50,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 onChange={handleChange('lname')}
                 defaultValue={values.lname}
                 // onChange={(e) => this.setState({ lname: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <div className="mb-3">
           <label>Email address</label>
           <input
-            type="email"
+            type='email'
             className="form-control"
             placeholder="Enter email"
             onChange={handleChange('email')}
@@ -92,7 +92,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             onChange={handleChange('password')}
             defaultValue={values.password}
             // onChange={(e) => this.setState({ password: e.target.value})}
-            // required
+            required
           />
         </div>
 
@@ -110,7 +110,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                   className="form-check-input"
                   value="Female"
                   name="gender"
-                  // required
+                  required
                 />
                 <span>Female</span>
               </label>
@@ -125,7 +125,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 className="form-check-input"
                 name="gender"
                 value="Male"
-                // required
+                required
               />{" "}
               Male
             </div>
@@ -144,7 +144,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 defaultValue={values.mobile}
                 maxLength={11}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
@@ -159,7 +159,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 onChange={handleChange('bday')}
                 defaultValue={values.bday}
                 // onChange={(e) => this.setState({ email: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
