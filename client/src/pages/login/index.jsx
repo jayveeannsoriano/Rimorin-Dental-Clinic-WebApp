@@ -14,7 +14,7 @@ export default class Login extends Component {
       handleSubmit(e) {
         e.preventDefault();
         const { email, password } = this.state;
-        fetch("http://localhost:3001/login-user", {
+        fetch("https://rimorin-dental-clinic/login-user", {
           method: "POST",
           crossDomain: true,
           headers: {
