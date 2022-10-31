@@ -282,40 +282,67 @@ const UserProfile = () => {
 
                                                     {/* Conditions Checkboxes */}
 
-                                                    <div class="form-inline">
-                                                        <div class="form-group">
-                                                            <div class="col-md-4">
-                                                                <label class="radio-inline" id="labelcheckbox">
-                                                                    <input type="checkbox" id="Checkbox0" value=""/>Heart Disease</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox1" value=""/>High Blood Pressure</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox2" value=""/>Rheumatic</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox3" value=""/>Blood Disorders</label>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox4" value=""/>Diabetes</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox5" value=""/>Seizures</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox6" value=""/>Tuberculosis</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox7" value=""/>Blood Tumors/Growth</label>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox8" value=""/>Asthma</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox9" value=""/>Hepatitis</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox10" value=""/>Sexually Transmitted Disease</label>
-                                                                <label class="radio-inline">
-                                                                    <input type="checkbox" id="Checkbox11" value=""/>Stroke</label>
-                                                            </div>
+                                                    <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                        <div className='form-check '>
+                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" onChange value='Heart Disease' />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Heart Disease </label>
                                                         </div>
+
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input"type="checkbox" value="High Blood Pressure" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> High Blood Pressure</label> 
+                                                        </div>
+
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Rheumatic </label>
+                                                        </div>
+                                                        
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Blood Disorders </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Diabetes </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Seizures </label>
+                                                        </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm">
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Tuberculosis </label>
+                                                        </div>
+                                                        
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Tumors/Growths </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Asthma </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Hepatitis </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> STD </label>
+                                                        </div>
+                                                        <div className='form-check'>
+                                                            <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" onChange />
+                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
+                                                        </div>
+
+                                                        </div>
+                                                    </div>
                                                     </div>
             
 

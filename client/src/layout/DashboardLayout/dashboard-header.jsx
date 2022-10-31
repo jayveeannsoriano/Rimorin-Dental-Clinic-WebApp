@@ -104,7 +104,7 @@ function dashboardHeader(){
                         {/* <!-- Profile Dropdown Menu --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li className="dropdown-header">
-                                <h6 className="userName">{userInfo['fname'] + " " + userInfo['fname']}</h6> 
+                                <h6 className="userName">{userInfo['fname'] + " " + userInfo['lname']}</h6> 
                             </li>
 
                         {/* <!-- My Profile --> */}
