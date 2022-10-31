@@ -16,7 +16,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetails')
+            const response = await axios.get('https://rimorin-dental-clinic/getAppointmentDetails')
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
@@ -109,25 +109,25 @@ const DashboardTable = () => {
         setFilteredAppointment(result)
     },[search])
 
-    return <DataTable
-    pagination
-    subHeaderAlign={Alignment.LEFT}
-    columns={columns}
-    data={filteredappointment}
-    progressPending={pending}
-    progressComponent={<CustomLoader />}
-    fixedHeader
-    highlightOnHover
-    subHeader
-    subHeaderComponent={
-    <input 
-    type="text" 
-    placeholder="Search" 
-    className="w-50 form-control datatable-search" 
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    />}
-    />
+    // return <DataTable
+    // pagination
+    // subHeaderAlign={Alignment.LEFT}
+    // columns={columns}
+    // data={filteredappointment}
+    // progressPending={pending}
+    // progressComponent={<CustomLoader />}
+    // fixedHeader
+    // highlightOnHover
+    // subHeader
+    // subHeaderComponent={
+    // <input 
+    // type="text" 
+    // placeholder="Search" 
+    // className="w-50 form-control datatable-search" 
+    // value={search}
+    // onChange={(e) => setSearch(e.target.value)}
+    // />}
+    // />
   
 }
 
