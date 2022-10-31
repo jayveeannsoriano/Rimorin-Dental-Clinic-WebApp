@@ -109,7 +109,7 @@ function dashboardHeader(){
 
                         {/* <!-- My Profile --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center"  href="/userprofile">
+                            <a className="dropdown-item d-flex align-items-center"  href="/dashboard/userprofile">
                                 <i className="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>

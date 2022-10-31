@@ -280,64 +280,62 @@ const UserProfile = () => {
                                                    
                                                     </div>
 
-                                                    {/* Conditions Checkboxes */}
-
                                                     <div class="container">
                                                     <div class="row">
                                                         <div class="col-sm">
                                                         <div className='form-check '>
-                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" onChange value='Heart Disease' />
+                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" checked={userInfo['conditions'].includes('Heart Disease') ? true : false} value='Heart Disease' />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Heart Disease </label>
                                                         </div>
 
                                                         <div className='form-check'>
-                                                            <input class="form-check-input"type="checkbox" value="High Blood Pressure" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input"type="checkbox" value="High Blood Pressure" id="flexCheckDefault" checked={userInfo['conditions'].includes('High Blood Pressure') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> High Blood Pressure</label> 
                                                         </div>
 
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" checked={userInfo['conditions'].includes('Rheumatic') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Rheumatic </label>
                                                         </div>
                                                         
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" checked={userInfo['conditions'].includes('Blood Disorders') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Blood Disorders </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" checked={userInfo['conditions'].includes('Diabetes') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Diabetes </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" checked={userInfo['conditions'].includes('Seizures') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Seizures </label>
                                                         </div>
                                                         </div>
                                                         
                                                         <div class="col-sm">
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" checked={userInfo['conditions'].includes('Tuberculosis') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Tuberculosis </label>
                                                         </div>
                                                         
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" checked={userInfo['conditions'].includes('Tumors') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Tumors/Growths </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" checked={userInfo['conditions'].includes('Asthma') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Asthma </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" checked={userInfo['conditions'].includes('Hepatitis') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Hepatitis </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault" checked={userInfo['conditions'].includes('STD') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> STD </label>
                                                         </div>
                                                         <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" onChange />
+                                                            <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" checked={userInfo['conditions'].includes('Stroke') ? true : false} />
                                                             <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
                                                         </div>
 

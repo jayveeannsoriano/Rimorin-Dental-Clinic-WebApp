@@ -62,7 +62,7 @@ function Sidebar_Admin(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/userprofile">
+                        <a className="nav-link collapsed" href="/dashboard/userprofile">
                         <i class="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
@@ -70,7 +70,7 @@ function Sidebar_Admin(){
 
                      {/* Profile Settings Nav */}
                      <li className="nav-item">
-                        <a className="nav-link collapsed" href="/userprofile">
+                        <a className="nav-link collapsed" href="/dashboard/userprofile">
                         <i class="fa-solid fa-user"></i>
                              <span>Profile Settings</span>
                         </a>

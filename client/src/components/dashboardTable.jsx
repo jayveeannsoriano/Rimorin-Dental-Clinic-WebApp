@@ -16,7 +16,9 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('https://rimorin-dental-clinic/getAppointmentDetails')
+            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
+            // const response = fetch('http://localhost:3001/getAppointmentDetails');
+            console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
@@ -59,7 +61,7 @@ const DashboardTable = () => {
 
     
     // Loading effect
-    const rotate360 = keyframes`
+    const rotate360 = keyframes` 
         from {
             transform: rotate(0deg);
         }
@@ -109,25 +111,26 @@ const DashboardTable = () => {
         setFilteredAppointment(result)
     },[search])
 
-    // return <DataTable
-    // pagination
-    // subHeaderAlign={Alignment.LEFT}
-    // columns={columns}
-    // data={filteredappointment}
-    // progressPending={pending}
-    // progressComponent={<CustomLoader />}
-    // fixedHeader
-    // highlightOnHover
-    // subHeader
-    // subHeaderComponent={
-    // <input 
-    // type="text" 
-    // placeholder="Search" 
-    // className="w-50 form-control datatable-search" 
-    // value={search}
-    // onChange={(e) => setSearch(e.target.value)}
-    // />}
-    // />
+    return <DataTable
+    pagination
+    subHeaderAlign={Alignment.LEFT}
+    columns={columns}
+    data={filteredappointment}
+    progressPending={pending}
+    progressComponent={<CustomLoader />}
+    fixedHeader
+    highlightOnHover
+    subHeader
+    subHeaderComponent={
+        <input 
+        type="text" 
+        placeholder="Search" 
+        className="w-50 form-control datatable-search" 
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        />
+    }
+    />
   
 }
 

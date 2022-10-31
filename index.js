@@ -17,9 +17,7 @@ const path = require("path");
 // Serve any static files
 app.use(express.static(path.join(__dirname, "client/build")));
 // Handle React routing, return all requests to React app
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+
 
 //server
 app.listen(PORT, () => {
@@ -36,9 +34,8 @@ mongoose
   })
   .catch((e) => console.log(e));
 
-require("./models/userDetails");
 require("./models/appointmentDetails");
-// const User = mongoose.model("userRegister"); //encodes model
+require("./models/userDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 
@@ -133,17 +130,17 @@ app.post("/createAppointment", async (req,res) => {
 });
 
 //get appointment details
-app.get("/getAppointmentDetails", async(req,res) => {
-    
-  AppDetails.find({})
-      .then((data) => {
-        console.log('Data:', data);
-        res.json(data);
-      })
-      .catch((error) => {
-       console.log('error: ', error)
-      });
+app.get("/getAppointmentDetails", async (req,res) => {
+  AppDetails.find()
+    .then((data) => {
+      console.log('Data:', data);
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
     });
+});
+
 
 //add AppDetails
 
@@ -244,6 +241,10 @@ app.post("/RegisterUser", async (req, res) => {
   } catch (error) {
     res.send({ status: "sign up error" + error });
   }
+});
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
 });
 
 

@@ -15,7 +15,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
     const Continue = e => {
 
-        Axios.post("https://rimorin-dental-clinic/RegisterUser", {
+        Axios.post("http://localhost:3001/RegisterUser", {
             fname:fname,
             suffix:suffix,
             lname:lname,

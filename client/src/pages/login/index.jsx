@@ -18,13 +18,13 @@ export default class LoginPage extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch("https://rimorin-dental-clinic/login-user", {
+    fetch("http://localhost:3001/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Origin": "https://rimorin-dental-clinic"
+        "Origin": "http://localhost:3001"
       },
       body: JSON.stringify({
         email,
