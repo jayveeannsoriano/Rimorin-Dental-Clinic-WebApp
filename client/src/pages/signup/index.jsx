@@ -4,7 +4,7 @@ import SignUp1 from '../signup/signup1';
 import SignUp2 from '../signup/signup2';
 import SignUp3 from '../signup/signup3';
 import SignUpConfirm from '../signup/signup-confirm';
-import "../../styles/sign-up.css";
+import "../../styles/login-signup.css";
 
 
 //serves as the navigation for multi-page

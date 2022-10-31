@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/sign-up.css";
+import "../../styles/login-signup.css";
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
@@ -10,6 +10,14 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
   return (
     <div className="auth-wrapper">
+      {/* ======= Header ======= */}
+      <header id="headerlogin" className="fixed-top">
+        <div className="container d-flex align-items-center">
+          <h1 className="logo me-auto">
+            <a href="/">Rimorin Dental Clinic</a>
+          </h1>
+        </div>
+      </header>
       <div className="image-banner">
         <img src={"./img/hero-img.png"} />
       </div>
@@ -27,7 +35,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             onChange={handleChange('fname')}
             defaultValue={values.fname}
             // onChange={(e) => this.setState({ fname: e.target.value})}
-            // required
+            required
           />
         </div>
 
@@ -42,7 +50,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 onChange={handleChange('lname')}
                 defaultValue={values.lname}
                 // onChange={(e) => this.setState({ lname: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
@@ -65,7 +73,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <div className="mb-3">
           <label>Email address</label>
           <input
-            type="email"
+            type='email'
             className="form-control"
             placeholder="Enter email"
             onChange={handleChange('email')}
@@ -84,7 +92,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             onChange={handleChange('password')}
             defaultValue={values.password}
             // onChange={(e) => this.setState({ password: e.target.value})}
-            // required
+            required
           />
         </div>
 
@@ -102,7 +110,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                   className="form-check-input"
                   value="Female"
                   name="gender"
-                  // required
+                  required
                 />
                 <span>Female</span>
               </label>
@@ -117,7 +125,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 className="form-check-input"
                 name="gender"
                 value="Male"
-                // required
+                required
               />{" "}
               Male
             </div>
@@ -136,7 +144,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 defaultValue={values.mobile}
                 maxLength={11}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
@@ -151,7 +159,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 onChange={handleChange('bday')}
                 defaultValue={values.bday}
                 // onChange={(e) => this.setState({ email: e.target.value})}
-                // required
+                required
               />
             </div>
           </div>
