@@ -50,42 +50,11 @@ function Sidebar_Admin(){
                         </a>
                     </li>
 
-                    {/* Patient Records Nav/Patient Information/Dental Records */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
-                        <i class="fa-solid fa-file-medical"></i>
-                            <span>Patient Records</span>
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul id="patient-records-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                            <li>
-                                <a href="/patientrecords">
-                                    <i class="bi bi-circle"></i><span>Patient Information</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/dentalrecords">
-                                    <i class="bi bi-circle"></i><span>Dental Records</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    {/* /patientrecords */}
-
-                    {/* E-Prescription Nav */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="/eprescription">
-                        <i class="fa-solid fa-file-prescription"></i>
-                            <span>E-Prescription</span>
-                        </a>
-                    </li>
-
-                    {/* Paymnent Records Nav */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="/paymentrecords">
-                        <i class="fa-solid fa-file-invoice"></i>
-                            <span>Payment Records</span>
+                    {/* Backup and Restore Nav */}
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
+                            <i class="fa-solid fa-file-medical"></i>
+                            <span>Backup and Restore</span>
                         </a>
                     </li>
 
@@ -96,6 +65,14 @@ function Sidebar_Admin(){
                         <a className="nav-link collapsed" href="/userprofile">
                         <i class="fa-solid fa-user"></i>
                              <span>My Profile</span>
+                        </a>
+                    </li>
+
+                     {/* Profile Settings Nav */}
+                     <li className="nav-item">
+                        <a className="nav-link collapsed" href="/userprofile">
+                        <i class="fa-solid fa-user"></i>
+                             <span>Profile Settings</span>
                         </a>
                     </li>
 
