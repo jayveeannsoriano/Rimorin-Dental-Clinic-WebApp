@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+.title{
+    padding-left: 2%;
+}
+
+.description{
+    padding-left: 5%;
+}
+
+hr{
+    margin-left: 2%;
+    margin-right: 25%;
+}

@@ -28,6 +28,7 @@
     "react-data-table-component": "^7.5.3",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
+    "react-loading-overlay-ts": "^2.0.0",
     "react-router-dom": "^6.4.0",
     "react-scripts": "^2.1.8",
     "simple-datatables": "^3.2.2",

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../../styles/login-signup.css";
-import LoadingOverlay from 'react-loading-overlay';
+// import LoadingOverlay from 'react-loading-overlay';
 
 
 export default class Login extends Component {
@@ -61,11 +61,11 @@ render(){
       <div className="image-banner">
         <img src={"./img/hero-img.png"} />
       </div>
-      <LoadingOverlay
+      {/* <LoadingOverlay
         active={false}
         spinner
         text='Searching for your Account...'
-      >
+      > */}
         
       {/* ======= FORM ======= */}
       <form className="auth-inner" onSubmit={this.handleSubmit}>
@@ -116,7 +116,7 @@ render(){
                 <a href="/signup">Sign Up</a>
               </div>
       </form>
-      </LoadingOverlay>
+      {/* </LoadingOverlay> */}
     </div>
     
     );
