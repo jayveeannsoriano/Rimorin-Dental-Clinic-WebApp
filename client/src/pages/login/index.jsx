@@ -1,45 +1,51 @@
 import React, {Component} from 'react';
 import "../../styles/login-signup.css";
+import LoadingOverlay from 'react-loading-overlay';
+
 
 export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          email: "",
-          password: "",
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
-      }
-    
-      handleSubmit(e) {
-        e.preventDefault();
-        const { email, password } = this.state;
-        fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
-          method: "POST",
-          crossDomain: true,
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Origin": "https://rimorin-dental-clinic"
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }).then((res) => res.json())
-          .then((data) => {
-            if (data.status === "ok") {
-              delete data.user['password'];  
-              alert("Login Successful");
-              window.localStorage.setItem("current-session", JSON.stringify(data.user)); //Session handling item, Access all login data with window.localStorage.getItem('token')
-              window.location.href = "./dashboard";
-            } else {
-              alert("Email or Password is incorrect");
-              window.location.href = "./login";
-            }
-          });
-      }
-render(){    
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      logged: null,
+      loading: false,
+  };
+  this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+
+  async handleSubmit(e) {
+    e.preventDefault();
+     const { email, password} = this.state;
+    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Origin": "https://rimorin-dental-clinic.herokuapp.com"
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).then((res) => res.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          delete data.user['password'];  
+          window.localStorage.setItem("current-session", JSON.stringify(data.user)); //Session handling item, Access all login data with window.localStorage.getItem('current-session')
+          window.localStorage.setItem("logged", true);
+          window.location.href = "./dashboard";
+        } else {
+          window.localStorage.setItem("logged", false);
+          this.setState({ logged: false });
+        }
+    });
+  }
+  
+render(){      
   return (
     <div className="auth-wrapper">
       {/* ======= Header ======= */}
@@ -55,7 +61,12 @@ render(){
       <div className="image-banner">
         <img src={"./img/hero-img.png"} />
       </div>
-
+      <LoadingOverlay
+        active={false}
+        spinner
+        text='Searching for your Account...'
+      >
+        
       {/* ======= FORM ======= */}
       <form className="auth-inner" onSubmit={this.handleSubmit}>
         <p id="titleform">
@@ -83,6 +94,10 @@ render(){
                 required
               />
             </div>
+
+            {this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
+              <strong>Error: Incorrect Username or Password.</strong> Please try again.
+            </div>:""}
           
           <div className="checkbox">
                 <label htmlFor="checkbox">
@@ -101,7 +116,9 @@ render(){
                 <a href="/signup">Sign Up</a>
               </div>
       </form>
+      </LoadingOverlay>
     </div>
-  );
+    
+    );
 }};
 

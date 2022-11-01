@@ -10,7 +10,6 @@ const Appointments = lazy(() => import('../pages/appointments/index'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const ClinicHours = lazy(() => import('../pages/clinic-hours/index'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
-const Patients = lazy(() => import('../pages/patients/index'));
 const BackUpnRestore = lazy(() => import('../pages/backupNrestore/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 

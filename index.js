@@ -133,7 +133,6 @@ app.post("/createAppointment", async (req,res) => {
 app.get("/getAppointmentDetails", async (req,res) => {
   AppDetails.find()
     .then((data) => {
-      console.log('Data:', data);
       res.json(data);
     })
     .catch((error) => {

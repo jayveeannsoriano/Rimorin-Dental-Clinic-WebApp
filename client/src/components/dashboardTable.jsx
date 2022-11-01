@@ -17,7 +17,6 @@ const DashboardTable = () => {
     const getAppointment = async() => {
         try{
             const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails');
-            // const response = fetch('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails');
             console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
