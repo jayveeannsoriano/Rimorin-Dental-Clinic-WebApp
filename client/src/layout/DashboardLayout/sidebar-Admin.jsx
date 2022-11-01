@@ -17,44 +17,49 @@ function Sidebar_Admin(){
                     <div className='divider'></div>
                     <h4>ADMIN MENU</h4>
 
-                
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" bs-toggle="collapsed" href="/appointments" id="appointment-button">
+                        <a className="nav-link collapsed" 
+                        href="/admin/appointments">
                         <i class="fa-solid fa-stethoscope"></i>
-                        <span data-bs-target="#components-nav">Appointments</span>
+                        <span>Appointments</span>
                         </a>
                     </li>
 
-                     {/* Appointments Nav */}
+                     {/* Clinic Hours Nav */}
                      <li className="nav-item">
-                        <a className="nav-link collapsed" bs-toggle="collapsed" href="/appointments" id="appointment-button">
+                        <a className="nav-link collapsed" 
+                        bs-toggle="collapsed" 
+                        href="/admin/clinic-hours">
                         <i class="fa-solid fa-stethoscope"></i>
-                        <span data-bs-target="#components-nav">Clinic Hours</span>
+                        <span>Clinic Hours</span>
                         </a>
                     </li>
 
                     {/* Calendar Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#forms-nav"  href="/dentistcalendar">
+                        <a className="nav-link collapsed" 
+                        href="/admin/calendar">
                         <i class="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
                     </li>
 
-                    {/* Patients Nav */}
+                    {/* Accounts Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
-                            <i class="fa-solid fa-file-medical"></i>
-                            <span>Patients</span>
+                        <a class="nav-link collapsed" 
+                         href="/admin/accounts">
+                        <i class="fa-solid fa-file-medical"></i>
+                        <span>Accounts</span>
                         </a>
                     </li>
 
                     {/* Backup and Restore Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="/patientrecords">
-                            <i class="fa-solid fa-file-medical"></i>
-                            <span>Backup and Restore</span>
+                        <a class="nav-link collapsed" 
+                        href="/admin/backup-restore">
+                        <i class="fa-solid fa-file-medical"></i>
+                        <span>Backup and Restore</span>
                         </a>
                     </li>
 
@@ -62,23 +67,17 @@ function Sidebar_Admin(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/userprofile">
+                        <a className="nav-link collapsed" 
+                        href="/admin/userprofile">
                         <i class="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
                     </li>
 
-                     {/* Profile Settings Nav */}
-                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/userprofile">
-                        <i class="fa-solid fa-user"></i>
-                             <span>Profile Settings</span>
-                        </a>
-                    </li>
-
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/logout">
+                        <a className="nav-link collapsed" 
+                        href="/logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>
