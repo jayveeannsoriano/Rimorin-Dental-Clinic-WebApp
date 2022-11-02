@@ -7,7 +7,7 @@ const Payments = () => {
     return(
         <>
                 <div class="pagetitle">
-                    <h1>E-Prescription</h1>
+                    <h1>Payment Records</h1>
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>

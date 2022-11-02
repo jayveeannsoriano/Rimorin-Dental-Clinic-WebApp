@@ -96,7 +96,7 @@ function Sidebar(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href={"/login"}>
+                        <a className="nav-link collapsed" href={"/auth/login"}>
                         <i className="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

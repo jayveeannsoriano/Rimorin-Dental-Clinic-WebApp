@@ -5,6 +5,7 @@ import DashboardTable from '../../components/dashboardTable';
 // import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {  
+  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   return (
     <>
         <nav>
@@ -18,8 +19,8 @@ const Dashboard = () => {
         
         {/* Page Title */}
         <div className="pagetitle">
-          <h2>Welcome Back, Patient!</h2>
-          <h1>September 22, 2022</h1>
+          <h1>Welcome, {userInfo['fname']}!</h1>
+          <h2>September 22, 2022</h2>
           <p>Time (AM/PM)</p>
         </div>
 
@@ -32,8 +33,8 @@ const Dashboard = () => {
 
                 <div className="card-body datatable">
                   <div className="nav-bar">
-                      <Button>TODAY</Button>
-                      <Button>UPCOMING</Button>
+                  <Button className="table-button">TODAY</Button>
+                    <Button className="table-button">UPCOMING</Button>
                   </div>
                   <h5 className="card-title">
                     TODAY&apos;S APPOINTMENTS

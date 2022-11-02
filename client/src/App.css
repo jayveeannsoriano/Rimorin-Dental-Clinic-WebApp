@@ -120,15 +120,19 @@ h6 {
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
-.pagetitle {
-  margin-bottom: 10px;
+.pagetitle h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 32px;
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
-.pagetitle h1 {
-  font-size: 24px;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: #012970;
+.pagetitle h2{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--text-color);
 }
 
 /*--------------------------------------------------------------
@@ -307,6 +311,34 @@ h6 {
   background-color: #fff;;
   box-shadow: 0px 7px 23px rgba(0, 0, 0, 0.05);
 }
+
+.card-body h1 {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+}
+
+.card-body .table-button{
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 148px;
+  height: 41px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 14px;
+  margin-bottom: 16px;
+}
+
+.card-title span {
+  color: #899bbd;
+  font-size: 14px;
+}
+
 
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);

@@ -37,7 +37,7 @@ export default class Login extends Component {
           delete data.user['password'];  
           window.localStorage.setItem("current-session", JSON.stringify(data.user)); //Session handling item, Access all login data with window.localStorage.getItem('current-session')
           window.localStorage.setItem("logged", true);
-          window.location.href = "./dashboard";
+          window.location.href = "/dashboard";
         } else {
           window.localStorage.setItem("logged", false);
           this.setState({ logged: false });
