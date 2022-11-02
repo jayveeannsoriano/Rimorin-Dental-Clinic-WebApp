@@ -10,7 +10,11 @@ import AppointmentPage from "../../appointments";
 
 class BookingMain extends Component {
     state = {
-        step: 1
+        step: 1,
+        pName: "",
+        time: "",
+        date: "",
+        consultation: "",
     }
 
     prevStep = () => {

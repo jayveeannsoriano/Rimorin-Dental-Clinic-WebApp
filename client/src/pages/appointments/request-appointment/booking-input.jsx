@@ -10,12 +10,19 @@ import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import Axios from 'axios';
 
-const BookingInput = ({nextStep}) => {
+const BookingInput = ({nextStep,handleChange}) => {
 
         //user info
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
         var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
         const userNameApp = JSON.parse(getUserName)
+
+        //appointment details
+        var arr = [];
+        while(arr.length < 8){
+        var r = Math.floor(Math.random() * 1000) + 1;
+        if(arr.indexOf(r) === -1) arr.push(r);
+        }
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
