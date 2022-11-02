@@ -128,6 +128,12 @@ app.post("/insertAppointment", async(req,res) => {
 
   //Docotor name
   const docName = "Pamela Rimorin Concepcion"
+
+  //Appointment Number
+
+  const randomnum = Math.floor(Math.random() * 1000);
+  const appNumber = "#APT"+randomnum;
+  console.log(appNumber)
   
   //date value
   const startDate = req.body.startDate;
@@ -143,7 +149,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(getTime);
 
   //inserting all data
-  const AppData = new AppDetails({pName: docName ,date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();
