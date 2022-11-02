@@ -4,7 +4,7 @@ import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import ApptStatus from "./appt-status";
+// import ApptStatus from "./appt-status";
 
 const DashboardTable = () => {
 
@@ -46,7 +46,7 @@ const DashboardTable = () => {
             //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
             selector: row => <div>
                 <span id="appointment_status"> Accepted </span> 
-                < ApptStatus />
+                {/* < ApptStatus /> */}
                 </div>,
         },
         {

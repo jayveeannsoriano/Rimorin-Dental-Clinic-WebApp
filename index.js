@@ -139,7 +139,7 @@ app.post("/insertAppointment", async(req,res) => {
   const getTime = req.body.getTime;
   console.log(getTime);
 
-  //insterting all data
+  //inserting all data
   const AppData = new AppDetails({pName: userNameApp ,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{

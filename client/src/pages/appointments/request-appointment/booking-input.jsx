@@ -14,8 +14,8 @@ const BookingInput = ({nextStep}) => {
 
         //user info
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-        const userNameApp = useState(userInfo['fname'] + " " + userInfo['lname']);
-        console.log(userNameApp);
+        var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
+        const userNameApp = JSON.parse(getUserName)
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
