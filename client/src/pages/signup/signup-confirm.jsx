@@ -39,10 +39,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
 
     return (
-        <div className="auth-wrapper">
-            <div className="image-banner">
-                <img src={"./img/hero-img.png"} />
-            </div>
+        <>
             <form className="auth-inner">
                 <p id="titleform">
                     <h4>Rimorin Dental Clinic</h4>
@@ -162,7 +159,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                     </div>
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 
