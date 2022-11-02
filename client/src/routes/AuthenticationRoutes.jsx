@@ -5,7 +5,7 @@ import { lazy } from 'react';
 import LandingPageLayout from '../layout/LandingPageLayout';
 import AuthLayout from '../layout/AuthLayout';
 import ErrorPage from '../components/errorpage';
-import TermsOfService from '../components/terms-of-use';
+import TermsOfUse from '../components/terms-of-use';
 import PrivacyPolicy from '../components/privacy-policy';
 
 //landing page routing
@@ -45,11 +45,11 @@ const AuthenticationRoutes = {
           ]
         },
         {
-          path: 'terms-of-service',
-          element: <TermsOfService />
+          path: '/terms-of-use',
+          element: <TermsOfUse />
         },
         {
-          path: 'privacy-policy',
+          path: '/privacy-policy',
           element: <PrivacyPolicy />
         }
     ]

@@ -38,7 +38,7 @@ const DashboardTable = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.date,
+            selector: (row) => row.date + row.time,
             sortable: true,
         },
         {

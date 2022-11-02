@@ -29,38 +29,38 @@ class BookingMain extends Component {
         console.log(input);
     }
 
-    // render(){
-    //     const {step} = this.state;
-    //     const {startDate,consulInput,timeData} = this.state;
-    //     const values = {startDate,consulInput,timeData};
+    render(){
+        const {step} = this.state;
+        const {startDate,consulInput,timeData} = this.state;
+        const values = {startDate,consulInput,timeData};
 
-    //     switch (step) {
-    //         case 1:
-    //             return (
-    //                 <BookingInput 
-    //                 nextStep = {this.nextStep}
-    //                 handleChange = {this.handleChange}
-    //                 />
-    //             )
+        switch (step) {
+            case 1:
+                return (
+                    <BookingInput 
+                    nextStep = {this.nextStep}
+                    handleChange = {this.handleChange}
+                    />
+                )
 
-    //         case 2:
-    //             return(
-    //                 <BookingDetail
-    //                 prevStep = {this.prevStep} 
-    //                 nextStep = {this.nextStep}
-    //                 />
-    //             )
+            case 2:
+                return(
+                    <BookingDetail
+                    prevStep = {this.prevStep} 
+                    nextStep = {this.nextStep}
+                    />
+                )
 
-    //         case 3:
-    //             return(
-    //                 <BookingConfirm
-    //                 nextStep = {this.nextStep}
-    //                 />
-    //             )
-    //         default:
-    //             break;
-    //     }
-    // }
+            case 3:
+                return(
+                    <BookingConfirm
+                    nextStep = {this.nextStep}
+                    />
+                )
+            default:
+                break;
+        }
+    }
 }
 
 export default BookingMain;

@@ -6,8 +6,9 @@ const privacypolicy = () => {
   return (
     <div>
       <Header/>
-        <h1>Privacy Policy</h1>
-            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque.</p> */}
+        <h1 className="text-center">Privacy Policy</h1>
+          <br/>
+          <h4 className=""></h4>
     </div>
   )
 }
