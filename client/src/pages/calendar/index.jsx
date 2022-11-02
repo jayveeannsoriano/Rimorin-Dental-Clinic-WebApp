@@ -4,6 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list"
 import interactionPlugin from "@fullcalendar/interaction";
+import { Draggable } from "@fullcalendar/interaction";
 
 // // import "@fullcalendar/core/main.css";
 // import "@fullcalendar/daygrid/main.css";
@@ -29,11 +30,11 @@ export default class Calendar extends React.Component {
             contentHeight={750}
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
             events={events}
-            eventColor='purple'
             initialView="dayGridMonth"
             selectable = "true"
             nowIndicator
             droppable = 'true'
+            editable = 'true'
             dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
             headerToolbar={{

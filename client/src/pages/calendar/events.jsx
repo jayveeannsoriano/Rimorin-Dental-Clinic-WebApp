@@ -1,12 +1,26 @@
+import { Draggable } from "@fullcalendar/interaction";
+
 const events = [
     { title: "10:00 AM Dr. Pamela Concepcion", 
     start: getDate("YEAR-MONTH-17"), 
     color: '#EF4444'
     },
     { title: "3:00 PM Dr. Pamela Concepcion", 
-    start: getDate("YEAR-MONTH-27T07:00:00+00:00"), 
+    start: getDate("2022-11-27"), 
     color: '#60A5FA'
     },
+
+    { Id: 'draggable1',
+      title: '9:00 PM Dr. Pamela Concepcion',
+    start: getDate('2022-11-25'),
+    color: '#49be25' 
+    },
+
+    { title: '4:00 PM Dr. Pamela Concepcion',
+    start: getDate('2022-11-21'),
+    color: '#EAD649'
+    },
+
     // {
     //   title: "Long Event",
     //   start: getDate("YEAR-MONTH-07"),
