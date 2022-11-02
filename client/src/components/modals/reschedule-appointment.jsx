@@ -4,13 +4,16 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Timeslot2 from "../timeslot2";
 import '../../styles/booking.css'
+import DatePicker from "react-datepicker";
 
-function RescheduleAppointment() {
+function RescheduleAppointment({date, time}) {
   const [modalState, setModalState] = useState('close');
 
+  
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
+   
   }
 
   const handleModal2= () => {
@@ -67,7 +70,19 @@ function RescheduleAppointment() {
             <form className="row g-3 needs-validation" noValidate/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-                    <input type="date" className="form-control" id="appointment-date" required/>
+                    <DatePicker 
+                        selected={date} 
+                        onChange={(date) => {
+                            setStartDate(date);
+                            console.log("This is the calendar data:", date)
+                            window.localStorage.setItem('date',date);
+                        }}
+                        isClearable
+                        placeholderText="Choose a date"
+                        minDate={new Date()}
+                        shouldCloseOnSelect={false}
+                        withPortal
+                        />
                     <div className="valid-feedback">
                         Looks good!
                     </div>
@@ -76,7 +91,7 @@ function RescheduleAppointment() {
                 <div className="col-md-6">
                     <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                     <p> Available Times </p>
-                    <Timeslot2 onSubmit={getBookingData}/>
+                    <Timeslot2 initialTime={time} onSubmit={getBookingData}/>
                 </div>
             </div>
 

@@ -14,27 +14,19 @@ const DashboardTable = () => {
     const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    const [selectRow, setSelectRowValues] = useState({date:"", time: ""})
+    const handleButtonClick = (state) => {
+        console.log('clicked');
+        console.log(state.target.id);
+    };
 
     const getAppointment = async() => {
         try{
             const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails');
-            console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
             console.log(error)
-        }
-    }
-
-    const onRowClick = (state, rowInfo, column, instance) => {
-        return {
-            onClick: e => {
-                console.log('A Td Element was clicked!')
-                console.log('it produced this event:', e)
-                console.log('It was in this column:', column)
-                console.log('It was in this row:', rowInfo)
-                console.log('It was in this table instance:', instance)
-            }
         }
     }
 
@@ -45,7 +37,7 @@ const DashboardTable = () => {
             sortable: true,
         },
         {
-            name: "Appt #",
+            name: "Appt#",
             selector: (row) => row.appNum,
             sortable: true,
         },
@@ -64,7 +56,7 @@ const DashboardTable = () => {
         {
             name: "Action",
             selector: row => <div>
-                < ReschedConfirmation onClick={onRowClick}/>
+                < ReschedConfirmation date={row.date} time={row.time}/>
                 <CancelAppointment/>
                 < ApptDetails/>
                 </div>
@@ -124,6 +116,8 @@ const DashboardTable = () => {
 
         setFilteredAppointment(result)
     },[search])
+
+    
 
     return <DataTable
     pagination

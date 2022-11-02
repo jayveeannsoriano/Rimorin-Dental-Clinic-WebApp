@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import Axios from 'axios';
 
-const Timeslot2 = (props) => {
+const Timeslot2 = ({props}) => {
   let intime = "09:00 AM"
   let outtime = "05:00 PM"
   const [result, setResult] = useState([])
@@ -45,6 +45,7 @@ const Timeslot2 = (props) => {
                   setGetTime(e.target.value)
                   props.onSubmit(time)
                   console.log(time);
+                  style="props.inital"
                   }}>{time}</Button>
                   
             </div>
