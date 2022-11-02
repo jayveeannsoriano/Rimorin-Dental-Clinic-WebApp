@@ -31,7 +31,8 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
             country:country,
             medications:medications,
             allergies:allergies,
-            conditions:conditions
+            conditions:conditions,
+            user_role_id:1
         })
         e.preventDefault();
         nextStep();

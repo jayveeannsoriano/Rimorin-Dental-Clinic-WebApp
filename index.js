@@ -39,6 +39,7 @@ require("./models/userDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 
+
 //sign in
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
@@ -175,8 +176,8 @@ app.post("/insertAppointment", async(req,res) => {
   const getTime = req.body.getTime;
   console.log(getTime);
 
-  //insterting all data
-  const AppData = new AppDetails({date: slicedDate, consultation: consulInput, time:getTime});
+  //inserting all data
+  const AppData = new AppDetails({date: '2022-11-20', consultation: 'consulInput', time:'getTime'});
 
   try{
     await AppData.save();
@@ -241,6 +242,19 @@ app.post("/RegisterUser", async (req, res) => {
     res.send({ status: "sign up error" + error });
   }
 });
+
+const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
+
+//Send SMS API
+sdk.post('/sms', {
+  api_key: '1ydNHSiH1tV9iQCuvam9Nd5LdBs',
+  api_secret: 'JzHwVPqSgqQHzHIqeZ3o8Co5hqXNuQg4uZ6aJSM4',
+  to: '639462105905',
+  text: '<Message>'
+}, {accept: 'application/json'})
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
