@@ -1,9 +1,8 @@
 // SCRATCH!!!
 import React from 'react';
 import 'react-bootstrap';
-import Timeslot from "../../../components/timeslot.jsx";
 
-const BookingDetail = ({nextStep, prevStep}) => {
+const BookingDetail = ({nextStep, prevStep,props}) => {
     const Continue = (e) => {
         e.preventDefault();
         nextStep();
