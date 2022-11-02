@@ -84,44 +84,43 @@ const PatientInfo = () => {
                   </div>
                 </div>
 
+                {/* OTHER SIDE */}
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Gender</div>
+                    <div id="gender" class="col-lg-auto col-md-auto">
+                      Female
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Profession</div>
+                    <div id="profession" class="col-lg-auto col-md-auto">
+                      Student
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Cell #</div>
+                    <div id="cell" class="col-lg-auto col-md-auto">
+                      (+63) 956 793 5590
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Tel #</div>
+                    <div id="tel" class="col-lg-auto col-md-auto">
+                      N/A
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Blood Type</div>
+                    <div id="blood-type" class="col-lg-auto col-md-auto">
+                      A/B
+                    </div>
+                </div>
                 </div> 
                 {/* end of container */}
-
-                {/* OTHER SIDE */}
-                <div class="row">
-                  <div class="col-lg-auto col-md-auto label">Gender</div>
-                  <div id="country" class="col-lg-auto col-md-auto">
-                    Female
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-auto col-md-auto label">Profession</div>
-                  <div id="country" class="col-lg-auto col-md-auto">
-                    Student
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-auto col-md-auto label">Cell #</div>
-                  <div id="country" class="col-lg-auto col-md-auto">
-                    (+63) 956 793 5590
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-auto col-md-auto label">Tell #</div>
-                  <div id="country" class="col-lg-auto col-md-auto">
-                    N/A
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-lg-auto col-md-auto label">Blood Type</div>
-                  <div id="country" class="col-lg-auto col-md-auto">
-                    A/B
-                  </div>
-                </div>
 
                 <div className="divider"></div>
 

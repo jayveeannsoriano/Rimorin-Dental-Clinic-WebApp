@@ -22,6 +22,11 @@
     color: #A0A4A8;
 }
 
+.patient-info .column{
+    float: left;
+    width:50%
+}
+
 .patient-info .row{
     display: flex;
     flex-direction: column;

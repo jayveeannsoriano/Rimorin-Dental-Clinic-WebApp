@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import ApptStatus from "./modals/appt-status";
+import CancelAppointment from "./modals/cancel-appointment";
 
 const DashboardTable = () => {
 

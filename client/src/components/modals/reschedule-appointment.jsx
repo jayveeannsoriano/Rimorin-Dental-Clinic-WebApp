@@ -19,7 +19,7 @@ function RescheduleAppointment() {
 
   return (
     <>
-    <span class="badge bg-primary" onClick={handleModal1}><i class="bi bi-calendar2-event"></i> Reschedule</span>
+    <span class="resched-button" onClick={handleModal1}><i class="bi bi-calendar2-event"></i> Reschedule</span>
 
       <Modal
         show = {modalState == 'modal-1'}

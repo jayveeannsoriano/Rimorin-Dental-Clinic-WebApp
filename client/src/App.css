@@ -757,6 +757,32 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Appointment Details Modal
+--------------------------------------------------------------*/
+
+.info-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-details li .title {
+  color: #272b41;
+  font-weight: 500;
+}
+.info-details li .text {
+  color: #757575;
+  display: block;
+  font-size: 16px;
+  overflow: hidden;
+}
+.info-details li {
+margin-bottom: 10px;
+}
+.info-details li:last-child {
+margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
 # Datatable action buttons
 --------------------------------------------------------------*/
 .view-button{
@@ -773,8 +799,18 @@ h6 {
   line-height: 15px !important;
 }
 
+.cancel-button{
+  width: 92px !important;
+  height: 32px !important;
+  padding: 8px 15px !important;
+  color: #EF4444;
+  background: #FEF2F2 !important;
+  border-radius: 22px !important;
+}
+
 .view-button i, 
 .update-button i,
+.cancel-button i,
 .resched-button i {
 padding-right: 5px;
 }
@@ -891,6 +927,10 @@ padding-right: 5px;
 .jaZsat{
   background: #DBDDE0 !important;
   border-radius: 5px !important;
+}
+
+.kEIRkz div:first-child{
+  text-overflow: unset !important;
 }
 
 /*--------------------------------------------------------------
