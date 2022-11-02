@@ -43,7 +43,7 @@ const PatientInfo = () => {
 
 
                 {/* Patient information */}
-                <div className="container">
+    
                 <div class="row">
                   <h4>Personal Information</h4>
                   <div class="col-lg-auto col-md-auto label">
@@ -118,7 +118,7 @@ const PatientInfo = () => {
                     <div id="blood-type" class="col-lg-auto col-md-auto">
                       A/B
                     </div>
-                </div>
+                  </div>
                 </div> 
                 {/* end of container */}
 
@@ -203,7 +203,7 @@ const PatientInfo = () => {
               {/* end of card body */}
             </div>
           </div>
-        </div>
+        
       </section>
     </>
   );

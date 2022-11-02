@@ -785,6 +785,13 @@ margin-bottom: 0;
 /*--------------------------------------------------------------
 # Datatable action buttons
 --------------------------------------------------------------*/
+.view-button, 
+.update-button,
+.cancel-button,
+.resched-button {
+ font-size: 24px !important;
+}
+
 .view-button{
   width: 80px !important;
   height: 32px !important;
@@ -895,7 +902,7 @@ padding-right: 5px;
 
 .rdt_TableCol:hover,
 .rdt_TableCol:focus{
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   opacity: 100% !important;
 }
 
