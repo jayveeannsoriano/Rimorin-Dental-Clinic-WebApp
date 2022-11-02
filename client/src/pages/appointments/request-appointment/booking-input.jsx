@@ -12,6 +12,11 @@ import Axios from 'axios';
 
 const BookingInput = ({nextStep}) => {
 
+        //user info
+        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+        const userNameApp = useState(userInfo['fname'] + " " + userInfo['lname']);
+        console.log(userNameApp);
+
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
 
@@ -31,13 +36,14 @@ const BookingInput = ({nextStep}) => {
         e.preventDefault();
 
         //adds data
+         console.log("Inserting ",userNameApp," to the database.")
          console.log("Inserting ",startDate, " to the database.");
          console.log("Inserting ",consulInput, " to the database.");
          console.log("Inserting ",getTime, " to the database.");
          
 
          //insert data
-         //Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {startDate: startDate, consulInput: consulInput, getTime:getTime})
+         Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: startDate, consulInput: consulInput, getTime:getTime})
 
         //go to next modal
         nextStep();

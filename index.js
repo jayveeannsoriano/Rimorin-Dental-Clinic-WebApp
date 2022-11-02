@@ -115,52 +115,15 @@ app.get("/delete/:id", async (req, res) => {
   }
 });
 
-//create appointment (patient)
-
-app.post("/createAppointment", async (req,res) => {
-  const { name, appt, datetime,status,action } = req.body;
-  try{
-  await AppDetails.create({
-    name, appt, datetime,status,action
-  });
-  res.send({ status: "ok" });
-} catch (error) {
-  res.send({ status: "Cannot create appointment" });
-}
-});
-
-//get appointment details
-app.get("/getAppointmentDetails", async (req,res) => {
-  AppDetails.find()
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((error) => {
-      console.log('error: ', error)
-    });
-});
-
-
-//add AppDetails
-
-// app.post("/addAppDetails", async(req, res) => {
-
-//   const newAppDetails = new AppDetails(req.body);
-
-//   try{
-//       await newAppDetails.save();
-//       res.send(newAppDetails);
-//   }
-//   catch(err){
-//       console.log(err);
-//       res.status(500).send(error);
-//   }
-// });
-
 //CRUD FOR BOOKING APPOINTMENT
 
 //book an appointment
 app.post("/insertAppointment", async(req,res) => {
+
+
+  //User Info value
+  const userNameApp = req.body.userNameApp;
+  console.log(userNameApp)
   
   //date value
   const startDate = req.body.startDate;
@@ -176,7 +139,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(getTime);
 
   //insterting all data
-  const AppData = new AppDetails({date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: userNameApp ,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();
