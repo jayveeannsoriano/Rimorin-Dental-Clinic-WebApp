@@ -1,4 +1,5 @@
 import React from "react";
+// import TermsOfUse from '../components/terms-of-use';
 
 function Footer() {
     return(

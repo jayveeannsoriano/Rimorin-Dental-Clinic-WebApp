@@ -3,9 +3,10 @@ import { lazy } from 'react';
 
 //project imports
 import LandingPageLayout from '../layout/LandingPageLayout';
+import AuthLayout from '../layout/AuthLayout';
 import ErrorPage from '../components/errorpage';
-import ToS from '../components/terms-of-use';
-import Privacy from '../components/privacy-policy';
+import TermsOfUse from '../components/terms-of-use';
+import PrivacyPolicy from '../components/privacy-policy';
 
 //landing page routing
 const LandingPage = lazy(() => import('../pages/landingpage'));
@@ -30,24 +31,26 @@ const AuthenticationRoutes = {
           element: <LandingPage />
         },
         {
-          path: 'login',
-          element: <LoginPage />
+          path: '/auth',
+          element: <AuthLayout />,
+          children: [
+            {
+              path: '/auth/login',
+              element: <LoginPage />
+            },
+            {
+              path: '/auth/signup',
+              element: <SignUpPage />
+            }
+          ]
         },
         {
-          path: 'signup',
-          element: <SignUpPage />
+          path: '/terms-of-use',
+          element: <TermsOfUse />
         },
-        
-        //tos
         {
-        path: 'tos',
-        element: <ToS />
-        },
-
-        //privacy
-        {
-        path: 'privacy',
-        element: <Privacy />
+          path: '/privacy-policy',
+          element: <PrivacyPolicy />
         }
     ]
 };

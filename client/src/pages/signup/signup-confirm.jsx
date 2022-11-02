@@ -31,7 +31,8 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
             country:country,
             medications:medications,
             allergies:allergies,
-            conditions:conditions
+            conditions:conditions,
+            user_role_id:1
         })
         e.preventDefault();
         nextStep();
@@ -39,10 +40,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
 
     return (
-        <div className="auth-wrapper">
-            <div className="image-banner">
-                <img src={"./img/hero-img.png"} />
-            </div>
+        <>
             <form className="auth-inner">
                 <p id="titleform">
                     <h4>Rimorin Dental Clinic</h4>
@@ -162,7 +160,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                     </div>
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 

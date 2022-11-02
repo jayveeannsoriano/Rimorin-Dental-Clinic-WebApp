@@ -14,18 +14,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
   }
 
   return (
-    <div className='auth-wrapper'>
-        {/* ======= Header ======= */}
-      <header id="headerlogin" className="fixed-top">
-        <div className="container d-flex align-items-center">
-          <h1 className="logo me-auto">
-            <a href="/">Rimorin Dental Clinic</a>
-          </h1>
-        </div>
-      </header>
-        <div className='image-banner'>
-            <img src={'./img/hero-img.png'}/>
-        </div>
+    <>
         <form className='auth-inner'>
         <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
 
@@ -116,11 +105,10 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
             </div>
 
             <p className="forgot-password text-right">
-            Already registered? <a href="/login">Sign In</a>
+            Already registered? <a href="/auth/login">Sign In</a>
             </p>
         </form>
-    </div>
-    
+      </>
   )
 }
 

@@ -47,20 +47,7 @@ export default class Login extends Component {
   
 render(){      
   return (
-    <div className="auth-wrapper">
-      {/* ======= Header ======= */}
-      <header id="headerlogin" className="fixed-top">
-        <div className="container d-flex align-items-center">
-          <h1 className="logo me-auto">
-            <a href="/">Rimorin Dental Clinic</a>
-          </h1>
-        </div>
-      </header>
-
-      {/* ======= IMAGE ======= */}
-      <div className="image-banner">
-        <img src={"./img/hero-img.png"} />
-      </div>
+    <>
       {/* <LoadingOverlay
         active={false}
         spinner
@@ -113,11 +100,11 @@ render(){
               <div className="signup_link">
                 Don't have an account?
                 <br />
-                <a href="/signup">Sign Up</a>
+                <a href="/auth/signup">Sign Up</a>
               </div>
       </form>
       {/* </LoadingOverlay> */}
-    </div>
+    </>
     
     );
 }};

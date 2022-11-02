@@ -33,7 +33,7 @@ const LandingPage = () => {
                             </ul>
                         </nav>
 
-                        <a href="login" className="login-btn scrollto">Login</a>
+                        <a href="/auth/login" className="login-btn scrollto">Login</a>
                     </div>
                 </header>
 
@@ -45,7 +45,7 @@ const LandingPage = () => {
                             <h1>A Great Place to Receive Care</h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
                             <div>
-                                <a href="/login" className="btn-get-started scrollto">Make an Appointment</a>
+                                <a href="/auth/login" className="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
                         <div className="col-lg-6 order-1 order-lg-2 hero-img">
