@@ -6,11 +6,12 @@ import {Link} from 'react-router-dom';
 // 3-patient
 
 function Sidebar(){
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     return(
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
-                    <a href="/dashboard" class="logo d-flex align-items-center">
+                    <a href={userInfo['user_role_id']==1 ? "/dashboard" :"/dashboard/dentist-dashboard" } class="logo d-flex align-items-center">
                         <img src="../../img/logo.png" alt=""/>
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
@@ -19,7 +20,7 @@ function Sidebar(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link" href="/dashboard">
+                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dashboard/dentist-dashboard" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -96,7 +97,7 @@ function Sidebar(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href={"/login"}>
+                        <a className="nav-link collapsed" href={"/auth/login"}>
                         <i className="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

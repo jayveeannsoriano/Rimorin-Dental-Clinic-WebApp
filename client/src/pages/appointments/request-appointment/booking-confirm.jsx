@@ -2,10 +2,19 @@ import React from 'react';
 import style from "../../../styles/booking.css";
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
+import Axios from 'axios';
+
 // import Stepper from 'bs-stepper'
 
 
-const BookingConfirm = ({nextStep, prevStep}) => {
+const BookingConfirm = ({nextStep, prevStep, values}) => {
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    var date = window.localStorage.getItem('date');
+    var time = window.localStorage.getItem('time');
+    var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
+    const userNameApp = JSON.parse(getUserName)
+    // console.log(values);
+
     const Continue = (e) => {
         e.preventDefault();
         nextStep();
@@ -15,8 +24,23 @@ const BookingConfirm = ({nextStep, prevStep}) => {
         e.preventDefault();
         prevStep();
     }
+     //insert data
+
+    // console.log('Posting!!');
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
+
+    fetch("https://cors-anywhere.herokuapp.com/https://api.movider.co/v1/sms", {
+        body: "api_key=9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X&api_secret=9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA&to="+userInfo['mobile']+ "&text= Hi"+userNameApp+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+values.date+" "+values.time+" due to" + values.conslutation + ".",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Access-Control-Allow-Origin" : "https://rimorin-dental-clinic.herokuapp.com/"
+        },
+        method: "POST"
+    })
     
     return(
+        
         <>
                 <nav>
                     <ol className="breadcrumb">

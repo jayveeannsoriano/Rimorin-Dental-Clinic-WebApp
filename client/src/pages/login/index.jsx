@@ -19,13 +19,13 @@ export default class Login extends Component {
   async handleSubmit(e) {
     e.preventDefault();
      const { email, password} = this.state;
-    fetch("http://localhost:3001/login-user", {
+    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Origin": "http://localhost:3001"
+        "Origin": "https://rimorin-dental-clinic.herokuapp.com"
       },
       body: JSON.stringify({
         email,
@@ -35,9 +35,15 @@ export default class Login extends Component {
       .then((data) => {
         if (data.status === "ok") {
           delete data.user['password'];  
-          window.localStorage.setItem("current-session", JSON.stringify(data.user)); //Session handling item, Access all login data with window.localStorage.getItem('current-session')
+          window.localStorage.setItem("current-session", JSON.stringify(data.user)); //Session handling item, Access all login data with JSON.parse(window.localStorage.getItem('current-session')))
           window.localStorage.setItem("logged", true);
-          window.location.href = "./dashboard";
+        
+          if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===1){
+            window.location.href = "/dashboard";
+          }else{
+            window.location.href = "/dashboard/dentist-dashboard";
+          }
+          
         } else {
           window.localStorage.setItem("logged", false);
           this.setState({ logged: false });

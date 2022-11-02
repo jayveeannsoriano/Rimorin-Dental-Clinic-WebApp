@@ -2,7 +2,8 @@
 import React from 'react';
 import 'react-bootstrap';
 
-const BookingDetail = ({nextStep, prevStep,props}) => {
+const BookingDetail = ({nextStep, prevStep,handleChange,values}) => {
+    console.log(values);
     const Continue = (e) => {
         e.preventDefault();
         nextStep();
@@ -124,9 +125,9 @@ const BookingDetail = ({nextStep, prevStep,props}) => {
                     <div className="doctor-info">
                         <h1>APPOINTMENT DETAILS</h1>
                         <h2>Date of Consultation</h2>
-                        
+                            {window.localStorage.getItem('date') + " " + window.localStorage.getItem('time')}
                         <h2>Reason for Consultation</h2>
-                        
+                            {values.consultation}
                     </div>
                         
                         <div className="divider"></div>

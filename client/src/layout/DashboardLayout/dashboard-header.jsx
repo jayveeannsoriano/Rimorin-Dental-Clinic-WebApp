@@ -134,7 +134,7 @@ function dashboardHeader(){
 
                         {/* <!-- Sign Out --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center" href="/login">
+                            <a className="dropdown-item d-flex align-items-center" href="/auth/login">
                                 <i className="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>

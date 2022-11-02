@@ -16,6 +16,7 @@ class BookingMain extends Component {
         date: "",
         consultation: "",
     }
+    
 
     prevStep = () => {
         const {step} = this.state;
@@ -33,10 +34,20 @@ class BookingMain extends Component {
         console.log(input);
     }
 
+    handleTimeChange (value) {
+        this.setState({['time']: value});
+    }
+    
+    handleDateChange(date) {
+        this.setState({
+            [date]: date
+        });
+    }
+
     render(){
         const {step} = this.state;
-        const {startDate,consulInput,timeData} = this.state;
-        const values = {startDate,consulInput,timeData};
+        const {time,date,consultation} = this.state;
+        const values = {time,date,consultation};
 
         switch (step) {
             case 1:
@@ -44,6 +55,7 @@ class BookingMain extends Component {
                     <BookingInput 
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
+                    values = {values}
                     />
                 )
 
@@ -52,6 +64,7 @@ class BookingMain extends Component {
                     <BookingDetail
                     prevStep = {this.prevStep} 
                     nextStep = {this.nextStep}
+                    values = {values}
                     />
                 )
 
@@ -59,6 +72,7 @@ class BookingMain extends Component {
                 return(
                     <BookingConfirm
                     nextStep = {this.nextStep}
+                    values = {values}
                     />
                 )
             default:

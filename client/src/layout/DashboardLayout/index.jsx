@@ -12,7 +12,7 @@ const DashboardLayout = () => {
     return(
         <>
         {/* conditional to check user role and which sidebar to display */}
-       {userInfo['user_role_id']==1 ?  <Sidebar_Admin isSidebar={isSidebar} /> : <Sidebar isSidebar={isSidebar} />}
+       {userInfo['user_role_id']==3 ?  <Sidebar_Admin isSidebar={isSidebar} /> : <Sidebar isSidebar={isSidebar} />}
             <main id="main" className="main">
                 <Header />
                 <Outlet />

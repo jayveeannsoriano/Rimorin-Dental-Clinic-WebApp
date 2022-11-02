@@ -125,9 +125,6 @@ app.post("/insertAppointment", async(req,res) => {
   //User Info value
   const userNameApp = req.body.userNameApp;
   console.log(userNameApp)
-
-  //Docotor name
-  const docName = "Pamela Rimorin Concepcion"
   
   //date value
   const startDate = req.body.startDate;
@@ -143,7 +140,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(getTime);
 
   //inserting all data
-  const AppData = new AppDetails({pName: docName ,date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: userNameApp ,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();
@@ -152,6 +149,18 @@ app.post("/insertAppointment", async(req,res) => {
     console.log(err);
   }
 });
+
+app.get("/getAppointmentDetails", async(req,res) => {
+    
+  AppDetails.find({})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
 
 //sign up
 app.post("/RegisterUser", async (req, res) => {

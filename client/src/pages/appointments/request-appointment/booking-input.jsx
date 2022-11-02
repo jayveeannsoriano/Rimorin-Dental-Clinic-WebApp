@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import Axios from 'axios';
 
-const BookingInput = ({nextStep,handleChange}) => {
+const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,values}) => {
 
         //user info
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -27,47 +27,26 @@ const BookingInput = ({nextStep,handleChange}) => {
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
 
-        //reasonforconsultation input
-        const [consulInput, setConsulInput] = useState("");
-    
+
         //time input
-        const [getTime, setGetTime] = useState("");
+        const [time, setGetTime] = useState("");
 
         //retrieve Time data from Timeslot
         const getBookingData = (data)=>{
             console.log('Retrieving Data from Booking Input: ', data)
+            // handleTimeChange(data);
             setGetTime(data);
+            window.localStorage.setItem('time',data);
         }
 
         const Continue = (e) => {
         e.preventDefault();
 
         //adds data
-         console.log("Inserting ",userNameApp," to the database.")
-         console.log("Inserting ",startDate, " to the database.");
-         console.log("Inserting ",consulInput, " to the database.");
-         console.log("Inserting ",getTime, " to the database.");
-         
-
-         //insert data
-         Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: startDate, consulInput: consulInput, getTime:getTime})
-         Axios.post("https://api.movider.co/v1/sms", { })
-
-         fetch("http://localhost:3001/login-user", {
-            method: "POST",
-            crossDomain: true,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Origin": "http://localhost:3001"
-            },
-            body: JSON.stringify({
-                api_key: '1ydNHSiH1tV9iQCuvam9Nd5LdBs',
-                api_secret: 'JzHwVPqSgqQHzHIqeZ3o8Co5hqXNuQg4uZ6aJSM4',
-                to: '639462105905',
-                text: 'RIMORIN TEST SMS'
-            }),
-            }).then((res) => res.json())
+        //  console.log("Inserting ",userNameApp," to the database.")
+        //  console.log("Inserting ",values.date, " to the database.");
+        //  console.log("Inserting ",values.consultation, " to the database.");
+        //  console.log("Inserting ",values.time, " to the database.");
 
         //go to next modal
         nextStep();
@@ -139,6 +118,7 @@ const BookingInput = ({nextStep,handleChange}) => {
                             onChange={(date) => {
                                 setStartDate(date);
                                 console.log("This is the calendar data:", date)
+                                window.localStorage.setItem('date',date);
                             }}
                             isClearable
                             placeholderText="Choose a date"
@@ -162,11 +142,8 @@ const BookingInput = ({nextStep,handleChange}) => {
                         <div className="col-12 reason-form">
                             <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
                             <textarea className="form-control" 
-                            value={consulInput} 
-                            onChange= {(e) => {
-                                setConsulInput(e.target.value); 
-                                console.log(consulInput);
-                                }} 
+                            value={values.consultation} 
+                            onChange= {handleChange('consultation')} 
                                 id="reason" rows="5" placeholder="Write reason here..."></textarea>
                             <div className="valid-feedback">
                                 Looks good!

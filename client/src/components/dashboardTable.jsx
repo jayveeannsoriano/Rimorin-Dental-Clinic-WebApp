@@ -16,12 +16,24 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails');
             console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
             console.log(error)
+        }
+    }
+
+    const onRowClick = (state, rowInfo, column, instance) => {
+        return {
+            onClick: e => {
+                console.log('A Td Element was clicked!')
+                console.log('it produced this event:', e)
+                console.log('It was in this column:', column)
+                console.log('It was in this row:', rowInfo)
+                console.log('It was in this table instance:', instance)
+            }
         }
     }
 
@@ -51,12 +63,14 @@ const DashboardTable = () => {
         {
             name: "Action",
             selector: row => <div>
-                < ReschedConfirmation/>
+                < ReschedConfirmation onClick={onRowClick}/>
                 <CancelAppointment/>
                 < ApptDetails/>
                 </div>
         },
     ];
+
+   
 
     
     // Loading effect
