@@ -125,6 +125,9 @@ app.post("/insertAppointment", async(req,res) => {
   //User Info value
   const userNameApp = req.body.userNameApp;
   console.log(userNameApp)
+
+  //Docotor name
+  const docName = "Pamela Rimorin Concepcion"
   
   //date value
   const startDate = req.body.startDate;
@@ -140,7 +143,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(getTime);
 
   //inserting all data
-  const AppData = new AppDetails({pName: userNameApp ,date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: docName ,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();
