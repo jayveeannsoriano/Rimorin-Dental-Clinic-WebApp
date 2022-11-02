@@ -44,6 +44,23 @@ const BookingInput = ({nextStep}) => {
 
          //insert data
          Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: startDate, consulInput: consulInput, getTime:getTime})
+         Axios.post("https://api.movider.co/v1/sms", { })
+
+         fetch("http://localhost:3001/login-user", {
+            method: "POST",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Origin": "http://localhost:3001"
+            },
+            body: JSON.stringify({
+                api_key: '1ydNHSiH1tV9iQCuvam9Nd5LdBs',
+                api_secret: 'JzHwVPqSgqQHzHIqeZ3o8Co5hqXNuQg4uZ6aJSM4',
+                to: '639462105905',
+                text: 'RIMORIN TEST SMS'
+            }),
+            }).then((res) => res.json())
 
         //go to next modal
         nextStep();
