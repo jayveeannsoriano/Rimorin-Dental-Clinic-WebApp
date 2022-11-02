@@ -120,15 +120,19 @@ h6 {
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
-.pagetitle {
-  margin-bottom: 10px;
+.pagetitle h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 32px;
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
-.pagetitle h1 {
-  font-size: 24px;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: #012970;
+.pagetitle h2{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--text-color);
 }
 
 /*--------------------------------------------------------------
@@ -307,6 +311,34 @@ h6 {
   background-color: #fff;;
   box-shadow: 0px 7px 23px rgba(0, 0, 0, 0.05);
 }
+
+.card-body h1 {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+}
+
+.card-body .table-button{
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 148px;
+  height: 41px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 14px;
+  margin-bottom: 16px;
+}
+
+.card-title span {
+  color: #899bbd;
+  font-size: 14px;
+}
+
 
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
@@ -725,8 +757,41 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Appointment Details Modal
+--------------------------------------------------------------*/
+
+.info-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-details li .title {
+  color: #272b41;
+  font-weight: 500;
+}
+.info-details li .text {
+  color: #757575;
+  display: block;
+  font-size: 16px;
+  overflow: hidden;
+}
+.info-details li {
+margin-bottom: 10px;
+}
+.info-details li:last-child {
+margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
 # Datatable action buttons
 --------------------------------------------------------------*/
+.view-button, 
+.update-button,
+.cancel-button,
+.resched-button {
+ font-size: 24px !important;
+}
+
 .view-button{
   width: 80px !important;
   height: 32px !important;
@@ -741,8 +806,18 @@ h6 {
   line-height: 15px !important;
 }
 
+.cancel-button{
+  width: 92px !important;
+  height: 32px !important;
+  padding: 8px 15px !important;
+  color: #EF4444;
+  background: #FEF2F2 !important;
+  border-radius: 22px !important;
+}
+
 .view-button i, 
 .update-button i,
+.cancel-button i,
 .resched-button i {
 padding-right: 5px;
 }
@@ -827,7 +902,7 @@ padding-right: 5px;
 
 .rdt_TableCol:hover,
 .rdt_TableCol:focus{
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   opacity: 100% !important;
 }
 
@@ -859,6 +934,10 @@ padding-right: 5px;
 .jaZsat{
   background: #DBDDE0 !important;
   border-radius: 5px !important;
+}
+
+.kEIRkz div:first-child{
+  text-overflow: unset !important;
 }
 
 /*--------------------------------------------------------------

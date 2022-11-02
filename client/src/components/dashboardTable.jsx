@@ -4,7 +4,8 @@ import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import CancelAppointment from "./modals/cancel-appointment"
+import ApptStatus from "./modals/appt-status";
+import CancelAppointment from "./modals/cancel-appointment";
 
 const DashboardTable = () => {
 

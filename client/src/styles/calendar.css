@@ -104,7 +104,7 @@
     color: black;
 }
 
-#fc-dom-2.fc-toolbar-title{
+#fc-dom-1.fc-toolbar-title{
     margin-left: 3px;
     color: rgba(110, 92, 245);
     font-family: var(--body-font);
@@ -201,7 +201,7 @@
 
 .fc .fc-highlight {
     background: #5D5FEF;
-    opacity: 15%;
+    opacity: 0.2;
     
 }
 

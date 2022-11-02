@@ -18,8 +18,13 @@
 }
 
 .patient-info .label{
-    font-weight: 600;
-    color: rgba(1, 41, 112, 0.6);
+    font-weight: 700;
+    color: #A0A4A8;
+}
+
+.patient-info .column{
+    float: left;
+    width:50%
 }
 
 .patient-info .row{

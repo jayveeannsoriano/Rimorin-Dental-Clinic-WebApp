@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Timeslot2 from "../timeslot2";
+import '../../styles/booking.css'
 
 function RescheduleAppointment() {
   const [modalState, setModalState] = useState('close');
@@ -45,7 +46,7 @@ function RescheduleAppointment() {
 
   return (
     <>
-    <span class="badge bg-primary" onClick={handleModal1}><i class="bi bi-calendar2-event"></i> Reschedule</span>
+    <span class="resched-button" onClick={handleModal1}><i class="bi bi-calendar2-event"></i> Reschedule</span>
 
       <Modal
         show = {modalState == 'modal-1'}

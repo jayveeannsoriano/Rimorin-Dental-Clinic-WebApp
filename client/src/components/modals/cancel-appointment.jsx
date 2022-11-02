@@ -20,7 +20,7 @@ function CancelAppointment() {
   return (
     <>
 
-      <span class="badge bg-primary" onClick={handleModal1}><i class="bi bi-x-lg"></i> Cancel</span>
+      <span class="cancel-button" onClick={handleModal1}><i class="bi bi-x-lg"></i> Cancel</span>
 
       <Modal show={modalState == 'modal-1'} onHide={handleClose}>
         <Modal.Header closeButton>

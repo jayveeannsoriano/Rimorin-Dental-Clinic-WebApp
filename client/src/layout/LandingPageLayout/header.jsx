@@ -3,12 +3,12 @@ import React from "react";
 function Header() {
     return(
         <div>
-                        {/* Top Bar
-                        <div id="topbar" className="d-flex align-items-center fixed-top">
+            {/* Top Bar
+            <div id="topbar" className="d-flex align-items-center fixed-top">
                 <div className="container d-flex justify-content-between">
                     <div className="info d-flex align-items-center">
                         <i className="fa-regular fa-envelope fa-sm"></i>
-                        <a href={"mailto:contact@example.com"}>rimorin.dental@gmail.com</a>
+                        <a href={"mailto:rimorin.dental@gmail.com"}>rimorin.dental@gmail.com</a>
                         <i className="fa-regular fa-phone fa-sm"></i> +639 265 785 456 
                     </div>
                 </div>

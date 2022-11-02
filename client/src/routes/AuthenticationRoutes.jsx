@@ -45,11 +45,11 @@ const AuthenticationRoutes = {
           ]
         },
         {
-          path: '/terms-of-use',
+          path: 'terms-of-use',
           element: <TermsOfUse />
         },
         {
-          path: '/privacy-policy',
+          path: 'privacy-policy',
           element: <PrivacyPolicy />
         }
     ]

@@ -29,7 +29,7 @@ const PatientInfo = () => {
             <div className="card patient-info">
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
-                {/* buttons to be edited later */}
+
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-printer-fill"></i>
                   Print
@@ -43,64 +43,85 @@ const PatientInfo = () => {
 
 
                 {/* Patient information */}
-                
+    
                 <div class="row">
-                  <div className="col">
                   <h4>Personal Information</h4>
-                  <div class="label">First Name</div>
-                    <div id="firstname" class="col-lg-3">
-                      Jessica
-                    </div>
+                  <div class="col-lg-auto col-md-auto label">
+                    First Name
+                  </div>
+                  <div id="fname" class="col-lg-auto col-md-auto">
+                    Ricci
+                  </div>
+                </div>
 
-                    <div class="label">Middle Name</div>
-                    <div id="middlename" class="col-lg-3">
-                      Soho
-                    </div>
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">
+                    Last Name
+                  </div>
+                  <div id="lname" class="col-lg-auto col-md-auto">
+                    Blynthe
+                  </div>
+                </div>
 
-                    <div class="label">Last Name</div>
-                    <div id="lastname" class="col-lg-3">
-                      McBell
-                    </div>
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">Middle Initial</div>
+                  <div id="mname" class="col-lg-auto col-md-auto">
+                    Fuentes
+                  </div>
+                </div>
 
-                    <div class="label">Birthdate</div>
-                    <div id="birthdate" class="col-lg-3">
-                      June 01, 2000
-                    </div>
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">Birthdate</div>
+                  <div id="birthdate" class="col-lg-auto col-md-auto">
+                    01/01/1998
+                  </div>
+                </div>
 
-                    <div class="label">Age</div>
-                    <div id="age" class="col-lg-3">
-                      22
-                    </div>
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">Age</div>
+                  <div id="age" class="col-lg-auto col-md-auto">
+                    24
+                  </div>
+                </div>
 
-                  <div className="col">
-                  <div class="label">Gender</div>
-                    <div id="gender" class="col-lg-3">
+                {/* OTHER SIDE */}
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Gender</div>
+                    <div id="gender" class="col-lg-auto col-md-auto">
                       Female
                     </div>
+                  </div>
 
-                    <div class="label">Profession</div>
-                    <div id="profession" class="col-lg-3">
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Profession</div>
+                    <div id="profession" class="col-lg-auto col-md-auto">
                       Student
                     </div>
+                  </div>
 
-                    <div class="label">Cell #</div>
-                    <div id="phone_num" class="col-lg-3">
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Cell #</div>
+                    <div id="cell" class="col-lg-auto col-md-auto">
                       (+63) 956 793 5590
                     </div>
+                  </div>
 
-                    <div class="label">Tell #</div>
-                    <div id="tell_num" class="col-lg-3">
-                      None
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Tel #</div>
+                    <div id="tel" class="col-lg-auto col-md-auto">
+                      N/A
                     </div>
-
-                    <div class="label">Blood Type</div>
-                    <div id="blood_type" class="col-lg-3">
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-auto col-md-auto label">Blood Type</div>
+                    <div id="blood-type" class="col-lg-auto col-md-auto">
                       A/B
                     </div>
                   </div>
-                </div>
-                </div>
-                
+                </div> 
+                {/* end of container */}
+
                 <div className="divider"></div>
 
                 {/* Address information */}
@@ -113,6 +134,7 @@ const PatientInfo = () => {
                     #10 Cirineo Subdivision
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">
                     Municipality/City
@@ -121,13 +143,37 @@ const PatientInfo = () => {
                     Dagupan
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Country</div>
                   <div id="country" class="col-lg-auto col-md-auto">
                     Philippines
                   </div>
                 </div>
+
+                {/* OTHER SIDE */}
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">District/Barangay</div>
+                  <div id="country" class="col-lg-auto col-md-auto">
+                    Tapuac
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">Province</div>
+                  <div id="country" class="col-lg-auto col-md-auto">
+                    Pangasinan
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-auto col-md-auto label">ZIP Code</div>
+                  <div id="country" class="col-lg-auto col-md-auto">
+                    2400
+                  </div>
+                </div>
+
                 <div className="divider"></div>
+
                 {/* Medical Conditions */}
                 <div class="row">
                   <h4>Medical Conditions</h4>
@@ -138,22 +184,26 @@ const PatientInfo = () => {
                     N/A
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-4 col-md-4 label">Allergies</div>
                   <div id="allergies" class="col-lg-3">
                     Ibuprofen
                   </div>
                 </div>
+                
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Conditions</div>
                   <div id="conditions" class="col-lg-3">
                     Asthma
                   </div>
                 </div>
+
               </div>
+              {/* end of card body */}
             </div>
           </div>
-        </div>
+        
       </section>
     </>
   );
