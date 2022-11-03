@@ -5,9 +5,7 @@ import DentistDTable from '../../components/dental-table';
 
 export default function DentistDashboard() {  
   return (
-    <div>
-      <main id="main" className="main">
-
+    <>
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -141,8 +139,6 @@ export default function DentistDashboard() {
 
         </div>
       </section>
-    </main>
-    </div>
-
+    </>
   );
 }

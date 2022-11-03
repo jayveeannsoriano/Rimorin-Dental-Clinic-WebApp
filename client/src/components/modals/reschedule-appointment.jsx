@@ -5,10 +5,12 @@ import Form from 'react-bootstrap/Form';
 import Timeslot2 from "../timeslot2";
 import '../../styles/booking.css'
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Axios from 'axios';
 
-function RescheduleAppointment({date, time}) {
+function RescheduleAppointment(appNum) {
   const [modalState, setModalState] = useState('close');
-
+  console.log(appNum)
   
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
@@ -17,27 +19,29 @@ function RescheduleAppointment({date, time}) {
   }
 
   const handleModal2= () => {
-    setModalState("modal-2")
+    
   }
 
-  //user info
-  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-  var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
-  const userNameApp = JSON.parse(getUserName)
-
   //calendar input
-  const [startDate, setStartDate] = useState(new Date());
+  const [newStartDate, setStartDate] = useState(new Date());
 
   //reasonforconsultation input
-  const [consulInput, setConsulInput] = useState("");
+  const [newConsulInput, setConsulInput] = useState("");
 
   //time input
-  const [getTime, setGetTime] = useState("");
+  const [newSetTime, setGetTime] = useState("");
 
   //retrieve Time data from Timeslot
   const getBookingData = (data)=>{
       console.log('Retrieving Data from Booking Input: ', data)
       setGetTime(data);
+  }
+
+  //update date and time
+  const newDateTime = () =>{
+    console.log(appNum);
+   //Axios.post("http://localhost:3001/updateDateTime",{appNum:appNum, newDate: newStartDate, newTime: newSetTime, newCosultation: newConsulInput});
+    setModalState("modal-2");
   }
 
   return (
@@ -63,8 +67,9 @@ function RescheduleAppointment({date, time}) {
             <form className="row g-3 needs-validation" noValidate/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
+                      {/* New Calendar from https://reactdatepicker.com/#example-default */}
                     <DatePicker 
-                        selected={date} 
+                        selected={newStartDate} 
                         onChange={(date) => {
                             setStartDate(date);
                             console.log("This is the calendar data:", date)
@@ -76,6 +81,7 @@ function RescheduleAppointment({date, time}) {
                         shouldCloseOnSelect={false}
                         withPortal
                         />
+
                     <div className="valid-feedback">
                         Looks good!
                     </div>
@@ -84,13 +90,13 @@ function RescheduleAppointment({date, time}) {
                 <div className="col-md-6">
                     <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                     <p> Available Times </p>
-                    <Timeslot2 initialTime={time} onSubmit={getBookingData}/>
+                    <Timeslot2 onSubmit={getBookingData}/>
                 </div>
             </div>
 
                 <div className="col-12 reason-form">
                     <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
-                    <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..."></textarea>
+                    <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..." value={setConsulInput}></textarea>
                     <div className="valid-feedback">
                         Looks good!
                     </div>
@@ -103,7 +109,7 @@ function RescheduleAppointment({date, time}) {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleModal2}>Reschedule</Button>
+          <Button variant="primary" onClick={newDateTime}>Reschedule</Button>
         </Modal.Footer>
 
       </Modal>

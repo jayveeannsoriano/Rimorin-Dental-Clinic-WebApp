@@ -245,7 +245,26 @@ app.get("/*", function (req, res) {
 });
 
 
+//updateDataTable
 
+app.post("/updateDateTime", async (req, res) => {
 
+  const appNumber = req.body.appNum;
+  const updateDate = req.body.newDate;
+  const updateTime = req.body.newTime;
+  const updateConsult = req.body.newConsultation;
+  console.log(appNum);
 
-
+  try {
+    await AppDetails.find(appNumber, (err,updatedDateTime)=>{
+      updatedDateTime.date = updateDate;
+      updatedDateTime.time = updateTime;
+      updatedDateTime.consultation = updateConsult;
+      updatedDocument.save();
+      res.send("update");
+    });
+  } catch (err) {
+    alert("There is some error");
+    console.log(err)
+  }
+});

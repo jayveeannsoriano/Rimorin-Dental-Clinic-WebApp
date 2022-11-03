@@ -20,7 +20,7 @@ function Sidebar_Admin(){
 
                     {/* Dashboard Nav */}
                     <li className="nav-item">
-                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dashboard/dentist-dashboard" }>
+                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>

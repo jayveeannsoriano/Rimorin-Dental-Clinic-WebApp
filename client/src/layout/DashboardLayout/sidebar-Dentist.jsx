@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 // 2-dentist
 // 3-patient
 
-function Sidebar(){
+function Sidebar_Dentist(){
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     return(
         <div>
@@ -29,7 +29,7 @@ function Sidebar(){
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
-                        href="/dashboard/appointments" 
+                        href="/dentist-dashboard/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
@@ -40,7 +40,7 @@ function Sidebar(){
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
                         data-bs-target="#forms-nav"
-                        href="/dashboard/calendar">
+                        href="/dentist-dashboard/calendar">
                         <i className="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
@@ -55,13 +55,13 @@ function Sidebar(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/dashboard/patient-records/patient-info">
+                                <a href="/dentist-dashboard/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/dashboard/patient-records/dental-record">
+                                <a href="/dentist-dashboard/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -71,7 +71,7 @@ function Sidebar(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/eprescription">
+                        <a className="nav-link collapsed" href="/dentist-dashboard/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -79,7 +79,7 @@ function Sidebar(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/payment-records">
+                        <a className="nav-link collapsed" href="/dentist-dashboard/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -89,7 +89,7 @@ function Sidebar(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/userprofile">
+                        <a className="nav-link collapsed" href="/dentist-dashboard/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
@@ -108,4 +108,4 @@ function Sidebar(){
     )
 }
 
-export default Sidebar;
+export default Sidebar_Dentist;

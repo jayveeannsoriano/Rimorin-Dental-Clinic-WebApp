@@ -2,9 +2,9 @@ import { useRoutes } from 'react-router-dom';
 
 // routes
 import DashboardRoutes from './DashboardRoutes';
-import DentistDashboardRoutes from './DentistDashboardRoutes';
 import AuthenticationRoutes from './AuthenticationRoutes';
 import AdminRoute from './AdminRoutes';
+import DentistDashboardRoutes from './DentistDashboardRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
 

@@ -40,7 +40,7 @@ const DentistDashboardRoutes = {
             element: <Appointments />
         },
         {
-            path: '/dashboard/appointments',
+            path: '/dentist-dashboard/appointments',
             children: [
                 {
                     path: '/dentist-dashboard/appointments/request-appointment',
