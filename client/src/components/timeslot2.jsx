@@ -45,7 +45,6 @@ const Timeslot2 = ({props}) => {
                   setGetTime(e.target.value)
                   props.onSubmit(time)
                   console.log(time);
-                  style="props.inital"
                   }}>{time}</Button>
                   
             </div>
