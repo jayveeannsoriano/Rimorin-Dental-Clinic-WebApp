@@ -149,7 +149,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(getTime);
 
   //inserting all data
-  const AppData = new AppDetails({pName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime});
 
   try{
     await AppData.save();

@@ -9,5 +9,5 @@ import AdminRoute from './AdminRoutes';
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function ThemeRoutes() {
-    return useRoutes([DashboardRoutes,AuthenticationRoutes, AdminRoute]);
+    return useRoutes([DashboardRoutes,AuthenticationRoutes, AdminRoute, DentistDashboardRoutes]);
 }

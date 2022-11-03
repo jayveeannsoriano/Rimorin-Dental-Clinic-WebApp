@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
-import DashboardTable from '../../components/dashboardTable';
+import DentistDTable from '../../components/dental-table';
 
 export default function DentistDashboard() {  
   return (
@@ -133,7 +133,7 @@ export default function DentistDashboard() {
                   </div>
                   <h1>TODAY'S APPOINTMENT</h1>
                     <div>
-                      <DashboardTable/>
+                      <DentistDTable/>
                     </div>
                 </div>
               </div>

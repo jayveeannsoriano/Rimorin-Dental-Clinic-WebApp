@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import CancelAppointment from "../../components/modals/cancel-appointment.jsx";
 import RescheduleAppointment from "../../components/modals/reschedule-appointment.jsx";
 import '../../styles/dashboard.css';
 import '../../styles/modals.css';
 
 export default function AppointmentPage() {  
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   return (
     <div>
@@ -21,7 +21,7 @@ export default function AppointmentPage() {
       </nav>
         
       <div className="col-6 .col-md-4">
-        <Button onClick={() => {navigate("/dashboard/appointments/request-appointment")}}>
+        <Button href="/dashboard/appointments/request-appointment">
           Request Appointment
         </Button>
       </div>

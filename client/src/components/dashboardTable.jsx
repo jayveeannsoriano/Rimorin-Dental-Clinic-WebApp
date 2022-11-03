@@ -27,6 +27,7 @@ const DashboardTable = () => {
     }
 
     const onRowClick = (state, rowInfo, column, instance) => {
+        console.log(rowInfo);
         return {
             onClick: e => {
                 console.log('A Td Element was clicked!')
@@ -41,7 +42,7 @@ const DashboardTable = () => {
     const columns = [
         {
             name: 'Doctor',
-            selector: (row) => row.pName,
+            selector: (row) => row.dName,
             sortable: true,
         },
         {

@@ -36,50 +36,50 @@ const DentistDashboardRoutes = {
             element: <DashboardPage />
         },
         {
-            path: '/dashboard/appointments',
+            path: '/dentist-dashboard/appointments',
             element: <Appointments />
         },
         {
             path: '/dashboard/appointments',
             children: [
                 {
-                    path: '/dashboard/appointments/request-appointment',
+                    path: '/dentist-dashboard/appointments/request-appointment',
                     element: <RequestAppointment />
                 },
             ]
         },
         {
-            path: '/dashboard/calendar',
+            path: '/dentist-dashboard/calendar',
             element: <Calendar/>
         },
         {
-            path: '/dashboard/patient-records',
+            path: '/dentist-dashboard/patient-records',
             children: [
                 {
-                    path: '/dashboard/patient-records/patient-info',
+                    path: '/dentist-dashboard/patient-records/patient-info',
                     element: <PatientInfo />
                 }
             ]
         },
         {
-            path: '/dashboard/patient-records',
+            path: '/dentist-dashboard/patient-records',
             children: [
                 {
-                    path: '/dashboard/patient-records/dental-record',
+                    path: '/dentist-dashboard/patient-records/dental-record',
                     element: <DentalRecords />
                 }
             ]
         },
         {
-            path: '/dashboard/eprescription',
+            path: '/dentist-dashboard/eprescription',
             element: <Eprescription />
         },
         {
-            path: '/dashboard/payment-records',
+            path: '/dentist-dashboard/payment-records',
             element: <PaymentRecords />
         },
         {
-            path: '/dashboard/userprofile/',
+            path: '/dentist-dashboard/userprofile/',
             // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
             element: <UserProfile />
         }

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 // 3-patient
 
 function Sidebar_Admin(){
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     return(
         <div>
             <aside id="sidebar" className="sidebar">
@@ -15,16 +16,24 @@ function Sidebar_Admin(){
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
                     <div className='divider'></div>
-                    <h4>ADMIN MENU</h4>
+                    <h4>DENTIST MENU</h4>
+
+                    {/* Dashboard Nav */}
+                    <li className="nav-item">
+                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dashboard/dentist-dashboard" }>
+                        <i className="fa-solid fa-table-columns"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
 
                     {/* Appointments Nav */}
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <a className="nav-link collapsed" 
                         href="/admin/appointments">
                         <i class="fa-solid fa-stethoscope"></i>
                         <span>Appointments</span>
                         </a>
-                    </li>
+                    </li> */}
 
                      {/* Clinic Hours Nav */}
                      <li className="nav-item">
@@ -76,8 +85,7 @@ function Sidebar_Admin(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
-                        href="/logout">
+                    <a className="nav-link collapsed" href={"/auth/login"}>
                         <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

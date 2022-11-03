@@ -27,7 +27,8 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
      //insert data
 
     // console.log('Posting!!');
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
+    //Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
+    Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
 
     fetch("https://cors-anywhere.herokuapp.com/https://api.movider.co/v1/sms", {
         body: "api_key=9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X&api_secret=9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA&to="+userInfo['mobile']+ "&text= Hi"+userNameApp+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+values.date+" "+values.time+" due to" + values.conslutation + ".",

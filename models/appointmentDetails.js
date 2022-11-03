@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const AppointmentDetails = new mongoose.Schema(
   {
     pName: String,
+    dName: String,
     appNum: String,
     date: String,
     time: String,
