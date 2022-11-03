@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import DentistDTable from '../../components/dental-table';
 
 export default function DentistDashboard() {  
+  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   return (
     <>
       <nav>
@@ -17,7 +18,7 @@ export default function DentistDashboard() {
 
       {/* Page Title */}
       <div className="pagetitle">
-        <h1>Welcome Back, Dr. <span id="first_name"> </span>!</h1>
+        <h1>Welcome, Dr. {userInfo['lname']}!</h1>
         <h2>September 22, 2022</h2>
         <p>Time (AM/PM)</p>
       </div>
