@@ -7,19 +7,15 @@ import '../../styles/booking.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
+import { useEffect } from 'react';
 
 function RescheduleAppointment(appNum) {
   const [modalState, setModalState] = useState('close');
-  console.log(appNum)
   
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
    
-  }
-
-  const handleModal2= () => {
-    
   }
 
   //calendar input
@@ -31,6 +27,12 @@ function RescheduleAppointment(appNum) {
   //time input
   const [newSetTime, setGetTime] = useState("");
 
+  //retrieve app number
+  const StringAppNum = JSON.stringify(appNum);
+  const ConvertStringApp = JSON.parse(StringAppNum);
+  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+
+
   //retrieve Time data from Timeslot
   const getBookingData = (data)=>{
       console.log('Retrieving Data from Booking Input: ', data)
@@ -39,8 +41,13 @@ function RescheduleAppointment(appNum) {
 
   //update date and time
   const newDateTime = () =>{
-    console.log(appNum);
-   //Axios.post("http://localhost:3001/updateDateTime",{appNum:appNum, newDate: newStartDate, newTime: newSetTime, newCosultation: newConsulInput});
+    console.log("Updating " + AppNumber);
+    console.log("Update values: " + newStartDate + " " + newSetTime + " " + newConsulInput);
+    Axios.put("http://localhost:3001/updateDateTime",{
+     appNum: AppNumber,
+     newDate: newStartDate,
+     newTime: newSetTime,
+     newConsultation: newConsulInput});
     setModalState("modal-2");
   }
 
@@ -96,7 +103,7 @@ function RescheduleAppointment(appNum) {
 
                 <div className="col-12 reason-form">
                     <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
-                    <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..." value={setConsulInput}></textarea>
+                    <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..." onChange= {(e) => setConsulInput(e.target.value)}></textarea>
                     <div className="valid-feedback">
                         Looks good!
                     </div>

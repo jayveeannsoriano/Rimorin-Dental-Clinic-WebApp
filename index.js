@@ -161,7 +161,7 @@ app.post("/insertAppointment", async(req,res) => {
 
 app.get("/getAppointmentDetails", async(req,res) => {
     
-  AppDetails.find({})
+  await AppDetails.find({})
       .then((data) => {
         console.log('Data:', data);
         res.json(data);
@@ -247,24 +247,27 @@ app.get("/*", function (req, res) {
 
 //updateDataTable
 
-app.post("/updateDateTime", async (req, res) => {
+app.put("/updateDateTime", async (req, res) => {
 
   const appNumber = req.body.appNum;
   const updateDate = req.body.newDate;
+  const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
+  console.log(updateDate)
+  console.log(updateSlicedDate)
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
-  console.log(appNum);
+  console.log(appNumber + " " + updateSlicedDate + " " + updateTime + " " + updateConsult);
 
-  try {
-    await AppDetails.find(appNumber, (err,updatedDateTime)=>{
-      updatedDateTime.date = updateDate;
-      updatedDateTime.time = updateTime;
-      updatedDateTime.consultation = updateConsult;
-      updatedDocument.save();
-      res.send("update");
-    });
-  } catch (err) {
-    alert("There is some error");
-    console.log(err)
-  }
+  await AppDetails.findOneAndUpdate({appNum: appNumber}, {date: updateSlicedDate, time: updateTime, consultation: updateConsult})
+  console.log("Appointment Details Updated!");
 });
+
+//deleteDataTable
+
+app.put("/deleteAppointment", async (req,res) => {
+
+  const appNumber = req.body.appNum;
+  await AppDetails.findOneAndDelete({appNum: appNumber})
+    console.log("Appointment Successfully Deleted!.");
+  
+})

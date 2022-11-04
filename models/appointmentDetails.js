@@ -12,7 +12,7 @@ const AppointmentDetails = new mongoose.Schema(
   },
   {
     collection: "AppointmentDetails",
-  }
+  },
 );
 
 const AppDetailsDB = mongoose.model("AppointmentDetails", AppointmentDetails);

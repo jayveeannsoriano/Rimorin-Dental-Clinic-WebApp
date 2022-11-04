@@ -53,7 +53,7 @@ export default function AppointmentPage() {
                         <td>Brandon Jacob</td>
                         <td><a href="#" class="text-primary">At praesentium minu</a></td>
                         <td><span class="badge bg-success">Approved</span></td>
-                        <td><RescheduleAppointment />  <CancelAppointment /> <span class="badge bg-secondary"><i class="bi bi-eye"></i> View</span></td>
+                        {/* <td><RescheduleAppointment />  <CancelAppointment /> <span class="badge bg-secondary"><i class="bi bi-eye"></i> View</span></td> */}
                       </tr>
 
                     </tbody> 
