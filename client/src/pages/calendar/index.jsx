@@ -40,7 +40,7 @@ export default class Calendar extends React.Component {
             headerToolbar={{
               right: "dayGridMonth timeGridWeek timeGridDay",
               center: "title",
-              left: "prev next today"
+              left: "today prev next"
             }}
           />
         </div>

@@ -105,11 +105,13 @@
 }
 
 #fc-dom-1.fc-toolbar-title{
-    margin-left: 3px;
+    margin-left: -370px;
+    margin-right: 230px;
     color: rgba(110, 92, 245);
     font-family: var(--body-font);
     font-size: 25px;
     font-weight: bolder;
+
     
 
 }
@@ -149,6 +151,7 @@
     background-color: #ffffff;
     color: black;
     border-color: #2c3e5000;
+    margin-left: 200px;
 }
 
 .fc-prev-button.fc-button.fc-button-primary:active {
@@ -160,6 +163,7 @@
     background-color: #ffffff;
     color: black;
     border-color: #2c3e5000;
+    margin-left: 350px;
 }
 
 .fc-next-button.fc-button.fc-button-primary:active {
