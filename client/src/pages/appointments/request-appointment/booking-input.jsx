@@ -13,9 +13,14 @@ import Axios from 'axios';
 const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,values}) => {
 
         //user info
-        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-        var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
-        const userNameApp = JSON.parse(getUserName)
+        try {
+            var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+            var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
+            const userNameApp = JSON.parse(getUserName)
+        } catch (error) {
+            console.error("Website error");
+            console.error(error);
+        }
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
