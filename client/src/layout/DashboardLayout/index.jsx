@@ -7,7 +7,12 @@ import Sidebar_Dentist from "./sidebar-Dentist";
 import { Outlet } from 'react-router-dom';
 
 const DashboardLayout = () => {
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    try {
+        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    } catch (error) {
+        console.error("Website error");
+        console.error(error);
+    }
     const [isSidebar] = useState(true);
 
     return(

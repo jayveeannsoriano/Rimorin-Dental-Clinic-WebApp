@@ -3,7 +3,13 @@ import styles from '../../styles/dashboard.css'
 
 
 function dashboardHeader(){
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    try {
+        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    } catch (error) {
+        console.error("Website error");
+        console.error(error);
+    }
+
     console.log(userInfo);
     return (
         <div>
