@@ -896,7 +896,7 @@ padding-right: 5px;
 .rdt_TableCol:hover,
 .rdt_TableCol:focus{
   color: var(--primary-color) !important;
-  opacity: 100% !important;
+  opacity: none !important;
 }
 
 /* data row content */
@@ -916,6 +916,10 @@ padding-right: 5px;
 .datatable-search{
   border: 1px solid #DBDDE0 !important;
   border-radius: 8px !important;
+}
+
+.cLIMJU{
+  padding: 0px !important;
 }
 
 /* Pagination */

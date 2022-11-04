@@ -51,7 +51,7 @@ const DashboardTable = () => {
             //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
             selector: row => <div>
                 <span id="appointment_status"> Accepted </span> 
-                </div>,
+                </div>
         },
         {
             name: "Action",
