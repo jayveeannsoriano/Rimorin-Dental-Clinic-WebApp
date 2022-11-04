@@ -6,7 +6,12 @@ import {Link} from 'react-router-dom';
 // 3-patient
 
 function Sidebar(){
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    try {
+        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    } catch (error) {
+        console.error("Website error");
+        console.error(error);
+    }
     return(
         <div>
             <aside id="sidebar" className="sidebar">

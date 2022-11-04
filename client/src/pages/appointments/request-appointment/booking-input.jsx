@@ -13,13 +13,17 @@ import Axios from 'axios';
 const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,values}) => {
 
         //user info
-        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-        var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
-        const userNameApp = JSON.parse(getUserName)
+        try {
+            var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+            var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
+            const userNameApp = JSON.parse(getUserName)
+        } catch (error) {
+            console.error("Website error");
+            console.error(error);
+        }
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
-
 
         //time input
         const [time, setGetTime] = useState("");
@@ -43,9 +47,12 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
 
         //go to next modal
         nextStep();
+
+
     };
 
     return(
+        
             <>
                 <nav>
                     <ol className="breadcrumb">
@@ -105,7 +112,7 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                     <form className="row g-3 needs-validation" noValidate/>
                         <div className="col-md-4">
                             <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-                            {/* New Calendar from https://reactdatepicker.com/#example-default */}
+
                             <DatePicker 
                             selected={startDate} 
                             onChange={(date) => {
@@ -117,7 +124,9 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                             placeholderText="Choose a date"
                             minDate={new Date()}
                             shouldCloseOnSelect={false}
-                            withPortal
+                            dateFormat="MMMM d, yyyy"
+                            //exclude sundays
+                            filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
                             />
 
                             <div className="valid-feedback">
@@ -160,12 +169,6 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                             <a href='/appointments'><button className="btn btn-outline-secondary" type="submit">Cancel</button></a>
                             <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
                             </div>
-                        </div>
-
-                        {/* Review Appointment Details */}
-
-                        <div id="review-details" className="review-details">
-                            
                         </div>
 
                     </div> {/* End of card-body */}

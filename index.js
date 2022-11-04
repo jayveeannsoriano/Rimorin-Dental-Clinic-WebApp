@@ -8,9 +8,11 @@ const jwt = require("jsonwebtoken");
 
 app.use(express.json()); //prints body request
 app.use(cors());
+require('dotenv').config()
 
-const JWT_SECRET = "sdaikdhjiIHDiu8987J(@?!dDSF8645DAsadA[]ds54aASD()21asd1SFP";
+const JWT_SECRET = process.env.JWT_SECRET;
 const PORT = process.env.PORT || 3001;
+const mongoUrl = process.env.MONGOOSE_URL;
 
 const path = require("path");
 
@@ -26,7 +28,7 @@ app.listen(PORT, () => {
 
 //connect with DB
 mongoose
-  .connect('mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority', {
+  .connect(mongoUrl, {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -101,7 +103,7 @@ app.put("/update", async (req, res) => {
 });
 
 //delete function
-app.get("/delete/:id", async (req, res) => {
+app.delete("/delete/:id", async (req, res) => {
   
   const id = req.params.id; 
   
