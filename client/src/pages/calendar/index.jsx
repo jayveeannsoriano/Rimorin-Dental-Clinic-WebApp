@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list"
 import interactionPlugin from "@fullcalendar/interaction";
 import { Draggable } from "@fullcalendar/interaction";
+import axios from "axios";
 
 // // import "@fullcalendar/core/main.css";
 // import "@fullcalendar/daygrid/main.css";
@@ -14,13 +15,26 @@ import { Draggable } from "@fullcalendar/interaction";
 import "../../styles/calendar.css"
 
 // project imports
-import events from './events';
 import CalendarCheckbox from './CalendarCheckbox';
 import CalendarBreadcrumbs from './CalendarBreadcrumbs';
+
+var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+// const [events, setEvents] = useState([]);
+
+
+const getUserAppointments = async() => {
+  try{
+      const response = await axios.get('http://localhost:3001/getUserAppts', { params: { pName: userInfo['fname'] + " " + userInfo['lname'] } });
+      return response.data;
+  }catch (error){
+      console.log(error)
+  
+}
 
 
 export default class Calendar extends React.Component {
   render() {
+
     return (
       <>
       <CalendarBreadcrumbs/>
@@ -29,14 +43,14 @@ export default class Calendar extends React.Component {
           <FullCalendar
             contentHeight={750}
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
-            events={events}
+            events={getUserAppointments}
             initialView="dayGridMonth"
             selectable = "true"
             nowIndicator
             droppable = 'true'
             editable = 'true'
-            dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
+            expandRows = 'true'
             headerToolbar={{
               right: "dayGridMonth timeGridWeek timeGridDay",
               center: "title",

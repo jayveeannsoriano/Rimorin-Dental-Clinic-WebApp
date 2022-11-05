@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3001;
 const mongoUrl = process.env.MONGOOSE_URL || "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 const path = require("path");
+const { deepEqual } = require("assert");
 
 // Serve any static files
 app.use(express.static(path.join(__dirname, "client/build")));
@@ -233,17 +234,77 @@ app.post("/RegisterUser", async (req, res) => {
   }
 });
 
-const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
+app.get("/getTotalPatients", async(req,res) => {
+    
+  await User.countDocuments({user_role_id:'1'})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
 
-//Send SMS API
-sdk.post('/sms', {
-  api_key: '1ydNHSiH1tV9iQCuvam9Nd5LdBs',
-  api_secret: 'JzHwVPqSgqQHzHIqeZ3o8Co5hqXNuQg4uZ6aJSM4',
-  to: '639462105905',
-  text: '<Message>'
-}, {accept: 'application/json'})
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
+app.get("/getUserAppts", async(req,res) => {
+  var url = require('url');
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  await AppDetails.find({pName:query.pName})
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if(data[key].appStatus==="Pending"){
+            color = "#FFC107"
+          }else if(data[key].appStatus==="Accepted"){
+            color = "#0DCAF0"
+          }else if(data[key].appStatus==="Finished"){
+            color = "#198754"
+          }else if(data[key].appStatus==="No Show"){
+            color = "#A9A9A9"
+          }else{
+            color = "#DC3545"
+          }
+          tempArr = {
+            title: data[key].dName + " at " +  data[key].time,
+            start: data[key].date,
+            color: color
+          }
+          allEvents.push(tempArr);
+        }
+        console.log(allEvents);
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    });
+
+app.get("/getTotalAppt", async(req,res) => {
+
+  await AppDetails.countDocuments({})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    });
+
+app.get("/getTotalPendingAppt", async(req,res) => {
+
+  await AppDetails.countDoc({"appStatus":"Pending"})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    });
+
 
 
 app.get("/*", function (req, res) {

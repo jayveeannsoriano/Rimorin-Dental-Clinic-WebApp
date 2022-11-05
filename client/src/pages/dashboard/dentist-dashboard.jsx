@@ -1,10 +1,34 @@
 import React from "react";
+import axios from "axios";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DentistDTable from '../../components/dental-table';
+import moment from 'moment'
+import { useState, useEffect } from 'react';
+
 
 export default function DentistDashboard() {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+
+  var totalPatients = axios.get('http://localhost:3001/getTotalPatients');
+
+  var totalAppts= axios.get('http://localhost:3001/getTotalAppts');
+
+  var totalPendingAppts= axios.get('http://localhost:3001/getTotalPendingAppts');
+
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((time) => new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+  
+  
   return (
     <>
       <nav>
@@ -19,8 +43,8 @@ export default function DentistDashboard() {
       {/* Page Title */}
       <div className="pagetitle">
         <h1>Welcome, Dr. {userInfo['lname']}!</h1>
-        <h2>September 22, 2022</h2>
-        <p>Time (AM/PM)</p>
+          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+          <p>{time}</p>
       </div>
 
       <section className="section dashboard">
@@ -37,7 +61,7 @@ export default function DentistDashboard() {
                     <i class="fa-solid fa-stethoscope"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>4</h6>
+                      <h6>{totalAppts}</h6>
                       {/* <!--<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>--> */}
 
                     </div>
@@ -72,7 +96,7 @@ export default function DentistDashboard() {
                     <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>24</h6>
+                      <h6>{totalPendingAppts}</h6>
                       {/* <!--<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>--> */}
 
                     </div>

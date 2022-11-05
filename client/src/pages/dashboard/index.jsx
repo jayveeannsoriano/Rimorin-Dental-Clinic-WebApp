@@ -2,10 +2,25 @@ import React from "react";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DashboardTable from '../../components/dashboardTable';
+import moment from 'moment'
+import { useState, useEffect } from 'react';
+
 // import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((time) => new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <>
         <nav>
@@ -20,8 +35,8 @@ const Dashboard = () => {
         {/* Page Title */}
         <div className="pagetitle">
           <h1>Welcome, {userInfo['fname']}!</h1>
-          <h2>September 22, 2022</h2>
-          <p>Time (AM/PM)</p>
+          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+          <p>{time}</p>
         </div>
 
         <section className="section dashboard">
