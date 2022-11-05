@@ -569,15 +569,21 @@ h6 {
   color: #899bbd;
 }
 
-.sidebar-nav .nav-link a:hover,
+/*.sidebar-nav .nav-link a:hover,
 .sidebar-nav .nav-link a.active {
   color: #4154f1;
-}
+}*/
 
-.sidebar-nav .nav-link a.active i {
+/*.sidebar-nav .nav-link a.active i {
   background-color: #4154f1;
-}
+}*/
 
+/*------testing------*/
+/*.sidebar-nav .nav-link a.active i:active {
+  color: #4154f1;
+  background-color: #4154f1;
+}*/
+/*-------------------*/
 
 .sidebar-nav .nav-link:hover i {
   color: var(--primary-color);
