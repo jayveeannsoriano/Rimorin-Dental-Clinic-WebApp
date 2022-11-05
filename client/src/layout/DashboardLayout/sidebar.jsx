@@ -33,12 +33,12 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className="nav-link" 
                         href="/dashboard/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
-                        </a>
+                        </a>                       
                     </li>
 
                     {/* Calendar Nav */}
@@ -114,3 +114,4 @@ function Sidebar(){
 }
 
 export default Sidebar;
+

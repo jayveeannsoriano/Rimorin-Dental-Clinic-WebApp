@@ -31,7 +31,9 @@ const getUserAppointments = async() => {
   }
 }
 
+
 export default class Calendar extends React.Component {
+
   render() {
 
     return (
