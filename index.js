@@ -229,6 +229,43 @@ app.post("/RegisterUser", async (req, res) => {
   }
 });
 
+app.get("/getTotalPatients", async(req,res) => {
+    
+  await User.countDocuments({user_role_id:'1'})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+app.get("/getTotalAppt", async(req,res) => {
+
+  await AppDetails.countDocuments({})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    });
+
+app.get("/getTotalPendingAppt", async(req,res) => {
+
+  await AppDetails.countDoc({"appStatus":"Pending"})
+      .then((data) => {
+        console.log('Data:', data);
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    });
+
+
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", 'index.html' ));

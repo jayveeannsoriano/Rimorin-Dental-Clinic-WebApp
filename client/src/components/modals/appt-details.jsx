@@ -93,17 +93,20 @@ function ApptDetails(appNum,date,time) {
   //appNum
   const StringAppNum = JSON.stringify(appNum);
   const ConvertStringApp = JSON.parse(StringAppNum);
-  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+  // const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+  const AppNumber = 3;
 
   //date
   const StringDate = JSON.stringify(appNum,time,date);
   const ConvertStringDate = JSON.parse(StringDate);
-  const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
+  // const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
+  const DateValue = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
 
   //time
   const StringAppTime = JSON.stringify(appNum,time,date);
   const ConvertStringTime = JSON.parse(StringAppTime);
-  const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
+  // const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
+  const TimeValue = 3;
   
 
   return (
@@ -136,7 +139,7 @@ function ApptDetails(appNum,date,time) {
 									<div class="row">
 										<div class="col-md-6">
 											<span id="appointmentbookingID" class="title">{AppNumber}</span>
-											<span id="date_selected" class="text">{DateValue} {TimeValue}</span>
+											{/* <span id="date_selected" class="text">{DateValue} {TimeValue}</span> */}
 										</div>
 										<div class="col-md-6">
 											<div class="text-right">

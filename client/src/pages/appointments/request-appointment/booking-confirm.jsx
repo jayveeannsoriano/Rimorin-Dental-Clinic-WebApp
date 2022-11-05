@@ -27,7 +27,7 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
      //insert data
 
     // console.log('Posting!!');
-    //Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
+    //Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
     Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
 
     fetch("https://cors-anywhere.herokuapp.com/https://api.movider.co/v1/sms", {
@@ -35,7 +35,7 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/x-www-form-urlencoded",
-            "Access-Control-Allow-Origin" : "https://rimorin-dental-clinic.herokuapp.com/"
+            "Access-Control-Allow-Origin" : "http://localhost:3001/"
         },
         method: "POST"
     })
