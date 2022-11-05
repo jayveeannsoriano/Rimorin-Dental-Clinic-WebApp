@@ -251,13 +251,13 @@ app.get("/getUserAppts", async(req,res) => {
         var allEvents = [];
         for (var key in data) {
           let color = "";
-          if(data[key].appStatus==="Pending"){
+          if(data[key].status==="Pending"){
             color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
+          }else if(data[key].status==="Accepted"){
             color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
+          }else if(data[key].status==="Finished"){
             color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
+          }else if(data[key].status==="No Show"){
             color = "#A9A9A9"
           }else{
             color = "#DC3545"
@@ -269,8 +269,7 @@ app.get("/getUserAppts", async(req,res) => {
           }
           allEvents.push(tempArr);
         }
-        console.log(allEvents);
-        res.json(allEvents);
+        res.json(allEvents  );
       })
       .catch((error) => {
         console.log('error: ', error)
