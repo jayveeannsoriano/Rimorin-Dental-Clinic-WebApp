@@ -19,19 +19,18 @@ import CalendarCheckbox from './CalendarCheckbox';
 import CalendarBreadcrumbs from './CalendarBreadcrumbs';
 
 var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-// const [events, setEvents] = useState([]);
 
 
 const getUserAppointments = async() => {
   try{
       const response = await axios.get('http://localhost:3001/getUserAppts', { params: { pName: userInfo['fname'] + " " + userInfo['lname'] } });
+      // setEvents(response.data);
       return response.data;
   }catch (error){
       console.log(error)
-  
+  }
 }
 }
-
 
 export default class Calendar extends React.Component {
 
@@ -51,6 +50,7 @@ export default class Calendar extends React.Component {
             nowIndicator
             droppable = 'true'
             editable = 'true'
+            dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
             expandRows = 'true'
             headerToolbar={{

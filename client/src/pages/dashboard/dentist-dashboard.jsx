@@ -10,21 +10,21 @@ import { useState, useEffect } from 'react';
 export default function DentistDashboard() {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
-  var totalPatients = axios.get('http://localhost:3001/getTotalPatients');
+  // var totalPatients = axios.get('http://localhost:3001/getTotalPatients');
 
-  var totalAppts= axios.get('http://localhost:3001/getTotalAppts');
+  // var totalAppts= axios.get('http://localhost:3001/getTotalAppts');
 
-  var totalPendingAppts= axios.get('http://localhost:3001/getTotalPendingAppts');
+  // var totalPendingAppts= axios.get('http://localhost:3001/getTotalPendingAppts');
 
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  // const [time, setTime] = useState(new Date().toLocaleTimeString());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((time) => new Date().toLocaleTimeString());
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTime((time) => new Date().toLocaleTimeString());
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
 
   
@@ -43,8 +43,8 @@ export default function DentistDashboard() {
       {/* Page Title */}
       <div className="pagetitle">
         <h1>Welcome, Dr. {userInfo['lname']}!</h1>
-          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <p>{time}</p>
+          {/* <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+          <p>{time}</p> */}
       </div>
 
       <section className="section dashboard">
