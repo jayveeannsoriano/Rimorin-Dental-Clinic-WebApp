@@ -7,8 +7,8 @@ const AppointmentDetails = new mongoose.Schema(
     date: String,
     time: String,
     consultation: String,
-    status: String,
-    action: String,
+    appStatus: String,
+    reasonCancel: String,
   },
   {
     collection: "AppointmentDetails",

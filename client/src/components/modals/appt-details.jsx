@@ -84,7 +84,7 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 
-function ApptDetails(appNum,date,time) {
+function ApptDetails(appNum,date,time,appStats) {
   const [modalState, setModalState] = useState('close');
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
@@ -96,14 +96,19 @@ function ApptDetails(appNum,date,time) {
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
 
   //date
-  const StringDate = JSON.stringify(appNum,time,date);
+  const StringDate = JSON.stringify(appNum,time,date,appStats);
   const ConvertStringDate = JSON.parse(StringDate);
   const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
 
   //time
-  const StringAppTime = JSON.stringify(appNum,time,date);
+  const StringAppTime = JSON.stringify(appNum,time,date,appStats);
   const ConvertStringTime = JSON.parse(StringAppTime);
   const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
+  
+  //appStats
+  const StringAppStats = JSON.stringify(appNum,time,date,appStats);
+  const ConvertStringStats = JSON.parse(StringAppStats);
+  const StatsValue = JSON.stringify(ConvertStringStats.appStats).replace(/"/g,"");
   
 
   return (
@@ -140,7 +145,7 @@ function ApptDetails(appNum,date,time) {
 										</div>
 										<div class="col-md-6">
 											<div class="text-right">
-												<button type="button" class="btn bg-success-light btn-sm" id="appointment_status">Completed</button>
+												<button type="button" class="btn bg-success-light btn-sm" id="appointment_status">{StatsValue}</button>
 											</div>
 										</div>
 									</div>
@@ -148,7 +153,7 @@ function ApptDetails(appNum,date,time) {
 							</li>
 							<li>
 								<span class="title">Status:</span>
-								<span class="text">Completed</span>
+								<span class="text">{StatsValue}</span>
 							</li>
 							<li>
 								<span class="title">Confirm Date:</span>
