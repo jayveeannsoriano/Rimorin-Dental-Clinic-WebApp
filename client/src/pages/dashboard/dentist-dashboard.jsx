@@ -9,25 +9,64 @@ import { useState, useEffect } from 'react';
 
 export default function DentistDashboard() {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-
-  // var totalPatients = axios.get('http://localhost:3001/getTotalPatients');
-
-  // var totalAppts= axios.get('http://localhost:3001/getTotalAppts');
-
-  // var totalPendingAppts= axios.get('http://localhost:3001/getTotalPendingAppts');
-
-  // const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTime((time) => new Date().toLocaleTimeString());
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
-
   
+  const [totalPatients, setTotalPatients] = useState(0);
+  const [totalAppts, setTotalAppts] = useState(0);
+  const [totalPendingAppts, setTotalPendingAppts] = useState(0);
+
+  const getTotalPatients = async() => {
+    try{
+        let resp = await axios.get('http://localhost:3001/getTotalPatients');
+        setTotalPatients(resp.data);
+    }catch (error){
+        console.log(error)
+    }
+  }
+
+  const getTotalAppts = async() => {
+    try{
+        let resp = await axios.get('http://localhost:3001/getTotalAppts');
+        console.log(resp);
+        setTotalAppts(resp.data);
+    }catch (error){
+        console.log(error)
+    }
+  }
+
+  const getTotalPendingAppts = async() => {
+    try{
+        let resp = await axios.get('http://localhost:3001/getTotalPendingAppts');
+        setTotalPendingAppts(resp.data);
+    }catch (error){
+        console.log(error)
+    }
+  }
+
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, );
+
+  useEffect(() => {
+    getTotalAppts();
+  }, []);
+  
+  useEffect(() => {
+    getTotalPatients();
+  }, []);
+
+  useEffect(() => {
+    getTotalPendingAppts();
+  }, []);
+
+  // getTotalAppts();
+  // getTotalPatients();
+  // getTotalPendingAppts();
   
   return (
     <>
@@ -43,8 +82,8 @@ export default function DentistDashboard() {
       {/* Page Title */}
       <div className="pagetitle">
         <h1>Welcome, Dr. {userInfo['lname']}!</h1>
-          {/* <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <p>{time}</p> */}
+          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+          <p>{time}</p>
       </div>
 
       <section className="section dashboard">
@@ -96,7 +135,7 @@ export default function DentistDashboard() {
                     <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{totalPendingAppts}</h6>
+                      <h6>{totalPatients}</h6>
                       {/* <!--<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>--> */}
 
                     </div>
@@ -132,7 +171,7 @@ export default function DentistDashboard() {
                     <i class="fa-solid fa-calendar-check"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>10</h6>
+                      <h6>{totalPendingAppts}</h6>
                       {/* <!--<span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>--> */}
 
                     </div>

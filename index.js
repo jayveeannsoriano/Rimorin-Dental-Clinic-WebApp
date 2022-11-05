@@ -170,7 +170,6 @@ app.get("/getAppointmentDetails", async(req,res) => {
     
   await AppDetails.find({})
       .then((data) => {
-        console.log('Data:', data);
         res.json(data);
       })
       .catch((error) => {
@@ -238,7 +237,6 @@ app.get("/getTotalPatients", async(req,res) => {
     
   await User.countDocuments({user_role_id:'1'})
       .then((data) => {
-        console.log('Data:', data);
         res.json(data);
       })
       .catch((error) => {
@@ -280,11 +278,10 @@ app.get("/getUserAppts", async(req,res) => {
       });
     });
 
-app.get("/getTotalAppt", async(req,res) => {
+app.get("/getTotalAppts", async(req,res) => {
 
   await AppDetails.countDocuments({})
       .then((data) => {
-        console.log('Data:', data);
         res.json(data);
       })
       .catch((error) => {
@@ -292,11 +289,10 @@ app.get("/getTotalAppt", async(req,res) => {
       });
     });
 
-app.get("/getTotalPendingAppt", async(req,res) => {
+app.get("/getTotalPendingAppts", async(req,res) => {
 
-  await AppDetails.countDoc({"appStatus":"Pending"})
+  await AppDetails.countDocuments({"appStatus":"Pending"})
       .then((data) => {
-        console.log('Data:', data);
         res.json(data);
       })
       .catch((error) => {
