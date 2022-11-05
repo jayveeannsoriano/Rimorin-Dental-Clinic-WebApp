@@ -32,13 +32,13 @@ function Sidebar_Admin(){
                     </li>
 
                     {/* Appointments Nav */}
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                         <a className="nav-link collapsed" 
                         href="/admin/appointments">
                         <i class="fa-solid fa-stethoscope"></i>
                         <span>Appointments</span>
                         </a>
-                    </li> */}
+                    </li>
 
                      {/* Clinic Hours Nav */}
                      <li className="nav-item">

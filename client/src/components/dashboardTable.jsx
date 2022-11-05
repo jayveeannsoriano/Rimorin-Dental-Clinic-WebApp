@@ -49,16 +49,15 @@ const DashboardTable = () => {
         {
             name: "Appt. Status",
             //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
-            selector: row => <div>
-                <span id="appointment_status"> Accepted </span> 
-                </div>
+            selector: row => row.appStatus,
+            sortable: true,
         },
         {
             name: "Action",
             selector: row => <div>
                 < ReschedConfirmation appNum = {row.appNum}/>
                 <CancelAppointment appNum = {row.appNum}/>
-                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time}/>
+                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
                 </div>
         },
     ];

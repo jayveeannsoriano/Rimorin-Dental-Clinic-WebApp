@@ -6,6 +6,7 @@ import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import ApptStatus from "./modals/appt-status";
 import CancelAppointment from "./modals/cancel-appointment";
+import Rebook from "./modals/rebook"
 
 const DashboardTable = () => {
 
@@ -52,22 +53,21 @@ const DashboardTable = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.date + " |  " + row.time,
+            selector: (row) => row.date + " | " + row.time,
             sortable: true,
         },
         {
             name: "Appt. Status",
             //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
-            selector: row => <div>
-                <span id="appointment_status"> Accepted </span> 
-                </div>,
+            selector: row => row.appStatus,
+            sortable:true,
         },
         {
             name: "Action",
             selector: row => <div>
-                < ReschedConfirmation onClick={onRowClick}/>
-                <CancelAppointment/>
-                < ApptDetails/>
+                <Rebook appNum = {row.appNum} />
+                < ReschedConfirmation appNum = {row.appNum}/>
+                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
                 </div>
         },
     ];

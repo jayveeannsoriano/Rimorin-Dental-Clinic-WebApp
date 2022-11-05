@@ -103,7 +103,7 @@ function RescheduleAppointment(appNum) {
             </div>
 
                 <div className="col-12 reason-form">
-                    <label htmlFor="validationCustom01" className="form-label">Reason for Consultation <span className="text-danger font-weight-bold">*</span></label>
+                    <label htmlFor="validationCustom01" className="form-label">Reason for Reschedule <span className="text-danger font-weight-bold">*</span></label>
                     <textarea className="form-control" id="reason" rows="5" placeholder="Write reason here..." onChange= {(e) => setConsulInput(e.target.value)}></textarea>
                     <div className="valid-feedback">
                         Looks good!
@@ -136,7 +136,7 @@ function RescheduleAppointment(appNum) {
 
 
         <Modal.Body>
-            You have successfully re-scheduled your appoointment. Your re-schedule request is now pending. 
+            You have successfully re-scheduled your appointment. Your re-schedule request is now pending. 
         </Modal.Body>
 
 

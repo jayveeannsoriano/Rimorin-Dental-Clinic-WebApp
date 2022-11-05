@@ -130,7 +130,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(userNameApp)
 
   //Docotor name
-  const docName = "Pamela Rimorin Concepcion"
+  const docName = "Pamela Rimorin Concepcion";
 
   //Appointment Number
 
@@ -151,8 +151,12 @@ app.post("/insertAppointment", async(req,res) => {
   const getTime = req.body.getTime;
   console.log(getTime);
 
+  //appt status default when creating an appointment
+  const insertAppStatus = "Pending";
+  console.log(insertAppStatus);
+
   //inserting all data
-  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime});
+  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
 
   try{
     await AppData.save();
@@ -332,4 +336,15 @@ app.put("/deleteAppointment", async (req,res) => {
   await AppDetails.findOneAndDelete({appNum: appNumber})
     console.log("Appointment Successfully Deleted!.");
   
+})
+
+//update status
+
+app.put("/updateStatus", async (req,res) => {
+
+  const appNumber = req.body.appNum;
+  const newStatus = req.body.newAppStatus;
+
+  await AppDetails.findOneAndUpdate({appNum: appNumber}, {appStatus: newStatus});
+  console.log("Appointment Status Successfully Updated!.");
 })
