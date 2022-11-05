@@ -12,7 +12,7 @@ require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const PORT = process.env.PORT || 3001;
-const mongoUrl = process.env.MONGOOSE_URL;
+const mongoUrl = process.env.MONGOOSE_URL || "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 const path = require("path");
 
@@ -228,18 +228,6 @@ app.post("/RegisterUser", async (req, res) => {
     res.send({ status: "sign up error" + error });
   }
 });
-
-const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
-
-//Send SMS API
-sdk.post('/sms', {
-  api_key: '1ydNHSiH1tV9iQCuvam9Nd5LdBs',
-  api_secret: 'JzHwVPqSgqQHzHIqeZ3o8Co5hqXNuQg4uZ6aJSM4',
-  to: '639462105905',
-  text: '<Message>'
-}, {accept: 'application/json'})
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
 
 
 app.get("/*", function (req, res) {
