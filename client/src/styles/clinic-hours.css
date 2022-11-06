@@ -1,0 +1,31 @@
+.toggle-container, 
+.time-range{
+    display: flex;
+    align-items: center;
+    margin: 45px;
+}
+
+#apply-all{
+    margin-left: 1in;
+    width: auto;
+}
+
+#time-select{
+    width: 15%;
+}
+
+.range{
+    margin: 30px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.weekday{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* Override ANTD Switch CSS */
+.ant-switch-checked{
+    background-color: var(--primary-color) !important;
+}

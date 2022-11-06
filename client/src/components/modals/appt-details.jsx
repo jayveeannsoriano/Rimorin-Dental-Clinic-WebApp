@@ -38,7 +38,7 @@ function ApptDetails(appNum,date,time,appStats) {
   return (
     <>
       <Button className="view-button" variant="primary" onClick={handleModal1}>
-	  <i class="ci-show"></i>View
+      <i class="bi bi-eye-fill"></i>View
       </Button>
 
       <Modal

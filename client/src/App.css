@@ -791,62 +791,47 @@ margin-bottom: 0;
 /*--------------------------------------------------------------
 # Datatable action buttons
 --------------------------------------------------------------*/
-.view-button{
-  width: 80px !important;
-  height: 32px !important;
+/*--------------------------------------------------------------
+# Datatable action buttons
+--------------------------------------------------------------*/
+.view-button, 
+.update-button,
+.cancel-button,
+.resched-button {
+  font-size: 12px !important;
   padding: 8px 15px !important;
-  background: #EFF6FF !important;
-  border-radius: 22px !important;
-  color: #3B82F6 !important;
   border: none !important;
+  border-radius: 22px !important;
   font-style: normal !important;
   font-weight: 500 !important;
-  font-size: 14px !important;
   line-height: 15px !important;
 }
 
+.view-button{
+  background: #EFF6FF !important;
+  color: #3B82F6 !important;
+}
+
 .cancel-button{
-  width: 92px !important;
-  height: 32px !important;
-  padding: 8px 15px !important;
-  color: #EF4444;
   background: #FEF2F2 !important;
-  border-radius: 22px !important;
+  color: #EF4444;
+}
+
+.update-button{
+  background: #FFFBEB !important;
+  color: #D97706 !important;
+}
+
+.resched-button{
+  background: #F9DBFE!important;
+  color: #6C0386!important;
 }
 
 .view-button i, 
 .update-button i,
 .cancel-button i,
 .resched-button i {
-padding-right: 5px;
-}
-
-.update-button{
-  width: 96px !important;
-  height: 32px !important;
-  padding: 8px 15px !important;
-  background: #FFFBEB !important;
-  border-radius: 22px !important;
-  color: #D97706 !important;
-  border: none !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  line-height: 15px !important;
-}
-
-.resched-button{
-  width: auto !important;
-  height: auto !important;
-  padding: 8px 15px !important;
-  background: #F9DBFE!important;
-  border-radius: 22px !important;
-  color: #6C0386!important;
-  border: none !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  line-height: 15px !important;
+padding-right: 4px;
 }
 
 /* Appointment Status */
@@ -892,11 +877,27 @@ padding-right: 5px;
 --------------------------------------------------------------*/
 /* col titles */
 .rdt_TableCol { 
+  max-width: 250px !important;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   color: var(--text-color);
-  align-items: center ;
+}
+
+/* div of action buttons in dashboardTable.jsx */
+.action-buttons{
+  width: 800px;
+}
+
+#cell-1-undefined,
+#cell-2-undefined,
+#cell-3-undefined,
+#cell-4-undefined{
+  max-width: 250px !important;
+}
+
+#cell-5-undefined{
+  max-width: 780px !important;
 }
 
 .rdt_TableCol:hover,

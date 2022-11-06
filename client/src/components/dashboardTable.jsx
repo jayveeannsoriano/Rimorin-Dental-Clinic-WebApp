@@ -54,11 +54,12 @@ const DashboardTable = () => {
         },
         {
             name: "Action",
-            selector: row => <div>
+            selector: row => 
+            <div className="action-buttons">
                 < ReschedConfirmation appNum = {row.appNum}/>
-                <CancelAppointment appNum = {row.appNum}/>
+                < CancelAppointment appNum = {row.appNum}/>
                 < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-                </div>
+            </div>
         },
     ];
 
