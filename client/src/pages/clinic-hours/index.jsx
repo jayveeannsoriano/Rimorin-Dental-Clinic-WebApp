@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form} from "react-bootstrap";
-import { Switch } from "antd";
+import { Switch } from 'antd';
 import "../../styles/clinic-hours.css";
 import "antd/dist/antd.css";
 

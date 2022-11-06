@@ -13,7 +13,8 @@ const Appointments = lazy(() => import('../pages/appointments/index'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
-const Eprescription = lazy(() => import('../pages/eprescription/index'));
+// const Eprescription = lazy(() => import('../pages/eprescription/index'));
+const Eprescription = lazy(() => import('../pages/eprescription/create-eprescription'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
