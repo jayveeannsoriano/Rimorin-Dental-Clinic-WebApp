@@ -379,9 +379,7 @@ const sgMail = require('@sendgrid/mail')
       })
   });
 
-  app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
-  });
+  
 
   //DIRTY CODE
 
@@ -391,27 +389,25 @@ const sgMail = require('@sendgrid/mail')
 const { google } = require('googleapis');
   
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
-const GOOGLE_PRIVATE_KEY="<private-key>"
-const GOOGLE_CLIENT_EMAIL = "<client-email>"
-const GOOGLE_PROJECT_NUMBER = "<project-number>"
-const GOOGLE_CALENDAR_ID = "<calendar-id>"
-  
+const GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDlyjScX4Hhy6Ev\nYp2JaFzspJ1ixfQp9Cil3cHC4uFxQdKNdKnokL+mHc2RfUCg/lRZZg+ol7SRyA4R\neD0XEuZjOfSOjJIYOS+6AHIOXg0rDK2tNi+CZJPxK5H9IKwRdG8wMCH0Hp8K0qCk\ntRilKr+0aWpJ1bhDIQoPt3NkzNvLX+YibWWm+HFYJlA9V6Ys6KbhTJmtXfipGj1l\nCuG/x7KQldFOSEl4cQFhg83K43JHt/AUFohrd13Xdc4hRKhnQo7i7sbrFW4OdNEt\nfpJ2yvka3qdRRY1cC0okXIOeLKhECn/pw2phywWC2aiH5KF3UOIPO0lSf/1jbY0l\n2msVg+LLAgMBAAECggEAFxDhkBLMNFCe6OVCwADAVya8/6W0OSPfkqq8YOYqUBaV\n3oon5gblnfSe5mxGuQJekCy9BKTZxMpqkxlZNIA6rRorsMVugsz2u/qAeG27b6dR\npbHrOfEDorFHcbu+WfAwmwsx1VHfkBQNeQsOosG0RZVRTIEOAnsGCgbVp/giVfsl\nIaWBtHcTW7zWNRoM1TTzU9dWfIEtlt3Rrb2pNCS0mDztTuGRFzynufKpGr+DzkuQ\noft9o6eSAgUulqcATHBnB4HCveBKp960ZcdSLh14eJdvbBMgP8FMDxnPNPgh2bSB\nYF3B2Bsuwq/epzr5CDuX6kYoH/yxYBXfz8IIcV9lUQKBgQD8EKY+7lyMjPMK6/ZQ\nSKozvbPWsjdbbucHXDGw3I4te+aJlBswpi6meeXR+bX/YPayBNXyaYt46nqFeMvh\n5oVNtUBh5qgE8IoIxK5Qbv789TCQwxc99N1ve8BqoOLph9Xrzpl6BomnzNeoZKW1\nuOs641jrPrPiFZSKbyXywGYLWwKBgQDpYIkqfzfozyl3Z0d1trjkszloc8ejqn3n\n7jeyhRf8UUYhijz5qIh7EE6JkTd3nhE7+c42CdAfUEjMLTTGIrG3t0qljUn1R/hG\nnDsPj4Z16KBouSkGTndt9Fy7i2Qi3m+5wtKHRdTvgn/MYJb+dCSe8jW+/RkB4cqd\nvpdapO/RUQKBgDL8CyRfgkjLmb1zzPagPA0LKf0bPyc3X3OVqldjxT5d+VuKoZVN\nh9IUhe/a2n01V7DaWYwW3ScwBmhI7rRatEvrhYJH7WRSYxky7y9FxD3WOmSNkX3u\nsXuDRIBM2pjx6Msxlsmf2Ogf/t8IvJvtM2dN5QZwQGJSiyEVKk/XqsxRAoGBAJ1d\nMcCNHgcGwYA5DO9r8UqNK1WqVGCg0ts0PyxKIH1L1E1DaJAzuyu4OCz81Xj8BcT6\nUbkQbtzehufeR6qetFUb6+Kr3cXd7KS4Lf71GYaiAJ/80pPlDxT+ZBU2DaSRdqa8\nnrcGOGn0Bfaq3sXfTN48lk8dXOJu/O/XFznQ48CxAoGBAN3pxlktOWRQVRpcfyo+\nW29O5e1aOpKIRxR25FyJXqT9wB1qPXaksemOXXKuCYbUW7VZvQn5ShtY7QT3iDpK\nxYxoI7aVRtgff5LuQtLpRQq+dXOBu+teOAxgc9ZHqwq3Jb34jiTqN0ZNTm9gAfB7\n+irnpjha4omsZjreefevylu2\n-----END PRIVATE KEY-----\n  "
+const GOOGLE_CLIENT_EMAIL = "calendar-key@contactsmap-316116.iam.gserviceaccount.com"
+const GOOGLE_PROJECT_NUMBER = "728529730940"
+const GOOGLE_CALENDAR_ID = "3b200857954250604a3c1200af53229fb9de863bc824b0acd5576548aa41e291@group.calendar.google.com"
   
 const jwtClient = new google.auth.JWT(
-    GOOGLE_CLIENT_EMAIL,
-    null,
-    GOOGLE_PRIVATE_KEY,
-    SCOPES
+  GOOGLE_CLIENT_EMAIL,
+  null,
+  GOOGLE_PRIVATE_KEY,
+  SCOPES
 );
   
 const calendar = google.calendar({
-    version: 'v3',
-    project: GOOGLE_PROJECT_NUMBER,
-    auth: jwtClient
+  version: 'v3',
+  project: GOOGLE_PROJECT_NUMBER,
+  auth: jwtClient
 });
   
-app.get('/', (req, res) => {
-  
+app.get('/checkAppt', (req, res) => {
   calendar.events.list({
     calendarId: GOOGLE_CALENDAR_ID,
     timeMin: (new Date()).toISOString(),
@@ -429,5 +425,55 @@ app.get('/', (req, res) => {
       }
     }
   });
+});
+  
+app.get("/createEvent",(req,res)=>{
+  var event = {
+    'summary': 'Rimorin Dental Appointment',
+    'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
+    'description': 'Appointment with Dr. Pam',
+    'start': {
+      'dateTime': '2022-11-12T09:00:00-07:00',
+      'timeZone': 'Asia/Dhaka',
+    },
+    'end': {
+      'dateTime': '2022-11-12T17:00:00-07:00',
+      'timeZone': 'Asia/Dhaka',
+    },
+    'attendees': [ 
+      // {'email': '2195929@slu.edu.ph'},
+      // {'email': 'balcitalloyd@gmail.com'},
+    ],
+    'reminders': {
+      'useDefault': false,
+      'overrides': [
+        {'method': 'email', 'minutes': 24 * 60},
+        {'method': 'popup', 'minutes': 10},
+      ],
+    },  
+  };
+    
+  const auth = new google.auth.GoogleAuth({
+    keyFile: "CalendarData.json",
+    scopes: 'https://www.googleapis.com/auth/calendar',
+  });
+  auth.getClient().then(a=>{
+    calendar.events.insert({
+      auth:a,
+      calendarId: GOOGLE_CALENDAR_ID,
+      resource: event,
+    }, function(err, event) {
+      if (err) {
+        console.log('There was an error contacting the Calendar service: ' + err);
+        return;
+      }
+      console.log('Event created: %s', event.data);
+      res.jsonp("Event successfully created!");
+    });
+  })
+})
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
 });
   
