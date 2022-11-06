@@ -22,7 +22,7 @@ export default function DentistAppointmentPage() {
       <section className="section dashboard">
         <div className="row">
          <div className="col-12">
-            <div className="card recent-sales overflow-auto">
+            <div className="card overflow-auto">
                 
               <div className="card-body">
                 <div className="nav-bar"></div>
