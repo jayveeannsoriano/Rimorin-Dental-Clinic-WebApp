@@ -21,6 +21,8 @@ const PatientInfo = () => {
           </ol>
         </nav>
       </div>
+
+      
       <section class="section profile">
         <div class="row">
           <ProfileWidget />

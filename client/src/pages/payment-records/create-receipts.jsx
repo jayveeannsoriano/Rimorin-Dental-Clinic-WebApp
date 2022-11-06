@@ -1,5 +1,6 @@
 import React from "react";
 import '../../styles/prescription.css';
+import ProfileWidget from "../../components/profile-widget";
 
 const createReceipt = () => {
     return (
@@ -35,9 +36,10 @@ const createReceipt = () => {
                         <div className="row">
                             <div className="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
                                 {/* Profile Widget */}
+                                <ProfileWidget/>
                             </div>
 
-                            {/* Receipt Draft */}
+                            {/* Receipt*/}
                             <div className="col-md-7 col-lg-8 col-xl-9">
                                 <div className="card">
                                     <div className="card-header">
