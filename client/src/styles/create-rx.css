@@ -69,6 +69,8 @@
   .rx-btn{
     margin-top:1%;
     margin-right: 1%;
+    text-align: right;
+    justify-content: right;
   }
 
   .bg-danger-light {
@@ -79,4 +81,23 @@
   .bg-danger-light:hover {
     background-color: #fac1c6;
     border-color: #fac1c6;
+  }
+
+  .rx-label{
+    font-weight: 700;
+    color: #A0A4A8;
+  }
+  
+  .rx-title{
+    color: var(--primary-color);
+    display: inline-block;
+    margin-left: 14px;
+  }
+
+  .rx-notes{
+    margin-top: 8%;
+  }
+
+  .rx-pr{
+    margin: 2% 0;
   }
