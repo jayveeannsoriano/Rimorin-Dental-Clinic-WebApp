@@ -39,8 +39,10 @@ mongoose
 
 require("./models/appointmentDetails");
 require("./models/userDetails");
+require("./models/prescriptionDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
+const PresDetails = mongoose.model("PrescriptionDetails");
 
 
 //sign in
@@ -302,9 +304,7 @@ app.get("/getTotalPendingAppts", async(req,res) => {
 
 
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
-});
+
 
 
 //updateDataTable
@@ -344,3 +344,38 @@ app.put("/updateStatus", async (req,res) => {
   await AppDetails.findOneAndUpdate({appNum: appNumber}, {appStatus: newStatus});
   console.log("Appointment Status Successfully Updated!.");
 })
+
+const sgMail = require('@sendgrid/mail')
+
+
+  app.get("/sendEmail", function (req, res) {
+    sgMail.setApiKey('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');
+    const msg = {
+      "personalizations":[
+        {
+           "to":[
+              {
+                 "email":"2195929@slu.edu.ph"
+              }
+           ],
+           "dynamic_template_data":{
+              "firstName":"Juan Loyd",
+            }
+        }
+     ],
+     "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
+      from: 'balcitalloyd@gmail.com', // Change to your verified sender
+    }
+    sgMail
+      .send(msg)
+      .then(() => {
+        res.json('Email Sent')
+      })
+      .catch((error) => {
+        res.json('Error: Email Not Sent')
+      })
+  });
+
+  app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
+  });

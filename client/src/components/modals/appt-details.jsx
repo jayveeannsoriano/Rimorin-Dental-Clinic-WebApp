@@ -14,20 +14,17 @@ function ApptDetails(appNum,date,time,appStats) {
   //appNum
   const StringAppNum = JSON.stringify(appNum);
   const ConvertStringApp = JSON.parse(StringAppNum);
-  // const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
-  const AppNumber = 3;
+  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
 
   //date
   const StringDate = JSON.stringify(appNum,time,date,appStats);
   const ConvertStringDate = JSON.parse(StringDate);
-  // const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
-  const DateValue = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+  const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
 
   //time
   const StringAppTime = JSON.stringify(appNum,time,date,appStats);
   const ConvertStringTime = JSON.parse(StringAppTime);
-  // const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
-  const TimeValue = 3;
+  const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
   
   //appStats
   const StringAppStats = JSON.stringify(appNum,time,date,appStats);
