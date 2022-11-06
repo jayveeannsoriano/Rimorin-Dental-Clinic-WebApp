@@ -253,15 +253,17 @@ app.get("/getUserAppts", async(req,res) => {
   await AppDetails.find({pName:query.pName})
       .then((data) => {
         var allEvents = [];
+      
         for (var key in data) {
+          console.log(data[key].appStatus);
           let color = "";
-          if(data[key].status==="Pending"){
+          if(data[key].appStatus==="Pending"){
             color = "#FFC107"
-          }else if(data[key].status==="Accepted"){
+          }else if(data[key].appStatus==="Accepted"){
             color = "#0DCAF0"
-          }else if(data[key].status==="Finished"){
+          }else if(data[key].appStatus==="Finished"){
             color = "#198754"
-          }else if(data[key].status==="No Show"){
+          }else if(data[key].appStatus==="No Show"){
             color = "#A9A9A9"
           }else{
             color = "#DC3545"
@@ -348,7 +350,7 @@ app.put("/updateStatus", async (req,res) => {
 const sgMail = require('@sendgrid/mail')
 
 
-  app.get("/sendEmail", function (req, res) {
+  app.get("/sendApptEmail", function (req, res) {
     sgMail.setApiKey('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');
     const msg = {
       "personalizations":[
@@ -360,6 +362,8 @@ const sgMail = require('@sendgrid/mail')
            ],
            "dynamic_template_data":{
               "firstName":"Juan Loyd",
+              "Appttime":"2022-2-23",
+              "consultation":"my teeth hurt aughhhhhh"
             }
         }
      ],
