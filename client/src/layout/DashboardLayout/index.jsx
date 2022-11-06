@@ -22,7 +22,9 @@ const DashboardLayout = () => {
             sidebarComponent = <Sidebar isSidebar={isSidebar} />; 
             break;
 
-        case 2 || 3:
+        case 2:
+    
+        case 3:
             sidebarComponent = <Sidebar_Dentist isSidebar={isSidebar} />; 
             break;
 
