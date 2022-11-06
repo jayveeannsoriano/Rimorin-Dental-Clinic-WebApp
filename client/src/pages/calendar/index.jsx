@@ -50,6 +50,7 @@ export default class Calendar extends React.Component {
             nowIndicator
             droppable = 'true'
             editable = 'true'
+            eventDurationEditable
             dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
             expandRows = 'true'
