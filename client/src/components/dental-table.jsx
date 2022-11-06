@@ -58,7 +58,6 @@ const DashboardTable = () => {
         },
         {
             name: "Appt. Status",
-            //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
             selector: row => row.appStatus,
             sortable:true,
         },
