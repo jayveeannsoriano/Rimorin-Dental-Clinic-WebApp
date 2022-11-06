@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import CancelAppointment from "../../../components/modals/cancel-appointment.jsx";
 import RescheduleAppointment from "../../../components/modals/reschedule-appointment.jsx";
-import DentistDTable from '../../../components/dental-table';
+import DentistDTable from '../../../components/dental-acceptcancel';
 import '../../../styles/dashboard.css';
 import '../../../styles/modals.css';
 
