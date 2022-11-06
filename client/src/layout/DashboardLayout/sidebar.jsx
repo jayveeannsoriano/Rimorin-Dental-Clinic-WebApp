@@ -25,7 +25,7 @@ function Sidebar(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" }>
+                        <a className="nav-link collapsed" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -33,7 +33,7 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link" 
+                        <a className="nav-link active" 
                         href="/dashboard/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
