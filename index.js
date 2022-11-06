@@ -255,7 +255,6 @@ app.get("/getUserAppts", async(req,res) => {
         var allEvents = [];
       
         for (var key in data) {
-          console.log(data[key].appStatus);
           let color = "";
           if(data[key].appStatus==="Pending"){
             color = "#FFC107"
@@ -368,7 +367,7 @@ const sgMail = require('@sendgrid/mail')
         }
      ],
      "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
-      from: 'balcitalloyd@gmail.com', // Change to your verified sender
+      from: 'rimorin.secretary@gmail.com', // Change to your verified sender
     }
     sgMail
       .send(msg)
@@ -383,3 +382,52 @@ const sgMail = require('@sendgrid/mail')
   app.get("/*", function (req, res) {
     res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
   });
+
+  //DIRTY CODE
+
+  
+//index.js code for integrating Google Calendar
+  
+const { google } = require('googleapis');
+  
+const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+const GOOGLE_PRIVATE_KEY="<private-key>"
+const GOOGLE_CLIENT_EMAIL = "<client-email>"
+const GOOGLE_PROJECT_NUMBER = "<project-number>"
+const GOOGLE_CALENDAR_ID = "<calendar-id>"
+  
+  
+const jwtClient = new google.auth.JWT(
+    GOOGLE_CLIENT_EMAIL,
+    null,
+    GOOGLE_PRIVATE_KEY,
+    SCOPES
+);
+  
+const calendar = google.calendar({
+    version: 'v3',
+    project: GOOGLE_PROJECT_NUMBER,
+    auth: jwtClient
+});
+  
+app.get('/', (req, res) => {
+  
+  calendar.events.list({
+    calendarId: GOOGLE_CALENDAR_ID,
+    timeMin: (new Date()).toISOString(),
+    maxResults: 10,
+    singleEvents: true,
+    orderBy: 'startTime',
+  }, (error, result) => {
+    if (error) {
+      res.send(JSON.stringify({ error: error }));
+    } else {
+      if (result.data.items.length) {
+        res.send(JSON.stringify({ events: result.data.items }));
+      } else {
+        res.send(JSON.stringify({ message: 'No upcoming events found.' }));
+      }
+    }
+  });
+});
+  
