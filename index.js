@@ -39,8 +39,10 @@ mongoose
 
 require("./models/appointmentDetails");
 require("./models/userDetails");
+require("./models/prescriptionDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
+const PresDetails = mongoose.model("PrescriptionDetails");
 
 
 //sign in
