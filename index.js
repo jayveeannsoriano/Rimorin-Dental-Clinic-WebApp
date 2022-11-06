@@ -40,9 +40,11 @@ mongoose
 require("./models/appointmentDetails");
 require("./models/userDetails");
 require("./models/prescriptionDetails");
+require("./models/appointmentRequest")
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
+const AppRequest = mongoose.model("AppointmentRequest");
 
 
 //sign in
@@ -158,7 +160,7 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(insertAppStatus);
 
   //inserting all data
-  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const AppData = new AppRequest({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
 
   try{
     await AppData.save();
@@ -168,9 +170,10 @@ app.post("/insertAppointment", async(req,res) => {
   }
 });
 
+//Get user for Appointment Request
 app.get("/getAppointmentDetails", async(req,res) => {
     
-  await AppDetails.find({})
+  await AppRequest.find({})
       .then((data) => {
         res.json(data);
       })
@@ -178,6 +181,17 @@ app.get("/getAppointmentDetails", async(req,res) => {
        console.log('error: ', error)
       });
     });
+//Get user for Appointment Details
+app.get("/getAppointmentDetail", async(req,res) => {
+    
+      await AppDetails.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 
 //sign up
 app.post("/RegisterUser", async (req, res) => {
@@ -305,9 +319,6 @@ app.get("/getTotalPendingAppts", async(req,res) => {
 
 
 
-
-
-
 //updateDataTable
 
 app.put("/updateDateTime", async (req, res) => {
@@ -330,7 +341,7 @@ app.put("/updateDateTime", async (req, res) => {
 app.put("/deleteAppointment", async (req,res) => {
 
   const appNumber = req.body.appNum;
-  await AppDetails.findOneAndDelete({appNum: appNumber})
+  await AppRequest.findOneAndDelete({appNum: appNumber})
     console.log("Appointment Successfully Deleted!.");
   
 })
@@ -430,4 +441,47 @@ app.get('/', (req, res) => {
     }
   });
 });
+
+app.post("/acceptAppointment", async(req,res) => {
+
+
+  //User Info value
+  const userNameApp = req.body.userNameApp;
+  console.log(userNameApp)
+
+  //Docotor name
+  const docName = req.body.dentistValue;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = req.body.appNumber;
+  console.log(appNumber)
   
+  //date value
+  const dateValue = req.body.dateValue;
+  console.log(dateValue)
+
+  //consul value
+  const consulInput = req.body.consulInput;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.getTime;
+  console.log(getTime);
+
+  //appt status default when creating an appointment
+  const insertAppStatus = "Pending";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.")
+    await AppRequest.findOneAndDelete({appNum: appNumber})
+  } catch(err){
+    console.log(err);
+  }
+});

@@ -22,7 +22,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
+            const response = await axios.get('http://localhost:3001/getAppointmentDetail');
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
@@ -48,7 +48,6 @@ const DashboardTable = () => {
         },
         {
             name: "Appt. Status",
-            //cell: row => <button className="eugene" onClick={() => alert(row._id + " SHEEEEEEEEEESH")}>Update</button>
             selector: row => row.appStatus,
             sortable: true,
         },
@@ -57,7 +56,7 @@ const DashboardTable = () => {
             selector: row => 
             <div className="action-buttons">
                 < ReschedConfirmation appNum = {row.appNum}/>
-                < CancelAppointment appNum = {row.appNum}/>
+                < CancelAppointment/>
                 < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
             </div>
         },
