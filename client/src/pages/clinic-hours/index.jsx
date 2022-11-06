@@ -4,7 +4,7 @@ import { Switch } from 'antd';
 import "../../styles/clinic-hours.css";
 import "antd/dist/antd.css";
 
-const clinichourspage = () => {
+const ClinicHours = () => {
   return (
     <>
       <div class="pagetitle">
@@ -12,7 +12,7 @@ const clinichourspage = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/admin/dashboard">Home</a>
             </li>
             <li class="breadcrumb-item">
               <a href="/admin/clinic-hours">Clinic Hours</a>
@@ -23,7 +23,7 @@ const clinichourspage = () => {
 
       <div class="col-xl">
         <div className="card patient-info">
-          <div className="card-body pt-3">
+        <div className="card-body pt-3">
             <h5 className="card-title">Clinic Hours</h5>
             <div className="divider"></div>
 
@@ -261,4 +261,4 @@ const clinichourspage = () => {
     </>
   );
 };
-export default clinichourspage;
+export default ClinicHours;
