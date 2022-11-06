@@ -6,6 +6,36 @@ import styled, { keyframes } from 'styled-components';
 
 const AdminTable = () => {
 
+    const [search, setSearch] = useState("");
+    const [appointment, setAppointment] = useState([]);
+    const [filteredappointment, setFilteredAppointment] = useState([]);
+    const [pending, setPending] = useState(true);
+    const [rows, setRows] = useState([]);
+
+    const getAppointment = async() => {
+        try{
+            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
+            console.log(response);
+            setAppointment(response.data);
+            setFilteredAppointment(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    const onRowClick = (state, rowInfo, column, instance) => {
+        console.log(rowInfo);
+        return {
+            onClick: e => {
+                console.log('A Td Element was clicked!')
+                console.log('it produced this event:', e)
+                console.log('It was in this column:', column)
+                console.log('It was in this row:', rowInfo)
+                console.log('It was in this table instance:', instance)
+            }
+        }
+    }
+
     const columns = [
         {
             name: 'Account ID',

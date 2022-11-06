@@ -2,7 +2,7 @@ import React from 'react'
 import axios from "axios";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
-import DentistDTable from '../../components/dental-table';
+import AdminTable from '../../components/admin-table';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 
@@ -27,7 +27,7 @@ const accountspage = () => {
 
                 <div class="card-body datatable">
                     <div>
-                      <DentistDTable/>
+                      <AdminTable/>
                     </div>
                 </div>
               </div>
