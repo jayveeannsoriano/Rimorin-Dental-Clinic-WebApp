@@ -467,7 +467,7 @@ app.post("/acceptAppointment", async(req,res) => {
   console.log(getTime);
 
   //appt status default when creating an appointment
-  const insertAppStatus = "Pending";
+  const insertAppStatus = "Accepted";
   console.log(insertAppStatus);
 
   //inserting all data
