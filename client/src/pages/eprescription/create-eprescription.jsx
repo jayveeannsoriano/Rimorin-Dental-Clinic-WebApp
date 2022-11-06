@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/prescription.css';
+import '../../styles/create-rx.css';
 
 const createEprescription = () => {
     return (
@@ -69,7 +69,7 @@ const createEprescription = () => {
                                         {/* Add Item */}
                                         <div className="add-more-item text-left">
                                             <a href="javascript:void(0);">
-                                                <button type="submit" className="btn btn-primary">
+                                                <button type="submit" className="btn btn-primary rx-btn">
                                                     <i className="fas fa-plus" /> Add Item
                                                 </button>
                                                 {/* <i className="fas fa-plus-circle" /> Add Item */}
@@ -78,8 +78,8 @@ const createEprescription = () => {
                                         {/* /Add Item */}
 
                                         {/* Forms */}
-                                        <div class="card">
-                                            <div class="card-body">
+                                        <div class="card-form">
+                                            <div class="card-body-form">
                                                 {/* <h4 class="card-title">Experience</h4> */}
                                                 <div class="experience-info">
                                                     <div class="row form-row experience-cont">
@@ -170,19 +170,19 @@ const createEprescription = () => {
                                             <div className="submit-section">
                                                 <button
                                                     type="reset"
-                                                    className="btn btn-secondary submit-btn"
+                                                    className="btn btn-secondary submit-btn rx-btn"
                                                 >
                                                     Clear
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="btn btn-primary submit-btn"
+                                                    className="btn btn-primary submit-btn rx-btn"
                                                 >
                                                     Preview
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="btn btn-primary submit-btn"
+                                                    className="btn btn-primary submit-btn rx-btn" 
                                                 >
                                                     Create
                                                 </button>
