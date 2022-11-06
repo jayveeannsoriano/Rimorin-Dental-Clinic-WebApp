@@ -11,8 +11,7 @@ function CancelAppointment(appNum) {
   //retrieve app number
   const StringAppNum = JSON.stringify(appNum);
   const ConvertStringApp = JSON.parse(StringAppNum);
-  // const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
-  const AppNumber = 3;
+  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
   
 
   const handleClose = () => setModalState(false);
