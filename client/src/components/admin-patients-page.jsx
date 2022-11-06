@@ -1,24 +1,54 @@
 import React from "react";
+import "../styles/admin-patients.css";
+import "react-bootstrap";
 
 const AdminPatientPage = () => {
     return (
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img id="avatar-profile" src="../assets/img/messages-1.jpg" alt="Profile" class="rounded-circle" />
-                    {/* <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2> */}
-                    <h3>Patient ID: <span id="">PT0001</span></h3>
-                    <div className="divider"></div>
-                    <div class="row patient-info">
-                        <div className="col">
-                            <h3>Phone</h3>
-                                <p id="contact_num"> (+63) 956 793 5590 </p>
-                            <h3>Age</h3>
-                                <p id="age"> 24 </p>
+        <div class="col-md-7 col-lg-8 col-xl-9">
+            <div class="row row-grid">
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="card widget-profile pat-widget-profile">
+                        <div class="card-body">
+                            <div class="pro-widget-content">
+                                <div class="profile-info-widget">
+                                    <a href="patient-profile.html" class="booking-doc-img">
+                                        <img src="assets/img/patients/patient.jpg" alt="User Image" />
+                                    </a>
+                                    <div class="profile-det-info">
+                                        <h3>Ricci Blynthe</h3>
+
+                                        <div class="patient-details">
+                                            <h5><b>Patient ID :</b> P0016</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="patient-info">
+                                <ul>
+                                    <li>Phone <span>+1 952 001 8563</span></li>
+                                    <li>Age <span>38 Years</span></li>
+                                </ul>
+                            </div>
+
+                            <div className='col-md-auto'>
+                            <button
+                                // type=""
+                                className="btn btn-outline-primary"
+                                style={{ padding: "10px 30px" }}
+                            >
+                                View Profile
+                            </button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
     );
+
 }
+
+export default AdminPatientPage;
