@@ -21,7 +21,7 @@ function Sidebar(){
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
                     <div className='divider'></div>
-                    <h4>MENU</h4>
+                    <h4>PATIENT MENU</h4>
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">

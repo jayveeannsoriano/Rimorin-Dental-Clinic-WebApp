@@ -5,8 +5,6 @@ import DashboardTable from '../../components/dashboardTable';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 
-// import { Outlet } from "react-router-dom";
-
 const Dashboard = () => {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
@@ -54,16 +52,11 @@ const Dashboard = () => {
                   <h5 className="card-title">
                     TODAY&apos;S APPOINTMENTS
                   </h5>
-
-                  <div>
                       <DashboardTable/>
-                  </div>
-
                 </div>
               </div>
             </div>
             {/* <!-- End of Appointments --> */}
-
           </div>
         </section>
 

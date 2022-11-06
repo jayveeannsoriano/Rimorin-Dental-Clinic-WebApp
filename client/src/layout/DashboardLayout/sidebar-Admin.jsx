@@ -23,14 +23,6 @@ function Sidebar_Admin(){
                     <div className='divider'></div>
                     <h4>ADMIN MENU</h4>
 
-                    {/* Dashboard Nav */}
-                    <li className="nav-item">
-                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" }>
-                        <i className="fa-solid fa-table-columns"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
@@ -45,7 +37,7 @@ function Sidebar_Admin(){
                         <a className="nav-link collapsed" 
                         bs-toggle="collapsed" 
                         href="/admin/clinic-hours">
-                        <i class="fa-solid fa-stethoscope"></i>
+                        <i class="fa-regular fa-clock"></i>
                         <span>Clinic Hours</span>
                         </a>
                     </li>
@@ -54,7 +46,7 @@ function Sidebar_Admin(){
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
                         href="/admin/calendar">
-                        <i class="fa-solid fa-calendar"></i>
+                        <i class="fa-regular fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
                     </li>
@@ -63,8 +55,17 @@ function Sidebar_Admin(){
                     <li class="nav-item">
                         <a class="nav-link collapsed" 
                          href="/admin/accounts">
-                        <i class="fa-solid fa-file-medical"></i>
+                        <i class="fa-solid fa-users"></i>
                         <span>Accounts</span>
+                        </a>
+                    </li>
+
+                    {/* Patients Nav */}
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" 
+                         href="/admin/patients">
+                        <i class="bi bi-person-heart"></i>
+                        <span>Patients</span>
                         </a>
                     </li>
 
@@ -72,7 +73,7 @@ function Sidebar_Admin(){
                     <li class="nav-item">
                         <a class="nav-link collapsed" 
                         href="/admin/backup-restore">
-                        <i class="fa-solid fa-file-medical"></i>
+                        <i class="bi bi-arrow-clockwise"></i>
                         <span>Backup and Restore</span>
                         </a>
                     </li>
