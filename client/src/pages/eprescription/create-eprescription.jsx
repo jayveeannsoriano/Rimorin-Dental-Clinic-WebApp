@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../styles/create-rx.css';
 import ProfileWidget from "../../components/profile-widget";
 import "react-bootstrap";
+import axios from "axios";
 
 const createEprescription = () => {
+
+    const [file, setFile] = useState();
+    function handleChange(event) {
+        setFile(event.target.files[0])
+    }
+    function handleSubmit(event) {
+        event.preventDefault()
+        const url = 'http://localhost:3001/uploadFile';
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('fileName', file.name);
+        const config = {
+        headers: {
+            'content-type': 'multipart/form-data',
+        },
+        };
+        axios.post(url, formData, config).then((response) => {
+            console.log(response.data);
+        });
+    
+    }
     return (
         <>
             {/* Main Wrapper */}
@@ -142,7 +164,17 @@ const createEprescription = () => {
                             {/* Signature */}
                             <div className="col-12 col-md-6 col-lg-4">
                                             <div className="signature-wrap">
-                                                <div className="signature"><span>Upload a file or drag and drop</span></div>
+                                            {/* <div className="signature"> */}
+                                                <span>Upload a file or drag and drop</span>
+                                                    <form>
+                                                        <input
+                                                            type="file"
+                                                            className="signature sgn-file"
+                                                            onChange={handleChange}
+                                                        />
+                                                    </form>
+                                                {/* </div> */}
+                                                {/* <input type="file" className="signature"><span>Upload a file or drag and drop</span></input> */}
 
                                                 <div className="sign-name">
                                                     <p className="mb-0">( Dr. Pamela Rimorin Concepcion )</p>
