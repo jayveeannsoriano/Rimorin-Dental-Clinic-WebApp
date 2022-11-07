@@ -798,7 +798,8 @@ margin-bottom: 0;
 .update-button,
 .cancel-button,
 .resched-button,
-.accept-button{
+.accept-button,
+.followUp-button{
   font-size: 12px !important;
   padding: 8px 15px !important;
   border: none !important;
@@ -833,11 +834,17 @@ margin-bottom: 0;
   color: #10B981!important;
 }
 
+.followUp-button{
+  background-color: #C79DFD !important;
+  color: #231A5CF2 !important;
+}
+
 .view-button i, 
 .update-button i,
 .cancel-button i,
 .resched-button i,
-.accept-button i {
+.accept-button i,
+.followUp-button i {
 padding-right: 4px;
 }
 
@@ -889,15 +896,15 @@ padding-right: 4px;
 }
 
 .appt_status[data-status="No Show"]:after{
-  content: "Pending";
-  background: #FFFBEB;
-  color: #D97706;
+  content: "No Show";
+  background: #252B42;
+  color: #fff;
 }
 
 .appt_status[data-status="Arrived"]:after{
-  content: "Pending";
-  background: #FFFBEB;
-  color: #D97706;
+  content: "Arrived";
+  background: #2563EB;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
