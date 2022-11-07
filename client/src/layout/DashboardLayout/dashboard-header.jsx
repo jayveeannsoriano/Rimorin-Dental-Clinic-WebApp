@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../styles/dashboard.css'
-
+//import NotifyMe from '../../components/notification/NotifyMe';
 
 function dashboardHeader(){
     try {
@@ -44,8 +44,10 @@ function dashboardHeader(){
                             <i className="fa-solid fa-bell"></i>
                                 <span className="badge bg-primary badge-number">4</span>
                             </a>
+                        
+                        {/*<NotifyMe props={}/>*/}
 
-                        {/* <!-- Notficiation Dropdown --> */}
+                        {/* <!-- Notification Dropdown --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                             <li className="dropdown-header">
                                 You have 4 new notifications
