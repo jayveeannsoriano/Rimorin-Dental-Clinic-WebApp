@@ -12,7 +12,7 @@ function ApptDetails(appNum,date,time,appStats) {
     setModalState("modal-1")
   }
   //Get values 
-  const StringfyValues = JSON.stringify(pName,dName,appNum,date,time,consultation);
+  const StringfyValues = JSON.stringify(appNum,date,time,appStats);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g,"");
