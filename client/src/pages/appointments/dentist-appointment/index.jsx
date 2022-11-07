@@ -24,7 +24,7 @@ export default function DentistAppointmentPage() {
          <div className="col-12">
             <div className="card overflow-auto">
                 
-              <div className="card-body">
+              <div className="card-body appointment-request-table">
                 <div className="nav-bar"></div>
                 <h5 className="card-title">APPOINTMENT REQUEST</h5>
                 <DentistDTable/>

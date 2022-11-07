@@ -59,18 +59,18 @@ const DashboardTable = () => {
         },
         {
             name: "Appt. Status",
-            selector: row => <div className="appt-details">
-            <ApptDetailsText appStats = {row.appStatus}/>
-             </div>,
+            selector: row =>
+            <ApptDetailsText appStats = {row.appStatus}/>,
             sortable:true,
         },
         {
             name: "Action",
-            selector: row => <div>
+            selector: row =>
+            <div className="action-buttons">
                 <Rebook appNum = {row.appNum} />
                 < ReschedConfirmation appNum = {row.appNum}/>
                 < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-                </div>
+            </div>
         },
     ];
 
