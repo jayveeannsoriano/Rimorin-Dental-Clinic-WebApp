@@ -75,38 +75,6 @@
 	margin-left: 6px;
 }
 
-/* Timeslot */
-.timeslot {
-	flex-direction: row;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	padding: 2px;
-}
-
-.timeslot .time {
-	background-color: #ffffff;
-	color: #5d5fef;
-	border-color: #5d5fef;
-	font-size: 15px;
-	font-weight: 500;
-	border-radius: 5px;
-	/* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
-	padding: 10px 30px;
-	width: 95%;
-}
-
-.timeslot .time:hover {
-	background-color: var(--primary-color);
-	color: #fff;
-}
-
-.slots {
-	width: 100%;
-	display: grid;
-	gap: 5px 0px;
-	grid-template-columns: repeat(4, 1fr);
-}
-
 /* Stepper */
 .md-stepper-horizontal {
 	display: table;

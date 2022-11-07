@@ -22,8 +22,9 @@ function CancelAppointment() {
 
   return (
     <>
-
-      <span class="cancel-button" onClick={handleModal1}><i class="bi bi-x-lg"></i> Cancel</span>
+      <Button className="cancel-button" onClick={handleModal1}>
+      <i class="bi bi-x-lg"></i> Cancel
+      </Button>
 
       <Modal show={modalState == 'modal-1'} onHide={handleClose}>
         <Modal.Header closeButton>

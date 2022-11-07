@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal'; 
 import Axios from 'axios';
+import '../../styles/modals.css'
 
 function rebook(appNum) {
   const [show, setShow] = useState(false);
@@ -15,7 +16,6 @@ function rebook(appNum) {
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
 
-
   const newStatus = () =>{
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
@@ -25,12 +25,10 @@ function rebook(appNum) {
     });
     handleClose();
   }
-  
-  
 
   return (
     <>
-      <Button className="update-button" variant="warning" onClick={handleShow}>
+      <Button className="update-button" onClick={handleShow}>
       <i class="bi bi-pencil-fill"></i>Update
       </Button>
 
@@ -47,6 +45,25 @@ function rebook(appNum) {
         
         <Modal.Body>
 
+        <div className="appointment-details-modal">
+        <h4>Appointment Details</h4>
+          <div class="row">
+              <div class="col modal-label">Patient Name:</div>
+              <div class="col modal-values">Ricci Blynthe</div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Appt #:</div>
+              <div class="col modal-values">{AppNumber}</div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Date & Time:</div>
+              <div class="col modal-values"></div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Reason for Consultation:</div>
+              <div class="col modal-values">Lorem ipsum dolor sit amet.</div>
+            </div>
+          </div>
           <Form>
             <Form.Group 
             className="mb-3" 
@@ -61,16 +78,6 @@ function rebook(appNum) {
               <option>No Show</option>
               <option>Cancelled</option>
               </Form.Select>
-              
-            </Form.Group>
-
-
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-              >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
             </Form.Group>
           </Form>
 

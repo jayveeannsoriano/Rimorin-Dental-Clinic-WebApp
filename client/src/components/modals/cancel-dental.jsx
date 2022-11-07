@@ -20,8 +20,8 @@ function CancelDental(appNum) {
 
   return (
     <>
-      <Button className="cancel-button" variant="warning" onClick={CancelAppointment}>
-      <i class="bi bi-pencil-fill"></i>Cancel
+      <Button className="cancel-button" onClick={CancelAppointment}>
+      <i class="bi bi-x-lg"></i>Cancel
       </Button>
     </>
   );

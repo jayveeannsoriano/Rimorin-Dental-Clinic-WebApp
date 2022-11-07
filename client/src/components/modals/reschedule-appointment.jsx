@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import Timeslot2 from "../timeslot2";
 import '../../styles/booking.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
-import { useEffect } from 'react';
 
 function RescheduleAppointment(appNum) {
   const [modalState, setModalState] = useState('close');
@@ -53,13 +51,17 @@ function RescheduleAppointment(appNum) {
 
   return (
     <>
-    <span class="resched-button" onClick={handleModal1}><i class="bi bi-calendar2-event"></i> Reschedule</span>
+    <Button className="resched-button" onClick={handleModal1}>
+    <i class="bi bi-calendar2-event"></i>Reschedule
+    </Button>
 
       <Modal
         show = {modalState == 'modal-1'}
         size='xl'
         // show={show}
         onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
         backdrop="static"
         keyboard={false}
       >
@@ -69,8 +71,31 @@ function RescheduleAppointment(appNum) {
 
 
         <Modal.Body>
-            <div className="appointment-form" id="appointment-form">
+        {/* Appointment Details  */}
+        <div className="appointment-details-modal">
+        <h4>Appointment Details</h4>
+          <div class="row">
+              <div class="col modal-label">Patient Name:</div>
+              <div class="col modal-values">Ricci Blynthe</div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Appt #:</div>
+              <div class="col modal-values">{AppNumber}</div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Date & Time:</div>
+              <div class="col modal-values"></div>
+            </div>
+            <div class="row">
+              <div class="col modal-label">Reason for Consultation:</div>
+              <div class="col modal-values">Lorem ipsum dolor sit amet.</div>
+            </div>
+          </div>
 
+          <div className="divider"></div>
+          
+            {/* Date Selection */}
+            <div className="appointment-form" id="appointment-form">
             <form className="row g-3 needs-validation" noValidate/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
@@ -86,7 +111,6 @@ function RescheduleAppointment(appNum) {
                         placeholderText="Choose a date"
                         minDate={new Date()}
                         shouldCloseOnSelect={false}
-                        withPortal
                         />
 
                     <div className="valid-feedback">
