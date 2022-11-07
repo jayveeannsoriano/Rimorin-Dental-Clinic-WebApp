@@ -1,0 +1,131 @@
+
+.patient-info .card-title{
+    color: var(--primary-color);
+    display: inline-block;
+    /* padding: 15px 0px 10px 0; */
+    margin-left: 14px;
+}
+
+.patient-info .row{
+    display: inline-block;
+}
+
+.patient-info h4{
+    margin: 15px 0px;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 150%;
+}
+
+.patient-info .label{
+    font-weight: 700;
+    color: #A0A4A8;
+}
+
+.patient-info .column{
+    float: left;
+    width:50%
+}
+
+.patient-info .row{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    margin-left: 15px;
+    margin-bottom: 16px;
+}
+
+.patient-info .btn{
+    margin-top: 15px;
+    margin-left: 10px;
+    align-items: center;
+    float:right;
+}
+
+.patient-info .btn i{
+    margin-right: 5px;
+}
+
+
+/* From admin-patients css for testing */
+.pro-widget-content {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-info-widget {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: left;
+}
+.profile-info-widget .booking-doc-img {
+    margin-right: 15px;
+}
+.profile-info-widget .booking-doc-img img {
+    border-radius: 4px;
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+}
+.profile-det-info {
+    overflow: hidden;
+}
+.profile-det-info h3 {
+    font-size: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.patient-details h5 {
+    color: #757575;
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.patient-details h5 i {
+    width: 18px;
+}
+
+.pat-widget-profile .pro-widget-content {
+    padding: 0 0 20px;
+}
+.pat-widget-profile .booking-date li {
+    font-size: .875rem;
+}
+.pat-widget-profile .booking-date li span {
+    font-size: .875rem;
+}
+
+.patient-info {
+    margin-top: 15px;
+}
+.patient-info ul {
+    padding: 0;
+    list-style: none;
+    font-size: .875rem;
+    margin: 0;
+}
+.patient-info ul li {
+    position: relative;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #272b41;
+    text-transform: capitalize;
+}
+.patient-info ul li + li {
+    margin-top: 15px;
+}
+.patient-info ul li i {
+    width: 18px;
+}
+.patient-info ul li span {
+    color: #757575;
+    float: right;
+    font-weight: 400;
+}
