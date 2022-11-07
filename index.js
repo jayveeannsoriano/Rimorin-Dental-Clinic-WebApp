@@ -12,7 +12,7 @@ require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const PORT = process.env.PORT || 3001;
-const mongoUrl = process.env.MONGOOSE_URL || "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
+const mongoUrl = process.env.MONGO_URL || "mongodb+srv://client:client123@cluster0.lfrgaha.mongodb.net/?retryWrites=true&w=majority";
 
 const path = require("path");
 const { deepEqual } = require("assert");
@@ -154,7 +154,7 @@ app.post("/insertAppointment", async(req,res) => {
   const userNameApp = req.body.userNameApp;
   console.log(userNameApp)
 
-  //Docotor name
+  //Doctor name
   const docName = "Pamela Rimorin Concepcion";
 
   //Appointment Number
