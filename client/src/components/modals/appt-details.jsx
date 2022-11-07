@@ -11,25 +11,13 @@ function ApptDetails(appNum,date,time,appStats) {
   const handleModal1= () => {
     setModalState("modal-1")
   }
-  //appNum
-  const StringAppNum = JSON.stringify(appNum);
-  const ConvertStringApp = JSON.parse(StringAppNum);
-  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
-
-  //date
-  const StringDate = JSON.stringify(appNum,time,date,appStats);
-  const ConvertStringDate = JSON.parse(StringDate);
-  const DateValue = JSON.stringify(ConvertStringDate.date).replace(/"/g,"");
-
-  //time
-  const StringAppTime = JSON.stringify(appNum,time,date,appStats);
-  const ConvertStringTime = JSON.parse(StringAppTime);
-  const TimeValue = JSON.stringify(ConvertStringTime.time).replace(/"/g,"");
-  
-  //appStats
-  const StringAppStats = JSON.stringify(appNum,time,date,appStats);
-  const ConvertStringStats = JSON.parse(StringAppStats);
-  const StatsValue = JSON.stringify(ConvertStringStats.appStats).replace(/"/g,"");
+  //Get values 
+  const StringfyValues = JSON.stringify(pName,dName,appNum,date,time,consultation);
+  const ConvertStringfyValues = JSON.parse(StringfyValues);
+  const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
+  const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g,"");
+  const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g,"");
+  const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
   
 
   return (
@@ -66,7 +54,7 @@ function ApptDetails(appNum,date,time,appStats) {
 										</div>
 										<div class="col-md-6">
 											<div class="text-right">
-												<button type="button" class="btn bg-success-light btn-sm" id="appointment_status">{StatsValue}</button>
+												<button type="button" class="btn bg-success-light btn-sm" id="appointment_status">{DateValue} | {TimeValue}</button>
 											</div>
 										</div>
 									</div>

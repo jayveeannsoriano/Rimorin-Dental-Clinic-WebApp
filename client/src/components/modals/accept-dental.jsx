@@ -20,7 +20,7 @@ function AcceptDental(pName,dName,appNum,date,time,consultation) {
 
   const AcceptAppointment = () => {
 
-    Axios.post("http://localhost:3001/acceptAppointment", {userNameApp: PatientValue,appNumber: AppNumber ,dentistValue: DentistValue, dateValue: DateValue, consulInput: ConsultValue, getTime:TimeValue})
+    Axios.post("http://localhost:3001/acceptAppointment", {userNameApp: PatientValue, appNumber: AppNumber ,dentistValue: DentistValue, dateValue: DateValue, consulInput: ConsultValue, getTime:TimeValue})
   }
 
 
