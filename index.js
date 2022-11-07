@@ -67,6 +67,62 @@ app.post("/login-user", async (req, res) => {
   res.json({ status: "error", error: "invalid password" });
 });
 
+//sign up
+app.post("/RegisterUser", async (req, res) => {
+  const {
+    fname,
+    lname,
+    suffix,
+    email,
+    password,
+    gender,
+    mobile,
+    bday,
+    house,
+    brgy,
+    municipality,
+    province,
+    country,
+    medications,
+    allergies,
+    conditions,
+  } = req.body;
+
+  const encryptedPassword = await bcrypt.hash(password, 10);
+
+  const UserData = new User({
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    house:house,
+    brgy:brgy,
+    municipality:municipality,
+    province:province,
+    country:country,
+    medications:medications,
+    allergies:allergies,
+    conditions:conditions.toString(),
+  });
+  console.log("Sign up Details for User Data: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+});
+
 //read user data
 app.post("/userData", async (req, res) => {
   const { token } = req.body;
@@ -87,43 +143,8 @@ app.post("/userData", async (req, res) => {
   }
 });
 
-//update function
 
-app.put("/update", async (req, res) => {
-  const {newDocument} = req.body; // still not used, just incase frontend needs update functions
-  const { token } = req.body;
-  const id = req.body.id;
-  try {
-    const user = jwt.verify(token, JWT_SECRET);
-
-    await User.findById(id, (err,updatedDocument)=>{
-      updatedDocument.insertValuehere = newDocument;
-      updatedDocument.save();
-      res.send("update");
-    });
-  } catch (err) {
-    alert("There is some error");
-    console.log(err)
-  }
-});
-
-//delete function
-app.delete("/delete/:id", async (req, res) => {
-  
-  const id = req.params.id; 
-  
-  try{
-    const user = jwt.verify(token, JWT_SECRET);
-
-    await User.findByIdAndRemove(id).exec(); // still not used, just incase frontend needs delete functions
-    res.send("Document is deleted from the database");
-  }catch(err){
-    alert("There is some error");
-    console.log(err)
-  }
-});
-
-//CRUD FOR BOOKING APPOINTMENT
+//CRUD FOR BOOKING APPOINTMENT & DASHBOARD //-------------------------------------------------------------------------------------------------------------------------
 
 //book an appointment
 app.post("/insertAppointment", async(req,res) => {
@@ -181,6 +202,7 @@ app.get("/getAppointmentDetails", async(req,res) => {
        console.log('error: ', error)
       });
     });
+    
 //Get user for Appointment Details
 app.get("/getAppointmentDetail", async(req,res) => {
     
@@ -192,62 +214,6 @@ app.get("/getAppointmentDetail", async(req,res) => {
            console.log('error: ', error)
           });
         });
-
-//sign up
-app.post("/RegisterUser", async (req, res) => {
-  const {
-    fname,
-    lname,
-    suffix,
-    email,
-    password,
-    gender,
-    mobile,
-    bday,
-    house,
-    brgy,
-    municipality,
-    province,
-    country,
-    medications,
-    allergies,
-    conditions,
-  } = req.body;
-
-  const encryptedPassword = await bcrypt.hash(password, 10);
-
-  const UserData = new User({
-    fname:fname,
-    suffix:suffix, 
-    lname:lname,
-    email:email,
-    password:encryptedPassword,
-    gender:gender,
-    mobile:mobile,
-    bday:bday,
-    house:house,
-    brgy:brgy,
-    municipality:municipality,
-    province:province,
-    country:country,
-    medications:medications,
-    allergies:allergies,
-    conditions:conditions.toString(),
-  });
-  console.log("Sign up Details for User Data: ", UserData);
-  try {
-    const oldUser = await User.findOne({ email });
-    if (oldUser) {
-      return res.json({ error: "User already exists!" });
-    }
-    await UserData.save();
-    console.log("Successfully inserted ", UserData, " to the database.");
-    res.send({ status: "ok" });
-
-  } catch (error) {
-    res.send({ status: "sign up error" + error });
-  }
-});
 
 app.get("/getTotalPatients", async(req,res) => {
     
@@ -317,8 +283,6 @@ app.get("/getTotalPendingAppts", async(req,res) => {
       });
     });
 
-
-
 //updateDataTable
 
 app.put("/updateDateTime", async (req, res) => {
@@ -336,7 +300,7 @@ app.put("/updateDateTime", async (req, res) => {
   console.log("Appointment Details Updated!");
 });
 
-//deleteDataTable
+//delete Appointment
 
 app.put("/deleteAppointment", async (req,res) => {
 
@@ -347,7 +311,6 @@ app.put("/deleteAppointment", async (req,res) => {
 })
 
 //update status
-
 app.put("/updateStatus", async (req,res) => {
 
   const appNumber = req.body.appNum;
@@ -358,7 +321,6 @@ app.put("/updateStatus", async (req,res) => {
 })
 
 const sgMail = require('@sendgrid/mail')
-
 
   app.get("/sendApptEmail", function (req, res) {
     sgMail.setApiKey('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');
@@ -390,9 +352,53 @@ const sgMail = require('@sendgrid/mail')
       })
   });
 
-  
 
-  //DIRTY CODE
+  //Accept Appointment
+  app.post("/acceptAppointment", async(req,res) => {
+
+
+    //User Info value
+    const userNameApp = req.body.userNameApp;
+    console.log(userNameApp)
+  
+    //Docotor name
+    const docName = req.body.dentistValue;
+    console.log(docName);
+  
+    //Appointment Number
+  
+    const appNumber = req.body.appNumber;
+    console.log(appNumber)
+    
+    //date value
+    const dateValue = req.body.dateValue;
+    console.log(dateValue)
+  
+    //consul value
+    const consulInput = req.body.consulInput;
+    console.log(consulInput)
+  
+    //time value
+    const getTime = req.body.getTime;
+    console.log(getTime);
+  
+    //appt status default when appointment is accepted by the dentist
+    const insertAppStatus = "Accepted";
+    console.log(insertAppStatus);
+  
+    //inserting all data
+    const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  
+    try{
+      await AppData.save();
+      console.log("Successfully inserted ", AppData, " to the database.")
+      await AppRequest.findOneAndDelete({appNum: appNumber})
+    } catch(err){
+      console.log(err);
+    }
+  });
+
+//-----------end of CRUD--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   
 //index.js code for integrating Google Calendar
@@ -438,49 +444,7 @@ app.get('/checkAppt', (req, res) => {
   });
 });
 
-app.post("/acceptAppointment", async(req,res) => {
 
-
-  //User Info value
-  const userNameApp = req.body.userNameApp;
-  console.log(userNameApp)
-
-  //Docotor name
-  const docName = req.body.dentistValue;
-  console.log(docName);
-
-  //Appointment Number
-
-  const appNumber = req.body.appNumber;
-  console.log(appNumber)
-  
-  //date value
-  const dateValue = req.body.dateValue;
-  console.log(dateValue)
-
-  //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput)
-
-  //time value
-  const getTime = req.body.getTime;
-  console.log(getTime);
-
-  //appt status default when creating an appointment
-  const insertAppStatus = "Accepted";
-  console.log(insertAppStatus);
-
-  //inserting all data
-  const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
-
-  try{
-    await AppData.save();
-    console.log("Successfully inserted ", AppData, " to the database.")
-    await AppRequest.findOneAndDelete({appNum: appNumber})
-  } catch(err){
-    console.log(err);
-  }
-});
   
 app.get("/createEvent",(req,res)=>{
   // var event = {
