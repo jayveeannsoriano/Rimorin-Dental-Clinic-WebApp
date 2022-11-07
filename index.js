@@ -388,10 +388,10 @@ const sgMail = require('@sendgrid/mail')
   
 const { google } = require('googleapis');
   
-const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
-const GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDlyjScX4Hhy6Ev\nYp2JaFzspJ1ixfQp9Cil3cHC4uFxQdKNdKnokL+mHc2RfUCg/lRZZg+ol7SRyA4R\neD0XEuZjOfSOjJIYOS+6AHIOXg0rDK2tNi+CZJPxK5H9IKwRdG8wMCH0Hp8K0qCk\ntRilKr+0aWpJ1bhDIQoPt3NkzNvLX+YibWWm+HFYJlA9V6Ys6KbhTJmtXfipGj1l\nCuG/x7KQldFOSEl4cQFhg83K43JHt/AUFohrd13Xdc4hRKhnQo7i7sbrFW4OdNEt\nfpJ2yvka3qdRRY1cC0okXIOeLKhECn/pw2phywWC2aiH5KF3UOIPO0lSf/1jbY0l\n2msVg+LLAgMBAAECggEAFxDhkBLMNFCe6OVCwADAVya8/6W0OSPfkqq8YOYqUBaV\n3oon5gblnfSe5mxGuQJekCy9BKTZxMpqkxlZNIA6rRorsMVugsz2u/qAeG27b6dR\npbHrOfEDorFHcbu+WfAwmwsx1VHfkBQNeQsOosG0RZVRTIEOAnsGCgbVp/giVfsl\nIaWBtHcTW7zWNRoM1TTzU9dWfIEtlt3Rrb2pNCS0mDztTuGRFzynufKpGr+DzkuQ\noft9o6eSAgUulqcATHBnB4HCveBKp960ZcdSLh14eJdvbBMgP8FMDxnPNPgh2bSB\nYF3B2Bsuwq/epzr5CDuX6kYoH/yxYBXfz8IIcV9lUQKBgQD8EKY+7lyMjPMK6/ZQ\nSKozvbPWsjdbbucHXDGw3I4te+aJlBswpi6meeXR+bX/YPayBNXyaYt46nqFeMvh\n5oVNtUBh5qgE8IoIxK5Qbv789TCQwxc99N1ve8BqoOLph9Xrzpl6BomnzNeoZKW1\nuOs641jrPrPiFZSKbyXywGYLWwKBgQDpYIkqfzfozyl3Z0d1trjkszloc8ejqn3n\n7jeyhRf8UUYhijz5qIh7EE6JkTd3nhE7+c42CdAfUEjMLTTGIrG3t0qljUn1R/hG\nnDsPj4Z16KBouSkGTndt9Fy7i2Qi3m+5wtKHRdTvgn/MYJb+dCSe8jW+/RkB4cqd\nvpdapO/RUQKBgDL8CyRfgkjLmb1zzPagPA0LKf0bPyc3X3OVqldjxT5d+VuKoZVN\nh9IUhe/a2n01V7DaWYwW3ScwBmhI7rRatEvrhYJH7WRSYxky7y9FxD3WOmSNkX3u\nsXuDRIBM2pjx6Msxlsmf2Ogf/t8IvJvtM2dN5QZwQGJSiyEVKk/XqsxRAoGBAJ1d\nMcCNHgcGwYA5DO9r8UqNK1WqVGCg0ts0PyxKIH1L1E1DaJAzuyu4OCz81Xj8BcT6\nUbkQbtzehufeR6qetFUb6+Kr3cXd7KS4Lf71GYaiAJ/80pPlDxT+ZBU2DaSRdqa8\nnrcGOGn0Bfaq3sXfTN48lk8dXOJu/O/XFznQ48CxAoGBAN3pxlktOWRQVRpcfyo+\nW29O5e1aOpKIRxR25FyJXqT9wB1qPXaksemOXXKuCYbUW7VZvQn5ShtY7QT3iDpK\nxYxoI7aVRtgff5LuQtLpRQq+dXOBu+teOAxgc9ZHqwq3Jb34jiTqN0ZNTm9gAfB7\n+irnpjha4omsZjreefevylu2\n-----END PRIVATE KEY-----\n  "
-const GOOGLE_CLIENT_EMAIL = "calendar-key@contactsmap-316116.iam.gserviceaccount.com"
-const GOOGLE_PROJECT_NUMBER = "728529730940"
+const SCOPES = 'https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/calendar.events,https://www.googleapis.com/auth/admin.directory.resource.calendar';
+const GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC0QBw/1OPaexNw\na49s8SeguA7yORAI7PDMj096/iaB+J3uDMwfq8cAlLJvKSRC7lxegRW9tnLebFQe\nOdF4GFfIPwdexIVZWfGXkMfB4KDFDfFySWJnXi91IhkoXY7AeqRKWJ6Dnb3nZZZ4\nMMkx1Yqn3DYoPEoqNd3l6CHTHMmrWV4euKEvw/2E7OIuL2wc+q1xfHPPeL+ub9m0\nrfIFgTyRexr4qj0yFzPlO8aipMP1l5ReWYgsps4A0D56fzyzcNnP0IaU+h3UUB41\nHFa5sSXPhPSPpN/OouNfXa/hcjQwT7kopmmlyreWm/9McYgC2g6PVZhhQ7C9YoM2\nhWGNoHsTAgMBAAECggEADkD1muycWhYaeuzeiihl0FVNxUTS6knGXv7EM78uT1/Y\nKU90wtpkIb0ggR7ZQbu0rTp6/CYV3lXlrwA2es89/dVSIWHcA61Tp/8odMHtJLgO\nDFIWSINPsG0SXTlMxRbNsB1i55iNQGOtqvJ8roaq8Mw+sh7WZJEe64PYTOf9YKHN\n4Bs+50zmxye+1IwoCLhHQNThTbTuxfClrr1t+UX8UyoF89pch9WdDqAnXIKNG5m2\n0GCaovzhA+AaJFTEguw0Id7GKc67p9jkYGDLUjdk9x/YXzXQAiaEyQ1ROodxfLCF\nu977NKAADfgmSLSIPIlV5dKAL3ILWTXiEyT8tGU6qQKBgQDuwTWb9yxTZ5Dz1eLi\nmHO4WSjAXEaE6NIFqz1zz0Uys8/jHV9v+3VYsVLY/ewG0vzkMOfAbhXBsgXcelUe\ne3f8oPF8V2LHpHt8j9B/4HtsEQJUUKiltDL/bsYqWQwcuyyxYE4eGjdru/CJ1Vb/\nmocF/SByXHZuOjfuOvTHC0vumwKBgQDBRRqLlCJ9reTC72ezldmf54pzbVsOpFoA\nB83EykeEu8o71tS5S/byreKn0AwQ1LbGTYgoChGz0z4rJggkA22DJ0TL0szJOn98\nEN/fS3qswHiGQq5RLGqPBdorRHHY6hVzM5/kbHhEa+MK7E6f92yGjOcG2hY0ZZ2Q\naX6uDSnw6QKBgE4+17jjio1S9bhTsmWcnOAfqDFSjHHmc14UPrGDjiQNteWyrKJg\ngJauln4yyXV7FBIczPbNnSe7lhwpo1e4ExyiCkI7yU2wZB/wad5ezVQfRuom/P5B\nTi1UOnGKeWO5G+6Np0xKPzt5fl1No5NlKzcVO9r+3nlFbysN+0Z4N0xdAoGBAIGe\nR+ROkCc75c165FDD8jVVAzzQnZ4fSaD1muIdS4PQshwZw4cWVGODjRxA4qazEnXC\nb8tynVa+GNa1ZgZJKjworPIJyYA3tGJPquVF6NtNJkfdFq2oHTsYkK4t9DCnJYWi\nnNyEhtBUjuu3ei+8r9M5UoP85aF0eQzuQ6CVgYhpAoGBAJZ2IAZlX8Mm4jmpzOOK\nBZe52fzCoUbKxMFtlipKP8u8Bd/XBD4mz4CkHugy622IZwvv0der3yzPjONtD7Ze\nA6D/S89QLrynBCqzCE1PYSivevEz9ueKuq5biFXvXjNKF40bOwBRiqgEiHyDndhy\nXfYHAnkzU5VeRTVoXzJ5LDTZ\n-----END PRIVATE KEY-----\n"
+const GOOGLE_CLIENT_EMAIL = "rimorin-dental-clinic@rimorin-dental-clinic.iam.gserviceaccount.com"
+const GOOGLE_PROJECT_NUMBER = "508911265286 "
 const GOOGLE_CALENDAR_ID = "3b200857954250604a3c1200af53229fb9de863bc824b0acd5576548aa41e291@group.calendar.google.com"
   
 const jwtClient = new google.auth.JWT(
@@ -428,6 +428,31 @@ app.get('/checkAppt', (req, res) => {
 });
   
 app.get("/createEvent",(req,res)=>{
+  // var event = {
+  //   'summary': 'Rimorin Dental Appointment',
+  //   'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
+  //   'description': 'Appointment with Dr. Pam',
+  //   'start': {
+  //     'dateTime': '2022-11-12T09:00:00-07:00',
+  //     'timeZone': 'Asia/Dhaka',
+  //   },
+  //   'end': {
+  //     'dateTime': '2022-11-12T17:00:00-07:00',
+  //     'timeZone': 'Asia/Dhaka',
+  //   },
+  //   'attendees': [ 
+  //       {'email': '2195929@slu.edu.ph'},
+  //       {'email': 'balcitalloyd@gmail.com'},
+  //   ],
+  //   'reminders': {
+  //     'useDefault': false,
+  //     'overrides': [
+  //       {'method': 'email', 'minutes': 24 * 60},
+  //       {'method': 'popup', 'minutes': 10},
+  //     ],
+  //   },  
+  // };
+
   var event = {
     'summary': 'Rimorin Dental Appointment',
     'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
@@ -440,9 +465,11 @@ app.get("/createEvent",(req,res)=>{
       'dateTime': '2022-11-12T17:00:00-07:00',
       'timeZone': 'Asia/Dhaka',
     },
-    'attendees': [ 
-      // {'email': '2195929@slu.edu.ph'},
-      // {'email': 'balcitalloyd@gmail.com'},
+    'recurrence': [
+      'RRULE:FREQ=DAILY;COUNT=2'
+    ],
+    'attendees': [
+      {'email': 'balcitalloyd@gmail.com'},
     ],
     'reminders': {
       'useDefault': false,
@@ -450,7 +477,7 @@ app.get("/createEvent",(req,res)=>{
         {'method': 'email', 'minutes': 24 * 60},
         {'method': 'popup', 'minutes': 10},
       ],
-    },  
+    },
   };
     
   const auth = new google.auth.GoogleAuth({
