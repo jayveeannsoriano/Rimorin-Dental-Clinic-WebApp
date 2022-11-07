@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
+import AcceptDental from "./modals/accept-dental";
+import CancelDental from "./modals/cancel-dental";
 import { Button } from "react-bootstrap";
 
 const AcceptCancel = () => {
@@ -15,10 +17,10 @@ const AcceptCancel = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
-            console.log(response);
-            setAppointment(response.data);
-            setFilteredAppointment(response.data);
+            const responses = await axios.get('http://localhost:3001/getAppointmentDetails');
+            console.log(responses);
+            setAppointment(responses.data);
+            setFilteredAppointment(responses.data);
         }catch (error){
             console.log(error)
         }
@@ -56,8 +58,8 @@ const AcceptCancel = () => {
         {
             name: "Action",
             selector: row => <div>
-                <Button>Accept</Button>
-                <Button>Cancel</Button>
+                <AcceptDental pName = {row.pName} dName = {row.dName} appNum = {row.appNum} date = {row.date} time ={row.time} consultation = {row.consultation}/>
+                <CancelDental appNum = {row.appNum}/>
                 < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
                 </div>
         },
