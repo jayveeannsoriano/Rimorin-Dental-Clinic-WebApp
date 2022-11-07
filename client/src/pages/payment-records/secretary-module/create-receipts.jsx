@@ -1,6 +1,6 @@
 import React from "react";
 import '../../styles/prescription.css';
-import ProfileWidget from "../../components/profile-widget";
+import ProfileWidget from "../../../components/profile-widget";
 
 const createReceipt = () => {
     return (
