@@ -7,6 +7,7 @@ import ReschedConfirmation from "./modals/reschedule-appointment";
 import ApptStatus from "./modals/appt-status";
 import CancelAppointment from "./modals/cancel-appointment";
 import Rebook from "./modals/rebook"
+import ApptDetailsText from "./modals/appt-details-text";
 
 const DashboardTable = () => {
 
@@ -58,7 +59,9 @@ const DashboardTable = () => {
         },
         {
             name: "Appt. Status",
-            selector: row => row.appStatus,
+            selector: row => <div className="appt-details">
+            <ApptDetailsText appStats = {row.appStatus}/>
+             </div>,
             sortable:true,
         },
         {
