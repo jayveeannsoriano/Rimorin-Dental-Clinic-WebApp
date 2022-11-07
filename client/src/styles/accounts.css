@@ -1,7 +1,57 @@
-.ad-right{
+.ad-right {
     text-align: right;
 }
 
-.ad-left{
+.ad-left {
     text-align: left;
+}
+
+
+.signature-wrap {
+    margin-bottom: 20px;
+    margin-right: -10px;
+    text-align: center;
+    width: 260px;
+}
+
+.signature {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    color: #272b41;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    height: 85px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.signature:hover {
+    background-color: #fcfcfc;
+}
+
+.sign-name {
+    width: 100%;
+    float: right;
+}
+
+.sgn-file {
+    text-align-last: center;
+    padding-top: 5%;
+}
+
+.ad-btn{
+    text-align:right;
+}
+
+.ad-btn-space{
+    padding: 10px 30px;
+    margin:1%;
 }

@@ -17,41 +17,41 @@ const accountspage = () => {
           <li className="breadcrumb-item">
             <a href="/">Home</a>
           </li>
-          <li className="breadcrumb-item active">Dashboard</li>
+          <li className="breadcrumb-item active">Accounts</li>
         </ol>
       </nav>
 
       <section className="section dashboard">
         <div className="row">
 
-            {/* <!-- Today's Appointment --> */}
-            <div class="col-12">
-              <div class="card overflow-auto">
+          {/* <!-- Today's Appointment --> */}
+          <div class="col-12">
+            <div class="card overflow-auto">
 
-                <div class="card-body datatable">
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-6 ad-left">
-                          <DropdownButton id="dropdown-basic-button" title="Select Account Type">
-                            <Dropdown.Item href="#">Patient</Dropdown.Item>
-                            <Dropdown.Item href="#">Secretary</Dropdown.Item>
-                            <Dropdown.Item href="#">Dentist</Dropdown.Item>
-                            <Dropdown.Item href="#">Admin</Dropdown.Item>
-                          </DropdownButton>
-                        </div>
+              <div class="card-body datatable">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-6 ad-left">
+                      <DropdownButton id="dropdown-basic-button" title="Select Account Type">
+                        <Dropdown.Item href="#">Patient</Dropdown.Item>
+                        <Dropdown.Item href="#">Secretary</Dropdown.Item>
+                        <Dropdown.Item href="#">Dentist</Dropdown.Item>
+                        <Dropdown.Item href="#">Admin</Dropdown.Item>
+                      </DropdownButton>
+                    </div>
 
-                        <div className="col-6 ad-right">
-                        <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add Account</button>&nbsp;
-                        <button type="button" class="btn btn-primary"> <i class="bi bi-eye"></i>View Archived Accounts</button>
-                        </div>
-                      </div>
+                    <div className="col-6 ad-right">
+                      <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add Account</button>&nbsp;
+                      <button type="button" class="btn btn-primary"> <i class="bi bi-eye"></i>View Archived Accounts</button>
                     </div>
-                    <div>
-                      <AdminTable/>
-                    </div>
+                  </div>
+                </div>
+                <div>
+                  <AdminTable />
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
       </section>
