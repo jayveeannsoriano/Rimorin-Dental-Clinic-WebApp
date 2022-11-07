@@ -12,7 +12,7 @@ const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard'))
 const Appointments = lazy(() => import('../pages/appointments/index'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
-const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
+const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
 const Eprescription = lazy(() => import('../pages/eprescription/create-eprescription'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
@@ -20,6 +20,8 @@ const UserProfile = lazy(() => import('../pages/userprofile/index'));
 // appointment page routing
 const AppointmentRequest = lazy(() => import('../pages/appointments/dentist-appointment'));
 
+//create dental record routing
+const CreateDentalRecord = lazy(() => import('../pages/patient-records/dentist-module/create-dental-record'));
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
@@ -67,6 +69,10 @@ const DentistDashboardRoutes = {
                 {
                     path: '/dentist-dashboard/patient-records/dental-record',
                     element: <DentalRecords />
+                },
+                {
+                    path: '/dentist-dashboard/patient-records/dental-record/create-dental-record',
+                    element: <CreateDentalRecord />
                 }
             ]
         },

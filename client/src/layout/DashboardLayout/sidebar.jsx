@@ -33,7 +33,7 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link active" 
+                        <a className="nav-link collapsed" 
                         href="/dashboard/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>

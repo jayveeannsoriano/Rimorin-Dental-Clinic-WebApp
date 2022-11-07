@@ -1,4 +1,6 @@
 import React from 'react'
+import AdminPatientPage from "../../components/admin-patients-page";
+// import ProfileWidgetTwo from '../../components/profile-widget2';
 
 const Patients = () => {
   return (
@@ -16,7 +18,8 @@ const Patients = () => {
           </ol>
         </nav>
       </div>
-    
+    <AdminPatientPage/>
+    {/* <ProfileWidgetTwo/> */}
     </>
   )
 }

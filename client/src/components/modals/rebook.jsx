@@ -21,7 +21,7 @@ function rebook(appNum) {
     console.log("Update values: " + selectValue);
     Axios.put("http://localhost:3001/updateStatus",{
      appNum: AppNumber,
-     newAppStatus: selectValue, 
+     newAppStatus: selectValue 
     });
     handleClose();
   }

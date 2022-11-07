@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import {Link} from 'react-router-dom';
 // 1-admin
 // 2-dentist
 // 3-patient

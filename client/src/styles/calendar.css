@@ -27,11 +27,20 @@
 }
 
 /*----Calendar Checkbox inputs/labels----*/
-.form-check-input1{
+.form-check-input{
     padding-right: 30px;
+    padding: 6px;
 }
 
-.form-check-label1{
+.form-check .form-check-input{
+    float: initial;
+}
+
+.form-check-input:checked{
+    background-color: #5D5FEF;
+}
+
+.form-check-label{
     padding-right: 35px;
     padding-left: 5px;
 }
@@ -66,23 +75,56 @@
 /*----Calendar badges----*/
 .bg-warning{
     margin-left: -30px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
   
 .bg-info{
     margin-left: -30px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
   
 .bg-success{
     margin-left: -30px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
   
 .bg-danger{
     margin-left: -30px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
+
+.form-check .circle1 i{
+    color: #FBBF24;
+    margin-right: 40px;
+    margin-left: -20px;
+    margin-top: 11px;
+
+}
+
+.form-check .circle2 i{
+    color: #60A5FA;
+    margin-right: 40px;
+    margin-left: -20px;
+    margin-top: 11px;
+
+}
+
+.form-check .circle3 i{
+    color: #10B981;
+    margin-right: 40px;
+    margin-left: -20px;
+    margin-top: 11px;
+
+}
+
+.form-check .circle4 i{
+    color: #EF4444;
+    margin-right: 40px;
+    margin-left: -20px;
+    margin-top: 11px;
+
+}
+
 
 /* Card Body */
 .card-body {
@@ -105,8 +147,6 @@
 }
 
 #fc-dom-1.fc-toolbar-title{
-    margin-left: -370px;
-    margin-right: 230px;
     color: rgba(110, 92, 245);
     font-family: var(--body-font);
     font-size: 25px;
@@ -151,7 +191,6 @@
     background-color: #ffffff;
     color: black;
     border-color: #2c3e5000;
-    margin-left: 200px;
 }
 
 .fc-prev-button.fc-button.fc-button-primary:active {
@@ -163,7 +202,6 @@
     background-color: #ffffff;
     color: black;
     border-color: #2c3e5000;
-    margin-left: 350px;
 }
 
 .fc-next-button.fc-button.fc-button-primary:active {

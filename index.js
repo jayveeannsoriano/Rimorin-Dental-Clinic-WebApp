@@ -147,6 +147,7 @@ app.post("/userData", async (req, res) => {
 //CRUD FOR BOOKING APPOINTMENT & DASHBOARD //-------------------------------------------------------------------------------------------------------------------------
 
 //book an appointment
+const sgMail = require('@sendgrid/mail')
 app.post("/insertAppointment", async(req,res) => {
 
 
@@ -186,6 +187,37 @@ app.post("/insertAppointment", async(req,res) => {
   try{
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
+
+    if(insertAppStatus == "Accepted"){
+      //Sending Email
+      sgMail.setApiKey('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');
+      const msg = {
+        "personalizations":[
+          {
+            "to":[
+                {
+                  "email":recep
+                }
+            ],
+            "dynamic_template_data":{
+                "firstName":userNameApp,
+                "Appttime":slicedDate + " " + getTime,
+                "consultation":consulInput
+              }
+          }
+      ],
+      "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
+        from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+      }
+      sgMail
+        .send(msg)
+        .then(() => {
+          res.json('Email Sent')
+        })
+        .catch((error) => {
+          res.json('Error: Email Not Sent')
+        })
+    }
   } catch(err){
     console.log(err);
   }
@@ -320,36 +352,9 @@ app.put("/updateStatus", async (req,res) => {
   console.log("Appointment Status Successfully Updated!.");
 })
 
-const sgMail = require('@sendgrid/mail')
 
   app.get("/sendApptEmail", function (req, res) {
-    sgMail.setApiKey('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');
-    const msg = {
-      "personalizations":[
-        {
-           "to":[
-              {
-                 "email":"2195929@slu.edu.ph"
-              }
-           ],
-           "dynamic_template_data":{
-              "firstName":"Juan Loyd",
-              "Appttime":"2022-2-23",
-              "consultation":"my teeth hurt aughhhhhh"
-            }
-        }
-     ],
-     "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
-      from: 'rimorin.secretary@gmail.com', // Change to your verified sender
-    }
-    sgMail
-      .send(msg)
-      .then(() => {
-        res.json('Email Sent')
-      })
-      .catch((error) => {
-        res.json('Error: Email Not Sent')
-      })
+    
   });
 
 
@@ -447,31 +452,6 @@ app.get('/checkAppt', (req, res) => {
 
   
 app.get("/createEvent",(req,res)=>{
-  // var event = {
-  //   'summary': 'Rimorin Dental Appointment',
-  //   'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
-  //   'description': 'Appointment with Dr. Pam',
-  //   'start': {
-  //     'dateTime': '2022-11-12T09:00:00-07:00',
-  //     'timeZone': 'Asia/Dhaka',
-  //   },
-  //   'end': {
-  //     'dateTime': '2022-11-12T17:00:00-07:00',
-  //     'timeZone': 'Asia/Dhaka',
-  //   },
-  //   'attendees': [ 
-  //       {'email': '2195929@slu.edu.ph'},
-  //       {'email': 'balcitalloyd@gmail.com'},
-  //   ],
-  //   'reminders': {
-  //     'useDefault': false,
-  //     'overrides': [
-  //       {'method': 'email', 'minutes': 24 * 60},
-  //       {'method': 'popup', 'minutes': 10},
-  //     ],
-  //   },  
-  // };
-
   var event = {
     'summary': 'Rimorin Dental Appointment',
     'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
@@ -484,21 +464,16 @@ app.get("/createEvent",(req,res)=>{
       'dateTime': '2022-11-12T17:00:00-07:00',
       'timeZone': 'Asia/Dhaka',
     },
-    'recurrence': [
-      'RRULE:FREQ=DAILY;COUNT=2'
-    ],
-    'attendees': [
-      {'email': 'balcitalloyd@gmail.com'},
-    ],
+    'attendees': [ ],
     'reminders': {
       'useDefault': false,
       'overrides': [
         {'method': 'email', 'minutes': 24 * 60},
         {'method': 'popup', 'minutes': 10},
       ],
-    },
+    },  
   };
-    
+  
   const auth = new google.auth.GoogleAuth({
     keyFile: "CalendarData.json",
     scopes: 'https://www.googleapis.com/auth/calendar',
