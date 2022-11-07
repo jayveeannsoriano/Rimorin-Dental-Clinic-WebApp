@@ -55,3 +55,18 @@
     padding: 10px 30px;
     margin:1%;
 }
+
+.spc{
+    margin:1%;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.btn-link a{
+    z-index: 900;
+    text-decoration: none;
+    color: white;
+}

@@ -1,15 +1,19 @@
-import React from 'react'
-import axios from "axios";
+import React , { useState } from 'react'
 import '../../styles/dashboard.css';
 import '../../styles/accounts.css';
-import Button from 'react-bootstrap/Button';
 import AdminTable from '../../components/admin-table';
-import moment from 'moment'
-import { useState, useEffect } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Form from 'react-bootstrap/Form';
+
 
 const accountspage = () => {
+
+  const [value, setValue] = useState();
+  const handleSelect = (e) => {
+        console.log(e);
+        setValue(e.target.value);
+  }
+  
+
   return (
     <>
       <nav>
@@ -32,17 +36,19 @@ const accountspage = () => {
                 <div className="container">
                   <div className="row">
                     <div className="col-6 ad-left">
-                      <DropdownButton id="dropdown-basic-button" title="Select Account Type">
-                        <Dropdown.Item href="#">Patient</Dropdown.Item>
-                        <Dropdown.Item href="#">Secretary</Dropdown.Item>
-                        <Dropdown.Item href="#">Dentist</Dropdown.Item>
-                        <Dropdown.Item href="#">Admin</Dropdown.Item>
-                      </DropdownButton>
+                      <Form.Label>Type of user:</Form.Label>
+                      <Form.Select value={value} onChange={handleSelect}>
+                        <option value="" selected disabled>--Select Type--</option>
+                        <option value="patient">Patient</option>
+                        <option value="secretary">Secretary</option>
+                        <option value="dentist">Dentist</option>
+                        <option value="admin">Admin</option>
+                      </Form.Select>
                     </div>
 
-                    <div className="col-6 ad-right">
-                      <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add Account</button>&nbsp;
-                      <button type="button" class="btn btn-primary"> <i class="bi bi-eye"></i>View Archived Accounts</button>
+                    <div className="col-6 ad-right btn-link">
+                      <button type="button" class="btn btn-primary spc"><i class="bi bi-plus-lg"></i> <a href='/admin/accounts/create-account'>Add Account</a></button>
+                      <button type="button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button>
                     </div>
                   </div>
                 </div>

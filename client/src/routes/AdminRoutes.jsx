@@ -14,6 +14,9 @@ const Patients = lazy(() => import('../pages/patients/index'));
 const BackUpnRestore = lazy(() => import('../pages/backupNrestore/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
+const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
+
+
 // ==============================|| ADMIN ROUTING ||============================== //
 const AdminRoute ={
     path: '/admin',
@@ -38,6 +41,10 @@ const AdminRoute ={
         {
             path: '/admin/accounts',
             element: <Accounts />
+        },
+        {
+            path: '/admin/accounts/create-account',
+            element: <CreateAccount />
         },
         {
             path: '/admin/patients',

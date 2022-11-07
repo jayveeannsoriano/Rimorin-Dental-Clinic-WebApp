@@ -3,9 +3,7 @@ import '../../styles/dashboard.css';
 import '../../styles/accounts.css';
 import '../../styles/login-signup.css';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
 
@@ -14,6 +12,7 @@ const CreateAccount = () => {
         console.log(e);
         setValue(e.target.value);
     }
+    const navigate = useNavigate();
 
     return (
         <>
@@ -192,11 +191,13 @@ const CreateAccount = () => {
                                                     </div>
                                                 </div>
 
+                                            </form>
                                                 <div className="d-grid ad-btn">
                                                     <div className='col-md-auto '>
                                                         <button
                                                             type="submit"
                                                             className="btn btn-outline-primary ad-btn-space"
+                                                            onClick={() => navigate(-1)}
                                                         >
                                                             Cancel
                                                         </button>
@@ -207,10 +208,7 @@ const CreateAccount = () => {
                                                             Next
                                                         </button>
                                                     </div>
-                                                    {/* <div className='col-md-auto '>
-                          </div> */}
                                                 </div>
-                                            </form>
                                         </div>
 
                                     </div>
