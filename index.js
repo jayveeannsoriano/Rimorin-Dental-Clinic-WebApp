@@ -447,31 +447,6 @@ app.get('/checkAppt', (req, res) => {
 
   
 app.get("/createEvent",(req,res)=>{
-  // var event = {
-  //   'summary': 'Rimorin Dental Appointment',
-  //   'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
-  //   'description': 'Appointment with Dr. Pam',
-  //   'start': {
-  //     'dateTime': '2022-11-12T09:00:00-07:00',
-  //     'timeZone': 'Asia/Dhaka',
-  //   },
-  //   'end': {
-  //     'dateTime': '2022-11-12T17:00:00-07:00',
-  //     'timeZone': 'Asia/Dhaka',
-  //   },
-  //   'attendees': [ 
-  //       {'email': '2195929@slu.edu.ph'},
-  //       {'email': 'balcitalloyd@gmail.com'},
-  //   ],
-  //   'reminders': {
-  //     'useDefault': false,
-  //     'overrides': [
-  //       {'method': 'email', 'minutes': 24 * 60},
-  //       {'method': 'popup', 'minutes': 10},
-  //     ],
-  //   },  
-  // };
-
   var event = {
     'summary': 'Rimorin Dental Appointment',
     'location': 'Victoria Shoppesville, Baguio, 2600 Benguet',
@@ -484,21 +459,16 @@ app.get("/createEvent",(req,res)=>{
       'dateTime': '2022-11-12T17:00:00-07:00',
       'timeZone': 'Asia/Dhaka',
     },
-    'recurrence': [
-      'RRULE:FREQ=DAILY;COUNT=2'
-    ],
-    'attendees': [
-      {'email': 'balcitalloyd@gmail.com'},
-    ],
+    'attendees': [ ],
     'reminders': {
       'useDefault': false,
       'overrides': [
         {'method': 'email', 'minutes': 24 * 60},
         {'method': 'popup', 'minutes': 10},
       ],
-    },
+    },  
   };
-    
+  
   const auth = new google.auth.GoogleAuth({
     keyFile: "CalendarData.json",
     scopes: 'https://www.googleapis.com/auth/calendar',
