@@ -4,7 +4,7 @@ import '../../App.css';
 // 2-dentist
 // 3-patient
 
-function Sidebar_Dentist(){
+function Sidebar_Secretary(){
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     } catch (error) {
@@ -33,7 +33,7 @@ function Sidebar_Dentist(){
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
-                        href="/dentist/appointments" 
+                        href="/secretary/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
@@ -44,7 +44,7 @@ function Sidebar_Dentist(){
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
                         data-bs-target="#forms-nav"
-                        href="/dentist/calendar">
+                        href="/secretary/calendar">
                         <i className="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
@@ -59,13 +59,13 @@ function Sidebar_Dentist(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/dentist/patient-records/patient-info">
+                                <a href="/secretary/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/dentist/patient-records/dental-record">
+                                <a href="/secretary/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -75,7 +75,7 @@ function Sidebar_Dentist(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dentist/eprescription">
+                        <a className="nav-link collapsed" href="/secretary/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -83,7 +83,7 @@ function Sidebar_Dentist(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dentist/payment-records">
+                        <a className="nav-link collapsed" href="/secretary/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -93,7 +93,7 @@ function Sidebar_Dentist(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dentist/userprofile">
+                        <a className="nav-link collapsed" href="/secretary/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
@@ -112,4 +112,4 @@ function Sidebar_Dentist(){
     )
 }
 
-export default Sidebar_Dentist;
+export default Sidebar_Secretary;

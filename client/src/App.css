@@ -44,7 +44,7 @@
   --border-edge: 1px solid var(--primary-color);
   --border-radius-soft: 6px;
   /*======= RESPONSIVE =======*/
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
        :root {
           --biggest-font-size: 6rem;
           --h1-font-size: 2.25rem;
@@ -54,18 +54,12 @@
           --small-font-size: 0.875rem;
           --smaller-font-size: 0.813rem;
       }
-  }
+  } */
 
 }
 
 /*========== STYLE.CSS ==========*/
-*{
-  margin:0;
-  padding:0;
-  
-}
 body {
-  /* min-height: 100vh; */
   font-family: var(--body-font) !important;
   color: var(--text-color) !important;
   background: var(--bg-color) !important;

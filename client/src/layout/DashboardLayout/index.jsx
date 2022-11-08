@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Header from './dashboard-header'
 import Footer from './dashboard-footer'
-import Sidebar from "./sidebar";
+import Sidebar_Patient from "./sidebar-Patient";
 import Sidebar_Admin from "./sidebar-Admin";
 import Sidebar_Dentist from "./sidebar-Dentist";
+import Sidebar_Secretary from "./sidebar-Secretary";
 import { Outlet } from 'react-router-dom';
 
 const DashboardLayout = () => {
@@ -19,10 +20,12 @@ const DashboardLayout = () => {
     var sidebarComponent = ""; 
     switch (userRole) {
         case 1:
-            sidebarComponent = <Sidebar isSidebar={isSidebar} />; 
+            sidebarComponent = <Sidebar_Patient isSidebar={isSidebar} />; 
             break;
 
         case 2:
+            sidebarComponent = <Sidebar_Secretary isSidebar={isSidebar} />; 
+            break;
     
         case 3:
             sidebarComponent = <Sidebar_Dentist isSidebar={isSidebar} />; 

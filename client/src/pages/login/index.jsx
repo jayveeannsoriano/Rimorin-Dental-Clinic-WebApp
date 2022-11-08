@@ -39,9 +39,9 @@ export default class Login extends Component {
           window.localStorage.setItem("logged", true);
         
           if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===1){
-            window.location.href = "/dashboard";
+            window.location.href = "/patient";
           }else{
-            window.location.href = "/dentist-dashboard";
+            window.location.href = "/dentist";
           }
           
         } else {

@@ -11,20 +11,19 @@ const DashboardPage = lazy(() => import('../pages/dashboard/index'));
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
-const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
+const PatientInfo = lazy(() => import('../pages/patient-records/patient-module/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/index'));
+const UserProfile = lazy(() => import('../pages/userprofile/patient-module'));
 
 // appointment request routing
 const RequestAppointment = lazy(() => import('../pages/appointments/request-appointment'));
 
-
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
-const DashboardRoutes = {
-    path: '/dashboard',
+const PatientRoutes = {
+    path: '/patient',
     element: <DashboardLayout />,
     children: [
         {
@@ -32,58 +31,58 @@ const DashboardRoutes = {
             element: <ErrorPage />
         },
         {
-            path: '/dashboard',
+            path: '/patient',
             element: <DashboardPage />
         },
         {
-            path: '/dashboard/appointments',
+            path: '/patient/appointments',
             element: <Appointments />
         },
         {
-            path: '/dashboard/appointments',
+            path: '/patient/appointments',
             children: [
                 {
-                    path: '/dashboard/appointments/request-appointment',
+                    path: '/patient/appointments/request-appointment',
                     element: <RequestAppointment />
                 },
             ]
         },
         {
-            path: '/dashboard/calendar',
+            path: '/patient/calendar',
             element: <Calendar/>
         },
         {
-            path: '/dashboard/patient-records',
+            path: '/patient/patient-records',
             children: [
                 {
-                    path: '/dashboard/patient-records/patient-info',
+                    path: '/patient/patient-records/patient-info',
                     element: <PatientInfo />
                 }
             ]
         },
         {
-            path: '/dashboard/patient-records',
+            path: '/patient/patient-records',
             children: [
                 {
-                    path: '/dashboard/patient-records/dental-record',
+                    path: '/patient/patient-records/dental-record',
                     element: <DentalRecords />
                 }
             ]
         },
         {
-            path: '/dashboard/eprescription',
+            path: '/patient/eprescription',
             element: <Eprescription />
         },
         {
-            path: '/dashboard/payment-records',
+            path: '/patient/payment-records',
             element: <PaymentRecords />
         },
         {
-            path: '/dashboard/userprofile',
+            path: '/patient/userprofile',
             // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
             element: <UserProfile />
         }
     ]
 };
 
-export default DashboardRoutes;
+export default PatientRoutes;

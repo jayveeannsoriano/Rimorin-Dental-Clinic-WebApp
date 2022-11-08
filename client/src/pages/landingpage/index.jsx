@@ -41,10 +41,10 @@ const LandingPage = () => {
             <section id="hero" className="d-flex align-items-center">
                 <div className="container" data-aos="zoom-out" data-aos-delay="100">
                     <div className="row">
-                        <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                        <div className="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-">
                             <h1>A Great Place to Receive Care</h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
-                            <div>
+                            <div className="d-flex justify-content-center justify-content-lg-start">
                                 <a href="/auth/login" className="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
@@ -103,14 +103,13 @@ const LandingPage = () => {
                     <h2>About Us</h2>
                     <p>Rimorin Dental Clinic is committed to operate the best chain of dental clinics that delivers the highest quality dental care at the most affordable cost to our customers.</p>
                 </div>
-
+                
                     <div className="row">
-                            <div className="col-lg-5 d-flex about-img align-items-stretch aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200"> 
+                            <div className="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200"> 
                                 <img src={"./img/about-img.png"} className="img-fluid" alt=""/>
                             </div>
 
-                            <div className="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-
+                            <div className="col-lg-6 pt-4 pt-lg-0 content">
                             <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
                                 <div className="icon"><i className="fa-solid fa-face-smile"></i></div>
                                 <h4 className="title">Modern care with a smile</h4>
