@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const userSchema = new mongoose.Schema
 const UserDetailsScehma = new mongoose.Schema(
   {
     fname: String,
@@ -19,12 +18,24 @@ const UserDetailsScehma = new mongoose.Schema(
     medications: String,
     allergies: String,
     conditions: String,
+    dentalRecords: {type: mongoose.Types.ObjectId, ref: "UserDentalRecords"}
   },
   {
-    // collection: "UserRegister",
     collection: "UserInfo",
   }
 );
 
-// mongoose.model("userRegister", userSchema);
+const UserDentalRecords = new mongoose.Schema({
+  dentalRecordUserID: {type: mongoose.Types.ObjectId, ref: "UserInfo"},
+  dentalDate: String,
+  dentalDesc: String,
+  dentalFile:{
+    data: Buffer,
+    contentType: String
+  }
+},{
+
+})
+
 mongoose.model("UserInfo", UserDetailsScehma);
+mongoose.model("UserDentalRecords", UserDentalRecords);

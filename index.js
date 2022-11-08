@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require('multer');
 
 app.use(express.json()); //prints body request
 app.use(cors());
@@ -493,3 +494,27 @@ app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
 });
   
+
+//image storage
+const ImgStorage = multer.diskStorage({
+  destination: "uploads",
+  filename:(req,file,cb) =>{
+    cb(null,file.originalname);
+  },
+});
+
+// const uploadImg = multer({
+//   storage:Storage
+// }).single("TESTIMAGE")
+
+app.put("/uploadDentalRecord",async (req,res)=>{
+
+  const img = req.filename.fileName;
+
+  const appNumber = req.body.appNum;
+  const newStatus = req.body.newAppStatus;
+
+  await AppDetails.findOneAndUpdate({appNum: appNumber}, {appStatus: newStatus});
+  console.log("Appointment Status Successfully Updated!.");
+
+})
