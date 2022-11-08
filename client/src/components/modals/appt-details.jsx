@@ -56,8 +56,8 @@ function ApptDetails(appNum,date,time,appStats) {
               <div class="col modal-values">Lorem ipsum dolor sit amet.</div>
             </div>
             <div class="row">
-              <div class="col modal-label">Appointment Status:</div>
-              <div class="col modal-values appt_status">{StatsValue}</div>
+              <div className="col modal-label">Appointment Status:</div>
+              <div data-status={StatsValue} className="col modal-values appt_status"></div>
             </div>
           </div>
       </Modal.Body>
