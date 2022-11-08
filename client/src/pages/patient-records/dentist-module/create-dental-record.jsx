@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
+import Axios from 'axios';
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -23,9 +24,27 @@ const CreateDentalRecord = () => {
   const prostheticOptions=['DENTAL REPAIR', 'DENTURE RELINE (LABORATORY MADE)', 'DENTURE RELINE (DIRECT)', 'SOFT RELINE', 'DENTURE REPLACEMENT'];
   const surgicalOptions=['ODONTECTOMY', 'OPERCULECTOMY', 'FRENECTOMY', 'ALVEOLECTOMY', 'GINGIVECTOMY OR CONTOURING', 'APICOECTOMY'];
 
+  const [treatDesc, getTreatDesc] = useState("");
+  const [CheckboxIndex, getBoxIndex] = useState([]);
+
 
   //drag n drop
-  const onFileChange = (files) => {console.log(files);}
+  const [getFile, setGetFile] = useState("");
+  const onFileChange = (files) => {
+    setGetFile(files);
+    console.log(files);}
+  
+  const uploadDentalRecords = () => {
+
+    // Axios.put("https://localhost:3001/uploadDentalRecord",{
+    //   dateValue: startDate,
+    //   descValue: treatDesc,
+    //   imgValue: getFile,
+    // });
+    console.log(startDate);
+    console.log(treatDesc);
+    console.log(getFile);
+  }
 
   return (
     <>
@@ -96,6 +115,7 @@ const CreateDentalRecord = () => {
                   id="reason"
                   rows="5"
                   placeholder="Write treatment details"
+                  onChange={(e) => {getTreatDesc(e.target.value)}}
                 ></textarea>
                 </div>
               </div>
@@ -120,13 +140,14 @@ const CreateDentalRecord = () => {
                       <div className="procedure-label">Others</div>
                       
                       <div className="divider procedure-div"></div>
-                      <Form>
+                      <Form >
                           {othersOptions.map((item, index) => (
                               <div key={index} className="mb-3">
                               <Form.Check 
-                                  input value={index}
+                                  input value={[index]}
                                   type="checkbox"
-                                  label={`${item}`}
+                                  label={`${item}`} 
+                                  onChange={(e) => {getBoxIndex(e.target.value)}}
                               />
                               </div>
                           ))}
@@ -238,7 +259,7 @@ const CreateDentalRecord = () => {
                 <p>Root Canal Therapy</p>
               </div>
               <div class="dental-form-buttons">
-                  <button type="submit" class="btn btn-primary">Create</button>
+                  <button type="submit" class="btn btn-primary" onClick={uploadDentalRecords}>Create</button>
                   <button class="btn btn-outline-secondary">Cancel</button>
               </div>
             </div>
