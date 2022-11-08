@@ -1,3 +1,36 @@
-.btn-sm{
-    
+.modal-title{
+    font-weight: 500 !important;
+    font-size: 20px !important;
+}
+
+.appointment-details-modal .row{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    margin-bottom: 16px;
+}
+
+.appointment-details-modal h4, 
+.form-label {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    margin-bottom: 0.2in !important;
+}
+
+.modal-label{
+    color: #624DE3;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.modal-values{
+    color: #25282b;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.appointment-details-modal .col .modal-values{
+    padding: 0.3in;
+    margin-top: 20px;
 }

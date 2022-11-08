@@ -4,7 +4,6 @@ import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import ApptStatus from "./modals/appt-status";
 import CancelAppointment from "./modals/cancel-appointment";
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
@@ -59,18 +58,18 @@ const DashboardTable = () => {
         },
         {
             name: "Appt. Status",
-            selector: row => <div className="appt-details">
-            <ApptDetailsText appStats = {row.appStatus}/>
-             </div>,
+            selector: row =>
+            <ApptDetailsText appStats = {row.appStatus}/>,
             sortable:true,
         },
         {
             name: "Action",
-            selector: row => <div>
-                <Rebook appNum = {row.appNum} />
+            selector: row =>
+            <div className="action-buttons">
+                < Rebook appNum = {row.appNum} />
                 < ReschedConfirmation appNum = {row.appNum}/>
                 < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-                </div>
+            </div>
         },
     ];
 

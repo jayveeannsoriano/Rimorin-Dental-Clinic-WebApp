@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../styles/dental-record.css"
 import ProfileWidget from "../../../components/profile-widget";
+import NoRecordImg from '../../../assets/img/no-record.png'
 
 const DentalRecord = () => {
     return(
@@ -29,13 +30,13 @@ const DentalRecord = () => {
                                     {/* Dental Record */}
                                     {/* This UI is only shown when the patient is new */}
                                     <div class="row no-record">
-                                        <img src="../../../assets/img/no-record.png" alt="no-record-img" />
+                                        <img src={NoRecordImg} alt="no-record-img" />
                                         <div className="empty-message">
                                             <h2>DENTAL RECORD NOT FOUND</h2>
                                             <p> It seems that you have no dental record for this patient. Would you like to create a new dental record? </p> 
                                         </div>
                                         <div className="create-record">
-                                            <a href='/dentist-dashboard/patient-records/dental-record/create-dental-record'>
+                                            <a href='/dentist/patient-records/dental-record/create-dental-record'>
                                                 <button className="btn btn-primary">Create Dental Record</button>
                                             </a> 
                                         </div>

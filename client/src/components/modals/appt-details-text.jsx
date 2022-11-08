@@ -10,7 +10,7 @@ function ApptDetailsText(appStats) {
 
   return (
     <>
-    <h3>{StatsValue}</h3>
+      <span data-status={StatsValue} className='appt_status'></span>
     </>
   );
 }

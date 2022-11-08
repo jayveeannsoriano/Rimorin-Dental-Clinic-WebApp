@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/patient-info.css";
+import "../../../styles/patient-info.css";
 import "react-bootstrap";
-import ProfileWidget from "../../components/profile-widget";
+import ProfileWidget from "../../../components/profile-widget";
 
 const PatientInfo = () => {
   return (
@@ -31,16 +31,21 @@ const PatientInfo = () => {
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
+
+                <button className="btn btn-primary" type="submit">
+                <i class="bi bi-pencil-fill"></i>
+                  Edit 
+                </button>
+
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-printer-fill"></i>
                   Print
                 </button>
-                
+
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-download"></i>
                   Export
                 </button>
-                
                 <div className="divider"></div>
 
 

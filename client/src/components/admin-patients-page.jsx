@@ -27,6 +27,7 @@ const AdminPatientPage = () => {
                                 <ul>
                                     <li>Phone <span>+1 952 001 8563</span></li>
                                     <li>Age <span>38 Years</span></li>
+                                    <br/>
                                 </ul>
                             </div>
 
@@ -34,7 +35,7 @@ const AdminPatientPage = () => {
                             <button
                                 // type=""
                                 className="btn btn-outline-primary"
-                                style={{ padding: "10px 30px" }}
+                                style={{ padding: "10px 20px" }}
                             >
                                 View Profile
                             </button>

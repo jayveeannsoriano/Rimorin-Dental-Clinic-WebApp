@@ -26,8 +26,8 @@ function AcceptDental(pName,dName,appNum,date,time,consultation) {
 
   return (
     <>
-      <Button className="accept-button" variant="warning" onClick={AcceptAppointment}>
-      <i class="bi bi-pencil-fill"></i>Accept
+      <Button className="accept-button" onClick={AcceptAppointment}>
+      <i class="bi bi-check-lg"></i>Accept
       </Button>
     </>
   );

@@ -1,11 +1,7 @@
 import React from 'react';
 import '../../App.css';
-import {Link} from 'react-router-dom';
-// 1-admin
-// 2-dentist
-// 3-patient
 
-function Sidebar(){
+function Sidebar_Patient(){
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     } catch (error) {
@@ -16,7 +12,7 @@ function Sidebar(){
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
-                    <a href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" } class="logo d-flex align-items-center">
+                    <a href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" } class="logo d-flex align-items-center">
                         <img src="../../img/logo.png" alt=""/>
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
@@ -25,7 +21,7 @@ function Sidebar(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link collapsed" href={userInfo['user_role_id']==1 ? "/dashboard" :"/dentist-dashboard" }>
+                        <a className="nav-link collapsed" href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -33,8 +29,8 @@ function Sidebar(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link active" 
-                        href="/dashboard/appointments" 
+                        <a className="nav-link collapsed" 
+                        href="/patient/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
                             <span>Appointments</span>
@@ -45,7 +41,7 @@ function Sidebar(){
                     <li className="nav-item">
                         <a className="nav-link collapsed" 
                         data-bs-target="#forms-nav"
-                        href="/dashboard/calendar">
+                        href="/patient/calendar">
                         <i className="fa-solid fa-calendar"></i>
                             <span>Calendar</span>
                         </a>
@@ -60,13 +56,13 @@ function Sidebar(){
                         </a>
                         <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/dashboard/patient-records/patient-info">
+                                <a href="/patient/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/dashboard/patient-records/dental-record">
+                                <a href="/patient/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -76,7 +72,7 @@ function Sidebar(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/eprescription">
+                        <a className="nav-link collapsed" href="/patient/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -84,7 +80,7 @@ function Sidebar(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/payment-records">
+                        <a className="nav-link collapsed" href="/patient/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -94,7 +90,7 @@ function Sidebar(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/dashboard/userprofile">
+                        <a className="nav-link collapsed" href="/patient/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>
@@ -113,5 +109,5 @@ function Sidebar(){
     )
 }
 
-export default Sidebar;
+export default Sidebar_Patient;
 

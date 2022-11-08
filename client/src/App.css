@@ -44,7 +44,7 @@
   --border-edge: 1px solid var(--primary-color);
   --border-radius-soft: 6px;
   /*======= RESPONSIVE =======*/
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
        :root {
           --biggest-font-size: 6rem;
           --h1-font-size: 2.25rem;
@@ -54,18 +54,12 @@
           --small-font-size: 0.875rem;
           --smaller-font-size: 0.813rem;
       }
-  }
+  } */
 
 }
 
 /*========== STYLE.CSS ==========*/
-*{
-  margin:0;
-  padding:0;
-  
-}
 body {
-  /* min-height: 100vh; */
   font-family: var(--body-font) !important;
   color: var(--text-color) !important;
   background: var(--bg-color) !important;
@@ -763,6 +757,40 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# My profile
+--------------------------------------------------------------*/
+.timeslot {
+	flex-direction: row;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	padding: 2px;
+}
+
+.timeslot .time {
+	background-color: #ffffff;
+	color: #5d5fef;
+	border-color: #5d5fef;
+	font-size: 15px;
+	font-weight: 500;
+	border-radius: 5px;
+	/* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
+	padding: 10px 30px;
+	width: 95%;
+}
+
+.timeslot .time:hover {
+	background-color: var(--primary-color);
+	color: #fff;
+}
+
+.slots {
+	width: 100%;
+	display: grid;
+	gap: 5px 0px;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/*--------------------------------------------------------------
 # Appointment Details Modal
 --------------------------------------------------------------*/
 
@@ -791,13 +819,12 @@ margin-bottom: 0;
 /*--------------------------------------------------------------
 # Datatable action buttons
 --------------------------------------------------------------*/
-/*--------------------------------------------------------------
-# Datatable action buttons
---------------------------------------------------------------*/
 .view-button, 
 .update-button,
 .cancel-button,
-.resched-button {
+.resched-button,
+.accept-button,
+.followUp-button{
   font-size: 12px !important;
   padding: 8px 15px !important;
   border: none !important;
@@ -827,49 +854,82 @@ margin-bottom: 0;
   color: #6C0386!important;
 }
 
+.accept-button{
+  background: #ECFDF5!important;
+  color: #10B981!important;
+}
+
+.followUp-button{
+  background-color: #C79DFD !important;
+  color: #231A5CF2 !important;
+}
+
 .view-button i, 
 .update-button i,
 .cancel-button i,
-.resched-button i {
+.resched-button i,
+.accept-button i,
+.followUp-button i {
 padding-right: 4px;
 }
 
 /* Appointment Status */
+.appt_status{
+  font-size: 12px;
+}
+
+.appt_status[data-status="Accepted"]:after,
+.appt_status[data-status="Cancelled"]:after,
+.appt_status[data-status="Finished"]:after,
+.appt_status[data-status="Rescheduled"]:after,
+.appt_status[data-status="Pending"]:after,
+.appt_status[data-status="No Show"]:after,
+.appt_status[data-status="Arrived"]:after{
+  border-radius: 22px;
+  padding: 6px 12px;
+  align-items: center;
+}
+
 .appt_status[data-status="Accepted"]:after{
   content: "Accepted";
   color: #1F9254;
   background: #EBF9F1;
-  border-radius: 22px;
-  align-items: center;
-  padding: 6px 12px;
-  gap: 10px;
 }
 
 .appt_status[data-status="Cancelled"]:after{
   content: "Cancelled";
   color: #fff;
   background: #DC2626;
-  border-radius: 22px;
-  padding: 6px 12px;
-  gap: 10px;
 }
 
 .appt_status[data-status="Finished"]:after{
   content: "Finished";
   color: #fff;
   background: #1F9254;
-  border-radius: 22px;
-  padding: 6px 12px;
-  gap: 10px;
 }
 
 .appt_status[data-status="Rescheduled"]:after{
   content: "Rescheduled";
   color: #6C0386;
   background: #F9DBFE;
-  border-radius: 22px;
-  padding: 6px 12px;
-  gap: 10px;
+}
+
+.appt_status[data-status="Pending"]:after{
+  content: "Pending";
+  background: #FFFBEB;
+  color: #D97706;
+}
+
+.appt_status[data-status="No Show"]:after{
+  content: "No Show";
+  background: #252B42;
+  color: #fff;
+}
+
+.appt_status[data-status="Arrived"]:after{
+  content: "Arrived";
+  background: #2563EB;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -887,6 +947,10 @@ padding-right: 4px;
 /* div of action buttons in dashboardTable.jsx */
 .action-buttons{
   width: 800px;
+}
+
+.appointment-request-table #cell-4-undefined{
+  max-width: 780px !important;
 }
 
 #cell-1-undefined,
@@ -942,6 +1006,7 @@ padding-right: 4px;
 
 .kEIRkz div:first-child{
   text-overflow: unset !important;
+  overflow: unset !important;
 }
 
 /*--------------------------------------------------------------

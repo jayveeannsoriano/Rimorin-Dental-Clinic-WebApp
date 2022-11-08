@@ -148,6 +148,7 @@ app.post("/userData", async (req, res) => {
 //CRUD FOR BOOKING APPOINTMENT & DASHBOARD //-------------------------------------------------------------------------------------------------------------------------
 
 //book an appointment
+const sgMail = require('@sendgrid/mail')
 app.post("/insertAppointment", async(req,res) => {
 
 
@@ -187,6 +188,37 @@ app.post("/insertAppointment", async(req,res) => {
   try{
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
+
+    if(insertAppStatus == "Accepted"){
+      //Sending Email
+      sgMail.setApiKey('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');
+      const msg = {
+        "personalizations":[
+          {
+            "to":[
+                {
+                  "email":recep
+                }
+            ],
+            "dynamic_template_data":{
+                "firstName":userNameApp,
+                "Appttime":slicedDate + " " + getTime,
+                "consultation":consulInput
+              }
+          }
+      ],
+      "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
+        from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+      }
+      sgMail
+        .send(msg)
+        .then(() => {
+          res.json('Email Sent')
+        })
+        .catch((error) => {
+          res.json('Error: Email Not Sent')
+        })
+    }
   } catch(err){
     console.log(err);
   }
@@ -321,36 +353,9 @@ app.put("/updateStatus", async (req,res) => {
   console.log("Appointment Status Successfully Updated!.");
 })
 
-const sgMail = require('@sendgrid/mail')
 
   app.get("/sendApptEmail", function (req, res) {
-    sgMail.setApiKey('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');
-    const msg = {
-      "personalizations":[
-        {
-           "to":[
-              {
-                 "email":"2195929@slu.edu.ph"
-              }
-           ],
-           "dynamic_template_data":{
-              "firstName":"Juan Loyd",
-              "Appttime":"2022-2-23",
-              "consultation":"my teeth hurt aughhhhhh"
-            }
-        }
-     ],
-     "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
-      from: 'rimorin.secretary@gmail.com', // Change to your verified sender
-    }
-    sgMail
-      .send(msg)
-      .then(() => {
-        res.json('Email Sent')
-      })
-      .catch((error) => {
-        res.json('Error: Email Not Sent')
-      })
+    
   });
 
 

@@ -21,7 +21,10 @@ const CreateAccount = () => {
                     <li className="breadcrumb-item">
                         <a href="/">Home</a>
                     </li>
-                    <li className="breadcrumb-item active">Accounts</li>
+                    <li className="breadcrumb-item">
+                        <a href="/">Accounts</a>
+                    </li>
+                    <li className="breadcrumb-item active">Create Account</li>
                 </ol>
             </nav>
 
@@ -192,23 +195,23 @@ const CreateAccount = () => {
                                                 </div>
 
                                             </form>
-                                                <div className="d-grid ad-btn">
-                                                    <div className='col-md-auto '>
-                                                        <button
-                                                            type="submit"
-                                                            className="btn btn-outline-primary ad-btn-space"
-                                                            onClick={() => navigate(-1)}
-                                                        >
-                                                            Cancel
-                                                        </button>
-                                                        <button
-                                                            type="submit"
-                                                            className="btn btn-primary ad-btn-space"
-                                                        >
-                                                            Next
-                                                        </button>
-                                                    </div>
+                                            <div className="d-grid ad-btn">
+                                                <div className='col-md-auto '>
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-outline-primary ad-btn-space"
+                                                        onClick={() => navigate(-1)}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-primary ad-btn-space"
+                                                    >
+                                                        Next
+                                                    </button>
                                                 </div>
+                                            </div>
                                         </div>
 
                                     </div>

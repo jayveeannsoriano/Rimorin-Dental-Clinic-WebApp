@@ -1,6 +1,12 @@
 import React from 'react';
 import styles from '../../styles/dashboard.css'
-//import NotifyMe from '../../components/notification/NotifyMe';
+import API from '../../config/api'
+
+const notificationSys = async() => {
+    return API.get("/test").then(data => {
+        return data.data;
+        })
+}
 
 function dashboardHeader(){
     try {
@@ -39,7 +45,7 @@ function dashboardHeader(){
 
 
                         {/* <!-- Notification Icon --> */}
-                        <li className="nav-item dropdown">
+                        <li className="nav-item dropdown" onClick={notificationSys}>
                             <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                             <i className="fa-solid fa-bell"></i>
                                 <span className="badge bg-primary badge-number">4</span>

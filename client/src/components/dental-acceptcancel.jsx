@@ -5,7 +5,6 @@ import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import AcceptDental from "./modals/accept-dental";
 import CancelDental from "./modals/cancel-dental";
-import { Button } from "react-bootstrap";
 
 const AcceptCancel = () => {
 
@@ -57,11 +56,12 @@ const AcceptCancel = () => {
         },
         {
             name: "Action",
-            selector: row => <div>
+            selector: row => 
+            <div className="action-buttons">
                 <AcceptDental pName = {row.pName} dName = {row.dName} appNum = {row.appNum} date = {row.date} time ={row.time} consultation = {row.consultation}/>
                 <CancelDental appNum = {row.appNum}/>
-                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-                </div>
+                <ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
+            </div>
         },
     ];
 
