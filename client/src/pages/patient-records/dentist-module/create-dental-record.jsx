@@ -47,6 +47,20 @@ const CreateDentalRecord = () => {
     console.log(getFile);
   }
 
+  //get all users
+
+  const[userData, setUserData] = useState("");
+
+  const getAppointment = async() => {
+    try{
+        const response = await Axios.get('http://localhost:3001/getUserDetails');
+        setUserData(response.data);
+    }catch (error){
+        console.log(error)
+    }
+}
+
+
   return (
     <>
       <div class="pagetitle">

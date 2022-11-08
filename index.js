@@ -125,7 +125,7 @@ app.post("/RegisterUser", async (req, res) => {
 });
 
 //read user data
-app.post("/userData", async (req, res) => {
+app.get("/userData", async (req, res) => {
   const { token } = req.body;
   try {
     const user = jwt.verify(token, JWT_SECRET);
@@ -523,3 +523,15 @@ app.put("/uploadDentalRecord",async (req,res)=>{
   console.log("Appointment Status Successfully Updated!.");
 
 })
+
+app.get("/getUserDetails", async(req,res) => {
+    
+  await AppRequest.find({})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+    

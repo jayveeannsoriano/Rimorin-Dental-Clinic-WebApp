@@ -40,8 +40,12 @@ export default class Login extends Component {
         
           if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===1){
             window.location.href = "/patient";
-          }else{
+          }if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===2){
             window.location.href = "/dentist";
+          }if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===3){
+            window.location.href = "/secretary";
+          }if(JSON.parse(window.localStorage.getItem("current-session"))['user_role_id']===4){
+            window.location.href = "/admin";
           }
           
         } else {
