@@ -4,10 +4,12 @@ import "../styles/profilewidgettwo.css";
 
 const ProfileWidgetTwo = () => {
     return (
-        <div class="col-md-7 col-lg-8 col-xl-9">
-            <div class="row row-grid">
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="card widget-profile pat-widget-profile">
+
+
+        <div class="card widget-profile pat-widget-profile">
+            <div class="col-md-7 col-lg-8 col-xl-9">
+                <div class="row row-grid">
+                    <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="card-body">
                             <div class="pro-widget-content">
                                 <div class="profile-info-widget">
@@ -30,13 +32,21 @@ const ProfileWidgetTwo = () => {
                                     <br />
                                 </ul>
                             </div>
-                        </div>
 
+
+                        </div>
                     </div>
                 </div>
             </div>
 
+
+
         </div>
+
+
+
+
+
     )
 }
 
