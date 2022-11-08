@@ -36,7 +36,7 @@ const DentalRecord = () => {
                                             <p> It seems that you have no dental record for this patient. Would you like to create a new dental record? </p> 
                                         </div>
                                         <div className="create-record">
-                                            <a href='/dentist-dashboard/patient-records/dental-record/create-dental-record'>
+                                            <a href='/dentist/patient-records/dental-record/create-dental-record'>
                                                 <button className="btn btn-primary">Create Dental Record</button>
                                             </a> 
                                         </div>

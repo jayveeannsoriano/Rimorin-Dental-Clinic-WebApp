@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
 import '../../../styles/dental-record.css'
+import ProfileWidgetTwo from "../../../components/profile-widget2";
 
 //datepicker
 import DatePicker from "react-datepicker";
@@ -59,7 +60,10 @@ const CreateDentalRecord = () => {
             <h5 className="card-title">Create Dental Record</h5>
             <div className="divider"></div>
 
-            <div>profile widget 2</div>
+            <div>
+              <ProfileWidgetTwo/>
+            </div>
+            
             <div className="divider"></div>
 
             <div className="row treatment-details">
