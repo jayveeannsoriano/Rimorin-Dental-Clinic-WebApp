@@ -4,6 +4,16 @@ import 'aos/dist/aos.css';
 import '../../styles/landing-page.css';
 
 const LandingPage = () => {
+//     var btnContainer = document.getElementById('navbar');
+// var btns = btnContainer.getElementsByClassName('nav-link.scrollto');
+
+// for (var i=0; i<btns.length; i++){
+//    btns[i].addEventListener('click', function(){
+//     var current = document.getElementsByClassName('active');
+//     current[0].className = current[0].className.replace('active');
+//     this.className += 'active';
+//    })
+//}
     return(
         <div className="LandingPage" >
             {/* Top Bar */}
@@ -25,7 +35,7 @@ const LandingPage = () => {
 
                         <nav id="navbar" className="navbar order-last order-lg-0">
                             <ul>
-                                <li><a className="nav-link scrollto active" href={'#hero'}>Home</a></li>
+                                <li><a className="nav-link scrollto" href={'#hero'}>Home</a></li>
                                 <li><a className="nav-link scrollto" href={'#about'}>About</a></li>
                                 <li><a className="nav-link scrollto" href={'#services'}>Services</a></li>
                                 <li><a className="nav-link scrollto" href={'#faq'}>FAQs</a></li>
@@ -313,3 +323,4 @@ const LandingPage = () => {
 }
 
 export default LandingPage;
+
