@@ -2,7 +2,7 @@ import React from "react";
 import "../../../styles/create-receipt.css";
 import ProfileWidget from "../../../components/profile-widget";
 
-const Payments = () => {
+const Sec_Payments = () => {
     return(
         <>
                 <div class="pagetitle">
@@ -16,6 +16,7 @@ const Payments = () => {
                 </div>
 
                 {/* Profile */}
+                <button type="button" class="btn btn-primary rx-pr btn-link"><i class="bi bi-plus-lg"> </i> <a href='/secretary/payment-records/create-receipt'> Create Receipt</a></button>
                 <section class="section profile">
                 <div class="row">
                         <ProfileWidget/>
@@ -58,4 +59,4 @@ const Payments = () => {
         </>
     );
 }
-export default Payments;
+export default Sec_Payments;

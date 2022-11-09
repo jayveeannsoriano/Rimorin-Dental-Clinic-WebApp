@@ -50,3 +50,9 @@ label .paylabel {
     text-align: right;
     justify-content: right;
 }
+
+.btn-link a{
+    z-index: 900;
+    text-decoration: none;
+    color: white;
+}
