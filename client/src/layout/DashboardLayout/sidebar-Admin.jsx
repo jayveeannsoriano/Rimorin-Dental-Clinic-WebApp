@@ -16,7 +16,7 @@ function Sidebar_Admin(){
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
-                    <a href="/dashboard" class="logo d-flex align-items-center">
+                    <a href="/admin" class="logo d-flex align-items-center">
                         <img src="../../img/logo.png" alt=""/>
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>

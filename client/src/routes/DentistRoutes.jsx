@@ -6,7 +6,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import ErrorPage from '../components/errorpage';
 
 // dashboard routing
-const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard')); //CHANGED
+const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard'));
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
@@ -29,7 +29,7 @@ const CreateDentalRecord = lazy(() => import('../pages/patient-records/dentist-m
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
 const DentistRoutes = {
-    path: '/dentist', // CHANGED
+    path: '/dentist',
     element: <DashboardLayout />,
     children: [
         {
@@ -37,7 +37,7 @@ const DentistRoutes = {
             element: <ErrorPage />
         },
         {
-            path: '/dentist',//CHANGED
+            path: '/dentist',
             element: <DashboardPage />
         },
         {
@@ -81,13 +81,11 @@ const DentistRoutes = {
         },
         {
             path: '/dentist/eprescription',
-            element: <Eprescription />,
-            children: [
-                {
-                    path: '/dentist/eprescription/create-eprescription',
-                    element: <CreateEprescription />
-                }
-            ]
+            element: <Eprescription />
+        },
+        {
+            path: '/dentist/eprescription/create-eprescription',
+            element: <CreateEprescription />
         },
         {
             path: '/dentist/payment-records',

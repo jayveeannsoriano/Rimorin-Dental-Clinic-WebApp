@@ -18,6 +18,16 @@ const PatientProfileWidget = () => {
                                 <p id="age"> 24 </p>
                         </div>
                     </div>
+
+                      <div className='col-md-auto'>
+                            <button
+                                // type=""
+                                className="btn btn-outline-primary"
+                                style={{ padding: "10px 20px" }}
+                            >
+                                View Profile
+                            </button>
+                            </div>
                 </div>
             </div>
         </div>

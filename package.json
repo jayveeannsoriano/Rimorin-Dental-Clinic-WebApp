@@ -11,7 +11,8 @@
     "serverdev": "nodemon index.js",
     "develop": "npm run heroku-postbuild && npm run serverdev",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "no-newChange": "npm run build & nodemon index.js"
+    "no-newChange": "npm run build & nodemon index.js",
+    "frontend": "npm run build"
   },
   "author": "",
   "license": "ISC",
