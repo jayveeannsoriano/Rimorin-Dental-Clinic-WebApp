@@ -41,11 +41,13 @@ mongoose
 require("./models/appointmentDetails");
 require("./models/userDetails");
 require("./models/prescriptionDetails");
-require("./models/appointmentRequest")
+require("./models/appointmentRequest");
+require("./models/receiptDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
 const AppRequest = mongoose.model("AppointmentRequest");
+const ReceiptDetails = mongoose.model("ReceiptDetails");
 
 
 //sign in
@@ -534,4 +536,15 @@ app.get("/getUserDetails", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    //update status
+app.post("/createReceipt", async (req,res) => {
+
+  const appNumber = req.body.appNum;
+  const newStatus = req.body.newAppStatus;
+
+  await AppDetails.save({appNum: appNumber}, {appStatus: newStatus});
+  console.log("Appointment Status Successfully Updated!.");
+})
+
     

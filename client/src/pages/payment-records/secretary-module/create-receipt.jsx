@@ -1,9 +1,56 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import '../../../styles/create-rx.css';
 import ProfileWidget from "../../../components/profile-widget";
+import Axios from 'axios';
 
 const createReceipt = () => {
+
+    const [search, setSearch] = useState("");
+    const [getPatientDetails, setPatientDetails] = useState([]);
+    const [getPatientAppNum, setGetPatientAppNum] = useState("");
+    const [transactionDetails, setTransactionDetails] = useState("");
+    const [transactionNumber, setTransactionNumber] = useState("");
+    const [patientName, setPatientName] = useState("");
+    const [patientAddress, setPatientAddress] = useState("");
+    const [dateIssued, setDateIssued] = useState("");
+    const [serviceValue, setServiceValue] = useState("");
+    const [quantityValue, setQuantityValue] = useState("");
+    const [amountValue, setAmountValue] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+    const [discountValue, setDiscountValue] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [amountPaid, setAmountPaid] = useState(0);
+    const [signatureValue, setSignatureValue] = useState("");
+
+    const TotalAmountToPay = () => {
+        const PWDandSeniorDiscount = 0.20;
+        setDiscountValue(PWDandSeniorDiscount);
+
+    // if(may discount){
+    //     const discountFormula = amountValue * discountValue;
+    //     setTotalAmount(amountValue - discountFormula);
+    // }else{
+    //     setTotalAmount(amountValue)
+    // }
+
+    }
+
+    const getPatientInformation = async() =>{
+
+        try{
+            const response = await Axios.get('http://localhost:3001/getAppointmentDetail');
+            console.log(response);
+            setPatientDetails(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getPatientInformation();
+    }, []);
+
     return (
         <>
             {/* Main Wrapper */}
@@ -51,10 +98,10 @@ const createReceipt = () => {
                                         <div className="row">
                                             <div className="col-sm-6">
                                                 <div className="biller-info">
-                                                    <h5>Transaction Details </h5>
-                                                    <p> Transaction #: </p>
-                                                    <p> Bill to: </p>
-                                                    <p> Address: </p>
+                                                    <h5>{transactionDetails}</h5>
+                                                    <p> {transactionNumber}</p>
+                                                    <p>{patientName}</p>
+                                                    <p>{patientAddress}</p>
                                                 </div>
                                             </div>
                                             {/* End Profession Information */}
@@ -64,7 +111,7 @@ const createReceipt = () => {
                                                 <h5> E-Receipt Information </h5> 
                                                 <div class="col-12 col-md-6 col-lg-4">
                                                     <label>Date of Issue</label>
-                                                    <input type="date" className="form-control" placeholder="Date" />
+                                                    <input type="date" className="form-control" placeholder="Date" onChange={(e) => {setDateIssued(e.target.value)}}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,19 +139,19 @@ const createReceipt = () => {
                                                                 <div class="col-12 col-md-6 col-lg-4">
                                                                     <div class="form-group">
                                                                         <label>Service <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="Tooth Extraction" />
+                                                                        <input type="text" class="form-control" placeholder="Tooth Extraction" onChange={(e)=>{setServiceValue(e.target.value)}}/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                     <div class="form-group">
                                                                         <label>Quantity <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="1" />
+                                                                        <input type="text" class="form-control" placeholder="1" onChange={(e)=>{setQuantityValue(e.target.value)}}/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                     <div class="form-group">
                                                                         <label>Amount (₱)<span class="text-danger">*</span></label>
-                                                                        <input type="number" class="form-control" placeholder="500" />
+                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e)=>{setAmountValue(e.target.value)}}/>
                                                                     </div>
                                                                 </div>
 
@@ -120,9 +167,9 @@ const createReceipt = () => {
 
                                                     <div class="row form-row experience-cont">
                                                         <div class="col-12 col-md-10 col-lg-12">
-                                                            <label>Subtotal: </label>
-                                                            <label>Discount: </label>
-                                                            <label>Total Amount: </label>
+                                                            <label>Subtotal: {subTotal}</label>
+                                                            <label>Discount: {discountValue}</label>
+                                                            <label>Total Amount: {totalAmount}</label>
                                                         </div>
                                                     </div>
 
@@ -136,8 +183,8 @@ const createReceipt = () => {
                                                                     </DropdownButton>
 
                                                                     <div class="form-group">
-                                                                        <label>Amount Paid(₱)<span class="text-danger">*</span></label>
-                                                                        <input type="number" class="form-control" placeholder="500" />
+                                                                        <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
+                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e)=>{setAmountPaid(e.target.value)}}/>
                                                                     </div>
 
                                                                 </div>
@@ -158,7 +205,7 @@ const createReceipt = () => {
                                                 <div className="signature"><span>Upload a file or drag and drop</span></div>
 
                                                 <div className="sign-name">
-                                                    <p className="mb-0">( Name )</p>
+                                                    <p className="mb-0">{patientName}</p>
                                                     <span className="text-muted">Signature</span>
                                                 </div>
                                             </div>
