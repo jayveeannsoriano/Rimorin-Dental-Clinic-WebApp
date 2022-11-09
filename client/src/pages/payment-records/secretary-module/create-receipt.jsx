@@ -174,27 +174,20 @@ const createReceipt = () => {
                                                                     <div class="row form-row experience-cont ">
                                                                         <div class="col-8">
                                                                         
-                                                                            <label className="paylabel">Subtotal: </label>
-                                                                            <input type="text" class="form-control" placeholder="" readonly="readonly" />
-                                                                            <label className="paylabel">Discount: </label>
-                                                                            <input type="text" class="form-control" placeholder="" />
-                                                                            <label className="paylabel">Total Amount: </label>
-                                                                            <input type="text" class="form-control" placeholder="" readonly="readonly" />
+                                                                            <label className="paylabel">Subtotal: {subTotal} </label>
+                                                                            {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
+                                                                            <label className="paylabel">Discount: {discountValue}</label>
+                                                                            {/* <input type="text" class="form-control" placeholder="" /> */}
+                                                                            <label className="paylabel">Total Amount: {totalAmount}</label>
+                                                                            {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
                                                                         </div>
                                                                     </div>                                                                    
                                                                 </div>
                                                                 <div className="col">
-                                                                    <div class="col-8 col-md-8 col-lg-8 total-pay">
+                                                                    <div class="col-8 col-md-8 col-lg-8">
                                                                         <div class="row form-row">
                                                                             <div class="form-group mb-0 rx-pr">
 
-                                                    <div class="row form-row experience-cont">
-                                                        <div class="col-12 col-md-10 col-lg-12">
-                                                            <label>Subtotal: {subTotal}</label>
-                                                            <label>Discount: {discountValue}</label>
-                                                            <label>Total Amount: {totalAmount}</label>
-                                                        </div>
-                                                    </div>
                                                                                 <Form.Label>Payment Method:</Form.Label>
                                                                                 <Form.Select>
                                                                                     <option value="" selected disabled>--Select Type--</option>

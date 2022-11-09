@@ -14,7 +14,7 @@ const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription'));
-const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module'));
+const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
 // patient list page routing
@@ -24,7 +24,7 @@ const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescri
 const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
 
 //create receipt routing
-const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt.jsx'));
+const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
