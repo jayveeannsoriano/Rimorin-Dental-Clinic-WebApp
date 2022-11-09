@@ -1,5 +1,4 @@
 import React from "react";
-// import Footer from "../components/dashboard-footer";
 import "../../styles/payments.css";
 import ProfileWidget from "../../components/profile-widget";
 

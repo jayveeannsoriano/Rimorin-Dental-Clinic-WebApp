@@ -17,7 +17,7 @@ const createReceipt = () => {
                                 <nav aria-label="breadcrumb" className="page-breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <a href="/dashboardpage">Home</a>
+                                            <a href="/secretary">Home</a>
                                         </li>
                                         <li className="breadcrumb-item active" aria-current="page">
                                             Create E-Receipt

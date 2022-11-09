@@ -6,7 +6,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import ErrorPage from '../components/errorpage';
 
 // dashboard routing
-const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard')); //CHANGED
+const DashboardPage = lazy(() => import('../pages/dashboard/secretary-dashboard'));
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
@@ -18,11 +18,11 @@ const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-mod
 const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
 //create receipt routing
-const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
+const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt.jsx'));
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
-const DentistDashboardRoutes = {
+const SecretaryRoutes = {
     path: '/secretary',
     element: <DashboardLayout />,
     children: [
@@ -31,7 +31,7 @@ const DentistDashboardRoutes = {
             element: <ErrorPage />
         },
         {
-            path: '/secretary/dashboard',
+            path: '/secretary',
             element: <DashboardPage />
         },
         {
@@ -66,13 +66,11 @@ const DentistDashboardRoutes = {
         },
         {
             path: '/secretary/payment-records',
-            element: <PaymentRecords />,
-            children: [
-                {
-                    path: '/secretary/payment-records/create-receipt',
-                    element: <CreateReceipt />
-                }
-            ]
+            element: <PaymentRecords />
+        },
+        {
+            path: '/secretary/payment-records/create-receipt',
+            element: <CreateReceipt />
         },
         {
             path: '/secretary/userprofile/',
@@ -82,4 +80,4 @@ const DentistDashboardRoutes = {
     ]
 };
 
-export default DentistDashboardRoutes;
+export default SecretaryRoutes;

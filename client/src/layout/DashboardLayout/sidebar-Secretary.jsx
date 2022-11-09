@@ -15,7 +15,7 @@ function Sidebar_Secretary(){
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
-                    <a href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" } class="logo d-flex align-items-center">
+                    <a href="/secretary" class="logo d-flex align-items-center">
                         <img src="../../img/logo.png" alt=""/>
                         <span class="logo-text d-none d-lg-block">Rimorin Dental Clinic</span>
                     </a>
@@ -24,7 +24,7 @@ function Sidebar_Secretary(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link" href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
+                        <a className="nav-link" href="/secretary" >
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
