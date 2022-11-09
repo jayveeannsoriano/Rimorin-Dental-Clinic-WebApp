@@ -1,6 +1,6 @@
 import React from 'react'
 // import AdminPatientPage from "../../components/admin-patients-page";
-import ProfileWidgetTwo from '../../components/profile-widget2';
+// import ProfileWidgetTwo from '../../components/profile-widget2';
 import PatientProfileWidget from '../../components/patient-profile-widget';
 
 const Patients = () => {
@@ -21,7 +21,7 @@ const Patients = () => {
       </div>
     {/* <AdminPatientPage/> */}
     <PatientProfileWidget/>
-    <ProfileWidgetTwo/>
+    {/* <ProfileWidgetTwo/> */}
     </>
   )
 }
