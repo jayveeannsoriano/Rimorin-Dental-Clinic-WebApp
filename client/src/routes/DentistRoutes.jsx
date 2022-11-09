@@ -9,18 +9,21 @@ import ErrorPage from '../components/errorpage';
 const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard'));
 
 // sidebar routing
-const Appointments = lazy(() => import('../pages/appointments/index'));
+const Appointments = lazy(() => import('../pages/appointments/dentist-appointment'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
 const Eprescription = lazy(() => import('../pages/eprescription//'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/index'));
+const DentistUserProfile = lazy(() => import('../pages/userprofile/dentist-module'));
 
-// appointment page routing
-const AppointmentRequest = lazy(() => import('../pages/appointments/dentist-appointment'));
+// patient list page routing
+const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
+const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info'));
+const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription'));
+const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
 
-//create dental record routing
+//create prescription routing
 const CreateEprescription = lazy(() => import('../pages/eprescription/dentist-module/create-eprescription'));
 
 //create dental record routing
@@ -45,15 +48,6 @@ const DentistRoutes = {
             element: <Appointments />
         },
         {
-            path: '/dentist/appointments',
-            children: [
-                {
-                    path: '/dentist/appointments',
-                    element: <AppointmentRequest />
-                },
-            ]
-        },
-        {
             path: '/dentist/calendar',
             element: <Calendar/>
         },
@@ -62,6 +56,10 @@ const DentistRoutes = {
             children: [
                 {
                     path: '/dentist/patient-records/patient-info',
+                    element: <PatientInfoPatientList/>
+                },
+                {
+                    path: '/dentist/patient-records/patient-info/:fname',
                     element: <PatientInfo />
                 }
             ]
@@ -71,6 +69,10 @@ const DentistRoutes = {
             children: [
                 {
                     path: '/dentist/patient-records/dental-record',
+                    element: <DentalRecordPatientList />
+                },
+                {
+                    path: '/dentist/patient-records/dental-record/:fname',
                     element: <DentalRecords />
                 },
                 {
@@ -81,20 +83,38 @@ const DentistRoutes = {
         },
         {
             path: '/dentist/eprescription',
-            element: <Eprescription />
-        },
-        {
-            path: '/dentist/eprescription/create-eprescription',
-            element: <CreateEprescription />
+            children: [
+                {
+                    path: '/dentist/eprescription',
+                    element: <PrescriptionPatientList />
+                },
+                {
+                    path: '/dentist/eprescription/:fname',
+                    element: <Eprescription />
+                },
+                {
+                    path: '/dentist/eprescription/create-eprescription',
+                    element: <CreateEprescription />
+                }
+            ]
         },
         {
             path: '/dentist/payment-records',
-            element: <PaymentRecords />
+            children: [
+                {
+                    path: '/dentist/payment-records',
+                    element: <TransactionsPatientList />
+                },
+                {
+                    path: '/dentist/payment-records/:fname',
+                    element: <PaymentRecords />
+                }
+            ]
         },
         {
             path: '/dentist/userprofile/',
             // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
-            element: <UserProfile />
+            element: <DentistUserProfile />
         }
     ]
 };

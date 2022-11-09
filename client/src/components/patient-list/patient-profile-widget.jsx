@@ -46,9 +46,6 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                                 <Button className="widget-btn">
                                     View Patient Profile
                                 </Button>
-                                {/* <div className="widget-btn btn-primary">
-                                    View Patient Profile
-                                </div> */}
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfileWidget from "../../../components/profile-widget.jsx";
+import ProfileWidget from "../../../components/profile-widget";
 
 const UserProfile = () => {  
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
