@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from 'axios';
 import styles from '../../styles/dashboard.css'
 import API from '../../config/api'
 
-const notificationSys = async() => {
-    return API.get("/test").then(data => {
-        return data.data;
-        })
-}
+
 
 function dashboardHeader(){
+
+    //notification data
+const [appointmentDetails, setAppointmentDetails] = useState([]);
+
+const getAppointment = async() => {
+    try{
+        const response = await Axios.get('http://localhost:3001/getAppointmentDetail');
+        setAppointmentDetails(response.data);
+    }catch (error){
+        console.log(error)
+    }
+}
+
+useEffect(() => {
+    getAppointment();
+}, []);
+
+const notificationSys = () => {
+   
+}
+//-------------------------------------------------------------------------
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     } catch (error) {
@@ -50,12 +68,19 @@ function dashboardHeader(){
                             <i className="fa-solid fa-bell"></i>
                                 <span className="badge bg-primary badge-number">4</span>
                             </a>
-                        
-                        {/*<NotifyMe props={}/>*/}
+                    
 
                         {/* <!-- Notification Dropdown --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                            <li className="dropdown-header">
+
+                        {appointmentDetails.map((item, index) => (
+                            <div key={index} class="col-md-6 col-lg-4 col-xl-3">
+                                    <div class="profile-det-info">
+                                        <p>{item.pName} requested an appointment {item.date} at {item.time}</p>
+                                        </div>
+                             </div>
+                                  ))}
+                            {/* <li className="dropdown-header">
                                 You have 4 new notifications
                                 <a href="#"><span className="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                             </li>
@@ -98,7 +123,7 @@ function dashboardHeader(){
 
                             <li className="dropdown-footer">
                                 <a href="#">Show all notifications</a>
-                            </li>
+                            </li> */}
 
                         </ul>
                         {/* <!-- End Notification Dropdown Items --> */}

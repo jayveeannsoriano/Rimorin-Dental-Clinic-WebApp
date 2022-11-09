@@ -18,6 +18,7 @@ const UserDetailsScehma = new mongoose.Schema(
     medications: String,
     allergies: String,
     conditions: String,
+    user_role_id: Number,
     dentalRecords: {type: mongoose.Types.ObjectId, ref: "UserDentalRecords"}
   },
   {

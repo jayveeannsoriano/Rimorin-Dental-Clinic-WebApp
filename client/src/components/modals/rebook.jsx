@@ -5,17 +5,18 @@ import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios';
 import '../../styles/modals.css'
 
-function rebook(appNum,pName,date,time,consultation) {
+function rebook(appNum,pName,dName,date,time,consultation) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [selectValue, setSelectedValue] = useState();
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(appNum,pName,date,time,consultation);
+  const StringAppNum = JSON.stringify(appNum,pName,dName,date,time,consultation);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
   const patientValue = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
+  const dentistValue = JSON.stringify(ConvertStringApp.dName).replace(/"/g,"");
   const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g,"");
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g,"");
   const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g,"");
@@ -24,12 +25,28 @@ function rebook(appNum,pName,date,time,consultation) {
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
 
-
     Axios.put("http://localhost:3001/updateStatus",{
-     appNum: AppNumber,
-     newAppStatus: selectValue 
-    });
+      appNum: AppNumber,
+      newAppStatus: selectValue 
+     });
+  
+
+    if(selectValue == "Finished"){
+      Axios.post("http://localhost:3001/createReceipt",{
+        appNum: AppNumber,
+        pName: patientValue,
+        dName: dentistValue,
+        date: dateValue,
+        time: timeValue,
+        consultation: consultationValue
+      })
+      console.log("Receipt Created with ", appNum,pName)
+    }else{
+      console.log("Receipt not created")
+    }
+
     handleClose();
+
   }
 
   return (

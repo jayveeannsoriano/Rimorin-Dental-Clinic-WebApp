@@ -91,6 +91,8 @@ app.post("/RegisterUser", async (req, res) => {
     conditions,
   } = req.body;
 
+  const userRole = 1;
+
   const encryptedPassword = await bcrypt.hash(password, 10);
 
   const UserData = new User({
@@ -110,6 +112,7 @@ app.post("/RegisterUser", async (req, res) => {
     medications:medications,
     allergies:allergies,
     conditions:conditions.toString(),
+    user_role_id:userRole,
   });
   console.log("Sign up Details for User Data: ", UserData);
   try {
@@ -526,9 +529,9 @@ app.put("/uploadDentalRecord",async (req,res)=>{
 
 })
 
-app.get("/getUserDetails", async(req,res) => {
+app.get("/getAppointmentReceipt", async(req,res) => {
     
-  await AppRequest.find({})
+  await ReceiptDetails.find({})
       .then((data) => {
         res.json(data);
       })
@@ -541,10 +544,29 @@ app.get("/getUserDetails", async(req,res) => {
 app.post("/createReceipt", async (req,res) => {
 
   const appNumber = req.body.appNum;
-  const newStatus = req.body.newAppStatus;
+  const acceptedStatus = "Accepted";
+  const payStatus = "Pending";
+  const patientValue = req.body.pName;
+  const dentistValue = req.body.dName;
+  const dateValue = req.body.date;
+  const timeValue = req.body.time;
+  const consultationValue = req.body.consultation;
 
-  await AppDetails.save({appNum: appNumber}, {appStatus: newStatus});
-  console.log("Appointment Status Successfully Updated!.");
+  const appNumDuplicate = await ReceiptDetails.findOne({appNum});
+  
+  await ReceiptDetails.create({
+    appNum: appNumber, 
+    appStatus: acceptedStatus,
+    payStatus: payStatus, 
+    pName: patientValue, 
+    dName: dentistValue, 
+    date: dateValue,
+    time: timeValue, 
+    consultation: consultationValue
+  });
+
+  // console.log("Sign up Details for Receipt: ", ReceiptData);
+  // console.log("Successfully inserted ", ReceiptData, " to the database.");
 })
 
     
