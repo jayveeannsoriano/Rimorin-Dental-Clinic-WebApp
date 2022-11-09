@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import Axios from 'axios';
 import "../../../styles/patient-profile-widget.css";
 
 // temporary user image
@@ -7,7 +8,27 @@ import { Button } from "react-bootstrap";
 
 const TransactionPatientProfileWidget = () => {
 //temporary list
-const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina', 'Shermax']
+const [patientReceipt, setPatientReceipt] = useState([]);
+const [patientValue, setPatientValue] = useState("");
+console.log(patientReceipt, "this is the response");
+
+//App Detail
+const getReceiptDetails = async() => {
+    try{
+        const response = await Axios.get('http://localhost:3001/getAppointmentReceipt');
+        console.log(response, "Responses");
+        setPatientReceipt(response.data);
+    }catch (error){
+        console.log(error)
+    }
+}
+
+useEffect(() => {
+    getReceiptDetails();
+}, []);
+
+const proceedtoPayment = () => {
+}
 
     return (
         <>
@@ -15,7 +36,7 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
             <div class="row">
 
             {/* replace 'patients' with proper get value variable */}
-            {patients.map((item, index) => (
+            {patientReceipt.map((item, index) => (
                 <div key={index} class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card widget-profile pat-widget-profile">
                         <div class="card-body">
@@ -25,10 +46,10 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                                         <img src={userimg} alt="User Image"/>
                                     </a>
                                     <div class="profile-det-info">
-                                        <h3><a href="#"></a>{item}</h3>
+                                        <h3><a href="#"></a>{item.pName}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Patient ID :</b> P0016</h5>
+                                            <h5><b>Appointment Number:</b>{item.}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +63,7 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                             </div>
 
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href="/dentist/payment-records/:fname">
+                                <Button className="widget-btn" href="/dentist/payment-records/:" onClick={proceedtoPayment()}>
                                     View Transactions
                                 </Button>
                             </div>
