@@ -1,6 +1,9 @@
 import React, {useState,useEffect} from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import '../../../styles/create-rx.css';
+import '../../../styles/create-receipt.css';
+import "react-bootstrap";
+import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/profile-widget";
 import Axios from 'axios';
 
@@ -79,16 +82,16 @@ const createReceipt = () => {
                 {/* /Breadcrumb */}
 
                 {/* Page Content */}
-                <div className="content">
+                <section className="content section profile">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-                                {/* Profile Widget */}
-                                <ProfileWidget/>
-                            </div>
+                            {/* <div className="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar"> */}
+                            {/* Profile Widget */}
+                            <ProfileWidget />
+                            {/* </div> */}
 
                             {/* Receipt*/}
-                            <div className="col-md-7 col-lg-8 col-xl-9">
+                            <div className="col-xl">
                                 <div className="card">
                                     <div className="card-header">
                                         <h4 className="card-title mb-0">Create E-Receipt</h4>
@@ -108,7 +111,7 @@ const createReceipt = () => {
 
                                             {/* Receipt Information */}
                                             <div className="biller-info">
-                                                <h5> E-Receipt Information </h5> 
+                                                <h5> E-Receipt Information </h5>
                                                 <div class="col-12 col-md-6 col-lg-4">
                                                     <label>Date of Issue</label>
                                                     <input type="date" className="form-control" placeholder="Date" onChange={(e) => {setDateIssued(e.target.value)}}/>
@@ -117,16 +120,6 @@ const createReceipt = () => {
                                         </div>
                                         {/* End Receipt Information */}
 
-                                        {/* Add Item */}
-                                        <div className="add-more-item text-left">
-                                            <a href="javascript:void(0);">
-                                                <button type="submit" className="btn btn-primary">
-                                                    <i className="fas fa-plus" /> Add Item
-                                                </button>
-                                                {/* <i className="fas fa-plus-circle" /> Add Item */}
-                                            </a>
-                                        </div>
-                                        {/* /Add Item */}
 
                                         {/* Forms */}
                                         <div class="card">
@@ -162,8 +155,38 @@ const createReceipt = () => {
                                                                             <i className="far fa-trash-alt" /></a>
                                                                     </div>
                                                                 </div>
+                                                                    {/* Add Item */}
+                                                                    <div className="add-more-item rx-pr">
+                                                                        <a href="javascript:void(0);">
+                                                                            <button type="submit" className="btn btn-primary rx-pr">
+                                                                                <i className="fas fa-plus" /> Add Item
+                                                                            </button>
+                                                                            {/* <i className="fas fa-plus-circle" /> Add Item */}
+                                                                        </a>
+                                                                    </div>
+                                                                    {/* /Add Item */}
+
                                                             </div>
                                                         </div>
+                                                        <div className="container">
+                                                            <div className="row">
+                                                                <div className="col">
+                                                                    <div class="row form-row experience-cont ">
+                                                                        <div class="col-8">
+                                                                        
+                                                                            <label className="paylabel">Subtotal: </label>
+                                                                            <input type="text" class="form-control" placeholder="" readonly="readonly" />
+                                                                            <label className="paylabel">Discount: </label>
+                                                                            <input type="text" class="form-control" placeholder="" />
+                                                                            <label className="paylabel">Total Amount: </label>
+                                                                            <input type="text" class="form-control" placeholder="" readonly="readonly" />
+                                                                        </div>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div className="col">
+                                                                    <div class="col-8 col-md-8 col-lg-8 total-pay">
+                                                                        <div class="row form-row">
+                                                                            <div class="form-group mb-0 rx-pr">
 
                                                     <div class="row form-row experience-cont">
                                                         <div class="col-12 col-md-10 col-lg-12">
@@ -172,24 +195,28 @@ const createReceipt = () => {
                                                             <label>Total Amount: {totalAmount}</label>
                                                         </div>
                                                     </div>
+                                                                                <Form.Label>Payment Method:</Form.Label>
+                                                                                <Form.Select>
+                                                                                    <option value="" selected disabled>--Select Type--</option>
+                                                                                    <option value="cash">Cash</option>
+                                                                                    <option value="e-money">E-Money</option>
+                                                                                </Form.Select>
 
-                                                        <div class="col-12 col-md-10 col-lg-7">
-                                                            <div class="row form-row">
-                                                                <div class="form-group mb-0">
-                                                                    <label>Payment Method</label>
-                                                                    <DropdownButton id="dropdown-basic-button" title="Select Method">
-                                                                        <Dropdown.Item href="#/action-1">Cash</Dropdown.Item>
-                                                                        <Dropdown.Item href="#/action-2">E-Money</Dropdown.Item>
-                                                                    </DropdownButton>
+                                                                                <div class="form-group rx-pr">
+                                                                                    <label>Amount Paid(₱)<span class="text-danger">*</span></label>
+                                                                                    <input type="number" class="form-control" placeholder="500" />
+                                                                                </div>
 
                                                                     <div class="form-group">
                                                                         <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
                                                                         <input type="number" class="form-control" placeholder="500" onChange={(e)=>{setAmountPaid(e.target.value)}}/>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
+
 
 
 
@@ -217,19 +244,19 @@ const createReceipt = () => {
                                             <div className="submit-section">
                                                 <button
                                                     type="reset"
-                                                    className="btn btn-secondary submit-btn"
+                                                    className="btn btn-secondary submit-btn rx-btn"
                                                 >
                                                     Clear
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="btn btn-primary submit-btn"
+                                                    className="btn btn-primary submit-btn rx-btn"
                                                 >
                                                     Preview
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="btn btn-primary submit-btn"
+                                                    className="btn btn-primary submit-btn rx-btn"
                                                 >
                                                     Create
                                                 </button>
@@ -241,7 +268,8 @@ const createReceipt = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                </section>
                 {/* /Page Content */}
             </div>
             {/* /Main Wrapper */}

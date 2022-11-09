@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/payments.css";
+import "../../styles/create-receipt.css";
 import ProfileWidget from "../../components/profile-widget";
 
 const Payments = () => {
