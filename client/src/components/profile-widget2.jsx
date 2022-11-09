@@ -35,7 +35,7 @@ const ProfileWidgetTwo = () => {
                         <div class="row">
                             <div class="col-lg-auto col-md-auto label">Address</div>
                             <div id="address" class="col-lg-auto col-md-auto">
-                                01/01/1998
+                            Block4 Rivera Seth
                             </div>
                         </div>
 
@@ -73,20 +73,9 @@ const ProfileWidgetTwo = () => {
                         </div>
 
 
-
-
-
-
-
-
-
-
                     </div>
 
                 </div>
-
-
-
 
 
             </div>
