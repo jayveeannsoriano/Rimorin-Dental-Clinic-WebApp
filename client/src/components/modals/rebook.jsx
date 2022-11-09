@@ -5,20 +5,26 @@ import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios';
 import '../../styles/modals.css'
 
-function rebook(appNum) {
+function rebook(appNum,pName,date,time,consultation) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [selectValue, setSelectedValue] = useState();
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(appNum);
+  const StringAppNum = JSON.stringify(appNum,pName,date,time,consultation);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+  const patientValue = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
+  const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g,"");
+  const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g,"");
+  const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g,"");
 
   const newStatus = () =>{
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
+
+
     Axios.put("http://localhost:3001/updateStatus",{
      appNum: AppNumber,
      newAppStatus: selectValue 
@@ -49,7 +55,7 @@ function rebook(appNum) {
         <h4>Appointment Details</h4>
           <div class="row">
               <div class="col modal-label">Patient Name:</div>
-              <div class="col modal-values">Ricci Blynthe</div>
+              <div class="col modal-values">{patientValue}</div>
             </div>
             <div class="row">
               <div class="col modal-label">Appt #:</div>
@@ -57,11 +63,11 @@ function rebook(appNum) {
             </div>
             <div class="row">
               <div class="col modal-label">Date & Time:</div>
-              <div class="col modal-values"></div>
+              <div class="col modal-values">{dateValue} | {timeValue}</div>
             </div>
             <div class="row">
               <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">Lorem ipsum dolor sit amet.</div>
+              <div class="col modal-values">{consultationValue}</div>
             </div>
           </div>
           <Form>
