@@ -12,7 +12,8 @@ const [appointmentDetails, setAppointmentDetails] = useState([]);
 
 const getAppointment = async() => {
     try{
-        const response = await Axios.get('http://localhost:3001/getAppointmentDetail');
+
+        const response = await Axios.get('http://localhost:3001/get');
         setAppointmentDetails(response.data);
     }catch (error){
         console.log(error)
