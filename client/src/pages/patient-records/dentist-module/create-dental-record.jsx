@@ -7,6 +7,7 @@ import Axios from 'axios';
 import DropFileInput from "../../../components/dragNdrop";
 import '../../../styles/dental-record.css'
 import ProfileWidgetTwo from "../../../components/profile-widget2";
+import DentalChart from "../../../components/dental-teeth-chart";
 
 //datepicker
 import DatePicker from "react-datepicker";
@@ -148,6 +149,7 @@ const CreateDentalRecord = () => {
 
             <div className="row">
                 <h4>Dental Record</h4>
+                <DentalChart/>
             </div>
 
             {/* Procedure */}

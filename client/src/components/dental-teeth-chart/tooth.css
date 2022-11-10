@@ -1,0 +1,24 @@
+svg {
+    overflow: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#root:hover{
+    fill: blue !important;
+}
+
+#tooth:hover{
+    fill: rebeccapurple !important;
+}
+
+.dental-chart{
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+.dental-chart .row{
+    margin: 0;
+    padding: 0;
+}

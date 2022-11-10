@@ -1,0 +1,17 @@
+.polygon {
+  stroke: black;
+  stroke-width: 1;
+}
+
+.polygon:hover{
+  fill: #5d5fef;
+}
+.unmarked {
+  fill: white;
+}
+.marked {
+  fill: grey;
+}
+#dental-chart {
+  text-align: center;
+}
