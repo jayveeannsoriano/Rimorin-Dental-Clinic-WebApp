@@ -19,7 +19,7 @@ export default function AppointmentPage() {
       </nav>
         
       <div className="col-6 .col-md-4">
-        <Button href="/dashboard/appointments/request-appointment">
+        <Button href="/patient/appointments/request-appointment">
           Request Appointment
         </Button>
       </div>

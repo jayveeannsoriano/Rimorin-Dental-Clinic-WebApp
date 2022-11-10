@@ -97,7 +97,7 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
                     </div>
 
                     <div className="stepdonebtn">
-                    <a href='/dashboard'><button className="btn btn-primary" type="submit">Back to Dashboard</button></a>
+                    <a href='/patient'><button className="btn btn-primary" type="submit">Back to Dashboard</button></a>
                     </div>
         
                     </div> {/* End of card-body */}

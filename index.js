@@ -553,7 +553,7 @@ app.post("/createReceipt", async (req,res) => {
   const timeValue = req.body.time;
   const consultationValue = req.body.consultation;
 
-  const appNumDuplicate = await ReceiptDetails.findOne({appNum});
+  const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
   
   await ReceiptDetails.create({
     appNum: appNumber, 

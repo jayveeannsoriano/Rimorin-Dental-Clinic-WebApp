@@ -76,7 +76,7 @@ const createReceipt = () => {
                                         </li>
                                     </ol>
                                 </nav>
-                                <h2 className="breadcrumb-title">Create E-Receipasdasdt</h2>
+                                <h2 className="breadcrumb-title">Create E-Receipt</h2>
                             </div>
                         </div>
                     </div>

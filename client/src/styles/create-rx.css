@@ -141,3 +141,9 @@
   text-align-last: center;
   padding-top: 5%;
 }
+
+.btn-link a{
+  z-index: 900;
+  text-decoration: none;
+  color: white;
+}

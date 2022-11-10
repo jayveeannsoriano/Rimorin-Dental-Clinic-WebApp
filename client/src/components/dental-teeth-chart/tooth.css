@@ -15,7 +15,6 @@ svg {
 .dental-chart{
     display: flex;
     justify-content: center;
-    background-color: aquamarine;
 }
 
 .dental-chart .row{
