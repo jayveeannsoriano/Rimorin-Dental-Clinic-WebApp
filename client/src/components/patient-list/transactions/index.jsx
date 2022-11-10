@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import "../../../styles/patient-profile-widget.css";
 
+
+
 // temporary user image
 import userimg from '../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
@@ -15,7 +17,7 @@ console.log(patientReceipt, "this is the response");
 //App Detail
 const getReceiptDetails = async() => {
     try{
-        const response = await Axios.get('http://localhost:3001/getAppointmentReceipt');
+        const response = await Axios.get('http://localhost:3001/getReceiptDetails');
         console.log(response, "Responses");
         setPatientReceipt(response.data);
     }catch (error){
@@ -27,11 +29,15 @@ useEffect(() => {
     getReceiptDetails();
 }, []);
 
-const proceedtoPayment = () => {
+const proceedtoPayment = (value) => {
+    
+  setPatientValue(value);
+  localStorage.setItem("appNumber", value);
 }
 
     return (
         <>
+       
             <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto">		
             <div class="row">
 
@@ -49,7 +55,7 @@ const proceedtoPayment = () => {
                                         <h3><a href="#"></a>{item.pName}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Appointment Number:</b>{item.}</h5>
+                                            <h5><b>Appointment Number:</b>{item.appNum}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -62,8 +68,9 @@ const proceedtoPayment = () => {
                                 </ul>
                             </div>
 
+                            
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href="/dentist/payment-records/:" onClick={proceedtoPayment()}>
+                                <Button className="widget-btn" href="/secretary/payment-records/create-receipt" onClick={() => proceedtoPayment(item.appNum)}>
                                     View Transactions
                                 </Button>
                             </div>

@@ -18,7 +18,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetail');
+            const response = await axios.get('http://localhost:3001/get');
             console.log(response, "Responses");
             setAppointment(response.data);
             setFilteredAppointment(response.data);

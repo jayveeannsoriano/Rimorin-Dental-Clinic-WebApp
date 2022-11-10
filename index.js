@@ -242,7 +242,7 @@ app.get("/getAppointmentDetails", async(req,res) => {
     });
     
 //Get user for Appointment Details
-app.get("/getAppointmentDetail", async(req,res) => {
+app.get("/get", async(req,res) => {
     
       await AppDetails.find({})
           .then((data) => {
@@ -252,6 +252,18 @@ app.get("/getAppointmentDetail", async(req,res) => {
            console.log('error: ', error)
           });
         });
+
+//get receipt details
+app.get("/getReceiptDetails", async(req,res) => {
+    
+  await ReceiptDetails.find({})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
 
 app.get("/getTotalPatients", async(req,res) => {
     
@@ -528,17 +540,6 @@ app.put("/uploadDentalRecord",async (req,res)=>{
   console.log("Appointment Status Successfully Updated!.");
 
 })
-
-app.get("/getAppointmentReceipt", async(req,res) => {
-    
-  await ReceiptDetails.find({})
-      .then((data) => {
-        res.json(data);
-      })
-      .catch((error) => {
-       console.log('error: ', error)
-      });
-    });
 
     //update status
 app.post("/createReceipt", async (req,res) => {

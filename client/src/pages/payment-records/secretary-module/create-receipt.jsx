@@ -9,6 +9,8 @@ import Axios from 'axios';
 
 const createReceipt = () => {
 
+    const personName = window.localStorage.getItem("appNumber");
+    console.log(personName);
     const [search, setSearch] = useState("");
     const [getPatientDetails, setPatientDetails] = useState([]);
     const [getPatientAppNum, setGetPatientAppNum] = useState("");
@@ -39,20 +41,20 @@ const createReceipt = () => {
 
     }
 
-    const getPatientInformation = async() =>{
+    // const getPatientInformation = async() =>{
 
-        try{
-            const response = await Axios.get('http://localhost:3001/getAppointmentDetail');
-            console.log(response);
-            setPatientDetails(response.data);
-        }catch (error){
-            console.log(error)
-        }
-    }
+    //     try{
+    //         const response = await Axios.get('http://localhost:3001/getReceiptDetails');
+    //         console.log(response);
+    //         setPatientDetails(response.data);
+    //     }catch (error){
+    //         console.log(error)
+    //     }
+    // }
 
-    useEffect(() => {
-        getPatientInformation();
-    }, []);
+    // useEffect(() => {
+    //     getPatientInformation();
+    // }, []);
 
     return (
         <>
@@ -74,7 +76,7 @@ const createReceipt = () => {
                                         </li>
                                     </ol>
                                 </nav>
-                                <h2 className="breadcrumb-title">Create E-Receipt</h2>
+                                <h2 className="breadcrumb-title">Create E-Receipasdasdt</h2>
                             </div>
                         </div>
                     </div>
@@ -158,7 +160,7 @@ const createReceipt = () => {
                                                                     {/* Add Item */}
                                                                     <div className="add-more-item rx-pr">
                                                                         <a href="javascript:void(0);">
-                                                                            <button type="submit" className="btn btn-primary rx-pr">
+                                                                            <button type="submit" className="btn btn-primary rx-pr" onClick={console.log(personName, "This is asdjnasjdk")}>
                                                                                 <i className="fas fa-plus" /> Add Item
                                                                             </button>
                                                                             {/* <i className="fas fa-plus-circle" /> Add Item */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { lazy } from 'react';
 
 // project imports
@@ -25,6 +25,11 @@ const TransactionsPatientList = lazy(() => import('../pages/patient-list/transac
 
 //create receipt routing
 const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
+
+//data
+// const [patientID, setPatientID] = useState("");
+// console.log(patientID);
+
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
@@ -92,7 +97,7 @@ const SecretaryRoutes = {
             children: [
                 {
                     path: '/secretary/payment-records',
-                    element: <TransactionsPatientList />
+                    element: <TransactionsPatientList/>
                 },
                 {
                     path: '/secretary/payment-records/:fname',
@@ -100,7 +105,7 @@ const SecretaryRoutes = {
                 },
                 {
                     path: '/secretary/payment-records/create-receipt',
-                    element: <CreateReceipt />
+                    element: <CreateReceipt/>
                 }
             ]
         },

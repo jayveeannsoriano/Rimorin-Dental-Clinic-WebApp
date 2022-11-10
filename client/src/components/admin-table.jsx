@@ -14,7 +14,7 @@ const AdminTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getAppointmentDetails');
+            const response = await axios.get('http://localhost:3001/get');
             console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
