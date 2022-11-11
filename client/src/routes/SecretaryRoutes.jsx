@@ -26,10 +26,6 @@ const TransactionsPatientList = lazy(() => import('../pages/patient-list/transac
 //create receipt routing
 const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
 
-//data
-// const [patientID, setPatientID] = useState("");
-// console.log(patientID);
-
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 

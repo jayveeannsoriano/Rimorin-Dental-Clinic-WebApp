@@ -9,8 +9,6 @@ import Axios from 'axios';
 
 const createReceipt = () => {
 
-    const personName = window.localStorage.getItem("appNumber");
-    console.log(personName);
     const [search, setSearch] = useState("");
     const [getPatientDetails, setPatientDetails] = useState([]);
     const [getPatientAppNum, setGetPatientAppNum] = useState("");
@@ -160,7 +158,7 @@ const createReceipt = () => {
                                                                     {/* Add Item */}
                                                                     <div className="add-more-item rx-pr">
                                                                         <a href="javascript:void(0);">
-                                                                            <button type="submit" className="btn btn-primary rx-pr" onClick={console.log(personName, "This is asdjnasjdk")}>
+                                                                            <button type="submit" className="btn btn-primary rx-pr">
                                                                                 <i className="fas fa-plus" /> Add Item
                                                                             </button>
                                                                             {/* <i className="fas fa-plus-circle" /> Add Item */}

@@ -12,7 +12,6 @@ const TransactionPatientProfileWidget = () => {
 //temporary list
 const [patientReceipt, setPatientReceipt] = useState([]);
 const [patientValue, setPatientValue] = useState("");
-console.log(patientReceipt, "this is the response");
 
 //App Detail
 const getReceiptDetails = async() => {
@@ -32,7 +31,7 @@ useEffect(() => {
 const proceedtoPayment = (value) => {
     
   setPatientValue(value);
-  localStorage.setItem("appNumber", value);
+  patientAppNumber = patientValue;
 }
 
     return (
@@ -68,9 +67,9 @@ const proceedtoPayment = (value) => {
                                 </ul>
                             </div>
 
-                            
+                            {/* href="/secretary/payment-records/create-receipt" */}
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href="/secretary/payment-records/create-receipt" onClick={() => proceedtoPayment(item.appNum)}>
+                                <Button className="widget-btn" onClick={() => proceedtoPayment(item.appNum)}>
                                     View Transactions
                                 </Button>
                             </div>
