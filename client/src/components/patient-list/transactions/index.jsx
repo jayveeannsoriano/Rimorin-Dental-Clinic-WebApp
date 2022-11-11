@@ -31,7 +31,6 @@ useEffect(() => {
 const proceedtoPayment = (value) => {
     
   setPatientValue(value);
-  patientAppNumber = patientValue;
 }
 
     return (

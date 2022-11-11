@@ -15,7 +15,11 @@ const DashboardTable = () => {
         console.error("Website error");
         console.error(error);
     }
-    console.log(userInfo['patientIDnumber'], "this is the patient number for dashboard");
+
+    //patient number
+    const [patientNumber, setPatientNumber] = useState("");
+    setPatientNumber(userInfo['patientIDnumber']);
+    console.log(patientNumber, 'patient number for dashboard');
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
