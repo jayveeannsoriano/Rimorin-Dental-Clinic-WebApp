@@ -2,18 +2,75 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import '../../styles/landing-page.css';
+import { useEffect, useState } from "react";
+
+
 
 const LandingPage = () => {
-//     var btnContainer = document.getElementById('navbar');
-// var btns = btnContainer.getElementsByClassName('nav-link.scrollto');
 
-// for (var i=0; i<btns.length; i++){
-//    btns[i].addEventListener('click', function(){
-//     var current = document.getElementsByClassName('active');
-//     current[0].className = current[0].className.replace('active');
-//     this.className += 'active';
-//    })
-//}
+    //Initialize useState for NavBar
+    const [isActive1, setActive1] = useState(false);
+    const [isActive2, setActive2] = useState(false);
+    const [isActive3, setActive3] = useState(false);
+    const [isActive4, setActive4] = useState(false);
+    const [isActive5, setActive5] = useState(false);
+
+    //unhighlight Navbars
+    function cancel(){
+        setActive1(false);
+        setActive2(false);
+        setActive3(false);
+        setActive4(false);
+        setActive5(false);
+    }
+
+    //Highlight #hero url
+    const toggleClass1 = () => {
+        cancel();
+        setActive1(!isActive1);
+    };
+
+    //Highlight #about url
+    const toggleClass2 = () => {
+        cancel();
+        setActive2(!isActive2);
+    };
+
+    //Highlight #services url
+    const toggleClass3 = () => {
+        cancel();
+        setActive3(!isActive3);
+    };
+
+    //Highlight #faq url
+    const toggleClass4 = () => {
+        cancel();
+        setActive4(!isActive4);
+    };
+
+    //Highlight #contact url
+    const toggleClass5 = () => {
+        cancel();
+        setActive5(!isActive5);
+    };
+
+
+    function highlight(){
+        var btnContainer = document.getElementById('navbar');
+        var btns = btnContainer.getElementsByClassName('nav-link scrollto');
+        console.log(btns.length);
+    
+        for (var i=0; i<btns.length; i++){
+            btns[i].addEventListener('click', function(){
+            var current = document.getElementsByClassName('active');
+            current[0].className = current[0].className.replace('active');
+            this.className += 'active';
+            })
+        }
+    }
+
+    
+
     return(
         <div className="LandingPage" >
             {/* Top Bar */}
@@ -35,17 +92,22 @@ const LandingPage = () => {
 
                         <nav id="navbar" className="navbar order-last order-lg-0">
                             <ul>
-                                <li><a className="nav-link scrollto" href={'#hero'}>Home</a></li>
-                                <li><a className="nav-link scrollto" href={'#about'}>About</a></li>
-                                <li><a className="nav-link scrollto" href={'#services'}>Services</a></li>
-                                <li><a className="nav-link scrollto" href={'#faq'}>FAQs</a></li>
-                                <li><a className="nav-link scrollto" href={'#contact'}>Contact</a></li>
+                                <li><a className={"nav-link scrollto "+ (isActive1 ? 'active': null)} href={'#hero'} onClick={toggleClass1}>Home</a></li>
+                                <li><a className={"nav-link scrollto "+ (isActive2 ? 'active': null)} href={'#about'} onClick={toggleClass2}>About</a></li>
+                                <li><a className={"nav-link scrollto "+ (isActive3 ? 'active': null)} href={'#services'} onClick={toggleClass3}>Services</a></li>
+                                <li><a className={"nav-link scrollto "+ (isActive4 ? 'active': null)} href={'#faq'} onClick={toggleClass4}>FAQs</a></li>
+                                <li><a className={"nav-link scrollto "+ (isActive5 ? 'active': null)} href={'#contact'} onClick={toggleClass5}>Contact</a></li>
                             </ul>
                         </nav>
 
                         <a href="/auth/login" className="login-btn scrollto">Login</a>
                     </div>
                 </header>
+
+                <script>
+                highlight();
+                </script>
+
 
             {/* Hero Section */}
             <section id="hero" className="d-flex align-items-center">
