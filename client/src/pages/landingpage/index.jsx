@@ -80,7 +80,7 @@ const LandingPage = () => {
 
                     <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div className="icon"><i className="fa-solid fa-file fa-sm"></i></div>
+                            <div className="icon"><i className="fa-solid fa-clipboard-user fa-sm"></i></div>
                             <h4 className="title">Patient Records</h4>
                             <p className="description">Accessibility and manageability of records with just a click.</p>
                         </div>
@@ -121,7 +121,7 @@ const LandingPage = () => {
 
                             <div className="col-lg-6 pt-4 pt-lg-0 content">
                             <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
-                                <div className="icon"><i className="fa-solid fa-face-smile"></i></div>
+                                <div className="icon"><i className="fa-solid fa-face-laugh-beam"></i></div>
                                 <h4 className="title">Modern care with a smile</h4>
                                 <p className="description">The clinic will ensure that the services will bring smile and make you feel and look confident.</p>
                             </div>
@@ -171,7 +171,7 @@ const LandingPage = () => {
 
                     <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                         <div className="icon-box">
-                            <div className="icon"><i className="fas fa-teeth-open"></i></div>
+                            <div className="icon"><i className="fas fa-syringe"></i></div>
                             <h4>Dental Surgery</h4>
                             <p>Procedures would include teeth extraction, correction, and implants.</p>
                         </div>
@@ -179,7 +179,7 @@ const LandingPage = () => {
 
                     <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div className="icon-box">
-                            <div className="icon"><i className="fas fa-dna"></i></div>
+                            <div className="icon"><i className="fas fa-hand-holding-medical"></i></div>
                             <h4>Prosthodontics</h4>
                             <p>Maintenance of the oral function, comfort, appearance, and health of patient.</p>
                         </div>
@@ -187,7 +187,7 @@ const LandingPage = () => {
 
                     <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div className="icon-box">
-                            <div className="icon"><i className="fas fa-wheelchair"></i></div>
+                            <div className="icon"><i className="fas fa-teeth-open"></i></div>
                             <h4>Oral Prophylaxis</h4>
                             <p>Involves removal of plaque and tartar which accumulates in areas</p>
                         </div>
@@ -210,8 +210,6 @@ const LandingPage = () => {
 
                 <div className="section-title">
                     <h2>Frequently Asked Questions</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi
-                        quidem hic quas.</p>
                 </div>
 
                 <div className="faq-list">
@@ -303,7 +301,7 @@ const LandingPage = () => {
 
             <div className="col-md-4">
                 <div className="contact-phone">
-                    <i className="fa-regular fa-phone"></i>
+                    <i className="fa-regular fa-phone-flip"></i>
                     <h3>Call:</h3>
                     <p>+639 123 456 789</p>
                 </div>
