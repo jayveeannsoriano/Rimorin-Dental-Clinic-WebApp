@@ -174,11 +174,11 @@ const createReceipt = () => {
                                                                     <div class="row form-row experience-cont ">
                                                                         <div class="col-8">
                                                                         
-                                                                            <label className="paylabel">Subtotal: {subTotal} </label>
+                                                                            <label className="paylabel">Subtotal: {subTotal} </label><br/>
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
-                                                                            <label className="paylabel">Discount: {discountValue}</label>
+                                                                            <label className="paylabel">Discount: {discountValue}</label><br/>
                                                                             {/* <input type="text" class="form-control" placeholder="" /> */}
-                                                                            <label className="paylabel">Total Amount: {totalAmount}</label>
+                                                                            <label className="paylabel">Total Amount: {totalAmount}</label><br/>
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
                                                                         </div>
                                                                     </div>                                                                    

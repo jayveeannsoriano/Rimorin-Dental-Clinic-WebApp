@@ -19,6 +19,7 @@ const UserDetailsScehma = new mongoose.Schema(
     allergies: String,
     conditions: String,
     user_role_id: Number,
+    patientIDnumber: String,
     dentalRecords: {type: mongoose.Types.ObjectId, ref: "UserDentalRecords"}
   },
   {

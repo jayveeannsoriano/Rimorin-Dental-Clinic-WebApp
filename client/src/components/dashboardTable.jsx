@@ -9,6 +9,14 @@ import ApptDetailsText from "./modals/appt-details-text";
 
 const DashboardTable = () => {
 
+    try {
+        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    } catch (error) {
+        console.error("Website error");
+        console.error(error);
+    }
+    console.log(userInfo['patientIDnumber'], "this is the patient number for dashboard");
+
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);
@@ -22,7 +30,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/get');
+            const response = await axios.get('http://localhost:3001/getUserAppointmentDetails');
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){

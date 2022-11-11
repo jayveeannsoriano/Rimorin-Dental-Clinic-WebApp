@@ -92,10 +92,13 @@ app.post("/RegisterUser", async (req, res) => {
   } = req.body;
 
   const userRole = 1;
+  const randomnum = Math.floor(Math.random() * 10000);
+  const patientIDNumber = "PT#"+randomnum;
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
   const UserData = new User({
+    patientIDnumber:patientIDNumber,
     fname:fname,
     suffix:suffix, 
     lname:lname,
@@ -252,6 +255,20 @@ app.get("/get", async(req,res) => {
            console.log('error: ', error)
           });
         });
+
+//
+app.get("/getUserAppointmentDetails", async(req,res) => {
+    
+      await AppDetails.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+    
 
 //get receipt details
 app.get("/getReceiptDetails", async(req,res) => {
