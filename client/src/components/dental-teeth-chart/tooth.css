@@ -15,10 +15,19 @@ svg {
 .dental-chart{
     display: flex;
     justify-content: center;
-    background-color: aquamarine;
 }
 
 .dental-chart .row{
+    margin: 0;
+    padding: 0;
+}
+
+.dental-chart-bottom{
+    display: flex;
+    justify-content: center;
+}
+
+.dental-chart-bottom .row{
     margin: 0;
     padding: 0;
 }
