@@ -106,7 +106,7 @@ const CreateDentalRecord = () => {
                 Dental Record
               </a>
             </li>
-            <li class="breadcrumb-item">
+            <li class="breadcrumb-item active">
               <a href="/dashboard/patient-records/dental-record/create-dental-record">
                 Create Dental Record
               </a>
@@ -177,9 +177,13 @@ const CreateDentalRecord = () => {
               </div>
             </div>
 
-            <div className="row" style={{ background: 'aquamarine' }}>
-              <h4 style={{ background: 'white', margin:0 }}>Dental Record</h4>
-              <DentalChart handleClickTeeth={handleClickTeeth} />
+            {/* Dental Teeth Chart */}
+
+            <div className="container dental-chart-container">
+              <div className="row">
+                <h4>Dental Record</h4>
+                <DentalChart handleClickTeeth={handleClickTeeth} />
+              </div>
             </div>
 
             {/* Procedure */}
