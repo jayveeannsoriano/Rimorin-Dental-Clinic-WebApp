@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import { useSearchParams,useLocation} from "react-router-dom";
 import '../../../styles/create-rx.css';
 import '../../../styles/create-receipt.css';
 import "react-bootstrap";
@@ -26,6 +27,7 @@ const createReceipt = () => {
     const [amountPaid, setAmountPaid] = useState(0);
     const [signatureValue, setSignatureValue] = useState("");
 
+
     const TotalAmountToPay = () => {
         const PWDandSeniorDiscount = 0.20;
         setDiscountValue(PWDandSeniorDiscount);
@@ -36,9 +38,21 @@ const createReceipt = () => {
     // }else{
     //     setTotalAmount(amountValue)
     // }
+    
 
     }
 
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+
+    console.log(params.get('patientValue'))
+
+    //APPT NUM VALUE IS HERE!
+    const createReceipt = (patientID) => {
+        console.log(params.get('patientValue'))
+    };
+
+    
     // const getPatientInformation = async() =>{
 
     //     try{

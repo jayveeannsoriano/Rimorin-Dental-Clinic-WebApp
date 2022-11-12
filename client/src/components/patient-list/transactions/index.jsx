@@ -29,8 +29,7 @@ useEffect(() => {
 }, []);
 
 const proceedtoPayment = (value) => {
-    
-  setPatientValue(value);
+  setPatientValue(value.substring(1));
 }
 
     return (
@@ -68,7 +67,7 @@ const proceedtoPayment = (value) => {
 
                             {/* href="/secretary/payment-records/create-receipt" */}
                             <div className="widget-button-container">
-                                <Button className="widget-btn" onClick={() => proceedtoPayment(item.appNum)}>
+                                <Button className="widget-btn" href={"/secretary/payment-records/create-receipt?patientValue=" + patientValue} onClick={() => proceedtoPayment(item.appNum)}>
                                     View Transactions
                                 </Button>
                             </div>
