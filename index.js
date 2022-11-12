@@ -356,6 +356,19 @@ app.get("/getUserAppts", async(req,res) => {
       });
     });
 
+    app.get("/getDentalChart", async(req,res) => {
+      var url = require('url');
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+      await User.find({email:query.email})
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((error) => {
+          console.log('error: ', error)
+        });
+    });
+
 app.get("/getTotalAppts", async(req,res) => {
 
   await AppDetails.countDocuments({})

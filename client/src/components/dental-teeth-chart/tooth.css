@@ -4,11 +4,11 @@ svg {
     margin: 0 !important;
 }
 
-#root:hover{
+.tooth-root:hover{
     fill: blue !important;
 }
 
-#tooth:hover{
+.tooth:hover{
     fill: rebeccapurple !important;
 }
 
@@ -25,9 +25,17 @@ svg {
 .dental-chart-bottom{
     display: flex;
     justify-content: center;
+    margin-top: 0.5in;
 }
 
 .dental-chart-bottom .row{
     margin: 0;
     padding: 0;
 }
+
+.unmarked {
+    fill: white;
+  }
+  .marked {
+    fill: rebeccapurple ;
+  }

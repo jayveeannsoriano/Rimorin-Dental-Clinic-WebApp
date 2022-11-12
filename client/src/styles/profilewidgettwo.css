@@ -1,7 +1,7 @@
-.patient-info .card-title{
+/* .patient-info .card-title{
     color: var(--primary-color);
     display: inline-block;
-    /* padding: 15px 0px 10px 0; */
+    padding: 15px 0px 10px 0;
     margin-left: 14px;
 }
 
@@ -45,7 +45,7 @@
 
 .patient-info .btn i{
     margin-right: 5px;
-}
+} */
 
 
 /* From admin-patients css for testing */
@@ -128,4 +128,12 @@
     color: #757575;
     float: right;
     font-weight: 400;
+}
+
+/* profile widget 2 labels alignment */
+.pr-label{
+display: inline-block;
+width: 13em;
+margin-right: 13em;
+padding-top: .5em;
 }
