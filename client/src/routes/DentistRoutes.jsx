@@ -59,7 +59,7 @@ const DentistRoutes = {
                     element: <PatientInfoPatientList/>
                 },
                 {
-                    path: '/dentist/patient-records/patient-info/:fname',
+                    path: '/dentist/patient-records/patient-info/view-patient-info',
                     element: <PatientInfo />
                 }
             ]
@@ -72,7 +72,7 @@ const DentistRoutes = {
                     element: <DentalRecordPatientList />
                 },
                 {
-                    path: '/dentist/patient-records/dental-record/:fname',
+                    path: '/dentist/patient-records/dental-record/view-dental-records',
                     element: <DentalRecords />
                 },
                 {

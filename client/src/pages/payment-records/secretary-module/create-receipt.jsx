@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useMemo} from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useSearchParams,useLocation} from "react-router-dom";
 import '../../../styles/create-rx.css';
@@ -7,12 +7,10 @@ import "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/profile-widget";
 import Axios from 'axios';
+import { Button } from "react-bootstrap";
 
 const createReceipt = () => {
 
-    const [search, setSearch] = useState("");
-    const [getPatientDetails, setPatientDetails] = useState([]);
-    const [getPatientAppNum, setGetPatientAppNum] = useState("");
     const [transactionDetails, setTransactionDetails] = useState("");
     const [transactionNumber, setTransactionNumber] = useState("");
     const [patientName, setPatientName] = useState("");
@@ -25,12 +23,13 @@ const createReceipt = () => {
     const [discountValue, setDiscountValue] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
     const [amountPaid, setAmountPaid] = useState(0);
+    const [paymentType, setPaymentType] = useState("");
     const [signatureValue, setSignatureValue] = useState("");
 
 
-    const TotalAmountToPay = () => {
-        const PWDandSeniorDiscount = 0.20;
-        setDiscountValue(PWDandSeniorDiscount);
+    // const TotalAmountToPay = () => {
+    //     const PWDandSeniorDiscount = 0.20;
+    //     setDiscountValue(PWDandSeniorDiscount);
 
     // if(may discount){
     //     const discountFormula = amountValue * discountValue;
@@ -39,34 +38,33 @@ const createReceipt = () => {
     //     setTotalAmount(amountValue)
     // }
     
-
-    }
-
+    // }
+    //get app number
     const location = useLocation()
     const params = new URLSearchParams(location.search)
+    const getAppNumber = params.get('patientValue');
+    const StringfyAppNumber = useMemo(()=>JSON.stringify(getAppNumber).replace(/"/g,""));
 
-    console.log(params.get('patientValue'))
+    const createReceipt = async () => {
 
-    //APPT NUM VALUE IS HERE!
-    const createReceipt = (patientID) => {
-        console.log(params.get('patientValue'))
-    };
 
-    
-    // const getPatientInformation = async() =>{
+        console.log(StringfyAppNumber);
+        console.log(dateIssued);
+        console.log(serviceValue);
+        console.log(quantityValue);
+        console.log(paymentType);
+        console.log(amountValue);
 
-    //     try{
-    //         const response = await Axios.get('http://localhost:3001/getReceiptDetails');
-    //         console.log(response);
-    //         setPatientDetails(response.data);
-    //     }catch (error){
-    //         console.log(error)
-    //     }
-    // }
+     await Axios.put("http://localhost:3001/updateReceipt",{
+            appNum: StringfyAppNumber,
+            date: dateIssued,
+            serviceValue: serviceValue,
+            quantityValue: quantityValue,
+            paymentType: paymentType,
+            totalAmount: amountValue,
+    });
+}
 
-    // useEffect(() => {
-    //     getPatientInformation();
-    // }, []);
 
     return (
         <>
@@ -172,7 +170,7 @@ const createReceipt = () => {
                                                                     {/* Add Item */}
                                                                     <div className="add-more-item rx-pr">
                                                                         <a href="javascript:void(0);">
-                                                                            <button type="submit" className="btn btn-primary rx-pr" onClick={createReceipt()}>
+                                                                            <button type="submit" className="btn btn-primary rx-pr">
                                                                                 <i className="fas fa-plus" /> Add Item
                                                                             </button>
                                                                             {/* <i className="fas fa-plus-circle" /> Add Item */}
@@ -192,7 +190,7 @@ const createReceipt = () => {
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
                                                                             <label className="paylabel">Discount: {discountValue}</label><br/>
                                                                             {/* <input type="text" class="form-control" placeholder="" /> */}
-                                                                            <label className="paylabel">Total Amount: {totalAmount}</label><br/>
+                                                                            <label className="paylabel">Total Amount: {amountValue}</label><br/>
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
                                                                         </div>
                                                                     </div>                                                                    
@@ -203,16 +201,16 @@ const createReceipt = () => {
                                                                             <div class="form-group mb-0 rx-pr">
 
                                                                                 <Form.Label>Payment Method:</Form.Label>
-                                                                                <Form.Select>
+                                                                                <Form.Select onChange={(e) => {setPaymentType(e.target.value)}}>
                                                                                     <option value="" selected disabled>--Select Type--</option>
                                                                                     <option value="cash">Cash</option>
                                                                                     <option value="e-money">E-Money</option>
                                                                                 </Form.Select>
 
-                                                                                <div class="form-group rx-pr">
+                                                                                {/* <div class="form-group rx-pr">
                                                                                     <label>Amount Paid(₱)<span class="text-danger">*</span></label>
                                                                                     <input type="number" class="form-control" placeholder="500" />
-                                                                                </div>
+                                                                                </div> */}
 
                                                                     <div class="form-group">
                                                                         <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
@@ -264,6 +262,7 @@ const createReceipt = () => {
                                                 <button
                                                     type="submit"
                                                     className="btn btn-primary submit-btn rx-btn"
+                                                    onClick={() => {createReceipt()}}
                                                 >
                                                     Create
                                                 </button>

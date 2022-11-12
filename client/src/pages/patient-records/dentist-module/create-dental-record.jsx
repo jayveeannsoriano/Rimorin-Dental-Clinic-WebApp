@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useMemo } from "react";
 import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
+import { useSearchParams,useLocation} from "react-router-dom";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -14,6 +15,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateDentalRecord = () => {
+
+  const location = useLocation()
+  const paramsID = new URLSearchParams(location.search)
+  const getPatientIDNumber = paramsID.get('patientIDNum');
+  const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
+  console.log(StringfyIDnumber, 'create dental record');
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
@@ -39,29 +46,17 @@ const CreateDentalRecord = () => {
 
   const uploadDentalRecords = () => {
 
-    // Axios.put("https://localhost:3001/uploadDentalRecord",{
-    //   dateValue: startDate,
-    //   descValue: treatDesc,
-    //   imgValue: getFile,
-    // });
+    Axios.post("https://localhost:3001/create",{
+      patientIDnum:StringfyIDnumber,
+      dateValue: startDate,
+      descValue: treatDesc,
+      // imgValue: getFile,
+    });
+    console.log(StringfyIDnumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(getFile);
   }
-
-  //get all users
-
-  const [userData, setUserData] = useState("");
-
-  const getAppointment = async () => {
-    try {
-      const response = await Axios.get('http://localhost:3001/getUserDetails');
-      setUserData(response.data);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
 
   return (
     <>
@@ -281,7 +276,7 @@ const CreateDentalRecord = () => {
                 <p>Root Canal Therapy</p>
               </div>
               <div class="dental-form-buttons">
-                <button type="submit" class="btn btn-primary" onClick={uploadDentalRecords}>Create</button>
+                <button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</button>
                 <button class="btn btn-outline-secondary">Cancel</button>
               </div>
             </div>

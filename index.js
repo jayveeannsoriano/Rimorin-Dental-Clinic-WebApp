@@ -43,11 +43,13 @@ require("./models/userDetails");
 require("./models/prescriptionDetails");
 require("./models/appointmentRequest");
 require("./models/receiptDetails");
+require("./models/dentalRecords");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
 const AppRequest = mongoose.model("AppointmentRequest");
 const ReceiptDetails = mongoose.model("ReceiptDetails");
+const DentalRecords = mongoose.model("UserDentalRecords");
 
 
 //sign in
@@ -255,6 +257,32 @@ app.get("/get", async(req,res) => {
            console.log('error: ', error)
           });
         });
+
+//Get user for UserDetails
+app.get("/getUserDetails", async(req,res) => {
+    
+  await User.find({user_role_id : 1})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+app.get("/getPatientInfo", async(req,res) => {
+
+  const patientIDNumber = 'PT#'+req.query.patientIDnumber;
+  console.log(patientIDNumber)
+    
+  await User.find({patientIDnumber: patientIDNumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
 
 //
 app.get("/getUserAppointmentDetails", async(req,res) => {
@@ -534,6 +562,7 @@ app.get("/*", function (req, res) {
 });
   
 
+//create dental records
 //image storage
 const ImgStorage = multer.diskStorage({
   destination: "uploads",
@@ -542,19 +571,26 @@ const ImgStorage = multer.diskStorage({
   },
 });
 
-// const uploadImg = multer({
-//   storage:Storage
-// }).single("TESTIMAGE")
+const uploadImg = multer({
+  storage:ImgStorage
+});
 
-app.put("/uploadDentalRecord",async (req,res)=>{
+//uploadImg.single('imageFile')
+app.post("/create", async (req,res)=>{
 
-  const img = req.filename.fileName;
-
-  const appNumber = req.body.appNum;
-  const newStatus = req.body.newAppStatus;
-
-  await AppDetails.findOneAndUpdate({appNum: appNumber}, {appStatus: newStatus});
-  console.log("Appointment Status Successfully Updated!.");
+  console.log("dent records")
+  const patientIDNum = 'PT#'+req.body.patientIDNum;
+  const dateValue = req.body.dateValue;
+  const descValue= req.body.descValue;
+  //const imageValue = req.file.imgValue;
+  console.log(patientIDNum + " " + dateValue + " " + descValue + " ")
+  // dentalFile: imageValue,
+  await DentalRecords.create({
+      patientIDNumber: patientIDNum,
+      dentalDate: dateValue,
+      dentalDesc: descValue,
+    });
+    console.log(" dent rec saved");
 
 })
 
@@ -587,4 +623,22 @@ app.post("/createReceipt", async (req,res) => {
   // console.log("Successfully inserted ", ReceiptData, " to the database.");
 })
 
-    
+app.put("/updateReceipt", async (req,res) =>{
+  const appNum = '#'+req.body.appNum;
+  const date = req.body.date;
+  const serviceValue = req.body.serviceValue;
+  const quantityValue = req.body.quantityValue;
+  const paymentType = req.body.paymentType;
+  const totalAmount = req.body.totalAmount;
+
+  await ReceiptDetails.findOneAndUpdate(
+    {appNum:appNum}, 
+    {dateIssued:date, 
+    serviceValue:serviceValue,
+    quantityValue:quantityValue,
+    paymentType:paymentType,
+    totalAmount:totalAmount
+  }
+  )
+  console.log("Receipt Details Updated!")
+});

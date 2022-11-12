@@ -5,6 +5,7 @@ const ReceiptDetails = new mongoose.Schema(
     dName: String,
     appNum: String,
     date: String,
+    dateIssued: String,
     time: String,
     consultation: String,
     appStatus: String,
@@ -18,6 +19,7 @@ const ReceiptDetails = new mongoose.Schema(
     discountValue: Number,
     totalAmount: Number,
     amountPaid: Number,
+    paymentType: String,
     receiptSignature: {
       data: Buffer,
       contentType: String

@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import "../../../styles/patient-profile-widget.css";
+import Axios from 'axios';
 
 // temporary user image
 import userimg from '../../../assets/img/profile-img.jpg';
@@ -7,7 +8,28 @@ import { Button } from "react-bootstrap";
 
 const PatientInfoPatientProfileWidget = () => {
 //temporary list
-const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina', 'Shermax']
+const [patientList, setPatientList] = useState([]);
+const [patientIDNum, setpatientIDNum] = useState();
+console.log(patientIDNum);
+
+
+const getPatientDetails = async() => {
+    try{
+        const response = await Axios.get('http://localhost:3001/getUserDetails');
+        console.log(response, "Responses");
+        setPatientList(response.data);
+    }catch (error){
+        console.log(error)
+    }
+}
+
+useEffect(() => {
+    getPatientDetails ();
+}, []);
+
+const proceedtoViewInfo = (value) => {
+    setpatientIDNum(value.substring(3));
+  }
 
     return (
         <>
@@ -15,7 +37,7 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
             <div class="row">
 
             {/* replace 'patients' with proper get value variable */}
-            {patients.map((item, index) => (
+            {patientList.map((item, index) => (
                 <div key={index} class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card widget-profile pat-widget-profile">
                         <div class="card-body">
@@ -25,10 +47,10 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                                         <img src={userimg} alt="User Image"/>
                                     </a>
                                     <div class="profile-det-info">
-                                        <h3><a href="#"></a>{item}</h3>
+                                        <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Patient ID :</b> P0016</h5>
+                                            <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -36,13 +58,13 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                             
                             <div class="patient-info">
                                 <ul>
-                                    <li>Phone <span>+1 952 001 8563</span></li>
-                                    <li>Age <span>38 Years, Male</span></li>
+                                    <li>Phone <span>{item.mobile}</span></li>
+                                    <li>Age <span>38 Years, {item.gender}</span></li>
                                 </ul>
                             </div>
-
+                            
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href="/dentist/patient-records/patient-info/:fname">
+                                <Button className="widget-btn" href={"/dentist/patient-records/patient-info/view-patient-info?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                     View Patient Information
                                 </Button>
                             </div>
