@@ -9,18 +9,6 @@ import ApptDetailsText from "./modals/appt-details-text";
 
 const DashboardTable = () => {
 
-    try {
-        var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    } catch (error) {
-        console.error("Website error");
-        console.error(error);
-    }
-
-    //patient number
-    const [patientNumber, setPatientNumber] = useState("");
-    setPatientNumber(userInfo['patientIDnumber']);
-    console.log(patientNumber, 'patient number for dashboard');
-
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);

@@ -172,7 +172,7 @@ const createReceipt = () => {
                                                                     {/* Add Item */}
                                                                     <div className="add-more-item rx-pr">
                                                                         <a href="javascript:void(0);">
-                                                                            <button type="submit" className="btn btn-primary rx-pr">
+                                                                            <button type="submit" className="btn btn-primary rx-pr" onClick={createReceipt()}>
                                                                                 <i className="fas fa-plus" /> Add Item
                                                                             </button>
                                                                             {/* <i className="fas fa-plus-circle" /> Add Item */}
