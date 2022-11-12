@@ -174,8 +174,8 @@ const CreateDentalRecord = () => {
               </div>
             </div>
 
-            <div className="row">
-              <h4>Dental Record</h4>
+            <div className="row" style={{ background: 'aquamarine' }}>
+              <h4 style={{ background: 'white', margin:0 }}>Dental Record</h4>
               <DentalChart handleClickTeeth={handleClickTeeth} />
             </div>
 
