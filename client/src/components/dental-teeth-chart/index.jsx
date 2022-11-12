@@ -7,7 +7,7 @@ const DentalChart = ({handleClickTeeth}) => {
     return (
         <>
             {/* Upper left */}
-            <div className="dental-chart col-lg-auto col-xl-auto col-md-auto">
+            <div className="dental-chart col-lg-6 col-xl-6 col-md-6">
                 <div className="row t1">
                     <svg
                         width="40"
@@ -370,7 +370,7 @@ const DentalChart = ({handleClickTeeth}) => {
             </div>
 
             {/* upper right teeth */}
-            <div className="dental-chart col-lg-auto col-xl-auto col-md-auto">
+            <div className="dental-chart col-lg-6 col-xl-6 col-md-6">
                 <div className="row t9">
                     <svg
                         width="37"
@@ -729,7 +729,7 @@ const DentalChart = ({handleClickTeeth}) => {
             </div>
 
             {/* bottom teeth left side */}
-            <div className="dental-chart-bottom col-lg-auto col-xl-auto col-md-auto">
+            <div className="dental-chart-bottom col-lg-6 col-xl-6 col-md-6">
                 <div className="row t25">
                     <svg
                         width="35"
@@ -1052,7 +1052,7 @@ const DentalChart = ({handleClickTeeth}) => {
             </div>
 
             {/* bottom teeth right side */}
-            <div className="dental-chart-bottom col-lg-auto col-xl-auto col-md-auto">
+            <div className="dental-chart-bottom col-lg-6 col-xl-6 col-md-6">
                 <div className="row t17">
                     <svg
                         width="45"

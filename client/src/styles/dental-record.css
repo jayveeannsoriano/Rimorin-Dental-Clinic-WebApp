@@ -87,6 +87,16 @@
     margin-left: 10px;
 }
 
+/* containers */
+.profile-widget-container,
+.treatment-details-container,
+.dental-chart-container,
+.procedure-container{
+    justify-content: center;
+    margin-top: 0.5in;
+}
+
+/* treatment details */
 .treatment-date{
     margin-bottom: 0.2in;
 }
@@ -95,10 +105,8 @@
     justify-content: center;
 }
 
-
-/* Select Procedure */
+/* Dental Chart -> Select Procedure */
 .procedure-container{
-    justify-content: center;
     padding: 0 0.5in;
 }
 .procedure-row{

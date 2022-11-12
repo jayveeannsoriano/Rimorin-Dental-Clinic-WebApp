@@ -115,62 +115,65 @@ const CreateDentalRecord = () => {
         </nav>
       </div>
 
-      <div class="col-xl">
+      <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
         <div className="card dental-record-form">
           <div className="card-body pt-3">
             <h5 className="card-title">Create Dental Record</h5>
             <div className="divider"></div>
 
-            <div>
+            <div className="container profile-widget-container">
               <ProfileWidgetTwo />
             </div>
 
             <div className="divider"></div>
 
-            <div className="row treatment-details">
-              <h4>Treatment Details</h4>
-              <div className="col-5">
-                {/* Date of Treatment*/}
-                <div className="treatment-date">
-                  <h6>Date of Treatment</h6>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                      console.log("This is the calendar data:", date);
-                      window.localStorage.setItem("date", date);
-                    }}
-                    isClearable
-                    placeholderText="Choose a date"
-                    minDate={new Date()}
-                    shouldCloseOnSelect={false}
-                    dateFormat="MMMM d, yyyy"
-                    //exclude sundays
-                    filterDate={(date) =>
-                      date.getDay() !== 7 && date.getDay() !== 0
-                    }
+            {/* Treatment Details */}
+            <div className="container treatment-details-container">
+              <div className="row treatment-details">
+                <h4>Treatment Details</h4>
+                <div className="col-lg-6 col-xl-6 col-md-6">
+                  {/* Date of Treatment*/}
+                  <div className="treatment-date">
+                    <h6>Date of Treatment</h6>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => {
+                        setStartDate(date);
+                        console.log("This is the calendar data:", date);
+                        window.localStorage.setItem("date", date);
+                      }}
+                      isClearable
+                      placeholderText="Choose a date"
+                      minDate={new Date()}
+                      shouldCloseOnSelect={false}
+                      dateFormat="MMMM d, yyyy"
+                      //exclude sundays
+                      filterDate={(date) =>
+                        date.getDay() !== 7 && date.getDay() !== 0
+                      }
+                    />
+                  </div>
+                  <div className="treatment-desc">
+                    {/* Treatment Description*/}
+                    <label htmlFor="validationCustom01" className="form-label">
+                      <h6>Treatment Description <span className="text-danger font-weight-bold">*</span></h6>
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="reason"
+                      rows="5"
+                      placeholder="Write treatment details"
+                      onChange={(e) => { getTreatDesc(e.target.value) }}
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 col-xl-6 col-md-6 treatment-files">
+                  <h6>Treatment File Attatchments (Xrays, etc)</h6>
+                  <DropFileInput
+                    onFileChange={(files) => onFileChange(files)}
                   />
                 </div>
-                <div className="treatment-desc">
-                  {/* Treatment Description*/}
-                  <label htmlFor="validationCustom01" className="form-label">
-                    <h6>Treatment Description <span className="text-danger font-weight-bold">*</span></h6>
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="reason"
-                    rows="5"
-                    placeholder="Write treatment details"
-                    onChange={(e) => { getTreatDesc(e.target.value) }}
-                  ></textarea>
-                </div>
-              </div>
-
-              <div className="col-7 treatment-files">
-                <h6>Treatment File Attatchments (Xrays, etc)</h6>
-                <DropFileInput
-                  onFileChange={(files) => onFileChange(files)}
-                />
               </div>
             </div>
 
@@ -180,10 +183,10 @@ const CreateDentalRecord = () => {
             </div>
 
             {/* Procedure */}
-            <div className="procedure-container">
+            <div className="container procedure-container">
               <div className="row procedure-row">
                 <h6>Procedure</h6>
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Others</div>
 
                   <div className="divider procedure-div"></div>
@@ -200,7 +203,7 @@ const CreateDentalRecord = () => {
                     ))}
                   </Form>
                 </div>
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Cosmetic Restoration</div>
                   <div className="divider procedure-div"></div>
                   <Form>
@@ -215,7 +218,7 @@ const CreateDentalRecord = () => {
                     ))}
                   </Form>
                 </div>
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Cementation</div>
                   <div className="divider procedure-div"></div>
                   <Form>
@@ -232,7 +235,7 @@ const CreateDentalRecord = () => {
                 </div>
               </div>
               <div className="row procedure-row">
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Endodontic Treatment</div>
                   <div className="divider procedure-div"></div>
                   <Form>
@@ -247,7 +250,7 @@ const CreateDentalRecord = () => {
                     ))}
                   </Form>
                 </div>
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Prosthetic Procedures</div>
                   <div className="divider procedure-div"></div>
                   <Form>
@@ -262,7 +265,7 @@ const CreateDentalRecord = () => {
                     ))}
                   </Form>
                 </div>
-                <div className="col-4">
+                <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">Surgical Procedure</div>
                   <div className="divider procedure-div"></div>
                   <Form>
@@ -279,12 +282,13 @@ const CreateDentalRecord = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
       
       {/* summary of treatment */}
-      <div class="col-xl">
+      <div class="col-xl-auto col-md-auto col-lg-auto">
         <div className="card dental-record-form">
           <div className="card-body pt-3">
             <h5 className="card-title">Summary of Treatment</h5>

@@ -27,8 +27,12 @@ svg {
 .dental-chart-bottom{
     display: flex;
     justify-content: center;
+<<<<<<< HEAD
     background-color: aquamarine;
 
+=======
+    margin-top: 0.5in;
+>>>>>>> 20c2854a4d577268029693661becfedd15046ce8
 }
 
 .dental-chart-bottom .row{
