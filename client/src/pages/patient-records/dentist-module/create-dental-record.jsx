@@ -17,6 +17,7 @@ const CreateDentalRecord = () => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
+  const [chartedTeeth, setchartedTeeth] = useState([]);
   //procedure checkbox options 
   const [checked, setChecked] = useState([]);
   const othersOptions = ['ORAL PROPHYLAXIS', 'TOOTH RESTORATION', 'TOOTH EXTRACTION', 'DEEP SCALING', 'PTS AND FISSURES SEALANT', 'FLOURIDE TREATMENT', 'INTERMEDIATE RESTORATION'];
@@ -46,6 +47,7 @@ const CreateDentalRecord = () => {
     // });
     console.log(startDate);
     console.log(treatDesc);
+    console.log(chartedTeeth);
     console.log(getFile);
   }
 
@@ -61,6 +63,30 @@ const CreateDentalRecord = () => {
       console.log(error)
     }
   }
+
+  const handleClickTeeth = event =>{
+
+    event.currentTarget.classList.toggle('unmarked');
+    event.currentTarget.classList.toggle('marked');
+
+    var chosenTeeth = event.currentTarget.id;
+    console.log(chosenTeeth);
+
+    var index = chartedTeeth.indexOf(chosenTeeth);
+
+    console.log(index);
+
+    if(index > -1){
+        chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+        console.log(chartedTeeth)
+
+    }else{
+        setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
+        console.log(chartedTeeth)
+    }
+
+
+}
 
 
   return (
@@ -150,7 +176,7 @@ const CreateDentalRecord = () => {
 
             <div className="row">
               <h4>Dental Record</h4>
-              <DentalChart />
+              <DentalChart handleClickTeeth={handleClickTeeth} />
             </div>
 
             {/* Procedure */}
