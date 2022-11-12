@@ -25,6 +25,7 @@ svg {
 .dental-chart-bottom{
     display: flex;
     justify-content: center;
+    margin-top: 0.5in;
 }
 
 .dental-chart-bottom .row{
