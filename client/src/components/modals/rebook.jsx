@@ -95,7 +95,6 @@ function rebook(appNum,pName,dName,date,time,consultation) {
               <Form.Label>Appointment Status</Form.Label> 
               <Form.Select value={selectValue} onChange={e=>setSelectedValue(e.target.value)}>
               <option value="" selected disabled>--Select Appointment Status--</option>
-              <option>Accepted</option>
               <option>Finished</option>
               <option>Arrived</option>
               <option>No Show</option>
