@@ -64,7 +64,7 @@ const proceedtoViewInfo = (value) => {
                         
                         <div className="widget-button-container">
                             <Button className="widget-btn" href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
-                                View Patient Information
+                                View Dental Record
                             </Button>
                         </div>
                     </div>

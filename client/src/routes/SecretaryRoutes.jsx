@@ -96,7 +96,7 @@ const SecretaryRoutes = {
                     element: <TransactionsPatientList/>
                 },
                 {
-                    path: '/secretary/payment-records/:fname',
+                    path: '/secretary/payment-records/view-transactions',
                     element: <PaymentRecords />
                 },
                 {

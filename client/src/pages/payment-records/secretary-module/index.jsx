@@ -16,7 +16,7 @@ const Sec_Payments = () => {
                 </div>
 
                 {/* Profile */}
-                <button type="button" class="btn btn-primary rx-pr btn-link"><i class="bi bi-plus-lg"> </i> <a href='/secretary/payment-records/create-receipt'> Create Receipt</a></button>
+                {/* <button type="button" class="btn btn-primary rx-pr btn-link"><i class="bi bi-plus-lg"> </i> <a href='/secretary/payment-records/create-receipt'> Create Receipt</a></button> */}
                 <section class="section profile">
                 <div class="row">
                         <ProfileWidget/>
@@ -28,28 +28,8 @@ const Sec_Payments = () => {
                                     <h5 className="card-title">Transactions</h5>
                                     <div className="divider"></div>
 
-                                    {/* Table*/}
-                                    <div class="row">
-                                    <table className="table table-borderless datatable">
-                                        <thead>
-                                            <tr>
-                                            <th scope="col">Transaction #</th>
-                                            <th scope="col">Issued By</th>
-                                            <th scope="col">Payment Status</th>
-                                            <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td><a href="#" class="text-primary">101289</a></td>
-                                                <td><a href="#" class="text-secondary">Dr. Pamela Concepcion</a></td>
-                                                <td><span class="badge bg-success">Paid</span></td>
-                                                <td><span class="badge bg-primary"><i class="bi bi-printer"></i> Print</span> <span class="badge bg-primary"><i class="bi bi-eye"></i> View</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
+                                    {/* Insert Transaction Datatable for selected patient*/}
+                                    {/* Button for Create Receipt Page will be shown in transaction datatable if & only if appt is marked as "Finished" */}
 
                                 </div>
                             </div>

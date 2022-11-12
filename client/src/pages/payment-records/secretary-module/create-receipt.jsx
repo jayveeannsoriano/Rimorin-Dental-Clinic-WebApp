@@ -97,10 +97,7 @@ const createReceipt = () => {
                 <section className="content section profile">
                     <div className="container-fluid">
                         <div className="row">
-                            {/* <div className="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar"> */}
-                            {/* Profile Widget */}
                             <ProfileWidget />
-                            {/* </div> */}
 
                             {/* Receipt*/}
                             <div className="col-xl">

@@ -60,6 +60,44 @@ const CreateDentalRecord = () => {
     console.log(getFile);
   }
 
+   //get all users
+
+   const [userData, setUserData] = useState("");
+
+   const getAppointment = async () => {
+     try {
+       const response = await Axios.get('http://localhost:3001/getUserDetails');
+       setUserData(response.data);
+     } catch (error) {
+       console.log(error)
+     }
+   }
+ 
+   const handleClickTeeth = event =>{
+ 
+     event.currentTarget.classList.toggle('unmarked');
+     event.currentTarget.classList.toggle('marked');
+ 
+     var chosenTeeth = event.currentTarget.id;
+     console.log(chosenTeeth);
+ 
+     var index = chartedTeeth.indexOf(chosenTeeth);
+ 
+     console.log(index);
+ 
+     if(index > -1){
+         chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+         console.log(chartedTeeth)
+ 
+     }else{
+         setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
+         console.log(chartedTeeth)
+     }
+ 
+ 
+ }
+ 
+
   return (
     <>
       <div class="pagetitle">
@@ -67,18 +105,18 @@ const CreateDentalRecord = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/dentist">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard/patient-records">Patient Records</a>
+              <a href="/dentist/patient-records">Patient Records</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard/patient-records/dental-record">
+              <a href="/dentist/patient-records/dental-record">
                 Dental Record
               </a>
             </li>
             <li class="breadcrumb-item active">
-              <a href="/dashboard/patient-records/dental-record/create-dental-record">
+              <a href="/dentist/patient-records/dental-record/create-dental-record">
                 Create Dental Record
               </a>
             </li>
