@@ -129,3 +129,11 @@
     float: right;
     font-weight: 400;
 }
+
+/* profile widget 2 labels alignment */
+.pr-label{
+display: inline-block;
+width: 13em;
+margin-right: 13em;
+padding-top: .5em;
+}
