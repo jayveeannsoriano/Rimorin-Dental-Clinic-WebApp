@@ -4,20 +4,20 @@ import "./tooth.css";
 import "./chart.js";
 
 const DentalChart = ({handleClickTeeth}) => {
-    const email =  document.getElementById('emailaddress').textContent;
+    // const email =  document.getElementById('emailaddress').textContent;
     
-    const getDentalCharts = async() => {
-        const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
-        response.forEach(teeth => {
-            var el = document.getElementById(teeth);
-            el.classList.toggle('marked');
-        });
+    // const getDentalCharts = async() => {
+    //     const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
+    //     response.forEach(teeth => {
+    //         var el = document.getElementById(teeth);
+    //         el.classList.toggle('marked');
+    //     });
         
-    }
+    // }
 
-    useEffect(() => {
-        getDentalCharts();
-      }, []);
+    // useEffect(() => {
+    //     getDentalCharts();
+    //   }, []);
       
 
     return (

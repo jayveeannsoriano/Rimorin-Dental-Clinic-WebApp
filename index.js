@@ -194,7 +194,7 @@ app.post("/insertAppointment", async(req,res) => {
 
   //inserting all data
   const AppData = new AppRequest({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
-
+  
   try{
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
@@ -588,20 +588,22 @@ const uploadImg = multer({
   storage:ImgStorage
 });
 
-//uploadImg.single('imageFile')
-app.post("/create", async (req,res)=>{
+
+app.post("/createDentalRecord",uploadImg.single('imageFile'), async (req,res)=>{
 
   console.log("dent records")
-  const patientIDNum = 'PT#'+req.body.patientIDNum;
+  const patientIDNum = 'PT#' + req.body.patientIDNum;
   const dateValue = req.body.dateValue;
+  const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const descValue= req.body.descValue;
-  //const imageValue = req.file.imgValue;
-  console.log(patientIDNum + " " + dateValue + " " + descValue + " ")
-  // dentalFile: imageValue,
+  // const imageValue = req.files.imgValue;
+  console.log(patientIDNum + " " + slicedDate+ " " + descValue + " " + imageValue)
+  
   await DentalRecords.create({
       patientIDNumber: patientIDNum,
-      dentalDate: dateValue,
+      dentalDate: slicedDate,
       dentalDesc: descValue,
+      // dentalFile: imageValue,
     });
     console.log(" dent rec saved");
 
@@ -619,7 +621,7 @@ app.post("/createReceipt", async (req,res) => {
   const timeValue = req.body.time;
   const consultationValue = req.body.consultation;
 
-  const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
+  // const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
   
   await ReceiptDetails.create({
     appNum: appNumber, 
