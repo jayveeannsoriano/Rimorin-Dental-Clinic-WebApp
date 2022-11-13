@@ -300,7 +300,19 @@ app.get("/getUserAppointmentDetails", async(req,res) => {
           });
         });
 
-    
+//get notification details
+app.get("/getNotifDetails", async (req, res) => {
+  const patientIDnumber = req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await NotifDetails.find({patientIDnumber: patientIDnumber})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+});
 
 //get receipt details
 app.get("/getReceiptDetails", async(req,res) => {
@@ -394,17 +406,6 @@ app.get("/getTotalPendingAppts", async(req,res) => {
         console.log('error: ', error)
       });
     });
-
-//get notification details
-app.get("/getNotificationDetails", async (req, res) => {
-  await NotifDetails.find({})
-  .then((data) => {
-    res.json(data);
-  })
-  .catch((error) => {
-   console.log('error: ', error)
-  });
-});   
 
 //updateDataTable
 
