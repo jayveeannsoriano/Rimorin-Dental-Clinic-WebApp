@@ -17,6 +17,17 @@ svg {
     justify-content: center;
 }
 
+.tooth-label{
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    font-weight: 500;
+}
+
+.tooth-label .col{
+    margin: 10px;
+}
+
 .dental-chart .row{
     margin: 0;
     padding: 0;
