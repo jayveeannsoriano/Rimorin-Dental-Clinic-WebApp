@@ -46,7 +46,7 @@ const PatientDashboard = () => {
 
                 <div className="card-body datatable">
                   <div className="nav-bar">
-                  <Button className="table-button">TODAY</Button>
+                    <Button className="table-button">TODAY</Button>
                     <Button className="table-button">UPCOMING</Button>
                     <Button className="table-button" href="/patient/appointments/request-appointment">REQUEST APPOINTMENT</Button>
                   </div>
