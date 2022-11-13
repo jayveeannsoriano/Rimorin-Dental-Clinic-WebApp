@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import DataTable,{ Alignment } from 'react-data-table-component';
+import DataTable, { Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import AcceptDental from "./modals/accept-dental";
@@ -14,13 +14,13 @@ const AcceptCancel = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
-    const getAppointment = async() => {
-        try{
+    const getAppointment = async () => {
+        try {
             const responses = await axios.get('http://localhost:3001/getAppointmentDetails');
             console.log(responses);
             setAppointment(responses.data);
             setFilteredAppointment(responses.data);
-        }catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -56,18 +56,18 @@ const AcceptCancel = () => {
         },
         {
             name: "Action",
-            selector: row => 
-            <div className="action-buttons">
-                <AcceptDental patientIDnumber= {row.patientIDnumber} pName = {row.pName} dName = {row.dName} appNum = {row.appNum} date = {row.date} time ={row.time} consultation = {row.consultation}/>
-                <CancelDental appNum = {row.appNum}/>
-                <ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-            </div>
+            selector: row =>
+                <div className="action-buttons">
+                    <AcceptDental pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
+                    <CancelDental appNum={row.appNum} />
+                    <ApptDetails appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
+                </div>
         },
     ];
 
-   
 
-    
+
+
     // Loading effect
     const rotate360 = keyframes` 
         from {
@@ -93,19 +93,19 @@ const AcceptCancel = () => {
     `;
 
     const CustomLoader = () => (
-        <div style={{ padding: '24px', textAlign: "center"}}>
+        <div style={{ padding: '24px', textAlign: "center" }}>
             <Spinner />
             <div>Loading...</div>
         </div>
     );
 
-   useEffect(() => {
-		const timeout = setTimeout(() => {
-			setRows(appointment);
-			setPending(false);
-		}, 1000);
-		return () => clearTimeout(timeout);
-	}, []);
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setRows(appointment);
+            setPending(false);
+        }, 1000);
+        return () => clearTimeout(timeout);
+    }, []);
 
     useEffect(() => {
         getAppointment();
@@ -117,29 +117,29 @@ const AcceptCancel = () => {
         });
 
         setFilteredAppointment(result)
-    },[search])
+    }, [search])
 
     return <DataTable
-    pagination
-    subHeaderAlign={Alignment.LEFT}
-    columns={columns}
-    data={filteredappointment}
-    progressPending={pending}
-    progressComponent={<CustomLoader />}
-    fixedHeader
-    highlightOnHover
-    subHeader
-    subHeaderComponent={
-        <input 
-        type="text" 
-        placeholder="Search" 
-        className="w-50 form-control datatable-search" 
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        />
-    }
+        pagination
+        subHeaderAlign={Alignment.LEFT}
+        columns={columns}
+        data={filteredappointment}
+        progressPending={pending}
+        progressComponent={<CustomLoader />}
+        fixedHeader
+        highlightOnHover
+        subHeader
+        subHeaderComponent={
+            <input
+                type="text"
+                placeholder="Search"
+                className="w-50 form-control datatable-search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        }
     />
-  
+
 }
 
 export default AcceptCancel;
