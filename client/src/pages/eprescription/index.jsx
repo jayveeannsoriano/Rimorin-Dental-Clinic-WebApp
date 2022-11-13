@@ -2,6 +2,7 @@ import React from "react";
 // import Footer from "../components/dashboard-footer";
 import "../../styles/dental-record.css"
 import ProfileWidget from "../../components/profile-widget";
+import EPrescriptionDataTable from "../../components/patient-dataTables/eprescription-datatable";
 
 const Eprescription = () => {
     return(
@@ -29,7 +30,7 @@ const Eprescription = () => {
                                     <h5 className="card-title">Prescriptions</h5>
                                     <div className="divider"></div>
 
-                                    {/* Insert Prescription Datatable of selected patient*/}
+                                    <EPrescriptionDataTable/>
 
                                 </div>
                             </div>

@@ -3,12 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 
 
-function AcceptDental(pName,dName,appNum,date,time,consultation) {
+function AcceptDental(patientIDnumber,pName,dName,appNum,date,time,consultation) {
 
   //Get values 
-  const StringfyValues = JSON.stringify(pName,dName,appNum,date,time,consultation);
+  const StringfyValues = JSON.stringify(patientIDnumber,pName,dName,appNum,date,time,consultation);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   //values
+  const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
   const PatientValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g,"");
   const DentistValue = JSON.stringify(ConvertStringfyValues.dName).replace(/"/g,"");
@@ -20,7 +21,7 @@ function AcceptDental(pName,dName,appNum,date,time,consultation) {
 
   const AcceptAppointment = () => {
 
-    Axios.post("http://localhost:3001/acceptAppointment", {userNameApp: PatientValue, appNumber: AppNumber ,dentistValue: DentistValue, dateValue: DateValue, consulInput: ConsultValue, getTime:TimeValue})
+    Axios.post("http://localhost:3001/acceptAppointment", {patientIDnumber:PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber ,dentistValue: DentistValue, dateValue: DateValue, consulInput: ConsultValue, getTime:TimeValue})
   }
 
 

@@ -4,6 +4,7 @@ const PrescriptionDetails = new mongoose.Schema(
     //Professional Information
     ptrNumber: Number,
     licenseNumber: String,
+    patientIDNumber: String,
     //Prescription Information
     presDate: String,
     genericName: String,
