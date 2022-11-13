@@ -760,11 +760,12 @@ h6 {
 
 .patient-info .row{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  margin-left: 15px;
-  margin-bottom: 16px;
+  /* margin-left: 15px; */
+  /* margin-bottom: 16px; */
 }
 
 .patient-info .btn{
