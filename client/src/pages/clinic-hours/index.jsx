@@ -1,10 +1,52 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Button, Form} from "react-bootstrap";
 import { Switch } from 'antd';
 import "../../styles/clinic-hours.css";
 import "antd/dist/antd.css";
 
 const ClinicHours = () => {
+  const [timeSlot, setTimeSlot] = useState([
+    {
+      Day: 'Monday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Tuesday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Wednesday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Thursday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Friday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Saturday',
+      TimeSlot: ''
+    },
+    {
+      Day: 'Sunday',
+      TimeSlot: ''
+    },
+  ]);
+
+  const handleTimeSlotChange = event => {
+    var input = event.target.value;
+    const newState = timeSlot.map(obj => {
+      // 👇️ if id equals 2, update country property
+      
+      return {...obj, TimeSlot: input};
+      
+    });
+
+    setTimeSlot(newState);
+  }
   return (
     <>
       <div class="pagetitle">
@@ -17,7 +59,7 @@ const ClinicHours = () => {
             <li class="breadcrumb-item">
               <a href="/admin/clinic-hours">Clinic Hours</a>
             </li>
-          </ol>
+          </ol>handleTimeSlotChange
         </nav>
       </div>
 
@@ -40,8 +82,8 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time">
-                        <option>Select Time</option>
+                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
+                        <option key="Monday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -51,7 +93,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Monday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -73,7 +115,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Tuesday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -83,7 +125,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Monday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -103,7 +145,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Wednesday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -113,7 +155,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Wednesday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -133,8 +175,8 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time">
-                        <option>Select Time</option>
+                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
+                        <option key="Thursday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -144,7 +186,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Thursday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -165,8 +207,8 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time">
-                        <option>Select Time</option>
+                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
+                        <option key="Friday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -176,7 +218,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Friday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -197,8 +239,8 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time">
-                        <option>Select Time</option>
+                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
+                        <option key="Saturday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -208,7 +250,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Saturday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -229,8 +271,8 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time">
-                        <option>Select Time</option>
+                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
+                        <option key="Sunday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
@@ -240,7 +282,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select defaultValue="Time">
-                        <option>Select Time</option>
+                        <option key="Sunday" value="CLICKED">Select Time</option>
                         <option>...</option>
                     </Form.Select>
                 </Form>
