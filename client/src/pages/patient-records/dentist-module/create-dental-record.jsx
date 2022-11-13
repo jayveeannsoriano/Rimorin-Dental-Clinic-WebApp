@@ -46,32 +46,20 @@ const CreateDentalRecord = () => {
   }
 
   const uploadDentalRecords = () => {
-
-    Axios.post("https://localhost:3001/create",{
-      patientIDnum:StringfyIDnumber,
-      dateValue: startDate,
-      descValue: treatDesc,
-      // imgValue: getFile,
-    });
     console.log(StringfyIDnumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(chartedTeeth);
     console.log(getFile);
+
+    Axios.post("http://localhost:3001/createDentalRecord",{
+      patientIDNum: StringfyIDnumber,
+      dateValue: startDate,
+      descValue: treatDesc,
+      imgValue: getFile,
+    });
+ 
   }
-
-   //get all users
-
-   const [userData, setUserData] = useState("");
-
-   const getAppointment = async () => {
-     try {
-       const response = await Axios.get('http://localhost:3001/getUserDetails');
-       setUserData(response.data);
-     } catch (error) {
-       console.log(error)
-     }
-   }
  
    const handleClickTeeth = event =>{
  
