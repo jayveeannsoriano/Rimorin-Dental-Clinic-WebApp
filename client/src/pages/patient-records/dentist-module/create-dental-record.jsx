@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useMemo } from "react";
 import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
+import { useSearchParams,useLocation} from "react-router-dom";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -14,6 +15,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateDentalRecord = () => {
+
+  const location = useLocation()
+  const paramsID = new URLSearchParams(location.search)
+  const getPatientIDNumber = paramsID.get('patientIDNum');
+  const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
+  console.log(StringfyIDnumber, 'create dental record');
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
@@ -40,54 +47,56 @@ const CreateDentalRecord = () => {
 
   const uploadDentalRecords = () => {
 
-    // Axios.put("https://localhost:3001/uploadDentalRecord",{
-    //   dateValue: startDate,
-    //   descValue: treatDesc,
-    //   imgValue: getFile,
-    // });
+    Axios.post("https://localhost:3001/create",{
+      patientIDnum:StringfyIDnumber,
+      dateValue: startDate,
+      descValue: treatDesc,
+      // imgValue: getFile,
+    });
+    console.log(StringfyIDnumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(chartedTeeth);
     console.log(getFile);
   }
 
-  //get all users
+   //get all users
 
-  const [userData, setUserData] = useState("");
+   const [userData, setUserData] = useState("");
 
-  const getAppointment = async () => {
-    try {
-      const response = await Axios.get('http://localhost:3001/getUserDetails');
-      setUserData(response.data);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleClickTeeth = event =>{
-
-    event.currentTarget.classList.toggle('unmarked');
-    event.currentTarget.classList.toggle('marked');
-
-    var chosenTeeth = event.currentTarget.id;
-    console.log(chosenTeeth);
-
-    var index = chartedTeeth.indexOf(chosenTeeth);
-
-    console.log(index);
-
-    if(index > -1){
-        chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-        console.log(chartedTeeth)
-
-    }else{
-        setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
-        console.log(chartedTeeth)
-    }
-
-
-}
-
+   const getAppointment = async () => {
+     try {
+       const response = await Axios.get('http://localhost:3001/getUserDetails');
+       setUserData(response.data);
+     } catch (error) {
+       console.log(error)
+     }
+   }
+ 
+   const handleClickTeeth = event =>{
+ 
+     event.currentTarget.classList.toggle('unmarked');
+     event.currentTarget.classList.toggle('marked');
+ 
+     var chosenTeeth = event.currentTarget.id;
+     console.log(chosenTeeth);
+ 
+     var index = chartedTeeth.indexOf(chosenTeeth);
+ 
+     console.log(index);
+ 
+     if(index > -1){
+         chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+         console.log(chartedTeeth)
+ 
+     }else{
+         setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
+         console.log(chartedTeeth)
+     }
+ 
+ 
+ }
+ 
 
   return (
     <>
@@ -96,18 +105,18 @@ const CreateDentalRecord = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/dentist">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard/patient-records">Patient Records</a>
+              <a href="/dentist/patient-records">Patient Records</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard/patient-records/dental-record">
+              <a href="/dentist/patient-records/dental-record">
                 Dental Record
               </a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="/dashboard/patient-records/dental-record/create-dental-record">
+            <li class="breadcrumb-item active">
+              <a href="/dentist/patient-records/dental-record/create-dental-record">
                 Create Dental Record
               </a>
             </li>
@@ -177,9 +186,13 @@ const CreateDentalRecord = () => {
               </div>
             </div>
 
-            <div className="row" style={{ background: 'aquamarine' }}>
-              <h4 style={{ background: 'white', margin:0 }}>Dental Record</h4>
-              <DentalChart handleClickTeeth={handleClickTeeth} />
+            {/* Dental Teeth Chart */}
+
+            <div className="container dental-chart-container">
+              <div className="row">
+                <h4>Dental Record</h4>
+                <DentalChart handleClickTeeth={handleClickTeeth} />
+              </div>
             </div>
 
             {/* Procedure */}
@@ -311,7 +324,7 @@ const CreateDentalRecord = () => {
                 <p>Root Canal Therapy</p>
               </div>
               <div class="dental-form-buttons">
-                <button type="submit" class="btn btn-primary" onClick={uploadDentalRecords}>Create</button>
+                <button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</button>
                 <button class="btn btn-outline-secondary">Cancel</button>
               </div>
             </div>

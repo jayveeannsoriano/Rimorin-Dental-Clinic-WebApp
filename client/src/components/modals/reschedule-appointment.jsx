@@ -95,7 +95,7 @@ function RescheduleAppointment(appNum) {
           <div className="divider"></div>
           
             {/* Date Selection */}
-            <div className="appointment-form" id="appointment-form">
+            <div className="modal-date-selection" id="modal-date-selection">
             <form className="row g-3 needs-validation" noValidate/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>

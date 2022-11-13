@@ -1,40 +1,9 @@
-import React, {useState,useMemo,useEffect} from "react";
-import { useSearchParams,useLocation} from "react-router-dom";
-import Axios from 'axios';
-
-import "../../styles/patient-info.css";
+import React from "react";
+import "../../../styles/patient-info-edit.css";
 import "react-bootstrap";
-import ProfileWidget from "../../components/profile-widget";
+import ProfileWidget from "../../../components/profile-widget";
 
-const PatientInfo = () => {
-
-  const location = useLocation()
-    const paramsID = new URLSearchParams(location.search)
-    const getPatientIDNumber = paramsID.get('patientIDNum');
-    const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
-    console.log(StringfyIDnumber);
-    
-    
-    const [patientList, setPatientList] = useState([]);
-    console.log(patientList);
-    const getPatientDetails = async() => {
-      try{
-          const response = await Axios.get('http://localhost:3001/getPatientInfo',{
-            params:{
-            patientIDnumber: StringfyIDnumber}
-          });
-          console.log(response, "Responses");
-          setPatientList(response.data);
-      }catch (error){
-          console.log(error)
-      }
-  }
-  
-  useEffect(() => {
-      getPatientDetails ();
-  }, []);
-
-
+const PatientInfoEdit = () => {
   return (
     <>
       <div class="pagetitle">
@@ -54,7 +23,6 @@ const PatientInfo = () => {
 
       
       <section class="section profile">
-      {patientList.map((item, index) => (
         <div class="row">
           <ProfileWidget />
 
@@ -63,16 +31,21 @@ const PatientInfo = () => {
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
+
+                <button className="btn btn-primary" type="submit">
+                <i class="bi bi-pencil-fill"></i>
+                  Edit 
+                </button>
+
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-printer-fill"></i>
                   Print
                 </button>
-                
+
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-download"></i>
                   Export
                 </button>
-                
                 <div className="divider"></div>
 
 
@@ -84,7 +57,7 @@ const PatientInfo = () => {
                     First Name
                   </div>
                   <div id="fname" class="col-lg-auto col-md-auto">
-                    {item.fname}
+                    Ricci
                   </div>
                 </div>
 
@@ -93,21 +66,21 @@ const PatientInfo = () => {
                     Last Name
                   </div>
                   <div id="lname" class="col-lg-auto col-md-auto">
-                  {item.lname}
+                    Blynthe
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                   <div id="mname" class="col-lg-auto col-md-auto">
-                    UNKNOWN PA
+                    Fuentes
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Birthdate</div>
                   <div id="birthdate" class="col-lg-auto col-md-auto">
-                  {item.bday}
+                    01/01/1998
                   </div>
                 </div>
 
@@ -122,35 +95,35 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Gender</div>
                     <div id="gender" class="col-lg-auto col-md-auto">
-                    {item.gender}
+                      Female
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Profession</div>
                     <div id="profession" class="col-lg-auto col-md-auto">
-                      UNKNOWN
+                      Student
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Cell #</div>
                     <div id="cell" class="col-lg-auto col-md-auto">
-                      (+63) {item.mobile}
+                      (+63) 956 793 5590
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Tel #</div>
                     <div id="tel" class="col-lg-auto col-md-auto">
-                    UNKNOWN
+                      N/A
                     </div>
                   </div>
                   
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Blood Type</div>
                     <div id="blood-type" class="col-lg-auto col-md-auto">
-                    UNKNOWN
+                      A/B
                     </div>
                   </div>
                 </div> 
@@ -165,7 +138,7 @@ const PatientInfo = () => {
                     House No. & Street Name
                   </div>
                   <div id="houseno" class="col-lg-auto col-md-auto">
-                    {item.house}
+                    #10 Cirineo Subdivision
                   </div>
                 </div>
 
@@ -174,14 +147,14 @@ const PatientInfo = () => {
                     Municipality/City
                   </div>
                   <div id="municipality" class="col-lg-auto col-md-auto">
-                    {item.municipality}
+                    Dagupan
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Country</div>
                   <div id="country" class="col-lg-auto col-md-auto">
-                    {item.country}
+                    Philippines
                   </div>
                 </div>
 
@@ -189,20 +162,20 @@ const PatientInfo = () => {
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">District/Barangay</div>
                   <div id="country" class="col-lg-auto col-md-auto">
-                    {item.brgy}
+                    Tapuac
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Province</div>
                   <div id="country" class="col-lg-auto col-md-auto">
-                    {item.province}
+                    Pangasinan
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">ZIP Code</div>
                   <div id="country" class="col-lg-auto col-md-auto">
-                    UNKNOWN
+                    2400
                   </div>
                 </div>
 
@@ -215,21 +188,21 @@ const PatientInfo = () => {
                     Medications/Maintenance
                   </div>
                   <div id="medications" class="col-lg-3">
-                    {item.medications}
+                    N/A
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-4 col-md-4 label">Allergies</div>
                   <div id="allergies" class="col-lg-3">
-                    {item.allergies}
+                    Ibuprofen
                   </div>
                 </div>
                 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Conditions</div>
                   <div id="conditions" class="col-lg-3">
-                    {item.conditions}
+                    Asthma
                   </div>
                 </div>
 
@@ -237,10 +210,10 @@ const PatientInfo = () => {
               {/* end of card body */}
             </div>
           </div>
-         ))}
+        
       </section>
     </>
   );
 };
 
-export default PatientInfo;
+export default PatientInfoEdit;

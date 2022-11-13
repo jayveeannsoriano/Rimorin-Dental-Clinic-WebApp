@@ -1,4 +1,3 @@
-// SCRATCH!!!
 import React from 'react';
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";

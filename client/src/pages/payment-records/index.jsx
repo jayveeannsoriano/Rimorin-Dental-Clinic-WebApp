@@ -27,28 +27,7 @@ const Payments = () => {
                                     <h5 className="card-title">Transactions</h5>
                                     <div className="divider"></div>
 
-                                    {/* Table*/}
-                                    <div class="row">
-                                    <table className="table table-borderless datatable">
-                                        <thead>
-                                            <tr>
-                                            <th scope="col">Transaction #</th>
-                                            <th scope="col">Issued By</th>
-                                            <th scope="col">Payment Status</th>
-                                            <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td><a href="#" class="text-primary">101289</a></td>
-                                                <td><a href="#" class="text-secondary">Dr. Pamela Concepcion</a></td>
-                                                <td><span class="badge bg-success">Paid</span></td>
-                                                <td><span class="badge bg-primary"><i class="bi bi-printer"></i> Print</span> <span class="badge bg-primary"><i class="bi bi-eye"></i> View</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
+                                {/* Insert Transaction Datatable for selected patient*/}
 
                                 </div>
                             </div>

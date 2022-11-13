@@ -27,17 +27,5 @@ const UserDetailsScehma = new mongoose.Schema(
   }
 );
 
-const UserDentalRecords = new mongoose.Schema({
-  dentalRecordUserID: {type: mongoose.Types.ObjectId, ref: "UserInfo"},
-  dentalDate: String,
-  dentalDesc: String,
-  dentalFile:{
-    data: Buffer,
-    contentType: String
-  }
-},{
-
-})
-
 mongoose.model("UserInfo", UserDetailsScehma);
-mongoose.model("UserDentalRecords", UserDentalRecords);
+

@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import 'react-bootstrap';
-import Timeslot from "../../../components/timeslot.jsx";
 
 import BookingInput from './booking-input';
 import BookingDetail from "./booking-detail";
 import BookingConfirm from "./booking-confirm";
-import AppointmentPage from "../../appointments";
 
 
 class BookingMain extends Component {

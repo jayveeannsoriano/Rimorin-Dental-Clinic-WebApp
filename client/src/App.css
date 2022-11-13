@@ -731,6 +731,57 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Patient Info Card
+--------------------------------------------------------------*/
+.patient-info .card-title{
+  color: var(--primary-color);
+  display: inline-block;
+  /* padding: 15px 0px 10px 0; */
+  margin-left: 14px;
+}
+
+.patient-info .row{
+  display: inline-block;
+}
+
+.patient-info h4{
+  margin: 15px 0px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 150%;
+}
+
+.patient-info .label{
+  font-weight: 700;
+  color: #A0A4A8;
+}
+
+.patient-info .column{
+  float: left;
+  width:50%
+}
+
+.patient-info .row{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  margin-left: 15px;
+  margin-bottom: 16px;
+}
+
+.patient-info .btn{
+  margin-top: 15px;
+  margin-left: 10px;
+  align-items: center;
+  float:right;
+}
+
+.patient-info .btn i{
+  margin-right: 5px;
+}
+
+/*--------------------------------------------------------------
 # My profile
 --------------------------------------------------------------*/
 
@@ -757,7 +808,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# My profile
+# Timeslots
 --------------------------------------------------------------*/
 .timeslot {
 	flex-direction: row;
@@ -788,6 +839,29 @@ h6 {
 	display: grid;
 	gap: 5px 0px;
 	grid-template-columns: repeat(4, 1fr);
+}
+
+/* Reschedule Appointment Modal */
+.modal-timeslots{
+  width: 100%;
+	display: grid;
+	gap: 5px 0px;
+	grid-template-columns: repeat(3, 1fr);
+}
+.modal-date-selection {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+  margin-top: 0.5in;
+}
+.modal-date-selection .col-md-4 {
+	margin-bottom: 20px;
+}
+.modal-date-selection .form-label {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
 }
 
 /*--------------------------------------------------------------

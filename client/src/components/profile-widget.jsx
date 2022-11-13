@@ -2,6 +2,7 @@ import React from "react";
 
 export default function ProfileWidget() {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    
     return (
         <div class="col-xl-4">
             <div class="card">

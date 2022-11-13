@@ -1,9 +1,9 @@
 import React from "react";
 import "react-bootstrap";
-import "../styles/patient-profile-widget.css";
+import "../../styles/patient-profile-widget.css";
 
 // temporary user image
-import userimg from '../assets/img/profile-img.jpg'
+import userimg from '../../assets/img/profile-img.jpg'
 import { Button } from "react-bootstrap";
 
 const PatientProfileWidget = () => {

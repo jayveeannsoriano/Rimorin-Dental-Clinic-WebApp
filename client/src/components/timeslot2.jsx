@@ -32,11 +32,11 @@ const Timeslot2 = (props) => {
 
   intervals(intime, outtime);
   return (
-    <div className='slots'>
+    <div className='modal-timeslots'>
       {
         result && result.length > 0 ? result.map((time, index) => {
           return (
-            <div className="Timeslot2" key={index}>
+            <div className="Timeslot2 timeslot" key={index}>
                 <Button 
                 className="time" 
                 value={time}

@@ -13,7 +13,7 @@ const Appointments = lazy(() => import('../pages/appointments/dentist-appointmen
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
-const Eprescription = lazy(() => import('../pages/eprescription//'));
+const Eprescription = lazy(() => import('../pages/eprescription/dentist-module'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const DentistUserProfile = lazy(() => import('../pages/userprofile/dentist-module'));
 
@@ -59,7 +59,7 @@ const DentistRoutes = {
                     element: <PatientInfoPatientList/>
                 },
                 {
-                    path: '/dentist/patient-records/patient-info/:fname',
+                    path: '/dentist/patient-records/patient-info/view-patient-info',
                     element: <PatientInfo />
                 }
             ]
@@ -72,7 +72,7 @@ const DentistRoutes = {
                     element: <DentalRecordPatientList />
                 },
                 {
-                    path: '/dentist/patient-records/dental-record/:fname',
+                    path: '/dentist/patient-records/dental-record/view-dental-records',
                     element: <DentalRecords />
                 },
                 {
