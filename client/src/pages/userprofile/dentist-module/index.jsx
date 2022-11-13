@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfileWidget from "../../../components/profile-widget";
+import UserProfileWidget from "../../../components/userprofile-widget";
+
 
 const DentistUserProfile = () => {  
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -17,7 +18,7 @@ const DentistUserProfile = () => {
                 </div>
                 <section class="section profile">
                     <div class="row">
-                        <ProfileWidget/>
+                        <UserProfileWidget/>
 
                         <div class="col-xl-8">
                             <div className="card">

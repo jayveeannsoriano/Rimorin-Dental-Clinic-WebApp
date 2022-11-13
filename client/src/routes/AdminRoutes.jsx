@@ -27,7 +27,7 @@ const AdminRoute ={
             element: <ErrorPage />
         },
         {
-            path: '/admin/appointments',
+            path: '/admin',
             element: <Appointments />
         },
         {

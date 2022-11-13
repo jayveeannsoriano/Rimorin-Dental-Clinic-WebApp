@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/create-receipt.css";
-import ProfileWidget from "../../components/profile-widget";
+import PatientProfileWidget from '../patient-list/patient-profile-widget'
 
 const Payments = () => {
     return(
@@ -14,12 +14,10 @@ const Payments = () => {
                         </ol>
                     </nav>
                 </div>
-
-                {/* Profile */}
+                
                 <section class="section profile">
                 <div class="row">
-                        <ProfileWidget/>
-                        {/* end of profile widget */}
+                        <PatientProfileWidget/>
                 
                         <div class="col-xl">
                             <div className="card patient-info">
