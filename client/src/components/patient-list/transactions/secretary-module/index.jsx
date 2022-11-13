@@ -5,7 +5,7 @@ import "../../../styles/patient-profile-widget.css";
 import userimg from '../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
-const TransactionPatientProfileWidget = () => {
+const SecTransactionPatientProfileWidget = () => {
 //temporary list
 const [patientReceipt, setPatientReceipt] = useState([]);
 const [patientIDNum, setpatientIDNum] = useState();
@@ -62,8 +62,9 @@ const proceedtoPayment = (value) => {
                                 </ul>
                             </div>
 
+                            {/* href="/secretary/payment-records/create-receipt" */}
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href={"/dentist/payment-records/view-transactions?patientIDNum=" + patientIDNum} onClick={() => proceedtoPayment(item.patientIDnumber)}>
+                                <Button className="widget-btn" href={"/secretary/payment-records/view-transactions?patientIDNum=" + patientIDNum} onClick={() => proceedtoPayment(item.patientIDnumber)}>
                                     View Transactions
                                 </Button>
                             </div>
@@ -78,5 +79,4 @@ const proceedtoPayment = (value) => {
 }
 
 
-
-export default TransactionPatientProfileWidget;
+export default SecTransactionPatientProfileWidget;

@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/create-receipt.css";
-import ProfileWidget from "../../components/profile-widget";
+import PatientProfileWidget from "../../components/profile-widget";
 import TransactionDataTable from "../../components/patient-dataTables/transaction-datatable";
 
 const Payments = () => {

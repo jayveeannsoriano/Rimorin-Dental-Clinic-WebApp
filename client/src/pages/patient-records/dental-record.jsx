@@ -1,7 +1,7 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
 import "../../styles/dental-record.css"
-import ProfileWidget from "../../components/profile-widget";
+import PatientProfileWidget from "../../components/profile-widget";
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 
 export default function DentalRecord(){
