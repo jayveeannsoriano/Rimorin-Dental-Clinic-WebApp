@@ -119,21 +119,18 @@ const DentistUserProfile = () => {
                                                 <div class="col-lg-9 col-md-8">{userInfo['email']}</div>
                                             </div>
 
-                                            <h5 class="card-title">Basic Medical Information</h5>
+                                            {/* Professional Information */}
+
+                                            <h5 class="card-title">Professional Information</h5>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label ">Medications or maintenance</div>
+                                                <div class="col-lg-3 col-md-4 label ">PTR Number</div>
                                                 <div class="col-lg-9 col-md-8">{userInfo['medications']}</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label ">Allergies</div>
+                                                <div class="col-lg-3 col-md-4 label ">Licence Number</div>
                                                 <div class="col-lg-9 col-md-8">{userInfo['allergies']}</div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-4 label ">Conditions</div>
-                                                <div class="col-lg-9 col-md-8">{userInfo['conditions']}</div>
                                             </div>
 
                                         </div>
@@ -151,13 +148,6 @@ const DentistUserProfile = () => {
                                                         </div>
                                                     </div>
                                                     </div>
-
-                                                    {/* <div class="row mb-3">
-                                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="fullName" type="text" class="form-control" id="fullName" value="{userInfo['email']} McBell"/>
-                                                    </div>
-                                                    </div> */}
 
                                                      <h5 class="card-title">Personal Information</h5>   
                                                     <div class="row mb-3">
@@ -187,21 +177,6 @@ const DentistUserProfile = () => {
                                                         <input name="date" type="text" class="form-control" id="Birthday" value={userInfo['bday']}/>
                                                     </div>
                                                     </div>
-
-                                                    {/*                                                     
-                                                    <div class="row mb-3">
-                                                    <label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022"/>
-                                                    </div>
-                                                    </div> */}
-
-                                                    {/* <div class="row mb-3">
-                                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                                    <div class="col-md-8 col-lg-9">
-                                                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022"/>
-                                                    </div>
-                                                    </div> */}
 
                                                 <h5 class="card-title">Address Information</h5> 
 
@@ -261,89 +236,21 @@ const DentistUserProfile = () => {
                                                     </div>
                                                     </div>  
 
-                                                <h5 class="card-title">Medical Conditions</h5>
+                                                    {/* Professional Information */}
+                                                <h5 class="card-title">Professional Information</h5>
                                                     <div class="row mb-3">
-                                                    <label for="Medications" class="col-md-4 col-lg-3 col-form-label">Medications or maintenance</label>
+                                                    <label for="PTRNo" class="col-md-4 col-lg-3 col-form-label">PTR Number</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input type="text" class="form-control" id="Medications" value={userInfo['medications']}/>
+                                                        <input type="text" class="form-control" id="PTRNo" value={userInfo['medications']}/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                    <label for="Allergies" class="col-md-4 col-lg-3 col-form-label">Allergies</label>
+                                                    <label for="LicenceNo" class="col-md-4 col-lg-3 col-form-label">Licence Number</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="phone" type="text" class="form-control" id="Phone" value={userInfo['allergies']}/>
+                                                        <input name="phone" type="text" class="form-control" id="LicenceNo" value={userInfo['allergies']}/>
                                                     </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                    <label for="Conditions" class="col-md-4 col-lg-3 col-form-label">Conditions</label>
-                                                   
-                                                    </div>
-
-                                                    <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-sm">
-                                                        <div className='form-check '>
-                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" checked={userInfo['conditions'].includes('Heart Disease') ? true : false} value='Heart Disease' />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Heart Disease </label>
-                                                        </div>
-
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input"type="checkbox" value="High Blood Pressure" id="flexCheckDefault" checked={userInfo['conditions'].includes('High Blood Pressure') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> High Blood Pressure</label> 
-                                                        </div>
-
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Rheumatic" id="flexCheckDefault" checked={userInfo['conditions'].includes('Rheumatic') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Rheumatic </label>
-                                                        </div>
-                                                        
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Blood Disorders" id="flexCheckDefault" checked={userInfo['conditions'].includes('Blood Disorders') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Blood Disorders </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Diabetes" id="flexCheckDefault" checked={userInfo['conditions'].includes('Diabetes') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Diabetes </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Seizures" id="flexCheckDefault" checked={userInfo['conditions'].includes('Seizures') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Seizures </label>
-                                                        </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-sm">
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Tuberculosis" id="flexCheckDefault" checked={userInfo['conditions'].includes('Tuberculosis') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Tuberculosis </label>
-                                                        </div>
-                                                        
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Tumors" id="flexCheckDefault" checked={userInfo['conditions'].includes('Tumors') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Tumors/Growths </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Asthma" id="flexCheckDefault" checked={userInfo['conditions'].includes('Asthma') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Asthma </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Hepatitis" id="flexCheckDefault" checked={userInfo['conditions'].includes('Hepatitis') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Hepatitis </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="STD" id="flexCheckDefault" checked={userInfo['conditions'].includes('STD') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> STD </label>
-                                                        </div>
-                                                        <div className='form-check'>
-                                                            <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" checked={userInfo['conditions'].includes('Stroke') ? true : false} />
-                                                            <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
-                                                        </div>
-
-                                                        </div>
-                                                    </div>
-                                                    </div>
-            
+                                                    </div>            
 
                                                     <div class="text-right">
                                                     <button type="submit" class="btn btn-outline-secondary">Cancel</button>

@@ -26,7 +26,7 @@ function Sidebar_Admin(){
                     {/* Appointments Nav */}
                     <li className="nav-item">
                         <a className={"nav-link " +((window.location.href.split("/").pop()=='appointments') ? 'active': 'collapsed')} 
-                        href="/admin/appointments">
+                        href="/admin">
                         <i class="fa-solid fa-stethoscope"></i>
                         <span>Appointments</span>
                         </a>

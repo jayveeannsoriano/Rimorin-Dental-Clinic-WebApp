@@ -6,7 +6,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import ErrorPage from '../components/errorpage';
 
 // dashboard routing
-const DashboardPage = lazy(() => import('../pages/dashboard/index'));
+const DashboardPage = lazy(() => import('../pages/dashboard/patient-dashboard'));
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
