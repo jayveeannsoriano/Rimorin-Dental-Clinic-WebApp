@@ -24,6 +24,8 @@ try{
 useEffect(() => {
     getAppointment();
 }, []);
+
+const count = appointmentDetails.length;
 //-------------------------------------------------------------------------
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -64,7 +66,7 @@ useEffect(() => {
                         <li className="nav-item dropdown">
                             <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                             <i className="fa-solid fa-bell"></i>
-                                <span className="badge bg-primary badge-number">4</span>
+                                <span className="badge bg-primary badge-number">{ count }</span>
                             </a>
                     
 
