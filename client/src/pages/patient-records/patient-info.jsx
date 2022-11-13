@@ -1,10 +1,10 @@
 import React, {useState,useMemo,useEffect} from "react";
 import { useSearchParams,useLocation} from "react-router-dom";
 import Axios from 'axios';
+import PatientProfileWidget from '../../components/patient-profile-widget'
 
 import "../../styles/patient-info.css";
 import "react-bootstrap";
-import ProfileWidget from "../../components/profile-widget";
 
 const PatientInfo = () => {
 
@@ -56,7 +56,7 @@ const PatientInfo = () => {
       <section class="section profile">
       {patientList.map((item, index) => (
         <div class="row">
-          <ProfileWidget />
+          <PatientProfileWidget />
 
           <div class="col-xl-8">
             <div className="card patient-info">

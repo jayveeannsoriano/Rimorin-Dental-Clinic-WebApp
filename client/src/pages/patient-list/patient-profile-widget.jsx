@@ -1,35 +1,14 @@
-import React, {useState,useEffect} from "react";
-import "../../../styles/patient-profile-widget.css";
-import Axios from 'axios';
+import React from "react";
+import "react-bootstrap";
+import "../../styles/patient-profile-widget.css";
 
 // temporary user image
-import userimg from '../../../assets/img/profile-img.jpg';
+import userimg from '../../assets/img/profile-img.jpg'
 import { Button } from "react-bootstrap";
 
-const PatientInfoPatientProfileWidget = () => {
-    
-const [patientList, setPatientList] = useState([]);
-const [patientIDNum, setpatientIDNum] = useState();
-console.log(patientIDNum);
-
-
-const getPatientDetails = async() => {
-    try{
-        const response = await Axios.get('http://localhost:3001/getUserDetails');
-        console.log(response, "Responses");
-        setPatientList(response.data);
-    }catch (error){
-        console.log(error)
-    }
-}
-
-useEffect(() => {
-    getPatientDetails ();
-}, []);
-
-const proceedtoViewInfo = (value) => {
-    setpatientIDNum(value.substring(3));
-  }
+const PatientProfileWidget = () => {
+//temporary list
+const patients=['Shermax']
 
     return (
         <>
@@ -37,7 +16,7 @@ const proceedtoViewInfo = (value) => {
             <div class="row">
 
             {/* replace 'patients' with proper get value variable */}
-            {patientList.map((item, index) => (
+            {patients.map((item, index) => (
                 <div key={index} class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card widget-profile pat-widget-profile">
                         <div class="card-body">
@@ -47,10 +26,10 @@ const proceedtoViewInfo = (value) => {
                                         <img src={userimg} alt="User Image"/>
                                     </a>
                                     <div class="profile-det-info">
-                                        <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
+                                        <h3><a href="#"></a>{item}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
+                                            <h5><b>Patient ID :</b> P0016</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -58,14 +37,14 @@ const proceedtoViewInfo = (value) => {
                             
                             <div class="patient-info">
                                 <ul>
-                                    <li>Phone <span>{item.mobile}</span></li>
-                                    <li>Age <span>38 Years, {item.gender}</span></li>
+                                    <li>Phone <span>+1 952 001 8563</span></li>
+                                    <li>Age <span>38 Years, Male</span></li>
                                 </ul>
                             </div>
-                            
+
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href={"/dentist/patient-records/patient-info/view-patient-info?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
-                                    View Patient Information
+                                <Button className="widget-btn">
+                                    View Patient Profile
                                 </Button>
                             </div>
                         </div>
@@ -78,4 +57,4 @@ const proceedtoViewInfo = (value) => {
     )
 }
 
-export default PatientInfoPatientProfileWidget;
+export default PatientProfileWidget;

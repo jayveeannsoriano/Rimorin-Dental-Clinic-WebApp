@@ -7,45 +7,50 @@ import "antd/dist/antd.css";
 const ClinicHours = () => {
   const [timeSlot, setTimeSlot] = useState([
     {
-      Day: 'Monday',
-      TimeSlot: ''
+      day: "Monday",
+      timeStart: ''
     },
     {
-      Day: 'Tuesday',
-      TimeSlot: ''
+      day: "Tuesday",
+      timeStart: ''
     },
     {
-      Day: 'Wednesday',
-      TimeSlot: ''
+      day: "Wednesday",
+      timeStart: ''
     },
     {
-      Day: 'Thursday',
-      TimeSlot: ''
+      day: "Thursday",
+      timeStart: ''
     },
     {
-      Day: 'Friday',
-      TimeSlot: ''
+      day: "Friday",
+      timeStart: ''
     },
     {
-      Day: 'Saturday',
-      TimeSlot: ''
+      day: "Saturday",
+      timeStart: ''
     },
     {
-      Day: 'Sunday',
-      TimeSlot: ''
+      day: "Sunday",
+      timeStart: ''
     },
   ]);
 
   const handleTimeSlotChange = event => {
-    var input = event.target.value;
-    const newState = timeSlot.map(obj => {
-      // 👇️ if id equals 2, update country property
-      
-      return {...obj, TimeSlot: input};
-      
-    });
+    var time = event.target.value;
+    var id = event.target.id;
+    console.log(time);
+    console.log(id)
 
-    setTimeSlot(newState);
+    setTimeSlot(current =>
+      current.map(obj => {
+        if (obj.day === id) {
+          return {...obj, timeStart: time};
+        }
+        return obj;
+      }),
+    );
+    console.log(timeSlot);
   }
   return (
     <>
@@ -82,9 +87,25 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
-                        <option key="Monday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    defaultValue="Select Time" id="Monday" onChange={handleTimeSlotChange}>
+                        <option key="Monday">Select Time</option>
+                        <option key="Monday" value="9:00 AM">9:00 AM</option>
+                        <option key="Monday" value="9:30 AM">9:30 AM</option>
+                        <option key="Monday" value="10:00 AM">10:00 AM</option>
+                        <option key="Monday" value="10:30 AM">10:30 AM</option>
+                        <option key="Monday" value="11:00 AM">11:00 AM</option>
+                        <option key="Monday" value="11:30 AM">11:30 AM</option>
+                        <option key="Monday" value="12:00 AM">12:00 AM</option>
+                        <option key="Monday" value="12:30 AM">12:30 AM</option>
+                        <option key="Monday" value="1:00 PM">1:00 PM</option>
+                        <option key="Monday" value="1:30 PM">1:30 PM</option>
+                        <option key="Monday" value="2:00 PM">2:00 PM</option>
+                        <option key="Monday" value="2:30 PM">2:30 PM</option>
+                        <option key="Monday" value="3:00 PM">3:00 PM</option>
+                        <option key="Monday" value="3:30 PM">3:30 PM</option>
+                        <option key="Monday" value="4:00 PM">4:00 PM</option>
+                        <option key="Monday" value="4:30 PM">4:30 PM</option>
+                        <option key="Monday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -114,9 +135,26 @@ const ClinicHours = () => {
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
-                    <Form.Select defaultValue="Time">
-                        <option key="Tuesday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    <Form.Select 
+                    defaultValue="Select Time" id="Tuesday" onChange={handleTimeSlotChange}>
+                        <option key="Tuesday">Select Time</option>
+                        <option key="Tuesday" value="9:00 AM">9:00 AM</option>
+                        <option key="Tuesday" value="9:30 AM">9:30 AM</option>
+                        <option key="Tuesday" value="10:00 AM">10:00 AM</option>
+                        <option key="Tuesday" value="10:30 AM">10:30 AM</option>
+                        <option key="Tuesday" value="11:00 AM">11:00 AM</option>
+                        <option key="Tuesday" value="11:30 AM">11:30 AM</option>
+                        <option key="Tuesday" value="12:00 AM">12:00 AM</option>
+                        <option key="Tuesday" value="12:30 AM">12:30 AM</option>
+                        <option key="Tuesday" value="1:00 PM">1:00 PM</option>
+                        <option key="Tuesday" value="1:30 PM">1:30 PM</option>
+                        <option key="Tuesday" value="2:00 PM">2:00 PM</option>
+                        <option key="Tuesday" value="2:30 PM">2:30 PM</option>
+                        <option key="Tuesday" value="3:00 PM">3:00 PM</option>
+                        <option key="Tuesday" value="3:30 PM">3:30 PM</option>
+                        <option key="Tuesday" value="4:00 PM">4:00 PM</option>
+                        <option key="Tuesday" value="4:30 PM">4:30 PM</option>
+                        <option key="Tuesday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -144,9 +182,26 @@ const ClinicHours = () => {
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
-                    <Form.Select defaultValue="Time">
-                        <option key="Wednesday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    <Form.Select
+                    defaultValue="Select Time" id="Wednesday" onChange={handleTimeSlotChange}>
+                        <option key="Wednesday">Select Time</option>
+                        <option key="Wednesday" value="9:00 AM">9:00 AM</option>
+                        <option key="Wednesday" value="9:30 AM">9:30 AM</option>
+                        <option key="Wednesday" value="10:00 AM">10:00 AM</option>
+                        <option key="Wednesday" value="10:30 AM">10:30 AM</option>
+                        <option key="Wednesday" value="11:00 AM">11:00 AM</option>
+                        <option key="Wednesday" value="11:30 AM">11:30 AM</option>
+                        <option key="Wednesday" value="12:00 AM">12:00 AM</option>
+                        <option key="Wednesday" value="12:30 AM">12:30 AM</option>
+                        <option key="Wednesday" value="1:00 PM">1:00 PM</option>
+                        <option key="Wednesday" value="1:30 PM">1:30 PM</option>
+                        <option key="Wednesday" value="2:00 PM">2:00 PM</option>
+                        <option key="Wednesday" value="2:30 PM">2:30 PM</option>
+                        <option key="Wednesday" value="3:00 PM">3:00 PM</option>
+                        <option key="Wednesday" value="3:30 PM">3:30 PM</option>
+                        <option key="Wednesday" value="4:00 PM">4:00 PM</option>
+                        <option key="Wednesday" value="4:30 PM">4:30 PM</option>
+                        <option key="Wednesday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -175,9 +230,25 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
-                        <option key="Thursday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    defaultValue="Select Time" id="Thursday" onChange={handleTimeSlotChange}>
+                        <option key="Thursday">Select Time</option>
+                        <option key="Thursday" value="9:00 AM">9:00 AM</option>
+                        <option key="Thursday" value="9:30 AM">9:30 AM</option>
+                        <option key="Thursday" value="10:00 AM">10:00 AM</option>
+                        <option key="Thursday" value="10:30 AM">10:30 AM</option>
+                        <option key="Thursday" value="11:00 AM">11:00 AM</option>
+                        <option key="Thursday" value="11:30 AM">11:30 AM</option>
+                        <option key="Thursday" value="12:00 AM">12:00 AM</option>
+                        <option key="Thursday" value="12:30 AM">12:30 AM</option>
+                        <option key="Thursday" value="1:00 PM">1:00 PM</option>
+                        <option key="Thursday" value="1:30 PM">1:30 PM</option>
+                        <option key="Thursday" value="2:00 PM">2:00 PM</option>
+                        <option key="Thursday" value="2:30 PM">2:30 PM</option>
+                        <option key="Thursday" value="3:00 PM">3:00 PM</option>
+                        <option key="Thursday" value="3:30 PM">3:30 PM</option>
+                        <option key="Thursday" value="4:00 PM">4:00 PM</option>
+                        <option key="Thursday" value="4:30 PM">4:30 PM</option>
+                        <option key="Thursday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -207,9 +278,25 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
-                        <option key="Friday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    defaultValue="Select Time" id="Friday" onChange={handleTimeSlotChange}>
+                        <option key="Friday">Select Time</option>
+                        <option key="Friday" value="9:00 AM">9:00 AM</option>
+                        <option key="Friday" value="9:30 AM">9:30 AM</option>
+                        <option key="Friday" value="10:00 AM">10:00 AM</option>
+                        <option key="Friday" value="10:30 AM">10:30 AM</option>
+                        <option key="Friday" value="11:00 AM">11:00 AM</option>
+                        <option key="Friday" value="11:30 AM">11:30 AM</option>
+                        <option key="Friday" value="12:00 AM">12:00 AM</option>
+                        <option key="Friday" value="12:30 AM">12:30 AM</option>
+                        <option key="Friday" value="1:00 PM">1:00 PM</option>
+                        <option key="Friday" value="1:30 PM">1:30 PM</option>
+                        <option key="Friday" value="2:00 PM">2:00 PM</option>
+                        <option key="Friday" value="2:30 PM">2:30 PM</option>
+                        <option key="Friday" value="3:00 PM">3:00 PM</option>
+                        <option key="Friday" value="3:30 PM">3:30 PM</option>
+                        <option key="Friday" value="4:00 PM">4:00 PM</option>
+                        <option key="Friday" value="4:30 PM">4:30 PM</option>
+                        <option key="Friday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -239,9 +326,25 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
-                        <option key="Saturday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    defaultValue="Select Time" id="Saturday" onChange={handleTimeSlotChange}>
+                        <option key="Saturday">Select Time</option>
+                        <option key="Saturday" value="9:00 AM">9:00 AM</option>
+                        <option key="Saturday" value="9:30 AM">9:30 AM</option>
+                        <option key="Saturday" value="10:00 AM">10:00 AM</option>
+                        <option key="Saturday" value="10:30 AM">10:30 AM</option>
+                        <option key="Saturday" value="11:00 AM">11:00 AM</option>
+                        <option key="Saturday" value="11:30 AM">11:30 AM</option>
+                        <option key="Saturday" value="12:00 AM">12:00 AM</option>
+                        <option key="Saturday" value="12:30 AM">12:30 AM</option>
+                        <option key="Saturday" value="1:00 PM">1:00 PM</option>
+                        <option key="Saturday" value="1:30 PM">1:30 PM</option>
+                        <option key="Saturday" value="2:00 PM">2:00 PM</option>
+                        <option key="Saturday" value="2:30 PM">2:30 PM</option>
+                        <option key="Saturday" value="3:00 PM">3:00 PM</option>
+                        <option key="Saturday" value="3:30 PM">3:30 PM</option>
+                        <option key="Saturday" value="4:00 PM">4:00 PM</option>
+                        <option key="Saturday" value="4:30 PM">4:30 PM</option>
+                        <option key="Saturday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               
@@ -271,9 +374,25 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" onChange={handleTimeSlotChange}>
-                        <option key="Sunday" value="CLICKED">Select Time</option>
-                        <option>...</option>
+                    defaultValue="Select Time" id="Sunday" onChange={handleTimeSlotChange}>
+                        <option key="Sunday">Select Time</option>
+                        <option key="Sunday" value="9:00 AM">9:00 AM</option>
+                        <option key="Sunday" value="9:30 AM">9:30 AM</option>
+                        <option key="Sunday" value="10:00 AM">10:00 AM</option>
+                        <option key="Sunday" value="10:30 AM">10:30 AM</option>
+                        <option key="Sunday" value="11:00 AM">11:00 AM</option>
+                        <option key="Sunday" value="11:30 AM">11:30 AM</option>
+                        <option key="Sunday" value="12:00 AM">12:00 AM</option>
+                        <option key="Sunday" value="12:30 AM">12:30 AM</option>
+                        <option key="Sunday" value="1:00 PM">1:00 PM</option>
+                        <option key="Sunday" value="1:30 PM">1:30 PM</option>
+                        <option key="Sunday" value="2:00 PM">2:00 PM</option>
+                        <option key="Sunday" value="2:30 PM">2:30 PM</option>
+                        <option key="Sunday" value="3:00 PM">3:00 PM</option>
+                        <option key="Sunday" value="3:30 PM">3:30 PM</option>
+                        <option key="Sunday" value="4:00 PM">4:00 PM</option>
+                        <option key="Sunday" value="4:30 PM">4:30 PM</option>
+                        <option key="Sunday" value="5:00 PM">5:00 PM</option>
                     </Form.Select>
                 </Form>
               

@@ -5,9 +5,8 @@ import "./chart.js";
 
 
 const DentalChart = ({handleClickTeeth}) => {
-    const email =  document.getElementById('emailaddress').textContent;
     
-    const getDentalCharts = async() => {
+    const getDentalCharts = async(email) => {
         const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
         response.forEach(teeth => {
             var el = document.getElementById(teeth);
@@ -17,7 +16,9 @@ const DentalChart = ({handleClickTeeth}) => {
     }
 
     useEffect(() => {
-        getDentalCharts();
+        const email =  document.getElementById('emailaddress').textContent;
+
+        getDentalCharts(email);
       }, []);
       
 
