@@ -44,12 +44,14 @@ require("./models/prescriptionDetails");
 require("./models/appointmentRequest");
 require("./models/receiptDetails");
 require("./models/dentalRecords");
+require("./models/notificationDetails");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
 const AppRequest = mongoose.model("AppointmentRequest");
 const ReceiptDetails = mongoose.model("ReceiptDetails");
 const DentalRecords = mongoose.model("UserDentalRecords");
+const NotifDetails = mongoose.model("NotificationDetails");
 
 
 //sign in
@@ -390,6 +392,17 @@ app.get("/getTotalPendingAppts", async(req,res) => {
         console.log('error: ', error)
       });
     });
+
+//get notification details
+app.get("/getNotificationDetails", async (req, res) => {
+  await NotifDetails.find({})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+});   
 
 //updateDataTable
 
