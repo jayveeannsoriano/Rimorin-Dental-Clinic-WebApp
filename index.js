@@ -196,9 +196,11 @@ app.post("/insertAppointment", async(req,res) => {
 
   //inserting all data
   const AppData = new AppRequest({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const NotifData = new NotifDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
   try{
     await AppData.save();
+    await NotifData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
 
     if(insertAppStatus == "Accepted"){
