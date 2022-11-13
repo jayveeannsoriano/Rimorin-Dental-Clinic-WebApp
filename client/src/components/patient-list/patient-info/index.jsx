@@ -7,7 +7,7 @@ import userimg from '../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
 const PatientInfoPatientProfileWidget = () => {
-//temporary list
+    
 const [patientList, setPatientList] = useState([]);
 const [patientIDNum, setpatientIDNum] = useState();
 console.log(patientIDNum);
