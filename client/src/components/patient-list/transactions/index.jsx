@@ -1,17 +1,14 @@
 import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import "../../../styles/patient-profile-widget.css";
-
-
-
-// temporary user image
+//
 import userimg from '../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
 const TransactionPatientProfileWidget = () => {
 //temporary list
 const [patientReceipt, setPatientReceipt] = useState([]);
-const [patientValue, setPatientValue] = useState("");
+const [patientIDNum, setpatientIDNum] = useState();
 
 //App Detail
 const getReceiptDetails = async() => {
@@ -29,7 +26,7 @@ useEffect(() => {
 }, []);
 
 const proceedtoPayment = (value) => {
-  setPatientValue(value.substring(1));
+    setpatientIDNum(value.substring(3));
 }
 
     return (
@@ -52,7 +49,7 @@ const proceedtoPayment = (value) => {
                                         <h3><a href="#"></a>{item.pName}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Appointment Number:</b>{item.appNum}</h5>
+                                            <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +64,7 @@ const proceedtoPayment = (value) => {
 
                             {/* href="/secretary/payment-records/create-receipt" */}
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href={"/secretary/payment-records/view-transactions?patientValue=" + patientValue} onClick={() => proceedtoPayment(item.appNum)}>
+                                <Button className="widget-btn" href={"/secretary/payment-records/view-transactions?patientIDNum=" + patientIDNum} onClick={() => proceedtoPayment(item.patientIDnumber)}>
                                     View Transactions
                                 </Button>
                             </div>
@@ -80,5 +77,7 @@ const proceedtoPayment = (value) => {
         </>
     )
 }
+
+
 
 export default TransactionPatientProfileWidget;

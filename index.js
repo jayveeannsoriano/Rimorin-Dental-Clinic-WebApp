@@ -163,6 +163,9 @@ app.get("/userData", async (req, res) => {
 const sgMail = require('@sendgrid/mail')
 app.post("/insertAppointment", async(req,res) => {
 
+  //Patient Id Number
+  const patientIDnumber = req.body.patientIDnumber;
+  console.log(patientIDnumber);
 
   //User Info value
   const userNameApp = req.body.userNameApp;
@@ -195,14 +198,14 @@ app.post("/insertAppointment", async(req,res) => {
   console.log(insertAppStatus);
 
   //inserting all data
-  const AppData = new AppRequest({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
-  const NotifData = new NotifDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const AppData = new AppRequest({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const NotifData = new NotifDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
   try{
     await AppData.save();
     await NotifData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
-
+    console.log("Successfully inserted ", NotifData, " to the database.")
     if(insertAppStatus == "Accepted"){
       //Sending Email
       sgMail.setApiKey('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');
@@ -300,12 +303,69 @@ app.get("/getUserAppointmentDetails", async(req,res) => {
           });
         });
 
-    
+//get notification details
+app.get("/getNotifDetails", async (req, res) => {
+  const patientIDnumber = req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await NotifDetails.find({patientIDnumber: patientIDnumber})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+});
 
 //get receipt details
 app.get("/getReceiptDetails", async(req,res) => {
     
   await ReceiptDetails.find({})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+    //get patient dental records
+app.get("/getUserDentalRecord", async(req,res) => {
+
+  const patientIDnumber = req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await DentalRecords.find({patientIDnumber: patientIDnumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+    //get patient epres records
+app.get("/getUserEPresRecord", async(req,res) => {
+
+  const patientIDnumber = req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await PresDetails.find({patientIDnumber: patientIDnumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+        //get patient trans records
+app.get("/getUserTransaction", async(req,res) => {
+
+  const patientIDnumber = req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await ReceiptDetails.find({patientIDnumber: patientIDnumber})
       .then((data) => {
         res.json(data);
       })
@@ -395,17 +455,6 @@ app.get("/getTotalPendingAppts", async(req,res) => {
       });
     });
 
-//get notification details
-app.get("/getNotificationDetails", async (req, res) => {
-  await NotifDetails.find({})
-  .then((data) => {
-    res.json(data);
-  })
-  .catch((error) => {
-   console.log('error: ', error)
-  });
-});   
-
 //updateDataTable
 
 app.put("/updateDateTime", async (req, res) => {
@@ -452,6 +501,9 @@ app.put("/updateStatus", async (req,res) => {
   //Accept Appointment
   app.post("/acceptAppointment", async(req,res) => {
 
+    //Patient ID name
+    const patientIDnumber = req.body.patientIDnumber;
+    console.log(patientIDnumber)
 
     //User Info value
     const userNameApp = req.body.userNameApp;
@@ -483,7 +535,7 @@ app.put("/updateStatus", async (req,res) => {
     console.log(insertAppStatus);
   
     //inserting all data
-    const AppData = new AppDetails({pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+    const AppData = new AppDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
     try{
       await AppData.save();
@@ -612,7 +664,7 @@ app.post("/createDentalRecord",uploadImg.single('imageFile'), async (req,res)=>{
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const descValue= req.body.descValue;
   // const imageValue = req.files.imgValue;
-  console.log(patientIDNum + " " + slicedDate+ " " + descValue + " " + imageValue)
+  console.log(patientIDNum + " " + slicedDate+ " " + descValue)
   
   await DentalRecords.create({
       patientIDNumber: patientIDNum,
@@ -624,9 +676,9 @@ app.post("/createDentalRecord",uploadImg.single('imageFile'), async (req,res)=>{
 
 })
 
-    //update status
 app.post("/createReceipt", async (req,res) => {
 
+  const PatientIDNumber = req.body.patientIDnumber;
   const appNumber = req.body.appNum;
   const acceptedStatus = "Accepted";
   const payStatus = "Pending";
@@ -639,6 +691,7 @@ app.post("/createReceipt", async (req,res) => {
   // const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
   
   await ReceiptDetails.create({
+    patientIDnumber: PatientIDNumber,
     appNum: appNumber, 
     appStatus: acceptedStatus,
     payStatus: payStatus, 
@@ -648,9 +701,6 @@ app.post("/createReceipt", async (req,res) => {
     time: timeValue, 
     consultation: consultationValue
   });
-
-  // console.log("Sign up Details for Receipt: ", ReceiptData);
-  // console.log("Successfully inserted ", ReceiptData, " to the database.");
 })
 
 app.put("/updateReceipt", async (req,res) =>{
@@ -672,3 +722,34 @@ app.put("/updateReceipt", async (req,res) =>{
   )
   console.log("Receipt Details Updated!")
 });
+
+app.post("/createEprescription",uploadImg.single('imageFile'), async (req,res)=>{
+
+  console.log("epres")
+  const patientIDNum = 'PT#' + req.body.patientIDNum;
+  const dateValue = req.body.dateValue;
+  const slicedDate = dateValue.slice(0,10)//removes unnecessary data
+  const genericValue = req.body.genericValue;
+  const brandValue = req.body.brandValue;
+  const dosageValue = req.body.dosageValue;
+  const formValue = req.body.formValue;
+  const frequencyValue = req.body.frequencyValue;
+  const durationValue = req.body.durationValue;
+  const notesValue = req.body.notesValue;
+  // const imageValue = req.files.imgFile;
+  
+  await PresDetails.create({
+      patientIDNumber: patientIDNum,
+      presDate: slicedDate,
+      genericName: genericValue,
+      brandName: brandValue,
+      medDosage: dosageValue,
+      presForm: formValue,
+      presFrequency: frequencyValue,
+      presDuration: durationValue,
+      presInstruction: notesValue,
+      // dentalFile: imageValue,
+    });
+    console.log("e-pres saved");
+
+})

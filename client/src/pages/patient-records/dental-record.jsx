@@ -1,7 +1,8 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
 import "../../styles/dental-record.css"
-import PatientProfileWidget from '../patient-list/patient-profile-widget'
+import ProfileWidget from "../../components/profile-widget";
+import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 
 export default function DentalRecord(){
     return(
@@ -33,7 +34,10 @@ export default function DentalRecord(){
 
                                     <div className="divider"></div>
 
-                                    {/* Insert Dental Record Datatable for selected patient*/}
+                                    {/* Record Table*/}
+                                    <div class="row">
+                                       <DentalRecordDataTable/>
+                                    </div>
 
                                 </div>
                             </div>

@@ -3,30 +3,29 @@ import Axios from 'axios';
 import styles from '../../styles/dashboard.css'
 import API from '../../config/api'
 
-
-
 function dashboardHeader(){
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
-    //notification data
+//notification data
 const [appointmentDetails, setAppointmentDetails] = useState([]);
+const patientIDNumber = userInfo['patientIDnumber'];
+console.log(patientIDNumber, "dashboardHeader");
 
 const getAppointment = async() => {
-    try{
-
-        const response = await Axios.get('http://localhost:3001/get');
-        setAppointmentDetails(response.data);
-    }catch (error){
-        console.log(error)
-    }
+try{
+    const response = await Axios.get('http://localhost:3001/getNotifDetails', {
+        params: {patientIDnumber: patientIDNumber}})
+    setAppointmentDetails(response.data);
+}catch (error){
+    console.log(error)
+}
 }
 
 useEffect(() => {
     getAppointment();
 }, []);
 
-const notificationSys = () => {
-   
-}
+const count = appointmentDetails.length;
 //-------------------------------------------------------------------------
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -64,10 +63,10 @@ const notificationSys = () => {
 
 
                         {/* <!-- Notification Icon --> */}
-                        <li className="nav-item dropdown" onClick={notificationSys}>
+                        <li className="nav-item dropdown">
                             <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                             <i className="fa-solid fa-bell"></i>
-                                <span className="badge bg-primary badge-number">4</span>
+                                <span className="badge bg-primary badge-number">{ count }</span>
                             </a>
                     
 
@@ -76,11 +75,19 @@ const notificationSys = () => {
 
                         {appointmentDetails.map((item, index) => (
                             <div key={index} class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="profile-det-info">
-                                        <p>{item.pName} requested an appointment {item.date} at {item.time}</p>
-                                        </div>
+                                <div class="profile-det-info">
+                                    <p>{item.dName} created you an appointment on {item.date} at {item.time}</p>
+                                </div>
                              </div>
-                                  ))}
+                        ))}
+                        {appointmentDetails.map((item2, index2) => (
+                            <div key={index2} class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="profile-det-info2">
+                                    <p>{item2.dName} created you an e-prescription</p>
+                                </div>
+                            </div>
+                        ))}
+                        
                             {/* <li className="dropdown-header">
                                 You have 4 new notifications
                                 <a href="#"><span className="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>

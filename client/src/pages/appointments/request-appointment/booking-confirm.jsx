@@ -13,6 +13,7 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
     var time = window.localStorage.getItem('time');
     var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
     const userNameApp = JSON.parse(getUserName)
+    const patientIDnumber = userInfo['patientIDnumber'];
     console.log(values);
 
     const Continue = (e) => {
@@ -24,11 +25,9 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
         e.preventDefault();
         prevStep();
     }
-     //insert data
 
-    // console.log('Posting!!');
-    //Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time})
-    Axios.post("http://localhost:3001/insertAppointment", {userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time, recep:userInfo['email']})
+    //insert data
+    Axios.post("http://localhost:3001/insertAppointment", {patientIDnumber: patientIDnumber, userNameApp: userNameApp, startDate: date, consulInput: values.consultation, getTime:time, recep:userInfo['email']})
 
     fetch("https://cors-anywhere.herokuapp.com/https://api.movider.co/v1/sms", {
         body: "api_key=9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X&api_secret=9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA&to="+userInfo['mobile']+ "&text= Hi "+userInfo['fname']+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "'. See you there!",
