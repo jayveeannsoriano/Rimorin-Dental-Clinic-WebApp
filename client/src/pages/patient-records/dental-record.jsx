@@ -19,7 +19,7 @@ export default function DentalRecord(){
                 </div>
                 <section class="section profile">
                     <div class="row">
-                    <ProfileWidget/>
+                    <PatientProfileWidget/>
 
                         <div class="col-xl-8">
                             <div className="card patient-info">
@@ -29,7 +29,7 @@ export default function DentalRecord(){
 
                                     {/* Dental Record */}
                                     <div class="row">
-                                        <img src="../../img/dentalchart1.png" alt="" />
+                                        {/* Insert Dental Teeth Chart for selected patient*/}
                                     </div>
 
                                     <div className="divider"></div>

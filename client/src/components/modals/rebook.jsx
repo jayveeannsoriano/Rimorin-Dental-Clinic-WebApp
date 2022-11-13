@@ -100,7 +100,6 @@ function rebook(patientIDnumber,appNum,pName,dName,date,time,consultation) {
               <option>Finished</option>
               <option>Arrived</option>
               <option>No Show</option>
-              <option>Cancelled</option>
               </Form.Select>
             </Form.Group>
           </Form>

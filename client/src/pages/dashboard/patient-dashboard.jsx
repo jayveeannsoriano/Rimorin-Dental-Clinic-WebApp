@@ -5,7 +5,7 @@ import DashboardTable from '../../components/dashboardTable';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 
-const Dashboard = () => {  
+const PatientDashboard = () => {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -46,8 +46,9 @@ const Dashboard = () => {
 
                 <div className="card-body datatable">
                   <div className="nav-bar">
-                  <Button className="table-button">TODAY</Button>
+                    <Button className="table-button">TODAY</Button>
                     <Button className="table-button">UPCOMING</Button>
+                    <Button className="table-button" href="/patient/appointments/request-appointment">REQUEST APPOINTMENT</Button>
                   </div>
                   <h5 className="card-title">
                     TODAY&apos;S APPOINTMENTS
@@ -63,4 +64,4 @@ const Dashboard = () => {
         </>
   );
 }
-export default Dashboard;
+export default PatientDashboard;

@@ -15,12 +15,10 @@ const Payments = () => {
                         </ol>
                     </nav>
                 </div>
-
-                {/* Profile */}
+                
                 <section class="section profile">
                 <div class="row">
-                        <ProfileWidget/>
-                        {/* end of profile widget */}
+                        <PatientProfileWidget/>
                 
                         <div class="col-xl">
                             <div className="card patient-info">

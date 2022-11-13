@@ -9,6 +9,7 @@ const NotificationDetails = new mongoose.Schema(
     currentDate: String,
     prescriptionNum: String,
     sName: String,
+    patientIDnumber: String,
   },
   {
     collection: "NotificationDetails",

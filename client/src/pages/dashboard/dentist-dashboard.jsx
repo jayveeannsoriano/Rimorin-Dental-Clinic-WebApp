@@ -101,8 +101,6 @@ export default function DentistDashboard() {
                     </div>
                     <div class="ps-3">
                       <h6>{totalAppts}</h6>
-                      {/* <!--<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>--> */}
-
                     </div>
                   </div>
                 </div>
@@ -124,8 +122,6 @@ export default function DentistDashboard() {
                     </div>
                     <div class="ps-3">
                       <h6>{totalPatients}</h6>
-                      {/* <!--<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>--> */}
-
                     </div>
                   </div>
                 </div>
@@ -148,8 +144,6 @@ export default function DentistDashboard() {
                     </div>
                     <div class="ps-3">
                       <h6>{totalPendingAppts}</h6>
-                      {/* <!--<span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>--> */}
-
                     </div>
                   </div>
 
@@ -166,13 +160,13 @@ export default function DentistDashboard() {
 
                 <div class="card-body datatable">
                   <div class="nav-bar">
-                  <Button className="table-button">TODAY</Button>
+                    <Button className="table-button">TODAY</Button>
                     <Button className="table-button">UPCOMING</Button>
                   </div>
-                  <h1>TODAY'S APPOINTMENT</h1>
-                    <div>
+                  <h5 className="card-title">
+                    TODAY&apos;S APPOINTMENTS
+                  </h5>
                       <DentistDTable/>
-                    </div>
                 </div>
               </div>
             </div>

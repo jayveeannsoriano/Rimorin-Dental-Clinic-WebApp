@@ -25,8 +25,8 @@ function Sidebar_Admin(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
-                        href="/admin/appointments">
+                        <a className={"nav-link " +((window.location.href.split("/").pop()=='appointments') ? 'active': 'collapsed')} 
+                        href="/admin">
                         <i class="fa-solid fa-stethoscope"></i>
                         <span>Appointments</span>
                         </a>
@@ -34,9 +34,10 @@ function Sidebar_Admin(){
 
                      {/* Clinic Hours Nav */}
                      <li className="nav-item">
-                        <a className="nav-link collapsed" 
-                        bs-toggle="collapsed" 
-                        href="/admin/clinic-hours">
+                        <a 
+                        className={"nav-link "+((window.location.href.split("/").pop()=='clinic-hours') ? 'active': 'collapsed')} 
+                        href="/admin/clinic-hours"
+                        bs-toggle="collapsed">
                         <i class="fa-regular fa-clock"></i>
                         <span>Clinic Hours</span>
                         </a>
@@ -44,7 +45,7 @@ function Sidebar_Admin(){
 
                     {/* Calendar Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='calendar') ? ' active': ' collapsed')} 
                         href="/admin/calendar">
                         <i class="fa-regular fa-calendar"></i>
                             <span>Calendar</span>
@@ -53,7 +54,7 @@ function Sidebar_Admin(){
 
                     {/* Accounts Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" 
+                        <a class={"nav-link"+((window.location.href.split("/").pop()=='accounts') ? ' active': ' collapsed')} 
                          href="/admin/accounts">
                         <i class="fa-solid fa-users"></i>
                         <span>Accounts</span>
@@ -62,7 +63,7 @@ function Sidebar_Admin(){
 
                     {/* Patients Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" 
+                        <a class={"nav-link"+((window.location.href.split("/").pop()=='patients') ? ' active': ' collapsed')}
                          href="/admin/patients">
                         <i class="bi bi-person-heart"></i>
                         <span>Patients</span>
@@ -71,7 +72,7 @@ function Sidebar_Admin(){
 
                     {/* Backup and Restore Nav */}
                     <li class="nav-item">
-                        <a class="nav-link collapsed" 
+                        <a class={"nav-link"+((window.location.href.split("/").pop()=='backup-restore') ? ' active': ' collapsed')} 
                         href="/admin/backup-restore">
                         <i class="bi bi-arrow-clockwise"></i>
                         <span>Backup and Restore</span>
@@ -82,7 +83,7 @@ function Sidebar_Admin(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='userprofile') ? ' active': ' collapsed')} 
                         href="/admin/userprofile">
                         <i class="fa-solid fa-user"></i>
                              <span>My Profile</span>

@@ -315,17 +315,14 @@ h6 {
 }
 
 .card-body .table-button{
-  background-color: var(--primary-color);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 148px;
+  width: 220px;
   height: 41px;
   padding: 8px 12px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 17px;
   margin-right: 14px;
-  margin-bottom: 16px;
 }
 
 .card-title span {
@@ -763,11 +760,12 @@ h6 {
 
 .patient-info .row{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  margin-left: 15px;
-  margin-bottom: 16px;
+  /* margin-left: 15px; */
+  /* margin-bottom: 16px; */
 }
 
 .patient-info .btn{
@@ -898,7 +896,9 @@ margin-bottom: 0;
 .cancel-button,
 .resched-button,
 .accept-button,
-.followUp-button{
+.followUp-button,
+.print-button,
+.create-button{
   font-size: 12px !important;
   padding: 8px 15px !important;
   border: none !important;
@@ -908,7 +908,9 @@ margin-bottom: 0;
   line-height: 15px !important;
 }
 
-.view-button{
+.view-button,
+.print-button,
+.create-button{
   background: #EFF6FF !important;
   color: #3B82F6 !important;
 }
@@ -943,7 +945,9 @@ margin-bottom: 0;
 .cancel-button i,
 .resched-button i,
 .accept-button i,
-.followUp-button i {
+.followUp-button i,
+.print-button i,
+.create-button i {
 padding-right: 4px;
 }
 
@@ -1004,6 +1008,19 @@ padding-right: 4px;
   content: "Arrived";
   background: #2563EB;
   color: #fff;
+}
+
+/* Payment Status */
+.payment_status[data-status="Paid"]:after{
+  content: "Paid";
+  color: #fff;
+  background: #1F9254;
+}
+
+.payment_status[data-status="Pending"]:after{
+  content: "Pending";
+  background: #FFFBEB;
+  color: #D97706;
 }
 
 /*--------------------------------------------------------------

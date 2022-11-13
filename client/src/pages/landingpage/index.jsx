@@ -24,6 +24,8 @@ const LandingPage = () => {
         setActive5(false);
     }
 
+
+
     //Highlight #hero url
     const toggleClass1 = () => {
         cancel();
