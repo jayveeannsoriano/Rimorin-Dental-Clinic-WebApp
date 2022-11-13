@@ -24,7 +24,7 @@ function Sidebar_Secretary(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link" href="/secretary" >
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='secretary') ? ' active': ' collapsed')} href="/secretary" >
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -32,7 +32,7 @@ function Sidebar_Secretary(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='appointments') ? ' active': ' collapsed')} 
                         href="/secretary/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
@@ -42,7 +42,7 @@ function Sidebar_Secretary(){
 
                     {/* Calendar Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='calendar') ? ' active': ' collapsed')} 
                         data-bs-target="#forms-nav"
                         href="/secretary/calendar">
                         <i className="fa-solid fa-calendar"></i>
@@ -52,20 +52,20 @@ function Sidebar_Secretary(){
                     
                     {/* Patient Records Nav/Patient Information/Dental Records */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
+                        <a className={"nav-link"+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? ' active': ' collapsed')} data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
                         <i className="fa-solid fa-file-medical"></i>
                             <span>Patient Records</span>
                             <i className="fa-solid fa-chevron-down"></i>
                         </a>
-                        <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
+                        <ul id="patient-records-nav" className={"nav-content collapsed"+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? '': ' collapse')} data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/secretary/patient-records/patient-info">
+                                <a className={((window.location.href.split("/").pop()=='patient-info') ? 'active': 'collapsed')} href="/secretary/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/secretary/patient-records/dental-record">
+                                <a className={((window.location.href.split("/").pop()=='dental-record') ? 'active': 'collapsed')} href="/secretary/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -75,7 +75,7 @@ function Sidebar_Secretary(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/secretary/eprescription">
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='eprescription') ? ' active': ' collapsed')} href="/secretary/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -83,7 +83,7 @@ function Sidebar_Secretary(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/secretary/payment-records">
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='payment-records') ? ' active': ' collapsed')} href="/secretary/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -93,7 +93,7 @@ function Sidebar_Secretary(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/secretary/userprofile">
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='userprofile') ? ' active': ' collapsed')} href="/secretary/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>

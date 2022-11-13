@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import axios from 'axios';
 import "./tooth.css";
 import "./chart.js";
-import axios from 'axios';
+
 
 const DentalChart = ({handleClickTeeth}) => {
     const email =  document.getElementById('emailaddress').textContent;
