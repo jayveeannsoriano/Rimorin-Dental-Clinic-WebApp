@@ -12,14 +12,14 @@ const DashboardPage = lazy(() => import('../pages/dashboard/dentist-dashboard'))
 const Appointments = lazy(() => import('../pages/appointments/dentist-appointment'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
-const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
+// const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
+const ExistingDentalRecord = lazy(() => import('../pages/patient-records/dentist-module/existing-dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/dentist-module'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const DentistUserProfile = lazy(() => import('../pages/userprofile/dentist-module'));
 
 // patient list page routing
-
-const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
+const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record/dentist-module'));
 const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info'));
 const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription/dentist-module'));
 const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
@@ -74,7 +74,7 @@ const DentistRoutes = {
                 },
                 {
                     path: '/dentist/patient-records/dental-record/view-dental-records',
-                    element: <DentalRecords />
+                    element: <ExistingDentalRecord />
                 },
                 {
                     path: '/dentist/patient-records/dental-record/create-dental-record',

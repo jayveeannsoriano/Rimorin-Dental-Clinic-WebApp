@@ -1,10 +1,10 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../../styles/dental-record.css"
-import PatientProfileWidget from "../../components/profile-widget";
-import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
+import "../../../styles/dental-record.css"
+import PatientProfileWidget from "../../../components/profile-widget";
+import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
 
-export default function DentalRecord(){
+export default function ExistingDentalRecord(){
     return(
         <>
                 <div class="pagetitle">

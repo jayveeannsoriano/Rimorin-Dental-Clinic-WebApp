@@ -25,9 +25,10 @@ export default function DentalRecord(){
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
                                     <h5 className="card-title">Dental Records</h5>
+
                                     <div className="divider"></div>
 
-                                    {/* Dental Record */}
+                                    {/* Dental Teeth Chart */}
                                     <div class="row">
                                         {/* Insert Dental Teeth Chart for selected patient*/}
                                     </div>
