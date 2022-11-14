@@ -13,11 +13,12 @@ function RescheduleAppointment(appNum) {
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
-   
   }
 
   //calendar input
   const [newStartDate, setStartDate] = useState(new Date());
+  const newDateString = JSON.stringify(newStartDate);
+  const convertDate = JSON.parse(newDateString);
 
   //reasonforconsultation input
   const [newConsulInput, setConsulInput] = useState("");
@@ -111,6 +112,8 @@ function RescheduleAppointment(appNum) {
                         placeholderText="Choose a date"
                         minDate={new Date()}
                         shouldCloseOnSelect={false}
+                        //exclude sundays
+                        filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
                         />
 
                     <div className="valid-feedback">

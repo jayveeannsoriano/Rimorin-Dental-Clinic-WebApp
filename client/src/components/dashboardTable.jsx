@@ -9,6 +9,9 @@ import ApptDetailsText from "./modals/appt-details-text";
 
 const DashboardTable = () => {
 
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const patientIDnumber = userInfo['patientIDnumber'];
+
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);
@@ -22,7 +25,11 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserAppointmentDetails');
+            const response = await axios.get('http://localhost:3001/getTodayUserAppointmentDetails',{
+                params:{
+                    patientIDnumber: patientIDnumber,
+                }
+            });
             setAppointment(response.data);
             setFilteredAppointment(response.data);
         }catch (error){
