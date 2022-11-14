@@ -14,6 +14,10 @@ export default function DentistDashboard() {
   const [totalAppts, setTotalAppts] = useState(0);
   const [totalPendingAppts, setTotalPendingAppts] = useState(0);
 
+  const handleTableChange = () => {
+    console.log('Clicked')
+  }
+
   const getTotalPatients = async() => {
     try{
         let resp = await axios.get('http://localhost:3001/getTotalPatients');
@@ -160,7 +164,7 @@ export default function DentistDashboard() {
 
                 <div class="card-body datatable">
                   <div class="nav-bar">
-                    <Button className="table-button">TODAY</Button>
+                    <Button onClick={handleTableChange} className="table-button">TODAY</Button>
                     <Button className="table-button">UPCOMING</Button>
                   </div>
                   <h5 className="card-title">

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from 'react';
 import "../../../styles/patient-info-edit.css";
 import "react-bootstrap";
 import ProfileWidget from "../../../components/profile-widget";
+import Axios from 'axios';
 
 const PatientInfoEdit = () => {
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
   console.log(patientIDnumber);
 
+  const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState("");
   const [lastName, setLastValue] = useState("");
   const [middleName, setMiddleValue] = useState("");
@@ -29,31 +31,30 @@ const PatientInfoEdit = () => {
   const [condValue, setCondValue] = useState("");
 
   const updatePatientInfo = () =>{
-    Axios.put("http://localhost:3001/updatePatientInfo",{
+    // Axios.put("http://localhost:3001/updatePatientInfo",{
 
-     patientIDnumber: patientIDnumber,
+    //  patientIDnumber: patientIDnumber,
 
-     firstName:firstName,
-     lastName:lastName,
-     middleName:middleName,
-     birthDate:birthDate,
-     ageValue:ageValue,
-     genderValue:genderValue,
-     professionValue:professionValue,
-     cellNumber:cellNumber,
-     tellNumber:tellNumber,
-     bloodType:bloodType,
-     houseNum:houseNum,
-     cityValue:cityValue,
-     countryValue:countryValue,
-     brgyValue:brgyValue,
-     provinceValue:provinceValue,
-     zipValue:zipValue,
-     medValue:medValue,
-     allergiesValue: allergiesValue,
-     condValue:condValue
-     });
-    setModalState("modal-2");
+    //  firstName:firstName,
+    //  lastName:lastName,
+    //  middleName:middleName,
+    //  birthDate:birthDate,
+    //  ageValue:ageValue,
+    //  genderValue:genderValue,
+    //  professionValue:professionValue,
+    //  cellNumber:cellNumber,
+    //  tellNumber:tellNumber,
+    //  bloodType:bloodType,
+    //  houseNum:houseNum,
+    //  cityValue:cityValue,
+    //  countryValue:countryValue,
+    //  brgyValue:brgyValue,
+    //  provinceValue:provinceValue,
+    //  zipValue:zipValue,
+    //  medValue:medValue,
+    //  allergiesValue: allergiesValue,
+    //  condValue:condValue
+    //  });
   }
 
 
@@ -300,7 +301,7 @@ const PatientInfoEdit = () => {
             </div>
             {/* </form> */}
             {/* end of card body */}
-            <button className="btn btn-primary" type="submit" onClick={updatePatientInfo()}>
+            <button className="btn btn-primary" type="submit" onClick={() => updatePatientInfo()}>
                   <i class="bi bi-save"></i>
                   Save
                 </button>

@@ -38,26 +38,33 @@ function CancelDental(appNum) {
                 <i class="bi bi-x-lg"></i>Cancel
             </Button>
 
-            <Modal show={modalState == 'modal-1'} onHide={handleClose}>
+            <Modal 
+            show={modalState == 'modal-1'} 
+            onHide={handleClose}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Cancel Appointment</Modal.Title>
                 </Modal.Header>
+                
                 <Modal.Body>
-                    <Form >
+                    <Form>
                         <Form.Group
                             className="mb-3"
                             controlId="cancelValidation"
                         >
-                            <Form.Label>Are you sure you want to cancel?</Form.Label>
+                        <Form.Label>Are you sure you want to cancel Appointment {AppNumber}?</Form.Label>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
                     <Button variant="primary" onClick={handleModal2}>
-                        Proceed
+                        Yes. Continue
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -70,12 +77,12 @@ function CancelDental(appNum) {
 
                 <Modal.Body>
                     <img src={successful} alt="success image" className='success-img' />
-                    <p className='modal-txt'>You have succesfully updated your changes!</p>
+                    <p className='modal-txt'>You have succesfully cancelled Appointment {AppNumber}</p>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>
-                        OK
+                        Close
                     </Button>
                 </Modal.Footer>
 

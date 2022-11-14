@@ -69,7 +69,6 @@ function rebook(patientIDnumber,appNum,pName,dName,date,time,consultation) {
         </Modal.Header>
         
         <Modal.Body>
-
         <div className="appointment-details-modal">
         <h4>Appointment Details</h4>
           <div class="row">

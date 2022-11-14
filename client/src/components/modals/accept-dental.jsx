@@ -36,7 +36,12 @@ function AcceptDental(patientIDnumber, pName, dName, appNum, date, time, consult
         <i class="bi bi-check-lg"></i>Accept
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal 
+      show={show} 
+      onHide={handleClose}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      >
 
         <Modal.Header closeButton>
           <Modal.Title>Appointment Accepted</Modal.Title>
@@ -44,7 +49,7 @@ function AcceptDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className='modal-txt'>You have succesfully accepted Appointment {AppNumber}</p>
         </Modal.Body>
 
         <Modal.Footer>

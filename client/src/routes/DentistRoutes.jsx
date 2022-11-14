@@ -51,6 +51,10 @@ const DentistRoutes = {
             path: '/dentist/appointments',
             children: [
                 {
+                    path: '/dentist/appointments',
+                    element: <Appointments />
+                },
+                {
                     path: '/dentist/appointments/follow-up-appointment',
                     element: <CreateFollowUpAppointment />
                 },

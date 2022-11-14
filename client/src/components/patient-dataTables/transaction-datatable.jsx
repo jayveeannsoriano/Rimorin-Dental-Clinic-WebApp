@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 
+// Action Buttons
+import ExportFile from "../modals/export";
+import PrintFile from "../modals/print";
+import ViewFile from "../modals/view-file";
+
+
 const TransactionDataTable = () => {
 
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -46,9 +52,12 @@ const TransactionDataTable = () => {
         },
         {
             name: "Action",
-            selector: (row) => <div className="action-buttons">
-                <button>View</button>
-                 </div>
+            selector: (row) => 
+            <div className="action-buttons">
+                    <PrintFile/>
+                    <ViewFile/>
+                    <ExportFile/>
+            </div>
         }
     ];
 

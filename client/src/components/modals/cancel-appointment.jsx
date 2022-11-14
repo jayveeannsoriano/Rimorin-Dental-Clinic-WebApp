@@ -26,7 +26,12 @@ function CancelAppointment() {
       <i class="bi bi-x-lg"></i> Cancel
       </Button>
 
-      <Modal show={modalState == 'modal-1'} onHide={handleClose}>
+      <Modal 
+      show={modalState == 'modal-1'} 
+      onHide={handleClose}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>Cancel Appointment</Modal.Title>
         </Modal.Header>
