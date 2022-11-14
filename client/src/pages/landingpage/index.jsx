@@ -81,7 +81,7 @@ const LandingPage = () => {
                     <div className="info d-flex align-items-center">
                         <i className="fa-regular fa-envelope fa-sm"></i>
                         <a href={"mailto:contact@example.com"}>rimorin.dental@gmail.com</a>
-                        <i className="fa-regular fa-phone fa-sm"></i> +639 265 785 456 
+                        <i class="bi bi-telephone"></i> +639 265 785 456 
                     </div>
                 </div>
             </div>
@@ -115,14 +115,14 @@ const LandingPage = () => {
             <section id="hero" className="d-flex align-items-center">
                 <div className="container" data-aos="zoom-out" data-aos-delay="100">
                     <div className="row">
-                        <div className="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-">
+                        <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-">
                             <h1>A Great Place to Receive Care</h1>
                             <h4>Rimorin Dental Clinic is most focused in helping you discover your most beautiful smile</h4>
                             <div className="d-flex justify-content-center justify-content-lg-start">
                                 <a href="/auth/login" className="btn-get-started scrollto">Make an Appointment</a>
                             </div>
                         </div>
-                        <div className="col-lg-6 order-1 order-lg-2 hero-img">
+                        <div className="col-lg-6 col-md-6 col-sm-6 order-1 order-lg-2 hero-img">
                             <img src={'./img/hero-img.png'} className="img-fluid animated"/>
                         </div>
                     </div>
@@ -306,7 +306,7 @@ const LandingPage = () => {
                             <i className="fa-solid fa-chevron-up icon-close"></i></a>
                             <div id="faq-list-3" className="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    It varies, but please plan on 30mins to 1 hours for the first visit.
+                                    It varies, but please plan on 30 minutes to 1 hour for the first visit.
                                 </p>
                             </div>
                         </li>
@@ -346,18 +346,11 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            {/* Fix google maps embed */}
-                {/* <iframe style="border:0; width: 100%; height: 350px;" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.224045019263!2d120.5919813292672!3d16.413443898252492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1678f3bd46d%3A0xc35a5159b3cb4c02!2sVictoria%20Supermart%20Session%20Rd.!5e0!3m2!1sen!2sus!4v1662108057381!5m2!1sen!2sus"}
-                    frameborder="0" allowfullscreen>
-
-                    </iframe> */}
-
-
             <div className="row contact-info">
 
             <div className="col-md-4">
                 <div className="contact-address">
-                    <i className="fa-solid fa-location-dot"></i>
+                    <i class="bi bi-geo"></i>
                     <h3>Location:</h3>
                     <p>Victoria St., Mabini, Upper Session Road Baguio City, Philippines</p>
                 </div>
@@ -365,7 +358,7 @@ const LandingPage = () => {
 
             <div className="col-md-4">
                 <div className="contact-phone">
-                    <i className="fa-regular fa-phone-flip"></i>
+                    <i class="bi bi-telephone"></i>
                     <h3>Call:</h3>
                     <p>+639 123 456 789</p>
                 </div>
