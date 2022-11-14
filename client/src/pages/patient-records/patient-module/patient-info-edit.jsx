@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from 'react';
 import "../../../styles/patient-info-edit.css";
 import "react-bootstrap";
 import ProfileWidget from "../../../components/profile-widget";
+import Axios from 'axios';
 
 const PatientInfoEdit = () => {
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
   console.log(patientIDnumber);
 
+  const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState("");
   const [lastName, setLastValue] = useState("");
   const [middleName, setMiddleValue] = useState("");

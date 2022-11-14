@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import axios from 'axios';
 import "./tooth-chart.css";
-import "./chart.js";
-
 
 const DentalChart = ({handleClickTeeth}) => {
     
