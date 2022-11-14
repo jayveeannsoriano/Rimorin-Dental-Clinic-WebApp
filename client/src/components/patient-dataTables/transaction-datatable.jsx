@@ -52,11 +52,12 @@ const TransactionDataTable = () => {
         },
         {
             name: "Action",
-            selector: (row) => <div className="action-buttons">
+            selector: (row) => 
+            <div className="action-buttons">
                     <PrintFile/>
                     <ViewFile/>
                     <ExportFile/>
-                </div>
+            </div>
         }
     ];
 

@@ -21,11 +21,10 @@ const UserProfile = lazy(() => import('../pages/userprofile/index'));
 const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
 const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info'));
 const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription'));
-const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
+const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions/secretary-module'));
 
 //create receipt routing
 const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
-
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 

@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import Axios from 'axios';
-import "../../../styles/patient-profile-widget.css";
+import "../../../../styles/patient-profile-widget.css";
 //
-import userimg from '../../../assets/img/profile-img.jpg';
+import userimg from '../../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
 const SecTransactionPatientProfileWidget = () => {
