@@ -2,9 +2,12 @@ import React from "react";
 import "react-bootstrap";
 import "../../styles/patient-profile-widget.css";
 
+
 // temporary user image
 import userimg from '../../assets/img/profile-img.jpg'
 import { Button } from "react-bootstrap";
+
+
 
 const PatientProfileWidget = () => {
 //temporary list
@@ -43,7 +46,7 @@ const patients=['Dave', 'Ten', 'Jayvee', 'Lucifer', 'Zareena', 'Winter', 'Karina
                             </div>
 
                             <div className="widget-button-container">
-                                <Button className="widget-btn">
+                                <Button href="/admin/patients/admin-module/admin-patient-ui" className="widget-btn">
                                     View Patient Profile
                                 </Button>
                             </div>

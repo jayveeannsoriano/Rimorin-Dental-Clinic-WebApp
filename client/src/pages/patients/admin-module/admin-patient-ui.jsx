@@ -1,9 +1,10 @@
 import React from "react";
-import "../../../styles/patient-info.css";
+// import "../../../styles/patient-info.css";
+import "../../../styles/profilewidgettwo.css";
 import "react-bootstrap";
 import ProfileWidgetTwo from "../../../components/profile-widget2";
 import { Button } from "react-bootstrap";
-import PatientInfoEdit from "./patient-info-edit";
+
 
 const AdminPatientUI = () => {
     return (
@@ -39,13 +40,25 @@ const AdminPatientUI = () => {
                                     Export All
                                 </button>
                                 <div className="divider"></div>
-
                             </div>
                             {/* end of card body */}
                         </div>
                     </div>
                 </div>
             </section>
+
+            <div class="col-12">
+              <div class="card overflow-auto">
+                <div class="card-body">
+                  <div class="nav-bar">
+                  <Button className="table-button">DENTAL RECORD</Button>
+                    <Button className="table-button">TRANSACTIONS</Button>
+                        <Button className="table-button">E-PRESCRIPTIONS</Button>
+                            <Button className="table-button">PATIENT INFORMATION</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
         </>
     );
 };
