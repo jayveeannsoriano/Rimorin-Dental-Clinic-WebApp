@@ -36,7 +36,12 @@ function AcceptDental(patientIDnumber, pName, dName, appNum, date, time, consult
         <i class="bi bi-check-lg"></i>Accept
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal 
+      show={show} 
+      onHide={handleClose}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      >
 
         <Modal.Header closeButton>
           <Modal.Title>Appointment Accepted</Modal.Title>

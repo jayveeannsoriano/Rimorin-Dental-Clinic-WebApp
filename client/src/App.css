@@ -898,7 +898,8 @@ margin-bottom: 0;
 .accept-button,
 .followUp-button,
 .print-button,
-.create-button{
+.create-button,
+.export-button{
   font-size: 12px !important;
   padding: 8px 15px !important;
   border: none !important;
@@ -910,7 +911,8 @@ margin-bottom: 0;
 
 .view-button,
 .print-button,
-.create-button{
+.create-button,
+.export-button{
   background: #EFF6FF !important;
   color: #3B82F6 !important;
 }
@@ -947,7 +949,8 @@ margin-bottom: 0;
 .accept-button i,
 .followUp-button i,
 .print-button i,
-.create-button i {
+.create-button i,
+.export-button i {
 padding-right: 4px;
 }
 
