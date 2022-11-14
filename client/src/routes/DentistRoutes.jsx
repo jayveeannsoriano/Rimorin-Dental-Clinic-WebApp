@@ -18,9 +18,10 @@ const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const DentistUserProfile = lazy(() => import('../pages/userprofile/dentist-module'));
 
 // patient list page routing
+
 const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
 const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info'));
-const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription'));
+const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription/dentist-module'));
 const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
 
 //create prescription routing
