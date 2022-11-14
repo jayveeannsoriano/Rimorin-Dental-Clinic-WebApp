@@ -683,9 +683,10 @@ app.get("/*", function (req, res) {
 //create dental records
 //image storage
 const ImgStorage = multer.diskStorage({
-  destination: "uploads",
+  destination: "uploads/dental-record-images",
   filename:(req,file,cb) =>{
-    cb(null,file.originalname);
+    const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
+    cb( null, req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
   },
 });
 
@@ -694,14 +695,16 @@ const uploadImg = multer({
 });
 
 
-app.post("/createDentalRecord",uploadImg.single('imageFile'), async (req,res)=>{
+app.post("/createDentalRecord",uploadImg.single('imgValue'), async (req,res)=>{
 
   console.log("dent records")
   const patientIDNum = 'PT#' + req.body.patientIDNum;
   const dateValue = req.body.dateValue;
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const descValue= req.body.descValue;
-  // const imageValue = req.files.imgValue;
+  const imageValue = req.file;
+  console.log(imageValue);
+
   console.log(patientIDNum + " " + slicedDate+ " " + descValue)
   
   await DentalRecords.create({

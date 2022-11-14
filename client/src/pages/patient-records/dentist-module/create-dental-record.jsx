@@ -62,7 +62,6 @@ const CreateDentalRecord = () => {
   const [getFile, setGetFile] = useState("");
   const onFileChange = (files) => {
     setGetFile(files);
-    console.log(files);
   }
 
   const uploadDentalRecords = () => {
@@ -76,7 +75,9 @@ const CreateDentalRecord = () => {
       patientIDNum: StringfyIDnumber,
       dateValue: startDate,
       descValue: treatDesc,
-      imgValue: getFile,
+      imgValue: getFile[0],
+    }, {
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
 
   }
