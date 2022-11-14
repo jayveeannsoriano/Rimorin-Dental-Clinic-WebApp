@@ -1,10 +1,10 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
-import "../../styles/dental-record.css"
-import PatientProfileWidget from "../../components/profile-widget";
-import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
+import "../../../styles/dental-record.css"
+import PatientProfileWidget from "../../../components/profile-widget";
+import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
 
-export default function DentalRecord(){
+export default function ExistingDentalRecord(){
     return(
         <>
                 <div class="pagetitle">
@@ -26,6 +26,16 @@ export default function DentalRecord(){
                                 <div className="card-body pt-3">
                                     <h5 className="card-title">Dental Records</h5>
 
+                                    <button className="btn btn-primary" type="submit">
+                                        <i class="bi bi-printer-fill"></i>
+                                        Print
+                                        </button>
+                                        
+                                        <button className="btn btn-primary" type="submit">
+                                        <i class="bi bi-download"></i>
+                                        Export
+                                        </button>
+
                                     <div className="divider"></div>
 
                                     {/* Dental Teeth Chart */}
@@ -37,6 +47,10 @@ export default function DentalRecord(){
 
                                     {/* Record Table*/}
                                     <div class="row">
+                                    <button className="btn btn-primary" type="submit">
+                                        <i class="bi bi-download"></i>
+                                        Add Treatment
+                                    </button>
                                        <DentalRecordDataTable/>
                                     </div>
 

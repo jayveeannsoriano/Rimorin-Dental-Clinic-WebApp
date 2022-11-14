@@ -1,12 +1,12 @@
 import React, {useState,useEffect} from "react";
-import "../../../styles/patient-profile-widget.css";
+import "../../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
 
 // temporary user image
-import userimg from '../../../assets/img/profile-img.jpg';
+import userimg from '../../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
-const DentalRecordPatientProfileWidget = () => {
+const DentDentalRecordPatientProfileWidget = () => {
 //temporary list
 const [patientList, setPatientList] = useState([]);
 const [patientIDNum, setpatientIDNum] = useState();
@@ -63,7 +63,7 @@ const proceedtoViewInfo = (value) => {
                         </div>
                         
                         <div className="widget-button-container">
-                            <Button className="widget-btn" href={"/secretary/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                            <Button className="widget-btn" href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                 View Dental Record
                             </Button>
                         </div>
@@ -77,4 +77,4 @@ const proceedtoViewInfo = (value) => {
     )
 }
 
-export default DentalRecordPatientProfileWidget;
+export default DentDentalRecordPatientProfileWidget;

@@ -80,9 +80,11 @@ const PatientInfoEdit = () => {
       <section class="section profile">
         <div class="row">
           <ProfileWidget />
-
+          
           <div class="col-xl-8">
+          {/* <form> */}
             <div className="card patient-info">
+            <form>  
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
@@ -106,6 +108,7 @@ const PatientInfoEdit = () => {
 
                 {/* Patient information */}
 
+            
                 <div class="row">
                   <h4>Personal Information</h4>
                   <div class="col-lg-auto col-md-auto label">
@@ -288,7 +291,14 @@ const PatientInfoEdit = () => {
                 </div>
               </div>
 
+              
+              <button className="btn btn-primary" type="submit">
+                  <i class="bi bi-save"></i>
+                  Save Changes
+                </button>
+            </form>
             </div>
+            {/* </form> */}
             {/* end of card body */}
             <button className="btn btn-primary" type="submit" onClick={updatePatientInfo()}>
                   <i class="bi bi-save"></i>
@@ -296,6 +306,7 @@ const PatientInfoEdit = () => {
                 </button>
                 <div className="divider"></div>
           </div>
+         
         </div>
 
       </section>

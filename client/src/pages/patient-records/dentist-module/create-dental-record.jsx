@@ -1,8 +1,8 @@
 import React from "react";
-import { useState,useMemo } from "react";
+import { useState, useMemo } from "react";
 import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
-import { useSearchParams,useLocation} from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -19,20 +19,40 @@ const CreateDentalRecord = () => {
   const location = useLocation()
   const paramsID = new URLSearchParams(location.search)
   const getPatientIDNumber = paramsID.get('patientIDNum');
-  const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
+  const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
   console.log(StringfyIDnumber, 'create dental record');
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
   //procedure checkbox options 
-  const [checked, setChecked] = useState([]);
+  const [checked, setChecked] = useState([
+    { option: 'Others',
+      chosen: [],
+    },
+    { option: 'Cosmetic',
+      chosen: [],
+    },
+    { option: 'Cementation',
+      chosen: [],
+    },
+    { option: 'Endodontic',
+      chosen: [],
+    },
+    { option: 'Prosthetic',
+      chosen: [],
+    },
+    { option: 'Surgical',
+      chosen: [],
+    },
+  ]);
   const othersOptions = ['ORAL PROPHYLAXIS', 'TOOTH RESTORATION', 'TOOTH EXTRACTION', 'DEEP SCALING', 'PTS AND FISSURES SEALANT', 'FLOURIDE TREATMENT', 'INTERMEDIATE RESTORATION'];
   const cosmeticOptions = ['DIRECT COMPOSITE VENEER', 'DIRECT COMPOSITE CLASS IV', 'DIASTEMA CLOSURE (BONDING)', 'CERAMIC/PORCELAIN VENEER'];
   const cementationOptions = ['GLASS IONOMER', 'DIRECT COMPOSITE CLASS IV', 'DIASTEMA CLOSURE (BONDING)', 'CERAMIC/PORCELAIN VENEER'];
   const endodonticOptions = ['ROOT CANAL THERAPY', 'PULPOTOMY', 'POST AND CORE'];
   const prostheticOptions = ['DENTAL REPAIR', 'DENTURE RELINE (LABORATORY MADE)', 'DENTURE RELINE (DIRECT)', 'SOFT RELINE', 'DENTURE REPLACEMENT'];
   const surgicalOptions = ['ODONTECTOMY', 'OPERCULECTOMY', 'FRENECTOMY', 'ALVEOLECTOMY', 'GINGIVECTOMY OR CONTOURING', 'APICOECTOMY'];
+  
 
   const [treatDesc, getTreatDesc] = useState("");
   const [CheckboxIndex, getBoxIndex] = useState([]);
@@ -52,39 +72,60 @@ const CreateDentalRecord = () => {
     console.log(chartedTeeth);
     console.log(getFile);
 
-    Axios.post("http://localhost:3001/createDentalRecord",{
+    Axios.post("http://localhost:3001/createDentalRecord", {
       patientIDNum: StringfyIDnumber,
       dateValue: startDate,
       descValue: treatDesc,
       imgValue: getFile,
     });
- 
+
   }
- 
-   const handleClickTeeth = event =>{
- 
-     event.currentTarget.classList.toggle('unmarked');
-     event.currentTarget.classList.toggle('marked');
- 
-     var chosenTeeth = event.currentTarget.id;
-     console.log(chosenTeeth);
- 
-     var index = chartedTeeth.indexOf(chosenTeeth);
- 
-     console.log(index);
- 
-     if(index > -1){
-         chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-         console.log(chartedTeeth)
- 
-     }else{
-         setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
-         console.log(chartedTeeth)
-     }
- 
- 
- }
- 
+
+  const handleClickTeeth = event => {
+
+    event.currentTarget.classList.toggle('unmarked');
+    event.currentTarget.classList.toggle('marked');
+
+    var chosenTeeth = event.currentTarget.id;
+    console.log(chosenTeeth);
+
+    var index = chartedTeeth.indexOf(chosenTeeth);
+
+    console.log(index);
+
+    if (index > -1) {
+      chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+      console.log(chartedTeeth)
+
+    } else {
+      setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
+      console.log(chartedTeeth)
+    }
+
+
+  }
+
+  const handleChangeCheckbox = input => event => {
+    var value = event.target.value;
+    var isChecked = event.target.checked;
+    setChecked(current =>
+      current.map(obj => {
+        if (obj.option === input) {
+          if(isChecked){
+          return {...obj, chosen:  [...obj.chosen, value ] };
+          }else{
+            var newArr = obj.chosen;
+            var index = newArr.indexOf(event.target.value);
+            newArr.splice(index, 1); // 2nd parameter means remove one item only
+            return {...obj, chosen: newArr};
+          }
+        }
+        return obj;
+      }),
+    );
+    console.log(checked);
+  }
+
 
   return (
     <>
@@ -195,10 +236,12 @@ const CreateDentalRecord = () => {
                     {othersOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={[index]}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
-                          onChange={(e) => { getBoxIndex(e.target.value) }}
+                          onClick={handleChangeCheckbox('Others')}
+                          
                         />
                       </div>
                     ))}
@@ -211,9 +254,11 @@ const CreateDentalRecord = () => {
                     {cosmeticOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={index}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
+                          onClick={handleChangeCheckbox('Cosmetic')}
                         />
                       </div>
                     ))}
@@ -226,9 +271,11 @@ const CreateDentalRecord = () => {
                     {cementationOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={index}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
+                          onClick={handleChangeCheckbox('Cementation')}
                         />
                       </div>
                     ))}
@@ -243,9 +290,11 @@ const CreateDentalRecord = () => {
                     {endodonticOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={index}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
+                          onClick={handleChangeCheckbox('Endodontic')}
                         />
                       </div>
                     ))}
@@ -258,9 +307,11 @@ const CreateDentalRecord = () => {
                     {prostheticOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={index}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
+                          onClick={handleChangeCheckbox('Prosthetic')}
                         />
                       </div>
                     ))}
@@ -273,9 +324,11 @@ const CreateDentalRecord = () => {
                     {surgicalOptions.map((item, index) => (
                       <div key={index} className="mb-3">
                         <Form.Check
-                          input value={index}
+                          input value={[item]}
+                          id={[item]}
                           type="checkbox"
                           label={`${item}`}
+                          onClick={handleChangeCheckbox('Surgical')}
                         />
                       </div>
                     ))}
@@ -287,7 +340,7 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </div>
-      
+
       {/* summary of treatment */}
       <div class="col-xl-auto col-md-auto col-lg-auto">
         <div className="card dental-record-form">
