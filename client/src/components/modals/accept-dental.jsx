@@ -44,7 +44,7 @@ function AcceptDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className='modal-txt'>You have succesfully accepted Appointment {AppNumber}</p>
         </Modal.Body>
 
         <Modal.Footer>

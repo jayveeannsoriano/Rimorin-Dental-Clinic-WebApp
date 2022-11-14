@@ -55,7 +55,6 @@ const PatientInfoEdit = () => {
     //  allergiesValue: allergiesValue,
     //  condValue:condValue
     //  });
-    // setModalState("modal-2");
   }
 
 
