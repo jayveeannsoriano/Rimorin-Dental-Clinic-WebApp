@@ -30,6 +30,9 @@ const CreateEprescription = lazy(() => import('../pages/eprescription/dentist-mo
 //create dental record routing
 const CreateDentalRecord = lazy(() => import('../pages/patient-records/dentist-module/create-dental-record'));
 
+//create follow-up appointment
+const CreateFollowUpAppointment = lazy(() => import('../pages/appointments/follow-up-appointment'));
+
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
 const DentistRoutes = {
@@ -46,7 +49,12 @@ const DentistRoutes = {
         },
         {
             path: '/dentist/appointments',
-            element: <Appointments />
+            children: [
+                {
+                    path: '/dentist/appointments/follow-up-appointment',
+                    element: <CreateFollowUpAppointment />
+                },
+            ]
         },
         {
             path: '/dentist/calendar',

@@ -253,3 +253,10 @@
 	justify-content: center;
 
 }
+
+/* Follow Up Appointment */
+.previous-appointment-details-container{
+	display: flex;
+	justify-content: center;
+	margin-block: 0.5in;
+}
