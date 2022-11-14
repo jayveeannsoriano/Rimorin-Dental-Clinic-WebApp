@@ -2,26 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
-import ApptDetails from "./modals/appt-details";
-import ReschedConfirmation from "./modals/reschedule-appointment";
-import CancelAppointment from "./modals/cancel-appointment";
-import Rebook from "./modals/rebook"
-import ApptDetailsText from "./modals/appt-details-text";
 
-const DashboardTable = () => {
+const SecTransactionDataTable = () => {
+
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const patientIDnumber = userInfo['patientIDnumber'];
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
-    const [filteredappointment, setFilteredAppointment] = useState([]);
+    // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserAppointmentDetails');
+            const response = await axios.get('http://localhost:3001/getUserTransaction',{
+                params: {
+                    patientIDnumber: patientIDnumber
+                }
+            });
             console.log(response, "Responses");
             setAppointment(response.data);
-            setFilteredAppointment(response.data);
+            // setFilteredAppointment(response.data);
         }catch (error){
             console.log(error)
         }
@@ -29,40 +31,32 @@ const DashboardTable = () => {
 
     const columns = [
         {
-            name: 'Patient',
+            name: 'Patient Name',
             selector: (row) => row.pName,
             sortable: true,
         },
         {
-            name: "Appt #",
+            name: 'Date',
+            selector: (row) => row.date,
+            sortable: true,
+        },
+        {
+            name: 'Appt #',
             selector: (row) => row.appNum,
-            sortable: true,
         },
         {
-            name: "Date & Time",
-            selector: (row) => row.date + " | " + row.time,
-            sortable: true,
-        },
-        {
-            name: "Appt. Status",
-            selector: row =>
-            <ApptDetailsText appStats = {row.appStatus}/>,
-            sortable:true,
+            name: 'Payment Status',
+            selector: (row) => row.payStatus,
         },
         {
             name: "Action",
-            selector: row =>
-            <div className="action-buttons">
-                < Rebook patientIDnumber = {row.patientIDnumber} appNum = {row.appNum} pName = {row.pName} dName = {row.dName} date = {row.date} time={row.time} consultation={row.consultation}/>
-                < ReschedConfirmation appNum = {row.appNum}/>
-                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
-            </div>
-        },
+            selector: (row) => <div className="action-buttons">
+                <button href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum}>Create Receipt</button>
+                <button>View</button>
+                 </div>
+        }
     ];
 
-   
-
-    
     // Loading effect
     const rotate360 = keyframes` 
         from {
@@ -106,20 +100,20 @@ const DashboardTable = () => {
         getAppointment();
     }, []);
 
-    useEffect(() => {
-        const result = appointment.filter((appointment) => {
-            return appointment.pName.toLowerCase().match(search.toLowerCase());
-        });
+    // useEffect(() => {
+    //     const result = appointment.filter((appointment) => {
+    //         return appointment.pName.toLowerCase().match(search.toLowerCase());
+    //     });
 
-        console.log(result, "This is the result");
-        setFilteredAppointment(result)
-    },[search])
+    //     console.log(result, "This is the result");
+    //     setFilteredAppointment(result)
+    // },[search])
 
     return <DataTable
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
-    data={filteredappointment}
+    data={appointment}
     progressPending={pending}
     progressComponent={<CustomLoader />}
     fixedHeader
@@ -138,4 +132,4 @@ const DashboardTable = () => {
   
 }
 
-export default DashboardTable
+export default SecTransactionDataTable

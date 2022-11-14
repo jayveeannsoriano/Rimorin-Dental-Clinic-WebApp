@@ -2,6 +2,8 @@ import React from "react";
 import "../../../styles/patient-info.css";
 import "react-bootstrap";
 import ProfileWidget from "../../../components/profile-widget";
+import { Button } from "react-bootstrap";
+import PatientInfoEdit from "./patient-info-edit";
 
 const PatientInfo = () => {
   return (
@@ -31,11 +33,15 @@ const PatientInfo = () => {
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
-
-                <button className="btn btn-primary" type="submit">
+                {/* <a href="/patient/patient-records/patient-info-edit">  */}
+                {/* <button a href="/patient/patient-records/patient-info-edit" className="btn btn-primary btn-link" type="submit">
                 <i class="bi bi-pencil-fill"></i>
                   Edit 
-                </button>
+                </button> */}
+                <Button a href="/patient/patient-records/patient-info-edit">
+                <i class="bi bi-pencil-fill"></i>
+                  Edit
+                </Button>
 
                 <button className="btn btn-primary" type="submit">
                 <i class="bi bi-printer-fill"></i>

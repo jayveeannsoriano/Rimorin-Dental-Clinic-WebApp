@@ -6,7 +6,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import ErrorPage from '../components/errorpage';
 
 // dashboard routing
-const DashboardPage = lazy(() => import('../pages/dashboard/index'));
+const DashboardPage = lazy(() => import('../pages/dashboard/patient-dashboard'));
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
@@ -19,6 +19,10 @@ const UserProfile = lazy(() => import('../pages/userprofile/patient-module'));
 
 // appointment request routing
 const RequestAppointment = lazy(() => import('../pages/appointments/request-appointment'));
+
+// patient info edit routing
+const PatientInfoEdit = lazy(() => import ("../pages/patient-records/patient-module/patient-info-edit")); 
+
 
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
@@ -57,6 +61,11 @@ const PatientRoutes = {
                 {
                     path: '/patient/patient-records/patient-info',
                     element: <PatientInfo />
+                },
+
+                {
+                    path: '/patient/patient-records/patient-info-edit',
+                    element: <PatientInfoEdit/>
                 }
             ]
         },

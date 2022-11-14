@@ -89,7 +89,7 @@ const DentistRoutes = {
                     element: <PrescriptionPatientList />
                 },
                 {
-                    path: '/dentist/eprescription/:fname',
+                    path: '/dentist/eprescription/view-eprescription',
                     element: <Eprescription />
                 },
                 {

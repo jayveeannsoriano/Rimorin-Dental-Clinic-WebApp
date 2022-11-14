@@ -1,7 +1,6 @@
 import React from "react";
 import DefaultProfile from '../assets/img/default-profile.jpg'
-
-export default function ProfileWidget() {
+export default function UserProfileWidget() {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     
     return (

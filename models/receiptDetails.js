@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const ReceiptDetails = new mongoose.Schema(
   {
+    patientIDnumber: String,
     pName: String,
     dName: String,
     appNum: String,

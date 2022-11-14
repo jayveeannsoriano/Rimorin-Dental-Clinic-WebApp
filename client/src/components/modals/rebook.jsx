@@ -5,15 +5,16 @@ import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios';
 import '../../styles/modals.css'
 
-function rebook(appNum,pName,dName,date,time,consultation) {
+function rebook(patientIDnumber,appNum,pName,dName,date,time,consultation) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [selectValue, setSelectedValue] = useState();
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(appNum,pName,dName,date,time,consultation);
+  const StringAppNum = JSON.stringify(patientIDnumber,appNum,pName,dName,date,time,consultation);
   const ConvertStringApp = JSON.parse(StringAppNum);
+  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
   const patientValue = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
   const dentistValue = JSON.stringify(ConvertStringApp.dName).replace(/"/g,"");
@@ -33,6 +34,7 @@ function rebook(appNum,pName,dName,date,time,consultation) {
 
     if(selectValue == "Finished"){
       Axios.post("http://localhost:3001/createReceipt",{
+        patientIDnumber: PatientIDNumber,
         appNum: AppNumber,
         pName: patientValue,
         dName: dentistValue,
@@ -98,7 +100,6 @@ function rebook(appNum,pName,dName,date,time,consultation) {
               <option>Finished</option>
               <option>Arrived</option>
               <option>No Show</option>
-              <option>Cancelled</option>
               </Form.Select>
             </Form.Group>
           </Form>

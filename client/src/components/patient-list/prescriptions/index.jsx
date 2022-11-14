@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 
 const PrescriptionPatientProfileWidget = () => {
     const [patientList, setPatientList] = useState([]);
-    const [patientIDNum, setpatientIDNum] = useState();
+    const [patientIDNum, setpatientIDNum] = useState("");
     console.log(patientIDNum);
     
     
@@ -63,7 +63,7 @@ const PrescriptionPatientProfileWidget = () => {
                                 </div>
                                 
                                 <div className="widget-button-container">
-                                    <Button className="widget-btn" href={"/dentist/eprescription?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewPres(item.patientIDnumber)}>
+                                    <Button className="widget-btn" href={"/dentist/eprescription/view-eprescription?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewPres(item.patientIDnumber)}>
                                         View Prescriptions
                                     </Button>
                                 </div>

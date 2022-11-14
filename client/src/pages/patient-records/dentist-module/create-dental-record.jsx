@@ -1,8 +1,8 @@
 import React from "react";
-import { useState,useMemo } from "react";
+import { useState, useMemo } from "react";
 import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
-import { useSearchParams,useLocation} from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -19,7 +19,7 @@ const CreateDentalRecord = () => {
   const location = useLocation()
   const paramsID = new URLSearchParams(location.search)
   const getPatientIDNumber = paramsID.get('patientIDNum');
-  const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
+  const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
   console.log(StringfyIDnumber, 'create dental record');
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
@@ -52,39 +52,39 @@ const CreateDentalRecord = () => {
     console.log(chartedTeeth);
     console.log(getFile);
 
-    Axios.post("http://localhost:3001/createDentalRecord",{
+    Axios.post("http://localhost:3001/createDentalRecord", {
       patientIDNum: StringfyIDnumber,
       dateValue: startDate,
       descValue: treatDesc,
       imgValue: getFile,
     });
- 
+
   }
- 
-   const handleClickTeeth = event =>{
- 
-     event.currentTarget.classList.toggle('unmarked');
-     event.currentTarget.classList.toggle('marked');
- 
-     var chosenTeeth = event.currentTarget.id;
-     console.log(chosenTeeth);
- 
-     var index = chartedTeeth.indexOf(chosenTeeth);
- 
-     console.log(index);
- 
-     if(index > -1){
-         chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-         console.log(chartedTeeth)
- 
-     }else{
-         setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
-         console.log(chartedTeeth)
-     }
- 
- 
- }
- 
+
+  const handleClickTeeth = event => {
+
+    event.currentTarget.classList.toggle('unmarked');
+    event.currentTarget.classList.toggle('marked');
+
+    var chosenTeeth = event.currentTarget.id;
+    console.log(chosenTeeth);
+
+    var index = chartedTeeth.indexOf(chosenTeeth);
+
+    console.log(index);
+
+    if (index > -1) {
+      chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+      console.log(chartedTeeth)
+
+    } else {
+      setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
+      console.log(chartedTeeth)
+    }
+
+
+  }
+
 
   return (
     <>
@@ -287,7 +287,7 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </div>
-      
+
       {/* summary of treatment */}
       <div class="col-xl-auto col-md-auto col-lg-auto">
         <div className="card dental-record-form">

@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../styles/create-receipt.css";
 import ProfileWidget from "../../../components/profile-widget";
+import SecTransactionDataTable from "./secpayment-datatable";
 
 const Sec_Payments = () => {
     return(
@@ -30,6 +31,7 @@ const Sec_Payments = () => {
 
                                     {/* Insert Transaction Datatable for selected patient*/}
                                     {/* Button for Create Receipt Page will be shown in transaction datatable if & only if appt is marked as "Finished" */}
+                                    <SecTransactionDataTable/>
 
                                 </div>
                             </div>

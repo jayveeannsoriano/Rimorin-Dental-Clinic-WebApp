@@ -3,8 +3,6 @@ import '../../styles/dashboard.css';
 import '../../styles/accounts.css';
 import AdminTable from '../../components/admin-table';
 import Form from 'react-bootstrap/Form';
-import SuccessModal from '../../components/modals/success';
-import Error from '../../components/modals/error';
 
 const accountspage = () => {
 
@@ -49,8 +47,8 @@ const accountspage = () => {
 
                     <div className="col-6 ad-right btn-link">
                       <button type="button" class="btn btn-primary spc"><i class="bi bi-plus-lg"></i> <a href='/admin/accounts/create-account'>Add Account</a></button>
-                      {/* <button type="button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button> */}
-                      <Error/>
+                      <button type="button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button>
+                      
                     </div>
                   </div>
                 </div>

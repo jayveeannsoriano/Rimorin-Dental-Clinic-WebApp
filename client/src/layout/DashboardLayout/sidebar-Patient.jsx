@@ -2,12 +2,16 @@ import React from 'react';
 import '../../App.css';
 
 function Sidebar_Patient(){
+
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     } catch (error) {
         console.error("Website error");
         console.error(error);
     }
+
+    console.log(window.location.href.split("/").pop());
+
     return(
         <div>
             <aside id="sidebar" className="sidebar">
@@ -21,7 +25,7 @@ function Sidebar_Patient(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className="nav-link collapsed" href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='patient') ? 'active': 'collapsed')} href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -29,7 +33,7 @@ function Sidebar_Patient(){
 
                     {/* Appointments Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='appointments') ? 'active': 'collapsed')} 
                         href="/patient/appointments" 
                         data-bs-target="#navbar">
                         <i className="fa-solid fa-stethoscope"></i>
@@ -39,7 +43,7 @@ function Sidebar_Patient(){
 
                     {/* Calendar Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" 
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='calendar') ? 'active': 'collapsed')} 
                         data-bs-target="#forms-nav"
                         href="/patient/calendar">
                         <i className="fa-solid fa-calendar"></i>
@@ -49,20 +53,20 @@ function Sidebar_Patient(){
                     
                     {/* Patient Records Nav/Patient Information/Dental Records */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
+                        <a className={"nav-link "+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? 'active': 'collapsed')} data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
                         <i className="fa-solid fa-file-medical"></i>
                             <span>Patient Records</span>
                             <i className="fa-solid fa-chevron-down"></i>
                         </a>
-                        <ul id="patient-records-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
+                        <ul id="patient-records-nav" className={"nav-content collapsed"+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? '': ' collapse')} data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/patient/patient-records/patient-info">
+                                <a className={((window.location.href.split("/").pop()=='patient-info') ? 'active': 'collapsed')} href="/patient/patient-records/patient-info">
                                     <i className="bi bi-circle"></i><span>Patient Information</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/patient/patient-records/dental-record">
+                                <a className={((window.location.href.split("/").pop()=='dental-record') ? 'active': 'collapsed')} href="/patient/patient-records/dental-record">
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -72,7 +76,7 @@ function Sidebar_Patient(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/patient/eprescription">
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='eprescription') ? 'active': 'collapsed')} href="/patient/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -80,7 +84,7 @@ function Sidebar_Patient(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/patient/payment-records">
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='payment-records') ? 'active': 'collapsed')} href="/patient/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
@@ -90,7 +94,7 @@ function Sidebar_Patient(){
 
                     {/* My Profile Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href="/patient/userprofile">
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='userprofile') ? 'active': 'collapsed')} href="/patient/userprofile">
                         <i className="fa-solid fa-user"></i>
                              <span>My Profile</span>
                         </a>

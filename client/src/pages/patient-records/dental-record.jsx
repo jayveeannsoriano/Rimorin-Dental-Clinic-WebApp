@@ -1,7 +1,8 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
 import "../../styles/dental-record.css"
-import ProfileWidget from "../../components/profile-widget";
+import PatientProfileWidget from "../../components/profile-widget";
+import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 
 export default function DentalRecord(){
     return(
@@ -18,7 +19,7 @@ export default function DentalRecord(){
                 </div>
                 <section class="section profile">
                     <div class="row">
-                    <ProfileWidget/>
+                    <PatientProfileWidget/>
 
                         <div class="col-xl-8">
                             <div className="card patient-info">
@@ -28,32 +29,14 @@ export default function DentalRecord(){
 
                                     {/* Dental Record */}
                                     <div class="row">
-                                        <img src="../../img/dentalchart1.png" alt="" />
+                                        {/* Insert Dental Teeth Chart for selected patient*/}
                                     </div>
 
                                     <div className="divider"></div>
 
                                     {/* Record Table*/}
                                     <div class="row">
-                                    <table className="table table-borderless datatable">
-                                        <thead>
-                                            <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Tooth No.</th>
-                                            <th scope="col">Treatment</th>
-                                            <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td><a href="#" class="text-secondary">22/04/2022</a></td>
-                                                <td><a href="#" class="text-secondary">16</a></td>
-                                                <td><a href="#" class="text-secondary">Tooth Decay</a></td>
-                                                <td><span class="badge bg-primary"><i class="bi bi-eye"></i> View</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                       <DentalRecordDataTable/>
                                     </div>
 
                                 </div>
