@@ -1,7 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import CancelAppointment from "../../../components/modals/cancel-appointment.jsx";
-import RescheduleAppointment from "../../../components/modals/reschedule-appointment.jsx";
 import DentistDTable from '../../../components/dental-acceptcancel';
 import '../../../styles/dashboard.css';
 import '../../../styles/modals.css';
@@ -13,7 +10,7 @@ export default function DentistAppointmentPage() {
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <a href="/dentist">Home</a>
           </li>
           <li className="breadcrumb-item active">Appointments</li>
         </ol>
@@ -23,9 +20,7 @@ export default function DentistAppointmentPage() {
         <div className="row">
          <div className="col-12">
             <div className="card overflow-auto">
-                
               <div className="card-body appointment-request-table">
-                <div className="nav-bar"></div>
                 <h5 className="card-title">APPOINTMENT REQUEST</h5>
                 <DentistDTable/>
               </div>
