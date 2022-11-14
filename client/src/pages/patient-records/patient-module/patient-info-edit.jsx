@@ -26,8 +26,9 @@ const PatientInfoEdit = () => {
       <section class="section profile">
         <div class="row">
           <ProfileWidget />
-
+          
           <div class="col-xl-8">
+          <form>
             <div className="card patient-info">
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
@@ -58,7 +59,7 @@ const PatientInfoEdit = () => {
                     First Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="firstName" type="text" class="form-control" id="firstName" value="Ricci" />
+                    <input name="firstName" type="text" class="form-control" id="firstName" required/>
                   </div>
 
                 </div>
@@ -68,28 +69,28 @@ const PatientInfoEdit = () => {
                     Last Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="lastName" type="text" class="form-control" id="lastName" value="Blynthe" />
+                    <input name="lastName" type="text" class="form-control" id="lastName" value="Blynthe" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="middleName" type="text" class="form-control" id="middleName" value="Fuentes" />
+                    <input name="middleName" type="text" class="form-control" id="middleName" value="Fuentes" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Birthdate</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="date" type="text" class="form-control" id="Birthday" value="01/01/1998" />
+                    <input name="date" type="text" class="form-control" id="Birthday" value="01/01/1998" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Age</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="age" type="text" class="form-control" id="Birthday" value="24" />
+                    <input name="age" type="text" class="form-control" id="Birthday" value="24" required/>
                   </div>
                 </div>
 
@@ -123,28 +124,28 @@ const PatientInfoEdit = () => {
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Profession</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="profession" type="text" class="form-control" id="Profession" value="Student" />
+                  <input name="profession" type="text" class="form-control" id="Profession" value="Student" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Cell #</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="cellNumber" type="tel" class="form-control" id="cellNumber" value="Student" />
+                  <input name="cellNumber" type="tel" class="form-control" id="cellNumber" value="Student" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Tel #</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="telNumber" type="tel" class="form-control" id="telNumber" value="N/A" />
+                    <input name="telNumber" type="tel" class="form-control" id="telNumber" value="N/A" required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Blood Type</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input type="bloodType" type="text" class="form-control" id="bloodType" value="A/B"/>
+                    <input name="bloodType" type="text" class="form-control" id="bloodType" value="A/B" required/>
                   </div>
                 </div>
               </div>
@@ -159,7 +160,7 @@ const PatientInfoEdit = () => {
                   House No. & Street Name
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="#10 Cirineo Subdivision"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="#10 Cirineo Subdivision" required/>
                 </div>
               </div>
 
@@ -168,14 +169,14 @@ const PatientInfoEdit = () => {
                   Municipality/City
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="Dagupan"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="Dagupan" required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Country</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="Philippines"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="Philippines" required/>
                 </div>
               </div>
 
@@ -183,20 +184,20 @@ const PatientInfoEdit = () => {
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">District/Barangay</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="Tapuac"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="Tapuac" required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Province</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="Pangasinan"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="Pangasinan" required/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">ZIP Code</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" type="text" class="form-control" id="Address" value="2400"/>
+                  <input name="address" type="text" class="form-control" id="Address" value="2400" required/>
                 </div>
               </div>
 
@@ -210,7 +211,7 @@ const PatientInfoEdit = () => {
                 </div>
 
                 <div class="col-lg-3">
-                  <input type="medications" type="text" class="form-control" id="Medications" value="N/A"/>
+                  <input name="medications" type="text" class="form-control" id="Medications" value="N/A" required/>
                 </div>
               </div>
 
@@ -220,7 +221,7 @@ const PatientInfoEdit = () => {
                   Ibuprofen
                 </div> */}
                 <div class="col-lg-3">
-                  <input type="allergies" type="text" class="form-control" id="Allergies" value="Ibuprofen"/>
+                  <input name="allergies" type="text" class="form-control" id="Allergies" value="Ibuprofen" required/>
                 </div>
               </div>
 
@@ -230,13 +231,21 @@ const PatientInfoEdit = () => {
                   Asthma
                 </div> */}
                 <div class="col-lg-3">
-                  <input type="conditions" type="text" class="form-control" id="Conditions" value="Asthma"/>
+                  <input name="conditions" type="text" class="form-control" id="Conditions" required/>
                 </div>
               </div>
 
+
+              <button className="btn btn-primary" type="submit">
+                  <i class="bi bi-save"></i>
+                  Save Changes
+                </button>
+
             </div>
+            </form>
             {/* end of card body */}
           </div>
+         
         </div>
 
       </section>

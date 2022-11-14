@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import DataTable,{ Alignment } from 'react-data-table-component';
+import DataTable, { Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 
 const EPrescriptionDataTable = () => {
@@ -14,9 +14,9 @@ const EPrescriptionDataTable = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
-    const getAppointment = async() => {
-        try{
-            const response = await axios.get('http://localhost:3001/getUserEPresRecord',{
+    const getAppointment = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/getUserEPresRecord', {
                 params: {
                     patientIDnumber: patientIDnumber,
                 }
@@ -24,7 +24,7 @@ const EPrescriptionDataTable = () => {
             console.log(response, "Responses");
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
-        }catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -47,7 +47,7 @@ const EPrescriptionDataTable = () => {
             name: "Action",
             selector: (row) => <div className="action-buttons">
                 <button>View</button>
-                 </div>
+            </div>
         }
     ];
 
@@ -76,19 +76,19 @@ const EPrescriptionDataTable = () => {
     `;
 
     const CustomLoader = () => (
-        <div style={{ padding: '24px', textAlign: "center"}}>
+        <div style={{ padding: '24px', textAlign: "center" }}>
             <Spinner />
             <div>Loading...</div>
         </div>
     );
 
-   useEffect(() => {
-		const timeout = setTimeout(() => {
-			setRows(appointment);
-			setPending(false);
-		}, 1000);
-		return () => clearTimeout(timeout);
-	}, []);
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setRows(appointment);
+            setPending(false);
+        }, 1000);
+        return () => clearTimeout(timeout);
+    }, []);
 
     useEffect(() => {
         getAppointment();
@@ -104,26 +104,26 @@ const EPrescriptionDataTable = () => {
     // },[search])
 
     return <DataTable
-    pagination
-    subHeaderAlign={Alignment.LEFT}
-    columns={columns}
-    data={appointment}
-    progressPending={pending}
-    progressComponent={<CustomLoader />}
-    fixedHeader
-    highlightOnHover
-    subHeader
-    subHeaderComponent={
-        <input 
-        type="text" 
-        placeholder="Search" 
-        className="w-50 form-control datatable-search" 
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        />
-    }
+        pagination
+        subHeaderAlign={Alignment.LEFT}
+        columns={columns}
+        data={appointment}
+        progressPending={pending}
+        progressComponent={<CustomLoader />}
+        fixedHeader
+        highlightOnHover
+        subHeader
+        subHeaderComponent={
+            <input
+                type="text"
+                placeholder="Search"
+                className="w-50 form-control datatable-search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        }
     />
-  
+
 }
 
 export default EPrescriptionDataTable
