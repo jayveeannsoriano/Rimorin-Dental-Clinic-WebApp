@@ -527,7 +527,7 @@ app.put("/updateStatus", async (req,res) => {
   const newStatus = req.body.newAppStatus;
 
   await AppDetails.findOneAndUpdate({appNum: appNumber}, {appStatus: newStatus});
-  console.log("Appointment Status Successfully Updated!.");
+  console.log("Appointment Status Successfully Updated!");
 })
 
 
