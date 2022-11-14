@@ -61,7 +61,7 @@ label .paylabel {
     border-color: #f8d7da;
 }
 
-.bg-danger-light:hover, :active {
+.bg-danger-light:hover {
     background-color: #fac1c6;
     border-color: #fac1c6;
 }
