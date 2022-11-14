@@ -13,7 +13,7 @@ const [patientIDNum, setpatientIDNum] = useState();
 //App Detail
 const getReceiptDetails = async() => {
     try{
-        const response = await Axios.get('http://localhost:3001/getReceiptDetails');
+        const response = await Axios.get('http://localhost:3001/getUserDetails');
         console.log(response, "Responses");
         setPatientReceipt(response.data);
     }catch (error){
@@ -46,7 +46,7 @@ const proceedtoPayment = (value) => {
                                         <img src={userimg} alt="User Image"/>
                                     </a>
                                     <div class="profile-det-info">
-                                        <h3><a href="#"></a>{item.pName}</h3>
+                                        <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
                                         
                                         <div class="patient-details">
                                             <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
@@ -57,8 +57,8 @@ const proceedtoPayment = (value) => {
                             
                             <div class="patient-info">
                                 <ul>
-                                    <li>Phone <span>+1 952 001 8563</span></li>
-                                    <li>Age <span>38 Years, Male</span></li>
+                                    <li>Phone <span>{item.mobile}</span></li>
+                                    <li>Age <span>38 Years,  {item.gender}</span></li>
                                 </ul>
                             </div>
 

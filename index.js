@@ -205,7 +205,6 @@ app.post("/insertAppointment", async(req,res) => {
     await AppData.save();
     await NotifData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
-    console.log("Successfully inserted ", NotifData, " to the database.")
     if(insertAppStatus == "Accepted"){
       //Sending Email
       sgMail.setApiKey('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');
@@ -277,6 +276,19 @@ app.get("/getUserDetails", async(req,res) => {
       });
     });
 
+app.get("/getUserInfo", async(req,res) => {
+
+  const patientIDNumber = req.query.patientIDnumber;
+  
+  await User.find({patientIDnumber: patientIDNumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
 app.get("/getPatientInfo", async(req,res) => {
 
   const patientIDNumber = 'PT#'+req.query.patientIDnumber;
@@ -302,7 +314,20 @@ app.get("/getUserAppointmentDetails", async(req,res) => {
            console.log('error: ', error)
           });
         });
+//filtered TODAY
+app.get("/getTodayUserAppointmentDetails", async(req,res) => {
 
+  const patientIDNumber = req.query.patientIDnumber;
+  console.log(patientIDNumber)
+    
+      await AppDetails.find({patientIDnumber: patientIDNumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 //get notification details
 app.get("/getNotifDetails", async (req, res) => {
   const patientIDnumber = req.query.patientIDnumber;
@@ -362,8 +387,7 @@ app.get("/getUserEPresRecord", async(req,res) => {
         //get patient trans records
 app.get("/getUserTransaction", async(req,res) => {
 
-  const patientIDnumber = req.query.patientIDnumber;
-  console.log(patientIDnumber);
+  const patientIDnumber = 'PT#'+req.query.patientIDnumber;
 
   await ReceiptDetails.find({patientIDnumber: patientIDnumber})
       .then((data) => {
@@ -373,6 +397,20 @@ app.get("/getUserTransaction", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    app.get("/getTransaction", async(req,res) => {
+
+      const patientIDnumber = req.query.patientIDnumber;
+      console.log(patientIDnumber,'getUserTransaction');
+    
+      await ReceiptDetails.find({patientIDnumber: patientIDnumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 
 app.get("/getTotalPatients", async(req,res) => {
     
@@ -755,4 +793,19 @@ app.post("/createEprescription",uploadImg.single('imageFile'), async (req,res)=>
     });
     console.log("e-pres saved");
 
-})
+});
+
+app.put("/updatePatientInfo", async (req, res) => {
+
+  const appNumber = req.body.appNum;
+  const updateDate = req.body.newDate;
+  const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
+  console.log(updateDate)
+  console.log(updateSlicedDate)
+  const updateTime = req.body.newTime;
+  const updateConsult = req.body.newConsultation;
+  console.log(appNumber + " " + updateSlicedDate + " " + updateTime + " " + updateConsult);
+
+  await AppDetails.findOneAndUpdate({appNum: appNumber}, {date: updateSlicedDate, time: updateTime, consultation: updateConsult})
+  console.log("Appointment Details Updated!");
+});

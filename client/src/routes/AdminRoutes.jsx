@@ -16,6 +16,8 @@ const UserProfile = lazy(() => import('../pages/userprofile/index'));
 
 const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 
+const AdminPatientUI = lazy(() => import ("../pages/patients/admin-module/admin-patient-ui")); 
+
 
 // ==============================|| ADMIN ROUTING ||============================== //
 const AdminRoute ={
@@ -57,6 +59,10 @@ const AdminRoute ={
         {
             path: '/admin/userprofile',
             element: <UserProfile />
+        },
+        {
+            path:'/admin/patients/admin-module/admin-patient-ui',
+            element: <AdminPatientUI/>
         }
     ]
 }

@@ -3,22 +3,35 @@ import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 
-const SecTransactionDataTable = () => {
+const SecTransactionDataTable = (patientIDNum) => {
 
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    const patientIDnumber = userInfo['patientIDnumber'];
+    const StringAppNum = JSON.stringify(patientIDNum);
+    const ConvertStringApp = JSON.parse(StringAppNum);
+    const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDNum).replace(/"/g,"");
 
+    const [patientValue, setPatientValue] = useState("");
+
+    
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
+    const goToReceipt = () =>{
+        console.log(patientValue)
+        // <a href={"/secretary/payment-records/create-receipt?patientValue=" +  patientValue.substring(1)}>
+        window.location.href="/secretary/payment-records/create-receipt?patientValue=" +  patientValue.substring(1);
+    }
+  
+
     const getAppointment = async() => {
+  
+
         try{
             const response = await axios.get('http://localhost:3001/getUserTransaction',{
                 params: {
-                    patientIDnumber: patientIDnumber
+                    patientIDnumber: PatientIDNumber
                 }
             });
             console.log(response, "Responses");
@@ -50,8 +63,11 @@ const SecTransactionDataTable = () => {
         },
         {
             name: "Action",
-            selector: (row) => <div className="action-buttons">
-                <button href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum}>Create Receipt</button>
+            selector: (row) => <div className="action-buttons" >
+                <button value={row.appNum} onClick={(e) => {
+                    setPatientValue(e.target.value);
+                    goToReceipt();
+                }}>Create Receipt</button>
                 <button>View</button>
                  </div>
         }

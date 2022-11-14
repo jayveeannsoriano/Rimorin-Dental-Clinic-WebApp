@@ -123,7 +123,6 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                             placeholderText="Choose a date"
                             minDate={new Date()}
                             shouldCloseOnSelect={false}
-                            dateFormat="MMMM d, yyyy"
                             //exclude sundays
                             filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
                             />
