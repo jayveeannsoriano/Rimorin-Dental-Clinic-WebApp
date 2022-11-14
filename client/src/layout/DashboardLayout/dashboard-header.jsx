@@ -9,7 +9,6 @@ function dashboardHeader(){
 //notification data
 const [appointmentDetails, setAppointmentDetails] = useState([]);
 const patientIDNumber = userInfo['patientIDnumber'];
-console.log(patientIDNumber, "dashboardHeader");
 
 const getAppointment = async() => {
 try{

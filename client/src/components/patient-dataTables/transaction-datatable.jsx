@@ -7,6 +7,7 @@ const TransactionDataTable = () => {
 
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     const patientIDnumber = userInfo['patientIDnumber'];
+    console.log(patientIDnumber, 'PATIENT REASDASD')
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -16,7 +17,7 @@ const TransactionDataTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserTransaction',{
+            const response = await axios.get('http://localhost:3001/getTransaction',{
                 params: {
                     patientIDnumber: patientIDnumber,
                 }

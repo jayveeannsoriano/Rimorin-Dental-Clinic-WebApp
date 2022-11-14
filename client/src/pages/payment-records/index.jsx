@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import "../../styles/create-receipt.css";
 import PatientProfileWidget from "../../components/profile-widget";
 import TransactionDataTable from "../../components/patient-dataTables/transaction-datatable";
@@ -26,8 +26,8 @@ const Payments = () => {
                                     <h5 className="card-title">Transactions</h5>
                                     <div className="divider"></div>
 
-                                <TransactionDataTable/>
-
+                                    <TransactionDataTable/>
+                                    
                                 </div>
                             </div>
                         </div>

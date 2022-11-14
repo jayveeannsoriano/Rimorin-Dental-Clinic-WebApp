@@ -44,6 +44,7 @@ const createReceipt = () => {
     const params = new URLSearchParams(location.search)
     const getAppNumber = params.get('patientValue');
     const StringfyAppNumber = useMemo(()=>JSON.stringify(getAppNumber).replace(/"/g,""));
+    console.log(StringfyAppNumber);
 
     const createReceipt = async () => {
 
