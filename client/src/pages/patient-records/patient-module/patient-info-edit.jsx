@@ -31,31 +31,31 @@ const PatientInfoEdit = () => {
   const [condValue, setCondValue] = useState("");
 
   const updatePatientInfo = () =>{
-    Axios.put("http://localhost:3001/updatePatientInfo",{
+    // Axios.put("http://localhost:3001/updatePatientInfo",{
 
-     patientIDnumber: patientIDnumber,
+    //  patientIDnumber: patientIDnumber,
 
-     firstName:firstName,
-     lastName:lastName,
-     middleName:middleName,
-     birthDate:birthDate,
-     ageValue:ageValue,
-     genderValue:genderValue,
-     professionValue:professionValue,
-     cellNumber:cellNumber,
-     tellNumber:tellNumber,
-     bloodType:bloodType,
-     houseNum:houseNum,
-     cityValue:cityValue,
-     countryValue:countryValue,
-     brgyValue:brgyValue,
-     provinceValue:provinceValue,
-     zipValue:zipValue,
-     medValue:medValue,
-     allergiesValue: allergiesValue,
-     condValue:condValue
-     });
-    setModalState("modal-2");
+    //  firstName:firstName,
+    //  lastName:lastName,
+    //  middleName:middleName,
+    //  birthDate:birthDate,
+    //  ageValue:ageValue,
+    //  genderValue:genderValue,
+    //  professionValue:professionValue,
+    //  cellNumber:cellNumber,
+    //  tellNumber:tellNumber,
+    //  bloodType:bloodType,
+    //  houseNum:houseNum,
+    //  cityValue:cityValue,
+    //  countryValue:countryValue,
+    //  brgyValue:brgyValue,
+    //  provinceValue:provinceValue,
+    //  zipValue:zipValue,
+    //  medValue:medValue,
+    //  allergiesValue: allergiesValue,
+    //  condValue:condValue
+    //  });
+    // setModalState("modal-2");
   }
 
 
@@ -302,7 +302,7 @@ const PatientInfoEdit = () => {
             </div>
             {/* </form> */}
             {/* end of card body */}
-            <button className="btn btn-primary" type="submit" onClick={updatePatientInfo()}>
+            <button className="btn btn-primary" type="submit" onClick={() => updatePatientInfo()}>
                   <i class="bi bi-save"></i>
                   Save
                 </button>
