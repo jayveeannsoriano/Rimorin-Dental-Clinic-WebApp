@@ -108,6 +108,7 @@
   font-weight: normal;
   font-size: 12px;
   padding: 3px 6px;
+  background-color: #FF6760;
 }
 
 .header-nav .notifications {
@@ -118,6 +119,7 @@
   display: flex;
   align-items: center;
   padding: 15px 10px;
+  width: 440px;
   transition: 0.3s;
 }
 
@@ -126,16 +128,16 @@
   font-size: 24px;
 }
 
-.header-nav .notifications .notification-item h4 {
-  font-size: 16px;
+.header-nav .notifications .notification-item span {
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 5px;
 }
 
 .header-nav .notifications .notification-item p {
   font-size: 13px;
+  font-weight: 400;
   margin-bottom: 3px;
-  color: #919191;
+  color: #1A1F36;
 }
 
 .header-nav .notifications .notification-item:hover {
