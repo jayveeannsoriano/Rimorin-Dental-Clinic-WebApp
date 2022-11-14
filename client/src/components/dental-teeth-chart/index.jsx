@@ -6,19 +6,19 @@ import "./chart.js";
 
 const DentalChart = ({handleClickTeeth}) => {
     
-    const getDentalCharts = async(email) => {
-        const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
-        response.forEach(teeth => {
-            var el = document.getElementById(teeth);
-            el.classList.toggle('marked');
-        });
+    // const getDentalCharts = async(email) => {
+    //     const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
+    //     response.forEach(teeth => {
+    //         var el = document.getElementById(teeth);
+    //         el.classList.toggle('marked');
+    //     });
         
-    }
+    // }
 
     useEffect(() => {
-        const email =  document.getElementById('emailaddress').textContent;
+        // const email =  document.getElementById('emailaddress').textContent;
 
-        getDentalCharts(email);
+        // getDentalCharts(email);
       }, []);
       
 

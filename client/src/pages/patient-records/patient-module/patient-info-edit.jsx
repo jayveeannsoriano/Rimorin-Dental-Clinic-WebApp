@@ -4,6 +4,60 @@ import "react-bootstrap";
 import ProfileWidget from "../../../components/profile-widget";
 
 const PatientInfoEdit = () => {
+  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+  const patientIDnumber = userInfo['patientIDnumber'];
+  console.log(patientIDnumber);
+
+  const [firstName, setFirstValue] = useState("");
+  const [lastName, setLastValue] = useState("");
+  const [middleName, setMiddleValue] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [ageValue, setAgeValue] = useState("");
+  const [genderValue, setGenderValue] = useState("");
+  const [professionValue, setProfessionValue] = useState("");
+  const [cellNumber, setCellValue] = useState("");
+  const [tellNumber, setTellNumber] = useState("");
+  const [bloodType, setBloodValue] = useState("");
+  const [houseNum, setHouseValue] = useState("");
+  const [cityValue, setCityValue] = useState("");
+  const [countryValue, setCountryValue] = useState("");
+  const [brgyValue, setBrgyValue] = useState("");
+  const [provinceValue, setProvinceValue] = useState("");
+  const [zipValue, setZipValue] = useState("");
+  const [medValue, setMedValue] = useState("");
+  const [allergiesValue, setAllergiesValue] = useState("");
+  const [condValue, setCondValue] = useState("");
+
+  const updatePatientInfo = () =>{
+    Axios.put("http://localhost:3001/updatePatientInfo",{
+
+     patientIDnumber: patientIDnumber,
+
+     firstName:firstName,
+     lastName:lastName,
+     middleName:middleName,
+     birthDate:birthDate,
+     ageValue:ageValue,
+     genderValue:genderValue,
+     professionValue:professionValue,
+     cellNumber:cellNumber,
+     tellNumber:tellNumber,
+     bloodType:bloodType,
+     houseNum:houseNum,
+     cityValue:cityValue,
+     countryValue:countryValue,
+     brgyValue:brgyValue,
+     provinceValue:provinceValue,
+     zipValue:zipValue,
+     medValue:medValue,
+     allergiesValue: allergiesValue,
+     condValue:condValue
+     });
+    setModalState("modal-2");
+  }
+
+
+
   return (
     <>
       <div class="pagetitle">
@@ -28,8 +82,9 @@ const PatientInfoEdit = () => {
           <ProfileWidget />
           
           <div class="col-xl-8">
-          <form>
+          {/* <form> */}
             <div className="card patient-info">
+            <form>  
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
@@ -53,13 +108,14 @@ const PatientInfoEdit = () => {
 
                 {/* Patient information */}
 
+            
                 <div class="row">
                   <h4>Personal Information</h4>
                   <div class="col-lg-auto col-md-auto label">
                     First Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="firstName" type="text" class="form-control" id="firstName" required/>
+                    <input name="firstName" type="text" class="form-control" id="firstName" onChange={(e) => setFirstValue(e.target.value)} />
                   </div>
 
                 </div>
@@ -69,28 +125,28 @@ const PatientInfoEdit = () => {
                     Last Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="lastName" type="text" class="form-control" id="lastName" value="Blynthe" required/>
+                    <input name="lastName" type="text" class="form-control" id="lastName" onChange={(e) => setLastValue(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="middleName" type="text" class="form-control" id="middleName" value="Fuentes" required/>
+                    <input name="middleName" type="text" class="form-control" id="middleName" onChange={(e) => setMiddleValue(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Birthdate</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="date" type="text" class="form-control" id="Birthday" value="01/01/1998" required/>
+                    <input name="date" type="text" class="form-control" id="Birthday" onChange={(e) => setBirthDate(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Age</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="age" type="text" class="form-control" id="Birthday" value="24" required/>
+                    <input name="age" type="text" class="form-control" id="Birthday" onChange={(e) => setAgeValue(e.target.value)} />
                   </div>
                 </div>
 
@@ -98,7 +154,7 @@ const PatientInfoEdit = () => {
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Gender</div>
                   <div class="col-lg-auto col-md-auto">
-                    <label>
+                    <label onChange={(e) => setGenderValue(e.target.value)}>
                       <input
                         type="radio"
                         // onChange={handleChange('gender')}
@@ -124,28 +180,28 @@ const PatientInfoEdit = () => {
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Profession</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="profession" type="text" class="form-control" id="Profession" value="Student" required/>
+                  <input name="profession" type="text" class="form-control" id="Profession" onChange={(e) => setProfessionValue(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Cell #</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="cellNumber" type="tel" class="form-control" id="cellNumber" value="Student" required/>
+                  <input name="cellNumber" type="tel" class="form-control" id="cellNumber" onChange={(e) => setCellValue(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Tel #</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="telNumber" type="tel" class="form-control" id="telNumber" value="N/A" required/>
+                    <input name="telNumber" type="tel" class="form-control" id="telNumber" onChange={(e) => setTellNumber(e.target.value)} />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Blood Type</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="bloodType" type="text" class="form-control" id="bloodType" value="A/B" required/>
+                    <input type="bloodType" class="form-control" id="bloodType" onChange={(e) => setBloodValue(e.target.value)}/>
                   </div>
                 </div>
               </div>
@@ -160,7 +216,7 @@ const PatientInfoEdit = () => {
                   House No. & Street Name
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="#10 Cirineo Subdivision" required/>
+                  <input type="address-house" class="form-control" id="Address" onChange={(e) => setHouseValue(e.target.value)}/>
                 </div>
               </div>
 
@@ -169,14 +225,14 @@ const PatientInfoEdit = () => {
                   Municipality/City
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="Dagupan" required/>
+                  <input type="address-city" class="form-control" id="Address" onChange={(e) => setCityValue(e.target.value)}/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Country</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="Philippines" required/>
+                  <input type="address" class="form-control" id="Address" onChange={(e) => setCountryValue(e.target.value)}/>
                 </div>
               </div>
 
@@ -184,20 +240,20 @@ const PatientInfoEdit = () => {
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">District/Barangay</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="Tapuac" required/>
+                  <input type="address" class="form-control" id="Address" onChange={(e) => setBrgyValue(e.target.value)}/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Province</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="Pangasinan" required/>
+                  <input type="address" class="form-control" id="Address" onChange={(e) => setProvinceValue(e.target.value)}/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">ZIP Code</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input name="address" type="text" class="form-control" id="Address" value="2400" required/>
+                  <input type="address" class="form-control" id="Address" onChange={(e) => setZipValue(e.target.value)}/>
                 </div>
               </div>
 
@@ -211,7 +267,7 @@ const PatientInfoEdit = () => {
                 </div>
 
                 <div class="col-lg-3">
-                  <input name="medications" type="text" class="form-control" id="Medications" value="N/A" required/>
+                  <input type="medications" class="form-control" id="Medications" onChange={(e) => setMedValue(e.target.value)}/>
                 </div>
               </div>
 
@@ -221,7 +277,7 @@ const PatientInfoEdit = () => {
                   Ibuprofen
                 </div> */}
                 <div class="col-lg-3">
-                  <input name="allergies" type="text" class="form-control" id="Allergies" value="Ibuprofen" required/>
+                  <input type="allergies" class="form-control" id="Allergies" onChange={(e) => setAllergiesValue(e.target.value)}/>
                 </div>
               </div>
 
@@ -231,19 +287,24 @@ const PatientInfoEdit = () => {
                   Asthma
                 </div> */}
                 <div class="col-lg-3">
-                  <input name="conditions" type="text" class="form-control" id="Conditions" required/>
+                  <input type="conditions" class="form-control" id="Conditions" onChange={(e) => setCondValue(e.target.value)}/>
                 </div>
               </div>
 
-
+              
               <button className="btn btn-primary" type="submit">
                   <i class="bi bi-save"></i>
                   Save Changes
                 </button>
-
-            </div>
             </form>
+            </div>
+            {/* </form> */}
             {/* end of card body */}
+            <button className="btn btn-primary" type="submit" onClick={updatePatientInfo()}>
+                  <i class="bi bi-save"></i>
+                  Save
+                </button>
+                <div className="divider"></div>
           </div>
          
         </div>
