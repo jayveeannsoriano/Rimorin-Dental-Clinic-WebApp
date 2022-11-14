@@ -15,7 +15,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
 
   return (
     <>
-        <form className='auth-inner'>
+        <form className='auth-inner' onSubmit={Continue}>
         <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
 
             <div className="mb-3">
@@ -27,7 +27,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 onChange={handleChange('house')}
                 defaultValue={values.house}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
@@ -39,7 +39,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 onChange={handleChange('brgy')}
                 defaultValue={values.brgy}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
@@ -51,7 +51,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 onChange={handleChange('municipality')}
                 defaultValue={values.municipality}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
@@ -63,7 +63,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 onChange={handleChange('province')}
                 defaultValue={values.province}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
@@ -75,7 +75,7 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 onChange={handleChange('country')}
                 defaultValue={values.country}
                 // onChange={(e) => this.setState({ fname: e.target.value})}
-                // required
+                required
                 />
             </div>
 
@@ -93,7 +93,6 @@ const SignUp2 = ({prevStep, nextStep, handleChange, values}) => {
                 </div>
                 <div className='col-md-auto '>
                     <button 
-                    onClick = { Continue } 
                     type="submit" 
                     className="btn btn-primary"
                     style={{padding: "10px 30px"}}

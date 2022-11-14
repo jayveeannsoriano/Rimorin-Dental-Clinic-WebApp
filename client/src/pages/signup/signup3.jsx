@@ -15,33 +15,33 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values,handleChangeCheckbox}
 
   return (
     <>
-        <form className='auth-inner'>
+        <form className='auth-inner' onSubmit={Continue}>
         <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
 
             <div className="mb-3">
-                <label> Name any medications or maintenance you're taking. </label>
+                <label> Name any medications or maintenance you're taking. (Type N/A if None) </label>
                 <input
                 type="text"
                 className="form-control"
-                placeholder="e.g. Antidepressants, Oral Contraceptives, Antihypertensives, etc"
+                placeholder="e.g. Antidepressants, Oral Contraceptives, etc"
                 onChange={handleChange('medications')}
                 defaultValue={values.medications}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
-                <label> Specify any allergies you have. </label>
+                <label> Specify any allergies you have. (Type N/A if None) </label>
                 <input
                 type="text"
                 className="form-control"
                 placeholder="e.g. Hives, Pollen, etc"
                 onChange={handleChange('allergies')}
                 defaultValue={values.allergies}
-                // required
+                required
                 />
             </div>
             <div className="mb-3">
-                <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions. </label>
+                <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions. (Don't click any checkbox if there is None)</label>
                 <br/>
                 <div class="container">
                 <div class="row">
@@ -122,7 +122,6 @@ const SignUp3 = ({prevStep, nextStep, handleChange, values,handleChangeCheckbox}
                 </div>
                 <div className='col-md-auto '>
                     <button 
-                    onClick = { Continue } 
                     type="submit" 
                     className="btn btn-primary"
                     style={{padding: "10px 30px"}}

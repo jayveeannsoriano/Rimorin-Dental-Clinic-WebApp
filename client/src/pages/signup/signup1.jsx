@@ -7,10 +7,9 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
     nextStep();
   };
 
-
   return (
     <>
-      <form className="auth-inner">
+      <form className="auth-inner" onSubmit={Continue}>
         <p id="titleform">
           <h4>Rimorin Dental Clinic</h4>
         </p>
@@ -156,7 +155,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
         <div className="d-grid justify-content-center">
           <button
-            onClick={Continue}
             type="submit"
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
