@@ -1,4 +1,5 @@
 import React from "react";
+import DefaultProfile from '../assets/img/default-profile.jpg'
 
 export default function ProfileWidget() {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -7,7 +8,7 @@ export default function ProfileWidget() {
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img id="avatar-profile" src="../assets/img/messages-1.jpg" alt="Profile" class="rounded-circle" />
+                    <img id="avatar-profile" src={DefaultProfile} alt="Profile" class="rounded-circle" />
                     <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2>
                     <h3>Patient ID: <span id="">PT0001</span></h3>
                     <div className="divider"></div>

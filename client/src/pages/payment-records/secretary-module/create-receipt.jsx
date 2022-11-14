@@ -1,5 +1,5 @@
 import React, {useState,useMemo} from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown, DropdownButton, Tab } from "react-bootstrap";
 import { useSearchParams,useLocation} from "react-router-dom";
 import '../../../styles/create-rx.css';
 import '../../../styles/create-receipt.css';
@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/profile-widget";
 import Axios from 'axios';
 import { Button } from "react-bootstrap";
+import TransactionDetails from "../../../components/modals/preview-transaction";
 
 const createReceipt = () => {
 
@@ -250,12 +251,7 @@ const createReceipt = () => {
                                                 >
                                                     Clear
                                                 </button>
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-primary submit-btn rx-btn"
-                                                >
-                                                    Preview
-                                                </button>
+                                                <TransactionDetails/>
                                                 <button
                                                     type="submit"
                                                     className="btn btn-primary submit-btn rx-btn"

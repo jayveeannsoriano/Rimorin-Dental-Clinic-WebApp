@@ -502,8 +502,8 @@ app.put("/updateStatus", async (req,res) => {
   app.post("/acceptAppointment", async(req,res) => {
 
     //Patient ID name
-    const patientIDnumber = req.body.patientIDnumber;
-    console.log(patientIDnumber)
+    const PatientIDnum = req.body.patientIDnumber;
+    console.log(PatientIDnum)
 
     //User Info value
     const userNameApp = req.body.userNameApp;
@@ -535,7 +535,7 @@ app.put("/updateStatus", async (req,res) => {
     console.log(insertAppStatus);
   
     //inserting all data
-    const AppData = new AppDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+    const AppData = new AppDetails({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
     try{
       await AppData.save();
