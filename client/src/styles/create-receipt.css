@@ -1,23 +1,22 @@
-
-.patient-info .card-title{
+.patient-info .card-title {
     color: var(--primary-color);
     /* padding: 15px 0px 10px 0; */
     margin-left: 14px;
 }
 
-.patient-info h4{
+.patient-info h4 {
     margin: 15px 0px;
     font-weight: 700;
     font-size: 17px;
     line-height: 150%;
 }
 
-.patient-info .label{
+.patient-info .label {
     font-weight: 600;
     color: rgba(1, 41, 112, 0.6);
 }
 
-.patient-info .row{
+.patient-info .row {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -26,33 +25,63 @@
     margin-bottom: 16px;
 }
 
-.bg-success{
+.bg-success {
     padding-left: 20%;
     padding-right: 20%;
 }
 
-.rx-pr{
+.rx-pr {
     margin: 2% 0;
-  }
+}
 
-  .rx-btn{
-    margin-top:1%;
+.rx-btn {
+    margin-top: 1%;
     margin-right: 1%;
     text-align: right;
     justify-content: right;
-  }
+}
 
 label .paylabel {
     float: right;
 }
 
-.total-pay{
+.total-pay {
     text-align: right;
     justify-content: right;
 }
 
-.btn-link a{
+.btn-link a {
     z-index: 900;
     text-decoration: none;
     color: white;
+}
+
+.bg-danger-light {
+    background-color: #f8d7da;
+    border-color: #f8d7da;
+}
+
+.bg-danger-light:hover, :active {
+    background-color: #fac1c6;
+    border-color: #fac1c6;
+}
+
+.card-body-receipt{
+    padding: 10px 20px 40px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.total-bill{
+    text-align: right;
+    padding-top: 3%;
+    line-height: 2;
+}
+
+.date-issue{
+    margin-left: 2%;
+}
+
+.bill-container{
+    margin-top: 4%;
 }
