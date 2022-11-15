@@ -60,7 +60,7 @@ const AcceptCancel = () => {
                 <div className="action-buttons">
                     <AcceptDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <CancelDental appNum={row.appNum} />
-                    <ApptDetails appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
+                    <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
                 </div>
         },
     ];

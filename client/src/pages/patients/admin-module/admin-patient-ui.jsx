@@ -14,13 +14,13 @@ const AdminPatientUI = () => {
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/dashboard">Home</a>
+                            <a href="/admin">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/patients">Patient</a>
+                            <a href="/admin/patients">Patient</a>
                         </li>
                         <li class="breadcrumb-item active">Patient Name</li>
-                        {/* ^should be Patient's Name */}
+                        {/* ^should be Patient's Name? */}
                     </ol>
                 </nav>
             </div>
