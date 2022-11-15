@@ -25,12 +25,12 @@ function App() {
     AOS.refresh();
   }, []);
 
-    return (
-      <>
-        <Routes/>
-        <Outlet/>
-      </>
-    );
-  }
+  return (
+    <> 
+      <Routes />
+      <Outlet />
+    </>
+  );
+}
 
 export default App;
