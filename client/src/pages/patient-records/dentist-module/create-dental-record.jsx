@@ -76,6 +76,8 @@ const CreateDentalRecord = () => {
       dateValue: startDate,
       descValue: treatDesc,
       imgValue: getFile[0],
+      procedures: checked,
+      chartedTeeth: chartedTeeth
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });

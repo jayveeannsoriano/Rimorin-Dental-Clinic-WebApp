@@ -357,10 +357,9 @@ app.get("/getReceiptDetails", async(req,res) => {
     //get patient dental records
 app.get("/getUserDentalRecord", async(req,res) => {
 
-  const patientIDnumber = req.query.patientIDnumber;
+  const patientIDnumber = "PT#" + req.query.patientIDnumber;
   console.log(patientIDnumber);
-
-  await DentalRecords.find({patientIDnumber: patientIDnumber})
+  await DentalRecords.find({patientIDNumber: patientIDnumber})
       .then((data) => {
         res.json(data);
       })
@@ -716,18 +715,18 @@ app.post("/createDentalRecord",uploadImg.single('imgValue'), async (req,res)=>{
   const dateValue = req.body.dateValue;
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const descValue= req.body.descValue;
-  const imageValue = req.file;
-  console.log(imageValue);
+  const procedures =  req.body.procedures;
+  const chartedTeeth = req.body.chartedTeeth;
 
-  console.log(patientIDNum + " " + slicedDate+ " " + descValue)
   
   await DentalRecords.create({
-      patientIDNumber: patientIDNum,
-      dentalDate: slicedDate,
-      dentalDesc: descValue,
-      // dentalFile: imageValue,
-    });
-    console.log(" dent rec saved");
+    patientIDNumber: patientIDNum,
+    dentalDate: slicedDate,
+    dentalDesc: descValue,
+    chartedTeeth: chartedTeeth,
+    procedures:procedures,
+  });
+  res.json("Document Saved!");
 
 })
 
@@ -778,7 +777,19 @@ app.put("/updateReceipt", async (req,res) =>{
   console.log("Receipt Details Updated!")
 });
 
-app.post("/createEprescription",uploadImg.single('imageFile'), async (req,res)=>{
+const ImgStorage2 = multer.diskStorage({
+  destination: "uploads/dental-record-images",
+  filename:(req,file,cb) =>{
+    const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
+    cb( null, req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
+  },
+});
+
+const uploadImg2 = multer({
+  storage:ImgStorage
+});
+
+app.post("/createEprescription",uploadImg2.single('imageFile'), async (req,res)=>{
 
   console.log("epres")
   const patientIDNum = 'PT#' + req.body.patientIDNum;

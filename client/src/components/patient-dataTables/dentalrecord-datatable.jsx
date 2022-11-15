@@ -3,32 +3,39 @@ import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 
-const DentalRecordDataTable = () => {
-
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    const patientIDnumber = userInfo['patientIDnumber'];
-
+const DentalRecordDataTable = (response) => {
+ 
 
     const [search, setSearch] = useState("");
-    const [appointment, setAppointment] = useState([]);
+    const [appointment, setAppointment] = useState([response.response]);
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    
+    useEffect(() => {
+    
+		const timeout = setTimeout(() => {
+			setRows(appointment);
+			setPending(false);
+		}, 1000);
+		return () => clearTimeout(timeout);
+	}, []);
 
-    const getAppointment = async() => {
-        try{
-            const response = await axios.get('http://localhost:3001/getUserDentalRecord',{
-                params: {
-                    patientIDnumber: patientIDnumber,
-                }
-            });
-            console.log(response, "Responses");
-            setAppointment(response.data);
-            // setFilteredAppointment(response.data);
-        }catch (error){
-            console.log(error)
-        }
-    }
+
+    // const getAppointment = async() => {
+    //     try{
+    //         const response = await axios.get('http://localhost:3001/getUserDentalRecord',{
+    //             params: {
+    //                 patientIDnumber: query.patientIDNum,
+    //             }
+    //         });
+    //         console.log(response, "Responses");
+    //         setAppointment(response.data);
+    //         // setFilteredAppointment(response.data);
+    //     }catch (error){
+    //         console.log(error)
+    //     }
+    // }
 
     const columns = [
         {
@@ -82,32 +89,11 @@ const DentalRecordDataTable = () => {
         </div>
     );
 
-   useEffect(() => {
-		const timeout = setTimeout(() => {
-			setRows(appointment);
-			setPending(false);
-		}, 1000);
-		return () => clearTimeout(timeout);
-	}, []);
-
-    useEffect(() => {
-        getAppointment();
-    }, []);
-
-    // useEffect(() => {
-    //     const result = appointment.filter((appointment) => {
-    //         return appointment.pName.toLowerCase().match(search.toLowerCase());
-    //     });
-
-    //     console.log(result, "This is the result");
-    //     setFilteredAppointment(result)
-    // },[search])
-
     return <DataTable
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
-    data={appointment}
+    data={response.response}
     progressPending={pending}
     progressComponent={<CustomLoader />}
     fixedHeader
@@ -126,4 +112,4 @@ const DentalRecordDataTable = () => {
   
 }
 
-export default DentalRecordDataTable
+export default DentalRecordDataTable;

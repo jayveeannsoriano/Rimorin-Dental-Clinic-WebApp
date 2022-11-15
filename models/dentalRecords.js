@@ -5,6 +5,8 @@ const UserDentalRecords = new mongoose.Schema(
     patientIDNumber: String,
     dentalDate: String,
     dentalDesc: String,
+    procedures: Object,
+    chartedTeeth: Object,
     dentalFile:{
       data: Buffer,
       contentType: String
