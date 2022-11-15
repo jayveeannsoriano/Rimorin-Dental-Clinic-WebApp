@@ -372,10 +372,24 @@ app.get("/getUserDentalRecord", async(req,res) => {
     //get patient epres records
 app.get("/getUserEPresRecord", async(req,res) => {
 
+  const patientIDnumber = "PT#"+req.query.patientIDnumber;
+  console.log(patientIDnumber);
+
+  await PresDetails.find({patientIDNumber: patientIDnumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+app.get("/getAllEPresRecord", async(req,res) => {
+
   const patientIDnumber = req.query.patientIDnumber;
   console.log(patientIDnumber);
 
-  await PresDetails.find({patientIDnumber: patientIDnumber})
+  await PresDetails.find({})
       .then((data) => {
         res.json(data);
       })

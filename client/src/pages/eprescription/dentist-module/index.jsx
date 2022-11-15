@@ -2,6 +2,7 @@ import React, {useMemo} from "react";
 import { useSearchParams,useLocation} from "react-router-dom";
 import "../../../styles/dental-record.css"
 import ProfileWidget from "../../../components/profile-widget";
+import DentistEPrescriptionDataTable from "./dental-eprescriptiondatatable";
 
 const Eprescription = () => {
 
@@ -40,7 +41,7 @@ const Eprescription = () => {
                                     </a>
                                     <div className="divider"></div>
 
-                                    {/* Insert Prescription Datatable of selected patient*/}
+                                    <DentistEPrescriptionDataTable/>
 
                                 </div>
                             </div>

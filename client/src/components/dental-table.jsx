@@ -55,7 +55,7 @@ const DashboardTable = () => {
             <div className="action-buttons">
                 < Rebook patientIDnumber = {row.patientIDnumber} appNum = {row.appNum} pName = {row.pName} dName = {row.dName} date = {row.date} time={row.time} consultation={row.consultation}/>
                 < ReschedConfirmation appNum = {row.appNum}/>
-                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
+                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
             </div>
         },
     ];
