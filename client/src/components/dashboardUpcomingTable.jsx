@@ -7,7 +7,7 @@ import ReschedConfirmation from "./modals/reschedule-appointment";
 import CancelAppointment from "./modals/cancel-appointment";
 import ApptDetailsText from "./modals/appt-details-text";
 
-const DashboardTable = () => {
+const UpcomingDashboardTable = () => {
 
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     const patientIDnumber = userInfo['patientIDnumber'];
@@ -30,7 +30,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getTodayUserAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingUserAppointmentDetails',{
                 params:{
                     patientIDnumber: patientIDnumber,
                     date:todayDate,
@@ -156,4 +156,4 @@ const DashboardTable = () => {
   
 }
 
-export default DashboardTable
+export default UpcomingDashboardTable

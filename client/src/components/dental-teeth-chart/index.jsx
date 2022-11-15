@@ -17,8 +17,8 @@ const DentalChart = ({handleClickTeeth}) => {
         // const email =  document.getElementById('emailaddress').textContent;
 
         // getDentalCharts(email);
-      }, []);
-      
+    }, []);
+    
 
     return (
         <>
@@ -58,7 +58,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root2"
@@ -68,7 +68,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -87,7 +87,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -109,7 +109,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root4"
@@ -119,7 +119,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -139,7 +139,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -161,7 +161,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root6"
@@ -171,7 +171,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -191,7 +191,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -213,7 +213,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root8"
@@ -223,7 +223,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -243,7 +243,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -265,7 +265,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -285,7 +285,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -307,7 +307,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -327,7 +327,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -349,7 +349,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -369,7 +369,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -391,7 +391,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -411,7 +411,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -436,7 +436,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -456,7 +456,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -478,7 +478,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -498,7 +498,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -520,7 +520,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -540,7 +540,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -562,7 +562,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -582,7 +582,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -604,7 +604,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root18"
@@ -614,7 +614,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -634,7 +634,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -656,7 +656,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root20"
@@ -666,7 +666,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -686,7 +686,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -708,7 +708,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root22"
@@ -718,7 +718,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -738,7 +738,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -760,7 +760,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                             <path
                                 id="root24"
@@ -770,7 +770,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -790,14 +790,14 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
                 </div>
             </div>
 
-            {/* bottom teeth left side */}
+            {/* bottom teeth right side */}
             <div className="dental-chart-bottom col-lg-6 col-xl-6 col-md-6">
                 
                 <div className="row t32">
@@ -816,7 +816,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -836,7 +836,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -858,7 +858,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -878,7 +878,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -900,7 +900,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -920,7 +920,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -942,7 +942,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -962,7 +962,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -984,7 +984,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1004,7 +1004,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1026,7 +1026,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1046,7 +1046,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1068,7 +1068,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1088,7 +1088,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1110,7 +1110,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1130,7 +1130,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                             />
                         </g>
                     </svg>
@@ -1138,7 +1138,7 @@ const DentalChart = ({handleClickTeeth}) => {
 
             </div>
 
-            {/* bottom teeth right side */}
+            {/* bottom teeth left side */}
             <div className="dental-chart-bottom col-lg-6 col-xl-6 col-md-6">
                 <div className="row t24">
                     <svg
@@ -1156,7 +1156,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 691.5 406.5)"
                             />
                         </g>
@@ -1177,7 +1177,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 690.5 448.5)"
                             />
                         </g>
@@ -1200,7 +1200,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 764.5 406.5)"
                             />
                         </g>
@@ -1221,7 +1221,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 763.5 444.5)"
                             />
                         </g>
@@ -1244,7 +1244,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 839.5 408.5)"
                             />
                         </g>
@@ -1265,7 +1265,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 836.5 450.5)"
                             />
                         </g>
@@ -1288,7 +1288,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 912.5 411.5)"
                             />
                         </g>
@@ -1309,7 +1309,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 910.5 455.5)"
                             />
                         </g>
@@ -1332,7 +1332,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 986.5 410.5)"
                             />
                         </g>
@@ -1353,7 +1353,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 982.5 454.5)"
                             />
                         </g>
@@ -1376,7 +1376,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1062.5 411.5)"
                             />
                         </g>
@@ -1396,7 +1396,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1059.5 456.5)"
                             />
                         </g>
@@ -1419,7 +1419,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1137.5 410.5)"
                             />
                         </g>
@@ -1440,7 +1440,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1133.5 451.5)"
                             />
                         </g>
@@ -1463,7 +1463,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1209.5 415.5)"
                             />
                         </g>
@@ -1484,7 +1484,7 @@ const DentalChart = ({handleClickTeeth}) => {
                                 stroke-width="1.33333"
                                 stroke-miterlimit="8"
                                 fill="#FFFFFF"
-                               fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
+                                fill-rule="evenodd" onClick={event => handleClickTeeth(event)}
                                 transform="matrix(-1 0 0 1 1204.5 458.5)"
                             />
                         </g>

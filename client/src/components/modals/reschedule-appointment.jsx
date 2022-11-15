@@ -17,8 +17,7 @@ function RescheduleAppointment(appNum) {
 
   //calendar input
   const [newStartDate, setStartDate] = useState(new Date());
-  const newDateString = JSON.stringify(newStartDate);
-  const convertDate = JSON.parse(newDateString);
+  var date = window.localStorage.getItem('date');
 
   //reasonforconsultation input
   const [newConsulInput, setConsulInput] = useState("");
@@ -41,10 +40,10 @@ function RescheduleAppointment(appNum) {
   //update date and time
   const newDateTime = () =>{
     console.log("Updating " + AppNumber);
-    console.log("Update values: " + newStartDate + " " + newSetTime + " " + newConsulInput);
+    console.log("Update values: " + date + " " + newSetTime + " " + newConsulInput);
     Axios.put("http://localhost:3001/updateDateTime",{
      appNum: AppNumber,
-     newDate: newStartDate,
+     newDate: date,
      newTime: newSetTime,
      newConsultation: newConsulInput});
     setModalState("modal-2");

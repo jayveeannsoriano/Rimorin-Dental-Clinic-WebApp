@@ -13,18 +13,37 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <p id="titleform">
           <h4>Rimorin Dental Clinic</h4>
         </p>
-        
-        <div className="mb-3">
-          <label>First name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="First name"
-            onChange={handleChange('fname')}
-            defaultValue={values.fname}
-            // onChange={(e) => this.setState({ fname: e.target.value})}
-            required
-          />
+
+        <div className="row">
+          <div className="col-8">
+            <div className="mb-3">
+              <label>First name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="First name"
+                onChange={handleChange('fname')}
+                defaultValue={values.fname}
+                // onChange={(e) => this.setState({ fname: e.target.value})}
+                required
+              />
+            </div>
+
+          </div>
+
+          <div className="col-4">
+            <div className="mb-3 suffix">
+              <label>Middle Initial</label>
+              <input
+                type="text"
+                className="form-control suffix"
+                placeholder="(e.g. C.)"
+                onChange={handleChange('minitial')}
+                defaultValue={values.suffix}
+              // onChange={(e) => this.setState({ suffix: e.target.value})}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="row">
@@ -42,7 +61,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
               />
             </div>
           </div>
-
           <div className="col-4">
             <div className="mb-3 suffix">
               <label>Suffix</label>
@@ -52,10 +70,11 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="(e.g. Jr. , Sr., II)"
                 onChange={handleChange('suffix')}
                 defaultValue={values.suffix}
-                // onChange={(e) => this.setState({ suffix: e.target.value})}
+              // onChange={(e) => this.setState({ suffix: e.target.value})}
               />
             </div>
           </div>
+
         </div>
 
         <div className="mb-3">
@@ -167,7 +186,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
           Already registered? <a href="/auth/login">Sign In</a>
         </p>
       </form>
-      </>
+    </>
   );
 };
 
