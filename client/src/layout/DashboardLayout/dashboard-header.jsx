@@ -81,14 +81,8 @@ const count = appointmentDetails.length;
                             <div key={index} class="notification-item">
                                 <div class="profile-det-info">
                                     {/* <p>{item.dName} created you an appointment on {item.date} at {item.time}</p> */}
-                                    <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p>
-                                </div>
-                             </div>
-                        ))}
-                        {appointmentDetails.map((item2, index2) => (
-                            <div key={index2} class="notification-item">
-                                <div class="profile-det-info2">
-                                    <p><span>{item2.dName}</span> created you an e-prescription</p>
+                                    {/* <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p> */}
+                                    { item ? <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p> : <> no notifications available </> } 
                                 </div>
                             </div>
                         ))}
