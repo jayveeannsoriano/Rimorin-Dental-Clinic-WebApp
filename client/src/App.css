@@ -300,10 +300,9 @@ h6 {
 }
 
 .card-body {
-  padding: 50px 20px 40px 20px;
+  /* padding: 50px 20px 40px 20px; */
   border-radius: 10px;
   background-color: #fff;;
-  /* box-shadow: 0px 7px 23px rgba(0, 0, 0, 0.05); */
 }
 
 .card-body h1 {
@@ -965,7 +964,9 @@ padding-right: 4px;
 .appt_status[data-status="Rescheduled"]:after,
 .appt_status[data-status="Pending"]:after,
 .appt_status[data-status="No Show"]:after,
-.appt_status[data-status="Arrived"]:after{
+.appt_status[data-status="Arrived"]:after,
+.payment_status[data-status="Paid"]:after,
+.payment_status[data-status="Pending"]:after{
   border-radius: 22px;
   padding: 6px 12px;
   align-items: center;
@@ -1037,10 +1038,23 @@ padding-right: 4px;
   line-height: 17px;
   color: var(--text-color);
 }
-
+/* cols in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
+.transaction-datatable .rdt_TableCol,
+.patient-transaction-table .rdt_TableCol { 
+  max-width: 167px !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color);
+}
 /* div of action buttons in dashboardTable.jsx */
 .action-buttons{
   width: 800px;
+}
+
+/* div of action buttons in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
+.transaction-datatable .action-buttons{
+  width: 213px !important;
 }
 
 .appointment-request-table #cell-4-undefined{
@@ -1053,9 +1067,33 @@ padding-right: 4px;
 #cell-4-undefined{
   max-width: 250px !important;
 }
-
 #cell-5-undefined{
   max-width: 780px !important;
+}
+
+
+/* secretary module */
+.transaction-datatable #cell-1-undefined,
+.transaction-datatable #cell-2-undefined,
+.transaction-datatable #cell-3-undefined,
+.transaction-datatable #cell-4-undefined{
+  max-width: 167px !important;
+}
+.transaction-datatable #cell-5-undefined{
+  max-width: 13px !important;
+}
+
+/* patient module transaction table */
+.patient-transaction-table #cell-1-undefined,
+.patient-transaction-table #cell-2-undefined,
+.patient-transaction-table #cell-3-undefined{
+  max-width: 167px !important;
+}
+.patient-transaction-table #cell-4-undefined{
+  max-width: 40px !important;
+}
+.patient-transaction-table .action-buttons{
+  width: 285px !important;
 }
 
 .rdt_TableCol:hover,

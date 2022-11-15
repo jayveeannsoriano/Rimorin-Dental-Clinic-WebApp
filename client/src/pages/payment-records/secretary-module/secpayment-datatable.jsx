@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+import PaymentStatusText from "./payment-status-text";
+import ViewFile from "../../../components/modals/view-file"
 
 const SecTransactionDataTable = (patientIDNum) => {
 
@@ -59,16 +61,18 @@ const SecTransactionDataTable = (patientIDNum) => {
         },
         {
             name: 'Payment Status',
-            selector: (row) => row.payStatus,
+            selector: (row) => <div className="payment-details">
+                <PaymentStatusText payStats = {row.payStatus}/>
+            </div>
         },
         {
             name: "Action",
             selector: (row) => <div className="action-buttons" >
-                <button value={row.appNum} onClick={(e) => {
+                <button className="create-button" value={row.appNum} onClick={(e) => {
                     setPatientValue(e.target.value);
                     goToReceipt();
                 }}>Create Receipt</button>
-                <button>View</button>
+                <ViewFile/>
                  </div>
         }
     ];
@@ -126,6 +130,7 @@ const SecTransactionDataTable = (patientIDNum) => {
     // },[search])
 
     return <DataTable
+    className="transaction-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}

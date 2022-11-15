@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+import PaymentStatusText from "./payment-status-text";
 
 // Action Buttons
 import ExportFile from "../modals/export";
@@ -48,7 +49,9 @@ const TransactionDataTable = () => {
         },
         {
             name: 'Payment Status',
-            selector: (row) => row.payStatus,
+            selector: (row) => <div className="payment-details">
+                <PaymentStatusText payStats = {row.payStatus}/>
+            </div>
         },
         {
             name: "Action",
@@ -114,6 +117,7 @@ const TransactionDataTable = () => {
     // },[search])
 
     return <DataTable
+    className="patient-transaction-table"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
