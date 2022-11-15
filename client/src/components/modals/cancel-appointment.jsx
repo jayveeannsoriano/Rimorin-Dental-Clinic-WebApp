@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios';
 
-function CancelAppointment() {
+function CancelAppointment(appNum) {
   const [modalState, setModalState] = useState(false);
   const [reasonInput, setReasonInput] = useState("");
   
@@ -16,6 +16,18 @@ function CancelAppointment() {
 
   const handleModal2= () => {
     setModalState("modal-2")
+  }
+
+  const StringAppNum = JSON.stringify(appNum);
+  const ConvertStringApp = JSON.parse(StringAppNum);
+  const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
+
+  const cancelAppointment = () => {
+            console.log("Deleting " + AppNumber);
+        Axios.put("http://localhost:3001/deleteAppointment", {
+            appNum: AppNumber,
+        });
+    
   }
 
 

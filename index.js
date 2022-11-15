@@ -182,7 +182,7 @@ app.post("/insertAppointment", async(req,res) => {
   
   //date value
   const startDate = req.body.startDate;
-  const slicedDate = startDate.slice(0,10)//removes unnecessary data
+  const slicedDate = startDate.slice(1,11)//removes unnecessary data
   console.log(slicedDate)
 
   //consul value
@@ -797,15 +797,58 @@ app.post("/createEprescription",uploadImg.single('imageFile'), async (req,res)=>
 
 app.put("/updatePatientInfo", async (req, res) => {
 
-  const appNumber = req.body.appNum;
-  const updateDate = req.body.newDate;
-  const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
-  console.log(updateDate)
-  console.log(updateSlicedDate)
-  const updateTime = req.body.newTime;
-  const updateConsult = req.body.newConsultation;
-  console.log(appNumber + " " + updateSlicedDate + " " + updateTime + " " + updateConsult);
+  const patientIDnumber = req.body.patientIDnumber;
 
-  await AppDetails.findOneAndUpdate({appNum: appNumber}, {date: updateSlicedDate, time: updateTime, consultation: updateConsult})
-  console.log("Appointment Details Updated!");
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const middleName = req.body.middleName;
+  const birthDate = req.body.birthDate;
+  const ageValue = req.body.ageValue;
+  const genderValue = req.body.genderValue;
+  const professionValue = req.body.professionValue;
+  const cellNumber = req.body.cellNumber;
+  const tellNumber = req.body.tellNumber;
+  const bloodType = req.body.bloodType;
+  const houseNum = req.body.houseNum;
+  const cityValue = req.body.cityValue;
+  const countryValue = req.body.countryValue;
+  const brgyValue = req.body.brgyValue;
+  const provinceValue = req.body.provinceValue;
+  const zipValue = req.body.zipValue;
+  const medValue = req.body.medValue;
+  const allergiesValue = req.body.allergiesValue;
+  const condValue = req.body.condValue;
+
+  const patientName = firstName + " " + lastName;
+
+
+  await User.findOneAndUpdate(
+    {patientIDnumber:patientIDnumber}, 
+    
+    {fname:firstName,
+     lname:lastName,
+     mname:middleName,
+     bday:birthDate,
+     age:ageValue,
+     gender:genderValue,
+     profession: professionValue,
+     mobile: cellNumber,
+     tellphone: tellNumber,
+     blood: bloodType,
+     house: houseNum,
+     municipality: cityValue,
+     country: countryValue,
+     brgy: brgyValue,
+     province: provinceValue,
+     zipcode: zipValue,
+     medications: medValue,
+     allergies: allergiesValue,
+     conditions: condValue,
+    })
+
+    await AppDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
+    await AppRequest.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
+    await NotifDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
+    await ReceiptDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
+  console.log("User info updated!");
 });

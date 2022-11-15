@@ -233,6 +233,7 @@ const createEprescription = () => {
                                                 <button
                                                     type="submit"
                                                     className="btn btn-primary submit-btn rx-btn"
+                                                    onClick={() => createEPrescription()}
                                                 >
                                                     Create
                                                 </button>

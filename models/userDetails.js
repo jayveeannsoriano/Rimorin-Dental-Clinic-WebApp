@@ -4,9 +4,11 @@ const UserDetailsScehma = new mongoose.Schema(
     fname: String,
     minitial: String,
     lname: String,
+    mname:String,
     suffix: String,
     email: String,
     password: { type: String, unique: true },
+    age: String,
     gender: String,
     mobile: Number,
     bday: String,
@@ -20,7 +22,12 @@ const UserDetailsScehma = new mongoose.Schema(
     conditions: String,
     user_role_id: Number,
     patientIDnumber: String,
-    dentalRecords: {type: mongoose.Types.ObjectId, ref: "UserDentalRecords"}
+    //new records
+    profession: String,
+    tellphone: String,
+    blood: String,
+    zipcode: String,
+    
   },
   {
     collection: "UserInfo",

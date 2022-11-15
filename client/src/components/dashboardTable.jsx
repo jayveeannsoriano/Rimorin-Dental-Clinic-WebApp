@@ -65,8 +65,8 @@ const DashboardTable = () => {
             selector: row => 
             <div className="action-buttons">
                 < ReschedConfirmation appNum = {row.appNum}/>
-                < CancelAppointment/>
-                < ApptDetails appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus}/>
+                < CancelAppointment appNum = {row.appNum}/>
+                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation={row.consultation}/>
             </div>
         },
     ];

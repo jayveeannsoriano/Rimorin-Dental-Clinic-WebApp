@@ -116,13 +116,14 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                             selected={startDate} 
                             onChange={(date) => {
                                 setStartDate(date);
+                                window.localStorage.setItem('date',startDate);
                                 console.log("This is the calendar data:", date)
-                                window.localStorage.setItem('date',date);
                             }}
                             isClearable
                             placeholderText="Choose a date"
                             minDate={new Date()}
                             shouldCloseOnSelect={false}
+                            
                             //exclude sundays
                             filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
                             />
