@@ -182,7 +182,7 @@ app.post("/insertAppointment", async(req,res) => {
   
   //date value
   const startDate = req.body.startDate;
-  const slicedDate = startDate.slice(1,11)//removes unnecessary data
+  const slicedDate = startDate.slice(0,10)//removes unnecessary data
   console.log(slicedDate)
 
   //consul value
@@ -318,9 +318,11 @@ app.get("/getUserAppointmentDetails", async(req,res) => {
 app.get("/getTodayUserAppointmentDetails", async(req,res) => {
 
   const patientIDNumber = req.query.patientIDnumber;
-  console.log(patientIDNumber)
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(patientIDNumber + " " + slicedDate)
     
-      await AppDetails.find({patientIDnumber: patientIDNumber})
+      await AppDetails.find({patientIDnumber: patientIDNumber, date:slicedDate})
           .then((data) => {
             res.json(data);
           })
@@ -328,6 +330,26 @@ app.get("/getTodayUserAppointmentDetails", async(req,res) => {
            console.log('error: ', error)
           });
         });
+
+//filtered Upcoming
+app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
+
+  const patientIDNumber = req.query.patientIDnumber;
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(patientIDNumber + " " + slicedDate);
+
+  await AppDetails.find({patientIDnumber: patientIDNumber, date:{$ne: slicedDate}})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+
+});
+
+
 //get notification details
 app.get("/getNotifDetails", async (req, res) => {
   const patientIDnumber = req.query.patientIDnumber;
