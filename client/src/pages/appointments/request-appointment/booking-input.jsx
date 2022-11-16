@@ -21,6 +21,17 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
             console.error(error);
         }
 
+        //ToS validation
+        const [agree, setAgree] = useState(false);
+
+        const tosHandler = () => {
+            setAgree(!agree);
+        }
+
+        const btnHandler = () => {
+            nextStep();
+        }
+
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
 
@@ -153,9 +164,10 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
 
                         <div className="col-12">
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
+                                {/* <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/> */}
+                                <input className="form-check-input" type="checkbox" value="" id="agree" onChange={tosHandler} required/>
                                 <label className="form-check-label" htmlFor="invalidCheck">
-                                    Agree to the <a href="/">Terms and Conditions.</a>
+                                    Agree to the <a href="/terms-of-use">Terms of Use.</a>
                                 </label>
                                 <div className="invalid-feedback">
                                     You must agree before proceeding.
@@ -166,7 +178,7 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                         <div className="col-12">
                             <div className="appt-bttns">
                             <a href='/appointments'><button className="btn btn-outline-secondary" type="submit">Cancel</button></a>
-                            <button onClick={Continue} className="btn btn-primary" type="submit">Next</button>
+                            <button disabled={!agree} onClick={Continue} className="btn btn-primary" type="submit">Next</button>
                             </div>
                         </div>
 

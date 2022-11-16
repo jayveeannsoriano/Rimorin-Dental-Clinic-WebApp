@@ -14,8 +14,8 @@ function Footer() {
                         </div>
                         <div class="col-lg-6">
                             <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-                                <a href="privacy-policy">Privacy Policy</a>
-                                <a href="terms-of-use">Terms of Use</a>
+                                <a href="/privacy-policy">Privacy Policy</a>
+                                <a href="/terms-of-use">Terms of Use</a>
                             </nav>
                         </div>
                     </div>
