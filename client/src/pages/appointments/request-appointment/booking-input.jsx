@@ -116,7 +116,6 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                         <h3 id="doctor-name">Pamela Rimorin Concepcion</h3>
                         <h2>Clinic Location:</h2>
                         <h3 id="clinic-location">Victoria Shoppesville, Upper Mabini Street, Baguio City, Philippines</h3>
-                        <button onClick={() => DisableTimeslot()}>TEST BUTTON</button>
                     </div>
 
                     {/* Booking deets */}

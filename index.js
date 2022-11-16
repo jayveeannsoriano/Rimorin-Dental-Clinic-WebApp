@@ -434,6 +434,17 @@ app.get("/getUserTransaction", async(req,res) => {
       });
     });
 
+    app.get("/getUserforAdmin", async(req,res) => {
+    
+      await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
     app.get("/getTransaction", async(req,res) => {
 
       const patientIDnumber = req.query.patientIDnumber;
@@ -520,7 +531,7 @@ app.get("/getTotalAppts", async(req,res) => {
 
 app.get("/getTotalPendingAppts", async(req,res) => {
 
-  await AppDetails.countDocuments({"appStatus":"Pending"})
+  await AppRequest.countDocuments({"appStatus":"Pending"})
       .then((data) => {
         res.json(data);
       })
