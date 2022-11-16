@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import Axios from 'axios';
 
-const Timeslot = (props) => {
+const Timeslot = (props,dateSelected) => {
   let intime = "09:00 AM"
   let outtime = "05:00 PM"
   const [result, setResult] = useState([])
@@ -29,6 +29,9 @@ const Timeslot = (props) => {
 
     return result;
   }
+
+  console.log("this are the data for time", result)
+  console.log("and this is the date inside timeslot", dateSelected)
 
   intervals(intime, outtime);
   return (
