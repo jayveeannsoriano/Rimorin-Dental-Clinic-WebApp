@@ -14,9 +14,9 @@ export default function DentistDashboard() {
   const [totalAppts, setTotalAppts] = useState(0);
   const [totalPendingAppts, setTotalPendingAppts] = useState(0);
 
-  const handleTableChange = () => {
-    console.log('Clicked')
-  }
+  // const handleTableChange = () => {
+  //   console.log('Clicked')
+  // }
 
   const getTotalPatients = async() => {
     try{
@@ -96,18 +96,17 @@ export default function DentistDashboard() {
         {/* <!-- Today's Appointments Card --> */}
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card appointments-card">
-                <div class="card-body">
                   <h5 class="card-title">Appointments</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-stethoscope"></i>
                     </div>
+
                     <div class="ps-3">
                       <h6>{totalAppts}</h6>
                     </div>
                   </div>
-                </div>
 
               </div>
             </div>
@@ -116,19 +115,17 @@ export default function DentistDashboard() {
             {/* <!-- Total Patients Card --> */}
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card total-patients-card">
-
-                <div class="card-body">
                   <h5 class="card-title">Total Patients</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-users"></i>
                     </div>
+
                     <div class="ps-3">
                       <h6>{totalPatients}</h6>
                     </div>
                   </div>
-                </div>
 
               </div>
             </div>
@@ -139,7 +136,6 @@ export default function DentistDashboard() {
 
               <div class="card info-card pending-appts-card">
 
-                <div class="card-body">
                   <h4 class="card-title">Pending Appointment Requests</h4>
 
                   <div class="d-flex align-items-center">
@@ -150,10 +146,8 @@ export default function DentistDashboard() {
                       <h6>{totalPendingAppts}</h6>
                     </div>
                   </div>
-
                 </div>
-              </div>
-
+            
             </div>
             {/* <!-- End Pending Appointment Requests --> */}
 
@@ -163,18 +157,30 @@ export default function DentistDashboard() {
               <div class="card overflow-auto">
 
                 <div class="card-body datatable">
-                  <div class="nav-bar">
-                    <Button onClick={handleTableChange} className="table-button">TODAY</Button>
-                    <Button className="table-button">UPCOMING</Button>
+                  <div class="nav nav-bar">
+                    <Button className="table-button" data-bs-toggle="tab" data-bs-target="#today-appt">TODAY</Button>
+                    <Button className="table-button" data-bs-toggle="tab" data-bs-target="#upcoming-appt">UPCOMING</Button>
                   </div>
-                  <h5 className="card-title">
-                    TODAY&apos;S APPOINTMENTS
-                  </h5>
-                      <DentistDTable/>
+
+                <div className="tab-content">
+                    <div className="tab-pane fade show active today-appt" id="today-appt">
+                      <h5 className="card-title">
+                        TODAY&apos;S APPOINTMENTS
+                      </h5>
+                          <DentistDTable/>
+                    </div>
+
+                    <div className="tab-pane fade today-appt" id="upcoming-appt">
+                      <h5 className="card-title">
+                        UPCOMING APPOINTMENTS
+                      </h5>
+                      {/* Pachange nalang yung datatable here */}
+                          <DentistDTable/>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
         </div>
       </section>
     </>

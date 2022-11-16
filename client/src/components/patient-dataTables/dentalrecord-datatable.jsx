@@ -53,6 +53,7 @@ const DentalRecordDataTable = (response) => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
+                    {/* wala akong maisip na link HAHAHA i-specify nalang with the dentalrecordID kung meron */}
                     <Button className="view-button" href={"/dentist/patient-records/dental-record/view-dental-records/123"}>
                         <i class="bi bi-eye-fill"></i>View
                     </Button>
