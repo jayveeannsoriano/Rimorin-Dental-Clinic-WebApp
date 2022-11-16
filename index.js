@@ -9,6 +9,8 @@ const multer = require('multer');
 
 app.use(express.json()); //prints body request
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
+
 require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -434,6 +436,17 @@ app.get("/getUserTransaction", async(req,res) => {
       });
     });
 
+    app.get("/getUserforAdmin", async(req,res) => {
+    
+      await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
     app.get("/getTransaction", async(req,res) => {
 
       const patientIDnumber = req.query.patientIDnumber;
@@ -494,13 +507,13 @@ app.get("/getUserAppts", async(req,res) => {
       });
     });
 
-    app.get("/getDentalChart", async(req,res) => {
+    app.get("/getSpecificDentalRecord", async(req,res) => {
       var url = require('url');
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
-      await User.find({email:query.email})
+      await DentalRecords.findOne({patientIDNumber:"PT#"+query.patientIDNum,dentalDate:query.date})
         .then((data) => {
-          res.json(data);
+          res.jsonp(data);
         })
         .catch((error) => {
           console.log('error: ', error)
@@ -520,7 +533,7 @@ app.get("/getTotalAppts", async(req,res) => {
 
 app.get("/getTotalPendingAppts", async(req,res) => {
 
-  await AppDetails.countDocuments({"appStatus":"Pending"})
+  await AppRequest.countDocuments({"appStatus":"Pending"})
       .then((data) => {
         res.json(data);
       })
@@ -722,7 +735,7 @@ const ImgStorage = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb( null, "PT#"+req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
+    cb( null, "PT#"+req.body.patientIDNum+"_"+slicedDate);
   },
 });
 

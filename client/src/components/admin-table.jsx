@@ -14,7 +14,7 @@ const AdminTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/get');
+            const response = await axios.get('http://localhost:3001/getUserforAdmin');
             console.log(response);
             setAppointment(response.data);
             setFilteredAppointment(response.data);
@@ -23,40 +23,27 @@ const AdminTable = () => {
         }
     }
 
-    const onRowClick = (state, rowInfo, column, instance) => {
-        console.log(rowInfo);
-        return {
-            onClick: e => {
-                console.log('A Td Element was clicked!')
-                console.log('it produced this event:', e)
-                console.log('It was in this column:', column)
-                console.log('It was in this row:', rowInfo)
-                console.log('It was in this table instance:', instance)
-            }
-        }
-    }
-
     const columns = [
         {
             name: 'Account ID',
-            // selector: (row) => row.accID,
+            selector: (row) => 'Account ID: ' + row._id,
             sortable: true,
         },
         {
             name: "Account Name",
-            // selector: (row) => row.accName,
+            selector: (row) => row.fname + " " + row.lname,
             sortable: true,
         },
         {
             name: "Email",
-            // selector: (row) => row.email,
+            selector: (row) => row.email,
             sortable: true,
         },
         {
             name: "Action",
             selector: row => <div>
-
-                {/* view , archive */}
+                <button>View</button>
+                <button>Archive</button>
                 </div>
         },
     ];
@@ -109,7 +96,7 @@ const AdminTable = () => {
 
     useEffect(() => {
         const result = appointment.filter((appointment) => {
-            return appointment.pName.toLowerCase().match(search.toLowerCase());
+            return appointment.fname.toLowerCase().match(search.toLowerCase());
         });
 
         setFilteredAppointment(result)

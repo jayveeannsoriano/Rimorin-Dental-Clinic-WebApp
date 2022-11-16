@@ -92,7 +92,7 @@ const DentistRoutes = {
                     element: <ExistingDentalRecord />
                 },
                 {
-                    path: '/dentist/patient-records/dental-record/view-dental-records/123',
+                    path: '/dentist/patient-records/dental-record/view-dental-records/specific-record',
                     element: <ViewSpecificDentalRecord />
                 },
                 {

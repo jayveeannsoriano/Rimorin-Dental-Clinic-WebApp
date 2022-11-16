@@ -38,10 +38,13 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
         //time input
         const [time, setGetTime] = useState("");
 
+        
+    const dateValue = ""+startDate;
+    const stringDateValue = dateValue.toString().substring(0,10);
+
         //retrieve Time data from Timeslot
         const getBookingData = (data)=>{
             console.log('Retrieving Data from Booking Input: ', data)
-            // handleTimeChange(data);
             setGetTime(data);
             window.localStorage.setItem('time',data);
         }
@@ -56,10 +59,9 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
         //  console.log("Inserting ",values.time, " to the database.");
 
         //go to next modal
-        nextStep();
-
-
+        nextStep();    
     };
+
 
     return(
         
@@ -147,7 +149,7 @@ const BookingInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,v
                         <div className="col-md-6">
                             <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                             <p> Available Times </p>
-                            <Timeslot onSubmit={getBookingData}/>
+                            <Timeslot onSubmit={getBookingData} dateSelected={stringDateValue}/>
                         </div>
                     </div>
 
