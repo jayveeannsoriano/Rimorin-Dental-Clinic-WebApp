@@ -4,6 +4,7 @@ import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import PaymentStatusText from "./payment-status-text";
 import ViewFile from "../../../components/modals/view-file"
+import { Button } from "react-bootstrap";
 
 const SecTransactionDataTable = (patientIDNum) => {
 
@@ -68,10 +69,7 @@ const SecTransactionDataTable = (patientIDNum) => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons" >
-                <button className="create-button" value={row.appNum} onClick={(e) => {
-                    setPatientValue(e.target.value);
-                    goToReceipt();
-                }}>Create Receipt</button>
+                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1)}>Create Receipt</Button>
                 <ViewFile/>
                  </div>
         }
