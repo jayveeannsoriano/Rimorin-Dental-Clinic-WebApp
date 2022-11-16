@@ -39,6 +39,7 @@ const UserProfile = () => {
                                 </ul>
 
                                 <div class="tab-content pt-2">
+                                    {/* Profile Overview */}
                                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                                         <h5 class="card-title">Profile Details</h5>
