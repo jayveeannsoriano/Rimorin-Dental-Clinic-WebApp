@@ -62,19 +62,8 @@ const PatientInfo = () => {
             <div className="card patient-info">
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
-
-                <button className="btn btn-primary" type="submit">
-                <i class="bi bi-printer-fill"></i>
-                  Print
-                </button>
-                
-                <button className="btn btn-primary" type="submit">
-                <i class="bi bi-download"></i>
-                  Export
-                </button>
                 
                 <div className="divider"></div>
-
 
                 {/* Patient information */}
     

@@ -60,27 +60,12 @@ useEffect(() => {
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
-                {/* <a href="/patient/patient-records/patient-info-edit">  */}
-                {/* <button a href="/patient/patient-records/patient-info-edit" className="btn btn-primary btn-link" type="submit">
-                <i class="bi bi-pencil-fill"></i>
-                  Edit 
-                </button> */}
                 <Button a href="/patient/patient-records/patient-info-edit">
-                <i class="bi bi-pencil-fill"></i>
+                  <i class="bi bi-pencil-fill"></i>
                   Edit
                 </Button>
 
-                <button className="btn btn-primary" type="submit">
-                <i class="bi bi-printer-fill"></i>
-                  Print
-                </button>
-
-                <button className="btn btn-primary" type="submit">
-                <i class="bi bi-download"></i>
-                  Export
-                </button>
                 <div className="divider"></div>
-
 
                 {/* Patient information */}
                 {userInformation.map((item, index) => (  

@@ -1,10 +1,10 @@
-import axios from "axios";
+import Axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+import Button from 'react-bootstrap/Button';
 
 const DentalRecordDataTable = (response) => {
- 
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([response.response]);
@@ -53,7 +53,9 @@ const DentalRecordDataTable = (response) => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                <button>View</button>
+                    <Button className="view-button" href={"/dentist/patient-records/dental-record/view-dental-records/123"}>
+                        <i class="bi bi-eye-fill"></i>View
+                    </Button>
                  </div>
         }
     ];
@@ -90,6 +92,7 @@ const DentalRecordDataTable = (response) => {
     );
 
     return <DataTable
+    className="transaction-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}

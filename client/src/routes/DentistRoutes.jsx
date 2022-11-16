@@ -24,6 +24,9 @@ const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-
 const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription/dentist-module'));
 const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions'));
 
+//View Specific Dental Record
+const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/view-dental-record'));
+
 //create prescription routing
 const CreateEprescription = lazy(() => import('../pages/eprescription/dentist-module/create-eprescription'));
 
@@ -87,6 +90,10 @@ const DentistRoutes = {
                 {
                     path: '/dentist/patient-records/dental-record/view-dental-records',
                     element: <ExistingDentalRecord />
+                },
+                {
+                    path: '/dentist/patient-records/dental-record/view-dental-records/123',
+                    element: <ViewSpecificDentalRecord />
                 },
                 {
                     path: '/dentist/patient-records/dental-record/create-dental-record',
