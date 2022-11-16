@@ -11,8 +11,13 @@ const DentalRecordDataTable = (response) => {
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    var url = require('url');
+    var url_parts = url.parse(window.location.href, true);
+    var query = url_parts.query;
     
     useEffect(() => {
+
+      
     
 		const timeout = setTimeout(() => {
 			setRows(appointment);
@@ -44,7 +49,8 @@ const DentalRecordDataTable = (response) => {
             sortable: true,
         },
         {
-            name: 'Tooth No.'
+            name: 'Tooth No.',
+            selector: (row) => row.chartedTeeth,
         },
         {
             name: 'Treatment',
@@ -53,8 +59,7 @@ const DentalRecordDataTable = (response) => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                    {/* wala akong maisip na link HAHAHA i-specify nalang with the dentalrecordID kung meron */}
-                    <Button className="view-button" href={"/dentist/patient-records/dental-record/view-dental-records/123"}>
+                    <Button className="view-button" href={"/dentist/patient-records/dental-record/view-dental-records/specific-record?patientIDNum="+ query.patientIDNum+"&date="+row.dentalDate}>
                         <i class="bi bi-eye-fill"></i>View
                     </Button>
                  </div>
