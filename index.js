@@ -722,7 +722,7 @@ const ImgStorage = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb( null, req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
+    cb( null, "PT#"+req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
   },
 });
 
@@ -801,15 +801,15 @@ app.put("/updateReceipt", async (req,res) =>{
 });
 
 const ImgStorage2 = multer.diskStorage({
-  destination: "uploads/dental-record-images",
+  destination: "uploads/e-prescription",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb( null, req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
+    cb( null, 'PT#' + req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
   },
 });
 
 const uploadImg2 = multer({
-  storage:ImgStorage
+  storage:ImgStorage2
 });
 
 app.post("/createEprescription",uploadImg2.single('imageFile'), async (req,res)=>{
