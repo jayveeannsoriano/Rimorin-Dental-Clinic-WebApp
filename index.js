@@ -45,6 +45,7 @@ require("./models/appointmentRequest");
 require("./models/receiptDetails");
 require("./models/dentalRecords");
 require("./models/notificationDetails");
+require("./models/appointmentHistory");
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
@@ -52,7 +53,7 @@ const AppRequest = mongoose.model("AppointmentRequest");
 const ReceiptDetails = mongoose.model("ReceiptDetails");
 const DentalRecords = mongoose.model("UserDentalRecords");
 const NotifDetails = mongoose.model("NotificationDetails");
-
+const AppHistory = mongoose.model("AppointmentHistory");
 
 //sign in
 app.post("/login-user", async (req, res) => {
@@ -898,4 +899,32 @@ app.put("/updatePatientInfo", async (req, res) => {
     await NotifDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
     await ReceiptDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
   console.log("User info updated!");
+});
+
+
+app.post("/moveToAppointmentHistory", async (req,res)=>{
+
+  const PatientIDNumber = req.body.patientIDnumber;
+  const appNumber = req.body.appNum;
+  const patientValue = req.body.pName;
+  const dentistValue = req.body.dName;
+  const dateValue = req.body.date;
+  const timeValue = req.body.time;
+  const consultationValue = req.body.consultation;
+
+  // const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
+  
+  await AppHistory.create({
+    patientIDnumber: PatientIDNumber,
+    appNum: appNumber, 
+    appStatus: acceptedStatus,
+    payStatus: payStatus, 
+    pName: patientValue, 
+    dName: dentistValue, 
+    date: dateValue,
+    time: timeValue, 
+    consultation: consultationValue
+  });
+  await AppDetails.findOneAndDelete({appNum:appNumber})
+
 });

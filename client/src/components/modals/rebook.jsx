@@ -30,9 +30,27 @@ function rebook(patientIDnumber,appNum,pName,dName,date,time,consultation) {
       appNum: AppNumber,
       newAppStatus: selectValue 
      });
-  
 
+    if(selectValue == "No Show"){
+
+      //insert pop-up modal here for accept and cancel//
+
+      // Axios.post("http://localhost:3001/moveToAppointmentHistory",{
+      //   patientIDnumber: PatientIDNumber,
+      //   appNum: AppNumber,
+      //   pName: patientValue,
+      //   dName: dentistValue,
+      //   date: dateValue,
+      //   time: timeValue,
+      //   consultation: consultationValue
+      // })
+      console.log(appNum + " did not arrive. Moving data to appointment history." )
+    }else{
+      console.log("Receipt not created")
+    }
+    
     if(selectValue == "Finished"){
+
       Axios.post("http://localhost:3001/createReceipt",{
         patientIDnumber: PatientIDNumber,
         appNum: AppNumber,
