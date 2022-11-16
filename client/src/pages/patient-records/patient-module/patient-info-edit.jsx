@@ -4,7 +4,7 @@ import "react-bootstrap";
 import ProfileWidget from "../../../components/profile-widget";
 import Axios from 'axios';
 
-const PatientInfoEdit = () => {
+const PatientInfoEdit = ({}) => {
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
   console.log(patientIDnumber);
@@ -85,7 +85,7 @@ const PatientInfoEdit = () => {
           <div class="col-xl-8">
           {/* <form> */}
             <div className="card patient-info">
-            <form>  
+            <form onSubmit={() => updatePatientInfo()}> 
               <div className="card-body pt-3">
                 <h5 className="card-title">Patient Information</h5>
 
@@ -116,7 +116,7 @@ const PatientInfoEdit = () => {
                     First Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="firstName" type="text" class="form-control" id="firstName" onChange={(e) => setFirstValue(e.target.value)} />
+                    <input name="firstName" type="text" className="form-control" id="firstName" onChange={(e) => setFirstValue(e.target.value)} required/>
                   </div>
 
                 </div>
@@ -126,28 +126,28 @@ const PatientInfoEdit = () => {
                     Last Name
                   </div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="lastName" type="text" class="form-control" id="lastName" onChange={(e) => setLastValue(e.target.value)} />
+                    <input name="lastName" type="text" className="form-control" id="lastName" onChange={(e) => setLastValue(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="middleName" type="text" class="form-control" id="middleName" onChange={(e) => setMiddleValue(e.target.value)} />
+                    <input name="middleName" type="text" className="form-control" id="middleName" onChange={(e) => setMiddleValue(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Birthdate</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="date" type="text" class="form-control" id="Birthday" onChange={(e) => setBirthDate(e.target.value)} />
+                    <input name="date" type="text" className="form-control" id="Birthday" onChange={(e) => setBirthDate(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Age</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="age" type="text" class="form-control" id="Birthday" onChange={(e) => setAgeValue(e.target.value)} />
+                    <input name="age" type="text" className="form-control" id="Birthday" onChange={(e) => setAgeValue(e.target.value)} required/>
                   </div>
                 </div>
 
@@ -181,28 +181,28 @@ const PatientInfoEdit = () => {
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Profession</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="profession" type="text" class="form-control" id="Profession" onChange={(e) => setProfessionValue(e.target.value)} />
+                  <input name="profession" type="text" className="form-control" id="Profession" onChange={(e) => setProfessionValue(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Cell #</div>
                   <div class="col-lg-auto col-md-auto">
-                  <input name="cellNumber" type="tel" class="form-control" id="cellNumber" onChange={(e) => setCellValue(e.target.value)} />
+                  <input name="cellNumber" type="tel" className="form-control" id="cellNumber" onChange={(e) => setCellValue(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Tel #</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input name="telNumber" type="tel" class="form-control" id="telNumber" onChange={(e) => setTellNumber(e.target.value)} />
+                    <input name="telNumber" type="tel" className="form-control" id="telNumber" onChange={(e) => setTellNumber(e.target.value)} required/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Blood Type</div>
                   <div class="col-lg-auto col-md-auto">
-                    <input type="bloodType" class="form-control" id="bloodType" onChange={(e) => setBloodValue(e.target.value)}/>
+                    <input type="bloodType" className="form-control" id="bloodType" onChange={(e) => setBloodValue(e.target.value)} required/>
                   </div>
                 </div>
               </div>
@@ -217,7 +217,7 @@ const PatientInfoEdit = () => {
                   House No. & Street Name
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address-house" class="form-control" id="Address" onChange={(e) => setHouseValue(e.target.value)}/>
+                  <input type="address-house" className="form-control" id="Address" onChange={(e) => setHouseValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -226,14 +226,14 @@ const PatientInfoEdit = () => {
                   Municipality/City
                 </div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address-city" class="form-control" id="Address" onChange={(e) => setCityValue(e.target.value)}/>
+                  <input type="address-city" className="form-control" id="Address" onChange={(e) => setCityValue(e.target.value)} required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Country</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" class="form-control" id="Address" onChange={(e) => setCountryValue(e.target.value)}/>
+                  <input type="address" className="form-control" id="Address" onChange={(e) => setCountryValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -241,20 +241,20 @@ const PatientInfoEdit = () => {
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">District/Barangay</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" class="form-control" id="Address" onChange={(e) => setBrgyValue(e.target.value)}/>
+                  <input type="address" className="form-control" id="Address" onChange={(e) => setBrgyValue(e.target.value)} required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">Province</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" class="form-control" id="Address" onChange={(e) => setProvinceValue(e.target.value)}/>
+                  <input type="address" className="form-control" id="Address" onChange={(e) => setProvinceValue(e.target.value)} required/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-auto col-md-auto label">ZIP Code</div>
                 <div class="col-lg-auto col-md-auto">
-                  <input type="address" class="form-control" id="Address" onChange={(e) => setZipValue(e.target.value)}/>
+                  <input type="address" className="form-control" id="Address" onChange={(e) => setZipValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -268,7 +268,7 @@ const PatientInfoEdit = () => {
                 </div>
 
                 <div class="col-lg-3">
-                  <input type="medications" class="form-control" id="Medications" onChange={(e) => setMedValue(e.target.value)}/>
+                  <input type="medications" className="form-control" id="Medications" onChange={(e) => setMedValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -278,7 +278,7 @@ const PatientInfoEdit = () => {
                   Ibuprofen
                 </div> */}
                 <div class="col-lg-3">
-                  <input type="allergies" class="form-control" id="Allergies" onChange={(e) => setAllergiesValue(e.target.value)}/>
+                  <input type="allergies" className="form-control" id="Allergies" onChange={(e) => setAllergiesValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -288,7 +288,7 @@ const PatientInfoEdit = () => {
                   Asthma
                 </div> */}
                 <div class="col-lg-3">
-                  <input type="conditions" class="form-control" id="Conditions" onChange={(e) => setCondValue(e.target.value)}/>
+                  <input type="conditions" className="form-control" id="Conditions" onChange={(e) => setCondValue(e.target.value)} required/>
                 </div>
               </div>
 
@@ -299,9 +299,9 @@ const PatientInfoEdit = () => {
                 </button>
             </form>
             </div>
-            {/* </form> */}
+          {/* </form>  */}
             {/* end of card body */}
-            <button className="btn btn-primary" type="submit" onClick={() => updatePatientInfo()}>
+            <button className="btn btn-primary" type="submit">
                   <i class="bi bi-save"></i>
                   Save
                 </button>

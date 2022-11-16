@@ -41,6 +41,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 onChange={handleChange('minitial')}
                 defaultValue={values.suffix}
               // onChange={(e) => this.setState({ suffix: e.target.value})}
+                required
               />
             </div>
           </div>
