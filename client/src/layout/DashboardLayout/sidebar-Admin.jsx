@@ -23,12 +23,11 @@ function Sidebar_Admin(){
                     <div className='divider'></div>
                     <h4>ADMIN MENU</h4>
 
-                    {/* Appointments Nav */}
+                    {/* Dashboard Nav */}
                     <li className="nav-item">
-                        <a className={"nav-link " +((window.location.href.split("/").pop()=='appointments') ? 'active': 'collapsed')} 
-                        href="/admin">
-                        <i class="fa-solid fa-stethoscope"></i>
-                        <span>Appointments</span>
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='admin') ? ' active': ' collapsed')} href="/admin" >
+                        <i className="fa-solid fa-table-columns"></i>
+                            <span>Dashboard</span>
                         </a>
                     </li>
 

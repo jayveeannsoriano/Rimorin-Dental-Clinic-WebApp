@@ -83,7 +83,7 @@ export default function DentistDashboard() {
       <div className="pagetitle">
         <h1>Welcome, Sec. {userInfo['lname']}!</h1>
           <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <p>{time}</p>
+          <h2>{time}</h2>
       </div>
 
       <section className="section dashboard">
@@ -107,7 +107,6 @@ export default function DentistDashboard() {
 
               </div>
             </div>
-            {/* <!-- End Today's Appointments Card --> */}
 
             {/* <!-- Total Patients Card --> */}
             <div class="col-xxl-4 col-md-6">
@@ -128,7 +127,6 @@ export default function DentistDashboard() {
 
               </div>
             </div>
-            {/* <!-- Total Patients Card --> */}
 
             {/* <!--Pending Appointment Requests--> */}
             <div class="col-xxl-4 col-xl-12">
@@ -150,8 +148,6 @@ export default function DentistDashboard() {
               </div>
 
             </div>
-            {/* <!-- End Pending Appointment Requests --> */}
-
 
             {/* <!-- Today's Appointment --> */}
             <div class="col-12">
