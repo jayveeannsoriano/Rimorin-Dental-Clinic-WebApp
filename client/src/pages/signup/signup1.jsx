@@ -16,7 +16,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         </p>
 
         <div className="row">
-          <div className="col-8">
+          <div className="col">
             <div className="mb-3">
               <label>First name</label>
               <input
@@ -31,15 +31,15 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
           </div>
 
-          <div className="col-4">
+          <div className="col">
             <div className="mb-3 suffix">
-              <label>Middle Initial</label>
+              <label>Middle Name</label>
               <input
                 type="text"
                 className="form-control suffix"
-                placeholder="(e.g. C.)"
-                onChange={handleChange('minitial')}
-                defaultValue={values.suffix}
+                placeholder="Middle Name"
+                onChange={handleChange('midname')}
+                defaultValue={values.midname}
                 required
               />
             </div>
@@ -157,7 +157,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
               <input
                 type="number"
                 className="form-control"
-                placeholder="09XXXXXXXXX"
+                placeholder="09123456789"
                 onChange={handleChange('mobile')}
                 defaultValue={values.mobile}
                 maxLength={11}
@@ -170,11 +170,12 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Telephone Number</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control"
-                placeholder="0XX-XXX-YYYY"
+                placeholder="123-456-789"
                 onChange={handleChange('tellphone')}
                 defaultValue={values.tellphone}
+                // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               />
             </div>
           </div>

@@ -118,9 +118,10 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                         </div>
 
                         {/* Booking deets */}
+                        <form onSubmit={Continue}>
                         <div className="appointment-form" id="appointment-form">
 
-                            <form className="row g-3 needs-validation" noValidate />
+                            {/* <form className="row g-3 needs-validation" /> */}
                             <div className="col-md-4">
                                 <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
 
@@ -158,7 +159,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                 className="form-control"
                                 value={values.consultation}
                                 onChange={handleChange('consultation')}
-                                id="reason" rows="5" placeholder="Write reason here..." required></textarea>
+                                id="reason" rows="5" placeholder="Write reason here..." required ></textarea>
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -166,8 +167,8 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
                         <div className="col-12">
                             <div className="form-check">
-                                {/* <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/> */}
-                                <input className="form-check-input" type="checkbox" value="" id="agree" onChange={tosHandler} required />
+                                <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
+                                {/* <input className="form-check-input" type="checkbox" value="" id="agree" onChange={tosHandler} required /> */}
                                 <label className="form-check-label" htmlFor="invalidCheck">
                                     Agree to the <a href="/terms-of-use">Terms of Use.</a>
                                 </label>
@@ -180,9 +181,11 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                         <div className="col-12">
                             <div className="appt-bttns">
                                 <a href='/appointments'><button className="btn btn-outline-secondary" type="submit">Cancel</button></a>
-                                <button disabled={!agree} onClick={Continue} className="btn btn-primary" type="submit">Next</button>
+                                {/* <button disabled={!agree} onClick={Continue} className="btn btn-primary" type="submit">Next</button> */}
+                                <button  className="btn btn-primary" type="submit">Next</button>
                             </div>
                         </div>
+                        </form>
 
                     </div> {/* End of card-body */}
 
