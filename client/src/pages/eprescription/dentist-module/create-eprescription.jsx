@@ -10,13 +10,23 @@ import Axios from 'axios';
 import PrescriptionDetails from "../../../components/modals/preview-prescription";
 
 const createEprescription = () => {
+    // Add item function
+    const [prescriptionItem, setPrescriptionList] = useState([{input: ""}]);
+    const handleItemAdd = () => {
+        setPrescriptionList([...prescriptionItem, {input:""}]);
+    };
+    //Remove item function
+    const handleItemRemove = (index) => {
+        const list = [...prescriptionItem];
+        list.splice(index, 1);
+        setPrescriptionList(list);
+    };
 
     const location = useLocation()
     const paramsID = new URLSearchParams(location.search)
     const getPatientIDNumber = paramsID.get('patientIDNum');
     const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
     console.log(StringfyIDnumber, 'create e-prescription');
-
 
     //calendar input
     const [startDate, setStartDate] = useState(new Date());
@@ -54,9 +64,6 @@ const createEprescription = () => {
         });
     }
 
-
-
-
     const [imgFile, setFile] = useState();
     function handleChange(event) {
         setFile(event.target.files[0])
@@ -77,7 +84,6 @@ const createEprescription = () => {
         });
 
     }
-
 
     return (
         <>
@@ -144,64 +150,65 @@ const createEprescription = () => {
 
                                     {/* Add Item */}
                                     <div className="add-more-item text-left">
-                                        <a href="javascript:void(0);">
-                                            <button type="submit" className="btn btn-primary rx-btn">
+                                            <button 
+                                                className="btn btn-primary rx-btn"
+                                                onClick={handleItemAdd}>
                                                 <i className="fas fa-plus" /> Add Item
                                             </button>
-                                        </a>
                                     </div>
 
                                     <div className="card-form">
                                         <div className="card-body-form">
                                             <div className="row gen-row">
                                                 {/* row for prescription fields */}
-                                                <div className="col-10 in-fields ">
-                                                    {/* generic, brand, dosage */}
+                                                {prescriptionItem.map((singleItem, index) => (
+                                                    <div key={index} className="col-10 in-fields">
                                                     <div className="row ">
                                                         <div className="col">
                                                             <label>Generic <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="Mefenamic Acid" onChange={(e) => { setGenericValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="Mefenamic Acid" onChange={(e) => { setGenericValue(e.target.value) }} />
                                                         </div>
                                                         <div className="col">
                                                             <label>Brand <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="Ponstan" onChange={(e) => { setBrandValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="Ponstan" onChange={(e) => { setBrandValue(e.target.value) }} />
 
                                                         </div>
                                                         <div className="col">
                                                             <label>Dosage <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="500mg" onChange={(e) => { setDosageValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="500mg" onChange={(e) => { setDosageValue(e.target.value) }} />
                                                         </div>
                                                     </div>
-                                                    {/* form, freq, duration */}
                                                     <div className="row">
                                                         <div className="col">
                                                             <label>Form <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="Capsule" onChange={(e) => { setFormValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="Capsule" onChange={(e) => { setFormValue(e.target.value) }} />
                                                         </div>
                                                         <div className="col">
                                                             <label>Frequency <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="3 caps a day" onChange={(e) => { setFrequencyValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="3 caps a day" onChange={(e) => { setFrequencyValue(e.target.value) }} />
                                                         </div>
                                                         <div className="col">
                                                             <label>Duration <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" placeholder="3 days - 1 week" onChange={(e) => { setDurationValue(e.target.value) }} />
+                                                            <input id="item" type="text" class="form-control" placeholder="3 days - 1 week" onChange={(e) => { setDurationValue(e.target.value) }} />
                                                         </div>
                                                     </div>
-
-                                                </div>
-
-                                                {/* del btn */}
-                                                <div className="col del">
-                                                    <div class="add-more">
-                                                        <br />
-                                                        <a href="#" className="btn bg-danger-light trash">
-                                                            <i className="far fa-trash-alt" /></a>
+                                                    {/* remove button*/}
+                                                    <div className="col del">
+                                                        {prescriptionItem.length !== 1 && (
+                                                                <button 
+                                                                    type="button"
+                                                                    onClick={() => handleItemRemove(index)}
+                                                                    className="remove-btn btn bg-danger-light trash"
+                                                                    >
+                                                                    <i className="far fa-trash-alt"/>
+                                                                </button>
+                                                            )}
+                                                        </div>
                                                     </div>
+                                                    ))}
                                                 </div>
-
                                             </div> {/* general row  */}
 
-                                        </div>
                                         <div className="row form-row">
                                             <label>Notes</label>
                                             <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }}></textarea>
@@ -247,17 +254,13 @@ const createEprescription = () => {
                                                 >
                                                     Clear
                                                 </button>
-
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div> {/* end of prescription */}
-
                     </div> {/* end of row */}
-
                 </section>
             </div> {/* /Main Wrapper */}
         </>
