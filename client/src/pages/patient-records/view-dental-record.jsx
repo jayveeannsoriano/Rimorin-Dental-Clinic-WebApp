@@ -116,7 +116,6 @@ const ViewDentalRecord = () => {
                                     <h5 className="card-title">Treatment Attachments</h5>
                                     <div className="row attatchment-container" 
                                     style={{border: "2px solid #885df1", borderRadius: "15px", width: "784px", height: "289px"}}>
-                                        yan lang yung progress niyo?
                                         {/* Insert uploaded image/s for that specific record*/}
                                         <img src={"../../../../../uploads/dental-record-images/" + query.patientIDNum + "_" + query.date + ".jpg"} alt="Treatment attatchment"/>
                                     </div>
