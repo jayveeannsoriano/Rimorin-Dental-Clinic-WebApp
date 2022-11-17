@@ -6,7 +6,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import ErrorPage from '../components/errorpage';
 
 //sidebar routing
-const Appointments = lazy(() => import('../pages/appointments/index'));
+const Dashboard = lazy(() => import('../pages/dashboard/admin-dashboard'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
 const ClinicHours = lazy(() => import('../pages/clinic-hours'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
@@ -30,7 +30,7 @@ const AdminRoute ={
         },
         {
             path: '/admin',
-            element: <Appointments />
+            element: <Dashboard />
         },
         {
             path: '/admin/clinic-hours',

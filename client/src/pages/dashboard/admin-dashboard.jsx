@@ -1,98 +1,93 @@
 import React from "react";
 import axios from "axios";
-import '../../styles/dashboard.css';
-import Button from 'react-bootstrap/Button';
-import DentistDTable from '../../components/dental-table';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import ApptRequestTable from '../../components/dental-acceptcancel';
+import DentistDTable from '../../components/dental-table';
+import '../../styles/dashboard.css';
 
-
-export default function DentistDashboard() {  
-  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+ const AdminDashboard = () => {  
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   
-  const [totalPatients, setTotalPatients] = useState(0);
-  const [totalAppts, setTotalAppts] = useState(0);
-  const [totalPendingAppts, setTotalPendingAppts] = useState(0);
-
-  // const handleTableChange = () => {
-  //   console.log('Clicked')
-  // }
-
-  const getTotalPatients = async() => {
-    try{
-        let resp = await axios.get('http://localhost:3001/getTotalPatients');
-        setTotalPatients(resp.data);
-    }catch (error){
-        console.log(error)
-    }
-  }
-
-  const getTotalAppts = async() => {
-    try{
-        let resp = await axios.get('http://localhost:3001/getTotalAppts');
-        console.log(resp);
-        setTotalAppts(resp.data);
-    }catch (error){
-        console.log(error)
-    }
-  }
-
-  const getTotalPendingAppts = async() => {
-    try{
-        let resp = await axios.get('http://localhost:3001/getTotalPendingAppts');
-        setTotalPendingAppts(resp.data);
-    }catch (error){
-        console.log(error)
-    }
-  }
-
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, );
-
-  useEffect(() => {
-    getTotalAppts();
-  }, []);
+    const [totalPatients, setTotalPatients] = useState(0);
+    const [totalAppts, setTotalAppts] = useState(0);
+    const [totalPendingAppts, setTotalPendingAppts] = useState(0);
   
-  useEffect(() => {
-    getTotalPatients();
-  }, []);
-
-  useEffect(() => {
-    getTotalPendingAppts();
-  }, []);
-
-  // getTotalAppts();
-  // getTotalPatients();
-  // getTotalPendingAppts();
+    const getTotalPatients = async() => {
+      try{
+          let resp = await axios.get('http://localhost:3001/getTotalPatients');
+          setTotalPatients(resp.data);
+      }catch (error){
+          console.log(error)
+      }
+    }
+  
+    const getTotalAppts = async() => {
+      try{
+          let resp = await axios.get('http://localhost:3001/getTotalAppts');
+          console.log(resp);
+          setTotalAppts(resp.data);
+      }catch (error){
+          console.log(error)
+      }
+    }
+  
+    const getTotalPendingAppts = async() => {
+      try{
+          let resp = await axios.get('http://localhost:3001/getTotalPendingAppts');
+          setTotalPendingAppts(resp.data);
+      }catch (error){
+          console.log(error)
+      }
+    }
+  
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setTime(new Date().toLocaleTimeString());
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }, );
+  
+    useEffect(() => {
+      getTotalAppts();
+    }, []);
+    
+    useEffect(() => {
+      getTotalPatients();
+    }, []);
+  
+    useEffect(() => {
+      getTotalPendingAppts();
+    }, []);
+  
+    // getTotalAppts();
+    // getTotalPatients();
+    // getTotalPendingAppts();
   
   return (
     <>
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <a href="/dentist">Home</a>
           </li>
-          <li className="breadcrumb-item active">Dashboard</li>
+          <li className="breadcrumb-item active">Appointments</li>
         </ol>
       </nav>
 
-      {/* Page Title */}
-      <div className="pagetitle">
-        <h1>Welcome, Dr. {userInfo['lname']}!</h1>
-          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <h2>{time}</h2>
-      </div>
-
+        {/* Page Title */}
+        <div className="pagetitle">
+            <h1>Welcome, Admin {userInfo['lname']}!</h1>
+            <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+            <h2>{time}</h2>
+        </div>
+        
       <section className="section dashboard">
         <div className="row">
-            
             {/* <!-- Today's Appointments Card --> */}
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card appointments-card">
@@ -147,7 +142,7 @@ export default function DentistDashboard() {
                 </div>
             
             </div>
-
+        
             {/* <!-- Appointments --> */}
             <div class="col-12">
               <div class="card overflow-auto">
@@ -177,8 +172,16 @@ export default function DentistDashboard() {
                 </div>
               </div>
             </div>
+
+            <div className="col-12">
+            <div className="card overflow-auto appointment-request-table">
+                <h5 className="card-title">APPOINTMENT REQUEST</h5>
+                <ApptRequestTable/>
+            </div>
+            </div>
         </div>
       </section>
     </>
   );
 }
+export default AdminDashboard;
