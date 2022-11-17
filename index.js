@@ -490,48 +490,61 @@ app.get("/getUserAppts", async(req,res) => {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   await AppDetails.find({pName:query.pName})
-      .then((data) => {
-        var allEvents = [];
-      
-        for (var key in data) {
-          let color = "";
-          if(data[key].appStatus==="Pending"){
-            color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
-            color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
-            color = "#A9A9A9"
-          }else{
-            color = "#DC3545"
-          }
-          tempArr = {
-            title: data[key].dName + " at " +  data[key].time,
-            start: data[key].date,
-            color: color
-          }
-          allEvents.push(tempArr);
+    .then((data) => {
+      var allEvents = [];
+    
+      for (var key in data) {
+        let color = "";
+        if(data[key].appStatus==="Pending"){
+          color = "#FFC107"
+        }else if(data[key].appStatus==="Accepted"){
+          color = "#0DCAF0"
+        }else if(data[key].appStatus==="Finished"){
+          color = "#198754"
+        }else if(data[key].appStatus==="No Show"){
+          color = "#A9A9A9"
+        }else{
+          color = "#DC3545"
         }
-        res.json(allEvents  );
-      })
-      .catch((error) => {
-        console.log('error: ', error)
-      });
+        tempArr = {
+          title: data[key].dName + " at " +  data[key].time,
+          start: data[key].date,
+          color: color
+        }
+        allEvents.push(tempArr);
+      }
+      res.json(allEvents  );
+    })
+    .catch((error) => {
+      console.log('error: ', error)
     });
+  });
 
-    app.get("/getSpecificDentalRecord", async(req,res) => {
-      var url = require('url');
-      var url_parts = url.parse(req.url, true);
-      var query = url_parts.query;
-      await DentalRecords.findOne({patientIDNumber:"PT#"+query.patientIDNum,dentalDate:query.date})
-        .then((data) => {
-          res.jsonp(data);
-        })
-        .catch((error) => {
-          console.log('error: ', error)
-        });
+app.get("/getSpecificDentalRecord", async(req,res) => {
+  var url = require('url');
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  await DentalRecords.findOne({patientIDNumber:"PT#"+query.patientIDNum,dentalDate:query.date})
+    .then((data) => {
+      res.jsonp(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
     });
+});
+
+app.get("/getAppointmentsbyDate", async(req,res) => {
+  var url = require('url');
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;  
+  await AppDetails.find({date:query.date})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
+    });
+});
 
 app.get("/getTotalAppts", async(req,res) => {
 

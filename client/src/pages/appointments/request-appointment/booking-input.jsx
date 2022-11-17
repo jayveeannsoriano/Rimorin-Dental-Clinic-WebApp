@@ -1,13 +1,12 @@
-import React from 'react';
+import  React, { useEffect, useState } from 'react';
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
 import "../../../styles/booking.css";
-import { useState, } from 'react';
 //datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //Axios
-import Axios from 'axios';
+import axios from 'axios';
 
 const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChange, values }) => {
 
@@ -35,6 +34,13 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
     //calendar input
     const [startDate, setStartDate] = useState(new Date());
 
+    const [Stringdate, setStringDate] = useState("");
+
+    const [takenAppointments, setTakenAppointments] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+
+
     //time input
     const [time, setGetTime] = useState("");
 
@@ -47,6 +53,28 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
         console.log('Retrieving Data from Booking Input: ', data)
         setGetTime(data);
         window.localStorage.setItem('time', data);
+    }
+    
+    //Get All appointments on date
+    const getAppointmenstbyDate = async(date) => {
+        try{
+            console.log(date);
+            const response = await axios.get('http://localhost:3001/getAppointmentsbyDate',{
+                params:{
+                    date: date
+                }
+            })
+
+            var data = response.data
+            var tempArr = [];
+            data.forEach(appt => {
+                tempArr.push(appt.time);
+            });
+            setTakenAppointments(tempArr);
+       
+        }catch (error){
+            console.log(error)
+        }
     }
 
     const Continue = (e) => {
@@ -62,6 +90,11 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
         nextStep();
     };
 
+
+    useEffect(() => {
+        var initialDate = new Date();
+        getAppointmenstbyDate(initialDate.toString().substring(0, 10));
+    }, []);
 
     return (
 
@@ -129,14 +162,14 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                     selected={startDate}
                                     onChange={(date) => {
                                         setStartDate(date);
+                                        getAppointmenstbyDate(date.toString().substring(0, 10));
+                                        setTakenAppointments([]);
                                         window.localStorage.setItem('date', startDate);
-                                        console.log("This is the calendar data:", date)
                                     }}
                                     isClearable
                                     placeholderText="Choose a date"
                                     minDate={new Date()}
                                     shouldCloseOnSelect={false}
-
                                     //exclude sundays
                                     filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
                                 />
@@ -149,7 +182,10 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                             <div className="col-md-6">
                                 <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                                 <p> Available Times </p>
-                                <Timeslot onSubmit={getBookingData} dateSelected={stringDateValue} />
+                                <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments} />
+                                
+                                {/* {takenAppointments.length && <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments}/>} */}
+
                             </div>
                         </div>
 

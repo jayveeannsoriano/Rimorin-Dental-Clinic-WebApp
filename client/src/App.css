@@ -848,6 +848,13 @@ h6 {
 	display: grid;
 	gap: 5px 0px;
 	grid-template-columns: repeat(4, 1fr);
+  background: white;
+  pointer-events: auto;
+}
+
+.slots-taken {
+	background: lightgray;
+  pointer-events: none
 }
 
 /* Reschedule Appointment Modal */
