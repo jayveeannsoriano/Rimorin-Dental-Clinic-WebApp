@@ -352,6 +352,19 @@ app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
 
 });
 
+app.get("/getAppointmentHistory", async(req,res) => {
+
+  const patientIDNumber = req.query.patientIDnumber;
+    
+  await AppHistory.find({patientIDnumber: patientIDNumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
 
 //get notification details
 app.get("/getNotifDetails", async (req, res) => {
@@ -915,29 +928,96 @@ app.put("/updatePatientInfo", async (req, res) => {
 });
 
 
-app.post("/moveToAppointmentHistory", async (req,res)=>{
+app.post("/moveToAppointmentHistoryAsCancelled", async (req,res)=>{
 
-  const PatientIDNumber = req.body.patientIDnumber;
-  const appNumber = req.body.appNum;
-  const patientValue = req.body.pName;
-  const dentistValue = req.body.dName;
-  const dateValue = req.body.date;
-  const timeValue = req.body.time;
-  const consultationValue = req.body.consultation;
+    //Patient ID name
+    const PatientIDnum = req.body.patientIDnumber;
+    console.log(PatientIDnum)
 
-  // const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
+    //User Info value
+    const userNameApp = req.body.userNameApp;
+    console.log(userNameApp)
   
-  await AppHistory.create({
-    patientIDnumber: PatientIDNumber,
-    appNum: appNumber, 
-    appStatus: acceptedStatus,
-    payStatus: payStatus, 
-    pName: patientValue, 
-    dName: dentistValue, 
-    date: dateValue,
-    time: timeValue, 
-    consultation: consultationValue
-  });
-  await AppDetails.findOneAndDelete({appNum:appNumber})
+    //Docotor name
+    const docName = req.body.dentistValue;
+    console.log(docName);
+  
+    //Appointment Number
+  
+    const appNumber = req.body.appNumber;
+    console.log(appNumber)
+    
+    //date value
+    const dateValue = req.body.dateValue;
+    console.log(dateValue)
+  
+    //consul value
+    const consulInput = req.body.consulInput;
+    console.log(consulInput)
+  
+    //time value
+    const getTime = req.body.getTime;
+    console.log(getTime);
+  
+    //appt status default when appointment is accepted by the dentist
+    const insertAppStatus = "Cancelled";
+    console.log(insertAppStatus);
+  
+    //inserting all data
+    const AppData = new AppHistory({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  
+    try{
+      await AppData.save();
+      console.log("Successfully inserted ", AppData, " to the History database.")
+      await AppRequest.findOneAndDelete({appNum: appNumber})
+    } catch(err){
+      console.log(err);
+    }
+});
 
+app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
+
+  //Patient ID name
+  const PatientIDnum = req.body.patientIDnumber;
+  console.log(PatientIDnum)
+
+  //User Info value
+  const userNameApp = req.body.pName;
+  console.log(userNameApp)
+
+  //Docotor name
+  const docName = req.body.dName;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = req.body.appNum;
+  console.log(appNumber)
+  
+  //date value
+  const dateValue = req.body.date;
+  console.log(dateValue)
+
+  //consul value
+  const consulInput = req.body.consultation;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.time;
+  console.log(getTime);
+
+  //appt status default when appointment is accepted by the dentist
+  const insertAppStatus = "No Show";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppHistory({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted No Show ", AppData, " to the History database.")
+    await AppDetails.findOneAndDelete({appNum: appNumber})
+  } catch(err){
+    console.log(err);
+  }
 });
