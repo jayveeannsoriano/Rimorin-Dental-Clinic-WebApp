@@ -303,7 +303,8 @@ h6 {
 .card-body {
   /* padding: 50px 20px 40px 20px; */
   border-radius: 10px;
-  background-color: #fff;;
+  background-color: #fff;
+  padding-bottom: 1.5%;
 }
 
 .card-body h1 {
@@ -1240,9 +1241,10 @@ padding-right: 4px;
 .btn.show, 
 .btn:first-child:active, 
 :not(.btn-check)+.btn:active{
-  color: var(--bs-btn-active-color);
-  background-color: var(--bs-btn-active-bg);
-  border-color: var(--bs-btn-active-border-color);
+  color: var(--bs-btn-active-color) !important;
+  background-color: var(--bs-btn-active-bg)!important;
+  border-color: var(--bs-btn-active-border-color)!important;
+  z-index: 900;
 }
 
 .btn-check:active+.btn-primary:focus, 

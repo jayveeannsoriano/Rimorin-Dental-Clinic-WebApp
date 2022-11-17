@@ -48,7 +48,7 @@ const PatientDashboard = () => {
                   <div className="nav-bar">
                     <Button className="table-button">TODAY</Button>
                     <Button className="table-button">UPCOMING</Button>
-                    <Button className="table-button" href="/patient/appointments/request-appointment">REQUEST APPOINTMENT</Button>
+                    <Button className="table-button reqdash-btn" href="/patient/appointments/request-appointment"><i class="bi bi-plus-lg"></i> REQUEST APPOINTMENT</Button>
                   </div>
                   <h5 className="card-title">
                     TODAY&apos;S APPOINTMENTS

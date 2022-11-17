@@ -41,7 +41,7 @@ const Timeslot = (props,dateSelected) => {
           return (
             <div className="timeslot" key={index}>
                 <Button 
-                className="time" 
+                className="time btn" 
                 value={time}
                 onClick={(e)=>{
                   e.preventDefault();
