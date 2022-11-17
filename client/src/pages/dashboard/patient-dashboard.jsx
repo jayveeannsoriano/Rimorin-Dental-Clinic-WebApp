@@ -4,9 +4,32 @@ import Button from 'react-bootstrap/Button';
 import DashboardTable from '../../components/dashboardTable';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 const PatientDashboard = () => {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+  const patientIDnumber = userInfo['patientIDnumber'];
+  console.log(patientIDnumber)
+
+  const [userInformation, setUserInfo] = useState([])
+
+  const getAppointment = async () => {
+
+    try {
+      const response = await Axios.get('http://localhost:3001/getUserInfo', {
+        params: {
+          patientIDnumber: patientIDnumber,
+        }
+      });
+      setUserInfo(response.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAppointment();
+  }, []);
 
   const [time, setTime] = useState(new Date().toLocaleTimeString());
 
@@ -31,11 +54,13 @@ const PatientDashboard = () => {
         </nav>
         
         {/* Page Title */}
+        {userInformation.map((item, index) => (
         <div className="pagetitle">
-          <h1>Welcome, {userInfo['fname']}!</h1>
+          <h1>Welcome, {item.fname}!</h1>
           <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
           <p>{time}</p>
         </div>
+        ))}
 
         <section className="section dashboard">
           <div className="row">

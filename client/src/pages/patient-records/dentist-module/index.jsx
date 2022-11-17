@@ -20,7 +20,7 @@ const DentalRecord = () => {
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/dashboard">Patient Records</a></li>
+                            <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record">Patient Records</a></li>
                             <li class="breadcrumb-item active">Dental Records</li>
                         </ol>
                     </nav>

@@ -49,9 +49,8 @@ class SignUpMain extends Component {
     handleChange = input => e => {
         this.setState({[input]: e.target.value});
         console.log(input);
-        
     }
-    
+
     //handlebox for checkbox
     tempArr = [];
     handleChangeCheckbox = input => e =>{

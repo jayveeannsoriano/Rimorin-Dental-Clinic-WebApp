@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import '../../../styles/create-rx.css';
 import ProfileWidget from "../../../components/profile-widget";
 import "react-bootstrap";
@@ -11,9 +11,9 @@ import PrescriptionDetails from "../../../components/modals/preview-prescription
 
 const createEprescription = () => {
     // Add item function
-    const [prescriptionItem, setPrescriptionList] = useState([{input: ""}]);
+    const [prescriptionItem, setPrescriptionList] = useState([{ input: "" }]);
     const handleItemAdd = () => {
-        setPrescriptionList([...prescriptionItem, {input:""}]);
+        setPrescriptionList([...prescriptionItem, { input: "" }]);
     };
     //Remove item function
     const handleItemRemove = (index) => {
@@ -85,6 +85,8 @@ const createEprescription = () => {
 
     }
 
+    const navigate = useNavigate();
+
     return (
         <>
             {/* Main Wrapper */}
@@ -98,7 +100,13 @@ const createEprescription = () => {
                                 <nav aria-label="breadcrumb" className="page-breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <a href="/dashboardpage">Home</a>
+                                            <a href="/dentist">Home</a>
+                                        </li>
+                                        <li className="breadcrumb-item">
+                                            <a href="/dentist/eprescription">Patients</a>
+                                        </li>
+                                        <li className="breadcrumb-item" onClick={() => navigate(-1)}>
+                                            View Prescriptions
                                         </li>
                                         <li className="breadcrumb-item active" aria-current="page">
                                             Add Prescription
@@ -150,11 +158,11 @@ const createEprescription = () => {
 
                                     {/* Add Item */}
                                     <div className="add-more-item text-left">
-                                            <button 
-                                                className="btn btn-primary rx-btn"
-                                                onClick={handleItemAdd}>
-                                                <i className="fas fa-plus" /> Add Item
-                                            </button>
+                                        <button
+                                            className="btn btn-primary rx-btn"
+                                            onClick={handleItemAdd}>
+                                            <i className="fas fa-plus" /> Add Item
+                                        </button>
                                     </div>
 
                                     <div className="card-form">
@@ -163,57 +171,57 @@ const createEprescription = () => {
                                                 {/* row for prescription fields */}
                                                 {prescriptionItem.map((singleItem, index) => (
                                                     <div key={index} className="col-10 in-fields">
-                                                    <div className="row ">
-                                                        <div className="col">
-                                                            <label>Generic <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="Mefenamic Acid" onChange={(e) => { setGenericValue(e.target.value) }} />
-                                                        </div>
-                                                        <div className="col">
-                                                            <label>Brand <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="Ponstan" onChange={(e) => { setBrandValue(e.target.value) }} />
+                                                        <div className="row ">
+                                                            <div className="col">
+                                                                <label>Generic <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="Mefenamic Acid" onChange={(e) => { setGenericValue(e.target.value) }} />
+                                                            </div>
+                                                            <div className="col">
+                                                                <label>Brand <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="Ponstan" onChange={(e) => { setBrandValue(e.target.value) }} />
 
+                                                            </div>
+                                                            <div className="col">
+                                                                <label>Dosage <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="500mg" onChange={(e) => { setDosageValue(e.target.value) }} />
+                                                            </div>
                                                         </div>
-                                                        <div className="col">
-                                                            <label>Dosage <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="500mg" onChange={(e) => { setDosageValue(e.target.value) }} />
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                <label>Form <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="Capsule" onChange={(e) => { setFormValue(e.target.value) }} />
+                                                            </div>
+                                                            <div className="col">
+                                                                <label>Frequency <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="3 caps a day" onChange={(e) => { setFrequencyValue(e.target.value) }} />
+                                                            </div>
+                                                            <div className="col">
+                                                                <label>Duration <span class="text-danger">*</span></label>
+                                                                <input id="item" type="text" class="form-control" placeholder="3 days - 1 week" onChange={(e) => { setDurationValue(e.target.value) }} />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col">
-                                                            <label>Form <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="Capsule" onChange={(e) => { setFormValue(e.target.value) }} />
-                                                        </div>
-                                                        <div className="col">
-                                                            <label>Frequency <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="3 caps a day" onChange={(e) => { setFrequencyValue(e.target.value) }} />
-                                                        </div>
-                                                        <div className="col">
-                                                            <label>Duration <span class="text-danger">*</span></label>
-                                                            <input id="item" type="text" class="form-control" placeholder="3 days - 1 week" onChange={(e) => { setDurationValue(e.target.value) }} />
-                                                        </div>
-                                                    </div>
-                                                    {/* remove button*/}
-                                                    <div className="col del">
-                                                        {prescriptionItem.length !== 1 && (
-                                                                <button 
+                                                        {/* remove button*/}
+                                                        <div className="col del">
+                                                            {prescriptionItem.length !== 1 && (
+                                                                <button
                                                                     type="button"
                                                                     onClick={() => handleItemRemove(index)}
                                                                     className="remove-btn btn bg-danger-light trash"
-                                                                    >
-                                                                    <i className="far fa-trash-alt"/>
+                                                                >
+                                                                    <i className="far fa-trash-alt" />
                                                                 </button>
                                                             )}
                                                         </div>
                                                     </div>
-                                                    ))}
-                                                </div>
-                                            </div> {/* general row  */}
+                                                ))}
+                                            </div>
+                                        </div> {/* general row  */}
 
                                         <div className="row form-row">
                                             <label>Notes</label>
                                             <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }}></textarea>
                                         </div>
-                                        <br/>
+                                        <br />
 
                                         {/* Signature */}
                                         <div className="col-12 col-md-6 col-lg-4">
@@ -245,9 +253,9 @@ const createEprescription = () => {
                                                     Create
                                                 </button>
 
-                                                <PrescriptionDetails/>
+                                                <PrescriptionDetails />
 
-                                                
+
                                                 <button
                                                     type="reset"
                                                     className="btn btn-secondary submit-btn rx-btn"
