@@ -64,6 +64,7 @@ const Timeslot = ({props,takenAppointments}) => {
                 className="time btn" 
                 id={time}
                 value={time}
+                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : {background:"white"}}
                 disabled={takenAppointments.indexOf(time)>-1 ? true : false}
                 onClick={(e)=>{
                   e.preventDefault();
