@@ -10,10 +10,14 @@
 }
 
 .conditions-row{
-    display: grid !important;
+    /* display: grid !important; */
     grid-template-columns: repeat(4, 1fr) !important;
 }
 
 .medical-conditions-row .col-lg-12{
     margin-bottom: 0.1in;
+}
+
+.edit-save{
+    width: auto;
 }

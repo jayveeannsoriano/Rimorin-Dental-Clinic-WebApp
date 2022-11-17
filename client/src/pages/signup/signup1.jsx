@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/login-signup.css";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+// import PhoneInput from 'react-phone-input-2';
+// import 'react-phone-input-2/lib/style.css';
 
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
