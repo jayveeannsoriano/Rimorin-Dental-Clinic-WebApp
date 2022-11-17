@@ -13,10 +13,12 @@ function ForgotPswd() {
           <Form.Control type="email" placeholder="name@example.com" />
           </div>
         </Form.Group>
-        <Button variant="secondary fgt-btn">
-          Close
+        <Button variant="btn btn-light" className='fgt-btn'>
+          <a href='/auth/login'>
+          Back to login
+          </a>
         </Button>
-        <Button variant="primary fgt-btn">
+        <Button variant="primary" className='fgt-btn'>
           Continue
         </Button>
       </div>
