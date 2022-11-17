@@ -215,7 +215,7 @@ const PatientInfoEdit = ({}) => {
                         </div>
 
                         <div className="col-lg-3 col-md-3 col-sm-2">
-                          <label for="gender">Gender</label>
+                          <label for="gender">Gender</label><br/>
                             <input class="form-check-input" type="radio" id="male" value="Male" onChange={(e) => setGenderValue(e.target.value)}></input>
                             <label class="form-check-label" for="male">Male</label>
                             <input class="form-check-input" type="radio" id="female" value="Female" onChange={(e) => setGenderValue(e.target.value)}></input>
@@ -303,12 +303,12 @@ const PatientInfoEdit = ({}) => {
                           <label for='conditions'>Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions:</label>
                             <Form>
                               {conditions.map((item, index) => (
-                                  <div key={index} className="row conditions-row">
+                                  <div key={index} className="conditions-row">
                                     <Form.Check
                                       input value={[item]}
                                       id={[item]}
                                       type="checkbox"
-                                      width='50%'
+                                      // width='50%'
                                       label={`${item}`}
                                       onChange={(e) => setCondValue(e.target.value)} required
                                     />

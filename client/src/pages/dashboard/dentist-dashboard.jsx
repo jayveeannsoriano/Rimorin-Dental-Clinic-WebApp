@@ -77,7 +77,7 @@ export default function DentistDashboard() {
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <a href="/dentist">Home</a>
           </li>
           <li className="breadcrumb-item active">Dashboard</li>
         </ol>

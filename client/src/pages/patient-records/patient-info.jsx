@@ -42,10 +42,10 @@ const PatientInfo = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/dentist">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard">Patient Records</a>
+              <a href="/dentist/patient-records/patient-info">Patients</a>
             </li>
             <li class="breadcrumb-item active">Patient Information</li>
           </ol>
