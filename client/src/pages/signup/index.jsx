@@ -29,6 +29,7 @@ class SignUpMain extends Component {
         municipality:"",
         province:"",
         country:"",
+        zipcode:"",
         medications:"",
         allergies:"",
         conditions: [],
@@ -72,8 +73,8 @@ class SignUpMain extends Component {
     render() {
         
         const {step} = this.state;
-        const{fname, lname, minitial, suffix, email, password, gender, mobile, bday, tellphone, profession, bloodtype, house, brgy, municipality, province, country,medications, allergies,conditions} = this.state;
-        const values = {fname, lname, minitial, suffix, email, password, gender, mobile, bday, tellphone, profession, bloodtype, house, brgy, municipality, province, country, medications, allergies, conditions};
+        const{fname, lname, minitial, suffix, email, password, gender, mobile, bday, tellphone, profession, bloodtype, house, brgy, municipality, province, country, zipcode, medications, allergies,conditions} = this.state;
+        const values = {fname, lname, minitial, suffix, email, password, gender, mobile, bday, tellphone, profession, bloodtype, house, brgy, municipality, province, country, zipcode, medications, allergies, conditions};
         switch (step) {
             case 1:
                 return(

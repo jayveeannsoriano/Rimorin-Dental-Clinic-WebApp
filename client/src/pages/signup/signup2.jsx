@@ -28,29 +28,39 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         defaultValue={values.house}
                     />
                 </div>
-                <div className="mb-3">
-                    <label> Barangay </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="e.g. Lower Quarry"
-                        onChange={handleChange('brgy')}
-                        defaultValue={values.brgy}
-                        required
-                    />
+
+                <div className="row">
+                    <div className="col">
+                        <div className="mb-3">
+                            <label> Barangay </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="e.g. Lower Quarry"
+                                onChange={handleChange('brgy')}
+                                defaultValue={values.brgy}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="mb-3">
+                            <label> Municipality </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="e.g. Baguio City"
+                                onChange={handleChange('municipality')}
+                                defaultValue={values.municipality}
+                                required
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label> Municipality </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="e.g. Baguio City"
-                        onChange={handleChange('municipality')}
-                        defaultValue={values.municipality}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
+
+                <div className="row">
+                    <div className="col">
+                    <div className="mb-3">
                     <label> Province </label>
                     <input
                         type="text"
@@ -61,6 +71,22 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         required
                     />
                 </div>
+                    </div>
+                    <div className="col">
+                    <div className="mb-3">
+                    <label> Zip Code </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="e.g. 2600"
+                        onChange={handleChange('zipcode')}
+                        defaultValue={values.zipcode}
+                        required
+                    />
+                </div>
+                    </div>
+                </div>
+                
                 <div className="mb-3">
                     <label> Country </label>
                     <input

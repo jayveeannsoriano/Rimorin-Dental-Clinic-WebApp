@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/login-signup.css";
-import Form from 'react-bootstrap/Form';
+
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
@@ -180,8 +180,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-8">
+          
             <div className="mb-3">
               <label>Profession</label>
               <input
@@ -193,21 +192,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 required
               />
             </div>
-          </div>
-
-          <div className="col-4">
-            <div className="mb-3">
-              <label>Blood Type</label>
-              <Form.Select defaultValue={values.bloodtype} onChange={handleChange('bloodtype')}>
-                <option value="" selected disabled>Select</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="AB">AB</option>
-                <option value="O">O</option>
-              </Form.Select>
-            </div>
-          </div>
-        </div>
+          
 
         <div className="d-grid justify-content-center">
           <button
