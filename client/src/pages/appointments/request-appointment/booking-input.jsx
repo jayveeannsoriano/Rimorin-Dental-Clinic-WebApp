@@ -136,6 +136,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                     placeholderText="Choose a date"
                                     minDate={new Date()}
                                     shouldCloseOnSelect={false}
+                                    required={true}
 
                                     //exclude sundays
                                     filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
@@ -149,7 +150,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                             <div className="col-md-6">
                                 <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                                 <p> Available Times </p>
-                                <Timeslot onSubmit={getBookingData} dateSelected={stringDateValue} />
+                                <Timeslot onSubmit={getBookingData} dateSelected={stringDateValue}/>
                             </div>
                         </div>
 
