@@ -838,16 +838,6 @@ h6 {
 	width: 95%;
 }
 
-.timeslot .time:hover {
-	background-color: var(--primary-color);
-	color: #fff;
-}
-
-.timeslot:active, .timeslot:visited {
-	background-color: var(--primary-color);
-	color: #fff;
-}
-
 .slots {
 	width: 100%;
 	display: grid;
