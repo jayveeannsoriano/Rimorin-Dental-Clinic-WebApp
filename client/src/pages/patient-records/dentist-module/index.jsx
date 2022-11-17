@@ -28,13 +28,9 @@ const DentalRecord = () => {
                 <section class="section profile">
                     <div class="row">
                     <ProfileWidget/>
-
                         <div class="col-xl-8">
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
-                                    <h5 className="card-title">Dental Records</h5>
-
-                                    <div className="divider"></div>
 
                                     {/* Dental Record */}
                                     {/* This UI is only shown when the patient is new */}

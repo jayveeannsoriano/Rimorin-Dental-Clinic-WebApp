@@ -32,6 +32,10 @@
 	justify-content: center;
 }
 
+.add-trtmnt {
+    padding-top: 1%;
+}
+
 /* dental record form */
 .dental-record-form .row{
     margin: 0.2in;

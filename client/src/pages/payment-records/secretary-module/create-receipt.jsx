@@ -12,7 +12,17 @@ import TransactionDetails from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 
 const createReceipt = () => {
-
+    // Add item function
+    const [serviceItem, setServiceList] = useState([{service: ""}]);
+    const handleItemAdd = () => {
+        setServiceList([...serviceItem, {service:""}]);
+    };
+    //Remove item function
+    const handleItemRemove = (index) => {
+        const list = [...serviceItem];
+        list.splice(index, 1);
+        setServiceList(list);
+    };
     //drag n drop
     const [getFile, setGetFile] = useState("");
     const onFileChange = (files) => {
@@ -140,12 +150,10 @@ const createReceipt = () => {
 
 
                                         {/* Forms */}
-                                        <div class="card">
-                                            <div class="card-body">
-                                                {/* <h4 class="card-title">Experience</h4> */}
                                                 <div class="experience-info">
                                                     <div class="row form-row experience-cont">
                                                         <div class="col-12 col-md-10 col-lg-12">
+                                                        {serviceItem.map((singleItem, index) => (
                                                             <div class="row form-row">
                                                                 <div class="col-12 col-md-6 col-lg-4">
                                                                     <div class="form-group">
@@ -165,51 +173,54 @@ const createReceipt = () => {
                                                                         <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountValue(e.target.value) }} />
                                                                     </div>
                                                                 </div>
-
-                                                                <div class=" col-12 col-md-6 col-lg-2">
+                                                                <div class= "col-12 col-md-6 col-lg-2">
                                                                     <div class="add-more">
                                                                         <br />
-                                                                        <a href="#" className="btn bg-danger-light trash">
-                                                                            <i className="far fa-trash-alt" /></a>
+                                                                        {serviceItem.length !== 1 && (
+                                                                            <button
+                                                                                type="button"
+                                                                                onClick={() => handleItemRemove(index)}
+                                                                                className="btn bg-danger-light trash"
+                                                                                >
+                                                                                <i className="far fa-trash-alt" />
+                                                                            </button>
+                                                                        )}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                            ))}
+                                                                
                                                                 {/* Add Item */}
-                                                                <div className="add-more-item rx-pr">
-                                                                    <a href="javascript:void(0);">
-                                                                        <button type="submit" className="btn btn-primary rx-pr">
+                                                                 <div className="add-more-item rx-pr">
+                                                                        <button 
+                                                                            type="submit" 
+                                                                            onClick={handleItemAdd}
+                                                                            className="btn btn-primary rx-pr">
                                                                             <i className="fas fa-plus" /> Add Item
                                                                         </button>
-                                                                        {/* <i className="fas fa-plus-circle" /> Add Item */}
-                                                                    </a>
+                                                                    </div>
                                                                 </div>
-                                                                {/* /Add Item */}
-
                                                             </div>
-                                                        </div>
-
+                                                        
                                                         {/* billing information */}
                                                         <div className="bill-container">
                                                             <div className="row">
                                                             <div className="col pay-method">
-                                                                    <div class="col-8 col-md-8 col-lg-8">
-                                                                        <div class="row form-row">
-                                                                            <div class="form-group mb-0 rx-pr">
+                                                                        <div class="col-8 col-md-8 col-lg-8">
+                                                                            <div class="row form-row">
+                                                                                <div class="form-group mb-0 rx-pr">
 
-                                                                                <Form.Label>Payment Method:</Form.Label>
-                                                                                <Form.Select onChange={(e) => { setPaymentType(e.target.value) }}>
-                                                                                    <option value="" selected disabled>--Select Type--</option>
-                                                                                    <option value="cash">Cash</option>
-                                                                                    <option value="e-money">E-Money</option>
-                                                                                </Form.Select>
+                                                                                    <Form.Label>Payment Method:</Form.Label>
+                                                                                    <Form.Select onChange={(e) => { setPaymentType(e.target.value) }}>
+                                                                                        <option value="" selected disabled>--Select Type--</option>
+                                                                                        <option value="cash">Cash</option>
+                                                                                        <option value="e-money">E-Money</option>
+                                                                                    </Form.Select>
 
-                                                                                {/* <div class="form-group rx-pr">
-                                                                                    <label>Amount Paid(₱)<span class="text-danger">*</span></label>
-                                                                                    <input type="number" class="form-control" placeholder="500" />
-                                                                                </div> */}
-
-                                                                                <div class="form-group">
-                                                                                    <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
-                                                                                    <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
+                                                                                    <div class="form-group">
+                                                                                        <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
+                                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -228,18 +239,9 @@ const createReceipt = () => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
                                                             </div>
-
-
-
-
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div> <br/><br/>
-                                            {/* Receipt Draft */}
-
+                                                    
                                             {/* Signature */}
                                             <div className="col-12 col-md-6 col-lg-4">
                                                 <DropFileInput onFileChange={(files) => onFileChange(files)} />
@@ -271,7 +273,6 @@ const createReceipt = () => {
                                                 </div>
                                             </div>
                                             {/* /Submit Section */}
-                                        </div>
                                     </div>
                                 </div>
                             </div>

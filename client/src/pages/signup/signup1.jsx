@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/login-signup.css";
 
+
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         </p>
 
         <div className="row">
-          <div className="col-8">
+          <div className="col">
             <div className="mb-3">
               <label>First name</label>
               <input
@@ -24,23 +25,21 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="First name"
                 onChange={handleChange('fname')}
                 defaultValue={values.fname}
-                // onChange={(e) => this.setState({ fname: e.target.value})}
                 required
               />
             </div>
 
           </div>
 
-          <div className="col-4">
+          <div className="col">
             <div className="mb-3 suffix">
-              <label>Middle Initial</label>
+              <label>Middle Name</label>
               <input
                 type="text"
                 className="form-control suffix"
-                placeholder="(e.g. C.)"
-                onChange={handleChange('minitial')}
-                defaultValue={values.suffix}
-              // onChange={(e) => this.setState({ suffix: e.target.value})}
+                placeholder="Middle Name"
+                onChange={handleChange('midname')}
+                defaultValue={values.midname}
                 required
               />
             </div>
@@ -57,7 +56,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="Last name"
                 onChange={handleChange('lname')}
                 defaultValue={values.lname}
-                // onChange={(e) => this.setState({ lname: e.target.value})}
                 required
               />
             </div>
@@ -71,7 +69,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="(e.g. Jr. , Sr., II)"
                 onChange={handleChange('suffix')}
                 defaultValue={values.suffix}
-              // onChange={(e) => this.setState({ suffix: e.target.value})}
               />
             </div>
           </div>
@@ -86,7 +83,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             placeholder="Enter email"
             onChange={handleChange('email')}
             defaultValue={values.email}
-            // onChange={(e) => this.setState({ email: e.target.value})}
             required
           />
         </div>
@@ -99,65 +95,47 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             placeholder="Enter password"
             onChange={handleChange('password')}
             defaultValue={values.password}
-            // onChange={(e) => this.setState({ password: e.target.value})}
             required
           />
         </div>
-
-        <div className="row mb-3">
-          <label>Gender</label>
-          <div className="col-4">
-            <div className="form-check">
-              <label>
+        <div className="row">
+          <div className="col-6">
+            <label>Gender</label>
+            <div className="row">
+            <div className="col-6">
+              <div className="form-check">
+                <label>
+                  <input
+                    type="radio"
+                    onChange={handleChange('gender')}
+                    defaultValue={values.gender}
+                    className="form-check-input"
+                    value="Female"
+                    name="gender"
+                    required
+                  />
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-check">
                 <input
                   type="radio"
-                  // checked = {this.state.values.gender === "female"}
                   onChange={handleChange('gender')}
-                  // onChange={e=>{setRadio(e.target.value)}}
-                  defaultValue={values.gender}
                   className="form-check-input"
-                  value="Female"
                   name="gender"
+                  value="Male"
                   required
-                />
-                <span>Female</span>
-              </label>
+                />{" "}
+                Male
+              </div>
             </div>
+            </div>
+            
           </div>
+          
           <div className="col-6">
-            <div className="form-check">
-              <input
-                type="radio"
-                onChange={handleChange('gender')}
-                // onChange = {this.onValueChange}
-                className="form-check-input"
-                name="gender"
-                value="Male"
-                required
-              />{" "}
-              Male
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-7">
-            <div className="mb-3">
-              <label>Mobile Number</label>
-              <input
-                type="number"
-                className="form-control"
-                placeholder="09XXXXXXXXX"
-                onChange={handleChange('mobile')}
-                defaultValue={values.mobile}
-                maxLength={11}
-                // onChange={(e) => this.setState({ fname: e.target.value})}
-                required
-              />
-            </div>
-          </div>
-
-          <div className="col-5">
             <div className="mb-3">
               <label>Date of Birth</label>
               <input
@@ -166,12 +144,56 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="Enter birthday"
                 onChange={handleChange('bday')}
                 defaultValue={values.bday}
-                // onChange={(e) => this.setState({ email: e.target.value})}
                 required
               />
             </div>
           </div>
         </div>
+
+        <div className="row">
+          <div className="col-6">
+            <div className="mb-3">
+              <label>Mobile Number</label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="09123456789"
+                onChange={handleChange('mobile')}
+                defaultValue={values.mobile}
+                maxLength={11}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="col-6">
+            <div className="mb-3">
+              <label>Telephone Number</label>
+              <input
+                type="tel"
+                className="form-control"
+                placeholder="123-456-789"
+                onChange={handleChange('tellphone')}
+                defaultValue={values.tellphone}
+                // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              />
+            </div>
+          </div>
+        </div>
+
+          
+            <div className="mb-3">
+              <label>Profession</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Government Employee"
+                onChange={handleChange('profession')}
+                defaultValue={values.profession}
+                required
+              />
+            </div>
+          
 
         <div className="d-grid justify-content-center">
           <button
