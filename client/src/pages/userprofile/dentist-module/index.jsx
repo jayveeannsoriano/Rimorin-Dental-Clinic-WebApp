@@ -11,7 +11,7 @@ const DentistUserProfile = () => {
                     <h1>My Profile</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dentist">Home</a></li>
                             <li class="breadcrumb-item active">My Profile</li>
                         </ol>
                     </nav>

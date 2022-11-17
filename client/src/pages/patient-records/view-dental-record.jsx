@@ -4,6 +4,7 @@ import PatientProfileWidget from "../../components/profile-widget";
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 import DentalChart from "../../components/dental-teeth-chart";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 const ViewDentalRecord = () => {
@@ -22,6 +23,8 @@ const ViewDentalRecord = () => {
     var url = require('url');
     var url_parts = url.parse(window.location.href, true);
     var query = url_parts.query;
+
+  
 
     const getDentalCharts = async() => {
         // var url = require('url');
@@ -50,7 +53,8 @@ const ViewDentalRecord = () => {
         getDentalCharts();
     }, []);
 
-
+    
+    const navigate = useNavigate();
     
     return(
         <>
@@ -58,9 +62,10 @@ const ViewDentalRecord = () => {
                     <h1>Dental Records</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/dashboard">Patient Records</a></li>
-                            <li class="breadcrumb-item">Dental Records</li>
+                            <li class="breadcrumb-item"><a href="/dentist">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record">Patients</a></li>
+                            {/* <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record/view-dental-records">Dental Records</a></li> */}
+                            <li class="breadcrumb-item" onClick = {() => navigate(-1)}>  Dental Records</li>
                             <li class="breadcrumb-item active">View Dental Record</li>
                         </ol>
                     </nav>

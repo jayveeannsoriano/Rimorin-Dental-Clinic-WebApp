@@ -1,5 +1,7 @@
 import React from "react";
 import "../../styles/login-signup.css";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
@@ -87,54 +89,82 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
           />
         </div>
 
-        <div className="mb-3">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-            onChange={handleChange('password')}
-            defaultValue={values.password}
-            required
-          />
+        <div className="row">
+          <div className="col-6">
+            <div className="mb-3">
+              <label>Mobile Number</label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="09123456789"
+                onChange={handleChange('mobile')}
+                defaultValue={values.mobile}
+                maxLength={11}
+                required
+              />
+              {/* <PhoneInput
+                country={'ph'}
+                placeholder="Enter mobile number"
+                onChange={handleChange('mobile')}
+                onlyCountries={['ph', 'us']}
+                required
+              /> */}
+            </div>
+          </div>
+
+          <div className="col-6">
+            <div className="mb-3">
+              <label>Telephone Number</label>
+              <input
+                type="tel"
+                className="form-control"
+                placeholder="123-456-789"
+                onChange={handleChange('tellphone')}
+                defaultValue={values.tellphone}
+                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              />
+            </div>
+          </div>
         </div>
+
+
         <div className="row">
           <div className="col-6">
             <label>Gender</label>
             <div className="row">
-            <div className="col-6">
-              <div className="form-check">
-                <label>
+              <div className="col-6">
+                <div className="form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      onChange={handleChange('gender')}
+                      defaultValue={values.gender}
+                      className="form-check-input"
+                      value="Female"
+                      name="gender"
+                      required
+                    />
+                    <span>Female</span>
+                  </label>
+                </div>
+              </div>
+              <div className="col-4">
+                <div className="form-check">
                   <input
                     type="radio"
                     onChange={handleChange('gender')}
-                    defaultValue={values.gender}
                     className="form-check-input"
-                    value="Female"
                     name="gender"
+                    value="Male"
                     required
-                  />
-                  <span>Female</span>
-                </label>
+                  />{" "}
+                  Male
+                </div>
               </div>
             </div>
-            <div className="col-4">
-              <div className="form-check">
-                <input
-                  type="radio"
-                  onChange={handleChange('gender')}
-                  className="form-check-input"
-                  name="gender"
-                  value="Male"
-                  required
-                />{" "}
-                Male
-              </div>
-            </div>
-            </div>
-            
+
           </div>
-          
+
           <div className="col-6">
             <div className="mb-3">
               <label>Date of Birth</label>
@@ -150,50 +180,46 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
           </div>
         </div>
 
+        <div className="mb-3">
+          <label>Profession</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Government Employee"
+            onChange={handleChange('profession')}
+            defaultValue={values.profession}
+            required
+          />
+        </div>
+
         <div className="row">
-          <div className="col-6">
+          <div className="col">
             <div className="mb-3">
-              <label>Mobile Number</label>
+              <label>Password</label>
               <input
-                type="number"
+                type="password"
                 className="form-control"
-                placeholder="09123456789"
-                onChange={handleChange('mobile')}
-                defaultValue={values.mobile}
-                maxLength={11}
+                placeholder="Enter password"
+                onChange={handleChange('password')}
+                defaultValue={values.password}
                 required
               />
             </div>
           </div>
-
-          <div className="col-6">
+          <div className="col">
             <div className="mb-3">
-              <label>Telephone Number</label>
+              <label>Re-enter password</label>
               <input
-                type="tel"
+                type="password"
                 className="form-control"
-                placeholder="123-456-789"
-                onChange={handleChange('tellphone')}
-                defaultValue={values.tellphone}
-                // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                placeholder="Re-enter password"
+                onChange={handleChange('password')}
+                defaultValue={values.password}
+                required
               />
             </div>
           </div>
         </div>
-
-          
-            <div className="mb-3">
-              <label>Profession</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Government Employee"
-                onChange={handleChange('profession')}
-                defaultValue={values.profession}
-                required
-              />
-            </div>
-          
 
         <div className="d-grid justify-content-center">
           <button

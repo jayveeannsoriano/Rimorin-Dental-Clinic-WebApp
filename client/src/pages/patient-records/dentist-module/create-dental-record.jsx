@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useMemo } from "react";
 import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -129,7 +129,7 @@ const CreateDentalRecord = () => {
     console.log(checked);
   }
 
-
+  const navigate = useNavigate();
   return (
     <>
       <div class="pagetitle">
@@ -140,12 +140,12 @@ const CreateDentalRecord = () => {
               <a href="/dentist">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dentist/patient-records">Patient Records</a>
+              <a href="/dentist/patient-records/dental-record">Patients</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="/dentist/patient-records/dental-record">
-                Dental Record
-              </a>
+            <li class="breadcrumb-item" onClick = {() => navigate(-1)}>
+              {/* <a href="/dentist/patient-records/dental-record"> */}
+                Dental Records
+              {/* </a> */}
             </li>
             <li class="breadcrumb-item active">
               <a href="/dentist/patient-records/dental-record/create-dental-record">
