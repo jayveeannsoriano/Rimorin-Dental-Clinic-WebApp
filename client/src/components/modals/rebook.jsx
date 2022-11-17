@@ -65,6 +65,21 @@ function rebook(patientIDnumber,appNum,pName,dName,date,time,consultation) {
       console.log("Receipt not created")
     }
 
+    if(selectValue == "No Show"){
+      Axios.post("http://localhost:3001/moveToAppointmentHistoryAsNoShow",{
+        patientIDnumber: PatientIDNumber,
+        appNum: AppNumber,
+        pName: patientValue,
+        dName: dentistValue,
+        date: dateValue,
+        time: timeValue,
+        consultation: consultationValue
+      })
+      console.log("Moving ", appNum,pName, " to Appointment History")
+    }else{
+      console.log("Receipt not created")
+    }
+
     handleClose();
 
   }

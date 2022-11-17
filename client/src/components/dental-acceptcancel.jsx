@@ -25,19 +25,6 @@ const AcceptCancel = () => {
         }
     }
 
-    const onRowClick = (state, rowInfo, column, instance) => {
-        console.log(rowInfo);
-        return {
-            onClick: e => {
-                console.log('A Td Element was clicked!')
-                console.log('it produced this event:', e)
-                console.log('It was in this column:', column)
-                console.log('It was in this row:', rowInfo)
-                console.log('It was in this table instance:', instance)
-            }
-        }
-    }
-
     const columns = [
         {
             name: 'Patient',
@@ -59,7 +46,7 @@ const AcceptCancel = () => {
             selector: row =>
                 <div className="action-buttons">
                     <AcceptDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
-                    <CancelDental appNum={row.appNum} />
+                    <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
                 </div>
         },

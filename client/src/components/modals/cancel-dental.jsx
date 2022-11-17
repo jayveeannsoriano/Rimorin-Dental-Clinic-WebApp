@@ -6,7 +6,7 @@ import Axios from 'axios';
 import '../../styles/accounts.css';
 import successful from '../../assets/img/check.png';
 
-function CancelDental(appNum) {
+function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consultation) {
     const [modalState, setModalState] = useState(false);
     const [reasonInput, setReasonInput] = useState("");
 
@@ -21,13 +21,33 @@ function CancelDental(appNum) {
         setModalState("modal-2")
     }
     //retrieve app number
-    const StringAppNum = JSON.stringify(appNum);
-    const ConvertStringApp = JSON.parse(StringAppNum);
-    const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
+    const StringfyValues = JSON.stringify(patientIDnumber, pName, dName, appNum, date, time, consultation);
+    const ConvertStringfyValues = JSON.parse(StringfyValues);
+    //values
+    const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g, "");
+    const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g, "");
+    const PatientValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g, "");
+    const DentistValue = JSON.stringify(ConvertStringfyValues.dName).replace(/"/g, "");
+    const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g, "");
+    const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
+    const ConsultValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g, "");
 
-    const CancelAppointment = () => {
+    const CancelAppointment = async () => {
+
         console.log("Deleting " + AppNumber);
-        Axios.put("http://localhost:3001/deleteAppointment", {
+
+        await Axios.post("http://localhost:3001/moveToAppointmentHistoryAsCancelled", {
+            patientIDnumber: PatientIDnumber, 
+            userNameApp: PatientValue, 
+            appNumber: AppNumber, 
+            dentistValue: DentistValue, 
+            dateValue: DateValue, 
+            consulInput: ConsultValue, 
+            getTime: TimeValue 
+        })
+
+        
+        await Axios.put("http://localhost:3001/deleteAppointment", {
             appNum: AppNumber,
         });
     }

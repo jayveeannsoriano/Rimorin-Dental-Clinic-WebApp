@@ -4,6 +4,7 @@ import '../../styles/dashboard.css';
 import '../../styles/modals.css';
 import DashboardTable from "../../components/dashboardTable";
 import UpcomingDashboardTable from "../../components/dashboardUpcomingTable";
+import DashboardTableAppHistory from "../../components/dashboardAppHistory";
 
 export default function AppointmentPage() {  
 
@@ -41,7 +42,7 @@ export default function AppointmentPage() {
 
               <div className="card-body">
                 <h5 className="card-title">APPOINTMENT HISTORY</h5>
-                  {/* insert datatable here */}
+                  <DashboardTableAppHistory/>
               </div>
 
             </div>
