@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "../../styles/login-signup.css";
-import ForgotPassword from '../forgot-password';
 // import LoadingOverlay from 'react-loading-overlay';
 
 export default class Login extends Component {
@@ -101,8 +100,10 @@ export default class Login extends Component {
               <input type="checkbox" name="checkbox" /> Remember me{" "}
             </label>
           </div>
-          {/* <div className="pass">Forgot Password?</div> */}
-          <ForgotPassword/>
+          <div className="pass"> <a href='/auth/forgot-password'> Forgot Password? </a></div>
+          {/* <ForgotPassword/> */}
+          {/* <ForgotPassword2/> */}
+          
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
               Login
