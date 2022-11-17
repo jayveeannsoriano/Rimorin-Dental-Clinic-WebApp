@@ -9,6 +9,8 @@ function dashboardHeader(){
 
 //notification data
 const [appointmentDetails, setAppointmentDetails] = useState([]);
+const [firstNameValue, setFirstNameValue] = useState('');
+const [lastNameValue, setLastNameValue] = useState('');
 const patientIDNumber = userInfo['patientIDnumber'];
 
 const getAppointment = async() => {
@@ -16,6 +18,9 @@ try{
     const response = await Axios.get('http://localhost:3001/getNotifDetails', {
         params: {patientIDnumber: patientIDNumber}})
     setAppointmentDetails(response.data);
+    setFirstNameValue(response.data[0].fname)
+    setLastNameValue(response.data[0].lname)
+
 }catch (error){
     console.log(error)
 }
@@ -112,7 +117,7 @@ const count = appointmentDetails.length;
                         {/* <!-- Profile Dropdown Menu --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li className="dropdown-header">
-                                <h6 className="userName">{userInfo['fname'] + " " + userInfo['lname']}</h6> 
+                            <h6 className="userName">{firstNameValue} {lastNameValue}</h6> 
                             </li>
 
                         {/* <!-- My Profile --> */}

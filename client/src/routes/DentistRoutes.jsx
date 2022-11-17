@@ -15,7 +15,7 @@ const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 // const DentalRecords = lazy(() => import('../pages/patient-records/dentist-module'));
 const ExistingDentalRecord = lazy(() => import('../pages/patient-records/dentist-module/existing-dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/dentist-module'));
-const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
+const PaymentRecords = lazy(() => import('../pages/payment-records/dentist-module/index'));
 const DentistUserProfile = lazy(() => import('../pages/userprofile/dentist-module'));
 
 // patient list page routing

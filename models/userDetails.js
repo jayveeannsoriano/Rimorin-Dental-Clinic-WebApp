@@ -27,7 +27,7 @@ const UserDetailsScehma = new mongoose.Schema(
     tellphone: String,
     blood: String,
     zipcode: String,
-    
+    precautions: String,
   },
   {
     collection: "UserInfo",

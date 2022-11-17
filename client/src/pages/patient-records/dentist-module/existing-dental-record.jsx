@@ -49,8 +49,8 @@ export default function ExistingDentalRecord() {
                 <h1>Dental Records</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/dashboard">Patient Records</a></li>
+                        <li class="breadcrumb-item"><a href="/dentist">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record">Patients</a></li>
                         <li class="breadcrumb-item active">Dental Records</li>
                     </ol>
                 </nav>

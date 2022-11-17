@@ -761,7 +761,7 @@ const ImgStorage = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb( null, "PT#"+req.body.patientIDNum+"_"+slicedDate);
+    cb( null, req.body.patientIDNum+"_"+slicedDate + ".jpg");
   },
 });
 

@@ -29,21 +29,6 @@ const AdminPatientUI = () => {
             <section class="section profile">
                 <div class="row">
                     <ProfileWidgetTwo />
-
-                    <div class="col-xl-8">
-                        <div className="card patient-info">
-                            <div className="card-body pt-3">
-                                <h5 className="card-title">Patient Records</h5>
-
-                                <button className="btn btn-primary table-buttons" type="submit">
-                                    <i class="bi bi-download"></i>
-                                    Export All
-                                </button>
-                                <div className="divider"></div>
-                            </div>
-                            {/* end of card body */}
-                        </div>
-                    </div>
                 </div>
             </section>
 

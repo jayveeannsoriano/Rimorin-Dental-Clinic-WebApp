@@ -103,7 +103,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                     <div id="mname" class="col-lg-auto col-md-auto">
-                      saan kukunin ito
+                      {item.mname}
                     </div>
                   </div>
                 ))}
@@ -119,7 +119,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Age</div>
                     <div id="age" class="col-lg-auto col-md-auto">
-                      icoconvert pa
+                      {item.age}
                     </div>
                   </div>
                 ))}
@@ -136,7 +136,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Profession</div>
                     <div id="profession" class="col-lg-auto col-md-auto">
-                      where kukunin ito
+                      {item.profession}
                     </div>
                   </div>
                 ))}
@@ -152,7 +152,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Tel #</div>
                     <div id="tel" class="col-lg-auto col-md-auto">
-                      unknown pa
+                      {item.tellphone}
                     </div>
                   </div>
                 ))}
@@ -160,7 +160,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Blood Type</div>
                     <div id="blood-type" class="col-lg-auto col-md-auto">
-                      uknown pa
+                      {item.blood}
                     </div>
                   </div>
                 ))}
@@ -221,7 +221,7 @@ const PatientInfo = () => {
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">ZIP Code</div>
                     <div id="country" class="col-lg-auto col-md-auto">
-                      unknown pa
+                      {item.zipcode}
                     </div>
                   </div>
                 ))}
