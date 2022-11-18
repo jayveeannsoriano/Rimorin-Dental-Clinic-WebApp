@@ -920,7 +920,7 @@ app.put("/updatePatientInfo", async (req, res) => {
      medications: medValue,
      allergies: allergiesValue,
      conditions: condValue,
-     precautions: precautionValue,
+     precautions: precautionValue
     })
 
     await AppDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
