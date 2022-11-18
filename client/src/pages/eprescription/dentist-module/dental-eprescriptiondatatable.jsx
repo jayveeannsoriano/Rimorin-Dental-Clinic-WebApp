@@ -20,6 +20,7 @@ const DentistEPrescriptionDataTable = () => {
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    const [patientList, setPatientList] = useState([]);
 
     const getAppointment = async () => {
         try {
@@ -32,6 +33,19 @@ const DentistEPrescriptionDataTable = () => {
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getPatientDetails = async() => {
+        try{
+            const response = await axios.get('http://localhost:3001/getPatientInfo',{
+              params:{
+              patientIDnumber: StringfyIDnumber}
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
+        }catch (error){
             console.log(error)
         }
     }
@@ -54,8 +68,8 @@ const DentistEPrescriptionDataTable = () => {
             name: "Action",
             selector: (row) => <div className="action-buttons">
                 <ViewFile/>
-                <ExportFile/>
-                <PrintFile/>
+                <ExportFile data={[true,"prescription",row,patientList]}/>
+                <PrintFile data={[false,"prescription",row,patientList]}/>
             </div>
         }
     ];
@@ -101,6 +115,7 @@ const DentistEPrescriptionDataTable = () => {
 
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
 
     // useEffect(() => {
