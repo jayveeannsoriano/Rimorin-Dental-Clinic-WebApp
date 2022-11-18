@@ -11,9 +11,8 @@ const Eprescription = () => {
                     <h1>E-Prescription</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/dashboard">E-Prescription</a></li>
-                            <li class="breadcrumb-item active">View Prescriptions</li>
+                            <li class="breadcrumb-item"><a href="/patient">Home</a></li>
+                            <li class="breadcrumb-item active">E-Prescription</li>
                         </ol>
                     </nav>
                 </div>
