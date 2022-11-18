@@ -7,12 +7,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { Draggable } from "@fullcalendar/interaction";
 import axios from "axios";
 
-// // import "@fullcalendar/core/main.css";
-// import "@fullcalendar/daygrid/main.css";
-// import "@fullcalendar/timegrid/main.css";
-
 // css
-import "../../styles/calendar.css"
+import "../../../styles/calendar.css"
 
 // project imports
 import CalendarCheckbox from './CalendarCheckbox';

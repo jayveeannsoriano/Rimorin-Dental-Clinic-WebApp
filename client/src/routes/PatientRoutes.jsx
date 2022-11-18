@@ -10,7 +10,7 @@ const DashboardPage = lazy(() => import('../pages/dashboard/patient-dashboard'))
 
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/index'));
-const Calendar = lazy(() => import('../pages/calendar/index'));
+const Calendar = lazy(() => import('../pages/calendar/patient-module/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-module/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/index'));

@@ -11,10 +11,10 @@ const Patients = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/admin/appointments">Home</a>
+              <a href="/admin">Home</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="/admin/patients">Patients</a>
+            <li class="breadcrumb-item active">
+              Patients
             </li>
           </ol>
         </nav>
