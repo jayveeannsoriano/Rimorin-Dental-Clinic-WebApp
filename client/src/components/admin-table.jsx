@@ -2,7 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+import Button from 'react-bootstrap/Button';
 
+// Modals
+import ViewAccount from "./modals/view-account";
+import ArchiveAccount from "./modals/archive-account";
 
 const AdminTable = () => {
 
@@ -41,14 +45,14 @@ const AdminTable = () => {
         },
         {
             name: "Action",
-            selector: row => <div>
-                <button>View</button>
-                <button>Archive</button>
-                </div>
+            selector: row => <div className="action-buttons" >
+                <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
+                {/* <ViewAccount /> */}
+                {/* <button>Archive</button> */}
+                <Button className="accept-button"><i class="bi bi-check-lg"></i> Archive</Button>
+            </div>
         },
     ];
-
-   
 
     
     // Loading effect
@@ -103,6 +107,7 @@ const AdminTable = () => {
     },[search])
 
     return <DataTable
+    // className="account-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}

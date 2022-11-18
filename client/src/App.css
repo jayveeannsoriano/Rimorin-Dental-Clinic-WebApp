@@ -1074,6 +1074,17 @@ padding-right: 4px;
   line-height: 17px;
   color: var(--text-color);
 }
+
+/* cols for admin-datatable */
+.account-datatable .rdt_TableCol,
+.account-data-table .rdt_TableCol { 
+  max-width: 167px !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color);
+}
+
 /* div of action buttons in dashboardTable.jsx */
 .action-buttons{
   width: 800px;

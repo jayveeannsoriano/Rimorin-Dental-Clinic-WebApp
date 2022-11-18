@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import "../../styles/dental-record.css"
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 import DentalChart from "../../components/dental-teeth-chart";
+import { dentalRecord } from '../../config/FileGeneration.js'
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 //project imports
 import ProfileWidgetTwo from "../../components/profile-widget2";
@@ -27,6 +28,12 @@ const ViewDentalRecord = () => {
     var url_parts = url.parse(window.location.href, true);
     var query = url_parts.query;
 
+    const location = useLocation();
+    const paramsID = new URLSearchParams(location.search);
+    const getPatientIDNumber = paramsID.get('patientIDNum');
+    const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
+
+    const [patientList, setPatientList] = useState([]);
   
 
     const getDentalCharts = async() => {
@@ -50,11 +57,31 @@ const ViewDentalRecord = () => {
     
     }
 
+    const getPatientDetails = async() => {
+        try{
+            const response = await axios.get('http://localhost:3001/getPatientInfo',{
+              params:{
+              patientIDnumber: StringfyIDnumber}
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         // const email =  document.getElementById('emailaddress').textContent;
-
+        getPatientDetails();
         getDentalCharts();
     }, []);
+
+    async function Export(willDownload){
+        await Promise.all([getPatientDetails()]);
+
+        {/*dental Record(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/}
+        dentalRecord(patientList[0].fname+" "+patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, patientList[0].precaution, document.getElementById("dental-chart-Image"), willDownload);
+    };
 
     
     const navigate = useNavigate();
@@ -82,12 +109,12 @@ const ViewDentalRecord = () => {
                                 <div className="card patient-info">
                                     <div className="card-body pt-3">
                                         <h5 className="card-title">Dental Record</h5>
-                                        <button className="btn btn-primary" type="submit">
+                                        <button className="btn btn-primary" type="submit" onClick={() =>{Export(false)}}>
                                             <i class="bi bi-printer-fill"></i>
                                             Print
                                             </button>
                                             
-                                            <button className="btn btn-primary" type="submit">
+                                            <button className="btn btn-primary" type="submit" onClick={() =>{Export(true)}}>
                                             <i class="bi bi-download"></i>
                                                 Export
                                             </button>
