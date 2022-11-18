@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import PaymentStatusText from "./payment-status-text";
 import ViewFile from "../../../components/modals/view-file"
 import { Button } from "react-bootstrap";
+import PrintFile from "../../../components/modals/print";
 
 const SecTransactionDataTable = (patientIDNum) => {
 
@@ -47,18 +48,13 @@ const SecTransactionDataTable = (patientIDNum) => {
 
     const columns = [
         {
-            name: 'Patient Name',
-            selector: (row) => row.pName,
-            sortable: true,
+            name: 'Appt #',
+            selector: (row) => row.appNum,
         },
         {
             name: 'Date',
             selector: (row) => row.date,
             sortable: true,
-        },
-        {
-            name: 'Appt #',
-            selector: (row) => row.appNum,
         },
         {
             name: 'Payment Status',
@@ -71,7 +67,8 @@ const SecTransactionDataTable = (patientIDNum) => {
             selector: (row) => <div className="action-buttons" >
                 <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1)}>Create Receipt</Button>
                 <ViewFile/>
-                 </div>
+                <PrintFile/>
+            </div>
         }
     ];
 

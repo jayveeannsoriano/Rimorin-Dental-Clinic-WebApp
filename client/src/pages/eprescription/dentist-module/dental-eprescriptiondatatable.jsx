@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { useSearchParams, useLocation } from "react-router-dom";
 import ExportFile from "../../../components/modals/export";
 import ViewFile from "../../../components/modals/view-file";
+import PrintFile from "../../../components/modals/print";
 
 const DentistEPrescriptionDataTable = () => {
 
@@ -54,6 +55,7 @@ const DentistEPrescriptionDataTable = () => {
             selector: (row) => <div className="action-buttons">
                 <ViewFile/>
                 <ExportFile/>
+                <PrintFile/>
             </div>
         }
     ];
