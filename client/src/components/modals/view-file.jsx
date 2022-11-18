@@ -1,6 +1,10 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 
+//View Functionalites since modal siya
+import ViewPrescriptionFile from './preview-prescription';
+import ViewReceiptFile from './preview-transaction';
+
 const ViewFile = () => {
   return (
     <>
