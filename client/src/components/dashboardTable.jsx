@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+
+//project imports
+import '../styles/dashboard.css';
+import '../styles/modals.css';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import CancelAppointment from "./modals/cancel-appointment";

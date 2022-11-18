@@ -42,8 +42,6 @@ const Sec_Payments = () => {
                                     <SecTransactionDataTable patientIDNum = {StringfyIDnumber}/>
                                     {/* Insert Transaction Datatable for selected patient*/}
                                     {/* Button for Create Receipt Page will be shown in transaction datatable if & only if appt is marked as "Finished" */}
-                     
-
                                 </div>
                             </div>
                         </div>

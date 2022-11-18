@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import '../../styles/modals.css';
 
 function ApptDetails(pName,consultation,appNum,date,time,appStats) {
   const [modalState, setModalState] = useState('close');

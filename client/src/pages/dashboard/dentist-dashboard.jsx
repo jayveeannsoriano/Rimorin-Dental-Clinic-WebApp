@@ -1,13 +1,14 @@
 import React from "react";
 import axios from "axios";
-import '../../styles/dashboard.css';
-import Button from 'react-bootstrap/Button';
-import DentistDTable from '../../components/dental-table';
 import moment from 'moment'
+import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 
-
+//project imports
+import '../../styles/dashboard.css';
+//datatable
+import DentistDTable from '../../components/dental-table';
 
 export default function DentistDashboard() {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
