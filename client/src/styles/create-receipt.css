@@ -1,5 +1,5 @@
-.form-container .row{
-    margin-bottom: 0.1in;
+.patient-info .btn .add-item-btn{
+    float: none !important;
 }
 
 .form-section-title{
@@ -9,13 +9,28 @@
     margin: 20px 0px 20px 0px;
 }
 
+.transaction-details-row .patient-transaction-details{
+    margin-bottom: 0.2in;
+}
+
+.transaction-details-row h6{
+    font-weight: 600;
+    font-size: 18px;
+    color: #343A40;
+}
+
+.transaction-details-row span{
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.add-item-btn{
+    margin-bottom: 0.2in;
+}
+
 .bg-success {
     padding-left: 20%;
     padding-right: 20%;
-}
-
-.rx-pr {
-    margin: 2% 0;
 }
 
 .rx-btn {
@@ -27,6 +42,8 @@
 
 label .paylabel {
     float: right;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 .total-pay {
@@ -60,12 +77,6 @@ label .paylabel {
     text-align: right;
     padding-top: 3%;
     line-height: 2;
-}
-
-.date-issue{
-    margin-left: 2%;
-}
-
-.bill-container{
-    margin-top: 4%;
+    font-weight: 700;
+    font-size: 16px;
 }
