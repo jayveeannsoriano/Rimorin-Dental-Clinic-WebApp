@@ -153,7 +153,25 @@ const createReceipt = () => {
                       }}
                     />
                   </div>
-                </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <br />
+                      <Form.Label>Discount:</Form.Label>
+                          <div className="mb-3">
+                            <Form.Check
+                              inline
+                              label="Senior Citizen"
+                              name="group1"
+                              type="radio"
+                            />
+                            <Form.Check
+                              inline
+                              label="PWD"
+                              name="group1"
+                              type="radio"
+                            />
+                          </div>
+                      </div>
+                  </div>
 
                 {/* Details of charges */}
                 <div className="form-section-title">Details of Charges</div>

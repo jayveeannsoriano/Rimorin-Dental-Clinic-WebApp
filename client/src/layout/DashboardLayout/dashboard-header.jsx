@@ -52,52 +52,9 @@ const count = appointmentDetails.length;
                 {/* <!-- ======= Dashboard Header ======= --> */}
                 <header className="header fixed-top d-flex align-items-center">
 
-                    {/* <div className="d-flex align-items-center justify-content-between">
-                            <a href="index.html" className="logo d-flex align-items-center">
-                                <img src="assets/img/logo.png" alt=""/>
-                                <span className="d-none d-lg-block">Rimorin Dental Clinic</span>
-                            </a>
-                        <i className="bi bi-list toggle-sidebar-btn"></i>
-                    </div>  */}
-                    {/* <!-- End Logo --> */}
-
-
                     {/* <!-- Search Icon --> */}
                     <nav className="header-nav ms-auto">
                         <ul className="d-flex align-items-center">
-
-
-                        {/* <!-- Notification Icon --> */}
-                        <li className="nav-item dropdown">
-                            <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                            <i className="fa-solid fa-bell"></i>
-                                <span className="badge badge-number">{ count }</span>
-                            </a>
-                    
-
-                        {/* <!-- Notification Dropdown --> */}
-                        <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-
-                        <li className="dropdown-header">
-                                You have {count} notifications
-                        </li>
-
-                        {appointmentDetails.map((item, index) => (
-                            <div key={index} class="notification-item">
-                                <div class="profile-det-info">
-                                    {/* <p>{item.dName} created you an appointment on {item.date} at {item.time}</p> */}
-                                    {/* <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p> */}
-                                    { item ? <p><span>{item.dName}</span> accepted your appointment on <span>{item.date}</span> at <span>{item.time}</span></p> : <> no notifications available </> } 
-                                </div>
-                            </div>
-                        ))}
-                        
-
-                        </ul>
-                        {/* <!-- End Notification Dropdown Items --> */}
-
-                        </li>
-                        {/* <!-- End Notification Nav --> */}
 
                         <li className="nav-item dropdown pe-3">
 
