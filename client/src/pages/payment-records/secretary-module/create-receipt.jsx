@@ -112,6 +112,7 @@ const createReceipt = () => {
                 <h5 className="card-title">Create Receipt</h5>
                 <div className="divider"></div>
 
+            <form onSubmit={() => {createReceipt();}}>
             <div className="container">
                 {/* Transaction Details */}
                 <div className="form-section-title">Transaction Details</div>
@@ -137,6 +138,7 @@ const createReceipt = () => {
                       onChange={(e) => {
                         setDateIssued(e.target.value);
                       }}
+                      required
                     />
                   </div>
                   <div className="col-xl-5 col-lg-5 col-md-5">
@@ -177,9 +179,11 @@ const createReceipt = () => {
                               type="text"
                               class="form-control"
                               placeholder="Tooth Extraction"
+                              required
                               onChange={(e) => {
                                 setServiceValue(e.target.value);
                               }}
+                              
                             />
                           </div>
                         </div>
@@ -195,6 +199,7 @@ const createReceipt = () => {
                               onChange={(e) => {
                                 setQuantityValue(e.target.value);
                               }}
+                              required
                             />
                           </div>
                         </div>
@@ -206,7 +211,7 @@ const createReceipt = () => {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">₱</span>
                                 </div>
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" required/>
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>
@@ -248,6 +253,7 @@ const createReceipt = () => {
                       onChange={(e) => {
                         setPaymentType(e.target.value);
                       }}
+                      required
                     >
                       <option value="" selected disabled>
                         --Select Payment Method--
@@ -265,6 +271,7 @@ const createReceipt = () => {
                         onChange={(e) => {
                           setAmountPaid(e.target.value);
                         }}
+                        required
                       />
                       <InputGroup.Text>.00</InputGroup.Text>
                     </InputGroup>
@@ -291,7 +298,7 @@ const createReceipt = () => {
                     <button
                       type="submit"
                       className="btn btn-primary submit-btn rx-btn"
-                      onClick={() => {
+                      onSubmit={() => {
                         createReceipt();
                       }}
                     >
@@ -299,6 +306,8 @@ const createReceipt = () => {
                     </button>
                   </div>
                 </div>
+                </form>
+
               </div>
               {/* End of Card */}
             </div>
