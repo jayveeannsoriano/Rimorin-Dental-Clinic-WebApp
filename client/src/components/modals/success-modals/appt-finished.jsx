@@ -31,8 +31,8 @@ export default function AppointmentFinished(appNum) {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Close
+                <Button variant="primary" onClick={handleClose} href={'/dentist/patient-records/dental-record/create-dental-record?appNum=' + appNum}>
+                        Proceed to Dental Records
                     </Button>
                 </Modal.Footer>
 

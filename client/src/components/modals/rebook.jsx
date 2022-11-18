@@ -96,16 +96,16 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
     if (selectValue == "Finished") {
       handleFinished();
-      Axios.post("http://localhost:3001/createReceipt", {
-        patientIDnumber: PatientIDNumber,
-        appNum: AppNumber,
-        pName: patientValue,
-        dName: dentistValue,
-        date: dateValue,
-        time: timeValue,
-        consultation: consultationValue
-      })
-      console.log("Receipt Created with ", appNum, pName)
+      // Axios.post("http://localhost:3001/createReceipt", {
+      //   patientIDnumber: PatientIDNumber,
+      //   appNum: AppNumber,
+      //   pName: patientValue,
+      //   dName: dentistValue,
+      //   date: dateValue,
+      //   time: timeValue,
+      //   consultation: consultationValue
+      // })
+      // console.log("Receipt Created with ", appNum, pName)
     } else {
       console.log("Receipt not created")
     }
@@ -220,7 +220,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
       {/* Appointment Finished Modal */}
       <Modal show={modalState == 'finished-modal'} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Appointment Marked as Finished</Modal.Title>
+          <Modal.Title>{AppNumber} Marked as Finished</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -229,8 +229,8 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
-            Close
+          <Button variant="primary" onClick={handleModalClose} href={'/dentist/patient-records/dental-record/create-dental-record?appNum=' + AppNumber.substring(0)}>
+            Proceed to Dental Records
           </Button>
         </Modal.Footer>
       </Modal>
