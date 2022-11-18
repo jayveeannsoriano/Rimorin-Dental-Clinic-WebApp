@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import '../../styles/accounts.css';
-import successful from '../../assets/img/check.png';
+import '../../../styles/accounts.css';
+import successful from '../../../assets/img/check.png';
 
-export default function AppointmentFinished() {
+export default function AppointmentFinished(appNum) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    // Get values
+    const StringfyValues = JSON.stringify(appNum);
+    const ConvertStringfyValues = JSON.parse(StringfyValues);
+    const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g, "");
 
     return (
         <>
@@ -17,12 +22,12 @@ export default function AppointmentFinished() {
             <Modal show={show} onHide={handleClose}>
 
                 <Modal.Header closeButton>
-                    <Modal.Title>Appointment Marked as Finished</Modal.Title>
+                    {/* <Modal.Title>Appointment Status</Modal.Title> */}
                 </Modal.Header>
 
                 <Modal.Body>
                     <img src={successful} alt="success image" className='success-img'/>
-                    <p className='modal-txt'>You have succesfully updated your changes!</p>
+                    <p className='modal-txt'>Appointment {AppNumber} Marked as Finished!</p>
                 </Modal.Body>
 
                 <Modal.Footer>

@@ -91,9 +91,8 @@ const ViewDentalRecord = () => {
 
                                     {/* Dental Teeth Chart */}
                                     <h5 className="card-title">Dental Chart</h5>
-                                    <DentalChart/>
                                     <div class="row">
-                                        {/* Insert Dental Teeth Chart for selected patient*/}
+                                        <DentalChart/>
                                     </div>
 
                                     {/* Summary of Treatment */}
