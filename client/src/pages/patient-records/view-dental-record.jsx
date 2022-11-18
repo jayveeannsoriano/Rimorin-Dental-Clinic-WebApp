@@ -89,7 +89,7 @@ const ViewDentalRecord = () => {
                                             
                                             <button className="btn btn-primary" type="submit">
                                             <i class="bi bi-download"></i>
-                                            Export
+                                                Export
                                             </button>
                                         <div className="divider"></div>
 
