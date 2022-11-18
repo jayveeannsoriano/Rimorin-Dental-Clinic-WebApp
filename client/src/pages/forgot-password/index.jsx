@@ -1,20 +1,20 @@
 import Form from 'react-bootstrap/Form';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 
 
 
-function ForgotPswd() {
+export default function ForgotPswd() {
   const [email, setEmail] = useState("");
   const ForgotPassword = () => {
     var emailEl = document.getElementById('email')
     setEmail(emailEl.value);
   }
 
-useEffect(() => {
-  Axios.post("http://localhost:3001/forgot-password", {email: email})
-});
+  useEffect(() => {
+    Axios.post("http://localhost:3001/forgot-password", { email: email })
+  });
 
   return (
     <Form>
@@ -39,5 +39,3 @@ useEffect(() => {
     </Form>
   );
 }
-
-export default ForgotPswd;

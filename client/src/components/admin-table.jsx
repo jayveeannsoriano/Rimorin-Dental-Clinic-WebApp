@@ -28,11 +28,11 @@ const AdminTable = () => {
     }
 
     const columns = [
-        {
-            name: 'Account ID',
-            selector: (row) => 'Account ID: ' + row._id,
-            sortable: true,
-        },
+        // {
+        //     name: 'Account ID',
+        //     selector: (row) => 'Account ID: ' + row._id,
+        //     sortable: true,
+        // },
         {
             name: "Account Name",
             selector: (row) => row.fname + " " + row.lname,
@@ -49,7 +49,7 @@ const AdminTable = () => {
                 <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
                 {/* <ViewAccount /> */}
                 {/* <button>Archive</button> */}
-                <Button className="accept-button"><i class="bi bi-check-lg"></i> Archive</Button>
+                <Button className="cancel-button btn btn-outline-danger"><i class="bi bi-archive"></i> Archive</Button>
             </div>
         },
     ];

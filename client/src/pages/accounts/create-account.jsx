@@ -4,6 +4,7 @@ import '../../styles/accounts.css';
 import '../../styles/login-signup.css';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
+import AccountCreated from '../../components/modals/account-successful';
 
 const CreateAccount = () => {
 
@@ -207,6 +208,7 @@ const CreateAccount = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary ad-btn-space"
+                                                        onClick={<AccountCreated/>}
                                                     >
                                                         Next
                                                     </button>
