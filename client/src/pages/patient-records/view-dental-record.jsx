@@ -80,7 +80,7 @@ const ViewDentalRecord = () => {
         await Promise.all([getPatientDetails()]);
 
         {/*dental Record(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/}
-        dentalRecord(patientList[0].fname+" "+patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, patientList[0].precaution, document.getElementById("dental-chart-Image"), willDownload);
+        dentalRecord(patientList[0].fname+" "+patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, (patientList[0].hasOwnProperty('precaution')?patientList[0].precaution:'N/A'), document.getElementById("dental-chart-Image"), willDownload);
     };
 
     

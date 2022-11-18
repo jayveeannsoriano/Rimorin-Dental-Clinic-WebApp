@@ -28,6 +28,7 @@ const TransactionDataTable = () => {
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    const [patientList, setPatientList] = useState([]);
 
     const getAppointment = async() => {
         try{
@@ -39,6 +40,19 @@ const TransactionDataTable = () => {
             console.log(response, "Responses");
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    const getPatientDetails = async() => {
+        try{
+            const response = await axios.get('http://localhost:3001/getPatientInfo',{
+              params:{
+              patientIDnumber: StringfyIDnumber}
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
         }catch (error){
             console.log(error)
         }
@@ -64,9 +78,9 @@ const TransactionDataTable = () => {
             name: "Action",
             selector: (row) => 
             <div className="action-buttons">
-                    <PrintFile/>
+                    <PrintFile data={[false,"receipt",row,patientList]}/>
                     <ViewFile/>
-                    <ExportFile data={[true,"receipt",row,appointment]}/>
+                    <ExportFile data={[true,"receipt",row,patientList]}/>
             </div>
         }
     ];
@@ -112,6 +126,7 @@ const TransactionDataTable = () => {
 
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
 
     // useEffect(() => {
