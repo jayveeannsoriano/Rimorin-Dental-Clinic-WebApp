@@ -17,8 +17,8 @@ export default function AppointmentFinished(appNum) {
 
     return (
         <>
-            <button type="button" class="btn btn-primary spc" onClick={handleShow}> <i class="bi bi-eye"></i> View Archived Accounts</button>
-
+            {/* <button type="button" class="btn btn-primary spc" onClick={handleShow}> <i class="bi bi-eye"></i> View Archived Accounts</button> */}
+            {/* <option onClick={handleShow}>Finished</option> */}
             <Modal show={show} onHide={handleClose}>
 
                 <Modal.Header closeButton>
