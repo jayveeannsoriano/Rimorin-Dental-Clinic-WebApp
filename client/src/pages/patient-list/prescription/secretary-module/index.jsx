@@ -1,5 +1,5 @@
 import React from 'react'
-import PrescriptionPatientProfileWidget from '../../../components/patient-list/prescriptions';
+import PrescriptionPatientProfileWidget from '../../../../components/patient-list/prescriptions';
 
 const PrescriptionPatientList = () => {
     return (
