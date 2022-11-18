@@ -838,16 +838,24 @@ h6 {
 	width: 95%;
 }
 
-.timeslot .time:hover {
-	background-color: var(--primary-color);
-	color: #fff;
-}
-
 .slots {
 	width: 100%;
 	display: grid;
 	gap: 5px 0px;
 	grid-template-columns: repeat(4, 1fr);
+  background: white;
+  pointer-events: auto;
+}
+
+.slots-taken {
+	background: lightgray;
+  pointer-events: none
+}
+
+.slots2 {
+	width: 100%;
+	gap: 2px 0px;
+	grid-template-columns: repeat(3, 1fr) !important;
 }
 
 /* Reschedule Appointment Modal */
@@ -1161,7 +1169,7 @@ padding-right: 4px;
 #footer {
   background: var(--primary-color);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
-  padding: 30px 0;
+  padding: 25px 0;
   color: #fff;
   font-size: 14px;
   position: fixed;
@@ -1216,6 +1224,23 @@ padding-right: 4px;
 }
 
 
+/*--------------------------------------------------------------
+# Forgot Password
+--------------------------------------------------------------*/
+.forgot-container{
+  margin-left: 2%;
+}
+
+.fgt-btn{
+  margin-right: 2%;
+}
+
+.forgot-title {
+  text-align: left;
+  font-weight: var(--font-semi-bold);
+  color: var(--primary-color);
+  padding-bottom: 3%;
+}
 /*--------------------------------------------------------------
 # Overrides
 --------------------------------------------------------------*/

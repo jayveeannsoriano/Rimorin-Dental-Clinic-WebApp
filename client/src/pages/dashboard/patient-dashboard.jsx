@@ -58,7 +58,7 @@ const PatientDashboard = () => {
         <div className="pagetitle">
           <h1>Welcome, {item.fname}!</h1>
           <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <p>{time}</p>
+          <h2>{time}</h2>
         </div>
         ))}
 
@@ -69,16 +69,29 @@ const PatientDashboard = () => {
             <div className="col-12">
               <div className="card overflow-auto">
 
-                <div className="card-body datatable">
-                  <div className="nav-bar">
-                    <Button className="table-button">TODAY</Button>
-                    <Button className="table-button">UPCOMING</Button>
+              <div class="card-body datatable">
+                  <div class="nav nav-bar">
+                    <Button className="table-button active" data-bs-toggle="tab" data-bs-target="#today-appt">TODAY</Button>
+                    <Button className="table-button" data-bs-toggle="tab" data-bs-target="#upcoming-appt">UPCOMING</Button>
                     <Button className="table-button reqdash-btn" href="/patient/appointments/request-appointment"><i class="bi bi-plus-lg"></i> REQUEST APPOINTMENT</Button>
                   </div>
-                  <h5 className="card-title">
-                    TODAY&apos;S APPOINTMENTS
-                  </h5>
-                      <DashboardTable/>
+
+                <div className="tab-content">
+                    <div className="tab-pane fade show active today-appt" id="today-appt">
+                      <h5 className="card-title">
+                        TODAY&apos;S APPOINTMENTS
+                      </h5>
+                          <DashboardTable/>
+                    </div>
+
+                    <div className="tab-pane fade today-appt" id="upcoming-appt">
+                      <h5 className="card-title">
+                        UPCOMING APPOINTMENTS
+                      </h5>
+                      {/* Pachange nalang yung datatable for upcoming appt ng respective patient here */}
+                        <DashboardTable/>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

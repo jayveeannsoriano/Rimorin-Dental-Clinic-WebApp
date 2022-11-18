@@ -54,7 +54,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
     return (
         <>
-            <Button className="cancel-button" onClick={handleModal2}>
+            <Button className="cancel-button" onClick={handleModal1}>
                 <i class="bi bi-x-lg"></i>Cancel
             </Button>
 
