@@ -70,7 +70,7 @@ const CreateDentalRecord = () => {
 
   const uploadDentalRecords = () => {
     console.log(StringfyIDnumber);
-    console.log(StringfyAppnumber);
+    // console.log(StringfyAppnumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(chartedTeeth);
