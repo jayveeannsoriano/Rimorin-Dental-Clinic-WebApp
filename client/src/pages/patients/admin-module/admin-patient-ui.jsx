@@ -17,10 +17,10 @@ const AdminPatientUI = () => {
                             <a href="/admin">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/patients">Patient</a>
+                            <a href="/admin/patients">Patients</a>
                         </li>
-                        <li class="breadcrumb-item active">Patient Name</li>
-                        {/* ^should be Patient's Name? */}
+                        <li class="breadcrumb-item active">View Patient</li>
+                        
                     </ol>
                 </nav>
             </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import '../../styles/accounts.css';
-import successful from '../../assets/img/check.png';
+import '../../../styles/accounts.css';
+import successful from '../../../assets/img/check.png';
 
 export default function AppointmentNoShow() {
     const [show, setShow] = useState(false);

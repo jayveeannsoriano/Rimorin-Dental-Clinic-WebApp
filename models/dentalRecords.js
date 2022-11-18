@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const UserDentalRecords = new mongoose.Schema(
   {
     patientIDNumber: String,
+    appNum: String,
     dentalDate: String,
     dentalDesc: String,
     procedures: Object,

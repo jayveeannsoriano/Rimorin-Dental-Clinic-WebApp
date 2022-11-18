@@ -20,7 +20,10 @@ const CreateDentalRecord = () => {
   const paramsID = new URLSearchParams(location.search)
   const getPatientIDNumber = paramsID.get('patientIDNum');
   const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
-  console.log(StringfyIDnumber, 'create dental record');
+  // const getPatientAppNum = paramsID.get('appNum');
+  // const StringfyAppnumber = useMemo(() => JSON.stringify(getPatientAppNum).replace(/"/g, ""));
+  // console.log(StringfyIDnumber,'or', StringfyAppnumber, 'create dental record');
+
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
@@ -60,19 +63,23 @@ const CreateDentalRecord = () => {
 
   //drag n drop
   const [getFile, setGetFile] = useState("");
+  console.log(getFile, "this is the img value");
   const onFileChange = (files) => {
     setGetFile(files);
   }
 
   const uploadDentalRecords = () => {
     console.log(StringfyIDnumber);
+    // console.log(StringfyAppnumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(chartedTeeth);
     console.log(getFile);
+    
 
     Axios.post("http://localhost:3001/createDentalRecord", {
       patientIDNum: StringfyIDnumber,
+      // appNum: StringfyAppnumber,
       dateValue: startDate,
       descValue: treatDesc,
       imgValue: getFile[0],

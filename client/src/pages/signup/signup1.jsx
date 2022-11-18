@@ -121,7 +121,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="123-456-789"
                 onChange={handleChange('tellphone')}
                 defaultValue={values.tellphone}
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               />
             </div>
           </div>

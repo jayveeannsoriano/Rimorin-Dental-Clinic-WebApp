@@ -260,8 +260,8 @@ const LandingPage = () => {
                     <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                         <div className="icon-box">
                             <div className="icon"><i className="fas fa-notes-medical"></i></div>
-                            <h4>Teledentistry</h4>
-                            <p>Connect and communicate with your dentist on screen.</p>
+                            <h4>Oral Medicine</h4>
+                            <p>Procedures that involve Root Canal, Tooth Therapy, and Veneers</p>
                         </div>
                     </div>
                 </div>

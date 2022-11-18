@@ -6,7 +6,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
-
+const fs = require('fs');
 app.use(express.json()); //prints body request
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
@@ -779,7 +779,7 @@ app.get("/*", function (req, res) {
 
 //create dental records
 //image storage
-const ImgStorage = multer.diskStorage({
+const ImgStorageDentRec = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
@@ -788,7 +788,7 @@ const ImgStorage = multer.diskStorage({
 });
 
 const uploadImg = multer({
-  storage:ImgStorage
+  storage:ImgStorageDentRec
 });
 
 
@@ -861,44 +861,32 @@ app.put("/updateReceipt", async (req,res) =>{
   console.log("Receipt Details Updated!")
 });
 
-const ImgStorage2 = multer.diskStorage({
+const ImgStorageEPres = multer.diskStorage({
   destination: "uploads/e-prescription",
   filename:(req,file,cb) =>{
     const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb( null, 'PT#' + req.body.patientIDNum+"_"+slicedDate+"_"+file.originalname);
+    cb(null, req.body.patientIDNum+"_"+slicedDate + ".png");
   },
 });
 
 const uploadImg2 = multer({
-  storage:ImgStorage2
+  storage:ImgStorageEPres
 });
 
-app.post("/createEprescription",uploadImg2.single('imageFile'), async (req,res)=>{
+app.post("/createEprescription",uploadImg2.single('imgFile'), async (req,res)=>{
 
   console.log("epres")
   const patientIDNum = 'PT#' + req.body.patientIDNum;
   const dateValue = req.body.dateValue;
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
-  const genericValue = req.body.genericValue;
-  const brandValue = req.body.brandValue;
-  const dosageValue = req.body.dosageValue;
-  const formValue = req.body.formValue;
-  const frequencyValue = req.body.frequencyValue;
-  const durationValue = req.body.durationValue;
+  const presDetails = req.body.presDetails;
   const notesValue = req.body.notesValue;
-  // const imageValue = req.files.imgFile;
   
   await PresDetails.create({
       patientIDNumber: patientIDNum,
       presDate: slicedDate,
-      genericName: genericValue,
-      brandName: brandValue,
-      medDosage: dosageValue,
-      presForm: formValue,
-      presFrequency: frequencyValue,
-      presDuration: durationValue,
+      presDetails: presDetails,
       presInstruction: notesValue,
-      // dentalFile: imageValue,
     });
     console.log("e-pres saved");
 
@@ -927,6 +915,7 @@ app.put("/updatePatientInfo", async (req, res) => {
   const medValue = req.body.medValue;
   const allergiesValue = req.body.allergiesValue;
   const condValue = req.body.condValue;
+  const precautionValue = req.body.precautionValue;
 
   const patientName = firstName + " " + lastName;
 
@@ -953,6 +942,7 @@ app.put("/updatePatientInfo", async (req, res) => {
      medications: medValue,
      allergies: allergiesValue,
      conditions: condValue,
+     precautions: precautionValue
     })
 
     await AppDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})

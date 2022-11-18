@@ -15,6 +15,9 @@ const LandingPage = lazy(() => import('../pages/landingpage'));
 const LoginPage = lazy(() => import('../pages/login/index'));
 const SignUpPage = lazy(() => import('../pages/signup/index'));
 
+//forgot password
+const ForgotPassword = lazy(() => import('../pages/forgot-password/index'));
+
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -37,6 +40,10 @@ const AuthenticationRoutes = {
             {
               path: '/auth/login',
               element: <LoginPage />
+            },
+            {
+              path: '/auth/forgot-password',
+              element: <ForgotPassword />
             },
             {
               path: '/auth/signup',
