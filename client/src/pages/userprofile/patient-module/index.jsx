@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import UserProfileWidget from "../../../components/userprofile-widget";
 import "../../../styles/patient-info-edit.css";
@@ -345,7 +344,7 @@ const UserProfile = () => {
                                         </div>
                                         </div>
                                         <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
-                                    </div>
+                                        </div>
                                 </div>
                                             {/* Change Password */}
                                             <div class="tab-pane fade pt-3" id="profile-change-password">

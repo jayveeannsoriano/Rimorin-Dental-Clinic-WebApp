@@ -73,15 +73,6 @@ function Sidebar_Admin(){
                         </a>
                     </li>
 
-                    {/* Backup and Restore Nav */}
-                    <li class="nav-item">
-                        <a class={"nav-link"+((window.location.href.split("/").pop()=='backup-restore') ? ' active': ' collapsed')} 
-                        href="/admin/backup-restore">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        <span>Backup and Restore</span>
-                        </a>
-                    </li>
-
                     <div className="divider"></div>
 
                     {/* My Profile Nav */}
