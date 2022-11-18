@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/dental-record.css"
-import PatientProfileWidget from "../../components/profile-widget";
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 import DentalChart from "../../components/dental-teeth-chart";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+
+//project imports
+import ProfileWidgetTwo from "../../components/profile-widget2";
+import "../../styles/profilewidgettwo.css";
 
 
 const ViewDentalRecord = () => {
@@ -70,67 +73,66 @@ const ViewDentalRecord = () => {
                         </ol>
                     </nav>
                 </div>
-                <section class="section profile">
-                    <div class="row">
-                    <PatientProfileWidget/>
-
-                        <div class="col-xl-8">
-                            <div className="card patient-info">
-                                <div className="card-body pt-3">
-                                    <h5 className="card-title">Dental Record</h5>
-                                    <button className="btn btn-primary" type="submit">
-                                        <i class="bi bi-printer-fill"></i>
-                                        Print
-                                        </button>
-                                        
+                    <div className="container">
+                        <ProfileWidgetTwo />
+                    </div>
+                    
+                    <div className="container">
+                        <div class="row">
+                                <div className="card patient-info">
+                                    <div className="card-body pt-3">
+                                        <h5 className="card-title">Dental Record</h5>
                                         <button className="btn btn-primary" type="submit">
-                                        <i class="bi bi-download"></i>
-                                        Export
-                                        </button>
-                                    <div className="divider"></div>
+                                            <i class="bi bi-printer-fill"></i>
+                                            Print
+                                            </button>
+                                            
+                                            <button className="btn btn-primary" type="submit">
+                                            <i class="bi bi-download"></i>
+                                            Export
+                                            </button>
+                                        <div className="divider"></div>
 
-                                    {/* Dental Teeth Chart */}
-                                    <h5 className="card-title">Dental Chart</h5>
-                                    <div class="row">
-                                        <DentalChart/>
+                                        {/* Dental Teeth Chart */}
+                                        <h5 className="card-title">Dental Chart</h5>
+                                        <div class="row">
+                                            <DentalChart/>
+                                        </div>
+
+                                        {/* Summary of Treatment */}
+                                        <h5 className="card-title">Summary of Treatment</h5>
+                                        <div class="row">
+                                            <div className="col-3">
+                                                <h6>Selected Tooth/Teeth</h6>
+                                                <p>{recordData.chartedTeeth}</p>
+                                            </div>
+                                            <div className="col-3">
+                                                <h6>Date of Treatment</h6>
+                                                <p>{recordData.dentalDate}</p>
+                                            </div>
+                                            <div className="col-3">
+                                                <h6>Treatment Description</h6>
+                                                <p>{recordData.dentalDesc}</p>
+                                            </div>
+                                            <div className="col-3">
+                                                <h6>Procedure/s</h6>
+                                                <p>{recordProcedures.toString()}</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Treatment Attatchments */}
+                                        <h5 className="card-title">Treatment Attachments</h5>
+                                        <div className="row attatchment-container" 
+                                        style={{border: "2px solid #885df1", borderRadius: "15px", width: "784px", height: "289px"}}>
+                                            {/* Insert uploaded image/s for that specific record*/}
+                                            <img src={"../../../../../uploads/dental-record-images/" + query.patientIDNum + "_" + query.date + ".jpg"} alt="Treatment attatchment"/>
+                                        </div>
+
                                     </div>
-
-                                    {/* Summary of Treatment */}
-                                    <h5 className="card-title">Summary of Treatment</h5>
-                                    <div class="row">
-                                        <div className="col-3">
-                                            <h6>Selected Tooth/Teeth</h6>
-                                            <p>{recordData.chartedTeeth}</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <h6>Date of Treatment</h6>
-                                            <p>{recordData.dentalDate}</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <h6>Treatment Description</h6>
-                                            <p>{recordData.dentalDesc}</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <h6>Procedure/s</h6>
-                                            <p>{recordProcedures.toString()}</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Treatment Attatchments */}
-                                    <h5 className="card-title">Treatment Attachments</h5>
-                                    <div className="row attatchment-container" 
-                                    style={{border: "2px solid #885df1", borderRadius: "15px", width: "784px", height: "289px"}}>
-                                        {/* Insert uploaded image/s for that specific record*/}
-                                        <img src={"../../../../../uploads/dental-record-images/" + query.patientIDNum + "_" + query.date + ".jpg"} alt="Treatment attatchment"/>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-        </>
-
+                    </>
     );
 }
 export default ViewDentalRecord;
