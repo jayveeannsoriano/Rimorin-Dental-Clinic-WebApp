@@ -48,6 +48,8 @@ require("./models/receiptDetails");
 require("./models/dentalRecords");
 require("./models/notificationDetails");
 require("./models/appointmentHistory");
+require("./models/availableTime");
+
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
@@ -56,6 +58,8 @@ const ReceiptDetails = mongoose.model("ReceiptDetails");
 const DentalRecords = mongoose.model("UserDentalRecords");
 const NotifDetails = mongoose.model("NotificationDetails");
 const AppHistory = mongoose.model("AppointmentHistory");
+const AvailableTime = mongoose.model("AvailableTime");
+
 
 //sign in
 app.post("/login-user", async (req, res) => {
@@ -243,29 +247,35 @@ app.post("/insertAppointment", async(req,res) => {
   }
 });
 
+app.put("/updateClinicHours", async (req, res) => {
+  await AvailableTime.findOneAndUpdate({}, {config: req.body.clinicHours})
+  console.log("Clinic Hours Updated!");
+
+});
+
 //Get user for Appointment Request
 app.get("/getAppointmentDetails", async(req,res) => {
     
   await AppRequest.find({})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
+    });
+  });
+    
+//Get user for Appointment Details  
+app.get("/get", async(req,res) => {
+    
+  await AppDetails.find({})
       .then((data) => {
         res.json(data);
       })
       .catch((error) => {
-       console.log('error: ', error)
+        console.log('error: ', error)
       });
     });
-    
-//Get user for Appointment Details
-app.get("/get", async(req,res) => {
-    
-      await AppDetails.find({})
-          .then((data) => {
-            res.json(data);
-          })
-          .catch((error) => {
-           console.log('error: ', error)
-          });
-        });
 
 //Get user for UserDetails
 app.get("/getUserDetails", async(req,res) => {
@@ -279,6 +289,18 @@ app.get("/getUserDetails", async(req,res) => {
       });
     });
 
+app.get("/getAvailableTimes", async(req,res) => {
+
+  await AvailableTime.find({})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+    console.log('error: ', error)
+  });
+});
+
+        
 app.get("/getUserInfo", async(req,res) => {
 
   const patientIDNumber = req.query.patientIDnumber;
