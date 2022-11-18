@@ -7,7 +7,7 @@ import ErrorPage from '../components/errorpage';
 
 //sidebar routing
 const Dashboard = lazy(() => import('../pages/dashboard/admin-dashboard'));
-const Calendar = lazy(() => import('../pages/calendar/index'));
+const Calendar = lazy(() => import('../pages/calendar/admin-module/index'));
 const ClinicHours = lazy(() => import('../pages/clinic-hours'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
 const Patients = lazy(() => import('../pages/patients/index'));
