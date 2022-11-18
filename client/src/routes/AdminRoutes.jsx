@@ -12,7 +12,7 @@ const ClinicHours = lazy(() => import('../pages/clinic-hours'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
 const Patients = lazy(() => import('../pages/patients/index'));
 const BackUpnRestore = lazy(() => import('../pages/backupNrestore/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/index'));
+const UserProfile = lazy(() => import('../pages/userprofile/admin-module/index'));
 
 const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 

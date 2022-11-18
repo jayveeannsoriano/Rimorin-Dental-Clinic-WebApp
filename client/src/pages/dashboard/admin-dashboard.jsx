@@ -73,7 +73,7 @@ import '../../styles/dashboard.css';
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/dentist">Home</a>
+            <a href="/admin">Home</a>
           </li>
           <li className="breadcrumb-item active">Appointments</li>
         </ol>
