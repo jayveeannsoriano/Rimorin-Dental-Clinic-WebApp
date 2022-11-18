@@ -11,8 +11,7 @@ const Calendar = lazy(() => import('../pages/calendar/admin-module/index'));
 const ClinicHours = lazy(() => import('../pages/clinic-hours'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
 const Patients = lazy(() => import('../pages/patients/index'));
-const BackUpnRestore = lazy(() => import('../pages/backupNrestore/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/admin-module/index'));
+const AdminUserProfile = lazy(() => import('../pages/userprofile/admin-module/index'));
 
 const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 
@@ -53,12 +52,8 @@ const AdminRoute ={
             element: <Patients />
         },
         {
-            path: '/admin/backup-restore',
-            element: < BackUpnRestore />
-        },
-        {
             path: '/admin/userprofile',
-            element: <UserProfile />
+            element: <AdminUserProfile />
         },
         {
             path:'/admin/patients/admin-module/admin-patient-ui',

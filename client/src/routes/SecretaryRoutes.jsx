@@ -15,7 +15,7 @@ const PatientInfo = lazy(() => import('../pages/patient-records/secretary-module
 const DentalRecords = lazy(() => import('../pages/patient-records/secretary-module/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/secretary-module/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
+const SecretaryUserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
 
 // patient list page routing
 const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
@@ -106,7 +106,7 @@ const SecretaryRoutes = {
         },
         {
             path: '/secretary/userprofile/',
-            element: <UserProfile />
+            element: <SecretaryUserProfile />
         }
     ]
 };

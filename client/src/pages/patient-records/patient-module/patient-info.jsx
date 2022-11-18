@@ -4,7 +4,6 @@ import "react-bootstrap";
 import Axios from 'axios';
 import ProfileWidget from "../../../components/profile-widget";
 import { Button } from "react-bootstrap";
-import PatientInfoEdit from "./patient-info-edit";
 
 const PatientInfo = () => {
 
@@ -101,7 +100,7 @@ const PatientInfo = () => {
 
                 {userInformation.map((item, index) => (
                   <div class="row">
-                    <div class="col-lg-auto col-md-auto label">Middle Initial</div>
+                    <div class="col-lg-auto col-md-auto label">Middle Name</div>
                     <div id="mname" class="col-lg-auto col-md-auto">
                       {item.mname}
                     </div>
@@ -225,43 +224,11 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
-                <div className="divider"></div>
-
-                {/* Medical Conditions */}
-                {userInformation.map((item, index) => (
-                  <div class="row">
-                    <h4>Medical Conditions</h4>
-                    <div class="col-lg-5 col-md-4 label">
-                      Medications/Maintenance
-                    </div>
-                    <div id="medications" class="col-lg-3">
-                      {item.medications}
-                    </div>
-                  </div>
-                ))}
-                {userInformation.map((item, index) => (
-                  <div class="row">
-                    <div class="col-lg-4 col-md-4 label">Allergies</div>
-                    <div id="allergies" class="col-lg-3">
-                      {item.allergies}
-                    </div>
-                  </div>
-                ))}
-                {userInformation.map((item, index) => (
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Conditions</div>
-                    <div id="conditions" class="col-lg-3">
-                      {item.conditions}
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
             {/* end of card body */}
           </div>
-
         </div>
-
       </section>
     </>
   );

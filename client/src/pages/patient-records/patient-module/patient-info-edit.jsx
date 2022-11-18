@@ -6,7 +6,6 @@ import ProfileWidget from "../../../components/profile-widget";
 import Axios from 'axios';
 
 //datepicker
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from 'react-bootstrap';
 
@@ -337,11 +336,9 @@ const PatientInfoEdit = ({ }) => {
                           <input type="precautions" className="form-control" id="precautions" placeholder={item.precautions} defaultValue={item.precautions} onChange={(e) => setPrecautionValue(e.target.value)} required />
                         ))}
                       </div>
-
-                      <Button className='edit-save' onClick={() => updatePatientInfo()}>Save</Button>
                     </div>
-
                   </div>
+                  <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
                 </div>
               </form>
             </div>
