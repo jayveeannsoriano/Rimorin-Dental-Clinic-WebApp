@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react";
 import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
+import Avatar from 'react-avatar';
 
 // temporary user image
 import userimg from '../../../assets/img/profile-img.jpg';
@@ -44,13 +45,13 @@ const proceedtoViewInfo = (value) => {
                             <div class="pro-widget-content">
                                 <div class="profile-info-widget">
                                     <a href="#" class="booking-doc-img">
-                                        <img src={userimg} alt="User Image"/>
+                                        <Avatar name={item.fname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
                                         
                                         <div class="patient-details">
-                                            <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
+                                            <h5><b>Patient ID: </b> {item.patientIDnumber}</h5>
                                         </div>
                                     </div>
                                 </div>

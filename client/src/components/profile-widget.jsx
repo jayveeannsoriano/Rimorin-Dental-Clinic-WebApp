@@ -1,14 +1,17 @@
 import React from "react";
+import Avatar from 'react-avatar';
 import DefaultProfile from '../assets/img/default-profile.jpg'
 
 export default function ProfileWidget() {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    
+    const fullName = userInfo['fname'] + " " + userInfo['lname'] 
+    console.log(fullName)
+
     return (
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img id="avatar-profile" src={DefaultProfile} alt="Profile" class="rounded-circle" />
+                    <Avatar name={fullName} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                     <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2>
                     <h3>Patient ID: <span id="">PT0001</span></h3>
                     <div className="divider"></div>
