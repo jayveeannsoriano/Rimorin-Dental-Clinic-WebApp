@@ -20,6 +20,7 @@ const Sec_Payments = () => {
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/secretary">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/secretary/payment-records">Patients</a></li>
                             <li class="breadcrumb-item active">Payment Records</li>
                         </ol>
                     </nav>

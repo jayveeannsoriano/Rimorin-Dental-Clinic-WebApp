@@ -94,6 +94,7 @@ const createReceipt = () => {
                         <li class="breadcrumb-item">
                             <a href="/secretary">Home</a>
                         </li>
+                        <li class="breadcrumb-item"><a href="/secretary/payment-records">Patients</a></li>
                         <li class="breadcrumb-item active">
                             <a href="/secretary/payment-records">Payment Records</a>
                         </li>
@@ -103,6 +104,7 @@ const createReceipt = () => {
 
             <section class="section profile">
                 <div className="row">
+
                     <ProfileWidget />
 
 
@@ -113,29 +115,83 @@ const createReceipt = () => {
                                     <h5 className="card-title">Create Receipt</h5>
                                     <div className="divider"></div>
 
-                                        <div className="form-section-title">Transaction Details</div>
-                                        <div className="row transaction-details-row">
-                                            <div className="col-xl-12 col-lg-12 col-md-12">
-                                                <h6>Transaction #: <span>#TR0002</span></h6>
-                                                <h6>Bill to: <span>Shermax Soriano</span></h6>
-                                                <h6>Address: <span>#10 Todafuckingmoon</span></h6>
-                                            </div>
-                                            <div className="col-xl-5 col-lg-5 col-md-5">
-                                                <label for="dateOfIssue">Date of Issue</label>
-                                                <input name="dateOfIssue" type="date" className="form-control" placeholder="Date" onChange={(e) => { setDateIssued(e.target.value) }} />
-                                            </div>
-                                            <div className="col-xl-5 col-lg-5 col-md-5">
-                                                <label for="ORnum">OR Number:</label>
-                                                <input name="ORnum" type="text" className="form-control" placeholder="OR #" onChange={(e) => { setOrNum(e.target.value) }} />
+                                    <div className="form-section-title">Transaction Details</div>
+                                    <div className="row transaction-details-row">
+                                        <div className="col-xl-12 col-lg-12 col-md-12">
+                                            <h6>Transaction #: <span>#TR0002</span></h6>
+                                            <h6>Bill to: <span>Shermax Soriano</span></h6>
+                                            <h6>Address: <span>#10 Todafuckingmoon</span></h6>
+                                        </div>
+                                        <div className="col-xl-5 col-lg-5 col-md-5">
+                                            <label for="dateOfIssue">Date of Issue</label>
+                                            <input name="dateOfIssue" type="date" className="form-control" placeholder="Date" onChange={(e) => { setDateIssued(e.target.value) }} />
+                                        </div>
+                                        <div className="col-xl-5 col-lg-5 col-md-5">
+                                            <label for="ORnum">OR Number:</label>
+                                            <input name="ORnum" type="text" className="form-control" placeholder="OR #" onChange={(e) => { setOrNum(e.target.value) }} />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-section-title">Details of Charges</div>
+                                    {/* Add Item */}
+                                    <div className="row details-of-charges-row experience-cont">
+                                        <div className="col-12 col-md-10 col-lg-12">
+                                            {serviceItem.map((singleItem, index) => (
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Service <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" placeholder="Tooth Extraction" onChange={(e) => { setServiceValue(e.target.value) }} />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Quantity <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" placeholder="1" onChange={(e) => { setQuantityValue(e.target.value) }} />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Amount (₱)<span class="text-danger">*</span></label>
+                                                            <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountValue(e.target.value) }} />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-lg-2">
+                                                        <div class="add-more-item rx-pr">
+                                                            <br />
+                                                            {serviceItem.length !== 1 && (
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => handleItemRemove(index)}
+                                                                    className="btn bg-danger-light trash"
+                                                                >
+                                                                    <i className="far fa-trash-alt" />
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            {/* Add Item button */}
+                                            <div className="add-more-item rx-pr">
+                                                <button
+                                                    type="submit"
+                                                    onClick={handleItemAdd}
+                                                    className="btn btn-primary rx-pr">
+                                                    <i className="fas fa-plus" /> Add Item
+                                                </button>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div className="form-section-title">Details of Charges</div>
-                                        {/* Add Item */}
-                                        <div className="row details-of-charges-row experience-cont">
-                                            <div className="col-12 col-md-10 col-lg-12">
+
+                                    {/* Forms */}
+                                    <div class="experience-info">
+                                        <div class="row form-row experience-cont">
+                                            <div class="col-12 col-md-10 col-lg-12">
                                                 {serviceItem.map((singleItem, index) => (
-                                                    <div class="row">
+                                                    <div class="row form-row">
+
                                                         <div class="col-12 col-md-6 col-lg-4">
                                                             <div class="form-group">
                                                                 <label>Service <span class="text-danger">*</span></label>
@@ -154,8 +210,9 @@ const createReceipt = () => {
                                                                 <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountValue(e.target.value) }} />
                                                             </div>
                                                         </div>
+                                                        {/* trash icon */}
                                                         <div class="col-12 col-md-6 col-lg-2">
-                                                            <div class="add-more-item rx-pr">
+                                                            <div class="add-more">
                                                                 <br />
                                                                 {serviceItem.length !== 1 && (
                                                                     <button
@@ -170,69 +227,108 @@ const createReceipt = () => {
                                                         </div>
                                                     </div>
                                                 ))}
-                                                {/* Add Item button */}
+
+                                                {/* Add Item */}
                                                 <div className="add-more-item rx-pr">
-                                                <button 
-                                                    type="submit" 
-                                                    onClick={handleItemAdd}
-                                                    className="btn btn-primary rx-pr">
+                                                    <button
+                                                        type="submit"
+                                                        onClick={handleItemAdd}
+                                                        className="btn btn-primary rx-pr">
                                                         <i className="fas fa-plus" /> Add Item
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="form-section-title">Payment Details</div>
-                                        <div className="row">
-                                            <div className="col-md-3 col-lg-3">
-                                                <Form.Label>Payment Method:</Form.Label>
-                                                    <Form.Select onChange={(e) => { setPaymentType(e.target.value) }}>
-                                                        <option value="" selected disabled>--Select Type--</option>
-                                                        <option value="cash">Cash</option>
-                                                        <option value="e-money">E-Money</option>
-                                                    </Form.Select>                                           
-                                            </div>
-                                            <div className="col-md-3 col-lg-3">
-                                            <Form.Label>Amount Paid:</Form.Label>
-                                                <InputGroup className="mb-3">
-                                                    <InputGroup.Text>₱</InputGroup.Text>
-                                                        <Form.Control placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
-                                                    <InputGroup.Text>.00</InputGroup.Text>
-                                                </InputGroup>
-                                            </div>
-                                            <div className="col-md-4 col-lg-4">
-                                                <DropFileInput onFileChange={(files) => onFileChange(files)} />
-                                                    <div className="sign-name">
-                                                        <p className="mb-0">{patientName}</p>
-                                                        <span className="text-muted">Signature</span>
+                                        {/* billing information */}
+                                        <div className="bill-container">
+                                            <div className="row">
+                                                <div className="col pay-method col-md-3 col-lg-3">
+                                                    <div class="col-8 col-md-8 col-lg-8">
+                                                        <div class="row form-row">
+                                                            <div class="form-group mb-0 rx-pr">
+
+                                                                <Form.Label>Payment Method:</Form.Label>
+                                                                <Form.Select onChange={(e) => { setPaymentType(e.target.value) }}>
+                                                                    <option value="" selected disabled>--Select Type--</option>
+                                                                    <option value="cash">Cash</option>
+                                                                    <option value="e-money">E-Money</option>
+                                                                </Form.Select>
+
+                                                                <div class="form-group">
+                                                                    <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
+                                                                    <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className="col total-bill">
+                                                <div class="row form-row experience-cont ">
+                                                    <div class="col-8">
+
+                                                        <label className="paylabel">Subtotal: {subTotal} </label><br />
+                                                        {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
+                                                        <label className="paylabel">Discount: {discountValue}</label><br />
+                                                        {/* <input type="text" class="form-contro   l" placeholder="" /> */}
+                                                        <label className="paylabel">Total Amount: {amountValue}</label><br />
+                                                        {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        
-                                        <div className="row rx-btn col-md-12">
-                                                <div className="submit-section">
-                                                    <button
-                                                        type="reset"
-                                                        className="btn btn-secondary submit-btn rx-btn"
-                                                    >
-                                                        Clear
-                                                    </button>
-                                                    <TransactionDetails />
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-primary submit-btn rx-btn"
-                                                        onClick={() => { createReceipt() }}
-                                                    >
-                                                        Create
-                                                    </button>
-                                                </div>
-                                            </div>                                        
-                                </div> {/* end of card-body */}
+                                    </div>
+
+                                    {/* Signature */}
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <DropFileInput onFileChange={(files) => onFileChange(files)} />
+                                        <div className="sign-name">
+                                            <p className="mb-0">{patientName}</p>
+                                            <span className="text-muted">Signature</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3 col-lg-3">
+                                        <Form.Label>Amount Paid:</Form.Label>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Text>₱</InputGroup.Text>
+                                            <Form.Control placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
+                                            <InputGroup.Text>.00</InputGroup.Text>
+                                        </InputGroup>
+                                    </div>
+                                    <div className="col-md-4 col-lg-4">
+                                        <DropFileInput onFileChange={(files) => onFileChange(files)} />
+                                        <div className="sign-name">
+                                            <p className="mb-0">{patientName}</p>
+                                            <span className="text-muted">Signature</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div className="row rx-btn col-md-12">
+                                    <div className="submit-section">
+                                        <button
+                                            type="reset"
+                                            className="btn btn-secondary submit-btn rx-btn"
+                                        >
+                                            Clear
+                                        </button>
+                                        <TransactionDetails />
+                                        <button
+                                            type="submit"
+                                            className="btn btn-primary submit-btn rx-btn"
+                                            onClick={() => { createReceipt() }}
+                                        >
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 }
