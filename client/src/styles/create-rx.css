@@ -102,13 +102,16 @@
     margin: 2% 0;
   }
 
-  .signature-wrap {
+.signature-wrap {
     margin-bottom: 20px;
     margin-right: -10px;
     text-align: center;
-    width: 260px;
 }
 
+.small-signature-wrap{
+  width: 260px !important;
+    height: 100px !important;
+}
 .signature {
     -webkit-box-align: center;
     -ms-flex-align: center;

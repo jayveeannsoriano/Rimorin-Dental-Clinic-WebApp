@@ -220,7 +220,7 @@ app.post("/insertAppointment", async(req,res) => {
           {
             "to":[
                 {
-                  "email":recep
+                  "email":req.body.recep                
                 }
             ],
             "dynamic_template_data":{
@@ -1046,3 +1046,97 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
     console.log(err);
   }
 });
+
+app.post("/forgot-password", async (req, res) => {
+  const {email} = req.body;
+  try {
+    const oldUser = await User.findOne({email: email});
+    if (!oldUser) {
+      return res.json({ status: "User does not exist." });
+    }else{
+      const secret = JWT_SECRET + oldUser.password;
+      const token = jwt.sign ({email: oldUser.email, id: oldUser._id}, secret,
+        {expiresIn: "5m",
+      });
+      const link = `http://localhost:${PORT}/reset-password/${oldUser._id}/${token}`;
+  sgMail.setApiKey('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');
+  const msg = {
+    "personalizations":[
+      {
+        "to":[
+            {
+              "email":email
+            }
+        ],
+        "dynamic_template_data":{
+            "link":link,
+          }
+      }
+  ],
+  "template_id":"d-b41b531ef5c149e994a62ab182d622f3",
+    from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+  }
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      res.json('Email Sent')
+    })
+    .catch((error) => {
+      res.json('Error: Email Not Sent')
+    })
+    }
+ 
+  //V this will be sent to the user's email
+  
+} catch(err){
+console.log(err);
+}
+
+app.get("/reset-password/:id/:token", async (req, res) => {
+  const { id, token } = req.params;
+  console.log(req.params);
+  const oldUser = await User.findOne({ _id: id });
+  if (!oldUser) {
+    return res.json({ status: "User does not exist." });
+  }
+  const secret = JWT_SECRET + oldUser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    res.render("index", { email: verify.email, status: "Not Verified" });
+  } catch (error) {
+    console.log(error);
+    res.send("Not Verified");
+  }
+});
+
+app.post("/reset-password/:id/:token", async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  const oldUser = await User.findOne({ _id: id });
+  if (!oldUser) {
+    return res.json({ status: "User does not exist." });
+  }
+  const secret = JWT_SECRET + oldUser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    await User.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          password: encryptedPassword,
+        },
+      }
+    );
+    
+
+    res.render("index", { email: verify.email, status: "verified" });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "Something Went Wrong" });
+  }
+})});

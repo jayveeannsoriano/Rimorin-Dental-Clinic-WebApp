@@ -1,7 +1,21 @@
 import Form from 'react-bootstrap/Form';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
+
+
+
 function ForgotPswd() {
+  const [email, setEmail] = useState("");
+  const ForgotPassword = () => {
+    var emailEl = document.getElementById('email')
+    setEmail(emailEl.value);
+  }
+
+useEffect(() => {
+  Axios.post("http://localhost:3001/forgot-password", {email: email})
+});
+
   return (
     <Form>
       <div className="forgot-container">
@@ -10,7 +24,7 @@ function ForgotPswd() {
         <Form.Group className="mb-3" controlId="forgotpswd.email">
           <div className="col-10">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
+          <Form.Control id="email" type="email" placeholder="name@example.com" />
           </div>
         </Form.Group>
         <Button variant="btn btn-light" className='fgt-btn'>
@@ -18,7 +32,7 @@ function ForgotPswd() {
           Back to login
           </a>
         </Button>
-        <Button variant="primary" className='fgt-btn'>
+        <Button variant="primary" className='fgt-btn' onClick={ForgotPassword}>
           Continue
         </Button>
       </div>

@@ -7,28 +7,32 @@ import DefaultProfile from '../../assets/img/default-profile.jpg'
 function dashboardHeader(){
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
-//notification data
-const [appointmentDetails, setAppointmentDetails] = useState([]);
-const [firstNameValue, setFirstNameValue] = useState('');
-const [lastNameValue, setLastNameValue] = useState('');
-const patientIDNumber = userInfo['patientIDnumber'];
+    //notification data
+    const [appointmentDetails, setAppointmentDetails] = useState([]);
+    const [firstNameValue, setFirstNameValue] = useState('');
+    const [lastNameValue, setLastNameValue] = useState('');
+    const patientIDNumber = userInfo['patientIDnumber'];
 
-const getAppointment = async() => {
-try{
-    const response = await Axios.get('http://localhost:3001/getNotifDetails', {
-        params: {patientIDnumber: patientIDNumber}})
-    setAppointmentDetails(response.data);
-    setFirstNameValue(response.data[0].fname)
-    setLastNameValue(response.data[0].lname)
+    const getAppointment = async() => {
+        try{
+            const response = await Axios.get('http://localhost:3001/getNotifDetails', {
+                params: {patientIDnumber: patientIDNumber}})
+            setAppointmentDetails(response.data);
+            setFirstNameValue(response.data[0].fname)
+            setLastNameValue(response.data[0].lname)
 
-}catch (error){
-    console.log(error)
-}
-}
+        }catch (error){
+            console.log(error)
+        }
+    }
 
-useEffect(() => {
-    getAppointment();
-}, []);
+    function clearSession() {
+        localStorage.clear();
+    }
+
+    useEffect(() => {
+        getAppointment();
+    }, []);
 
 const count = appointmentDetails.length;
 //-------------------------------------------------------------------------
@@ -130,7 +134,7 @@ const count = appointmentDetails.length;
 
                         {/* <!-- Sign Out --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center" href="/auth/login">
+                            <a className="dropdown-item d-flex align-items-center" href="/auth/login" onClick={clearSession}>
                                 <i className="bi bi-box-arrow-right"></i>
                                 <span>Log Out</span>
                             </a>

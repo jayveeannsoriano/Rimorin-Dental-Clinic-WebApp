@@ -11,16 +11,16 @@ const DashboardPage = lazy(() => import('../pages/dashboard/secretary-dashboard'
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/secretary-appointment/index'));
 const Calendar = lazy(() => import('../pages/calendar/secretary-module/index'));
-const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
-const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
-const Eprescription = lazy(() => import('../pages/eprescription'));
+const PatientInfo = lazy(() => import('../pages/patient-records/secretary-module/patient-info'));
+const DentalRecords = lazy(() => import('../pages/patient-records/secretary-module/dental-record'));
+const Eprescription = lazy(() => import('../pages/eprescription/secretary-module/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
-const UserProfile = lazy(() => import('../pages/userprofile/index'));
+const UserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
 
 // patient list page routing
 const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
-const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info'));
-const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription'));
+const PatientInfoPatientList = lazy(() => import('../pages/patient-list/patient-info/index-secretary'));
+const PrescriptionPatientList = lazy(() => import('../pages/patient-list/prescription/secretary-module/index'));
 const TransactionsPatientList = lazy(() => import('../pages/patient-list/transactions/secretary-module'));
 
 //create receipt routing

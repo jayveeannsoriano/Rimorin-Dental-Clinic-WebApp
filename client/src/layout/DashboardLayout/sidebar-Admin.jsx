@@ -12,6 +12,10 @@ function Sidebar_Admin(){
         console.error("Website error");
         console.error(error);
     }
+    function clearSession() {
+        localStorage.clear();
+    }
+    
     return(
         <div>
             <aside id="sidebar" className="sidebar">
@@ -91,7 +95,7 @@ function Sidebar_Admin(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                    <a className="nav-link collapsed" href={"/auth/login"}>
+                    <a className="nav-link collapsed" href={"/auth/login"}  onClick={clearSession} >
                         <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

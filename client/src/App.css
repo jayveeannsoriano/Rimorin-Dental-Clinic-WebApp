@@ -94,6 +94,12 @@ h6 {
   margin: 0px;
 }
 
+.divider2{
+  border-top: 1px solid #b7b7b7;
+  margin: 0px;
+  margin-top: 1%;
+}
+
 /*--------------------------------------------------------------
 # Dahsboard Main
 --------------------------------------------------------------*/
@@ -745,7 +751,7 @@ h6 {
   color: var(--primary-color);
   display: inline-block;
   /* padding: 15px 0px 10px 0; */
-  margin-left: 14px;
+  /* margin-left: 14px; */
 }
 
 .patient-info .row{
