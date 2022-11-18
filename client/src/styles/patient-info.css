@@ -8,3 +8,27 @@ a:hover, a:visited, a:link, a:active
     text-decoration: none;
     color: white;
 }
+
+.form-container .row{
+    margin-bottom: 0.1in;
+}
+
+.form-section-title{
+    font-weight: 600;
+    font-size: 18px;
+    color: #111827;
+    margin: 20px 0px 20px 0px;
+}
+
+.conditions-row{
+    /* display: grid !important; */
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.medical-conditions-row .col-lg-12{
+    margin-bottom: 0.1in;
+}
+
+.edit-save{
+    width: auto;
+}

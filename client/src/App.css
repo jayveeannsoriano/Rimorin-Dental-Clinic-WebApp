@@ -669,7 +669,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Widget
+# My Profile UserProfile
 --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
@@ -735,7 +735,7 @@ h6 {
   color: rgba(1, 41, 112, 0.6);
 }
 
-.profile .profile-edit label {
+.profile .profile-edit .label {
   font-weight: 600;
   color: rgba(1, 41, 112, 0.6);
 }
@@ -766,8 +766,8 @@ h6 {
 }
 
 .patient-info .label{
-  font-weight: 700;
-  color: #A0A4A8;
+  font-weight: 600;
+  color: rgba(1,41,112,.6);
 }
 
 .patient-info .column{
