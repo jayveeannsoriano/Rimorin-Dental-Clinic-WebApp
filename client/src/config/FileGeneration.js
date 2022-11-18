@@ -192,7 +192,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		if(willDownload){
 			doc.save("receipt_"+name+"_"+date+".pdf");
 		}else{
-			doc.autoPrint({variant: 'non-conform'});
+			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
 		}
@@ -201,7 +201,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 	generate();
 }
 
-export function prescription(date, time, name, age, medArray, ptr, license, backPath, signPath, willDownload){
+export function prescription(date, name, age, medArray, ptr, license, backPath, signPath, willDownload){
 	const width = 95.3;
 	const height = 127;
 	
@@ -274,8 +274,9 @@ export function prescription(date, time, name, age, medArray, ptr, license, back
 
 				//-----Prescription Information-----
 				doc.setFont("FiraMono-Bold");
-				doc.text(date, (width-convertInch(1.27)), convertInch(0.8));
-				doc.text(time, (width-convertInch(1.15)), convertInch(0.875));
+				doc.text("Date: "+date, (width-convertInch(0.5)), convertInch(0.8),{
+					align:"right"
+				});
 
 				doc.text("Patient: "+name, convertInch(0.5), convertInch(0.95));
 				doc.text("Age: "+age+" years old", convertInch(0.5), convertInch(1.025));
@@ -333,7 +334,7 @@ export function prescription(date, time, name, age, medArray, ptr, license, back
 		if(willDownload){
 			doc.save("prescription_"+name+"_"+date+".pdf");
 		}else{
-			doc.autoPrint({variant: 'non-conform'});
+			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
 		}
@@ -462,7 +463,7 @@ export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, 
 	if(willDownload){
 		doc.save(name+"_Dental-Records.pdf");
 	}else{
-		doc.autoPrint({variant: 'non-conform'});
+		doc.autoPrint();
 		var blob = doc.output("blob");
 		window.open(URL.createObjectURL(blob));
 	}
@@ -553,7 +554,7 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, w
 		if(willDownload){
 			doc.save(name+"_Dental-Record.pdf");
 		}else{
-			doc.autoPrint({variant: 'non-conform'});
+			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
 		}
