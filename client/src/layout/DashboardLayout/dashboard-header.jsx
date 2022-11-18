@@ -84,24 +84,11 @@ const count = appointmentDetails.length;
                                 <div class="profile-det-info">
                                     {/* <p>{item.dName} created you an appointment on {item.date} at {item.time}</p> */}
                                     {/* <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p> */}
-                                    { item ? <p><span>{item.dName}</span> created you an appointment on <span>{item.date}</span> at <span>{item.time}</span></p> : <> no notifications available </> } 
+                                    { item ? <p><span>{item.dName}</span> accepted your appointment on <span>{item.date}</span> at <span>{item.time}</span></p> : <> no notifications available </> } 
                                 </div>
                             </div>
                         ))}
                         
-                            {/* 
-                            <li className="notification-item">
-                                <i className="bi bi-exclamation-circle text-warning"></i>
-                                <div>
-                                    <h4>Lorem Ipsum</h4>
-                                    <p>Quae dolorem earum veritatis oditseno</p>
-                                    <p>30 min. ago</p>
-                                </div>
-                            </li>
-
-                            <li className="dropdown-footer">
-                                <a href="#">Show all notifications</a>
-                            </li> */}
 
                         </ul>
                         {/* <!-- End Notification Dropdown Items --> */}
