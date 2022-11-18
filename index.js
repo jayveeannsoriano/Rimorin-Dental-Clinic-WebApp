@@ -893,6 +893,7 @@ app.put("/updatePatientInfo", async (req, res) => {
   const medValue = req.body.medValue;
   const allergiesValue = req.body.allergiesValue;
   const condValue = req.body.condValue;
+  const precautionValue = req.body.precautionValue;
 
   const patientName = firstName + " " + lastName;
 
@@ -919,6 +920,7 @@ app.put("/updatePatientInfo", async (req, res) => {
      medications: medValue,
      allergies: allergiesValue,
      conditions: condValue,
+     precautions: precautionValue,
     })
 
     await AppDetails.updateMany({patientIDnumber:patientIDnumber},{pName: patientName})
