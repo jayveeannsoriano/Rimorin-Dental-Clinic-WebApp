@@ -161,6 +161,7 @@ const createEprescription = () => {
                                         <p> Licence Number: 12345678</p>
                                     </div>
 
+                                    <form onSubmit={() => createEPrescription()} >
                                     <div className="biller-info"> <br />
                                         <h5 className="rx-pr"> Prescription Information </h5>
                                         <div class="col-12 col-md-6 col-lg-4">
@@ -207,7 +208,7 @@ const createEprescription = () => {
                                                                         <label>Generic <span class="text-danger">*</span></label>
                                                                         <input name="generic" id="item" type="text" class="form-control" placeholder="Mefenamic"
                                                                             value={singleItem.generic}
-                                                                            onChange={(e) => getFormValues(e, index)}
+                                                                            onChange={(e) => getFormValues(e, index)} required
                                                                         />
                                                                     </div>
                                                                 </div>
@@ -216,7 +217,7 @@ const createEprescription = () => {
                                                                         <label>Brand <span class="text-danger">*</span></label>
                                                                         <input name="brand" id="item" type="text" class="form-control" placeholder="Ponstan"
                                                                             value={singleItem.brand}
-                                                                            onChange={(e) => getFormValues(e, index)} />
+                                                                            onChange={(e) => getFormValues(e, index)} required/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-12 col-md-6 col-lg-3">
@@ -224,7 +225,7 @@ const createEprescription = () => {
                                                                         <label>Dosage <span class="text-danger">*</span></label>
                                                                         <input name="dosage" id="item" type="text" class="form-control" placeholder="500mg"
                                                                             value={singleItem.dosage}
-                                                                            onChange={(e) => getFormValues(e, index)} />
+                                                                            onChange={(e) => getFormValues(e, index)} required/>
                                                                     </div>
                                                                 </div>
 
@@ -236,7 +237,7 @@ const createEprescription = () => {
                                                                         <label>Form <span class="text-danger">*</span></label>
                                                                         <input name="form" id="item" type="text" class="form-control" placeholder="Capsule"
                                                                             value={singleItem.form}
-                                                                            onChange={(e) => getFormValues(e, index)} />
+                                                                            onChange={(e) => getFormValues(e, index)} required/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-12 col-md-6 col-lg-3">
@@ -244,7 +245,7 @@ const createEprescription = () => {
                                                                         <label>Frequency <span class="text-danger">*</span></label>
                                                                         <input name="frequency" id="item" type="text" class="form-control" placeholder="3 caps a day"
                                                                             value={singleItem.frequency}
-                                                                            onChange={(e) => getFormValues(e, index)} />
+                                                                            onChange={(e) => getFormValues(e, index)} required/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-12 col-md-6 col-lg-4">
@@ -252,7 +253,7 @@ const createEprescription = () => {
                                                                         <label>Duration <span class="text-danger">*</span></label>
                                                                         <input name="duration" id="item" type="text" class="form-control" placeholder="3 days - 1 week"
                                                                             value={singleItem.duration}
-                                                                            onChange={(e) => getFormValues(e, index)} />
+                                                                            onChange={(e) => getFormValues(e, index)} required/>
                                                                     </div>
                                                                 </div>
 
@@ -284,14 +285,14 @@ const createEprescription = () => {
 
                                         <div className="form-row">
                                             <label>Notes</label>
-                                            <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }}></textarea>
+                                            <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }} required></textarea>
                                         </div>
                                         <br />
 
                                         {/* Signature */}
                                         <div className="col-6">
 
-                                            <form>
+                                            <form  onSubmit={() => createEPrescription()}>
                                                 <DropFileInput
                                                     onFileChange={(files) => onFileChange(files)}
                                                 />
@@ -309,7 +310,7 @@ const createEprescription = () => {
                                                 <button
                                                     type="submit"
                                                     className="btn btn-primary submit-btn rx-btn"
-                                                    onClick={() => createEPrescription()}
+                                                    onSubmit={() => createEPrescription()}
                                                 >
                                                     Create
                                                 </button>
@@ -317,7 +318,7 @@ const createEprescription = () => {
                                                 <PrescriptionDetails />
 
 
-                                                <button
+                                                <button 
                                                     type="reset"
                                                     className="btn btn-secondary submit-btn rx-btn"
                                                 >
@@ -326,6 +327,7 @@ const createEprescription = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div> {/* end of prescription */}
