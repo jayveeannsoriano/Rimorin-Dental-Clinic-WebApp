@@ -16,7 +16,17 @@ async function Export(willDownload,File,data,info){
       willDownload
       )
   }else if(File==="receipt"){
-
+    receipt(
+      info[0].fname+" "+info[0].lname,
+      info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
+      data.date, 
+      data.appNum, 
+      [[data.serviceValue, data.totalAmount, data.quantityValue]], 
+      0, 
+      data.paymentType, 
+      0, 
+      require('../../assets/img/tempsignaturesec.png'), 
+      willDownload)
   }
 }
 

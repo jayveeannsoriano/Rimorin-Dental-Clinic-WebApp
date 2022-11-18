@@ -98,6 +98,9 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		},
 		columnStyles:{
 			valign: 'middle',
+			0:{
+				halign: 'center'
+			},
 			1:{
 				halign: 'center'
 			},
@@ -108,7 +111,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 				halign: 'center'
 			},
 			4:{
-				halign: 'right'
+				halign: 'center'
 			}
 		},
 		headStyles:{
@@ -190,7 +193,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		
 		//save document
 		if(willDownload){
-			doc.save("receipt_"+name+"_"+date+".pdf");
+			doc.save("Receipt_"+name+"_"+date+".pdf");
 		}else{
 			doc.autoPrint();
 			var blob = doc.output("blob");
@@ -332,7 +335,7 @@ export function prescription(date, name, age, medArray, ptr, license, backPath, 
 			await Promise.all([generate()]);
 		}
 		if(willDownload){
-			doc.save("prescription_"+name+"_"+date+".pdf");
+			doc.save("Prescription_"+name+"_"+date+".pdf");
 		}else{
 			doc.autoPrint();
 			var blob = doc.output("blob");
@@ -461,7 +464,7 @@ export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, 
 	});
 
 	if(willDownload){
-		doc.save(name+"_Dental-Records.pdf");
+		doc.save("Dental-Records_"+name+".pdf");
 	}else{
 		doc.autoPrint();
 		var blob = doc.output("blob");
@@ -552,7 +555,7 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, w
 		var imgData = canvas.toDataURL('image/png');
 		doc.addImage(imgData,'PNG',convertInch(0.5),convertInch(3.0),(width-convertInch(1.0)),(canvas.height/canvas.width)*(width-convertInch(1.0)));
 		if(willDownload){
-			doc.save(name+"_Dental-Record.pdf");
+			doc.save("Dental-Record_"+name+".pdf");
 		}else{
 			doc.autoPrint();
 			var blob = doc.output("blob");
