@@ -7,12 +7,7 @@ const PrescriptionDetails = new mongoose.Schema(
     patientIDNumber: String,
     //Prescription Information
     presDate: String,
-    genericName: String,
-    brandName: String,
-    medDosage: String,
-    presForm: String,
-    presFrequency: String,
-    presDuration: String,
+    presDetails: Object,
     presInstruction: String,
     presSignature: {
         data: Buffer,

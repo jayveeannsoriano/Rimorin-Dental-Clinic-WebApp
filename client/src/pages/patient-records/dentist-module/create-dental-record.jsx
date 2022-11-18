@@ -60,6 +60,7 @@ const CreateDentalRecord = () => {
 
   //drag n drop
   const [getFile, setGetFile] = useState("");
+  console.log(getFile, "this is the img value");
   const onFileChange = (files) => {
     setGetFile(files);
   }
