@@ -12,6 +12,10 @@ function Sidebar_Patient(){
 
     console.log(window.location.href.split("/").pop());
 
+    function clearSession() {
+        localStorage.clear();
+    }
+    
     return(
         <div>
             <aside id="sidebar" className="sidebar">
@@ -102,7 +106,7 @@ function Sidebar_Patient(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                        <a className="nav-link collapsed" href={"/auth/login"}>
+                        <a className="nav-link collapsed" href={"/auth/login"}  onClick={clearSession}>
                         <i className="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>
