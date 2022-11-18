@@ -1,9 +1,7 @@
 import React, {useState,useEffect} from "react";
 import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
-
-// temporary user image
-import userimg from '../../../assets/img/profile-img.jpg';
+import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
 
 const DentalRecordPatientProfileWidget = () => {
@@ -43,7 +41,7 @@ const proceedtoViewInfo = (value) => {
                         <div class="pro-widget-content">
                             <div class="profile-info-widget">
                                 <a href="#" class="booking-doc-img">
-                                    <img src={userimg} alt="User Image"/>
+                                    <Avatar name={item.fname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                                 </a>
                                 <div class="profile-det-info">
                                     <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>

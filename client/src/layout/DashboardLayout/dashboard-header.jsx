@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
+import Avatar from 'react-avatar';
 import styles from '../../styles/dashboard.css'
 import API from '../../config/api'
 import DefaultProfile from '../../assets/img/default-profile.jpg'
 
 function dashboardHeader(){
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const fullName = userInfo['fname'] + " " + userInfo['lname'] 
+    console.log(fullName)
 
     //notification data
     const [appointmentDetails, setAppointmentDetails] = useState([]);
@@ -100,7 +103,7 @@ const count = appointmentDetails.length;
 
                         {/* <!-- Profile Image Icon --> */}
                         <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img src={DefaultProfile} alt="Profile" className="rounded-circle"/>
+                            <Avatar name={fullName} maxInitials={2} round={true} size="40" alt="Avatar"/>
                             <span className="d-none d-md-block dropdown-toggle ps-2">{userInfo['fname'] + " " + userInfo['lname']}</span>
                         </a>
                         {/* <!-- End Profile Image Icon --> */}
