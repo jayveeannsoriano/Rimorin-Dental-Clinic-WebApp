@@ -88,9 +88,9 @@ const ClinicHours = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/admin/dashboard">Home</a>
+              <a href="/admin">Home</a>
             </li>
-            <li class="breadcrumb-item">
+            <li class="breadcrumb-item active">
               <a href="/admin/clinic-hours">Clinic Hours</a>
             </li>
           </ol>

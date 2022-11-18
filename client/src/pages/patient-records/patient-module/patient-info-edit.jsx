@@ -128,12 +128,12 @@ const PatientInfoEdit = ({ }) => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/patient">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard">Patient Records</a>
+              Patient Records
             </li>
-            <li class="breadcrumb-item">Patient Information</li>
+            <li class="breadcrumb-item"> <a href="/patient/patient-records/patient-info"> Patient Information </a></li>
             <li class="breadcrumb-item active">Patient Information Edit</li>
           </ol>
         </nav>

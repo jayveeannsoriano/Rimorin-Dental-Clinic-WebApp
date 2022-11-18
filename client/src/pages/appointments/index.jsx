@@ -13,7 +13,7 @@ export default function AppointmentPage() {
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/">Home</a>
+            <a href="/patient">Home</a>
           </li>
           <li className="breadcrumb-item active">Appointments</li>
         </ol>
