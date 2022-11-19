@@ -274,7 +274,9 @@ h6 {
   background-color: #d3d3d4;
   border-color: #d3d3d4;
 } */
-
+.sub-title{
+  padding-top: 2%;
+}
 /* Card */
 .card {
   margin-bottom: 20px;
