@@ -2,7 +2,8 @@ import React from "react";
 // import "../../../styles/patient-info.css";
 import "../../../styles/profilewidgettwo.css";
 import "react-bootstrap";
-import ProfileWidgetTwo from "../../../components/profile-widget2";
+// import ProfileWidgetTwo from "../../../components/profile-widget2";
+import ProfileWidgetThree from "../../../components/profile-widget3";
 import { Button } from "react-bootstrap";
 
 
@@ -28,7 +29,7 @@ const AdminPatientUI = () => {
 
             <section class="section profile">
                 <div class="row">
-                    <ProfileWidgetTwo />
+                    <ProfileWidgetThree />
                 </div>
             </section>
 

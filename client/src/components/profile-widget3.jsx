@@ -5,7 +5,7 @@ import "../styles/profilewidgettwo.css";
 // temporary user image
 import userimg from '../assets/img/profile-img.jpg';
 
-const ProfileWidgetTwo = () => {
+const ProfileWidgetThree = () => {
     return (
         <>
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -81,10 +81,18 @@ const ProfileWidgetTwo = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-xl-8 col-lg-4 col-md-4 col-sm-4">
+                        <button className="btn btn-primary expo-records" type="submit">
+                            <i class="bi bi-download"></i>
+                             Export Records
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </>
     );
 }
 
-export default ProfileWidgetTwo;
+export default ProfileWidgetThree;
