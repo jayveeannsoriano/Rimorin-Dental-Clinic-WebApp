@@ -232,7 +232,7 @@ const createEprescription = () => {
                                                                 </div>
 
                                                                 <div className="row">
-                                                                    <div className="col-12 col-md-6 col-lg-3">
+                                                                    <div className="col-12 col-md-6 col-lg-4">
                                                                         <div className="form-group">
                                                                             <label>Form <span class="text-danger">*</span></label>
                                                                             <input name="form" id="item" type="text" class="form-control" placeholder="Capsule"
@@ -248,7 +248,7 @@ const createEprescription = () => {
                                                                                 onChange={(e) => getFormValues(e, index)} required />
                                                                         </div>
                                                                     </div>
-                                                                    <div className="col-12 col-md-6 col-lg-4">
+                                                                    <div className="col-12 col-md-6 col-lg-3">
                                                                         <div className="form-group">
                                                                             <label>Duration <span class="text-danger">*</span></label>
                                                                             <input name="duration" id="item" type="text" class="form-control" placeholder="3 days - 1 week"
