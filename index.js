@@ -772,11 +772,6 @@ app.get("/createEvent",(req,res)=>{
   })
 })
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
-});
-  
-
 //create dental records
 //image storage
 const ImgStorageDentRec = multer.diskStorage({
@@ -1055,10 +1050,10 @@ app.post("/forgot-password", async (req, res) => {
       return res.json({ status: "User does not exist." });
     }else{
       const secret = JWT_SECRET + oldUser.password;
-      const token = jwt.sign ({email: oldUser.email, id: oldUser._id}, secret,
+      const token = jwt.sign ({email: oldUser.email}, secret,
         {expiresIn: "5m",
       });
-      const link = `http://localhost:${PORT}/reset-password/${oldUser._id}/${token}`;
+      const link = `http://localhost:3000/auth/reset-password?email=${email}`;
   sgMail.setApiKey('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');
   const msg = {
     "personalizations":[
@@ -1086,57 +1081,28 @@ app.post("/forgot-password", async (req, res) => {
       res.json('Error: Email Not Sent')
     })
     }
- 
-  //V this will be sent to the user's email
-  
 } catch(err){
 console.log(err);
-}
+}});
 
-app.get("/reset-password/:id/:token", async (req, res) => {
-  const { id, token } = req.params;
-  console.log(req.params);
-  const oldUser = await User.findOne({ _id: id });
+app.post("/reset-password", async (req, res) => {
+  const oldUser = await User.findOne({ email: req.body.email });
   if (!oldUser) {
     return res.json({ status: "User does not exist." });
   }
-  const secret = JWT_SECRET + oldUser.password;
+ // const secret = JWT_SECRET + oldUser.password;
   try {
-    const verify = jwt.verify(token, secret);
-    res.render("index", { email: verify.email, status: "Not Verified" });
+    const encryptedPassword = await bcrypt.hash(req.body.newPassword, 10);
+    await User.findOneAndUpdate({ email: req.body.email }, {password: encryptedPassword})
+    // const verify = jwt.verify(query.token, secret);
+    // res.render("index", { email: verify.emailValue, status: "Verified" });
   } catch (error) {
     console.log(error);
     res.send("Not Verified");
   }
 });
 
-app.post("/reset-password/:id/:token", async (req, res) => {
-  const { id, token } = req.params;
-  const { password } = req.body;
-
-  const oldUser = await User.findOne({ _id: id });
-  if (!oldUser) {
-    return res.json({ status: "User does not exist." });
-  }
-  const secret = JWT_SECRET + oldUser.password;
-  try {
-    const verify = jwt.verify(token, secret);
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    await User.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          password: encryptedPassword,
-        },
-      }
-    );
-    
-
-    res.render("index", { email: verify.email, status: "verified" });
-  } catch (error) {
-    console.log(error);
-    res.json({ status: "Something Went Wrong" });
-  }
-})});
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
+});
+  
