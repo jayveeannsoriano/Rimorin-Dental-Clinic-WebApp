@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-
+import PasswordConfirmModal from './forogot-password-modal';
 function ForgotPswd() {
   const [email, setEmail] = useState("");
   const ForgotPassword = () => {
@@ -30,9 +30,11 @@ useEffect(() => {
           Back to login
           </a>
         </Button>
-        <Button variant="primary" className='fgt-btn' onClick={ForgotPassword}>
+        {/* <Button variant="primary" className='fgt-btn' onClick={ForgotPassword}>
           Continue
-        </Button>
+        </Button> */}
+        <PasswordConfirmModal/>
+
       </div>
     </Form>
   );
