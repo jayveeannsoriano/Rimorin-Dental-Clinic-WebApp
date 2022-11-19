@@ -67,11 +67,15 @@ export default function ExistingDentalRecord() {
         var proceString = "";
         for (let num = 0; num < appointment.length; num++) {
             for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
-                if (appointment[num].procedures[proceNum].chosen.length != 0) {
+                if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
                     proceString += " " + appointment[num].procedures[proceNum].chosen.join();
                 }
             }
-            treatData.push([appointment[num].dentalDate, appointment[num].chartedTeeth.join(), appointment[num].dentalDesc, proceString])
+            treatData.push([
+                appointment[num].dentalDate, 
+                (appointment[num].hasOwnProperty('chartedTeeth') ? appointment[num].chartedTeeth.join() : ''),
+                appointment[num].dentalDesc, 
+                proceString])
         }
         {/*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/ }
         dentalRecords(patientList[0].fname + " " + patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, (patientList[0].hasOwnProperty('precaution') ? patientList[0].precaution : 'N/A'), treatData, willDownload);
