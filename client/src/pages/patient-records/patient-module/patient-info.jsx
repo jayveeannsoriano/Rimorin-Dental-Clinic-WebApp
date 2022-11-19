@@ -244,6 +244,14 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
+                {userInformation.map((item, index) => (
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Precautions</div>
+                    <div id="precautions" class="col-lg-3">
+                      {item.precautions}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             {/* end of card body */}

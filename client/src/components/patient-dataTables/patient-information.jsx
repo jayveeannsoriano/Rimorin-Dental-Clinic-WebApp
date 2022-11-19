@@ -1,12 +1,11 @@
 import React, {useState,useMemo,useEffect} from "react";
 import { useSearchParams,useLocation} from "react-router-dom";
 import Axios from 'axios';
-import PatientProfileWidget from '../patient-list/patient-profile-widget'
 
 import "../../styles/patient-info.css";
 import "react-bootstrap";
 
-const PatientInfo = () => {
+const AdminModulePatientInfo = () => {
 
   const location = useLocation()
     const paramsID = new URLSearchParams(location.search)
@@ -37,31 +36,14 @@ const PatientInfo = () => {
 
   return (
     <>
-      <div class="pagetitle">
-        <h1>Patient Information</h1>
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="/dentist">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="/dentist/patient-records/patient-info">Patients</a>
-            </li>
-            <li class="breadcrumb-item active">Patient Information</li>
-          </ol>
-        </nav>
-      </div>
-
-      
       <section class="section profile">
       {patientList.map((item, index) => (
         <div class="row">
-          <PatientProfileWidget />
 
           <div class="col-xl-8">
-          <div className="card patient-info">
+            <div className="card patient-info">
               <div className="card-body pt-3">
-                <div className="card-title">Patient Information</div>
+                
                 <div className="divider"></div>
 
                 {/* Patient information */}
@@ -238,4 +220,4 @@ const PatientInfo = () => {
   );
 };
 
-export default PatientInfo;
+export default AdminModulePatientInfo;

@@ -2,9 +2,6 @@ import React, {useState,useEffect} from "react";
 import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
 import Avatar from 'react-avatar';
-
-// temporary user image
-import userimg from '../../../assets/img/profile-img.jpg';
 import { Button } from "react-bootstrap";
 
 const PatientInfoPatientProfileWidget = () => {

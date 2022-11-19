@@ -56,7 +56,7 @@ const AdminRoute ={
             element: <AdminUserProfile />
         },
         {
-            path:'/admin/patients/admin-module/admin-patient-ui',
+            path:'/admin/patients/view-patient',
             element: <AdminPatientUI/>
         }
     ]
