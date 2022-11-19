@@ -80,16 +80,14 @@ const ProfileWidgetThree = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-8 col-lg-4 col-md-4 col-sm-4">
-                        <button className="btn btn-primary expo-records" type="submit">
-                            <i class="bi bi-download"></i>
-                             Export Records
-                        </button>
                     </div>
-
                 </div>
+
+                <button className="btn btn-primary expo-records" type="submit">
+                    <i class="bi bi-download"></i>
+                    Export Records
+                </button>
             </div>
         </>
     );

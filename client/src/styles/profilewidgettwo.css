@@ -54,7 +54,6 @@
 
 .patient-info {
     margin-top: 15px;
-    margin-bottom : 7px;
 }
 .patient-info ul {
     padding: 0;
@@ -86,9 +85,18 @@
 display: inline-block;
 width: 15em;
 margin-right: 10em;
-padding-top: .5em;
+padding-top: 0em;
 }
 
 .expo-records{
     float: right;
+}
+
+.dental-record-form .row{
+    margin: 0.2in;
+}
+
+.profile-widget-container{
+    justify-content: center;
+    margin-top: 0.5in;
 }
