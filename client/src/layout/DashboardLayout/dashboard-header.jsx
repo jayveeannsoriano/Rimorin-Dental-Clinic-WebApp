@@ -14,30 +14,29 @@ function dashboardHeader(){
     const [appointmentDetails, setAppointmentDetails] = useState([]);
     const [firstNameValue, setFirstNameValue] = useState('');
     const [lastNameValue, setLastNameValue] = useState('');
-    const patientIDNumber = userInfo['patientIDnumber'];
 
-    const getAppointment = async() => {
-        try{
-            const response = await Axios.get('http://localhost:3001/getNotifDetails', {
-                params: {patientIDnumber: patientIDNumber}})
-            setAppointmentDetails(response.data);
-            setFirstNameValue(response.data[0].fname)
-            setLastNameValue(response.data[0].lname)
+    const userRole = userInfo['user_role_id'];
 
-        }catch (error){
-            console.log(error)
-        }
+    var myProfileRoute = "";
+    switch (userRole) {
+        case 1: 
+        myProfileRoute = "/patient/userprofile";
+        break;
+        case 2: 
+        myProfileRoute = "/secretary/userprofile";
+        break;
+        case 3: 
+        myProfileRoute = "/dentist/userprofile";
+        break;
+        case 4: 
+        myProfileRoute = "/admin/userprofile";
+        break;
     }
 
     function clearSession() {
         localStorage.clear();
     }
 
-    useEffect(() => {
-        getAppointment();
-    }, []);
-
-const count = appointmentDetails.length;
 //-------------------------------------------------------------------------
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -47,6 +46,7 @@ const count = appointmentDetails.length;
     }
 
     console.log(userInfo);
+
     return (
         <div>
                 {/* <!-- ======= Dashboard Header ======= --> */}
@@ -73,7 +73,8 @@ const count = appointmentDetails.length;
 
                         {/* <!-- My Profile --> */}
                         <li>
-                            <a className="dropdown-item d-flex align-items-center"  href="/dashboard/userprofile">
+                            <a className="dropdown-item d-flex align-items-center"  
+                            href={myProfileRoute} >
                                 <i className="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
