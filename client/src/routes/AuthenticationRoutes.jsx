@@ -19,7 +19,7 @@ const SignUpPage = lazy(() => import('../pages/signup/index'));
 const ForgotPassword = lazy(() => import('../pages/forgot-password/index'));
 
 //reset password
-const ResetPassword = lazy(() => import('../pages/reset-password/index'));
+const ResetPassword = lazy(() => import('../pages/forgot-password/reset-password'));
 
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
