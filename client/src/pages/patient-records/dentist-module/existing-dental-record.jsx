@@ -125,7 +125,7 @@ export default function ExistingDentalRecord() {
                                 {/* Record Table*/}
                                 <div class="row">
                                     <div className="add-trtmnt">
-                                        <a href={'/dentist/patient-records/dental-record/update-dental-record?patientIDNum=' + StringfyIDnumber}>
+                                        <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
                                             <button className="btn btn-primary" type="submit" >
                                                 <i class="bi bi-download"></i>
                                                 Add Treatment
