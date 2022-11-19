@@ -213,7 +213,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                 <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
                                 {/* <input className="form-check-input" type="checkbox" value="" id="agree" onChange={tosHandler} required /> */}
                                 <label className="form-check-label" htmlFor="invalidCheck">
-                                    Agree to the <a href="/terms-of-use">Terms of Use.</a>
+                                    Agree to the <a href="/terms-of-use">Terms of Use. <span className="text-danger font-weight-bold">*</span></a>
                                 </label>
                                 <div className="invalid-feedback">
                                     You must agree before proceeding.
