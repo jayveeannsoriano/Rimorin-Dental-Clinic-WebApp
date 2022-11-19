@@ -178,6 +178,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                     shouldCloseOnSelect={false}
                                     //exclude sundays
                                     filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
+                                    required
                                 />
 
                                 <div className="valid-feedback">
