@@ -66,7 +66,7 @@ const PatientInfo = () => {
                   <div className="divider"></div>
 
                   {/* Patient information */}
-
+                {patientList.map((item, index) => (
                 <div class="row">
                   <div class="col-lg-auto col-md-auto label">Middle Initial</div>
                   <div id="mname" class="col-lg-auto col-md-auto">
@@ -185,8 +185,8 @@ const PatientInfo = () => {
                   </div>
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">ZIP Code</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
-                      UNKNOWN
+                    <div id="zipcode" class="col-lg-auto col-md-auto">
+                      {item.zipcode}
                     </div>
                   </div>
 
@@ -289,8 +289,8 @@ const PatientInfo = () => {
                     {item.precautions}
                   </div>
                 </div>
-
               </div>
+               ))}
               {/* end of card body */}
             </div>
             </div>
