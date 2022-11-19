@@ -1,5 +1,6 @@
-.patient-info .btn .add-item-btn{
-    float: none !important;
+.patient-info .add-button-container .add-item-btn {
+    margin-left: 0 !important;
+    float: left !important;
 }
 
 .form-section-title{

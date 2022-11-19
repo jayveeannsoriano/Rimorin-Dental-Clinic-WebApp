@@ -176,7 +176,7 @@ const createReceipt = () => {
                 {/* Details of charges */}
                 <div className="form-section-title">Details of Charges</div>
                     <div class="row">
-                    <div className="col-3 col-xl-3 col-lg-3 col-md-4 col-sm-4 add-item-btn">
+                    <div className="col-3 col-xl-3 col-lg-3 col-md-4 col-sm-4 add-button-container">
                         {/* Add Item Button */}
                         <button
                         onClick={handleItemAdd}
