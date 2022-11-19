@@ -20,7 +20,7 @@ export default function ProfileWidget() {
                             <h3>Phone</h3>
                                 <p id="contact_num"> (+63) {userInfo['mobile']} </p>
                             <h3>Age</h3>
-                                <p id="age"> 21 </p>
+                                <p id="age"> 22 </p>
                         </div>
                     </div>
                 </div>
