@@ -1,15 +1,13 @@
 import React, { useMemo, useEffect, useState } from "react";
-import "../../styles/dental-record.css"
-import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
-import DentalChart from "../../components/dental-teeth-chart";
-import { dentalRecord } from '../../config/FileGeneration.js'
 import axios from "axios";
 import { useNavigate, useLocation } from 'react-router-dom';
 
 //project imports
 import ProfileWidgetTwo from "../../components/profile-widget2";
+import DentalChart from "../../components/dental-teeth-chart";
+import { dentalRecord } from '../../config/FileGeneration.js'
 import "../../styles/profilewidgettwo.css";
-
+import '../../styles/dental-record.css'
 
 const ViewDentalRecord = () => {
     // const getPatientDetails = async() => {
@@ -122,8 +120,10 @@ const ViewDentalRecord = () => {
 
                                         {/* Dental Teeth Chart */}
                                         <h5 className="card-title">Dental Chart</h5>
-                                        <div class="row">
-                                            <DentalChart/>
+                                        <div className="container dental-chart-container">
+                                            <div className="row" id="dental-chart-Image">
+                                                <DentalChart/>
+                                            </div>
                                         </div>
 
                                         {/* Summary of Treatment */}

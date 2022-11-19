@@ -22,8 +22,7 @@ const DentalChart = ({handleClickTeeth}) => {
 
     return (
         <>
-            {/* Upper left */}
-            <div id="dental-chart-Image">
+                {/* Upper left */}
                 <div className="tooth-label">
                     <div className="col">1</div>
                     <div className="col">2</div>
@@ -1512,7 +1511,6 @@ const DentalChart = ({handleClickTeeth}) => {
                     <div className="col">18</div>
                     <div className="col">17</div>
                 </div>
-            </div>
         </>
     );
 };
