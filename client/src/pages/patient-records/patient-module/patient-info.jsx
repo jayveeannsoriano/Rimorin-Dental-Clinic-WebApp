@@ -64,15 +64,6 @@ const PatientInfo = () => {
                   Edit
                 </Button>
 
-                <button className="btn btn-primary" type="submit">
-                  <i class="bi bi-printer-fill"></i>
-                  Print
-                </button>
-
-                <button className="btn btn-primary" type="submit">
-                  <i class="bi bi-download"></i>
-                  Export
-                </button>
                 <div className="divider"></div>
 
                 {/* Patient information */}
@@ -203,7 +194,7 @@ const PatientInfo = () => {
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">District/Barangay</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="brgy" class="col-lg-auto col-md-auto">
                       {item.brgy}
                     </div>
                   </div>
@@ -211,7 +202,7 @@ const PatientInfo = () => {
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Province</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="province" class="col-lg-auto col-md-auto">
                       {item.province}
                     </div>
                   </div>
@@ -219,7 +210,7 @@ const PatientInfo = () => {
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">ZIP Code</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="zipcode" class="col-lg-auto col-md-auto">
                       {item.zipcode}
                     </div>
                   </div>
