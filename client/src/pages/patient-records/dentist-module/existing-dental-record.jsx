@@ -1,15 +1,11 @@
 import React from "react";
-// import Footer from "../components/dashboard-footer";
 import "../../../styles/dental-record.css"
 import PatientProfileWidget from "../../../components/profile-widget";
 import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
-// import DentalRecord from "client/src/pages/patient-records/dentist-module/index.jsx";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import { dentalRecords } from '../../../config/FileGeneration.js'
 import axios from "axios";
-// import { response } from "express";
-
 
 export default function ExistingDentalRecord() {
 

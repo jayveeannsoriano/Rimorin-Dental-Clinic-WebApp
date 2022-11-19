@@ -1,5 +1,6 @@
+// ADMIN PATIENT LIST PROFILE WITH BUTTON
 import React, {useState,useEffect} from "react";
-import "../../styles/patient-profile-widget.css";
+import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
 import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
