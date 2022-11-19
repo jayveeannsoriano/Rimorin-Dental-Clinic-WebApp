@@ -40,15 +40,16 @@ export default function ExistingDentalRecord() {
         }
     }
 
-    const getPatientDetails = async() => {
-        try{
-            const response = await axios.get('http://localhost:3001/getPatientInfo',{
-              params:{
-              patientIDnumber: StringfyIDnumber}
+    const getPatientDetails = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/getPatientInfo', {
+                params: {
+                    patientIDnumber: StringfyIDnumber
+                }
             });
             console.log(response, "Responses");
             setPatientList(response.data);
-        }catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -58,22 +59,22 @@ export default function ExistingDentalRecord() {
         getPatientDetails();
     }, []);
 
-    
-    async function Export(willDownload){
-        await Promise.all([getAppointment(),getPatientDetails()]);
+
+    async function Export(willDownload) {
+        await Promise.all([getAppointment(), getPatientDetails()]);
 
         var treatData = [];
         var proceString = "";
-        for(let num = 0 ; num < appointment.length ; num++){
-            for(let proceNum = 0 ; proceNum < appointment[num].procedures.length; proceNum++){
-                if(appointment[num].procedures[proceNum].chosen.length != 0){
-                    proceString+=" "+appointment[num].procedures[proceNum].chosen.join();
+        for (let num = 0; num < appointment.length; num++) {
+            for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
+                if (appointment[num].procedures[proceNum].chosen.length != 0) {
+                    proceString += " " + appointment[num].procedures[proceNum].chosen.join();
                 }
             }
             treatData.push([appointment[num].dentalDate, appointment[num].chartedTeeth.join(), appointment[num].dentalDesc, proceString])
         }
-        {/*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/}
-        dentalRecords(patientList[0].fname+" "+patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies,(patientList[0].hasOwnProperty('precaution')?patientList[0].precaution:'N/A'), treatData, willDownload);
+        {/*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/ }
+        dentalRecords(patientList[0].fname + " " + patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, (patientList[0].hasOwnProperty('precaution') ? patientList[0].precaution : 'N/A'), treatData, willDownload);
     };
 
 
@@ -98,12 +99,12 @@ export default function ExistingDentalRecord() {
                             <div className="card-body pt-3">
                                 <h5 className="card-title">Dental Records</h5>
 
-                                <button className="btn btn-primary" type="submit" onClick={() =>{Export(false)}}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export(false) }}>
                                     <i class="bi bi-printer-fill"></i>
                                     Print
                                 </button>
 
-                                <button className="btn btn-primary" type="submit" onClick={() =>{Export(true)}}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export(true) }}>
                                     <i class="bi bi-download"></i>
                                     Export
                                 </button>

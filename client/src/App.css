@@ -1067,13 +1067,15 @@ padding-right: 4px;
 }
 /* cols in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
 .transaction-datatable .rdt_TableCol,
-.patient-transaction-table .rdt_TableCol { 
+.patient-transaction-table .rdt_TableCol,
+.existing-dental-table .rdt_TableCol { 
   max-width: 167px !important;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   color: var(--text-color);
 }
+
 
 /* cols for admin-datatable */
 .account-datatable .rdt_TableCol,
@@ -1092,8 +1094,11 @@ padding-right: 4px;
 
 /* div of action buttons in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
 .transaction-datatable .action-buttons{
-  width: 213px !important;
+  /* width: 213px !important; */
+  width: 340px !important;
 }
+
+
 
 .appointment-request-table #cell-4-undefined{
   max-width: 780px !important;
@@ -1109,13 +1114,29 @@ padding-right: 4px;
   max-width: 780px !important;
 }
 
+/* existing dental table for dental records */
+
+.existing-dental-table #cell-1-undefined,
+.existing-dental-table #cell-2-undefined,
+.existing-dental-table #cell-3-undefined,
+.existing-dental-table #cell-4-undefined{
+  max-width: 140px !important;
+}
+
+.existing-dental-table #cell-5-undefined{
+  max-width: 13px !important;
+}
+
+.transaction-datatable .dental-action-buttons {
+  max-width: 100px !important;
+}
 
 /* secretary module */
 .transaction-datatable #cell-1-undefined,
 .transaction-datatable #cell-2-undefined,
 .transaction-datatable #cell-3-undefined,
 .transaction-datatable #cell-4-undefined{
-  max-width: 167px !important;
+  max-width: 140px !important;
 }
 .transaction-datatable #cell-5-undefined{
   max-width: 13px !important;
@@ -1131,7 +1152,8 @@ padding-right: 4px;
   max-width: 40px !important;
 }
 .patient-transaction-table .action-buttons{
-  width: 285px !important;
+  /* width: 285px !important; */
+  width: 250px !important;
 }
 
 .rdt_TableCol:hover,
