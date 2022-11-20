@@ -32,9 +32,9 @@ const accountspage = () => {
 
               <div class="card-body datatable">
                       <div className="nav nav-bar">
-                        <Button className="table-button active" data-bs-toggle="tab" data-bs-target="#active-accounts">Active Accounts</Button>
-                        <Button className="table-button" data-bs-toggle="tab" data-bs-target="#archived-accounts">Archived Accounts</Button>
-                        <Button className="table-button" href="/admin/accounts/create-account"><i class="fa-solid fa-plus"></i>Add Account</Button>
+                        <Button className="table-button active" data-bs-toggle="tab" data-bs-target="#active-accounts">ACTIVE ACCOUNTS</Button>
+                        <Button className="table-button" data-bs-toggle="tab" data-bs-target="#archived-accounts">ARCHIVED ACCOUNTS</Button>
+                        <Button className="table-button" href="/admin/accounts/create-account"><i class="fa-solid fa-plus"></i>ADD NEW ACCOUNT</Button>
                       </div>
                       
                   <div className="tab-content">
