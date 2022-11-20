@@ -18,9 +18,9 @@ const PatientProfileWidget = () => {
                     <div class="row patient-info">
                         <div className="col">
                             <h3>Phone</h3>
-                            <p id="contact_num"> (+63) 956 793 5590 </p>
+                            <p id="contact_num"> (+63) {userInfo['mobile']} </p>
                             <h3>Age</h3>
-                            <p id="age"> 22 </p>
+                            <p id="age"> {userInfo['age']} </p>
                         </div>
                     </div>
                 </div>

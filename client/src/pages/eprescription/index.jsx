@@ -21,7 +21,7 @@ const Eprescription = () => {
                 <section class="section profile">
                 <div class="row">
                         <ProfileWidget/>
-                        
+
                         <div class="col-xl">
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
