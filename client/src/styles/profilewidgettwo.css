@@ -100,3 +100,17 @@ padding-top: 0em;
     justify-content: center;
     margin-top: 0.5in;
 }
+
+.widget-button-container{
+    margin: 23px;
+    display: flex;
+    justify-content: center;
+}
+
+.widget-btn{
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: var(--primary-color);
+    border-radius: 32px;
+}

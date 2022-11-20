@@ -35,7 +35,7 @@ const PatientProfileWidget = () => {
 
         {/* replace 'patients' with proper get value variable */}
         {patientList.map((item, index) => (
-            <div key={index} class="col-md-6 col-lg-4 col-xl-3">
+            <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="card widget-profile pat-widget-profile">
                     <div class="card-body">
                         <div class="pro-widget-content">
@@ -55,7 +55,7 @@ const PatientProfileWidget = () => {
                         
                         <div class="patient-info">
                             <ul>
-                                <li>Phone <span>{item.mobile}</span></li>
+                                <li>Phone <span> (+63) {item.mobile}</span></li>
                                 <li>Age <span>{item.age}, {item.gender}</span></li>
                             </ul>
                         </div>
