@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../../../styles/patient-info-edit.css";
 import "react-bootstrap";
 import Form from 'react-bootstrap/Form';
-import ProfileWidget from "../../../components/profile-widget";
+import ProfileWidget from "../../../components/patient-profilewidget";
 import Axios from 'axios';
 
 //datepicker

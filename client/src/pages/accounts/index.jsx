@@ -46,8 +46,8 @@ const accountspage = () => {
                     </div>
                     <br/>
                     <div className="col-6 ad-right btn-link">
-                      <button type="button" class="btn btn-primary spc"><i class="bi bi-plus-lg"></i> <a href='/admin/accounts/create-account'>Add Account</a></button>
-                      <button type="button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button>
+                      <button type="table-button" class="btn btn-primary spc"><i class="bi bi-plus-lg"></i> <a href='/admin/accounts/create-account'>Add Account</a></button>
+                      <button type="table-button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button>
                       
                     </div>
                   </div>
