@@ -1209,8 +1209,47 @@ padding-right: 4px;
 /*--------------------------------------------------------------
 # Landing Page Footer
 --------------------------------------------------------------*/
+.landing-footer{
+  background: var(--primary-color);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+  padding: 25px 0;
+  color: #fff;
+  font-size: 14px;
+  /* position: fixed; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-#footer {
+.landing-footer .credits {
+  padding-top: 5px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.landing-footer .copyright {
+  font-family: var(--body-font);
+}
+
+.landing-footer  .footer-links a {
+  color: #fff;
+  padding-left: 15px;
+}
+
+.landing-footer .landing-footer-links a:first-child {
+  padding-left: 0;
+}
+
+.landing-footer .landing-footer-links a:hover {
+  color: var(--tertiary-color);
+}
+
+/*--------------------------------------------------------------
+# Footer (login, sign up, errors)
+--------------------------------------------------------------*/
+
+
+.footer {
   background: var(--primary-color);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 25px 0;
@@ -1222,26 +1261,26 @@ padding-right: 4px;
   bottom: 0;
 }
 
-#footer .credits {
+.footer .credits {
   padding-top: 5px;
   font-size: 13px;
   color: #fff;
 }
 
-#footer .copyright {
+.footer .copyright {
   font-family: var(--body-font);
 }
 
-#footer .footer-links a {
+.footer .footer-links a {
   color: #fff;
   padding-left: 15px;
 }
 
-#footer .footer-links a:first-child {
+.footer .footer-links a:first-child {
   padding-left: 0;
 }
 
-#footer .footer-links a:hover {
+.footer .footer-links a:hover {
   color: var(--tertiary-color);
 }
 

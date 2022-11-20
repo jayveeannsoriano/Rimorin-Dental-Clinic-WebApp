@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../styles/login-signup.css";
-
+import Footer from '../../layout/LandingPageLayout/footer';
 const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
 
     const Continue = e => {
@@ -126,6 +126,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 <p className="forgot-password text-right">
                     Already registered? <a href="/auth/login">Sign In</a>
                 </p>
+                <Footer/>
             </form>
         </>
     )

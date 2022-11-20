@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "../../styles/login-signup.css";
+import Footer from '../../layout/LandingPageLayout/footer';
 // import LoadingOverlay from 'react-loading-overlay';
 
 export default class Login extends Component {
@@ -101,8 +102,6 @@ export default class Login extends Component {
             </label>
           </div>
           <div className="pass"> <a href='/auth/forgot-password'> Forgot Password? </a></div>
-          {/* <ForgotPassword/> */}
-          {/* <ForgotPassword2/> */}
           
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
@@ -114,7 +113,10 @@ export default class Login extends Component {
             <br />
             <a href="/auth/signup">Sign Up</a>
           </div>
+
+
         </form>
+        <Footer/>
         {/* </LoadingOverlay> */}
       </>
 

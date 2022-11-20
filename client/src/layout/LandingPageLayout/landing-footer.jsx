@@ -1,10 +1,10 @@
 import React from "react";
 
-function Footer() {
+function LandingFooter() {
     return(
         <div>
-            {/* Footer */}
-            <div class="footer">
+            {/* Landing Page Footer */}
+            <div className="landing-footer">
                 <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-6 text-lg-left text-center">
@@ -13,7 +13,7 @@ function Footer() {
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
+                            <nav class="landing-footer-links text-lg-right text-center pt-2 pt-lg-0">
                                 <a href="/privacy-policy">Privacy Policy</a>
                                 <a href="/terms-of-use">Terms of Use</a>
                             </nav>
@@ -25,4 +25,4 @@ function Footer() {
     )
 }
 
-export default Footer;
+export default LandingFooter;

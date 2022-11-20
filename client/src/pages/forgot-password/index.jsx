@@ -22,7 +22,7 @@ useEffect(() => {
         <Form.Group className="mb-3" controlId="forgotpswd.email">
           <div className="col-10">
           <Form.Label>Email address</Form.Label>
-          <Form.Control id="email" type="email" placeholder="name@example.com" />
+          <Form.Control id="email" type="email" placeholder="name@example.com" required/>
           </div>
         </Form.Group>
         <Button variant="btn btn-light" className='fgt-btn'>
