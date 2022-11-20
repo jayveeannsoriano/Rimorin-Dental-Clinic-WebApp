@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { List, ListItem, ListItemText } from '@material-ui/core';
 // import "../../styles/login-signup.css";
 import Axios from 'axios';
+import Footer from '../../layout/LandingPageLayout/footer';
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     console.log(values);
@@ -159,6 +160,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </form>
         </>
     );

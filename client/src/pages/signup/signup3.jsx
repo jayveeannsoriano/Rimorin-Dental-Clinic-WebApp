@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
+import Footer from '../../layout/LandingPageLayout/footer';
 
 const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbox }) => {
 
@@ -151,6 +152,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                 <p className="forgot-password text-right">
                     Already registered? <a href="/auth/login">Sign In</a>
                 </p>
+                <Footer/>
             </form>
         </>
 
