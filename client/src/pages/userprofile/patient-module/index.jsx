@@ -100,6 +100,22 @@ const UserProfile = () => {
   
       console.log("New info saved in DB")
     }
+
+    {/*let newPassword = document.getElementById("newPassword")
+    , renewPassword = document.getElementById("renewPassword");
+    console.log(newPassword);
+    console.log(renewPassword);
+
+    function validatePassword(){
+        if(newPassword.value != renewPassword.value) {
+            renewPassword.setCustomValidity("Passwords Does Not Match");
+        } else {
+            renewPassword.setCustomValidity('');
+        }
+    }
+    newPassword.onChange = validatePassword();
+renewPassword.onKeyup = validatePassword();*/}
+
     return(
         <>
                 <div class="pagetitle">
@@ -379,21 +395,21 @@ const UserProfile = () => {
                                                     <div class="row mb-3">
                                                     <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="password" type="password" class="form-control" id="currentPassword"/>
+                                                        <input name="password" type="password" class="form-control" id="currentPassword" required/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="newpassword" type="password" class="form-control" id="newPassword"/>
+                                                        <input name="newpassword" type="password" class="form-control" id="newPassword"  required/>
                                                     </div>
                                                     </div>
 
                                                     <div class="row mb-3">
                                                     <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                                                     <div class="col-md-8 col-lg-9">
-                                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword"/>
+                                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword" required/>
                                                     </div>
                                                     </div>
 
