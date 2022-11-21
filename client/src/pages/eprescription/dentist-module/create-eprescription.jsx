@@ -292,11 +292,11 @@ const createEprescription = () => {
                                             {/* Signature */}
                                             <div className="col-6">
 
-                                                <form onSubmit={() => createEPrescription()}>
+                                                
                                                     <DropFileInput
                                                         onFileChange={(files) => onFileChange(files)}
                                                     />
-                                                </form>
+                                                
                                                 <div className="sign-name">
                                                     <p className="mb-0">( Dr. Pamela Rimorin Concepcion )</p>
                                                     <span className="text-muted">Signature</span>
