@@ -1,8 +1,12 @@
 import React from 'react'
 import Header from '../layout/LandingPageLayout/header';
 import '../styles/terms.css';
+import {useNavigate} from 'react-router-dom';
 
 const privacypolicy = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Header */}
@@ -18,8 +22,11 @@ const privacypolicy = () => {
       </header>
             <br/>
             <br/>
-        <h1 className="text-center">Privacy Policy</h1>
           <br/>
+          <br/>
+          <p variant="btn btn-light" className='back-p dc' onClick={() => navigate(-1)} >
+            <i class="bi bi-arrow-left"></i> Go back
+            </p>
           <p className="dc">1. <b>Introduction</b></p>
           <p className="dc">Welcome to <b> Rimorin Dental Clinic</b>.</p>
           <p className="dc"><b>Rimorin Dental Clinic</b> (“us”, “we”, or “our”) operates <b>rimorin-dental-clinic.herokuapp.com</b> (hereinafter referred to as <b>“Service”</b>).</p>

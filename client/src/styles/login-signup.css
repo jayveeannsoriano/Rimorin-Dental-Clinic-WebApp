@@ -95,8 +95,8 @@ form .txt_field {
 }
 
 .pass {
-  margin: -23px 0 5px 195px;
-  margin-bottom: 25px;
+  text-align: right;
+  margin-bottom: 2%;
   color: #5D5FEF;
   cursor: pointer;
 }

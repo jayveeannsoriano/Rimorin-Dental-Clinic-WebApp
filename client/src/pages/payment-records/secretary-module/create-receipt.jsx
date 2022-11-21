@@ -11,7 +11,9 @@ import { Button } from "react-bootstrap";
 import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 
+
 const createReceipt = () => {
+
   // Add item function
   const [serviceItem, setServiceList] = useState([{ service: "" }]);
   const handleItemAdd = () => {
@@ -332,7 +334,9 @@ const createReceipt = () => {
             </div>
           </div>
         </div>
+      
       </section>
+
     </>
   );
 };

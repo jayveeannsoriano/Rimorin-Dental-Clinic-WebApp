@@ -1235,7 +1235,7 @@ padding-right: 4px;
   font-family: var(--body-font);
 }
 
-.landing-footer  .footer-links a {
+.landing-footer  .landing-footer-links a {
   color: #fff;
   padding-left: 15px;
 }
