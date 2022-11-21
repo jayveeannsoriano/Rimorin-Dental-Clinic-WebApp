@@ -12,7 +12,15 @@ const PatientProfileWidget = () => {
 
     const getPatientDetails = async() => {
         try{
-            const response = await Axios.get('http://localhost:3001/getUserDetails');
+            var url = require('url');
+            var url_parts = url.parse(window.location.href, true);
+            var query = url_parts.query;
+
+            const response = await Axios.get('http://localhost:3001/getPatientInfo', {
+                params: {
+                    patientIDnumber: query.patientIDNum
+                }
+            });
             console.log(response, "Responses");
             setPatientList(response.data);
         }catch (error){
@@ -21,7 +29,7 @@ const PatientProfileWidget = () => {
     }
 
     useEffect(() => {
-        getPatientDetails ();
+        getPatientDetails();
     }, []);
 
     const proceedtoViewInfo = (value) => {
