@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/dental-record.css";
-import PatientProfileWidget from "../../components/patient-profilewidget";
+import PatientProfileWidget from "../../components/profile-widget";
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 
 const DentalRecord = () => {
@@ -44,7 +44,7 @@ const DentalRecord = () => {
       </div>
       <section class="section profile">
         <div class="row">
-          {/* <PatientProfileWidget /> */}
+          <PatientProfileWidget />
 
           <div class="col-xl-8">
             <div className="card patient-info">
