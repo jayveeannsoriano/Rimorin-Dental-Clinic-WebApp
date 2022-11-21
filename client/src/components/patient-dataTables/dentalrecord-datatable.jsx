@@ -4,7 +4,7 @@ import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import Button from 'react-bootstrap/Button';
 
-const DentalRecordDataTable = (response) => {
+const DentalRecordDataTable = (response,patientIDNum) => {
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([response.response]);
@@ -14,33 +14,18 @@ const DentalRecordDataTable = (response) => {
     var url = require('url');
     var url_parts = url.parse(window.location.href, true);
     var query = url_parts.query;
+
+  const StringfyID = JSON.stringify(response,patientIDNum);
+  const ConvertStringApp = JSON.parse(StringfyID);
+  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDNum).replace(/"/g, "");
     
     useEffect(() => {
-
-      
-    
 		const timeout = setTimeout(() => {
 			setRows(appointment);
 			setPending(false);
 		}, 1000);
 		return () => clearTimeout(timeout);
 	}, []);
-
-
-    // const getAppointment = async() => {
-    //     try{
-    //         const response = await axios.get('http://localhost:3001/getUserDentalRecord',{
-    //             params: {
-    //                 patientIDnumber: query.patientIDNum,
-    //             }
-    //         });
-    //         console.log(response, "Responses");
-    //         setAppointment(response.data);
-    //         // setFilteredAppointment(response.data);
-    //     }catch (error){
-    //         console.log(error)
-    //     }
-    // }
 
     const columns = [
         {
@@ -116,6 +101,11 @@ const DentalRecordDataTable = (response) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         />
+    }
+    actions={
+        <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + PatientIDNumber}>
+        <button className="btn btn-primary">Add Dental Record</button>
+       </a> 
     }
     />
   

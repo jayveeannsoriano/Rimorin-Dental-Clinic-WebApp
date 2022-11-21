@@ -29,11 +29,10 @@ const SecTransactionDataTable = (patientIDNum) => {
     }
 
 
-    const getAppointment = async () => {
+    const getAppointment = async() => {
 
-
-        try {
-            const response = await axios.get('http://localhost:3001/getUserTransaction', {
+        try{
+            const response = await axios.get('http://localhost:3001/getUserTransaction',{
                 params: {
                     patientIDnumber: PatientIDNumber
                 }

@@ -48,6 +48,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
   const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g, "");
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g, "");
   const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g, "");
+  const passAppNumber = AppNumber.substring(1);
 
   const newStatus = () => {
     console.log("Updating " + AppNumber);
@@ -130,6 +131,16 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
     handleClose();
 
+  }
+
+  const finishedAppointments = () => {
+    Axios.put("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
+        patientIDnumber: PatientIDNumber,
+        appNum: AppNumber,
+      })
+      console.log("Moving ", appNum, pName, " to Appointment History")
+    
+    handleModalClose();
   }
 
   return (
@@ -229,7 +240,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose} href={'/dentist/patient-records/dental-record/create-dental-record?appNum=' + AppNumber.substring(0)}>
+          <Button variant="primary" onClick={handleModalClose} href={'/dentist/patient-records/dental-record/create-dental-record?appNum=' + passAppNumber}>
             Proceed to Dental Records
           </Button>
         </Modal.Footer>
