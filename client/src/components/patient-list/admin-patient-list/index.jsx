@@ -63,8 +63,8 @@ const PatientProfileWidget = () => {
                         </div>
                         
                         <div className="widget-button-container">
-                            <Button className="widget-btn" href={"/admin/patients/view-patient"}>
-                                View Patient Information
+                            <Button className="widget-btn" href={"/admin/patients/view-patient?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                                View Patient Records
                             </Button>
                         </div>
                     </div>

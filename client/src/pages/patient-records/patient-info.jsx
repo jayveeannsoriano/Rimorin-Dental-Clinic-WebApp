@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
-
+import PatientProfileWidget from "../../components/profile-widget";
 import "../../styles/patient-info.css";
 import "react-bootstrap";
 
@@ -87,7 +87,7 @@ const PatientInfo = () => {
 
       <section class="section profile">
         <div class="row">
-          {/*<PatientProfileWidget />*/}
+          <PatientProfileWidget />
 
           <div class="col-xl-8">
             <div className="card patient-info">

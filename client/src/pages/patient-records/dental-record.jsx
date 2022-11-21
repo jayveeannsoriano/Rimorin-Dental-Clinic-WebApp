@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/dental-record.css";
-import PatientProfileWidget from "../../components/patient-profilewidget";
+import PatientProfileWidget from "../../components/profile-widget";
 import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
 
 const DentalRecord = () => {

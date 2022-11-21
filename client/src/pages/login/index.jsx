@@ -96,11 +96,11 @@ export default class Login extends Component {
             <strong>Error: Incorrect Username or Password.</strong> Please try again.
           </div> : ""}
 
-          <div className="checkbox">
+          {/* <div className="checkbox">
             <label htmlFor="checkbox">
               <input type="checkbox" name="checkbox" /> Remember me{" "}
             </label>
-          </div>
+          </div> */}
           <div className="pass"> <a href='/auth/forgot-password'> Forgot Password? </a></div>
           
           <div className="d-grid">

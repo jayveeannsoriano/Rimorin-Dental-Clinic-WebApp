@@ -4,12 +4,13 @@ import "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/patient-profilewidget";
 import Axios from 'axios';
+import ProfileInfoEditSaved from '../../../components/modals/success-modals/profile-info-edit-saved';
 
 //datepicker
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from 'react-bootstrap';
 
-const PatientInfoEdit = ({ }) => {
+const PatientInfoEdit = () => {
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
   console.log(patientIDnumber);
@@ -354,12 +355,15 @@ const PatientInfoEdit = ({ }) => {
                     </div>
                   </div>
                   <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
+                  {/* <ProfileInfoEditSaved/> */}
                 </div>
               </form>
             </div>
           </div>
         </div>
       </section>
+
+      
     </>
   );
 };

@@ -15,7 +15,7 @@ const AdminPatientUI = () => {
     return (
         <>
             <div class="pagetitle">
-                <h1>Patient Information</h1>
+                <h1>Patient Records</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
@@ -24,7 +24,7 @@ const AdminPatientUI = () => {
                         <li class="breadcrumb-item">
                             <a href="/admin/patients">Patients</a>
                         </li>
-                        <li class="breadcrumb-item active">View Patient</li>
+                        <li class="breadcrumb-item active">View Patient Records</li>
                     </ol>
                 </nav>
             </div>
