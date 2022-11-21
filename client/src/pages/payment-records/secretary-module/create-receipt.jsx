@@ -175,6 +175,7 @@ const createReceipt = () => {
                         </div>
                     </div>
                 </div>
+            </div>
                 {/* /Breadcrumb */}
 
       <section class="content section profile">
