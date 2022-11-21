@@ -101,20 +101,19 @@ const UserProfile = () => {
       console.log("New info saved in DB")
     }
 
-    {/*let newPassword = document.getElementById("newPassword")
-    , renewPassword = document.getElementById("renewPassword");
-    console.log(newPassword);
-    console.log(renewPassword);
-
     function validatePassword(){
-        if(newPassword.value != renewPassword.value) {
-            renewPassword.setCustomValidity("Passwords Does Not Match");
-        } else {
-            renewPassword.setCustomValidity('');
+        let newPassword = document.getElementById("newPassword");
+        let renewPassword = document.getElementById("renewPassword");
+        if(!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')){
+            if(newPassword.value != renewPassword.value) {
+                renewPassword.setCustomValidity("Passwords Does Not Match");
+            } else {
+                renewPassword.setCustomValidity('');
+                document.getElementById('passwordForm').submit();
+            }
         }
+
     }
-    newPassword.onChange = validatePassword();
-renewPassword.onKeyup = validatePassword();*/}
 
     return(
         <>
@@ -391,7 +390,7 @@ renewPassword.onKeyup = validatePassword();*/}
                                     </div>
                                             {/* Change Password */}
                                             <div class="tab-pane fade pt-3" id="profile-change-password">
-                                                <form>
+                                                <form id='passwordForm' onSubmit={(e) => {e.preventDefault();}}>
                                                     <div class="row mb-3">
                                                     <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                     <div class="col-md-8 col-lg-9">
@@ -414,7 +413,7 @@ renewPassword.onKeyup = validatePassword();*/}
                                                     </div>
 
                                                     <div class="text-right">
-                                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                                    <button type="submit" class="btn btn-primary" onClick={() => {validatePassword();}} >Change Password</button>
                                                     </div>
                                                 </form>
                                         </div>
