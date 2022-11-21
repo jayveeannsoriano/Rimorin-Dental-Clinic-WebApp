@@ -48,7 +48,7 @@ const DropFileInput = props => {
                     <p><span>Upload a file </span>or drag & drop</p>
                     <p>PNG, JPG, JPEG up to 5MB</p>
                 </div>
-                <input type="file" name="imageFile" multiple onChange={onFileDrop}/>
+                <input type="file" name="imageFile" multiple onChange={onFileDrop} required/>
             </div>
             {
                 fileList.length > 0 ? (
