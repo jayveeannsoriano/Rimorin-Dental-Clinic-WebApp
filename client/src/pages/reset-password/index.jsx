@@ -14,7 +14,6 @@ function ResetPswd() {
         var confirmPasswordElement = document.getElementById('confirmPassword')
         setNewPassword(passwordElement.value);
         setConfirmPassword(confirmPasswordElement.value);
-    console.log("Resetting Password Text");
     }
     
     useEffect(() => {

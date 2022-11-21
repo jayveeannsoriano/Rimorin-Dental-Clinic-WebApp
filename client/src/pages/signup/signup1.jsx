@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/login-signup.css";
 // import PhoneInput from 'react-phone-input-2';
 // import 'react-phone-input-2/lib/style.css';
-import Footer from '../../layout/LandingPageLayout/footer';
+
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   const Continue = (e) => {
@@ -212,8 +212,8 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 type="password"
                 className="form-control"
                 placeholder="Re-enter password"
-                onChange={handleChange('password')}
-                defaultValue={values.password}
+                onChange={handleChange('confirmPassword')}
+                defaultValue={values.confirmPassword}
                 required
               />
             </div>
@@ -233,7 +233,6 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <p className="forgot-password text-right">
           Already registered? <a href="/auth/login">Sign In</a>
         </p>
-        <Footer/>
       </form>
     </>
   );

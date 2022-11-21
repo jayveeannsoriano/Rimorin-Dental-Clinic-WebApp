@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Axios from "axios";
-import PatientProfileWidget from "../../components/profile-widget";
+
 import "../../styles/patient-info.css";
 import "react-bootstrap";
 
