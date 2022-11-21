@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect} from "react";
 import { Dropdown, DropdownButton, Tab } from "react-bootstrap";
 import { useSearchParams, useLocation } from "react-router-dom";
 import '../../../styles/create-rx.css';
@@ -12,11 +12,53 @@ import TransactionDetails from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 
 const createReceipt = () => {
-    // Add item function
-    const [serviceItem, setServiceList] = useState([{service: ""}]);
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const getAppNumber = params.get('patientValue');
+    const getPatientID = params.get('patientID');
+    const getDateReceipt = params.get('dateValue');
+    const StringfyAppNumber = useMemo(()=>JSON.stringify(getAppNumber).replace(/"/g,""));
+    const StringfyIDNumber = useMemo(()=>JSON.stringify(getPatientID).replace(/"/g,""));
+    const StringfyDate = useMemo(()=>JSON.stringify(getDateReceipt).replace(/"/g,""));
+    
+    const [transactionDetails, setTransactionDetails] = useState("");
+    const [transactionNumber, setTransactionNumber] = useState("");
+    const [patientName, setPatientName] = useState("");
+    const [patientAddress, setPatientAddress] = useState("");
+    const [dateIssued, setDateIssued] = useState("");
+    const [serviceValue, setServiceValue] = useState("");
+    const [amountValue, setAmountValue] = useState([]);
+    const [subTotal, setSubTotal] = useState(0);
+    const [amountPaid, setAmountPaid] = useState(0);
+    const [paymentType, setPaymentType] = useState("");
+    const [signatureValue, setSignatureValue] = useState("");
+
+
+    //   //
+    const [serviceItem, setServiceList] = useState([{serviceValue:"", quantityValue:"",amountToPay:""}]);
+
+
+
+    //get amount value sum
+    const newAmountArray = serviceItem.map(function(item) {
+        return parseInt(item.amountToPay) * parseInt(item.quantityValue)
+      })
+    var totalAmountPaid =  newAmountArray.reduce((index,value) =>  index = index + value, 0 )
+      if(isNaN(totalAmountPaid)){
+        totalAmountPaid = 0
+      } 
+// Add item function
     const handleItemAdd = () => {
-        setServiceList([...serviceItem, {service:""}]);
+        setServiceList([...serviceItem, {serviceValue:"", quantityValue:"",amountToPay:""}]);
     };
+// Get values
+    const handleGetValues = (e,index)=>{
+        const{name,value} = e.target;
+        const list = [...serviceItem];
+        list[index][name] = value;
+        setServiceList(list);
+    }
+
     //Remove item function
     const handleItemRemove = (index) => {
         const list = [...serviceItem];
@@ -29,21 +71,8 @@ const createReceipt = () => {
         setGetFile(files);
         console.log(files);
     }
-    const [transactionDetails, setTransactionDetails] = useState("");
-    const [transactionNumber, setTransactionNumber] = useState("");
-    const [patientName, setPatientName] = useState("");
-    const [patientAddress, setPatientAddress] = useState("");
-    const [dateIssued, setDateIssued] = useState("");
-    const [serviceValue, setServiceValue] = useState("");
-    const [quantityValue, setQuantityValue] = useState("");
-    const [amountValue, setAmountValue] = useState(0);
-    const [subTotal, setSubTotal] = useState(0);
-    const [discountValue, setDiscountValue] = useState(0);
-    const [totalAmount, setTotalAmount] = useState(0);
-    const [amountPaid, setAmountPaid] = useState(0);
-    const [paymentType, setPaymentType] = useState("");
-    const [signatureValue, setSignatureValue] = useState("");
 
+//              //
 
     // const TotalAmountToPay = () => {
     //     const PWDandSeniorDiscount = 0.20;
@@ -58,31 +87,67 @@ const createReceipt = () => {
 
     // }
     //get app number
-    const location = useLocation()
-    const params = new URLSearchParams(location.search)
-    const getAppNumber = params.get('patientValue');
-    const StringfyAppNumber = useMemo(()=>JSON.stringify(getAppNumber).replace(/"/g,""));
-    console.log(StringfyAppNumber);
+
+
+    const [recordProcedures,setRecordProcedures] = useState([]);
+    console.log(recordProcedures, "this are the vals");
+    const addPreviousReceipt = async() =>{
+
+            const response = await Axios.get('http://localhost:3001/getUserDentalRecordforReceipt',{
+                params: {
+                    patientIDnumber: StringfyIDNumber,
+                    appNum:StringfyAppNumber,
+                    dateValue:StringfyDate,
+                }
+            });
+            setRecordProcedures(response.data[0].procedures);
+    }
+    
+    useEffect(() => {
+    addPreviousReceipt();
+    }, []);
+
+      //MAP TWICE
+      const [getProcedure, setProcedure] = useState([]);
+      const [getPrice, setPrice] = useState([]);
+      const procedurePriceTotal = getPrice.reduce((index,value) => index = index + value, 0 )
+
+    useEffect(()=>{
+        const price = recordProcedures.map((item) => (
+            item.chosen != null ?
+            item.chosen.map((proc) =>(
+                setPrice(current => [...current, parseInt(proc.price)]),
+                setProcedure(current => [...current, proc.procedure])
+            ))
+            : null
+        ))
+        }, [recordProcedures])
+
+    
+       //total number
+       const finalTotal = totalAmountPaid + procedurePriceTotal;
+
+       console.log(StringfyAppNumber);
+       console.log(serviceItem);
+       console.log(paymentType);
+       console.log(amountPaid);
+       console.log(recordProcedures);
+       console.log(dateIssued)
+       console.log(StringfyIDNumber)
 
     const createReceipt = async () => {
 
 
-        console.log(StringfyAppNumber);
-        console.log(dateIssued);
-        console.log(serviceValue);
-        console.log(quantityValue);
-        console.log(paymentType);
-        console.log(amountValue);
 
         await Axios.put("http://localhost:3001/updateReceipt", {
-            appNum: StringfyAppNumber,
-            date: dateIssued,
-            serviceValue: serviceValue,
-            quantityValue: quantityValue,
+            addedItem: serviceItem,
+            patientIDnumber:StringfyIDNumber,
+            dateIssued: dateIssued,
             paymentType: paymentType,
-            totalAmount: amountValue,
+            totalAmount:finalTotal,
         });
     }
+
 
 
     return (
@@ -144,6 +209,9 @@ const createReceipt = () => {
                                                     <label>Date of Issue</label>
                                                     <input type="date" className="form-control" placeholder="Date" onChange={(e) => { setDateIssued(e.target.value) }} />
                                                 </div>
+                                                <div class="col-12 col-md-6 col-lg-4 following-info">
+
+                                                </div>
                                             </div>
                                         </div>
                                         {/* End Receipt Information */}
@@ -158,19 +226,19 @@ const createReceipt = () => {
                                                                 <div class="col-12 col-md-6 col-lg-4">
                                                                     <div class="form-group">
                                                                         <label>Service <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="Tooth Extraction" onChange={(e) => { setServiceValue(e.target.value) }} />
+                                                                        <input name="serviceValue" type="text" class="form-control" value={singleItem.serviceValue} placeholder="Tooth Extraction" onChange={(e) => {handleGetValues(e,index)}} />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                     <div class="form-group">
                                                                         <label>Quantity <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="1" onChange={(e) => { setQuantityValue(e.target.value) }} />
+                                                                        <input name="quantityValue" type="text" class="form-control" placeholder="1" value={singleItem.quantityValue} onChange={(e) => {handleGetValues(e,index)}} />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                     <div class="form-group">
                                                                         <label>Amount (₱)<span class="text-danger">*</span></label>
-                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountValue(e.target.value) }} />
+                                                                        <input name="amountToPay" type="number" class="form-control" placeholder="500" value={singleItem.amountToPay} onChange={(e) => {handleGetValues(e,index)}}/>
                                                                     </div>
                                                                 </div>
                                                                 <div class= "col-12 col-md-6 col-lg-2">
@@ -191,7 +259,7 @@ const createReceipt = () => {
                                                             ))}
                                                                 
                                                                 {/* Add Item */}
-                                                                 <div className="add-more-item rx-pr">
+                                                                <div className="add-more-item rx-pr">
                                                                         <button 
                                                                             type="submit" 
                                                                             onClick={handleItemAdd}
@@ -199,9 +267,12 @@ const createReceipt = () => {
                                                                             <i className="fas fa-plus" /> Add Item
                                                                         </button>
                                                                     </div>
+
+
                                                                 </div>
                                                             </div>
-                                                        
+
+                                                                          
                                                         {/* billing information */}
                                                         <div className="bill-container">
                                                             <div className="row">
@@ -218,8 +289,8 @@ const createReceipt = () => {
                                                                                     </Form.Select>
 
                                                                                     <div class="form-group">
-                                                                                        <label>Amount Paid:(₱){amountPaid} <span class="text-danger">*</span></label>
-                                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }} />
+                                                                                        <label>Amount Paid:(₱)<span class="text-danger">*</span></label>
+                                                                                        <input type="number" class="form-control" placeholder="500" onChange={(e) => { setAmountPaid(e.target.value) }}/>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -229,12 +300,40 @@ const createReceipt = () => {
                                                                 <div className="col total-bill">
                                                                     <div class="row form-row experience-cont ">
                                                                         <div class="col-8">
-
-                                                                            <label className="paylabel">Subtotal: {subTotal} </label><br />
+                                                                            <table>
+                                                                                            <tr>
+                                                                                     <th>Procedures</th>
+                                                                                      <th>Price</th>
+                                                                                        </tr>
+                                                                                
+                                                                          {getProcedure.map((item) => (
+                                                                            <tr key={item}>
+                                                                           
+                                                                              
+                                                                                <td>{item}</td>
+                                                                                
+                                                                            
+                                                                            </tr>
+                                                                                ))} 
+                                                                            {getPrice.map((item) => (
+                                                                            <tr key={item}>
+                                                                            <td>{item}</td>
+                                                                            </tr>
+                                                                             ))}
+                                                                            <tr>
+                                                                            {serviceItem.map((item) => (
+                                                                                 <div key={item}>
+                                                                                <td>{item.serviceValue}</td>
+                                                                                <td>{item.amountToPay}</td>
+                                                                                </div>
+                                                                                ))}
+                                                                            </tr>
+                                                                             </table>
+                                                                            <label className="paylabel">Subtotal: </label><br />
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
-                                                                            <label className="paylabel">Discount: {discountValue}</label><br />
+                                                                            <label className="paylabel">Discount: </label><br />
                                                                             {/* <input type="text" class="form-contro   l" placeholder="" /> */}
-                                                                            <label className="paylabel">Total Amount: {amountValue}</label><br />
+                                                                            <label className="paylabel">Total Amount: {finalTotal}</label><br />
                                                                             {/* <input type="text" class="form-control" placeholder="" readonly="readonly" /> */}
                                                                         </div>
                                                                     </div>
@@ -263,13 +362,14 @@ const createReceipt = () => {
                                                         Clear
                                                     </button>
                                                     <TransactionDetails />
-                                                    <button
+                                                    <Button
                                                         type="submit"
+                                                        href="/dentist"
                                                         className="btn btn-primary submit-btn rx-btn"
                                                         onClick={() => { createReceipt() }}
                                                     >
                                                         Create
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                             </div>
                                             {/* /Submit Section */}

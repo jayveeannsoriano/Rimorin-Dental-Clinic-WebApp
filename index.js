@@ -282,8 +282,24 @@ app.get("/getUserDetails", async(req,res) => {
 app.get("/getUserInfo", async(req,res) => {
 
   const patientIDNumber = req.query.patientIDnumber;
+  console.log(patientIDNumber);
   
   await User.find({patientIDnumber: patientIDNumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+
+
+app.get("/getProfileWidget", async(req,res) => {
+
+  const patientID = req.query.patientIDnumber;
+  console.log('asldjhasd',patientID, 'wtd');
+  
+  await User.find({patientIDnumber: patientID})
       .then((data) => {
         res.json(data);
       })
@@ -406,6 +422,26 @@ app.get("/getUserDentalRecord", async(req,res) => {
       });
     });
 
+    app.get("/getUserDentalRecordforReceipt", async(req,res) => {
+
+      const patientIDnumber = "PT#" + req.query.patientIDnumber;
+      const appNumber = "#" + req.query.appNum;
+      const dateValue = req.query.dateValue;
+      console.log(patientIDnumber + " " + appNumber + " " + dateValue + "get dental receipt");
+      await DentalRecords.find({
+        patientIDNumber: patientIDnumber,
+        appNum:appNumber,
+        dentalDate:dateValue
+      })
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+        
     //get patient epres records
 app.get("/getUserEPresRecord", async(req,res) => {
 
@@ -452,6 +488,20 @@ app.get("/getUserTransaction", async(req,res) => {
     app.get("/getUserforAdmin", async(req,res) => {
     
       await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+    app.get("/getPatientIDforDental", async(req,res) => {
+      
+      const appNumber = "#"+req.query.appNumber;
+      console.log(appNumber)
+
+      await AppDetails.find({appNum: appNumber})
           .then((data) => {
             res.json(data);
           })
@@ -773,65 +823,70 @@ const uploadImg = multer({
 app.post("/createDentalRecord",uploadImg.single('imgValue'), async (req,res)=>{
 
   console.log("dent records")
-  const patientIDNum = 'PT#' + req.body.patientIDNum;
+  const patientIDNum = req.body.patientIDNum;
   const dateValue = req.body.dateValue;
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const descValue= req.body.descValue;
   const procedures =  req.body.procedures;
   const chartedTeeth = req.body.chartedTeeth;
+  const appNumber = '#'+req.body.appNum;
 
   
   await DentalRecords.create({
     patientIDNumber: patientIDNum,
+    appNum:appNumber,
     dentalDate: slicedDate,
     dentalDesc: descValue,
     chartedTeeth: chartedTeeth,
     procedures:procedures,
   });
-  res.json("Document Saved!");
+  console.log('Dental Record Created');
 
 })
 
 app.post("/createReceipt", async (req,res) => {
 
   const PatientIDNumber = req.body.patientIDnumber;
-  const appNumber = req.body.appNum;
-  const acceptedStatus = "Accepted";
-  const payStatus = "Pending";
-  const patientValue = req.body.pName;
-  const dentistValue = req.body.dName;
+  const appNumber = '#'+req.body.appNum;
   const dateValue = req.body.date;
-  const timeValue = req.body.time;
-  const consultationValue = req.body.consultation;
+  const slicedDate = dateValue.slice(0,10)
+  const payStatus = "Pending"
 
   // const appNumDuplicate = await ReceiptDetails.findOne({appNumber});
   
   await ReceiptDetails.create({
     patientIDnumber: PatientIDNumber,
     appNum: appNumber, 
-    appStatus: acceptedStatus,
-    payStatus: payStatus, 
-    pName: patientValue, 
-    dName: dentistValue, 
-    date: dateValue,
-    time: timeValue, 
-    consultation: consultationValue
+    date: slicedDate,
+    payStatus:payStatus
   });
+
+  console.log("Receipt Created with ", PatientIDNumber, appNumber, 'at', dateValue);
 })
 
-app.put("/updateReceipt", async (req,res) =>{
-  const appNum = '#'+req.body.appNum;
-  const date = req.body.date;
-  const serviceValue = req.body.serviceValue;
-  const quantityValue = req.body.quantityValue;
+const ImgStorageERec = multer.diskStorage({
+  destination: "uploads/e-prescription",
+  filename:(req,file,cb) =>{
+    const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
+    cb(null, req.body.patientIDNum+"_"+slicedDate + ".png");
+  },
+});
+
+const uploadImg3 = multer({
+  storage:ImgStorageERec
+});
+
+app.put("/updateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
+  const patientIDnumber = "PT#"+req.body.patientIDnumber;
+  const date = req.body.dateIssued;
   const paymentType = req.body.paymentType;
   const totalAmount = req.body.totalAmount;
+  const addedItemValue = req.body.addedItem;
 
   await ReceiptDetails.findOneAndUpdate(
-    {appNum:appNum}, 
+    {appNum:patientIDnumber}, 
     {dateIssued:date, 
-    serviceValue:serviceValue,
-    quantityValue:quantityValue,
+    addedItem: addedItemValue,
     paymentType:paymentType,
     totalAmount:totalAmount
   }

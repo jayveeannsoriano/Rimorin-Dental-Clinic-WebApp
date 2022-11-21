@@ -29,7 +29,6 @@ const SecTransactionDataTable = (patientIDNum) => {
   
 
     const getAppointment = async() => {
-  
 
         try{
             const response = await axios.get('http://localhost:3001/getUserTransaction',{
@@ -46,11 +45,6 @@ const SecTransactionDataTable = (patientIDNum) => {
     }
 
     const columns = [
-        {
-            name: 'Patient Name',
-            selector: (row) => row.pName,
-            sortable: true,
-        },
         {
             name: 'Date',
             selector: (row) => row.date,
@@ -69,7 +63,7 @@ const SecTransactionDataTable = (patientIDNum) => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons" >
-                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1)}>Create Receipt</Button>
+                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) + "&patientID="+PatientIDNumber+ "&dateValue="+row.date}>Create Receipt</Button>
                 <ViewFile/>
                  </div>
         }
