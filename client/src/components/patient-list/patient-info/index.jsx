@@ -10,7 +10,6 @@ const [patientList, setPatientList] = useState([]);
 const [patientIDNum, setpatientIDNum] = useState();
 console.log(patientIDNum);
 
-
 const getPatientDetails = async() => {
     try{
         const response = await Axios.get('http://localhost:3001/getUserDetails');
@@ -27,7 +26,7 @@ useEffect(() => {
 
 const proceedtoViewInfo = (value) => {
     setpatientIDNum(value.substring(3));
-  }
+}
 
     return (
         <>
@@ -46,7 +45,7 @@ const proceedtoViewInfo = (value) => {
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
-                                        
+
                                         <div class="patient-details">
                                             <h5><b>Patient ID: </b> {item.patientIDnumber}</h5>
                                         </div>
@@ -57,7 +56,7 @@ const proceedtoViewInfo = (value) => {
                             <div class="patient-info">
                                 <ul>
                                     <li>Phone <span>{item.mobile}</span></li>
-                                    <li>Age <span>38 Years, {item.gender}</span></li>
+                                    <li>Age <span>{item.age}, {item.gender}</span></li>
                                 </ul>
                             </div>
                             
@@ -68,8 +67,8 @@ const proceedtoViewInfo = (value) => {
                             </div>
                         </div>
                     </div>
-                </div>
-                ))}
+                </div>              
+                ))} 
             </div> 
         </div> 
         </>
