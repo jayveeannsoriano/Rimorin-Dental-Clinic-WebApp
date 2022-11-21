@@ -225,9 +225,9 @@ const createReceipt = () => {
                       type="text"
                       className="form-control"
                       placeholder="OR #"
-                      onChange={(e) => {
-                        setOrNum(e.target.value);
-                      }}
+                    //   onChange={(e) => {
+                    //     setOrNum(e.target.value);
+                    //   }}
                       required
                     />
                   </div>
@@ -278,9 +278,10 @@ const createReceipt = () => {
                               type="text"
                               class="form-control"
                               placeholder="Tooth Extraction"
+                              value={singleItem.serviceValue}
                               required
                               onChange={(e) => {
-                                setServiceValue(e.target.value);
+                                handleGetValues(e, index);
                               }}
                               
                             />
@@ -295,22 +296,26 @@ const createReceipt = () => {
                               type="number"
                               class="form-control"
                               placeholder="1"
+                              value={singleItem.quantityValue}
                               onChange={(e) => {
-                                setQuantityValue(e.target.value);
+                                handleGetValues(e, index);
                               }}
                               required
                             />
                           </div>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3">
-                            <label>
-                              Amount <span class="text-danger">*</span>
-                            </label>
+                        <label>
+                Amount (₱)<span class="text-danger">*</span>
+              </label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">₱</span>
                                 </div>
-                                <input type="text" class="form-control" required/>
+                                <input type="text" class="form-control" value={singleItem.amountToPay}
+                onChange={(e) => {
+                  handleGetValues(e, index);
+                }} required/>
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>
@@ -336,8 +341,8 @@ const createReceipt = () => {
 
                   {/* Total Bill */}
                   <div className="col-xl-10 col-lg-10 col-md-10 total-bill">
-                        <label className="paylabel">Subtotal: {subTotal} </label><br />
-                        <label className="paylabel">Discount: {discountValue}</label><br />
+                        <label className="paylabel">Subtotal: </label><br />
+                        <label className="paylabel">Discount:</label><br />
                         <label className="paylabel">Total Amount: {amountValue}</label><br />
                   </div>
 
@@ -345,6 +350,9 @@ const createReceipt = () => {
 
                 {/* Payment Details */}
                 <div className="form-section-title">Payment Details</div>
+                <table>
+                    recor
+                </table>
                 <div className="row">
                   <div className="col-xl-5 col-lg-5 col-md-6">
                     <Form.Label>Payment Method:<span class="text-danger">*</span></Form.Label>
