@@ -197,6 +197,7 @@ const CreateDentalRecord = () => {
         </nav>
       </div>
 
+      <form onSubmit={() => uploadDentalRecords()}>
       <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
         <div className="card dental-record-form">
           <div className="card-body pt-3">
@@ -245,7 +246,8 @@ const CreateDentalRecord = () => {
                       id="reason"
                       rows="5"
                       placeholder="Write treatment details"
-                      onChange={(e) => { getTreatDesc(e.target.value) }}
+                      onChange={(e) => { getTreatDesc(e.target.value) }} 
+                      required
                     ></textarea>
                   </div>
                 </div>
@@ -416,6 +418,7 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </div>
+      </form>
     </>
   );
 };

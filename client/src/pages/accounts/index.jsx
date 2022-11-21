@@ -1,17 +1,16 @@
-import React , { useState } from 'react'
-import '../../styles/dashboard.css';
-import '../../styles/accounts.css';
-import AdminTable from '../../components/admin-table';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react";
+import "../../styles/dashboard.css";
+import "../../styles/accounts.css";
+import AdminTable from "../../components/admin-table";
+import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 
 const accountspage = () => {
-
   const [value, setValue] = useState();
   const handleSelect = (e) => {
-        console.log(e);
-        setValue(e.target.value);
-  }
-  
+    console.log(e);
+    setValue(e.target.value);
+  };
 
   return (
     <>
@@ -27,41 +26,35 @@ const accountspage = () => {
       <section className="section dashboard">
         <div className="row">
 
-          {/* <!-- Today's Appointment --> */}
+          {/* <!-- Accounts Datatable --> */}
           <div class="col-12">
             <div class="card overflow-auto">
 
               <div class="card-body datatable">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-6 ad-left">
-                      <Form.Label>Type of user:</Form.Label>
-                      <Form.Select value={value} onChange={handleSelect}>
-                        <option value="" selected disabled>--Select Type--</option>
-                        <option value="patient">Patient</option>
-                        <option value="secretary">Secretary</option>
-                        <option value="dentist">Dentist</option>
-                        <option value="admin">Admin</option>
-                      </Form.Select>
-                    </div>
-                    <br/>
-                    <div className="col-6 ad-right btn-link">
-                      <button type="button" class="btn btn-primary spc"><i class="bi bi-plus-lg"></i> <a href='/admin/accounts/create-account'>Add Account</a></button>
-                      <button type="button" class="btn btn-primary spc"> <i class="bi bi-eye"></i> View Archived Accounts</button>
+                      <div className="nav nav-bar">
+                        <Button className="table-button active" data-bs-toggle="tab" data-bs-target="#active-accounts">ACTIVE ACCOUNTS</Button>
+                        <Button className="table-button" data-bs-toggle="tab" data-bs-target="#archived-accounts">ARCHIVED ACCOUNTS</Button>
+                        <Button className="table-button" href="/admin/accounts/create-account"><i class="fa-solid fa-plus"></i>ADD NEW ACCOUNT</Button>
+                      </div>
                       
+                  <div className="tab-content">
+                    <div className="tab-pane fade show active" id="active-accounts">
+                      <h5 className="card-title">ACTIVE ACCOUNTS</h5>
+                        <AdminTable/>
+                    </div>
+
+                    <div className="tab-pane fade" id="archived-accounts">
+                      <h5 className="card-title">ARCHIVED ACCOUNTS</h5>
+                      {/* insert datatable for archived accounts */}
+                        <AdminTable/>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <AdminTable />
-                </div>
               </div>
-            </div>
           </div>
-
+          </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 export default accountspage;

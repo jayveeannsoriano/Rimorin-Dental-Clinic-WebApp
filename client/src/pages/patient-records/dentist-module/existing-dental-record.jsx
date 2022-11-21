@@ -1,14 +1,11 @@
 import React from "react";
-// import Footer from "../components/dashboard-footer";
 import "../../../styles/dental-record.css"
 import PatientProfileWidget from "../../../components/profile-widget";
 import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
-// import DentalRecord from "client/src/pages/patient-records/dentist-module/index.jsx";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
+import { dentalRecords } from '../../../config/FileGeneration.js'
 import axios from "axios";
-// import { response } from "express";
-
 
 export default function ExistingDentalRecord() {
 
@@ -18,6 +15,7 @@ export default function ExistingDentalRecord() {
     const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
 
     const [appointment, setAppointment] = useState([]);
+    const [patientList, setPatientList] = useState([]);
 
     const getAppointment = async () => {
         try {
@@ -38,9 +36,46 @@ export default function ExistingDentalRecord() {
         }
     }
 
+    const getPatientDetails = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/getPatientInfo', {
+                params: {
+                    patientIDnumber: StringfyIDnumber
+                }
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
+
+
+    async function Export(willDownload) {
+        await Promise.all([getAppointment(), getPatientDetails()]);
+
+        var treatData = [];
+        var proceString = "";
+        for (let num = 0; num < appointment.length; num++) {
+            for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
+                if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
+                    proceString += " " + appointment[num].procedures[proceNum].chosen.join();
+                }
+            }
+            treatData.push([
+                appointment[num].dentalDate, 
+                (appointment[num].hasOwnProperty('chartedTeeth') ? appointment[num].chartedTeeth.join() : ''),
+                appointment[num].dentalDesc, 
+                proceString])
+        }
+        {/*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/ }
+        dentalRecords(patientList[0].fname + " " + patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, (patientList[0].hasOwnProperty('precaution') ? patientList[0].precaution : 'N/A'), treatData, willDownload);
+    };
 
 
     return (
@@ -64,12 +99,12 @@ export default function ExistingDentalRecord() {
                             <div className="card-body pt-3">
                                 <h5 className="card-title">Dental Records</h5>
 
-                                <button className="btn btn-primary" type="submit">
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export(false) }}>
                                     <i class="bi bi-printer-fill"></i>
                                     Print
                                 </button>
 
-                                <button className="btn btn-primary" type="submit">
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export(true) }}>
                                     <i class="bi bi-download"></i>
                                     Export
                                 </button>

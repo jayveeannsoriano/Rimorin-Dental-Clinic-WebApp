@@ -1,14 +1,17 @@
 import  React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Button } from 'react-bootstrap';
-import Axios from 'axios';
+import axios from 'axios';
 
-const Timeslot = ({props,takenAppointments}) => {
-  let intime = "09:00 AM"
-  let outtime = "05:00 PM"
-  const [result, setResult] = useState([])
+const Timeslot = ({props,takenAppointments,chosenDate}) => {
+  // let inTime = "09:00 AM"
+  // let outTime = "05:00 PM"
+  const [result, setResult] = useState([]);
 
-  const [taken, setTaken] = useState([]);
+  const [inTime, setInTime] = useState("")
+  const [outTime, setOutTime] = useState("")
+
+  const [availableTime, setAvailableTime] = useState([]);
   
 
   const [getTime, setGetTime] = useState("");
@@ -19,6 +22,8 @@ const Timeslot = ({props,takenAppointments}) => {
     start.minutes(Math.ceil(start.minutes() / 15) * 15);
 
     var current = moment(start);
+
+    
 
     while (current <= end) {
       if (result.includes(current.format('hh:mm A'))) {
@@ -32,11 +37,28 @@ const Timeslot = ({props,takenAppointments}) => {
 
     return result;
   }
+  const getAvailableTimes = async(date) => {
+    try{
+      console.log(date);
+      const response = await axios.get('http://localhost:3001/getAvailableTimes',{
+        params:{
+            date: date
+        }
+      })
 
-  intervals(intime, outtime);
+      var data = response.data
+      console.log(data[0].config);
+      setAvailableTime(data[0].config)
+
+    }catch (error){
+      console.log(error)
+    }
+}
+
+  intervals(inTime, outTime);
   const el = document.querySelectorAll ('.timeslot button');
   useEffect(() => {
-   
+    getAvailableTimes();
     // el.forEach(function (value, i) {
     //   let button = document.getElementById(value.value);
 
@@ -51,7 +73,28 @@ const Timeslot = ({props,takenAppointments}) => {
 
     // setTaken(takenAppointments);
     console.log(takenAppointments);
+  },[]);
+
+  useEffect(() => {
+    setResult([]);
+
+    availableTime.forEach(schedule => {
+      if(schedule.day==chosenDate.slice(0,3)){
+        if(schedule.enabled){
+          setInTime(schedule.timeStart);
+          setOutTime(schedule.timeEnd);
+        }else{
+          setInTime("");
+          setOutTime("");
+        }
+      }
+    });
+  
+
   });
+  
+
+
 
 
   return (
@@ -76,7 +119,7 @@ const Timeslot = ({props,takenAppointments}) => {
                   
             </div>
           )
-        }) : null
+        }) : <h2>No Available Time Slots </h2>
       }
     </div>
   )

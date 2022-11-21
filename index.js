@@ -48,6 +48,8 @@ require("./models/receiptDetails");
 require("./models/dentalRecords");
 require("./models/notificationDetails");
 require("./models/appointmentHistory");
+require("./models/availableTime");
+
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
 const PresDetails = mongoose.model("PrescriptionDetails");
@@ -56,6 +58,8 @@ const ReceiptDetails = mongoose.model("ReceiptDetails");
 const DentalRecords = mongoose.model("UserDentalRecords");
 const NotifDetails = mongoose.model("NotificationDetails");
 const AppHistory = mongoose.model("AppointmentHistory");
+const AvailableTime = mongoose.model("AvailableTime");
+
 
 //sign in
 app.post("/login-user", async (req, res) => {
@@ -216,7 +220,7 @@ app.post("/insertAppointment", async(req,res) => {
           {
             "to":[
                 {
-                  "email":recep
+                  "email":req.body.recep                
                 }
             ],
             "dynamic_template_data":{
@@ -243,29 +247,35 @@ app.post("/insertAppointment", async(req,res) => {
   }
 });
 
+app.put("/updateClinicHours", async (req, res) => {
+  await AvailableTime.findOneAndUpdate({}, {config: req.body.clinicHours})
+  console.log("Clinic Hours Updated!");
+
+});
+
 //Get user for Appointment Request
 app.get("/getAppointmentDetails", async(req,res) => {
     
   await AppRequest.find({})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
+    });
+  });
+    
+//Get user for Appointment Details  
+app.get("/get", async(req,res) => {
+    
+  await AppDetails.find({})
       .then((data) => {
         res.json(data);
       })
       .catch((error) => {
-       console.log('error: ', error)
+        console.log('error: ', error)
       });
     });
-    
-//Get user for Appointment Details
-app.get("/get", async(req,res) => {
-    
-      await AppDetails.find({})
-          .then((data) => {
-            res.json(data);
-          })
-          .catch((error) => {
-           console.log('error: ', error)
-          });
-        });
 
 //Get user for UserDetails
 app.get("/getUserDetails", async(req,res) => {
@@ -279,6 +289,18 @@ app.get("/getUserDetails", async(req,res) => {
       });
     });
 
+app.get("/getAvailableTimes", async(req,res) => {
+
+  await AvailableTime.find({})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+    console.log('error: ', error)
+  });
+});
+
+        
 app.get("/getUserInfo", async(req,res) => {
 
   const patientIDNumber = req.query.patientIDnumber;
@@ -800,11 +822,6 @@ app.get("/createEvent",(req,res)=>{
   })
 })
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
-});
-  
-
 //create dental records
 //image storage
 const ImgStorageDentRec = multer.diskStorage({
@@ -1079,3 +1096,68 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
     console.log(err);
   }
 });
+
+app.post("/forgot-password", async (req, res) => {
+  const {email} = req.body;
+  try {
+    const oldUser = await User.findOne({email: email});
+    if (!oldUser) {
+      return res.json({ status: "User does not exist." });
+    }else{
+      const secret = JWT_SECRET + oldUser.password;
+      const token = jwt.sign ({email: oldUser.email}, secret,
+        {expiresIn: "5m",
+      });
+      const link = `http://localhost:3000/auth/reset-password?email=${email}`;
+  sgMail.setApiKey('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');
+  const msg = {
+    "personalizations":[
+      {
+        "to":[
+            {
+              "email":email
+            }
+        ],
+        "dynamic_template_data":{
+            "link":link,
+          }
+      }
+  ],
+  "template_id":"d-b41b531ef5c149e994a62ab182d622f3",
+    from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+  }
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      res.json('Email Sent')
+    })
+    .catch((error) => {
+      res.json('Error: Email Not Sent')
+    })
+    }
+} catch(err){
+console.log(err);
+}});
+
+app.post("/reset-password", async (req, res) => {
+  const oldUser = await User.findOne({ email: req.body.email });
+  if (!oldUser) {
+    return res.json({ status: "User does not exist." });
+  }
+ // const secret = JWT_SECRET + oldUser.password;
+  try {
+    const encryptedPassword = await bcrypt.hash(req.body.newPassword, 10);
+    await User.findOneAndUpdate({ email: req.body.email }, {password: encryptedPassword})
+    // const verify = jwt.verify(query.token, secret);
+    // res.render("index", { email: verify.emailValue, status: "Verified" });
+  } catch (error) {
+    console.log(error);
+    res.send("Not Verified");
+  }
+});
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
+});
+  

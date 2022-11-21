@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../../../styles/patient-info.css";
 import "react-bootstrap";
 import Axios from 'axios';
-import ProfileWidget from "../../../components/profile-widget";
+import ProfileWidget from "../../../components/patient-profilewidget";
 import { Button } from "react-bootstrap";
-import PatientInfoEdit from "./patient-info-edit";
 
 const PatientInfo = () => {
 
@@ -39,10 +38,10 @@ const PatientInfo = () => {
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/dashboard">Home</a>
+              <a href="/patient">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dashboard">Patient Records</a>
+              Patient Records
             </li>
             <li class="breadcrumb-item active">Patient Information</li>
           </ol>
@@ -65,15 +64,6 @@ const PatientInfo = () => {
                   Edit
                 </Button>
 
-                <button className="btn btn-primary" type="submit">
-                  <i class="bi bi-printer-fill"></i>
-                  Print
-                </button>
-
-                <button className="btn btn-primary" type="submit">
-                  <i class="bi bi-download"></i>
-                  Export
-                </button>
                 <div className="divider"></div>
 
                 {/* Patient information */}
@@ -101,7 +91,7 @@ const PatientInfo = () => {
 
                 {userInformation.map((item, index) => (
                   <div class="row">
-                    <div class="col-lg-auto col-md-auto label">Middle Initial</div>
+                    <div class="col-lg-auto col-md-auto label">Middle Name</div>
                     <div id="mname" class="col-lg-auto col-md-auto">
                       {item.mname}
                     </div>
@@ -200,11 +190,10 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
-                {/* OTHER SIDE */}
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">District/Barangay</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="brgy" class="col-lg-auto col-md-auto">
                       {item.brgy}
                     </div>
                   </div>
@@ -212,7 +201,7 @@ const PatientInfo = () => {
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Province</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="province" class="col-lg-auto col-md-auto">
                       {item.province}
                     </div>
                   </div>
@@ -220,15 +209,14 @@ const PatientInfo = () => {
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">ZIP Code</div>
-                    <div id="country" class="col-lg-auto col-md-auto">
+                    <div id="zipcode" class="col-lg-auto col-md-auto">
                       {item.zipcode}
                     </div>
                   </div>
                 ))}
-                <div className="divider"></div>
 
-                {/* Medical Conditions */}
-                {userInformation.map((item, index) => (
+                 {/* Medical Conditions */}
+                 {userInformation.map((item, index) => (
                   <div class="row">
                     <h4>Medical Conditions</h4>
                     <div class="col-lg-5 col-md-4 label">
@@ -255,13 +243,19 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
+                {userInformation.map((item, index) => (
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Precautions</div>
+                    <div id="precautions" class="col-lg-3">
+                      {item.precautions}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             {/* end of card body */}
           </div>
-
         </div>
-
       </section>
     </>
   );

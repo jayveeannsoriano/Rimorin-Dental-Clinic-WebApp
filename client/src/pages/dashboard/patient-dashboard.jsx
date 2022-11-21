@@ -5,45 +5,34 @@ import DashboardTable from '../../components/dashboardTable';
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 const PatientDashboard = () => {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
-  console.log(patientIDnumber)
+  const navigate = useNavigate();
 
-  const [userInformation, setUserInfo] = useState([])
+  function redirectUnauth(){
+    if(userInfo['user_role_id']==2){
+      navigate('/secretary', {replace: true})
+      return true;
 
-  const getAppointment = async () => {
+    }else if(userInfo['user_role_id']==3){
+      navigate('/dentist', {replace: true})
+      return true;
 
-    try {
-      const response = await Axios.get('http://localhost:3001/getUserInfo', {
-        params: {
-          patientIDnumber: patientIDnumber,
-        }
-      });
-      setUserInfo(response.data);
-    } catch (error) {
-      console.log(error)
+    }else if(userInfo['user_role_id']==4){
+      navigate('/admin', {replace: true})
+      return true;
+
     }
   }
 
-  useEffect(() => {
-    getAppointment();
-  }, []);
-
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((time) => new Date().toLocaleTimeString());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-
-  return (
-    <>
+  function compostieRender(){
+    if(!redirectUnauth()){
+      return(
+      <>
         <nav>
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
@@ -99,7 +88,42 @@ const PatientDashboard = () => {
           </div>
         </section>
 
-        </>
+        </>  );
+    }
+  }
+  const [userInformation, setUserInfo] = useState([])
+
+  const getAppointment = async () => {
+
+    try {
+      const response = await Axios.get('http://localhost:3001/getUserInfo', {
+        params: {
+          patientIDnumber: patientIDnumber,
+        }
+      });
+      setUserInfo(response.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAppointment();
+  }, []);
+
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((time) => new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+  return (
+    compostieRender()
   );
 }
 export default PatientDashboard;

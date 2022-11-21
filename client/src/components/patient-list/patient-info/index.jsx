@@ -1,9 +1,7 @@
 import React, {useState,useEffect} from "react";
 import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
-
-// temporary user image
-import userimg from '../../../assets/img/profile-img.jpg';
+import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
 
 const PatientInfoPatientProfileWidget = () => {
@@ -11,7 +9,6 @@ const PatientInfoPatientProfileWidget = () => {
 const [patientList, setPatientList] = useState([]);
 const [patientIDNum, setpatientIDNum] = useState();
 console.log(patientIDNum);
-
 
 const getPatientDetails = async() => {
     try{
@@ -29,7 +26,23 @@ useEffect(() => {
 
 const proceedtoViewInfo = (value) => {
     setpatientIDNum(value.substring(3));
-  }
+}
+
+var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+const userRole = userInfo['user_role_id'];
+
+var patientInfoRoute = "";
+switch (userRole) {
+    case 2: 
+    patientInfoRoute = "/secretary/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+    case 3: 
+    patientInfoRoute= "/dentist/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+    case 4: 
+    patientInfoRoute= "/admin/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+}
 
     return (
         <>
@@ -44,13 +57,13 @@ const proceedtoViewInfo = (value) => {
                             <div class="pro-widget-content">
                                 <div class="profile-info-widget">
                                     <a href="#" class="booking-doc-img">
-                                        <img src={userimg} alt="User Image"/>
+                                        <Avatar name={item.fname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><a href="#"></a>{item.fname} {item.lname} {item.suffix}</h3>
-                                        
+
                                         <div class="patient-details">
-                                            <h5><b>Patient ID :</b>{item.patientIDnumber}</h5>
+                                            <h5><b>Patient ID: </b> {item.patientIDnumber}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -59,19 +72,19 @@ const proceedtoViewInfo = (value) => {
                             <div class="patient-info">
                                 <ul>
                                     <li>Phone <span>{item.mobile}</span></li>
-                                    <li>Age <span>38 Years, {item.gender}</span></li>
+                                    <li>Age <span>{item.age}, {item.gender}</span></li>
                                 </ul>
                             </div>
                             
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href={"/dentist/patient-records/patient-info/view-patient-info?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                                <Button className="widget-btn" href={patientInfoRoute + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                     View Patient Information
                                 </Button>
                             </div>
                         </div>
                     </div>
-                </div>
-                ))}
+                </div>              
+                ))} 
             </div> 
         </div> 
         </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export default function TransactionDetails(appNum, date, time, appStats) {
+export default function ViewReceiptFile(appNum, date, time, appStats) {
     const [modalState, setModalState] = useState('close');
     const handleClose = () => setModalState(false);
     const handleModal1 = () => {
@@ -36,12 +36,7 @@ export default function TransactionDetails(appNum, date, time, appStats) {
                 </Modal.Header>
 
                 <Modal.Body className="show-grid">
-                    <div className="appointment-details-modal">
-                        <div class="row">
-                            <div class="col modal-label"></div>
-                            <div class="col modal-values"></div>
-                        </div>
-                    </div>
+                    {/* insert code to preview generated PDF for receipt*/}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>Close</Button>

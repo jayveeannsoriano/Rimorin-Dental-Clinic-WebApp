@@ -2,22 +2,29 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
 
+// Modals
+import ViewAccount from "./modals/view-account";
+import ArchiveAccount from "./modals/archive-account";
 
 const AdminTable = () => {
 
     const [search, setSearch] = useState("");
-    const [appointment, setAppointment] = useState([]);
-    const [filteredappointment, setFilteredAppointment] = useState([]);
+    const [accountType, setAccountType] = useState([]);
+    const [filterAccountType, setFilterAccountType] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
-    const getAppointment = async() => {
+    const getUsers = async() => {
         try{
             const response = await axios.get('http://localhost:3001/getUserforAdmin');
             console.log(response);
-            setAppointment(response.data);
-            setFilteredAppointment(response.data);
+            setUsers(response.data);
+            setFilteredUsers(response.data);
         }catch (error){
             console.log(error)
         }
@@ -25,13 +32,13 @@ const AdminTable = () => {
 
     const columns = [
         {
-            name: 'Account ID',
-            selector: (row) => 'Account ID: ' + row._id,
+            name: "Account Name",
+            selector: (row) => row.fname + " " + row.lname,
             sortable: true,
         },
         {
-            name: "Account Name",
-            selector: (row) => row.fname + " " + row.lname,
+            name: "Account Type",
+            selector: (row) => row.user_role_id,
             sortable: true,
         },
         {
@@ -41,14 +48,62 @@ const AdminTable = () => {
         },
         {
             name: "Action",
-            selector: row => <div>
-                <button>View</button>
-                <button>Archive</button>
-                </div>
+            selector: row => <div className="action-buttons" >
+                <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
+                <Button className="cancel-button"><i class="bi bi-archive"></i> Archive</Button>
+            </div>
         },
     ];
 
-   
+    const subHeaderComponent = () => {
+        return(
+            <>
+            </>
+        )
+    }
+
+    const subHeaderComponentMemo = () => {
+      const searchBar = () => (
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-50 form-control datatable-search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      );
+      return(
+        {searchBar}
+      )
+    };
+
+    //const searchBar = () => (
+    //  return (
+    //    <>
+    //      <input
+    //        type="text"
+    //        placeholder="Search"
+    //        className="w-50 form-control datatable-search"
+    //        value={search}
+    //        onChange={(e) => setSearch(e.target.value)}
+    //      />
+    //    </>
+    //  );
+    //);
+
+    //const filterSelect = () => {
+    //  return (
+    //    <>
+    //      <select
+    //        option={userRole}
+    //        placeholder="Account Type"
+    //        onChange={(values) => {
+    //          setFilterAccountType(new Set(values.map(e)));
+    //        }}
+    //      />
+    //    </>
+    //  );
+    //};
 
     
     // Loading effect
@@ -84,45 +139,45 @@ const AdminTable = () => {
 
    useEffect(() => {
 		const timeout = setTimeout(() => {
-			setRows(appointment);
+			setRows(users);
 			setPending(false);
 		}, 1000);
 		return () => clearTimeout(timeout);
 	}, []);
 
     useEffect(() => {
-        getAppointment();
+        getUsers();
     }, []);
 
     useEffect(() => {
-        const result = appointment.filter((appointment) => {
-            return appointment.fname.toLowerCase().match(search.toLowerCase());
+        const result = users.filter((users) => {
+            return users.fname.toLowerCase().match(search.toLowerCase());
         });
 
-        setFilteredAppointment(result)
+        setFilteredUsers(result)
     },[search])
 
+    //useEffect(() => {
+    //    const filterResult = accountType.filter((accountType) => {
+    //        return accountType.user_role_id
+    //    });
+
+    //    setFilterAccountType(filterResult)
+    //},[filter])
+
     return <DataTable
+    // className="account-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
-    data={filteredappointment}
+    data={filteredUsers}
     progressPending={pending}
     progressComponent={<CustomLoader />}
     fixedHeader
     highlightOnHover
     subHeader
-    subHeaderComponent={
-        <input 
-        type="text" 
-        placeholder="Search" 
-        className="w-50 form-control datatable-search" 
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        />
-    }
+    subHeaderComponent={subHeaderComponentMemo}
     />
-  
 }
 
-export default AdminTable
+export default AdminTable;

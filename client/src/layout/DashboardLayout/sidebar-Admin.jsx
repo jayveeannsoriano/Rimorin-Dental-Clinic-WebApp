@@ -12,6 +12,10 @@ function Sidebar_Admin(){
         console.error("Website error");
         console.error(error);
     }
+    function clearSession() {
+        localStorage.clear();
+    }
+    
     return(
         <div>
             <aside id="sidebar" className="sidebar">
@@ -69,15 +73,6 @@ function Sidebar_Admin(){
                         </a>
                     </li>
 
-                    {/* Backup and Restore Nav */}
-                    <li class="nav-item">
-                        <a class={"nav-link"+((window.location.href.split("/").pop()=='backup-restore') ? ' active': ' collapsed')} 
-                        href="/admin/backup-restore">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        <span>Backup and Restore</span>
-                        </a>
-                    </li>
-
                     <div className="divider"></div>
 
                     {/* My Profile Nav */}
@@ -91,7 +86,7 @@ function Sidebar_Admin(){
 
                     {/* Log Out Nav */}
                     <li className="nav-item">
-                    <a className="nav-link collapsed" href={"/auth/login"}>
+                    <a className="nav-link collapsed" href={"/auth/login"}  onClick={clearSession} >
                         <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Log Out</span>
                         </a>

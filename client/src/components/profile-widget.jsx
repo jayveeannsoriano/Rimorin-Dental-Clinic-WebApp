@@ -1,27 +1,65 @@
-import React from "react";
-import DefaultProfile from '../assets/img/default-profile.jpg'
+import React, {useState,useEffect} from "react";
+import Axios from 'axios';
+import Avatar from 'react-avatar';
 
-export default function ProfileWidget() {
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    
+const PatientProfileWidget = () => {
+    const [patientList, setPatientList] = useState([]);
+    const [patientIDNum, setpatientIDNum] = useState();
+    console.log(patientIDNum);
+
+
+    const getPatientDetails = async() => {
+        try{
+            var url = require('url');
+            var url_parts = url.parse(window.location.href, true);
+            var query = url_parts.query;
+
+            const response = await Axios.get('http://localhost:3001/getPatientInfo', {
+                params: {
+                    patientIDnumber: query.patientIDNum
+                }
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getPatientDetails();
+    }, []);
+
+    const proceedtoViewInfo = (value) => {
+        setpatientIDNum(value.substring(3));
+    }
+
     return (
-        <div class="col-xl-4">
-            <div class="card">
+        <>
+        {/* replace 'patients' with proper get value variable */}
+        {patientList.map((item, index) => (
+            <div class="col-xl-4">
+                <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img id="avatar-profile" src={DefaultProfile} alt="Profile" class="rounded-circle" />
-                    <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2>
-                    <h3>Patient ID: <span id="">PT0001</span></h3>
+                    <Avatar name={item.fname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
+                    <h2 id="">{item['fname'] + " " + item['lname']}</h2>
+                    <h3>Patient ID: <span>{item['patientIDnumber']}</span></h3>
                     <div className="divider"></div>
                     <div class="row patient-info">
                         <div className="col">
-                            <h3>Phone</h3>
-                                <p id="contact_num"> (+63) 956 793 5590 </p>
+                        <h3>Phone</h3>
+                            <p id="contact_num"> (+63) {item['mobile']} </p>
                             <h3>Age</h3>
-                                <p id="age"> 24 </p>
+                            <p id="age"> {item['age']} </p>
                         </div>
                     </div>
                 </div>
+
+                </div>
             </div>
-        </div>
-    );
+            ))}
+    </>
+    )
 }
+
+export default PatientProfileWidget;

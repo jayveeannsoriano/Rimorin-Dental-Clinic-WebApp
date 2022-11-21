@@ -212,8 +212,8 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 type="password"
                 className="form-control"
                 placeholder="Re-enter password"
-                onChange={handleChange('password')}
-                defaultValue={values.password}
+                onChange={handleChange('confirmPassword')}
+                defaultValue={values.confirmPassword}
                 required
               />
             </div>

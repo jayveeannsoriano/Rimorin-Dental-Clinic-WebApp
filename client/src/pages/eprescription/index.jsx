@@ -1,7 +1,7 @@
 import React from "react";
 // import Footer from "../components/dashboard-footer";
 import "../../styles/dental-record.css"
-import ProfileWidget from "../../components/profile-widget";
+import ProfileWidget from "../../components/patient-profilewidget";
 import EPrescriptionDataTable from "../../components/patient-dataTables/eprescription-datatable";
 
 const Eprescription = () => {
@@ -11,9 +11,8 @@ const Eprescription = () => {
                     <h1>E-Prescription</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/dashboard">E-Prescription</a></li>
-                            <li class="breadcrumb-item active">View Prescriptions</li>
+                            <li class="breadcrumb-item"><a href="/patient">Home</a></li>
+                            <li class="breadcrumb-item active">E-Prescription</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,7 +21,6 @@ const Eprescription = () => {
                 <section class="section profile">
                 <div class="row">
                         <ProfileWidget/>
-                        {/* end of profile widget */}
 
                         <div class="col-xl">
                             <div className="card patient-info">

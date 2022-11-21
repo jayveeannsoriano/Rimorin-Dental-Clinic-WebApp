@@ -7,6 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import axios from 'axios';
+//useNavigate (retains previous data)
+import {useNavigate} from 'react-router-dom';
 
 const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChange, values }) => {
 
@@ -36,10 +38,13 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
     const [Stringdate, setStringDate] = useState("");
 
+    const [chosenDate, setChosenDate] = useState("");
+
     const [takenAppointments, setTakenAppointments] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-
+    //useNavigate
+    const navigate = useNavigate();
 
     //time input
     const [time, setGetTime] = useState("");
@@ -59,6 +64,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
     const getAppointmenstbyDate = async(date) => {
         try{
             console.log(date);
+            setChosenDate(date);
             const response = await axios.get('http://localhost:3001/getAppointmentsbyDate',{
                 params:{
                     date: date
@@ -104,8 +110,8 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                     <li className="breadcrumb-item">
                         <a href="/">Home</a>
                     </li>
-                    <li className="breadcrumb-item">
-                        <a href="/appointments">Appointments</a>
+                    <li className="breadcrumb-item" onClick={() => navigate(-1)} >
+                        Appointments
                     </li>
                     <li className="breadcrumb-item active">Request Appointment</li>
                 </ol>
@@ -172,6 +178,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                     shouldCloseOnSelect={false}
                                     //exclude sundays
                                     filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
+                                    required
                                 />
 
                                 <div className="valid-feedback">
@@ -182,7 +189,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                             <div className="col-md-6">
                                 <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                                 <p> Available Times </p>
-                                <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments} />
+                                <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
                                 
                                 {/* {takenAppointments.length && <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments}/>} */}
 
@@ -206,7 +213,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                 <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
                                 {/* <input className="form-check-input" type="checkbox" value="" id="agree" onChange={tosHandler} required /> */}
                                 <label className="form-check-label" htmlFor="invalidCheck">
-                                    Agree to the <a href="/terms-of-use">Terms of Use.</a>
+                                    Agree to the <a href="/terms-of-use">Terms of Use. <span className="text-danger font-weight-bold">*</span></a>
                                 </label>
                                 <div className="invalid-feedback">
                                     You must agree before proceeding.
@@ -216,8 +223,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
                         <div className="col-12">
                             <div className="appt-bttns">
-                                <a href='/appointments'><button className="btn btn-outline-secondary" type="submit">Cancel</button></a>
-                                {/* <button disabled={!agree} onClick={Continue} className="btn btn-primary" type="submit">Next</button> */}
+                                <button className="btn btn-outline-secondary" type="submit" onClick={() => navigate(-1)} >Cancel</button>
                                 <button  className="btn btn-primary" type="submit">Next</button>
                             </div>
                         </div>

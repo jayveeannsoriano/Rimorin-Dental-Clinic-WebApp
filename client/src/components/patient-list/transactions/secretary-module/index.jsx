@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import "../../../../styles/patient-profile-widget.css";
-//
-import userimg from '../../../../assets/img/profile-img.jpg';
+import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
 
 const SecTransactionPatientProfileWidget = () => {
@@ -43,7 +42,7 @@ const proceedtoPayment = (value) => {
                             <div class="pro-widget-content">
                                 <div class="profile-info-widget">
                                     <a href="#" class="booking-doc-img">
-                                        <img src={userimg} alt="User Image"/>
+                                        <Avatar name={item.fname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><a href="#"></a>{item.fname} {item.lname}</h3>

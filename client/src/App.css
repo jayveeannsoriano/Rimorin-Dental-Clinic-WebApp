@@ -94,6 +94,12 @@ h6 {
   margin: 0px;
 }
 
+.divider2{
+  border-top: 1px solid #b7b7b7;
+  margin: 0px;
+  margin-top: 1%;
+}
+
 /*--------------------------------------------------------------
 # Dahsboard Main
 --------------------------------------------------------------*/
@@ -268,7 +274,9 @@ h6 {
   background-color: #d3d3d4;
   border-color: #d3d3d4;
 } */
-
+.sub-title{
+  padding-top: 2%;
+}
 /* Card */
 .card {
   margin-bottom: 20px;
@@ -329,6 +337,9 @@ h6 {
 .table-button{
   background-color: #F6F8FB;
   color: var(--primary-color);
+}
+.table-button i{
+  padding-right: 4px
 }
 
 .table-button:active{
@@ -663,7 +674,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Widget
+# My Profile UserProfile
 --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
@@ -729,7 +740,7 @@ h6 {
   color: rgba(1, 41, 112, 0.6);
 }
 
-.profile .profile-edit label {
+.profile .profile-edit .label {
   font-weight: 600;
   color: rgba(1, 41, 112, 0.6);
 }
@@ -745,7 +756,7 @@ h6 {
   color: var(--primary-color);
   display: inline-block;
   /* padding: 15px 0px 10px 0; */
-  margin-left: 14px;
+  /* margin-left: 14px; */
 }
 
 .patient-info .row{
@@ -760,8 +771,8 @@ h6 {
 }
 
 .patient-info .label{
-  font-weight: 700;
-  color: #A0A4A8;
+  font-weight: 600;
+  color: rgba(1,41,112,.6);
 }
 
 .patient-info .column{
@@ -879,6 +890,10 @@ h6 {
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 20px;
+}
+
+.forgot-descp {
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
@@ -1061,13 +1076,26 @@ padding-right: 4px;
 }
 /* cols in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
 .transaction-datatable .rdt_TableCol,
-.patient-transaction-table .rdt_TableCol { 
+.patient-transaction-table .rdt_TableCol,
+.existing-dental-table .rdt_TableCol { 
   max-width: 167px !important;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   color: var(--text-color);
 }
+
+
+/* cols for admin-datatable */
+.account-datatable .rdt_TableCol,
+.account-data-table .rdt_TableCol { 
+  max-width: 167px !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color);
+}
+
 /* div of action buttons in dashboardTable.jsx */
 .action-buttons{
   width: 800px;
@@ -1075,8 +1103,11 @@ padding-right: 4px;
 
 /* div of action buttons in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
 .transaction-datatable .action-buttons{
-  width: 213px !important;
+  /* width: 213px !important; */
+  width: 340px !important;
 }
+
+
 
 .appointment-request-table #cell-4-undefined{
   max-width: 780px !important;
@@ -1092,13 +1123,29 @@ padding-right: 4px;
   max-width: 780px !important;
 }
 
+/* existing dental table for dental records */
+
+.existing-dental-table #cell-1-undefined,
+.existing-dental-table #cell-2-undefined,
+.existing-dental-table #cell-3-undefined,
+.existing-dental-table #cell-4-undefined{
+  max-width: 140px !important;
+}
+
+.existing-dental-table #cell-5-undefined{
+  max-width: 13px !important;
+}
+
+.transaction-datatable .dental-action-buttons {
+  max-width: 100px !important;
+}
 
 /* secretary module */
 .transaction-datatable #cell-1-undefined,
 .transaction-datatable #cell-2-undefined,
 .transaction-datatable #cell-3-undefined,
 .transaction-datatable #cell-4-undefined{
-  max-width: 167px !important;
+  max-width: 140px !important;
 }
 .transaction-datatable #cell-5-undefined{
   max-width: 13px !important;
@@ -1114,7 +1161,8 @@ padding-right: 4px;
   max-width: 40px !important;
 }
 .patient-transaction-table .action-buttons{
-  width: 285px !important;
+  /* width: 285px !important; */
+  width: 250px !important;
 }
 
 .rdt_TableCol:hover,
@@ -1165,8 +1213,47 @@ padding-right: 4px;
 /*--------------------------------------------------------------
 # Landing Page Footer
 --------------------------------------------------------------*/
+.landing-footer{
+  background: var(--primary-color);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+  padding: 25px 0;
+  color: #fff;
+  font-size: 14px;
+  /* position: fixed; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-#footer {
+.landing-footer .credits {
+  padding-top: 5px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.landing-footer .copyright {
+  font-family: var(--body-font);
+}
+
+.landing-footer  .landing-footer-links a {
+  color: #fff;
+  padding-left: 15px;
+}
+
+.landing-footer .landing-footer-links a:first-child {
+  padding-left: 0;
+}
+
+.landing-footer .landing-footer-links a:hover {
+  color: var(--tertiary-color);
+}
+
+/*--------------------------------------------------------------
+# Footer (login, sign up, errors)
+--------------------------------------------------------------*/
+
+
+.footer {
   background: var(--primary-color);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 25px 0;
@@ -1178,26 +1265,26 @@ padding-right: 4px;
   bottom: 0;
 }
 
-#footer .credits {
+.footer .credits {
   padding-top: 5px;
   font-size: 13px;
   color: #fff;
 }
 
-#footer .copyright {
+.footer .copyright {
   font-family: var(--body-font);
 }
 
-#footer .footer-links a {
+.footer .footer-links a {
   color: #fff;
   padding-left: 15px;
 }
 
-#footer .footer-links a:first-child {
+.footer .footer-links a:first-child {
   padding-left: 0;
 }
 
-#footer .footer-links a:hover {
+.footer .footer-links a:hover {
   color: var(--tertiary-color);
 }
 
@@ -1331,4 +1418,42 @@ padding-right: 4px;
 .react-datepicker__navigation-icon:before, 
 .react-datepicker__year-read-view--down-arrow{
 	border-color: #000 !important;
+}
+
+/*--------------------------------------------------------------
+# Error 404
+--------------------------------------------------------------*/
+.error-404 {
+  padding: 30px;
+}
+
+.error-404 h1 {
+  font-size: 180px;
+  font-weight: 700;
+  color: #4154f1;
+  margin-bottom: 0;
+  line-height: 150px;
+}
+
+.error-404 h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #012970;
+  margin-bottom: 30px;
+}
+
+.error-404 .btn {
+  background: #51678f;
+  color: #fff;
+  padding: 8px 30px;
+}
+
+.error-404 .btn:hover {
+  background: #3e4f6f;
+}
+
+@media (min-width: 992px) {
+  .error-404 img {
+    max-width: 35%;
+  }
 }

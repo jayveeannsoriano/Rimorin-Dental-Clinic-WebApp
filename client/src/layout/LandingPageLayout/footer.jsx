@@ -4,7 +4,7 @@ function Footer() {
     return(
         <div>
             {/* Footer */}
-            <footer id="footer">
+            <div class="footer">
                 <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-6 text-lg-left text-center">
@@ -20,7 +20,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-            </footer>
+            </div>
         </div>
     )
 }

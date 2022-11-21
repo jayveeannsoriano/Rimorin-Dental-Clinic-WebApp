@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../styles/create-receipt.css";
-import PatientProfileWidget from "../../components/profile-widget";
+import PatientProfileWidget from "../../components/patient-profilewidget";
 import TransactionDataTable from "../../components/patient-dataTables/transaction-datatable";
 
 const Payments = () => {
@@ -10,7 +10,7 @@ const Payments = () => {
                     <h1>Payment Records</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/patient">Home</a></li>
                             <li class="breadcrumb-item active">Payment Records</li>
                         </ol>
                     </nav>

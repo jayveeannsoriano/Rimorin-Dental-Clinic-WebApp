@@ -20,6 +20,7 @@ const Sec_Payments = () => {
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/secretary">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/secretary/payment-records">Patients</a></li>
                             <li class="breadcrumb-item active">Payment Records</li>
                         </ol>
                     </nav>
@@ -41,8 +42,6 @@ const Sec_Payments = () => {
                                     <SecTransactionDataTable patientIDNum = {StringfyIDnumber}/>
                                     {/* Insert Transaction Datatable for selected patient*/}
                                     {/* Button for Create Receipt Page will be shown in transaction datatable if & only if appt is marked as "Finished" */}
-                     
-
                                 </div>
                             </div>
                         </div>

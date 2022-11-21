@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export default function PrescriptionDetails(appNum, date, time, appStats) {
+export default function ViewPrescriptionFile(appNum, date, time, appStats) {
     const [modalState, setModalState] = useState('close');
     const handleClose = () => setModalState(false);
     const handleModal1 = () => {
@@ -37,13 +37,7 @@ export default function PrescriptionDetails(appNum, date, time, appStats) {
                 </Modal.Header>
 
                 <Modal.Body className="show-grid">
-                    <div className="appointment-details-modal">
-                        <div class="row">
-                            <div class="col modal-label"></div>
-                            <div class="col modal-values"></div>
-                        </div>
-                        
-                    </div>
+                    {/* insert code to preview generated PDF for prescription*/}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>Close</Button>

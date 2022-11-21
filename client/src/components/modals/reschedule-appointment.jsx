@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Timeslot2 from "../timeslot2";
-import '../../styles/booking.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
+
+//project imports
+import '../../styles/modals.css';
+import Timeslot2 from "../timeslot2";
+import '../../styles/booking.css'
 
 function RescheduleAppointment(appNum) {
   const [modalState, setModalState] = useState('close');

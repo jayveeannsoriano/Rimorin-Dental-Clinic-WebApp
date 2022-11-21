@@ -4,6 +4,8 @@ import '../../styles/accounts.css';
 import '../../styles/login-signup.css';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
+import AccountCreated from '../../components/modals/account-successful';
+import DropFileInput from "../../components/signature";
 
 const CreateAccount = () => {
 
@@ -13,6 +15,12 @@ const CreateAccount = () => {
         setValue(e.target.value);
     }
     const navigate = useNavigate();
+
+    const [getFile, setGetFile] = useState("");
+    console.log(getFile, "this is the img value");
+    const onFileChange = (files) => {
+        setGetFile(files);
+    }
 
     return (
         <>
@@ -40,7 +48,13 @@ const CreateAccount = () => {
                                     <div className="row">
                                         {/* profile image */}
                                         <div className="col">
-                                            <div className="signature-wrap">
+                                            <form>
+                                            <span>Profile Picture</span>
+                                                <DropFileInput
+                                                    onFileChange={(files) => onFileChange(files)}
+                                                />
+                                            </form>
+                                            {/* <div className="signature-wrap">
                                                 <span>Profile Picture</span>
 
                                                 <input
@@ -50,7 +64,7 @@ const CreateAccount = () => {
                                                 />
                                                 <span className="text-muted">Upload profile picture</span>
 
-                                            </div>
+                                            </div> */}
                                         </div>
                                         {/* sign up form */}
                                         <div className="col-md-8">
@@ -207,6 +221,7 @@ const CreateAccount = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary ad-btn-space"
+                                                        onClick={<AccountCreated />}
                                                     >
                                                         Next
                                                     </button>

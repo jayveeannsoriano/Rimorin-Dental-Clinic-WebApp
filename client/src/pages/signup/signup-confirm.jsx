@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 // import { List, ListItem, ListItemText } from '@material-ui/core';
 // import "../../styles/login-signup.css";
 import Axios from 'axios';
+import Footer from '../../layout/LandingPageLayout/footer';
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     console.log(values);
-    const { fname, lname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions } = values;
+    const { fname, lname, mname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions, tellphone, profession, zipcode, blood } = values;
 
 
     const Previous = e => {
@@ -16,23 +17,28 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     const Continue = e => {
 
         Axios.post("http://localhost:3001/RegisterUser", {
-            fname:fname,
-            suffix:suffix,
-            lname:lname,
-            email:email,
-            password:password,
-            gender:gender,
-            mobile:mobile,
-            bday:bday,
-            house:house,
-            brgy:brgy,
-            municipality:municipality,
-            province:province,
-            country:country,
-            medications:medications,
-            allergies:allergies,
-            conditions:conditions,
-            user_role_id:1
+            fname: fname,
+            mname: mname,
+            suffix: suffix,
+            lname: lname,
+            email: email,
+            password: password,
+            gender: gender,
+            mobile: mobile,
+            tellphone: tellphone,
+            profession: profession,
+            bday: bday,
+            house: house,
+            brgy: brgy,
+            municipality: municipality,
+            province: province,
+            zipcode: zipcode,
+            country: country,
+            medications: medications,
+            allergies: allergies,
+            blood: blood,
+            conditions: conditions,
+            user_role_id: 1
         })
         e.preventDefault();
         nextStep();
@@ -85,6 +91,15 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
                 <div class="row">
                     <div class="col">
+                        <label className='label'>Telephone Number</label>
+                    </div>
+                    <div class="col">
+                        <p>{tellphone}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
                         <label className='label'>Birthday</label>
                     </div>
                     <div class="col">
@@ -94,10 +109,19 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
                 <div class="row">
                     <div class="col">
+                        <label className='label'>Profession</label>
+                    </div>
+                    <div class="col">
+                        <p>{profession}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
                         <label className='label'>Full Address</label>
                     </div>
                     <div class="col">
-                        <p>{house} {brgy} {municipality} {province} {country}</p>
+                        <p>{house} {brgy} {municipality} {province} {zipcode} {country}</p>
                     </div>
                 </div>
 
@@ -107,6 +131,15 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                     </div>
                     <div class="col">
                         <p>{medications}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label className='label'>Blood Type</label>
+                    </div>
+                    <div class="col">
+                        <p>{blood}</p>
                     </div>
                 </div>
 
@@ -124,14 +157,14 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         <label className='label'>Conditions</label>
                     </div>
                     <div class="col">
-                       {conditions.map((conditions,index) => {
-                        return(
-                            <div key={index} class="col">
-                                <p>{conditions}</p>
-                            </div>
-                        );
-                       })}
-                    
+                        {conditions.map((conditions, index) => {
+                            return (
+                                <div key={index} class="col">
+                                    <p>{conditions}</p>
+                                </div>
+                            );
+                        })}
+
                     </div>
                 </div>
 
@@ -159,6 +192,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </form>
         </>
     );

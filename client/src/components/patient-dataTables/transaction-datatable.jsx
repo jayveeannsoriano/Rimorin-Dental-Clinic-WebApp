@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo} from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import PaymentStatusText from "./payment-status-text";
+import { useLocation} from "react-router-dom";
 
 // Action Buttons
 import ExportFile from "../modals/export";
@@ -12,8 +13,14 @@ import ViewFile from "../modals/view-file";
 
 const TransactionDataTable = () => {
 
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    const patientIDnumber = userInfo['patientIDnumber'];
+    const location = useLocation()
+    const paramsID = new URLSearchParams(location.search)
+    const getPatientIDNumber = paramsID.get('patientIDNum');
+    const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
+    console.log(StringfyIDnumber, 'dent create receipt');
+
+    const patientIDnumber = StringfyIDnumber
+
     console.log(patientIDnumber, 'PATIENT REASDASD')
 
     const [search, setSearch] = useState("");
@@ -21,10 +28,11 @@ const TransactionDataTable = () => {
     // const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    const [patientList, setPatientList] = useState([]);
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getTransaction',{
+            const response = await axios.get('http://localhost:3001/getUserTransaction',{
                 params: {
                     patientIDnumber: patientIDnumber,
                 }
@@ -32,6 +40,19 @@ const TransactionDataTable = () => {
             console.log(response, "Responses");
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
+        }catch (error){
+            console.log(error)
+        }
+    }
+
+    const getPatientDetails = async() => {
+        try{
+            const response = await axios.get('http://localhost:3001/getPatientInfo',{
+              params:{
+              patientIDnumber: StringfyIDnumber}
+            });
+            console.log(response, "Responses");
+            setPatientList(response.data);
         }catch (error){
             console.log(error)
         }
@@ -57,9 +78,9 @@ const TransactionDataTable = () => {
             name: "Action",
             selector: (row) => 
             <div className="action-buttons">
-                    <PrintFile/>
+                    <PrintFile data={[false,"receipt",row,patientList]}/>
                     <ViewFile/>
-                    <ExportFile/>
+                    <ExportFile data={[true,"receipt",row,patientList]}/>
             </div>
         }
     ];
@@ -105,6 +126,7 @@ const TransactionDataTable = () => {
 
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
 
     // useEffect(() => {

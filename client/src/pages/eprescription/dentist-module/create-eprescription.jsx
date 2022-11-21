@@ -8,7 +8,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 import PrescriptionDetails from "../../../components/modals/preview-prescription";
-import DropFileInput from "../../../components/dragNdrop";
+import DropFileInput from "../../../components/signature";
+
 
 const createEprescription = () => {
 
@@ -28,35 +29,35 @@ const createEprescription = () => {
     const [frequencyValue, setFrequencyValue] = useState("");
     const [durationValue, setDurationValue] = useState("");
     const [notesValue, setNotesValue] = useState("");
-    
+
     const [getFile, setGetFile] = useState("");
     console.log(getFile, "this is the img value");
     const onFileChange = (files) => {
-      setGetFile(files);
+        setGetFile(files);
     }
-    
+
 
     // Add item function
-    const [prescriptionItem, setPrescriptionList] = useState([{ 
-        generic: "", 
-        brand:"",
-        dosage:"",
-        form:"",
-        frequency:"",
-        duration:"",
+    const [prescriptionItem, setPrescriptionList] = useState([{
+        generic: "",
+        brand: "",
+        dosage: "",
+        form: "",
+        frequency: "",
+        duration: "",
     }]);
 
 
     const handleItemAdd = () => {
-        setPrescriptionList([...prescriptionItem, { 
-        generic: "", 
-        brand:"",
-        dosage:"",
-        form:"",
-        frequency:"",
-        duration:"",
-    
-    }]);
+        setPrescriptionList([...prescriptionItem, {
+            generic: "",
+            brand: "",
+            dosage: "",
+            form: "",
+            frequency: "",
+            duration: "",
+
+        }]);
     };
     //Remove item function
     const handleItemRemove = (index) => {
@@ -65,8 +66,8 @@ const createEprescription = () => {
         setPrescriptionList(list);
     };
     //get values from list function
-    const getFormValues = (e,index) => {
-        const {name,value} = e.target;
+    const getFormValues = (e, index) => {
+        const { name, value } = e.target;
         const list = [...prescriptionItem];
         list[index][name] = value;
         setPrescriptionList(list);
@@ -76,7 +77,7 @@ const createEprescription = () => {
 
         console.log(prescriptionItem);
         console.log(notesValue);
- 
+
 
         Axios.post("http://localhost:3001/createEprescription", {
             patientIDNum: StringfyIDnumber,
@@ -84,7 +85,7 @@ const createEprescription = () => {
             presDetails: prescriptionItem,
             notesValue: notesValue,
             imgFile: getFile[0],
-        },{
+        }, {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
     }
@@ -153,150 +154,180 @@ const createEprescription = () => {
                                     <div className="divider"></div>
 
                                     {/* Professional information */}
-                                    <div className="biller-info"> <br />
-                                        <h5 className="rx-pr"> Prescription Information </h5>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <label>Date of Prescription</label>
-                                            <DatePicker
-                                                selected={startDate}
-                                                onChange={(date) => {
-                                                    setStartDate(date);
-                                                    console.log("This is the calendar data:", date);
-                                                    window.localStorage.setItem("date", date);
-                                                }}
-                                                isClearable
-                                                placeholderText="Choose a date"
-                                                minDate={new Date()}
-                                                shouldCloseOnSelect={false}
-                                                dateFormat="MMMM d, yyyy"
-                                                //exclude sundays
-                                                filterDate={(date) =>
-                                                    date.getDay() !== 7 && date.getDay() !== 0
-                                                }
-                                            />
-                                        </div>
+
+                                    <div className="biller-info">
+                                        <h5 className="rx-pr"> Professional Information </h5>
+                                        <p> PTR Number: 12345678</p>
+                                        <p> Licence Number: 12345678</p>
                                     </div>
 
-                                    {/* Add Item */}
-                                    <div className="add-more-item text-left">
-                                        <button
-                                            className="btn btn-primary rx-btn"
-                                            onClick={handleItemAdd}>
-                                            <i className="fas fa-plus" /> Add Item
-                                        </button>
-                                    </div>
-
-                                    <div className="card-form">
-                                        <div className="card-body-form">
-                                            <div className="row gen-row">
-                                                {/* row for prescription fields */}
-                                                {prescriptionItem.map((singleItem, index) => (
-                                                    <div key={index} className="col-10 in-fields">
-                                                        <div className="row ">
-                                                            <div className="col">
-                                                                <label>Generic <span class="text-danger">*</span></label>
-                                                                <input name="generic" id="item" type="text" class="form-control" placeholder="Mefenamic Acid"
-                                                                value={singleItem.generic} 
-                                                                onChange={(e) => getFormValues(e, index)} 
-                                                                />
-                                                            </div>
-                                                            <div className="col">
-                                                                <label>Brand <span class="text-danger">*</span></label>
-                                                                <input name="brand" id="item" type="text" class="form-control" placeholder="Ponstan" 
-                                                                value={singleItem.brand} 
-                                                                onChange={(e) => getFormValues(e, index)}  />
-
-                                                            </div>
-                                                            <div className="col">
-                                                                <label>Dosage <span class="text-danger">*</span></label>
-                                                                <input name="dosage" id="item" type="text" class="form-control" placeholder="500mg" 
-                                                               value={singleItem.dosage} 
-                                                               onChange={(e) => getFormValues(e, index)}  />
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label>Form <span class="text-danger">*</span></label>
-                                                                <input name="form" id="item" type="text" class="form-control" placeholder="Capsule" 
-                                                                   value={singleItem.form} 
-                                                                   onChange={(e) => getFormValues(e, index)} />
-                                                            </div>
-                                                            <div className="col">
-                                                                <label>Frequency <span class="text-danger">*</span></label>
-                                                                <input name="frequency" id="item" type="text" class="form-control" placeholder="3 caps a day" 
-                                                                   value={singleItem.frequency} 
-                                                                   onChange={(e) => getFormValues(e, index)} />
-                                                            </div>
-                                                            <div className="col">
-                                                                <label>Duration <span class="text-danger">*</span></label>
-                                                                <input name="duration" id="item" type="text" class="form-control" placeholder="3 days - 1 week" 
-                                                                   value={singleItem.duration} 
-                                                                   onChange={(e) => getFormValues(e, index)} />
-                                                            </div>
-                                                        </div>
-                                                        {/* remove button*/}
-                                                        <div className="col del">
-                                                            {prescriptionItem.length !== 1 && (
-                                                                <button
-                                                                    type="button"
-                                                                    onClick={() => handleItemRemove(index)}
-                                                                    className="remove-btn btn bg-danger-light trash"
-                                                                >
-                                                                    <i className="far fa-trash-alt" />
-                                                                </button>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                ))}
+                                    <form onSubmit={() => createEPrescription()} >
+                                        <div className="biller-info"> <br />
+                                            <h5 className="rx-pr"> Prescription Information </h5>
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <label>Date of Prescription</label>
+                                                <DatePicker
+                                                    selected={startDate}
+                                                    onChange={(date) => {
+                                                        setStartDate(date);
+                                                        console.log("This is the calendar data:", date);
+                                                        window.localStorage.setItem("date", date);
+                                                    }}
+                                                    isClearable
+                                                    placeholderText="Choose a date"
+                                                    minDate={new Date()}
+                                                    shouldCloseOnSelect={false}
+                                                    dateFormat="MMMM d, yyyy"
+                                                    //exclude sundays
+                                                    filterDate={(date) =>
+                                                        date.getDay() !== 7 && date.getDay() !== 0
+                                                    }
+                                                />
                                             </div>
-                                        </div> {/* general row  */}
-
-                                        <div className="row form-row">
-                                            <label>Notes</label>
-                                            <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }}></textarea>
                                         </div>
-                                        <br />
 
-                                        {/* Signature */}
-                                        <div className="col-12 col-md-6 col-lg-4">
-                                            <div className="signature-wrap">
-                                                <span>Upload a file or drag and drop</span>
-                                                <form>
-                                                <DropFileInput
-                                                onFileChange={(files) => onFileChange(files)}
-                                                     />
-                                                </form>
+                                        {/* Add Item */}
+                                        <div className="add-more-item text-left">
+                                            <button
+                                                className="btn btn-primary rx-btn"
+                                                onClick={handleItemAdd}>
+                                                <i className="fas fa-plus" /> Add Item
+                                            </button>
+                                        </div>
 
+                                        <div className="card-form">
+                                            <div className="card-body-form">
+                                                <div className="col-12 col-md-10 col-lg-12">
+                                                    {/* row for prescription fields */}
+                                                    {prescriptionItem.map((singleItem, index) => (
+                                                        <div key={index}>
+                                                            <div className="row form row">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-md-6 col-lg-4">
+                                                                        <div className="form-group">
+                                                                            <label>Generic <span class="text-danger">*</span></label>
+                                                                            <input name="generic" id="item" type="text" class="form-control" placeholder="Mefenamic"
+                                                                                value={singleItem.generic}
+                                                                                onChange={(e) => getFormValues(e, index)} required
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-md-6 col-lg-3">
+                                                                        <div className="form-group">
+                                                                            <label>Brand <span class="text-danger">*</span></label>
+                                                                            <input name="brand" id="item" type="text" class="form-control" placeholder="Ponstan"
+                                                                                value={singleItem.brand}
+                                                                                onChange={(e) => getFormValues(e, index)} required />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-md-6 col-lg-3">
+                                                                        <div className="form-group">
+                                                                            <label>Dosage <span class="text-danger">*</span></label>
+                                                                            <input name="dosage" id="item" type="text" class="form-control" placeholder="500mg"
+                                                                                value={singleItem.dosage}
+                                                                                onChange={(e) => getFormValues(e, index)} required />
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div className="row">
+                                                                    <div className="col-12 col-md-6 col-lg-4">
+                                                                        <div className="form-group">
+                                                                            <label>Form <span class="text-danger">*</span></label>
+                                                                            <input name="form" id="item" type="text" class="form-control" placeholder="Capsule"
+                                                                                value={singleItem.form}
+                                                                                onChange={(e) => getFormValues(e, index)} required />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-md-6 col-lg-3">
+                                                                        <div className="form-group">
+                                                                            <label>Frequency <span class="text-danger">*</span></label>
+                                                                            <input name="frequency" id="item" type="text" class="form-control" placeholder="3 caps a day"
+                                                                                value={singleItem.frequency}
+                                                                                onChange={(e) => getFormValues(e, index)} required />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-md-6 col-lg-3">
+                                                                        <div className="form-group">
+                                                                            <label>Duration <span class="text-danger">*</span></label>
+                                                                            <input name="duration" id="item" type="text" class="form-control" placeholder="3 days - 1 week"
+                                                                                value={singleItem.duration}
+                                                                                onChange={(e) => getFormValues(e, index)} required />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="col-12 col-md-6 col-lg-2">
+                                                                        {prescriptionItem.length !== 1 && (
+                                                                            <button
+                                                                                type="button"
+                                                                                onClick={() => handleItemRemove(index)}
+                                                                                className="remove-btn btn bg-danger-light trash"
+                                                                            >
+                                                                                <i className="far fa-trash-alt" />
+                                                                            </button>
+                                                                        )}
+                                                                    </div>
+                                                                    <br />
+                                                                </div>
+
+                                                                <div className="divider2"></div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    ))}
+                                                    <br />
+                                                </div>
+
+                                            </div> {/* general row  */}
+
+                                            <div className="form-row">
+                                                <label>Notes</label>
+                                                <textarea class="form-control" rows="5" onChange={(e) => { setNotesValue(e.target.value) }} required></textarea>
+                                            </div>
+                                            <br />
+
+                                            {/* Signature */}
+                                            <div className="col-6">
+
+                                                
+                                                    <DropFileInput
+                                                        onFileChange={(files) => onFileChange(files)}
+                                                    />
+                                                
                                                 <div className="sign-name">
                                                     <p className="mb-0">( Dr. Pamela Rimorin Concepcion )</p>
                                                     <span className="text-muted">Signature</span>
                                                 </div>
+
+                                            </div>
+
+                                            {/* Submit Section */}
+                                            <div className="row rx-btn">
+                                                <div className="submit-section">
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-primary submit-btn rx-btn"
+                                                        onSubmit={() => createEPrescription()}
+                                                    >
+                                                        Create
+                                                    </button>
+
+                                                    <PrescriptionDetails />
+
+
+                                                    <button
+                                                        type="reset"
+                                                        className="btn btn-secondary submit-btn rx-btn"
+                                                    >
+                                                        Clear
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        {/* Submit Section */}
-                                        <div className="row rx-btn">
-                                            <div className="submit-section">
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-primary submit-btn rx-btn"
-                                                    onClick={() => createEPrescription()}
-                                                >
-                                                    Create
-                                                </button>
-
-                                                <PrescriptionDetails />
-
-
-                                                <button
-                                                    type="reset"
-                                                    className="btn btn-secondary submit-btn rx-btn"
-                                                >
-                                                    Clear
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div> {/* end of prescription */}
