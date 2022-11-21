@@ -11,8 +11,8 @@ const DashboardPage = lazy(() => import('../pages/dashboard/secretary-dashboard'
 // sidebar routing
 const Appointments = lazy(() => import('../pages/appointments/secretary-appointment/index'));
 const Calendar = lazy(() => import('../pages/calendar/secretary-module/index'));
-const PatientInfo = lazy(() => import('../pages/patient-records/secretary-module/patient-info'));
-const DentalRecords = lazy(() => import('../pages/patient-records/secretary-module/dental-record'));
+const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
+const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/secretary-module/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
 const SecretaryUserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
@@ -56,7 +56,7 @@ const SecretaryRoutes = {
                     element: <PatientInfoPatientList/>
                 },
                 {
-                    path: '/secretary/patient-records/patient-info/:fname',
+                    path: '/secretary/patient-records/patient-info/view-patient-info',
                     element: <PatientInfo />
                 }
             ]

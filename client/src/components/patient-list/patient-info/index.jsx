@@ -28,6 +28,22 @@ const proceedtoViewInfo = (value) => {
     setpatientIDNum(value.substring(3));
 }
 
+var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+const userRole = userInfo['user_role_id'];
+
+var patientInfoRoute = "";
+switch (userRole) {
+    case 2: 
+    patientInfoRoute = "/secretary/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+    case 3: 
+    patientInfoRoute= "/dentist/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+    case 4: 
+    patientInfoRoute= "/admin/patient-records/patient-info/view-patient-info?patientIDNum=";
+    break;
+}
+
     return (
         <>
             <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto">		
@@ -61,7 +77,7 @@ const proceedtoViewInfo = (value) => {
                             </div>
                             
                             <div className="widget-button-container">
-                                <Button className="widget-btn" href={"/dentist/patient-records/patient-info/view-patient-info?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                                <Button className="widget-btn" href={patientInfoRoute + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                     View Patient Information
                                 </Button>
                             </div>

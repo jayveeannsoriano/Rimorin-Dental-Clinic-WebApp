@@ -190,7 +190,6 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
-                {/* OTHER SIDE */}
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">District/Barangay</div>
