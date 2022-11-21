@@ -87,7 +87,7 @@ const PatientInfo = () => {
 
       <section class="section profile">
         <div class="row">
-          {/*<PatientProfileWidget />*/}
+          <PatientProfileWidget />
 
           <div class="col-xl-8">
             <div className="card patient-info">
