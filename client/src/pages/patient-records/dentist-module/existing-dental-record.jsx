@@ -102,12 +102,12 @@ export default function ExistingDentalRecord() {
                             <div className="card-body pt-3">
                                 <h5 className="card-title">Dental Records</h5>
 
-                                <button className="btn btn-primary" type="submit" onClick={() => { Export(false) }}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export("print") }}>
                                     <i class="bi bi-printer-fill"></i>
                                     Print
                                 </button>
 
-                                <button className="btn btn-primary" type="submit" onClick={() => { Export(true) }}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export("download") }}>
                                     <i class="bi bi-download"></i>
                                     Export
                                 </button>

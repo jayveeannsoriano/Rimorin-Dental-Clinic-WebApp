@@ -68,8 +68,8 @@ const DentistEPrescriptionDataTable = () => {
             name: "Action",
             selector: (row) => <div className="action-buttons">
                 <ViewFile/>
-                <ExportFile data={[true,"prescription",row,patientList]}/>
-                <PrintFile data={[false,"prescription",row,patientList]}/>
+                <ExportFile data={["download","prescription",row,patientList]}/>
+                <PrintFile data={["print","prescription",row,patientList]}/>
             </div>
         }
     ];
