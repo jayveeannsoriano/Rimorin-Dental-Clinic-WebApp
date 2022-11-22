@@ -5,15 +5,14 @@ import Form from 'react-bootstrap/Form';
 import UserProfileWidget from "../../../components/patient-profilewidget";
 import "../../../styles/patient-info-edit.css";
 import Modal from 'react-bootstrap/Modal';
+import {useNavigate} from 'react-router-dom';
 
 const UserProfile = () => {
 
     const [modalState, setModalState] = useState(false);
     const handleModalClose = () => setModalState(false);
+    const navigate = useNavigate();
   
-  const handleShow = () => {
-      setModalState('show-modal')
-    }
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     const patientIDnumber = userInfo['patientIDnumber'];
     console.log(patientIDnumber);
@@ -105,7 +104,8 @@ const UserProfile = () => {
             zipValue: zipValue,
             passwordValue: passwordValue,
         });
-        console.log("New info saved in DB")
+        console.log("New info saved in DB");
+        setModalState('show-modal')
     }
 
     function validatePassword() {
@@ -117,6 +117,7 @@ const UserProfile = () => {
             } else {
                 renewPassword.setCustomValidity('');
                 document.getElementById('passwordForm').submit();
+                
             }
         }
 
@@ -393,7 +394,7 @@ const UserProfile = () => {
                                                 </div>
                                             </div>
                                             {/* <Button className='edit-save text-right' onClick={() => { handleShow(); updatePatientInfo(); }}>Save Changes</Button> */}
-                                            <Button className='edit-save text-right' onClick={() => { updatePatientInfo(); }}>Save Changes</Button>
+                                            <Button className='edit-save text-right' onClick={() => { updatePatientInfo() }}>Save Changes</Button>
                                         </div>
                                     </div>
                                     {/* Change Password */}
@@ -431,13 +432,13 @@ const UserProfile = () => {
                     </div>
                 </div>
             </section>
-            <Modal show={modalState == 'show-modal'} onHide={handleModalClose}>
+            <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
-                {/* <Modal.Header closeButton>
-          <Modal.Title>Appointment Marked as No Show</Modal.Title>
-        </Modal.Header> */}
+                <Modal.Header closeButton>
+                <Modal.Title>Profile Changes</Modal.Title>
+                </Modal.Header>
 
-                <Modal.Body closeButton>
+                <Modal.Body >
                     {/* <img src={successful} alt="success image" className='success-img' /> */}
                     <p className='modal-txt'>You have succesfully updated your changes!</p>
                 </Modal.Body>
