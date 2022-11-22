@@ -12,7 +12,7 @@ import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const createReceipt = () => {
   const location = useLocation();
@@ -40,7 +40,7 @@ const createReceipt = () => {
     { serviceValue: "", quantityValue: "", amountToPay: "" },
   ]);
 
-  console.log("THIS ARE THE SERVICE ITEM",serviceItem)
+  console.log("THIS ARE THE SERVICE ITEM", serviceItem)
 
   //get amount value sum
   const newAmountArray = serviceItem.map(function (item) {
@@ -118,11 +118,11 @@ const createReceipt = () => {
     const price = recordProcedures.map((item) =>
       item.chosen != null
         ? item.chosen.map(
-            (proc) => (
-              setPrice((current) => [...current, parseInt(proc.price)]),
-              setDentalItem((current) => [...current, proc])
-            )
+          (proc) => (
+            setPrice((current) => [...current, parseInt(proc.price)]),
+            setDentalItem((current) => [...current, proc])
           )
+        )
         : null
     );
   }, [recordProcedures]);
@@ -137,16 +137,16 @@ const createReceipt = () => {
   var finalTotal = useState();
 
   //total number
-  if(PWDSeniorDiscount == 0){
+  if (PWDSeniorDiscount == 0) {
     console.log("NO DISCOUNT")
     finalTotal = totalAmountPaid + procedurePriceTotal
-  }else{
+  } else {
     console.log("MAY DISCOUNT LUGI")
     finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
   }
 
 
-  
+
   console.log(StringfyAppNumber);
   console.log(serviceItem);
   console.log(paymentType);
@@ -155,6 +155,11 @@ const createReceipt = () => {
   console.log(dateIssued);
   console.log(StringfyIDNumber);
   console.log(getOrNum);
+
+  const [modalState, setModalState] = useState(false);
+  const handleModalClose = () => {
+    setModalState(false)
+  };
 
 
   const createUserReceipt = async () => {
@@ -165,11 +170,17 @@ const createReceipt = () => {
       dateIssued: dateIssued,
       paymentType: paymentType,
       totalAmount: finalTotal,
-      officialReceiptNum:getOrNum,
+      officialReceiptNum: getOrNum,
       addedProcedurePrice: recordProcedures,
-      amountPaid:amountPaid,
+      amountPaid: amountPaid,
     });
+    setModalState('show-modal')
+    
   };
+
+  const handleShow = () => {
+    setModalState('show-modal')
+  }
 
   return (
     <>
@@ -250,9 +261,9 @@ const createReceipt = () => {
                           type="text"
                           className="form-control"
                           placeholder="OR #"
-                            onChange={(e) => {
-                              setOrNum(e.target.value);
-                            }}
+                          onChange={(e) => {
+                            setOrNum(e.target.value);
+                          }}
                           required
                         />
                       </div>
@@ -265,25 +276,24 @@ const createReceipt = () => {
                             label="Senior Citizen"
                             name="group1"
                             type="radio"
-                            value = {0.20}
-                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            value={0.20}
+                            onChange={(e) => { setPWDSeniorDiscount(e.target.value) }}
                           />
                           <Form.Check
                             inline
                             label="PWD"
                             name="group1"
                             type="radio"
-                            value = {0.20}
-                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            value={0.20}
+                            onChange={(e) => { setPWDSeniorDiscount(e.target.value) }}
                           />
                           <Form.Check
                             inline
                             label="Not Applicable"
                             name="group1"
                             type="radio"
-                            value = {0}
-                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
-                            //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            value={0}
+                          //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 following-info"></div>
@@ -296,24 +306,24 @@ const createReceipt = () => {
                       <thead>
                         <tr>
                           <th>Service/s</th>
-                          <th style={{textAlign: "center"}}>Quantity</th>
+                          <th style={{ textAlign: "center" }}>Quantity</th>
                           <th>Price</th>
                         </tr>
-                      </thead>  
+                      </thead>
                       <tbody>
                         {dentalItem.map((item, index) => (
-                            <tr key={index}>
+                          <tr key={index}>
                             <td>{item.procedure}</td>
-                            <td style={{textAlign: "center"}}>1</td>
+                            <td style={{ textAlign: "center" }}>1</td>
                             <td>{item.price}</td>
-                            </tr>
+                          </tr>
                         ))}
-                        {serviceItem .map((item, index) => (
-                            <tr key={index}>
-                              <th>{item.serviceValue}</th>
-                              <th style={{textAlign: "center"}}>{item.quantityValue}</th>
-                              <th>{item.amountToPay}</th>
-                            </tr> 
+                        {serviceItem.map((item, index) => (
+                          <tr key={index}>
+                            <th>{item.serviceValue}</th>
+                            <th style={{ textAlign: "center" }}>{item.quantityValue}</th>
+                            <th>{item.amountToPay}</th>
+                          </tr>
                         ))}
                       </tbody>
                     </Table>
@@ -475,13 +485,10 @@ const createReceipt = () => {
 
                   <div className="row rx-btn col-md-12">
                     <div className="submit-section">
-                    <Button
-                        href={"/secretary/payment-records/view-transactions?patientIDNum=" +StringfyIDNumber}
+                      <Button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {
-                          createUserReceipt();
-                        }}
+                        onClick={() => {createUserReceipt()}}
                       >
                         Create
                       </Button>
@@ -500,6 +507,24 @@ const createReceipt = () => {
           </div>
         </div>
       </section>
+
+      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+
+        <Modal.Header closeButton>
+          <Modal.Title>Receipt Created</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body closeButton>
+          {/* <img src={successful} alt="success image" className='success-img' /> */}
+          <p className='modal-txt'>You have created a receipt!</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="primary" href={"/secretary/payment-records/view-transactions?patientIDNum=" + StringfyIDNumber} onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
