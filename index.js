@@ -103,8 +103,26 @@ app.post("/RegisterUser", async (req, res) => {
   } = req.body;
 
   const userRole = 1;
-  const randomnum = Math.floor(Math.random() * 10000);
-  const patientIDNumber = "PT#"+randomnum;
+  
+  const letters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789'
+  
+  function generateString() {
+      let numberLength = 3;
+      let letterLength = 2;
+      let numbersResult = '';
+      let lettersResult = '';
+      const lettersLength = letters.length;
+      const numbersLength = numbers.length;
+      for ( let i = 0; i < numberLength; i++ ) {
+          numbersResult += numbers.charAt(Math.floor(Math.random() * numbersLength));
+      }
+      for ( let i = 0; i < letterLength; i++ ) {
+        lettersResult += letters.charAt(Math.floor(Math.random() * lettersLength));
+      }
+      return numbersResult+lettersResult;
+  }
+  const patientIDNumber = "PT#"+generateString();
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
@@ -1023,7 +1041,7 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req,res)=>{
     const userNameApp = req.body.userNameApp;
     console.log(userNameApp)
   
-    //Docotor name
+    //Doctor name
     const docName = req.body.dentistValue;
     console.log(docName);
   
@@ -1070,7 +1088,7 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
   const userNameApp = req.body.pName;
   console.log(userNameApp)
 
-  //Docotor name
+  //Doctor name
   const docName = req.body.dName;
   console.log(docName);
 
