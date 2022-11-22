@@ -42,6 +42,11 @@ const AcceptCancel = () => {
             sortable: true,
         },
         {
+            name: "Status",
+            selector: (row) => row.appStatus,
+            sortable: true,
+        },
+        {
             name: "Action",
             selector: row =>
                 <div className="action-buttons">

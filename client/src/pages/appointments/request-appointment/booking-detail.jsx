@@ -71,7 +71,7 @@ const BookingDetail = ({nextStep, prevStep,handleChange,values}) => {
                     <div className="doctor-info">
                         <h1>APPOINTMENT DETAILS</h1>
                         <h2>Date of Consultation</h2>
-                            {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " " + window.localStorage.getItem('time')}
+                            {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
                             <br/>
                         <h2>Reason for Consultation</h2>
                             {values.consultation}

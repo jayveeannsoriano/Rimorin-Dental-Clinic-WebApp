@@ -39,8 +39,6 @@ const DentalRecordDataTable = (response,patientIDNum) => {
     var query = url_parts.query;
 
   const StringfyID = JSON.stringify(response,patientIDNum);
-  const ConvertStringApp = JSON.parse(StringfyID);
-  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDNum).replace(/"/g, "");
     
     useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -125,11 +123,6 @@ const DentalRecordDataTable = (response,patientIDNum) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         />
-    }
-    actions={
-        <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + PatientIDNumber}>
-        <button className="btn btn-primary">Add Dental Record</button>
-       </a> 
     }
     />
   

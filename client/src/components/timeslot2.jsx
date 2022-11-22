@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import  React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Button } from 'react-bootstrap';
-import Axios from 'axios';
+import axios from 'axios';
 
-const Timeslot2 = (props) => {
-  let intime = "09:00 AM"
-  let outtime = "05:00 PM"
-  const [result, setResult] = useState([])
+const Timeslot2 = ({GetTimeCheck,takenAppointments,chosenDate}) => {
+  // let inTime = "09:00 AM"
+  // let outTime = "05:00 PM"
+  const [result, setResult] = useState([]);
+
+  const [inTime, setInTime] = useState("")
+  const [outTime, setOutTime] = useState("")
+
+  const [availableTime, setAvailableTime] = useState([]);
+  
 
   const [getTime, setGetTime] = useState("");
 
@@ -16,6 +22,8 @@ const Timeslot2 = (props) => {
     start.minutes(Math.ceil(start.minutes() / 15) * 15);
 
     var current = moment(start);
+
+    
 
     while (current <= end) {
       if (result.includes(current.format('hh:mm A'))) {
@@ -29,27 +37,90 @@ const Timeslot2 = (props) => {
 
     return result;
   }
+  const getAvailableTimes = async(date) => {
+    try{
+      console.log(date);
+      const response = await axios.get('http://localhost:3001/getAvailableTimes',{
+        params:{
+            date: date
+        }
+      })
 
-  intervals(intime, outtime);
+      var data = response.data
+      console.log(data[0].config);
+      setAvailableTime(data[0].config)
+
+    }catch (error){
+      console.log(error)
+    }
+}
+
+  intervals(inTime, outTime);
+  const el = document.querySelectorAll ('.timeslot button');
+  useEffect(() => {
+    getAvailableTimes();
+    // el.forEach(function (value, i) {
+    //   let button = document.getElementById(value.value);
+
+    //   if(takenAppointments.indexOf(button.value)>-1){
+    //     console.log(takenAppointments)
+    //     console.log(button.value)
+    //     button.style.cssText = 'background: lightgray;pointer-events: none';
+    //   }else{
+    //     button.style.cssText = 'background: white;pointer-events: auto;';
+    //   }
+    // });
+
+    // setTaken(takenAppointments);
+    console.log(takenAppointments);
+  },[]);
+
+  useEffect(() => {
+    setResult([]);
+
+    availableTime.forEach(schedule => {
+      if(schedule.day==chosenDate.slice(0,3)){
+        if(schedule.enabled){
+          setInTime(schedule.timeStart);
+          setOutTime(schedule.timeEnd);
+        }else{
+          setInTime("");
+          setOutTime("");
+        }
+      }
+    });
+  
+
+  });
+  
+
+
+
+
   return (
-    <div className='modal-timeslots'>
-      {
-        result && result.length > 0 ? result.map((time, index) => {
+    <div className='slots'>
+      {result && result.length > 0 ? result.map((time, index) => {
+        
           return (
-            <div className="Timeslot2 timeslot" key={index}>
+            <div className="timeslot" key={index}>
                 <Button 
-                className="time" 
+                className="time btn" 
+                id={time}
                 value={time}
+                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : {background:"white"}}
+                disabled={takenAppointments.indexOf(time)>-1 ? true : false}
                 onClick={(e)=>{
                   e.preventDefault();
                   setGetTime(e.target.value)
-                  props.onSubmit(time)
+                  //props.onSubmit(time)
+                  GetTimeCheck(time);
                   console.log(time);
-                  }}>{time}</Button>
+                }}>{time}
+                </Button>
                   
             </div>
           )
-        }) : null
+        }) : <h2>No Available Time Slots </h2>
       }
     </div>
   )

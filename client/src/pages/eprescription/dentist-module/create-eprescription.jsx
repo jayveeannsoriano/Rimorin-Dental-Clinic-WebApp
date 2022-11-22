@@ -3,7 +3,6 @@ import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import '../../../styles/create-rx.css';
 import ProfileWidget from "../../../components/profile-widget";
 import "react-bootstrap";
-import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
@@ -38,10 +37,11 @@ const createEprescription = () => {
     }
 
     const [modalState, setModalState] = useState(false);
-    const handleModalClose = () => setModalState(false);
-    const handleShow = () => {
-        setModalState('show-modal')
-    }
+    const handleModalClose = () => {
+        setModalState(false)};
+    // const handleShow = () => {
+    //     setModalState('show-modal')
+    // }
 
 
 
@@ -96,6 +96,9 @@ const createEprescription = () => {
         }, {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
+
+        setModalState('show-modal')
+
     }
 
     // function handleSubmit(event) {
@@ -170,7 +173,7 @@ const createEprescription = () => {
                                     </div>
 
                                     
-                                    <form onSubmit={() => createEPrescription()} >
+                                    <form>
                                         <div className="biller-info"> <br />
                                             <h5 className="rx-pr"> Prescription Information </h5>
                                             <div class="col-12 col-md-6 col-lg-4">
@@ -319,7 +322,7 @@ const createEprescription = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onSubmit={() => {handleShow(); createEPrescription(); }}
+                                                        onClick={() => {createEPrescription()}}
                                                     >
                                                         Create
                                                     </button>
@@ -356,7 +359,7 @@ const createEprescription = () => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleModalClose}>
+                    <Button variant="primary" href={"/dentist/eprescription/view-eprescription?patientIDNum=" + StringfyIDnumber} onClick={handleModalClose}>
                         Close
                     </Button>
                 </Modal.Footer>

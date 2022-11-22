@@ -318,6 +318,17 @@ app.get("/getAvailableTimes", async(req,res) => {
   });
 });
 
+app.get("/getTimeConfig", async(req,res) => {
+
+  await AvailableTime.find({})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+    console.log('error: ', error)
+  });
+});
+
         
 app.get("/getUserInfo", async(req,res) => {
 
@@ -670,6 +681,8 @@ app.get("/getTotalPendingAppts", async(req,res) => {
 
 //updateDataTable
 
+
+
 app.put("/updateDateTime", async (req, res) => {
 
   const appNumber = req.body.appNum;
@@ -684,6 +697,35 @@ app.put("/updateDateTime", async (req, res) => {
   await AppDetails.findOneAndUpdate({appNum: appNumber}, {date: updateSlicedDate, time: updateTime, consultation: updateConsult})
   console.log("Appointment Details Updated!");
 });
+
+app.put("/rescheduleAppointment", async (req, res) => {
+
+  const appNumber = req.body.appNum;
+  const patientIDnumber = req.body.patientIDNum;
+  const userNameApp = req.body.pName;
+  const updateDate = req.body.newDate;
+  const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
+  const updateTime = req.body.newTime;
+  const updateConsult = req.body.newConsultation;
+  const insertAppStatus = "Rebooked";
+  const docName = "Pamela Rimorin Concepcion";
+
+  const AppData = new AppRequest({
+    patientIDnumber:patientIDnumber, 
+    pName: userNameApp,
+    dName: docName ,
+    appNum: appNumber,
+    date: updateSlicedDate, 
+    consultation: updateConsult, 
+    time:updateTime, 
+    appStatus:insertAppStatus});
+
+  await AppData.save();
+  await AppDetails.findOneAndDelete({appNum: appNumber})
+
+  console.log("Appointment Details Updated!");
+});
+
 
 //delete Appointment
 
@@ -927,13 +969,22 @@ app.put("/updateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
   const paymentType = req.body.paymentType;
   const totalAmount = req.body.totalAmount;
   const addedItemValue = req.body.addedItem;
+  const officialReceiptNum = req.body.officialReceiptNum;
+  const addedProcedurePrice = req.body.addedProcedurePrice;
+  const amountPaid = req.body.amountPaid;
+  const appNum = req.body.appNum;
 
   await ReceiptDetails.findOneAndUpdate(
-    {appNum:patientIDnumber}, 
+    {patientIDnumber:patientIDnumber,
+    appNum:appNum
+    }, 
     {dateIssued:date, 
     addedItem: addedItemValue,
     paymentType:paymentType,
-    totalAmount:totalAmount
+    totalAmount:totalAmount,
+    officialReceiptNum:officialReceiptNum,
+    addedProcedurePrice:addedProcedurePrice,
+    amountPaid:amountPaid,
   }
   )
   console.log("Receipt Details Updated!")
