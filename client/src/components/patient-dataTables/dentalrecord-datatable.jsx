@@ -13,7 +13,7 @@ const DentalRecordDataTable = (response,patientIDNum) => {
     switch (userRole) {
       case 1:
         DentalRecordRoute =
-          "/patient/patient-records/dental-record?patientIDNum=";
+          "/patient/patient-records/dental-record/record?patientIDNum=";
         break;
       case 2:
         DentalRecordRoute =

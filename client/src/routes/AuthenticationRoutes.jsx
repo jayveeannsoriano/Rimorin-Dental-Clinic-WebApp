@@ -2,11 +2,7 @@ import React from 'react'
 import { lazy } from 'react';
 
 //project imports
-import LandingPageLayout from '../layout/LandingPageLayout';
 import AuthLayout from '../layout/AuthLayout';
-import ErrorPage from '../components/errorpage';
-import TermsOfUse from '../components/terms-of-use';
-import PrivacyPolicy from '../components/privacy-policy';
 
 //landing page routing
 const LandingPage = lazy(() => import('../pages/landingpage'));
