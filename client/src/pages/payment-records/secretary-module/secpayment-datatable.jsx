@@ -59,7 +59,7 @@ const SecTransactionDataTable = (patientIDNum) => {
             selector: (row) => <div className="action-buttons" >
                 <PrintFile />
                 <ViewFile />
-                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date}>Create Receipt</Button>
+                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date + "&ObjectID="+ row._id}>Create Receipt</Button>
             </div>
         }
     ];

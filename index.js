@@ -952,10 +952,10 @@ app.post("/createReceipt", async (req,res) => {
 })
 
 const ImgStorageERec = multer.diskStorage({
-  destination: "uploads/e-prescription",
+  destination: "uploads/e-receipt",
   filename:(req,file,cb) =>{
-    const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb(null, req.body.patientIDNum+"_"+slicedDate + ".png");
+    //const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
+    cb(null, req.body.patientIDnumber+"_"+ req.body.dateIssued + ".png");
   },
 });
 
@@ -963,31 +963,35 @@ const uploadImg3 = multer({
   storage:ImgStorageERec
 });
 
-app.put("/updateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
-  const patientIDnumber = "PT#"+req.body.patientIDnumber;
-  const date = req.body.dateIssued;
+app.put("/getandUpdateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
+  const objectID = req.body.OBJECTID
+  const dateIssued = req.body.dateIssued;
   const paymentType = req.body.paymentType;
   const totalAmount = req.body.totalAmount;
   const addedItemValue = req.body.addedItem;
   const officialReceiptNum = req.body.officialReceiptNum;
   const addedProcedurePrice = req.body.addedProcedurePrice;
   const amountPaid = req.body.amountPaid;
-  const appNum = req.body.appNum;
+  const patientIDnumber = "PT#"+req.body.patientIDnumber;
+  const appNumber = '#'+req.body.appNum;
 
-  await ReceiptDetails.findOneAndUpdate(
-    {patientIDnumber:patientIDnumber,
-    appNum:appNum
-    }, 
-    {dateIssued:date, 
-    addedItem: addedItemValue,
+
+try{
+  console.log(objectID)
+  await ReceiptDetails.findOneAndUpdate({_id:objectID},{
+    dateIssued:dateIssued,
     paymentType:paymentType,
-    totalAmount:totalAmount,
+    addedItem:addedItemValue,
     officialReceiptNum:officialReceiptNum,
     addedProcedurePrice:addedProcedurePrice,
     amountPaid:amountPaid,
-  }
-  )
-  console.log("Receipt Details Updated!")
+    totalAmount:totalAmount
+  })
+}catch(error){
+console.log(error)
+}
+
+
 });
 
 const ImgStorageEPres = multer.diskStorage({
