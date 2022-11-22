@@ -20,6 +20,7 @@ const createReceipt = () => {
   const getAppNumber = params.get("patientValue");
   const getPatientID = params.get("patientID");
   const getDateReceipt = params.get("dateValue");
+  const ObjectID = params.get("ObjectID");
   const StringfyAppNumber = useMemo(() =>
     JSON.stringify(getAppNumber).replace(/"/g, "")
   );
@@ -30,7 +31,9 @@ const createReceipt = () => {
     JSON.stringify(getDateReceipt).replace(/"/g, "")
   );
 
-  const [dateIssued, setDateIssued] = useState("");
+  console.log("OBJECT", ObjectID);
+
+  const [dateIssue, setDateIssued] = useState("");
   const [paymentType, setPaymentType] = useState("");
   const [amountPaid, setAmountPaid] = useState("");
   const [getOrNum, setOrNum] = useState("");
@@ -136,7 +139,7 @@ const createReceipt = () => {
 
   var finalTotal = useState();
 
-  //total number
+  //total numbermodalState
   if (PWDSeniorDiscount == 0) {
     console.log("NO DISCOUNT")
     finalTotal = totalAmountPaid + procedurePriceTotal
@@ -152,7 +155,7 @@ const createReceipt = () => {
   console.log(paymentType);
   console.log(amountPaid);
   console.log(recordProcedures);
-  console.log(dateIssued);
+  console.log(dateIssue);
   console.log(StringfyIDNumber);
   console.log(getOrNum);
 
@@ -163,11 +166,12 @@ const createReceipt = () => {
 
 
   const createUserReceipt = async () => {
-    await Axios.put("http://localhost:3001/updateReceipt", {
+    await Axios.put("http://localhost:3001/getandUpdateReceipt", {
+      OBJECTID: ObjectID,
       addedItem: serviceItem,
       patientIDnumber: StringfyIDNumber,
       appNum:StringfyAppNumber,
-      dateIssued: dateIssued,
+      dateIssued: dateIssue,
       paymentType: paymentType,
       totalAmount: finalTotal,
       officialReceiptNum: getOrNum,
@@ -178,13 +182,13 @@ const createReceipt = () => {
       headers: { 'Content-Type': 'multipart/form-data' }
   });
 
-    setModalState('show-modal')
+     setModalState('show-modal')
     
   };
 
-  const handleShow = () => {
-    setModalState('show-modal')
-  }
+  // const handleShow = () => {
+  //   setModalState('show-modal')
+  // }
 
   return (
     <>
@@ -223,11 +227,7 @@ const createReceipt = () => {
                 <h5 className="card-title">Create Receipt</h5>
                 <div className="divider"></div>
 
-                <form
-                  onSubmit={() => {
-                    createReceipt();
-                  }}
-                >
+                <form>
                   <div className="container">
                     {/* Transaction Details */}
                     <div className="form-section-title">
@@ -492,7 +492,10 @@ const createReceipt = () => {
                       <Button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {createUserReceipt()}}
+                        onClick={() => {
+                          createUserReceipt()
+                        
+                        }}
                       >
                         Create
                       </Button>
@@ -511,15 +514,20 @@ const createReceipt = () => {
           </div>
         </div>
       </section>
+    </>
+  );
+};
+export default createReceipt;
 
-      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+
+      {/* <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
         <Modal.Header closeButton>
           <Modal.Title>Receipt Created</Modal.Title>
         </Modal.Header>
 
         <Modal.Body closeButton>
-          {/* <img src={successful} alt="success image" className='success-img' /> */}
+          {/* <img src={successful} alt="success image" className='success-img' /> 
           <p className='modal-txt'>You have created a receipt!</p>
         </Modal.Body>
 
@@ -528,8 +536,5 @@ const createReceipt = () => {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
-    </>
-  );
-};
-export default createReceipt;
+      </Modal> 
+*/}
