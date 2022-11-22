@@ -347,11 +347,11 @@ const createEprescription = () => {
                 </section>
 
             </div> {/* /Main Wrapper */}
-            <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+            <Modal show={modalState == 'show-modal'} onHide={handleModalClose}>
 
-                <Modal.Header closeButton>
-                <Modal.Title>E-Prescription Created</Modal.Title>
-                </Modal.Header>
+                {/* <Modal.Header closeButton>
+                <Modal.Title>Appointment Marked as No Show</Modal.Title>
+                </Modal.Header> */}
 
                 <Modal.Body closeButton>
                     {/* <img src={successful} alt="success image" className='success-img' /> */}

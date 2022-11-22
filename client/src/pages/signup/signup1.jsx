@@ -1,6 +1,5 @@
 import React from "react";
 import "../../styles/login-signup.css";
-import Footer from '../../layout/LandingPageLayout/footer';
 // import PhoneInput from 'react-phone-input-2';
 // import 'react-phone-input-2/lib/style.css';
 
@@ -11,12 +10,27 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
     nextStep();
   };
 
+  function validatePassword() {
+    let newPassword = document.getElementById("newPassword");
+    let renewPassword = document.getElementById("renewPassword");
+    if (!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')) {
+        if (newPassword.value != renewPassword.value) {
+            renewPassword.setCustomValidity("Passwords Does Not Match");
+        } else {
+            renewPassword.setCustomValidity('');
+            document.getElementById('passwordForm').nextStep();
+            
+        }
+    }
+  }
+
+
   return (
     <>
-      <form className="auth-inner" onSubmit={Continue}>
-        <p id="titleform">
-          <h4>Rimorin Dental Clinic</h4>
-        </p>
+      <form id='passwordForm' className="auth-inner-signup" onSubmit={Continue}>
+        <div className='titleform'>
+            <a href="/">Rimorin Dental Clinic</a>
+        </div>
 
         <div className="row">
           <div className="col">
@@ -95,7 +109,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Mobile Number</label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 placeholder="09123456789"
                 onChange={handleChange('mobile')}
@@ -197,6 +211,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Password</label>
               <input
+                id="newPassword"
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
@@ -210,6 +225,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Re-enter password</label>
               <input
+                id="renewPassword"
                 type="password"
                 className="form-control"
                 placeholder="Re-enter password"
@@ -226,17 +242,16 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             type="submit"
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
+            onClick={() => {validatePassword(); }}
           >
             Next
           </button>
         </div>
 
-        <p className="forgot-password text-right">
+        <div className="signup-link">
           Already registered? <a href="/auth/login">Sign In</a>
-        </p>
-        <Footer/>
+        </div>
 
-        
       </form>
     </>
   );

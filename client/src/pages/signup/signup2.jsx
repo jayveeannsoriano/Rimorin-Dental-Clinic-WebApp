@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../styles/login-signup.css";
-import Footer from '../../layout/LandingPageLayout/footer';
 const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
 
     const Continue = e => {
@@ -15,9 +14,10 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
 
     return (
         <>
-            <form className='auth-inner' onSubmit={Continue}>
-                <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
-
+            <form className='auth-inner-signup' onSubmit={Continue}>
+            <div className='titleform'>
+                  <a href="/">Rimorin Dental Clinic</a>
+              </div>
                 <div className="mb-3">
                     <label> House No. & Street Name </label>
                     <input
@@ -74,9 +74,9 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                     </div>
                     <div className="col">
                     <div className="mb-3">
-                    <label> Zip Code </label>
+                    <label> ZIP Code </label>
                     <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder="e.g. 2600"
                         onChange={handleChange('zipcode')}
@@ -123,10 +123,9 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                     </div>
                 </div>
 
-                <p className="forgot-password text-right">
+                <div className="signup-link">
                     Already registered? <a href="/auth/login">Sign In</a>
-                </p>
-                <Footer/>
+                </div>
             </form>
         </>
     )

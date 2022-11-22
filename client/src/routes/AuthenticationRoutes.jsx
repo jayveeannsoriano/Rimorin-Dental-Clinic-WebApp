@@ -2,11 +2,7 @@ import React from 'react'
 import { lazy } from 'react';
 
 //project imports
-import LandingPageLayout from '../layout/LandingPageLayout';
 import AuthLayout from '../layout/AuthLayout';
-import ErrorPage from '../components/errorpage';
-import TermsOfUse from '../components/terms-of-use';
-import PrivacyPolicy from '../components/privacy-policy';
 
 //landing page routing
 const LandingPage = lazy(() => import('../pages/landingpage'));
@@ -25,47 +21,25 @@ const ResetPassword = lazy(() => import('../pages/reset-password/index'));
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 const AuthenticationRoutes = {
-    path: '/',
-    element: <LandingPageLayout />,
+    path: '/auth',
+    element: <AuthLayout />,
     children: [
-        {
-            path: '*',
-            element: <ErrorPage />
-        },
-        {
-          path: '/',
-          element: <LandingPage />
-        },
-        {
-          path: '/auth',
-          element: <AuthLayout />,
-          children: [
-            {
-              path: '/auth/login',
-              element: <LoginPage />
-            },
-            {
-              path: '/auth/forgot-password',
-              element: <ForgotPassword />,
-            },
-            {
-              path: '/auth/reset-password',
-              element: <ResetPassword />
-            },
-            {
-              path: '/auth/signup',
-              element: <SignUpPage />
-            }
-          ]
-        },
-        {
-          path: 'terms-of-use',
-          element: <TermsOfUse />
-        },
-        {
-          path: 'privacy-policy',
-          element: <PrivacyPolicy />
-        }
+      {
+        path: '/auth/login',
+        element: <LoginPage />
+      },
+      {
+        path: '/auth/forgot-password',
+        element: <ForgotPassword />,
+      },
+      {
+        path: '/auth/reset-password',
+        element: <ResetPassword />
+      },
+      {
+        path: '/auth/signup',
+        element: <SignUpPage />
+      }
     ]
 };
 export default AuthenticationRoutes;

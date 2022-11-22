@@ -9,6 +9,8 @@ import PatientProfileWidget from "../../../components/profile-widget";
 import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
 import { dentalRecords } from '../../../config/FileGeneration.js'
 import DentalChart from "../../../components/dental-teeth-chart";
+import NoRecordImg from '../../../assets/img/no-record.png'
+
 
 export default function ExistingDentalRecord() {
 
@@ -102,12 +104,12 @@ export default function ExistingDentalRecord() {
                             <div className="card-body pt-3">
                                 <h5 className="card-title">Dental Records</h5>
 
-                                <button className="btn btn-primary" type="submit" onClick={() => { Export(false) }}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export("print") }}>
                                     <i class="bi bi-printer-fill"></i>
                                     Print
                                 </button>
 
-                                <button className="btn btn-primary" type="submit" onClick={() => { Export(true) }}>
+                                <button className="btn btn-primary" type="submit" onClick={() => { Export("download") }}>
                                     <i class="bi bi-download"></i>
                                     Export
                                 </button>
@@ -140,16 +142,16 @@ export default function ExistingDentalRecord() {
                                             {/* Dental Record */}
                                             {/* This UI is only shown when the patient is new */}
                                             <div class="row no-record">
-                                                {/* <img src={NoRecordImg} alt="no-record-img" /> */}
+                                                <img src={NoRecordImg} alt="no-record-img" />
                                                 <div className="empty-message">
                                                     <h2>DENTAL RECORD NOT FOUND</h2>
-                                                    <p> It seems that you have no dental record for this patient. You can create a Dental Record for this patient on their first appointment. You can click the Add Treatment for Walk-ins</p>
+                                                    <p> It seems that you have no dental record for this patient. Click the <b>Add Treatment</b> button to create one.</p>
                                                 </div>
-                                                <div className="create-record">
-                                                    {/* <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
+                                                {/*<div className="create-record">
+                                                    <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
                                                         <button className="btn btn-primary">Create Dental Record</button>
-                                                    </a> */}
-                                                </div>
+                                                    </a>
+                                                </div>*/}
                                             </div>
                                         </div>
                                     </div> : <DentalRecordDataTable response={appointment} patientIDNum={StringfyIDnumber}/>}

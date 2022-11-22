@@ -128,7 +128,7 @@ const EPrescriptionDataTable = () => {
 
     return <DataTable
         pagination
-        className="transaction-datatable"
+        className="patient-transaction-datatable"
         subHeaderAlign={Alignment.LEFT}
         columns={columns}
         data={appointment}

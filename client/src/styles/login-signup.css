@@ -2,12 +2,10 @@
 # Header Login Page
 --------------------------------------------------------------*/
 #headerlogin {
-  /* background: var(--bg-color); */
   transition: all 0.5s;
   z-index: 997;
-  padding-top: 24px;
-  /* top: 40px; */
-  /* box-shadow: 0px 5px 10px rgb(0 0 0 / 5%); */
+  padding: 24px;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
 }
 
 #headerlogin .logo {
@@ -26,6 +24,16 @@
 
 #headerlogin {
   display: block;
+}
+
+.auth-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5in;
+}
+
+.auth-section{
+  padding: 0.5in;
 }
 
 /* Login Form Box */
@@ -61,10 +69,15 @@
   color: var(--text-color-alt);
 }
 
-#titleform {
-  text-align: center;
-  color: var(--text-color-alt);
+.titleform {
+  font-weight: 700;
+  font-size: 30px;
   padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+}
+.titleform a{
+  color: #252B42;
 }
 
 form .txt_field {
@@ -95,7 +108,7 @@ form .txt_field {
 }
 
 .pass {
-  text-align: right;
+  text-align: left;
   margin-bottom: 2%;
   color: #5D5FEF;
   cursor: pointer;
@@ -128,13 +141,30 @@ input[type="submit"]:hover {
   color: var(--text-color-alt);
 }
 
-.signup_link a {
+.signup_link a{
   color: var(--primary-color);
   text-decoration: none;
   font-weight: var(--font-semi-bold);
 }
 
-.signup_link a:hover {
+.signup_link a:hover{
+  text-decoration: underline;
+  transition: .5s;
+}
+
+.auth-inner-signup .signup_link {
+  text-align: center;
+  font-size: var(--normal-font-size);
+  color: var(--text-color-alt);
+}
+
+.auth-inner-signup .signup_link a{
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: var(--font-semi-bold);
+}
+
+.auth-inner-signup .signup_link a:hover{
   text-decoration: underline;
   transition: .5s;
 }
@@ -180,7 +210,7 @@ input[type="submit"]:hover {
 # SIGN UP CSS
 --------------------------------------------------------------*/
 
-* {
+/** {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -189,22 +219,9 @@ input[type="submit"]:hover {
 html {
   height: 100%;
   box-sizing: border-box !important;
-}
+}*/
 
-body {
-  font-family: var(--body-font);
-  color: var(--text-color);
-  background: var(--bg-color);
-  min-height: 100%;
-  display: flex;
-  position: relative !important;
-  margin: 0;
-  padding-bottom: 6.75rem !important;
-  box-sizing: inherit !important;
-}
-
-
-body,
+/*body,
 html,
 .App,
 #root,
@@ -212,18 +229,7 @@ html,
   width: 100%;
   height: 100%;
   
-}
-
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-  flex-direction: row;
-  align-items: center;
-  padding-bottom: 80px;
-
-}
+}*/
 
 .auth-inner {
   width: 500px;
@@ -235,16 +241,19 @@ html,
   transition: all 0.3s;
 }
 
-.auth-wrapper .form-control:focus {
-  border-color: var(pri);
-  box-shadow: none;
+.auth-inner-signup {
+  width: auto;
+  margin: auto;
+  background: white;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 30px 55px 30px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
 }
 
-.auth-wrapper h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: none !important;
 }
 
 .custom-control-label {
@@ -302,22 +311,9 @@ html,
   --bs-gradient: none;
 }
 
-.image-banner {
-  position: relative;
-  width: 733.97px;
-  height: 757px;
-  left: 26px;
-
-}
-
-.image-banner img {
-  width: 620px;
-  height: 650px;
-  margin: 30px 0 0 130px;
-}
-
 .label {
   font-weight: 600;
+  margin-bottom: 5px !important;
   color: rgba(1, 41, 112, 0.6);
 }
 

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 // import { List, ListItem, ListItemText } from '@material-ui/core';
 // import "../../styles/login-signup.css";
 import Axios from 'axios';
+import AccountCreated from '../../components/modals/success-modals/create-acc';
+import successful from '../../assets/img/check.png';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import Footer from '../../layout/LandingPageLayout/footer';
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
@@ -47,11 +51,10 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
 
     return (
         <>
-            <form className="auth-inner">
-                <p id="titleform">
-                    <h4>Rimorin Dental Clinic</h4>
-                    <h6>Verify and proceed if the following details are correct.</h6>
-                </p>
+            <form className="auth-inner-signup">
+                <div className='titleform'>
+                    <a href="/">Rimorin Dental Clinic</a>
+                </div>
                 <br />
                 <div class="row">
                     <div class="col">
@@ -192,8 +195,6 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         </div>
                     </div>
                 </div>
-                <Footer />
-                
             </form>
         </>
     );

@@ -78,9 +78,9 @@ const TransactionDataTable = () => {
             name: "Action",
             selector: (row) => 
             <div className="action-buttons">
-                    <PrintFile data={[false,"receipt",row,patientList]}/>
+                    <PrintFile data={["print","receipt",row,patientList]}/>
                     <ViewFile/>
-                    <ExportFile data={[true,"receipt",row,patientList]}/>
+                    <ExportFile data={["download","receipt",row,patientList]}/>
             </div>
         }
     ];
@@ -139,7 +139,7 @@ const TransactionDataTable = () => {
     // },[search])
 
     return <DataTable
-    className="transaction-datatable"
+    className="patient-transaction-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
