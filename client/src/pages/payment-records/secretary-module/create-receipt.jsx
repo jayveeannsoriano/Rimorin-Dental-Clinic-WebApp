@@ -88,22 +88,6 @@ const createReceipt = () => {
   //cancel button navigate to previous page
   const navigate = useNavigate();
 
-
-
-  //              //
-
-  // const TotalAmountToPay = () => {
-  //     const PWDandSeniorDiscount = 0.20;
-  //     setDiscountValue(PWDandSeniorDiscount);
-
-  // if(may discount){
-  //     const discountFormula = amountValue * discountValue;
-  //     setTotalAmount(amountValue - discountFormula);
-  // }else{
-  //     setTotalAmount(amountValue)
-  // }
-
-  // }
   //get app number
 
 
