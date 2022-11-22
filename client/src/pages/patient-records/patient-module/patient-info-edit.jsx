@@ -4,6 +4,7 @@ import "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/patient-profilewidget";
 import Axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
 import ProfileInfoEditSaved from '../../../components/modals/success-modals/profile-info-edit-saved';
 
 //datepicker
@@ -23,7 +24,7 @@ const PatientInfoEdit = () => {
 
   const conditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE']
 
-  const [modalState, setModalState] = useState('close');
+  // const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState('');
   const [lastName, setLastValue] = useState('');
   const [middleName, setMiddleValue] = useState('');
@@ -46,6 +47,12 @@ const PatientInfoEdit = () => {
   const [allergiesValue, setAllergiesValue] = useState('');
   const [condValue, setCondValue] = useState('');
   const [precautionValue, setPrecautionValue] = useState('');
+
+  const [modalState, setModalState] = useState(false);
+  const handleModalClose = () => setModalState(false);
+  const handleModal = () => {
+    setModalState('show-modal')
+  }
 
   console.log(firstName, 'updated');
   const defaultUserInfo = async () => {
@@ -212,13 +219,13 @@ const PatientInfoEdit = () => {
                       <div className="col-lg-3">
                         <label for='blood'>Blood Type</label>
                         {userData.map((item, index) => (
-                              <Form.Select name="blood" placeholder={item.blood} defaultValue={item.blood}  onChange={(e) => setBloodValue(e.target.value)} required >
-                                   <option value="" selected disabled>Select</option>
-                                   <option value="A">A</option>
-                                   <option value="B">B</option>
-                                   <option value="AB">AB</option>
-                                   <option value="O">O</option>
-                              </Form.Select>
+                          <Form.Select name="blood" placeholder={item.blood} defaultValue={item.blood} onChange={(e) => setBloodValue(e.target.value)} required >
+                            <option value="" selected disabled>Select</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                          </Form.Select>
                           //<input name="blood" type="text" className="form-control" id="blood" placeholder={item.blood} defaultValue={item.blood} onChange={(e) => setBloodValue(e.target.value)} required />
                         ))}
                       </div>
@@ -354,7 +361,7 @@ const PatientInfoEdit = () => {
                       </div>
                     </div>
                   </div>
-                  <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
+                  <Button className='edit-save text-right' onClick={() => { handleModal(); updatePatientInfo(); }}>Save Changes</Button>
                   {/* <ProfileInfoEditSaved/> */}
                 </div>
               </form>
@@ -363,7 +370,25 @@ const PatientInfoEdit = () => {
         </div>
       </section>
 
-      
+      <Modal show={modalState == 'show-modal'} onHide={handleModalClose}>
+
+        {/* <Modal.Header closeButton>
+          <Modal.Title>Appointment Marked as No Show</Modal.Title>
+        </Modal.Header> */}
+
+        <Modal.Body closeButton>
+          {/* <img src={successful} alt="success image" className='success-img' /> */}
+          <p className='modal-txt'>You have succesfully updated your changes!</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
     </>
   );
 };

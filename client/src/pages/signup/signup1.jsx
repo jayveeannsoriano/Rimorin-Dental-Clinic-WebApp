@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/login-signup.css";
+import Footer from '../../layout/LandingPageLayout/footer';
 // import PhoneInput from 'react-phone-input-2';
 // import 'react-phone-input-2/lib/style.css';
 
@@ -233,6 +234,9 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <p className="forgot-password text-right">
           Already registered? <a href="/auth/login">Sign In</a>
         </p>
+        <Footer/>
+
+        
       </form>
     </>
   );

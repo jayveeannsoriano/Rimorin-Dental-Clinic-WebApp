@@ -10,6 +10,7 @@ import Axios from "axios";
 import { Button } from "react-bootstrap";
 import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
+import Modal from 'react-bootstrap/Modal';
 
 const createReceipt = () => {
   const location = useLocation();
