@@ -147,7 +147,7 @@ const CreateDentalRecord = () => {
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-
+    setModalState('show-modal');
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,

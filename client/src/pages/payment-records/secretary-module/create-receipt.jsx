@@ -174,7 +174,7 @@ const createReceipt = () => {
       addedProcedurePrice: recordProcedures,
       amountPaid: amountPaid,
     });
-
+    
     setModalState('show-modal')
   };
 
