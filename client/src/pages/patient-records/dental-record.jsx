@@ -66,7 +66,16 @@ const DentalRecord = () => {
       );
       // console.log(response, "Responses");
       setAppointment(response.data);
-      console.log(appointment);
+
+      response.data.forEach(specificData => {
+        const chartedTeeth = specificData.chartedTeeth; 
+        chartedTeeth.forEach(teeth => {
+            var el = document.getElementById(teeth);
+            el.classList.toggle('marked');
+        });
+      })
+
+      console.log(response.data);
       // setFilteredAppointment(response.data);
     } catch (error) {
       console.log(error);
