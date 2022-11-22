@@ -145,13 +145,13 @@ export default function ExistingDentalRecord() {
                                                 <img src={NoRecordImg} alt="no-record-img" />
                                                 <div className="empty-message">
                                                     <h2>DENTAL RECORD NOT FOUND</h2>
-                                                    <p> It seems that you have no dental record for this patient. You can create a Dental Record for this patient on their first appointment. You can click the Add Treatment for Walk-ins</p>
+                                                    <p> It seems that you have no dental record for this patient. Click the <b>Add Treatment</b> button to create one.</p>
                                                 </div>
-                                                <div className="create-record">
+                                                {/*<div className="create-record">
                                                     <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
                                                         <button className="btn btn-primary">Create Dental Record</button>
                                                     </a>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                         </div>
                                     </div> : <DentalRecordDataTable response={appointment} patientIDNum={StringfyIDnumber}/>}
