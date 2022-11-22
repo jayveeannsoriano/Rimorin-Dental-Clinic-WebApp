@@ -3,21 +3,11 @@ import React, { useState } from 'react';
 // import "../../styles/login-signup.css";
 import Axios from 'axios';
 import Footer from '../../layout/LandingPageLayout/footer';
-import AccountCreated from '../../components/modals/success-modals/create-acc';
-import successful from '../../assets/img/check.png';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     console.log(values);
     const { fname, lname, mname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions, tellphone, profession, zipcode, blood } = values;
-    // const [modalState, setModalState] = useState(false);
-    // const handleModalClose = () => setModalState(false);
-
-    //account creation show modal
-    // const handleModal = () => {
-    //     setModalState('account-created')
-    // }
+    
 
     const Previous = e => {
         e.preventDefault();
@@ -197,30 +187,13 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                                 className="btn btn-primary"
                                 style={{ padding: "10px 30px" }}
                             >
-                                Next
+                                Confirm
                             </button>
                         </div>
                     </div>
                 </div>
                 <Footer />
-                {/* <Modal show={modalState == 'account-created'} onHide={handleModalClose}>
-
-                    <Modal.Header closeButton>
-                        <Modal.Title>Account Created</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        <img src={successful} alt="success image" className='success-img' />
-                        <p className='modal-txt'>You have created your account.</p>
-                    </Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={handleModalClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-
-                </Modal> */}
+                
             </form>
         </>
     );
