@@ -173,7 +173,10 @@ const createReceipt = () => {
       officialReceiptNum: getOrNum,
       addedProcedurePrice: recordProcedures,
       amountPaid: amountPaid,
-    });
+      imgFile: getFile[0],
+    },{
+      headers: { 'Content-Type': 'multipart/form-data' }
+  });
 
     setModalState('show-modal')
   };

@@ -39,8 +39,6 @@ const DentalRecordDataTable = (response,patientIDNum) => {
     var query = url_parts.query;
 
   const StringfyID = JSON.stringify(response,patientIDNum);
-  const ConvertStringApp = JSON.parse(StringfyID);
-  //const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDNum).replace(/"/g, "");
     
     useEffect(() => {
 		const timeout = setTimeout(() => {

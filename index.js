@@ -696,7 +696,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
-  const insertAppStatus = "Rebook";
+  const insertAppStatus = "Rebooked";
   const docName = "Pamela Rimorin Concepcion";
 
   const AppData = new AppRequest({
