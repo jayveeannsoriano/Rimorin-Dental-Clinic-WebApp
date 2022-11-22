@@ -225,7 +225,7 @@ const createReceipt = () => {
 
                 <form
                   onSubmit={() => {
-                    createReceipt();
+                    createReceipt(); 
                   }}
                 >
                   <div className="container">
@@ -492,7 +492,7 @@ const createReceipt = () => {
                       <Button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {createUserReceipt()}}
+                        onClick={() => {handleShow(); createUserReceipt(); }}
                       >
                         Create
                       </Button>
