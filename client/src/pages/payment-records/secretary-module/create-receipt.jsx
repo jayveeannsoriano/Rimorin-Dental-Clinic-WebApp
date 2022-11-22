@@ -143,8 +143,23 @@ const createReceipt = () => {
     );
   }, [recordProcedures]);
 
+
+  var [PWDSeniorDiscount, setPWDSeniorDiscount] = useState();
+  if (isNaN(PWDSeniorDiscount)) {
+    PWDSeniorDiscount = 0;
+  }
+  console.log(PWDSeniorDiscount)
+
+  var finalTotal = useState();
+
   //total number
-  const finalTotal = totalAmountPaid + procedurePriceTotal;
+  if(PWDSeniorDiscount == 0){
+    console.log("NO DISCOUNT")
+    finalTotal = totalAmountPaid + procedurePriceTotal
+  }else{
+    console.log("MAY DISCOUNT LUGI")
+    finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
+  }
 
   // console.log(StringfyAppNumber);
   // console.log(serviceItem);
@@ -259,12 +274,16 @@ const createReceipt = () => {
                             label="Senior Citizen"
                             name="group1"
                             type="radio"
+                            value = {0.20}
+                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                           <Form.Check
                             inline
                             label="PWD"
                             name="group1"
                             type="radio"
+                            value = {0.20}
+                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 following-info"></div>
