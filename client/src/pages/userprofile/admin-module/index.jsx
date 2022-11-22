@@ -23,6 +23,8 @@ const AdminUserProfile = () => {
     const [brgyValue, setBrgyValue] = useState('');
     const [provinceValue, setProvinceValue] = useState('');
     const [zipValue, setZipValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+    const bcrypt = require("bcryptjs");
 
          // change password
          const [emailValue, setEmailValue] = useState('');
@@ -74,6 +76,7 @@ const AdminUserProfile = () => {
         setProvinceValue(response.data[0].province)
         setZipValue(response.data[0].zipcode)
         setEmailValue(response.data[0].email)
+        setPasswordValue(response.data[0].password)
 
       } catch (error) {
         console.log(error);

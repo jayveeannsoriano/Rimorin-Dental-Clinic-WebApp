@@ -26,6 +26,8 @@ const DentistUserProfile = () => {
     const [zipValue, setZipValue] = useState('');
     const [ptrValue, setPtrValue] = useState('');
     const [licenceValue, setLicenceValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+    const bcrypt = require("bcryptjs");
 
      // change password
      const [emailValue, setEmailValue] = useState('');
@@ -80,7 +82,8 @@ const DentistUserProfile = () => {
             setPtrValue(response.data[0].ptr)
             setLicenceValue(response.data[0].licence)
             setEmailValue(response.data[0].email)
-
+            setPasswordValue(response.data[0].password)
+            
         } catch (error) {
             console.log(error);
         }
@@ -113,7 +116,7 @@ const DentistUserProfile = () => {
 
         console.log("New info saved in DB")
     }
-    
+
     return(
         <>
             <div class="pagetitle">

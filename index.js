@@ -410,6 +410,20 @@ app.get("/getTodayUserAppointmentDetails", async(req,res) => {
           });
         });
 
+app.get("/getTodayAppointmentDetails", async(req,res) => {
+
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(slicedDate)
+    
+      await AppDetails.find({date:slicedDate})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 //filtered Upcoming
 app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
 
