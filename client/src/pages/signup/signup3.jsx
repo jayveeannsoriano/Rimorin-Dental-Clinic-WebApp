@@ -17,9 +17,10 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
 
     return (
         <>
-            <form className='auth-inner' onSubmit={Continue}>
-                <p id="titleform"><h4>Rimorin Dental Clinic</h4></p>
-
+            <form className='auth-inner-signup' onSubmit={Continue}>
+                <div className='titleform'>
+                  <a href="/">Rimorin Dental Clinic</a>
+                </div>
                 <div className="mb-3">
                     <label> Name any medications or maintenance you're taking. (Type N/A if None) </label>
                     <input
@@ -46,7 +47,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                 <div className="col-4">
                     <div className="mb-3">
                         <label>Blood Type</label>
-                        <Form.Select defaultValue={values.bloodtype} onChange={handleChange('bloodtype')}>
+                        <Form.Select defaultValue={values.blood} onChange={handleChange('blood')}>
                             <option value="" selected disabled>Select</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -124,7 +125,6 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                     </div>
                 </div>
 
-
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className='col-md-auto '>
@@ -149,10 +149,9 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                     </div>
                 </div>
 
-                <p className="forgot-password text-right">
+                <div className="signup-link">
                     Already registered? <a href="/auth/login">Sign In</a>
-                </p>
-                <Footer/>
+                </div>
             </form>
         </>
 
