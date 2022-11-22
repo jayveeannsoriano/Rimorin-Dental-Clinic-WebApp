@@ -12,6 +12,7 @@ const ReceiptDetails = new mongoose.Schema(
     consultation: String,
     appStatus: String,
     payStatus: String,
+    discountValue:Number,
     transactionNumber: String,
     addressDetails: String,
     addedItem: Object,

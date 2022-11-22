@@ -972,20 +972,22 @@ app.put("/getandUpdateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
   const officialReceiptNum = req.body.officialReceiptNum;
   const addedProcedurePrice = req.body.addedProcedurePrice;
   const amountPaid = req.body.amountPaid;
-  const patientIDnumber = "PT#"+req.body.patientIDnumber;
-  const appNumber = '#'+req.body.appNum;
+  const discountValue = req.body.disValue
+  const payStatus = "Paid";
 
 
 try{
   console.log(objectID)
   await ReceiptDetails.findOneAndUpdate({_id:objectID},{
+    payStatus: payStatus,
     dateIssued:dateIssued,
     paymentType:paymentType,
     addedItem:addedItemValue,
     officialReceiptNum:officialReceiptNum,
     addedProcedurePrice:addedProcedurePrice,
     amountPaid:amountPaid,
-    totalAmount:totalAmount
+    totalAmount:totalAmount,
+    discountValue:discountValue,
   })
 }catch(error){
 console.log(error)
@@ -1014,6 +1016,7 @@ app.post("/createEprescription",uploadImg2.single('imgFile'), async (req,res)=>{
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const presDetails = req.body.presDetails;
   const notesValue = req.body.notesValue;
+
   
   await PresDetails.create({
       patientIDNumber: patientIDNum,
