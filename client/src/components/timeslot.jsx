@@ -53,7 +53,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
     }catch (error){
       console.log(error)
     }
-}
+  }
 
   intervals(inTime, outTime);
   const el = document.querySelectorAll ('.timeslot button');
