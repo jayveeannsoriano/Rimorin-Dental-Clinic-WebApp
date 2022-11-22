@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
-const Timeslot = ({props,takenAppointments,chosenDate}) => {
+const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   // let inTime = "09:00 AM"
   // let outTime = "05:00 PM"
   const [result, setResult] = useState([]);
@@ -112,7 +112,8 @@ const Timeslot = ({props,takenAppointments,chosenDate}) => {
                 onClick={(e)=>{
                   e.preventDefault();
                   setGetTime(e.target.value)
-                  // props.onSubmit(time)
+                  //props.onSubmit(time)
+                  GetTimeCheck(time);
                   console.log(time);
                 }}>{time}
                 </Button>

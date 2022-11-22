@@ -106,7 +106,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
       //   time: timeValue,
       //   consultation: consultationValue
       // })
-      // console.log("Receipt Created with ", appNum, pName)
+      console.log("Receipt Created with ", appNum, pName)
     } else {
       console.log("Receipt not created")
     }

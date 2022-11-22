@@ -22,6 +22,8 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
         console.error(error);
     }
 
+  
+    
     //ToS validation
     const [agree, setAgree] = useState(false);
 
@@ -40,30 +42,30 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
     const [chosenDate, setChosenDate] = useState("");
 
+    const [timeCheck, setTimeCheck] = useState("")
+    console.log("CURRENT TIME BOOKING",timeCheck)
+    window.localStorage.setItem('time', timeCheck);
+
     const [takenAppointments, setTakenAppointments] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
+    console.log("CURRENT DATE BOOKING",startDate);
+    window.localStorage.setItem('date', startDate);
+  
     //useNavigate
     const navigate = useNavigate();
 
     //time input
-    const [time, setGetTime] = useState("");
+    const [setTime, setGetTime] = useState("");
 
 
     const dateValue = "" + startDate;
     const stringDateValue = dateValue.toString().substring(0, 10);
-
-    //retrieve Time data from Timeslot
-    const getBookingData = (data) => {
-        console.log('Retrieving Data from Booking Input: ', data)
-        setGetTime(data);
-        window.localStorage.setItem('time', data);
-    }
     
     //Get All appointments on date
     const getAppointmenstbyDate = async(date) => {
         try{
-            console.log(date);
+            
             setChosenDate(date);
             const response = await axios.get('http://localhost:3001/getAppointmentsbyDate',{
                 params:{
@@ -170,7 +172,6 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                         setStartDate(date);
                                         getAppointmenstbyDate(date.toString().substring(0, 10));
                                         setTakenAppointments([]);
-                                        window.localStorage.setItem('date', startDate);
                                     }}
                                     isClearable
                                     placeholderText="Choose a date"
@@ -189,7 +190,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                             <div className="col-md-6">
                                 <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                                 <p> Available Times </p>
-                                <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
+                                <Timeslot GetTimeCheck={setTimeCheck} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
                                 
                                 {/* {takenAppointments.length && <Timeslot onSubmit={getBookingData} takenAppointments={takenAppointments}/>} */}
 

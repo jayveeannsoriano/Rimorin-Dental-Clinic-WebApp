@@ -346,7 +346,7 @@ app.get("/getPatientInfo", async(req,res) => {
 
 //
 app.get("/getUserAppointmentDetails", async(req,res) => {
-    
+  
       await AppDetails.find({})
           .then((data) => {
             res.json(data);
@@ -462,7 +462,6 @@ app.get("/getUserDentalRecord", async(req,res) => {
            console.log('error: ', error)
           });
         });
-
         
     //get patient epres records
 app.get("/getUserEPresRecord", async(req,res) => {
@@ -506,6 +505,17 @@ app.get("/getUserTransaction", async(req,res) => {
        console.log('error: ', error)
       });
     });
+  
+    app.get("/getPatientListforUserTransaction", async(req,res) => {
+    
+      await User.find({user_role_id:1})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 
     app.get("/getUserforAdmin", async(req,res) => {
     

@@ -9,26 +9,30 @@ const SecTransactionPatientProfileWidget = () => {
   const [patientReceipt, setPatientReceipt] = useState([]);
   const [patientIDNum, setpatientIDNum] = useState();
 
-  //App Detail
+  console.log(patientReceipt, "response data")
+
   const getReceiptDetails = async () => {
     try {
       const response = await Axios.get(
-        "http://localhost:3001/getReceiptDetails"
+        "http://localhost:3001/getPatientListforUserTransaction"
       );
-      console.log(response, "Responses");
+
       setPatientReceipt(response.data);
+
     } catch (error) {
       console.log(error);
-    }
+    }    
   };
+
+  const proceedtoPayment = (value) => {
+    setpatientIDNum(value.substring(3));
+  };
+
 
   useEffect(() => {
     getReceiptDetails();
   }, []);
 
-  const proceedtoPayment = (value) => {
-    setpatientIDNum(value.substring(3));
-  };
 
   return (
     <>
@@ -54,7 +58,7 @@ const SecTransactionPatientProfileWidget = () => {
                       <div class="profile-det-info">
                         <h3>
                           <a href="#"></a>
-                          {item.pName}
+                          {item.fname} {item.lname}
                         </h3>
 
                         <div class="patient-details">

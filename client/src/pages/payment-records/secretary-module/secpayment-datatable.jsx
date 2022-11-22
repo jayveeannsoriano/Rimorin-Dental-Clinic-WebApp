@@ -22,13 +22,6 @@ const SecTransactionDataTable = (patientIDNum) => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
-    const goToReceipt = () => {
-        console.log(patientValue)
-        // <a href={"/secretary/payment-records/create-receipt?patientValue=" +  patientValue.substring(1)}>
-        window.location.href = "/secretary/payment-records/create-receipt?patientValue=" + patientValue.substring(1);
-    }
-
-
     const getAppointment = async() => {
 
         try{
@@ -66,7 +59,7 @@ const SecTransactionDataTable = (patientIDNum) => {
             selector: (row) => <div className="action-buttons" >
                 <PrintFile />
                 <ViewFile />
-                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1)}>Create Receipt</Button>
+                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date}>Create Receipt</Button>
             </div>
         }
     ];
