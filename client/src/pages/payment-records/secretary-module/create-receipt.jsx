@@ -178,7 +178,8 @@ const createReceipt = () => {
       headers: { 'Content-Type': 'multipart/form-data' }
   });
 
-    setModalState('show-modal')
+    // setModalState('show-modal')
+    handleShow();
     
   };
 
@@ -492,7 +493,7 @@ const createReceipt = () => {
                       <Button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {handleShow(); createUserReceipt(); }}
+                        onClick={() => {createUserReceipt() }}
                       >
                         Create
                       </Button>
