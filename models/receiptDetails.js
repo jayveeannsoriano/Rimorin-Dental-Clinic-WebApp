@@ -15,6 +15,7 @@ const ReceiptDetails = new mongoose.Schema(
     transactionNumber: String,
     addressDetails: String,
     addedItem: Object,
+    addedProcedurePrice: Object,
     totalAmount: Number,
     amountPaid: Number,
     paymentType: String,

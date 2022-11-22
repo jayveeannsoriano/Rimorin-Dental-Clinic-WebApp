@@ -927,13 +927,19 @@ app.put("/updateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
   const paymentType = req.body.paymentType;
   const totalAmount = req.body.totalAmount;
   const addedItemValue = req.body.addedItem;
+  const officialReceiptNum = req.body.officialReceiptNum;
+  const addedProcedurePrice = req.body.addedProcedurePrice;
+  const amountPaid = req.body.amountPaid;
 
   await ReceiptDetails.findOneAndUpdate(
-    {appNum:patientIDnumber}, 
+    {patientIDnumber:patientIDnumber}, 
     {dateIssued:date, 
     addedItem: addedItemValue,
     paymentType:paymentType,
-    totalAmount:totalAmount
+    totalAmount:totalAmount,
+    officialReceiptNum:officialReceiptNum,
+    addedProcedurePrice:addedProcedurePrice,
+    amountPaid:amountPaid,
   }
   )
   console.log("Receipt Details Updated!")

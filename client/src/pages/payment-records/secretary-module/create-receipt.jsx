@@ -30,15 +30,10 @@ const createReceipt = () => {
     JSON.stringify(getDateReceipt).replace(/"/g, "")
   );
 
-  console.log(StringfyAppNumber + " " + StringfyIDNumber + " " + StringfyDate);
-
-  const [transactionDetails, setTransactionDetails] = useState("");
-  const [transactionNumber, setTransactionNumber] = useState("");
-  const [patientName, setPatientName] = useState("");
-  const [patientAddress, setPatientAddress] = useState("");
   const [dateIssued, setDateIssued] = useState("");
   const [paymentType, setPaymentType] = useState("");
   const [amountPaid, setAmountPaid] = useState("");
+  const [getOrNum, setOrNum] = useState("");
 
   //   //
   const [serviceItem, setServiceList] = useState([
@@ -88,7 +83,7 @@ const createReceipt = () => {
   //cancel button navigate to previous page
   const navigate = useNavigate();
 
-  //get app number
+
 
 
   const [recordProcedures, setRecordProcedures] = useState([]);
@@ -112,7 +107,6 @@ const createReceipt = () => {
   }, []);
 
   //MAP TWICE
-  //const [getProcedure, setProcedure] = useState([]);
   const [getPrice, setPrice] = useState([]);
   const [dentalItem, setDentalItem] = useState([])
   const procedurePriceTotal = getPrice.reduce(
@@ -126,7 +120,6 @@ const createReceipt = () => {
         ? item.chosen.map(
             (proc) => (
               setPrice((current) => [...current, parseInt(proc.price)]),
-              //setProcedure((current) => [...current, proc.procedure])
               setDentalItem((current) => [...current, proc])
             )
           )
@@ -152,13 +145,17 @@ const createReceipt = () => {
     finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
   }
 
-  // console.log(StringfyAppNumber);
-  // console.log(serviceItem);
-  // console.log(paymentType);
-  // console.log(amountPaid);
-  // console.log(recordProcedures);
-  // console.log(dateIssued);
-  // console.log(StringfyIDNumber);
+
+  
+  console.log(StringfyAppNumber);
+  console.log(serviceItem);
+  console.log(paymentType);
+  console.log(amountPaid);
+  console.log(recordProcedures);
+  console.log(dateIssued);
+  console.log(StringfyIDNumber);
+  console.log(getOrNum);
+
 
   const createReceipt = async () => {
     await Axios.put("http://localhost:3001/updateReceipt", {
@@ -167,6 +164,9 @@ const createReceipt = () => {
       dateIssued: dateIssued,
       paymentType: paymentType,
       totalAmount: finalTotal,
+      officialReceiptNum:getOrNum,
+      addedProcedurePrice: recordProcedures,
+      amountPaid:amountPaid,
     });
   };
 
@@ -220,7 +220,7 @@ const createReceipt = () => {
                     <div className="row transaction-details-row">
                       <div className="col-xl-12 col-lg-12 col-md-12 patient-transaction-details">
                         <h6>
-                          Appointment #:<span> #APT123</span>
+                          Appointment #:<span> #{StringfyAppNumber}</span>
                         </h6>
                         <h6>
                           Bill to:<span> Shermax Soriano</span>
@@ -249,9 +249,9 @@ const createReceipt = () => {
                           type="text"
                           className="form-control"
                           placeholder="OR #"
-                          //   onChange={(e) => {
-                          //     setOrNum(e.target.value);
-                          //   }}
+                            onChange={(e) => {
+                              setOrNum(e.target.value);
+                            }}
                           required
                         />
                       </div>
@@ -473,7 +473,8 @@ const createReceipt = () => {
 
                   <div className="row rx-btn col-md-12">
                     <div className="submit-section">
-                    <button
+                    <Button
+                         href={"/secretary/payment-records/view-transactions?patientIDNum=" +StringfyIDNumber}
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
                         onSubmit={() => {
@@ -481,7 +482,7 @@ const createReceipt = () => {
                         }}
                       >
                         Create
-                      </button>
+                      </Button>
                       <button
                         className="btn btn-outline-danger rx-btn"
                         onClick={() => navigate(-1)}
