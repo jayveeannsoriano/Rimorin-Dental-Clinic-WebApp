@@ -139,16 +139,19 @@ const ClinicHours = () => {
     try{
       const response = await axios.get('http://localhost:3001/getAvailableTimes')
 
-      var data = response.data
-      setTimeSlot(data[0].config)
+      var data = response.data[0].config
+      
       var range;
 
-      data[0].config.map(item => (
-        console.log(item),
-        console.log('#'+item.day),
+      data.map(item => (
         range = document.querySelectorAll('#'+item.day),
         range[0].value = item.timeStart,
-        range[1].value = item.timeEnd
+        range[1].value = item.timeEnd,
+        setTimeSlot(current =>
+          current.map(obj => {
+            return {...obj, timeStart: item.timeStart, timeEnd: item.timeEnd};
+          }),
+        )
       ))
     }catch (error){
       console.log(error)
@@ -156,13 +159,12 @@ const ClinicHours = () => {
   }
 
   useEffect(() => {
-
   }, [timeSlot]);
 
   useEffect(() => {
     getAvailableTimes();
     
-      
+    console.log(timeSlot)
     
   }, []);
   
