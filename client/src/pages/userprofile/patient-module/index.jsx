@@ -247,7 +247,7 @@ const UserProfile = () => {
                                                 </div>
 
                                                 <div className="col-lg-3">
-                                                    <label for='middleName'>Middle Name</label>
+                                                    <label for='middleName'>Middle Initial</label>
                                                     {userData.map((item, index) => (
                                                         <input name="middleName" type="text" className="form-control" id="middleName" placeholder={item.mname} defaultValue={item.mname} onChange={(e) => setMiddleValue(e.target.value)} required />
                                                     ))}

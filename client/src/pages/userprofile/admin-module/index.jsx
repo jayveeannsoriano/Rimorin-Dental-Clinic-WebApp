@@ -135,7 +135,7 @@ const AdminUserProfile = () => {
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label ">Middle Name</div>
+                                                <div class="col-lg-3 col-md-4 label ">Middle Initial</div>
                                                 <div class="col-lg-9 col-md-8">{userInfo['mname']}</div>
                                             </div>
 
