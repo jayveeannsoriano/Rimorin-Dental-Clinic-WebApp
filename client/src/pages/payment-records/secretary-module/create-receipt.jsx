@@ -11,6 +11,8 @@ import { Button } from "react-bootstrap";
 import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
+import {useNavigate} from 'react-router-dom';
 
 const createReceipt = () => {
   const location = useLocation();
@@ -83,6 +85,10 @@ const createReceipt = () => {
     setGetFile(files);
     console.log(files);
   };
+  //cancel button navigate to previous page
+  const navigate = useNavigate();
+
+
 
   //              //
 
@@ -99,6 +105,7 @@ const createReceipt = () => {
 
   // }
   //get app number
+
 
   const [recordProcedures, setRecordProcedures] = useState([]);
   console.log(recordProcedures, "this are the vals");
@@ -181,24 +188,23 @@ const createReceipt = () => {
 
   return (
     <>
-      {/* Main Wrapper */}
-      <div className="main-wrapper">
+      <div className="pagetitle">
+        <h1>Create Receipt</h1>
         {/* Breadcrumb */}
         <div className="breadcrumb-bar">
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-md-12 col-12">
-                <nav aria-label="breadcrumb" className="page-breadcrumb">
+                <nav>
                   <ol className="breadcrumb">
                     <li className="breadcrumb-item">
                       <a href="/secretary">Home</a>
                     </li>
-                    <li className="breadcrumb-item active" aria-current="page">
+                    <li className="breadcrumb-item active">
                       Create E-Receipt
                     </li>
                   </ol>
                 </nav>
-                <h2 className="breadcrumb-title">Create E-Receipt</h2>
               </div>
             </div>
           </div>
@@ -230,7 +236,7 @@ const createReceipt = () => {
                     <div className="row transaction-details-row">
                       <div className="col-xl-12 col-lg-12 col-md-12 patient-transaction-details">
                         <h6>
-                          Transaction #:<span> #TR0002</span>
+                          Appointment #:<span> #APT123</span>
                         </h6>
                         <h6>
                           Bill to:<span> Shermax Soriano</span>
@@ -240,7 +246,7 @@ const createReceipt = () => {
                         </h6>
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">
-                        <label for="dateOfIssue">Date of Issue</label>
+                        <label for="dateOfIssue">Date of Issue: <span class="text-danger">*</span></label>
                         <input
                           name="dateOfIssue"
                           type="date"
@@ -253,7 +259,7 @@ const createReceipt = () => {
                         />
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">
-                        <label for="ORnum">OR Number:</label>
+                        <label for="ORnum">OR Number: <span class="text-danger">*</span></label>
                         <input
                           name="ORnum"
                           type="text"
@@ -285,6 +291,14 @@ const createReceipt = () => {
                             value = {0.20}
                             onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
+                          <Form.Check
+                            inline
+                            label="Not Applicable"
+                            name="group1"
+                            type="radio"
+                            value = {0}
+                            //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                          />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 following-info"></div>
                       </div>
@@ -292,27 +306,32 @@ const createReceipt = () => {
 
                     {/* Details of charges */}
                     <div className="form-section-title">Details of Charges</div>
-                    <table>
-                      <tr>
-                        <th>Service</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                      </tr>  
-                  {dentalItem.map((item, index) => (
-                      <tr key={index}>
-                      <td>{item.procedure}</td>
-                      <td>1</td>
-                      <td>{item.price}</td>
-                      </tr>
-                  ))}
-                  {serviceItem .map((item, index) => (
-                      <tr key={index}>
-                        <th>{item.serviceValue}</th>
-                        <th>{item.quantityValue}</th>
-                        <th>{item.amountToPay}</th>
-                      </tr> 
-                  ))}
-                    </table>
+                    <Table striped>
+                      <thead>
+                        <tr>
+                          <th>Service/s</th>
+                          <th style={{textAlign: "center"}}>Quantity</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>  
+                      <tbody>
+                        {dentalItem.map((item, index) => (
+                            <tr key={index}>
+                            <td>{item.procedure}</td>
+                            <td style={{textAlign: "center"}}>1</td>
+                            <td>{item.price}</td>
+                            </tr>
+                        ))}
+                        {serviceItem .map((item, index) => (
+                            <tr key={index}>
+                              <th>{item.serviceValue}</th>
+                              <th style={{textAlign: "center"}}>{item.quantityValue}</th>
+                              <th>{item.amountToPay}</th>
+                            </tr> 
+                        ))}
+                      </tbody>
+                    </Table>
+                    <br />
 
                     <div class="row">
                       <div className="col-3 col-xl-3 col-lg-3 col-md-4 col-sm-4 add-button-container">
@@ -375,6 +394,7 @@ const createReceipt = () => {
                                   name="amountToPay"
                                   type="text"
                                   class="form-control"
+                                  placeholder="500"
                                   value={singleItem.amountToPay}
                                   onChange={(e) => {
                                     handleGetValues(e, index);
@@ -389,7 +409,7 @@ const createReceipt = () => {
                             <div class="col-12 col-md-6 col-lg-2">
                               <div class="add-more">
                                 <br />
-                                {serviceItem.length !== 1 && (
+                                {serviceItem.length !== 0 && (
                                   <button
                                     type="button"
                                     onClick={() => handleItemRemove(index)}
@@ -469,14 +489,7 @@ const createReceipt = () => {
 
                   <div className="row rx-btn col-md-12">
                     <div className="submit-section">
-                      <button
-                        type="reset"
-                        className="btn btn-secondary submit-btn rx-btn"
-                      >
-                        Clear
-                      </button>
-                      <ViewReceiptFile />
-                      <button
+                    <button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
                         onSubmit={() => {
@@ -484,6 +497,12 @@ const createReceipt = () => {
                         }}
                       >
                         Create
+                      </button>
+                      <button
+                        className="btn btn-outline-danger rx-btn"
+                        onClick={() => navigate(-1)}
+                      >
+                        Cancel
                       </button>
                     </div>
                   </div>
