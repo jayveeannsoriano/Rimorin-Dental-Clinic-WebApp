@@ -25,47 +25,25 @@ const ResetPassword = lazy(() => import('../pages/reset-password/index'));
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 const AuthenticationRoutes = {
-    path: '/',
-    element: <LandingPageLayout />,
+    path: '/auth',
+    element: <AuthLayout />,
     children: [
-        {
-            path: '*',
-            element: <ErrorPage />
-        },
-        {
-          path: '/',
-          element: <LandingPage />
-        },
-        {
-          path: '/auth',
-          element: <AuthLayout />,
-          children: [
-            {
-              path: '/auth/login',
-              element: <LoginPage />
-            },
-            {
-              path: '/auth/forgot-password',
-              element: <ForgotPassword />,
-            },
-            {
-              path: '/auth/reset-password',
-              element: <ResetPassword />
-            },
-            {
-              path: '/auth/signup',
-              element: <SignUpPage />
-            }
-          ]
-        },
-        {
-          path: 'terms-of-use',
-          element: <TermsOfUse />
-        },
-        {
-          path: 'privacy-policy',
-          element: <PrivacyPolicy />
-        }
+      {
+        path: '/auth/login',
+        element: <LoginPage />
+      },
+      {
+        path: '/auth/forgot-password',
+        element: <ForgotPassword />,
+      },
+      {
+        path: '/auth/reset-password',
+        element: <ResetPassword />
+      },
+      {
+        path: '/auth/signup',
+        element: <SignUpPage />
+      }
     ]
 };
 export default AuthenticationRoutes;

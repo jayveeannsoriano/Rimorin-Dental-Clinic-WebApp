@@ -1140,7 +1140,7 @@ padding-right: 4px;
   max-width: 100px !important;
 }
 
-/* secretary module */
+/* secretary module 5 cols*/
 .transaction-datatable #cell-1-undefined,
 .transaction-datatable #cell-2-undefined,
 .transaction-datatable #cell-3-undefined,
@@ -1151,14 +1151,14 @@ padding-right: 4px;
   max-width: 13px !important;
 }
 
-/* patient module transaction table */
+/* patient module transaction table 4 cols */
 .patient-transaction-table #cell-1-undefined,
 .patient-transaction-table #cell-2-undefined,
 .patient-transaction-table #cell-3-undefined{
-  max-width: 167px !important;
+  max-width: 140px !important;
 }
 .patient-transaction-table #cell-4-undefined{
-  max-width: 40px !important;
+  max-width: 13px !important;
 }
 .patient-transaction-table .action-buttons{
   /* width: 285px !important; */
@@ -1251,8 +1251,6 @@ padding-right: 4px;
 /*--------------------------------------------------------------
 # Footer (login, sign up, errors)
 --------------------------------------------------------------*/
-
-
 .footer {
   background: var(--primary-color);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
@@ -1346,6 +1344,11 @@ padding-right: 4px;
     --bs-btn-disabled-color: #fff!important;
     --bs-btn-disabled-bg: var(--primary-color)!important;
     --bs-btn-disabled-border-color: var(--primary-color)!important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: none !important;
 }
 
 .btn-check:checked+.btn, 

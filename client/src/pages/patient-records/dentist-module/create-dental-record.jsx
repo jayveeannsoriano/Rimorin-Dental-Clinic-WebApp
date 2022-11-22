@@ -147,7 +147,7 @@ const CreateDentalRecord = () => {
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    setModalState('show-modal');
+    
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
@@ -155,9 +155,13 @@ const CreateDentalRecord = () => {
     })
     console.log("Receipt Created with ", patientIDNumber, StringfyAppnumber);
 
-    setModalState('show-modal');
+    // setModalState('show-modal');
+    handleShow();
   }
 
+  const handleShow = () => {
+    setModalState('show-modal');
+  }
   const handleClickTeeth = event => {
 
     event.currentTarget.classList.toggle('unmarked');
@@ -425,7 +429,7 @@ const CreateDentalRecord = () => {
                   <p>Root Canal Therapy</p>
                 </div>
                 <div class="dental-form-buttons">
-                  <Button type="submit" class="btn btn-primary" href="/dentist" onClick={() => uploadDentalRecords()}>Create</Button>
+                  <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
                   <button class="btn btn-outline-secondary">Cancel</button>
                 </div>
               </div>
@@ -446,7 +450,7 @@ const CreateDentalRecord = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" href={"/dentist/patient-records/dental-record/view-dental-records?appNum=" + StringfyAppnumber} onClick={handleModalClose}>
+          <Button variant="primary" href={"/dentist"} onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>

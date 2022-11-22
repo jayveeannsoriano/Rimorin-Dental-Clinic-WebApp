@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "../../styles/login-signup.css";
-import Footer from '../../layout/LandingPageLayout/footer';
 // import LoadingOverlay from 'react-loading-overlay';
 
 export default class Login extends Component {
@@ -56,68 +55,49 @@ export default class Login extends Component {
 
   render() {
     return (
-      
-      <>
-        {/* <LoadingOverlay
-        active={false}
-        spinner
-        text='Searching for your Account...'
-      > */}
+        <>
+            <form className='auth-inner my-5' onSubmit={this.handleSubmit}>
+              <div className='titleform'>
+                  <a href="/">Rimorin Dental Clinic</a>
+              </div>
+              <div className="mb-3">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter email"
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                  required
+                />
+              </div>
 
-        {/* ======= FORM ======= */}
-        <form className="auth-inner" onSubmit={this.handleSubmit}>
-          <p id="titleform">
-            <h4>Rimorin Dental Clinic</h4>
-          </p>
+              <div className="mb-3">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter password"
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                  required
+                />
+              </div>
 
-          <div className="mb-3">
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-              onChange={(e) => this.setState({ email: e.target.value })}
-              required
-            />
-          </div>
+              {this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
+                <strong>Error: Incorrect Username or Password.</strong> Please try again.
+              </div> : ""}
 
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-              onChange={(e) => this.setState({ password: e.target.value })}
-              required
-            />
-          </div>
+              <div className="pass"> <a href='/auth/forgot-password'> Forgot Password? </a></div>
+              
+              <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
+              </div>
+              <div className="signup_link">
+                Don't have an account? <a href="/auth/signup">Sign Up</a>
+              </div>
 
-          {this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
-            <strong>Error: Incorrect Username or Password.</strong> Please try again.
-          </div> : ""}
-
-          {/* <div className="checkbox">
-            <label htmlFor="checkbox">
-              <input type="checkbox" name="checkbox" /> Remember me{" "}
-            </label>
-          </div> */}
-          <div className="pass"> <a href='/auth/forgot-password'> Forgot Password? </a></div>
-          
-          <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </div>
-          <div className="signup_link">
-            Don't have an account?
-            <br />
-            <a href="/auth/signup">Sign Up</a>
-          </div>
-
-
-        </form>
-        <Footer/>
-        {/* </LoadingOverlay> */}
+            </form>
       </>
 
     );

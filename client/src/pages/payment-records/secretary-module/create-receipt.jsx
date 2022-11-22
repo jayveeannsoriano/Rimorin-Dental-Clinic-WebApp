@@ -173,8 +173,13 @@ const createReceipt = () => {
       officialReceiptNum: getOrNum,
       addedProcedurePrice: recordProcedures,
       amountPaid: amountPaid,
-    });
-    setModalState('show-modal')
+      imgFile: getFile[0],
+    },{
+      headers: { 'Content-Type': 'multipart/form-data' }
+  });
+
+    // setModalState('show-modal')
+    handleShow();
     
   };
 
@@ -221,7 +226,7 @@ const createReceipt = () => {
 
                 <form
                   onSubmit={() => {
-                    createReceipt();
+                    createReceipt(); 
                   }}
                 >
                   <div className="container">
@@ -488,7 +493,7 @@ const createReceipt = () => {
                       <Button
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {createUserReceipt()}}
+                        onClick={() => {createUserReceipt() }}
                       >
                         Create
                       </Button>
