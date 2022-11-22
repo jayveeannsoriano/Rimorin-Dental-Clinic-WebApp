@@ -174,9 +174,13 @@ const createReceipt = () => {
       addedProcedurePrice: recordProcedures,
       amountPaid: amountPaid,
     });
-    
     setModalState('show-modal')
+    
   };
+
+  const handleShow = () => {
+    setModalState('show-modal')
+  }
 
   return (
     <>
@@ -482,12 +486,9 @@ const createReceipt = () => {
                   <div className="row rx-btn col-md-12">
                     <div className="submit-section">
                       <Button
-                        href={"/secretary/payment-records/view-transactions?patientIDNum=" + StringfyIDNumber}
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onClick={() => {
-                          createUserReceipt();
-                        }}
+                        onClick={() => {createUserReceipt()}}
                       >
                         Create
                       </Button>
@@ -519,7 +520,7 @@ const createReceipt = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" href={"/secretary/payment-records/view-transactions?patientID=" + StringfyIDNumber} onClick={handleModalClose}>
+          <Button variant="primary" href={"/secretary/payment-records/view-transactions?patientIDNum=" + StringfyIDNumber} onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>

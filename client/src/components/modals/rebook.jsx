@@ -218,7 +218,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
       </Modal>
 
       {/* Appointment Finished Modal */}
-      <Modal show={modalState == 'finished-modal'} onHide={handleModalClose}>
+      <Modal show={modalState == 'finished-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>{AppNumber} Marked as Finished</Modal.Title>
         </Modal.Header>
