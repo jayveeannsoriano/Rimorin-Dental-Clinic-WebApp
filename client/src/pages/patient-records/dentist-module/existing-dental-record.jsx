@@ -9,6 +9,8 @@ import PatientProfileWidget from "../../../components/profile-widget";
 import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
 import { dentalRecords } from '../../../config/FileGeneration.js'
 import DentalChart from "../../../components/dental-teeth-chart";
+import NoRecordImg from '../../../assets/img/no-record.png'
+
 
 export default function ExistingDentalRecord() {
 
@@ -140,15 +142,15 @@ export default function ExistingDentalRecord() {
                                             {/* Dental Record */}
                                             {/* This UI is only shown when the patient is new */}
                                             <div class="row no-record">
-                                                {/* <img src={NoRecordImg} alt="no-record-img" /> */}
+                                                <img src={NoRecordImg} alt="no-record-img" />
                                                 <div className="empty-message">
                                                     <h2>DENTAL RECORD NOT FOUND</h2>
                                                     <p> It seems that you have no dental record for this patient. You can create a Dental Record for this patient on their first appointment. You can click the Add Treatment for Walk-ins</p>
                                                 </div>
                                                 <div className="create-record">
-                                                    {/* <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
+                                                    <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
                                                         <button className="btn btn-primary">Create Dental Record</button>
-                                                    </a> */}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
