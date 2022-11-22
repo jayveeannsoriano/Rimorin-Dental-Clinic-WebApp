@@ -30,6 +30,11 @@ const DentistEPrescriptionDataTable = () => {
                 }
             });
             console.log(response, "Responses");
+
+            response.data.forEach(data => {
+                data = Object.assign(data,{"genericName": "Pamela Rimorin Concepcion"});
+                //appendObjTo(data,{"Created By": "Pamela Rimorin Concepcion"});
+            })
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
         } catch (error) {

@@ -34,6 +34,15 @@ const AdminDentalRecord = () => {
       );
       // console.log(response, "Responses");
       setAppointment(response.data);
+
+      response.data.forEach(specificData => {
+        const chartedTeeth = specificData.chartedTeeth; 
+        chartedTeeth.forEach(teeth => {
+            var el = document.getElementById(teeth);
+            el.classList.toggle('marked');
+        });
+      })
+
       console.log(appointment);
       // setFilteredAppointment(response.data);
     } catch (error) {
