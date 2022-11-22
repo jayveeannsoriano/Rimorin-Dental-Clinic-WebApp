@@ -10,9 +10,24 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
     nextStep();
   };
 
+  function validatePassword() {
+    let newPassword = document.getElementById("newPassword");
+    let renewPassword = document.getElementById("renewPassword");
+    if (!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')) {
+        if (newPassword.value != renewPassword.value) {
+            renewPassword.setCustomValidity("Passwords Does Not Match");
+        } else {
+            renewPassword.setCustomValidity('');
+            document.getElementById('passwordForm').nextStep();
+            
+        }
+    }
+  }
+
+
   return (
     <>
-      <form className="auth-inner-signup" onSubmit={Continue}>
+      <form id='passwordForm' className="auth-inner-signup" onSubmit={Continue}>
         <div className='titleform'>
             <a href="/">Rimorin Dental Clinic</a>
         </div>
@@ -196,6 +211,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Password</label>
               <input
+                id="newPassword"
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
@@ -209,6 +225,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             <div className="mb-3">
               <label>Re-enter password</label>
               <input
+                id="renewPassword"
                 type="password"
                 className="form-control"
                 placeholder="Re-enter password"
@@ -225,6 +242,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             type="submit"
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
+            onClick={() => {validatePassword(); }}
           >
             Next
           </button>
