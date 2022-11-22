@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import ApptRequestTable from '../../components/dental-acceptcancel';
 import DentistDTable from '../../components/dental-table';
+import UpDentalDashboardTable from "../../components/dental-tableUpcomingTable";
 import '../../styles/dashboard.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -129,7 +130,7 @@ import {useNavigate} from 'react-router-dom';
                               UPCOMING APPOINTMENTS
                             </h5>
                             {/* Pachange nalang yung datatable here */}
-                                <DentistDTable/>
+                                <UpDentalDashboardTable/>
                           </div>
                         </div>
                       </div>

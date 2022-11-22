@@ -9,7 +9,7 @@ import ReschedConfirmation from "./modals/reschedule-appointment";
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
 
-const DashboardTable = () => {
+const UpDentalDashboardTable = () => {
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -24,7 +24,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingAppointmentDetails',{
             params: {
                 date:todayDate
             }
@@ -148,4 +148,4 @@ const DashboardTable = () => {
   
 }
 
-export default DashboardTable
+export default UpDentalDashboardTable
