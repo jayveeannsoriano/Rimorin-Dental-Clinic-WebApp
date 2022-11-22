@@ -566,9 +566,11 @@ app.get("/getUserTransaction", async(req,res) => {
           });
         });
 
-      app.get("/getUserforDentist", async(req,res) => {
-    
-      await User.find({})
+      app.get("/getUserUsingEmail", async(req,res) => {
+
+        const emailVal = req.query.emailValue;
+
+      await User.find({email:emailVal})
           .then((data) => {
             res.json(data);
           })
