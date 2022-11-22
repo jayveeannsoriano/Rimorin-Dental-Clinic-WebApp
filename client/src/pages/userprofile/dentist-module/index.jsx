@@ -373,7 +373,8 @@ const DentistUserProfile = () => {
                                                     ))}
                                                 </div>
                                             </div>
-                                            <UserProfileSave/>
+                                            <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
+                                            {/* <UserProfileSave/> */}
                                         </div>
                                     </div>
 

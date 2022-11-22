@@ -9,7 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 import PrescriptionDetails from "../../../components/modals/preview-prescription";
 import DropFileInput from "../../../components/signature";
-
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const createEprescription = () => {
 
@@ -35,6 +36,13 @@ const createEprescription = () => {
     const onFileChange = (files) => {
         setGetFile(files);
     }
+
+    const [modalState, setModalState] = useState(false);
+    const handleModalClose = () => setModalState(false);
+    const handleShow = () => {
+        setModalState('show-modal')
+    }
+
 
 
     // Add item function
@@ -74,7 +82,7 @@ const createEprescription = () => {
     }
 
     const createEPrescription = () => {
-
+        
         console.log(prescriptionItem);
         console.log(notesValue);
 
@@ -161,6 +169,7 @@ const createEprescription = () => {
                                         <p> Licence Number: 12345678</p>
                                     </div>
 
+                                    
                                     <form onSubmit={() => createEPrescription()} >
                                         <div className="biller-info"> <br />
                                             <h5 className="rx-pr"> Prescription Information </h5>
@@ -292,11 +301,11 @@ const createEprescription = () => {
                                             {/* Signature */}
                                             <div className="col-6">
 
-                                                
-                                                    <DropFileInput
-                                                        onFileChange={(files) => onFileChange(files)}
-                                                    />
-                                                
+
+                                                <DropFileInput
+                                                    onFileChange={(files) => onFileChange(files)}
+                                                />
+
                                                 <div className="sign-name">
                                                     <p className="mb-0">( Dr. Pamela Rimorin Concepcion )</p>
                                                     <span className="text-muted">Signature</span>
@@ -310,7 +319,7 @@ const createEprescription = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onSubmit={() => createEPrescription()}
+                                                        onSubmit={() => {handleShow(); createEPrescription(); }}
                                                     >
                                                         Create
                                                     </button>
@@ -333,7 +342,25 @@ const createEprescription = () => {
                         </div> {/* end of prescription */}
                     </div> {/* end of row */}
                 </section>
+
             </div> {/* /Main Wrapper */}
+            <Modal show={modalState == 'show-modal'} onHide={handleModalClose}>
+
+                {/* <Modal.Header closeButton>
+                <Modal.Title>Appointment Marked as No Show</Modal.Title>
+                </Modal.Header> */}
+
+                <Modal.Body closeButton>
+                    {/* <img src={successful} alt="success image" className='success-img' /> */}
+                    <p className='modal-txt'>You have created a prescription!</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleModalClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }

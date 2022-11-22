@@ -16,11 +16,11 @@ export default function Success() {
 
             <Modal show={show} onHide={handleClose}>
 
-                <Modal.Header closeButton>
-                    <Modal.Title>Success</Modal.Title>
-                </Modal.Header>
+                {/* <Modal.Header closeButton> */}
+                    {/* <Modal.Title>Success</Modal.Title> */}
+                {/* </Modal.Header> */}
 
-                <Modal.Body>
+                <Modal.Body closeButton>
                     <img src={successful} alt="success image" className='success-img'/>
                     <p className='modal-txt'>You have succesfully updated your changes!</p>
                 </Modal.Body>

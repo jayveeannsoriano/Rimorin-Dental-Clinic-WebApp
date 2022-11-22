@@ -72,8 +72,8 @@ a:hover, a:visited, a:link, a:active
 }
 
 .success-img, .error-img{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-left: 40%;
 }
 
