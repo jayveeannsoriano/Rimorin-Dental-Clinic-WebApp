@@ -173,7 +173,7 @@ const createEprescription = () => {
                                     </div>
 
                                     
-                                    <form>
+                                    <form onSubmit={() => createEPrescription()}>
                                         <div className="biller-info"> <br />
                                             <h5 className="rx-pr"> Prescription Information </h5>
                                             <div class="col-12 col-md-6 col-lg-4">
@@ -322,7 +322,7 @@ const createEprescription = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onClick={() => {createEPrescription()}}
+                                                        onSubmit={() => createEPrescription()}
                                                     >
                                                         Create
                                                     </button>
