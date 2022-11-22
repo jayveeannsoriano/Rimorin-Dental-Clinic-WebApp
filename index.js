@@ -318,6 +318,17 @@ app.get("/getAvailableTimes", async(req,res) => {
   });
 });
 
+app.get("/getTimeConfig", async(req,res) => {
+
+  await AvailableTime.find({})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+    console.log('error: ', error)
+  });
+});
+
         
 app.get("/getUserInfo", async(req,res) => {
 

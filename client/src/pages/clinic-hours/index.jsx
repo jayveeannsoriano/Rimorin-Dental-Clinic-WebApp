@@ -55,11 +55,6 @@ const ClinicHours = () => {
     var time = event.target.value;
     var id = event.target.id;
 
-    const selectedIndex = event.target.options.selectedIndex;
-    console.log(selectedIndex)
-
-    const isDisabled = event.target.options.selectedIndex.isDisabled;
-    console.log(isDisabled)
 
     setTimeSlot(current =>
       current.map(obj => {
@@ -72,10 +67,16 @@ const ClinicHours = () => {
   }
 
   const handledaySwitch = input => e =>{
-    // var time = event.target.value;
-    // var id = event.target.id;
-    console.log(input);
-    console.log('CLICKED')
+  
+    var selectRange = document.querySelectorAll('#'+input)
+    console.log(selectRange);
+    if(e){
+      selectRange[0].disabled = false;
+      selectRange[1].disabled = false;
+    }else{
+      selectRange[0].disabled = true;
+      selectRange[1].disabled = true;
+    }
     setTimeSlot(current =>
       current.map(obj => {
         if (obj.day === input) {
@@ -101,6 +102,30 @@ const ClinicHours = () => {
     );
   }
 
+  const applyToAll = event => {
+    var toApply = document.querySelectorAll('#Mon')
+    var timeStart = toApply[0].value
+    var timeEnd = toApply[1].value
+    var selects = document.querySelectorAll('select')
+    
+    for (let i = 0; i < selects.length; i++) {
+      if(i% 2 == 0){
+        selects[i].value = timeStart;
+      }else{
+        selects[i].value = timeEnd;
+      }
+    }
+
+    setTimeSlot(current =>
+      current.map(obj => {
+       
+        return {...obj, timeEnd: timeEnd, timeStart:timeStart };
+      
+      }),
+    );
+
+  }
+
   const updateClinicHours = async() => {
     console.log('Clicked');
     try{
@@ -109,6 +134,37 @@ const ClinicHours = () => {
       console.log(error)
     }
   }
+
+  const getAvailableTimes = async() => {
+    try{
+      const response = await axios.get('http://localhost:3001/getAvailableTimes')
+
+      var data = response.data
+      setTimeSlot(data[0].config)
+      var range;
+
+      data[0].config.map(item => (
+        console.log(item),
+        console.log('#'+item.day),
+        range = document.querySelectorAll('#'+item.day),
+        range[0].value = item.timeStart,
+        range[1].value = item.timeEnd
+      ))
+    }catch (error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+
+  }, [timeSlot]);
+
+  useEffect(() => {
+    getAvailableTimes();
+    
+      
+    
+  }, []);
   
 
 
@@ -148,7 +204,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Mon">Select Time</option>
                         <option key="Mon" value="9:00 AM">9:00 AM</option>
                         <option key="Mon" value="9:30 AM">9:30 AM</option>
@@ -175,7 +231,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotEndChange}>
+                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Mon">Select Time</option>
                         <option key="Mon" value="9:00 AM">9:00 AM</option>
                         <option key="Mon" value="9:30 AM">9:30 AM</option>
@@ -197,7 +253,7 @@ const ClinicHours = () => {
                     </Form.Select>
                 </Form>
 
-              <Button id="apply-all">Apply to All</Button>
+              <Button id="apply-all" onClick={applyToAll}>Apply to All</Button>
             </div>
 
             <div className="toggle-container">
@@ -215,7 +271,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Tue" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Tue" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Tue">Select Time</option>
                         <option key="Tue" value="9:00 AM">9:00 AM</option>
                         <option key="Tue" value="9:30 AM">9:30 AM</option>
@@ -241,7 +297,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Tue" onChange={handleTimeSlotEndChange}>
+                    <Form.Select defaultValue="Select Time" id="Tue" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Tue">Select Time</option>
                         <option key="Tue" value="9:00 AM">9:00 AM</option>
                         <option key="Tue" value="9:30 AM">9:30 AM</option>
@@ -279,7 +335,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select
-                    defaultValue="Select Time" id="Wed" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Wed" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Wed">Select Time</option>
                         <option key="Wed" value="9:00 AM">9:00 AM</option>
                         <option key="Wed" value="9:30 AM">9:30 AM</option>
@@ -305,7 +361,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Wed" onChange={handleTimeSlotEndChange}>
+                    <Form.Select defaultValue="Select Time" id="Wed" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Wed">Select Time</option>
                         <option key="Wed" value="9:00 AM">9:00 AM</option>
                         <option key="Wed" value="9:30 AM">9:30 AM</option>
@@ -343,7 +399,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Thu" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Thu" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Thu">Select Time</option>
                         <option key="Thu" value="9:00 AM">9:00 AM</option>
                         <option key="Thu" value="9:30 AM">9:30 AM</option>
@@ -369,7 +425,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select  defaultValue="Select Time" id="Thu" onChange={handleTimeSlotEndChange}>
+                    <Form.Select  defaultValue="Select Time" id="Thu" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Thu">Select Time</option>
                         <option key="Thu" value="9:00 AM">9:00 AM</option>
                         <option key="Thu" value="9:30 AM">9:30 AM</option>
@@ -408,7 +464,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Fri" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Fri" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Fri">Select Time</option>
                         <option key="Fri" value="9:00 AM">9:00 AM</option>
                         <option key="Fri" value="9:30 AM">9:30 AM</option>
@@ -434,7 +490,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Fri" onChange={handleTimeSlotEndChange}>
+                    <Form.Select defaultValue="Select Time" id="Fri" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Fri">Select Time</option>
                         <option key="Fri" value="9:00 AM">9:00 AM</option>
                         <option key="Fri" value="9:30 AM">9:30 AM</option>
@@ -473,7 +529,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Sat" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Sat" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Sat">Select Time</option>
                         <option key="Sat" value="9:00 AM">9:00 AM</option>
                         <option key="Sat" value="9:30 AM">9:30 AM</option>
@@ -499,7 +555,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Sat" onChange={handleTimeSlotEndChange}>
+                    <Form.Select defaultValue="Select Time" id="Sat" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Sat">Select Time</option>
                         <option key="Sat" value="9:00 AM">9:00 AM</option>
                         <option key="Sat" value="9:30 AM">9:30 AM</option>
@@ -538,7 +594,7 @@ const ClinicHours = () => {
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Sun" onChange={handleTimeSlotStartChange}>
+                    defaultValue="Select Time" id="Sun" onChange={handleTimeSlotStartChange} disabled>
                         <option key="Sun">Select Time</option>
                         <option key="Sun" value="9:00 AM">9:00 AM</option>
                         <option key="Sun" value="9:30 AM">9:30 AM</option>
@@ -564,7 +620,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Sun" onChange={handleTimeSlotEndChange}>
+                    <Form.Select defaultValue="Select Time" id="Sun" onChange={handleTimeSlotEndChange} disabled>
                         <option key="Sun">Select Time</option>
                         <option key="Sun" value="9:00 AM">9:00 AM</option>
                         <option key="Sun" value="9:30 AM">9:30 AM</option>
