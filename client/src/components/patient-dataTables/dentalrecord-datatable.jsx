@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import ExportFile from "../modals/export";
 
-const DentalRecordDataTable = (response) => {
+const DentalRecordDataTable = (response,patientIDNum) => {
 
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
     const userRole = userInfo["user_role_id"];
@@ -37,6 +37,10 @@ const DentalRecordDataTable = (response) => {
     var url = require('url');
     var url_parts = url.parse(window.location.href, true);
     var query = url_parts.query;
+
+  const StringfyID = JSON.stringify(response,patientIDNum);
+  const ConvertStringApp = JSON.parse(StringfyID);
+  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDNum).replace(/"/g, "");
     
     useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -121,6 +125,11 @@ const DentalRecordDataTable = (response) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         />
+    }
+    actions={
+        <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + PatientIDNumber}>
+        <button className="btn btn-primary">Add Dental Record</button>
+       </a> 
     }
     />
   

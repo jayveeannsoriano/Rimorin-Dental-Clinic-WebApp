@@ -63,7 +63,8 @@ const proceedtoViewInfo = (value) => {
                         </div>
                         
                         <div className="widget-button-container">
-                            <Button className="widget-btn" href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                            {/* <Button className="widget-btn" href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}> */}
+                          <Button className="widget-btn" href="#">
                                 View Dental Record
                             </Button>
                         </div>
