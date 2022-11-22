@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
-
+import Timeslot2 from '../timeslot2';
 //project imports
 import '../../styles/modals.css';
-import Timeslot2 from "../timeslot2";
 import '../../styles/booking.css'
 
-function RescheduleAppointment(appNum) {
+function RescheduleAppointment(pName,appNum,patientIDnumber) {
   const [modalState, setModalState] = useState('close');
   
   const handleClose = () => setModalState(false);
@@ -21,33 +20,60 @@ function RescheduleAppointment(appNum) {
   //calendar input
   const [newStartDate, setStartDate] = useState(new Date());
   var date = window.localStorage.getItem('date');
+  window.localStorage.setItem('date',newStartDate);
 
   //reasonforconsultation input
   const [newConsulInput, setConsulInput] = useState("");
 
   //time input
-  const [newSetTime, setGetTime] = useState("");
+  const [timeCheck, setTimeCheck] = useState("")
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(appNum);
+  const StringAppNum = JSON.stringify(pName,appNum,patientIDnumber);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
+  const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
+  const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g,"");
 
+  const [takenAppointments, setTakenAppointments] = useState([]);
+  const [chosenDate, setChosenDate] = useState("");
 
-  //retrieve Time data from Timeslot
-  const getBookingData = (data)=>{
-      console.log('Retrieving Data from Booking Input: ', data)
-      setGetTime(data);
-  }
+  const getAppointmenstbyDate = async(date) => {
+    try{
+        
+        setChosenDate(date);
+        const response = await Axios.get('http://localhost:3001/getAppointmentsbyDate',{
+            params:{
+                date: date
+            }
+        })
+
+        var data = response.data
+        var tempArr = [];
+        data.forEach(appt => {
+            tempArr.push(appt.time);
+        });
+        setTakenAppointments(tempArr);
+   
+    }catch (error){
+        console.log(error)
+    }
+}
+useEffect(() => {
+  var initialDate = new Date();
+  getAppointmenstbyDate(initialDate.toString().substring(0, 10));
+}, []);
 
   //update date and time
   const newDateTime = () =>{
     console.log("Updating " + AppNumber);
-    console.log("Update values: " + date + " " + newSetTime + " " + newConsulInput);
-    Axios.put("http://localhost:3001/updateDateTime",{
+    console.log("Update values: " + date + " " + timeCheck + " " + newConsulInput);
+    Axios.put("http://localhost:3001/rescheduleAppointment",{
+     patientIDNum: PatientIDnum,
      appNum: AppNumber,
+     pName: PatientName,
      newDate: date,
-     newTime: newSetTime,
+     newTime: timeCheck,
      newConsultation: newConsulInput});
     setModalState("modal-2");
   }
@@ -107,8 +133,9 @@ function RescheduleAppointment(appNum) {
                         selected={newStartDate} 
                         onChange={(date) => {
                             setStartDate(date);
+                            getAppointmenstbyDate(date.toString().substring(0, 10));
                             console.log("This is the calendar data:", date)
-                            window.localStorage.setItem('date',date);
+                            setTakenAppointments([]);
                         }}
                         isClearable
                         placeholderText="Choose a date"
@@ -126,7 +153,7 @@ function RescheduleAppointment(appNum) {
                 <div className="col-md-6">
                     <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                     <p> Available Times </p>
-                    <Timeslot2 onSubmit={getBookingData}/>
+                    <Timeslot2 GetTimeCheck={setTimeCheck} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
                 </div>
             </div>
 

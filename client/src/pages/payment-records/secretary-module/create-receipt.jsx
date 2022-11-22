@@ -157,10 +157,11 @@ const createReceipt = () => {
   console.log(getOrNum);
 
 
-  const createReceipt = async () => {
+  const createUserReceipt = async () => {
     await Axios.put("http://localhost:3001/updateReceipt", {
       addedItem: serviceItem,
       patientIDnumber: StringfyIDNumber,
+      appNum:StringfyAppNumber,
       dateIssued: dateIssued,
       paymentType: paymentType,
       totalAmount: finalTotal,
@@ -281,6 +282,7 @@ const createReceipt = () => {
                             name="group1"
                             type="radio"
                             value = {0}
+                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                             //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
@@ -474,11 +476,11 @@ const createReceipt = () => {
                   <div className="row rx-btn col-md-12">
                     <div className="submit-section">
                     <Button
-                         href={"/secretary/payment-records/view-transactions?patientIDNum=" +StringfyIDNumber}
+                        href={"/secretary/payment-records/view-transactions?patientIDNum=" +StringfyIDNumber}
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
-                        onSubmit={() => {
-                          createReceipt();
+                        onClick={() => {
+                          createUserReceipt();
                         }}
                       >
                         Create

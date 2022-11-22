@@ -80,17 +80,6 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
     if (selectValue == "Arrived") {
       //insert pop-up modal here for accept and cancel//
       handleArrived();
-
-      // Axios.post("http://localhost:3001/moveToAppointmentHistory",{
-      //   patientIDnumber: PatientIDNumber,
-      //   appNum: AppNumber,
-      //   pName: patientValue,
-      //   dName: dentistValue,
-      //   date: dateValue,
-      //   time: timeValue,
-      //   consultation: consultationValue
-      // })
-      console.log(appNum + " arrived. WAKUWAKU")
     } else {
       console.log("Receipt not created")
     }
