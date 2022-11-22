@@ -6,13 +6,31 @@ export default function UserProfileWidget() {
     const fullName = userInfo['fname'] + " " + userInfo['lname'] 
     console.log(fullName)
 
+    const userRole = userInfo["user_role_id"];
+
+    var userRoleName = "";
+    switch (userRole) {
+        case 1:
+        userRoleName = "Patient";
+          break;
+        case 2:
+        userRoleName = "Secretary";
+          break;
+        case 3:
+        userRoleName = "Dentist";
+          break;
+        case 4:
+        userRoleName = "Admin";
+          break;
+      }
+
     return (
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <Avatar name={fullName} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
                     <h2 id="">{userInfo['fname'] + " " + userInfo['lname']}</h2>
-                    <h3>Patient ID: <span>{userInfo['patientIDnumber']}</span></h3>
+                    <h3>User Role: <span>{userRoleName}</span></h3>
                     <div className="divider"></div>
                     <div class="row patient-info">
                         <div className="col">

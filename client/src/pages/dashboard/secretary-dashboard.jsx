@@ -119,7 +119,7 @@ export default function DentistDashboard() {
    
                  <div class="card-body datatable">
                      <div class="nav nav-bar">
-                       <Button className="table-button" data-bs-toggle="tab" data-bs-target="#today-appt">TODAY</Button>
+                       <Button className="table-button active" data-bs-toggle="tab" data-bs-target="#today-appt">TODAY</Button>
                        <Button className="table-button" data-bs-toggle="tab" data-bs-target="#upcoming-appt">UPCOMING</Button>
                      </div>
    

@@ -17,6 +17,9 @@ const Eprescription = lazy(() => import('../pages/eprescription/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/index'));
 const UserProfile = lazy(() => import('../pages/userprofile/patient-module'));
 
+//View Specific Dental Record
+const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/view-dental-record'));
+
 // appointment request routing
 const RequestAppointment = lazy(() => import('../pages/appointments/request-appointment'));
 
@@ -75,6 +78,10 @@ const PatientRoutes = {
                 {
                     path: '/patient/patient-records/dental-record',
                     element: <DentalRecords />
+                },
+                {
+                    path: '/patient/patient-records/dental-record/record',
+                    element: <ViewSpecificDentalRecord />
                 }
             ]
         },
@@ -88,7 +95,6 @@ const PatientRoutes = {
         },
         {
             path: '/patient/userprofile',
-            // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
             element: <UserProfile />
         }
     ]

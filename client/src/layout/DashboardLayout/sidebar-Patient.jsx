@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useMemo, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Axios from "axios";
 import '../../App.css';
 
 function Sidebar_Patient(){
@@ -15,6 +17,11 @@ function Sidebar_Patient(){
     function clearSession() {
         localStorage.clear();
     }
+    const [patientIDNum, setpatientIDNum] = useState();
+    console.log(patientIDNum);
+        const proceedtoViewInfo= (value) => {
+            setpatientIDNum(value.substring(3));
+        }
     
     return(
         <div>
@@ -70,7 +77,7 @@ function Sidebar_Patient(){
                             </li>
 
                             <li>
-                                <a className={((window.location.href.split("/").pop()=='dental-record') ? 'active': 'collapsed')} href="/patient/patient-records/dental-record">
+                                <a className={((window.location.href.split("/").pop()=='dental-record') ? 'active': 'collapsed')} href={"/patient/patient-records/dental-record?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(userInfo['patientIDnumber'])} >
                                     <i className="bi bi-circle"></i><span>Dental Records</span>
                                 </a>
                             </li>
@@ -80,7 +87,7 @@ function Sidebar_Patient(){
 
                     {/* E-Prescription Nav */}
                     <li className="nav-item">
-                        <a className={"nav-link "+((window.location.href.split("/").pop()=='eprescription') ? 'active': 'collapsed')} href="/patient/eprescription">
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='eprescription') ? 'active': 'collapsed')} href={"/patient/eprescription?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(userInfo['patientIDnumber'])}>
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
@@ -88,7 +95,7 @@ function Sidebar_Patient(){
 
                     {/* Payment Records Nav */}
                     <li className="nav-item">
-                        <a className={"nav-link "+((window.location.href.split("/").pop()=='payment-records') ? 'active': 'collapsed')} href="/patient/payment-records">
+                        <a className={"nav-link "+((window.location.href.split("/").pop()=='payment-records') ? 'active': 'collapsed')} href={"/patient/payment-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(userInfo['patientIDnumber'])}>
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>

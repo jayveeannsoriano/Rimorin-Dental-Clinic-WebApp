@@ -1,3 +1,4 @@
+//Patient list
 import React from 'react'
 import PatientProfileWidget from '../../components/patient-list/admin-patient-list';
 

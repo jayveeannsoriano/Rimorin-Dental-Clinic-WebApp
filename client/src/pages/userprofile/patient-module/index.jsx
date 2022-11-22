@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import UserProfileWidget from "../../../components/userprofile-widget";
+import UserProfileWidget from "../../../components/patient-profilewidget";
 import "../../../styles/patient-info-edit.css";
 
 const UserProfile = () => {  

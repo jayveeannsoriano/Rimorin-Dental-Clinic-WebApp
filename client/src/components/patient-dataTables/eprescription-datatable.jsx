@@ -1,52 +1,75 @@
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo  } from 'react';
 import DataTable, { Alignment } from 'react-data-table-component';
+import { useSearchParams, useLocation } from "react-router-dom";
 import styled, { keyframes } from 'styled-components';
+import ExportFile from "../modals/export";
+import PrintFile from "../modals/print";
+import ViewFile from "../modals/view-file";
 
 const EPrescriptionDataTable = () => {
 
-    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    const patientIDnumber = userInfo['patientIDnumber'];
-
-    const [search, setSearch] = useState("");
-    const [appointment, setAppointment] = useState([]);
-    // const [filteredappointment, setFilteredAppointment] = useState([]);
-    const [pending, setPending] = useState(true);
-    const [rows, setRows] = useState([]);
-
-    const getAppointment = async () => {
-        try {
-            const response = await axios.get('http://localhost:3001/getUserEPresRecord', {
-                params: {
-                    patientIDnumber: patientIDnumber,
-                }
-            });
-            console.log(response, "Responses");
-            setAppointment(response.data);
-            // setFilteredAppointment(response.data);
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const location = useLocation()
+    const paramsID = new URLSearchParams(location.search)
+    const getPatientIDNumber = paramsID.get('patientIDNum');
+    const StringfyIDnumber = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
+    console.log(StringfyIDnumber, 'epres id num');
+  
+      const [search, setSearch] = useState("");
+      const [appointment, setAppointment] = useState([]);
+      // const [filteredappointment, setFilteredAppointment] = useState([]);
+      const [pending, setPending] = useState(true);
+      const [rows, setRows] = useState([]);
+      const [patientList, setPatientList] = useState([]);
+  
+      const getAppointment = async () => {
+          try {
+              const response = await axios.get('http://localhost:3001/getUserEPresRecord', {
+                  params: {
+                      patientIDnumber: StringfyIDnumber,
+                  }
+              });
+              console.log(response, "Responses");
+              setAppointment(response.data);
+              // setFilteredAppointment(response.data);
+          } catch (error) {
+              console.log(error)
+          }
+      }
+  
+      const getPatientDetails = async() => {
+          try{
+              const response = await axios.get('http://localhost:3001/getPatientInfo',{
+                params:{
+                patientIDnumber: StringfyIDnumber}
+              });
+              console.log(response, "Responses");
+              setPatientList(response.data);
+          }catch (error){
+              console.log(error)
+          }
+      }
 
     const columns = [
         {
-            name: 'Date',
+            name: 'Date Created',
             selector: (row) => row.presDate,
             sortable: true,
         },
         {
-            name: 'Generic',
+            name: 'Created By',
             selector: (row) => row.genericName,
         },
         {
-            name: 'Instruction',
+            name: 'Description',
             selector: (row) => row.presInstruction,
         },
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                <button>View</button>
+                <ViewFile/>
+                <ExportFile/>
+                <PrintFile/>
             </div>
         }
     ];
@@ -105,6 +128,7 @@ const EPrescriptionDataTable = () => {
 
     return <DataTable
         pagination
+        className="transaction-datatable"
         subHeaderAlign={Alignment.LEFT}
         columns={columns}
         data={appointment}
@@ -126,4 +150,4 @@ const EPrescriptionDataTable = () => {
 
 }
 
-export default EPrescriptionDataTable
+export default EPrescriptionDataTable;

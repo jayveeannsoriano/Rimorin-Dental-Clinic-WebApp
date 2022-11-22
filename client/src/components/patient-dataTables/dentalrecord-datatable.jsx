@@ -3,8 +3,31 @@ import React, { useEffect, useState } from 'react';
 import DataTable,{ Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import Button from 'react-bootstrap/Button';
+import ExportFile from "../modals/export";
 
 const DentalRecordDataTable = (response) => {
+
+    var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+    const userRole = userInfo["user_role_id"];
+    var DentalRecordRoute = "";
+    switch (userRole) {
+      case 1:
+        DentalRecordRoute =
+          "/patient/patient-records/dental-record?patientIDNum=";
+        break;
+      case 2:
+        DentalRecordRoute =
+          "/secretary/patient-records/dental-record/view-dental-records/record?patientIDNum=";
+        break;
+      case 3:
+        DentalRecordRoute =
+          "/dentist/patient-records/dental-record/view-dental-records/record?patientIDNum=";
+        break;
+      case 4:
+        DentalRecordRoute =
+          "/admin/patients/view-dental-record?patientIDNum=";
+        break;
+    }
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([response.response]);
@@ -16,31 +39,12 @@ const DentalRecordDataTable = (response) => {
     var query = url_parts.query;
     
     useEffect(() => {
-
-      
-    
 		const timeout = setTimeout(() => {
 			setRows(appointment);
 			setPending(false);
 		}, 1000);
 		return () => clearTimeout(timeout);
 	}, []);
-
-
-    // const getAppointment = async() => {
-    //     try{
-    //         const response = await axios.get('http://localhost:3001/getUserDentalRecord',{
-    //             params: {
-    //                 patientIDnumber: query.patientIDNum,
-    //             }
-    //         });
-    //         console.log(response, "Responses");
-    //         setAppointment(response.data);
-    //         // setFilteredAppointment(response.data);
-    //     }catch (error){
-    //         console.log(error)
-    //     }
-    // }
 
     const columns = [
         {
@@ -59,9 +63,10 @@ const DentalRecordDataTable = (response) => {
         {
             name: "Action",
             selector: (row) => <div className="dental-action-buttons">
-                    <Button className="view-button" href={"/dentist/patient-records/dental-record/view-dental-records/specific-record?patientIDNum="+ query.patientIDNum+"&date="+row.dentalDate}>
+                    <Button className="view-button" href={DentalRecordRoute + query.patientIDNum+"&date="+row.dentalDate}>
                         <i class="bi bi-eye-fill"></i>View
                     </Button>
+                    <ExportFile/>
                  </div>
         }
     ];
@@ -98,7 +103,7 @@ const DentalRecordDataTable = (response) => {
     );
 
     return <DataTable
-    className="existing-dental-table"
+    //className="existing-dental-table"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}

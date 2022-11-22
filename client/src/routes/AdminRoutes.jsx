@@ -13,6 +13,9 @@ const Accounts = lazy(() => import('../pages/accounts/index'));
 const Patients = lazy(() => import('../pages/patients/index'));
 const AdminUserProfile = lazy(() => import('../pages/userprofile/admin-module/index'));
 
+//View Specific Dental Record
+const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/view-dental-record'));
+
 const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 
 const AdminPatientUI = lazy(() => import ("../pages/patients/admin-module/admin-patient-ui")); 
@@ -50,6 +53,10 @@ const AdminRoute ={
         {
             path: '/admin/patients',
             element: <Patients />
+        },
+        {
+            path: '/admin/patients/view-dental-record',
+            element: <ViewSpecificDentalRecord />
         },
         {
             path: '/admin/userprofile',

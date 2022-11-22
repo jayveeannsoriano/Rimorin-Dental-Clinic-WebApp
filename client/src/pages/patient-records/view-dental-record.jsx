@@ -10,15 +10,37 @@ import "../../styles/profilewidgettwo.css";
 import '../../styles/dental-record.css'
 
 const ViewDentalRecord = () => {
-    // const getPatientDetails = async() => {
-    //     try{
-    //         const response = await Axios.get('http://localhost:3001/getUserDetails');
-    //         console.log(response, "Responses");
-    //         setPatientList(response.data);
-    //     }catch (error){
-    //         console.log(error)
-    //     }
-    // }
+
+    var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+    const userRole = userInfo["user_role_id"];
+  
+    var HomeRoute = "";
+    switch (userRole) {
+      case 1:
+        HomeRoute = "/patient";
+        break;
+      case 2:
+        HomeRoute = "/secretary";
+        break;
+      case 3:
+        HomeRoute = "/dentist";
+        break;
+      case 4:
+        HomeRoute = "/admin";
+        break;
+    }
+    var DentalRecordListRoute = "";
+    switch (userRole) {
+      case 2:
+        DentalRecordListRoute = "/secretary/patient-records/dental-record";
+        break;
+      case 3:
+        DentalRecordListRoute = "/dentist/patient-records/dental-record";
+        break;
+      case 4:
+        DentalRecordListRoute = "/admin/patients";
+        break;
+    }
 
     const [recordData,setRecordData] = useState([]);
     const [recordProcedures,setProcedures] = useState([]);
@@ -90,10 +112,9 @@ const ViewDentalRecord = () => {
                     <h1>Dental Records</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/dentist">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record">Patients</a></li>
-                            {/* <li class="breadcrumb-item"><a href="/dentist/patient-records/dental-record/view-dental-records">Dental Records</a></li> */}
-                            <li class="breadcrumb-item" onClick = {() => navigate(-1)}>  Dental Records</li>
+                            <li class="breadcrumb-item"><a href={HomeRoute}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={DentalRecordListRoute}>Patients</a></li>
+                            <li class="breadcrumb-item" onClick = {() => navigate(-1)}> Dental Records</li>
                             <li class="breadcrumb-item active">View Dental Record</li>
                         </ol>
                     </nav>

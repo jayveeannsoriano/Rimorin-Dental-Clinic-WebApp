@@ -1,0 +1,14 @@
+.dental-record-container{
+    justify-content: center;
+    margin-bottom: 0.5in;
+}
+.button-div .btn{
+    float: right;
+    margin-right: 10px;
+}
+.btn i{
+    margin-right: 5px;
+}
+.dental-record-table{
+    margin-top: 0.5in;
+}

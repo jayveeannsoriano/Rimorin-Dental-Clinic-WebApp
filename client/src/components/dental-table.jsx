@@ -129,7 +129,7 @@ const DashboardTable = () => {
     subHeaderComponent={
         <input 
         type="text" 
-        placeholder="Search" 
+        placeholder="Search for Patient" 
         className="w-50 form-control datatable-search" 
         value={search}
         onChange={(e) => setSearch(e.target.value)}

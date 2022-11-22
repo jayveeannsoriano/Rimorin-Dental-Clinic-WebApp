@@ -13,9 +13,11 @@ const Appointments = lazy(() => import('../pages/appointments/secretary-appointm
 const Calendar = lazy(() => import('../pages/calendar/secretary-module/index'));
 const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
-const Eprescription = lazy(() => import('../pages/eprescription/secretary-module/index'));
+const Eprescription = lazy(() => import('../pages/eprescription/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
 const SecretaryUserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
+//View Specific Dental Record
+const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/view-dental-record'));
 
 // patient list page routing
 const DentalRecordPatientList = lazy(() => import('../pages/patient-list/dental-record'));
@@ -69,8 +71,12 @@ const SecretaryRoutes = {
                     element: <DentalRecordPatientList />
                 },
                 {
-                    path: '/secretary/patient-records/dental-record/:fname',
+                    path: '/secretary/patient-records/dental-record/view-dental-records',
                     element: <DentalRecords />
+                },
+                {
+                    path: '/secretary/patient-records/dental-record/view-dental-records/record',
+                    element: <ViewSpecificDentalRecord />
                 }
             ]
         },

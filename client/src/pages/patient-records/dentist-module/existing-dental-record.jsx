@@ -1,11 +1,14 @@
 import React from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
+import { useMemo, useEffect, useState } from "react";
+import axios from "axios";
+
+//project imports
 import "../../../styles/dental-record.css"
 import PatientProfileWidget from "../../../components/profile-widget";
 import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
-import { useSearchParams, useLocation } from "react-router-dom";
-import { useMemo, useEffect, useState } from "react";
 import { dentalRecords } from '../../../config/FileGeneration.js'
-import axios from "axios";
+import DentalChart from "../../../components/dental-teeth-chart";
 
 export default function ExistingDentalRecord() {
 
@@ -113,7 +116,7 @@ export default function ExistingDentalRecord() {
 
                                 {/* Dental Teeth Chart */}
                                 <div class="row">
-                                    {/* Insert Dental Teeth Chart for selected patient*/}
+                                    <DentalChart/>
                                 </div>
 
                                 <div className="divider"></div>
@@ -123,7 +126,7 @@ export default function ExistingDentalRecord() {
                                     <div className="add-trtmnt">
                                         <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
                                             <button className="btn btn-primary" type="submit" >
-                                                <i class="bi bi-download"></i>
+                                                <i class="bi bi-plus"></i>
                                                 Add Treatment
                                             </button>
                                         </a>

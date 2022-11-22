@@ -6,10 +6,14 @@ import ProfileWidgetThree from "../../../components/profile-widget3";
 import { Button } from "react-bootstrap";
 
 //patient Datatables
-import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
+//import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
 import TransactionDataTable from "../../../components/patient-dataTables/transaction-datatable";
 import EPrescriptionDataTable from "../../../components/patient-dataTables/eprescription-datatable";
 import AdminModulePatientInfo from "../../../components/patient-dataTables/patient-information";
+
+//dental record
+//import DentalRecords from "../../patient-records/dentist-module/existing-dental-record"
+import AdminDentalRecord from "../records/dental-record";
 
 const AdminPatientUI = () => {
     return (
@@ -51,8 +55,8 @@ const AdminPatientUI = () => {
 
                         <div className="tab-content">
                             <div className="tab-pane fade show active dental-record" id="dental-record">
-                                <h5 className="card-title">DENTAL RECORD</h5>
-                                <DentalRecordDataTable />
+                                <h5 className="card-title">DENTAL RECORDS</h5>
+                                <AdminDentalRecord/>
                             </div>
                             <div className="tab-pane fade transactions" id="transactions">
                                 <h5 className="card-title">TRANSACTIONS</h5>

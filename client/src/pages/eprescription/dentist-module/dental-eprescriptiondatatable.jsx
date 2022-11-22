@@ -52,16 +52,16 @@ const DentistEPrescriptionDataTable = () => {
 
     const columns = [
         {
-            name: 'Date',
+            name: 'Date Created',
             selector: (row) => row.presDate,
             sortable: true,
         },
         {
-            name: 'Generic',
+            name: 'Created By',
             selector: (row) => row.genericName,
         },
         {
-            name: 'Instruction',
+            name: 'Description',
             selector: (row) => row.presInstruction,
         },
         {

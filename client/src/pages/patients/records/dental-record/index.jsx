@@ -1,46 +1,14 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
-//project imports
-import PatientProfileWidget from "../../components/profile-widget";
-import UserProfileWidget from "../../components/patient-profilewidget"
-import DentalRecordDataTable from "../../components/patient-dataTables/dentalrecord-datatable";
-import DentalChart from "../../components/dental-teeth-chart";
-import { dentalRecords } from "../../config/FileGeneration";
+//import "../../../../styles/dental-record.css";
+import "../style.css"
+import DentalRecordDataTable from "../../../../components/patient-dataTables/dentalrecord-datatable";
+import DentalChart from "../../../../components/dental-teeth-chart";
+import { dentalRecords } from "../../../../config/FileGeneration";
 
-const DentalRecord = () => {
-  var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
-  const userRole = userInfo["user_role_id"];
-
-  var HomeRoute = "";
-  switch (userRole) {
-    case 1:
-      HomeRoute = "/patient";
-      break;
-    case 2:
-      HomeRoute = "/secretary";
-      break;
-  }
-  var patientRecordRoute = "";
-  switch (userRole) {
-    case 1:
-      patientRecordRoute = "";
-      break;
-    case 2:
-      patientRecordRoute = "/secretary/patient-records/dental-record";
-      break;
-  }
-  var ProfileWidget ="";
-  switch (userRole) {
-    case 1:
-      ProfileWidget = <UserProfileWidget/>;
-      break;
-    case 2:
-      ProfileWidget = <PatientProfileWidget/>;
-      break;
-  }
-
+const AdminDentalRecord = () => {
   const location = useLocation();
   const paramsID = new URLSearchParams(location.search);
   const getPatientIDNumber = paramsID.get("patientIDNum");
@@ -136,39 +104,23 @@ const DentalRecord = () => {
   }
   return (
     <>
-      <div class="pagetitle">
-        <h1>Dental Records</h1>
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href={HomeRoute}>Home</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href={patientRecordRoute}>Patient Records</a>
-            </li>
-            <li class="breadcrumb-item active">Dental Records</li>
-          </ol>
-        </nav>
-      </div>
-      <section class="section profile">
-        <div class="row">
-          {ProfileWidget}
+    <div className="container dental-record-container">
+        <div className="row">
+        <div className="button-div">
+            <button className="btn btn-primary" type="submit" 
+                onClick={() => {Export(false);}}>
+                  <i class="bi bi-printer-fill"></i>
+                  Print
+                </button>
 
-          <div class="col-xl-8">
-            <div className="card patient-info">
-              <div className="card-body pt-3">
-                <h5 className="card-title">Dental Records</h5>
-                
-                    <button className="btn btn-primary" type="submit" 
-                      onClick={() => {Export(false);}}>
-                        <i class="bi bi-printer-fill"></i>
-                        Print
-                    </button>
-                    <button className="btn btn-primary" type="submit"
-                      onClick={() => {Export(true);}}>
-                      <i class="bi bi-download"></i>
-                      Export
-                    </button>
+                <button className="btn btn-primary" type="submit"
+                  onClick={() => {Export(true);}}>
+                  <i class="bi bi-download"></i>
+                  Export
+                </button>
+            </div>
+          <div class="col-xl-12">
+              <div className="card-body">
                 <div className="divider"></div>
 
                 {/* Dental Teeth Chart to be updated; 
@@ -180,19 +132,21 @@ const DentalRecord = () => {
                 <div className="divider"></div>
 
                 {/* Record Table*/}
-                <div class="row">
-                  {appointment.length == 0 ? (
-                    <div className="card patient-info"></div>
-                  ) : (
-                    <DentalRecordDataTable response={appointment} />
-                  )}
+                <div class="row dental-record-table">
+                    <div className="col-xl-12">
+                        {appointment.length == 0 ? (
+                            <div className="card patient-info">
+                            </div>
+                        ) : (
+                            <DentalRecordDataTable response={appointment} />
+                        )}
+                    </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      </section>
+    </div>
     </>
   );
 };
-export default DentalRecord;
+export default AdminDentalRecord;

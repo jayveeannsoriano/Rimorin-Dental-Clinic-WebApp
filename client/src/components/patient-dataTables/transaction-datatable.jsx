@@ -139,7 +139,7 @@ const TransactionDataTable = () => {
     // },[search])
 
     return <DataTable
-    className="patient-transaction-table"
+    className="transaction-datatable"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}
