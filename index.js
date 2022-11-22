@@ -161,6 +161,15 @@ app.post("/RegisterUser", async (req, res) => {
   }
 });
 
+app.put("/changePassword", async (req, res) => {
+
+  const userEmail = req.body.userEmail;
+  const newPassword = req.body.newPass;
+  const encryptedPassword = await bcrypt.hash(newPassword, 10);
+
+  await User.findOneAndUpdate({email:userEmail}, {password:encryptedPassword})
+});
+
 //read user data
 app.get("/userData", async (req, res) => {
   const { token } = req.body;
@@ -547,6 +556,17 @@ app.get("/getUserTransaction", async(req,res) => {
         });
 
     app.get("/getUserforAdmin", async(req,res) => {
+    
+      await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+      app.get("/getUserforDentist", async(req,res) => {
     
       await User.find({})
           .then((data) => {

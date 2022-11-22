@@ -31,7 +31,10 @@ const DentistUserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserInfo", {
+            const response = await Axios.get("http://localhost:3001/getUserforDentist", {
+                params:{
+                    
+                }
             });
             setUserData(response.data);
             setFirstValue(response.data[0].fname)

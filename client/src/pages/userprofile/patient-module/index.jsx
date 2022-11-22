@@ -17,6 +17,7 @@ const UserProfile = () => {
     const patientIDnumber = userInfo['patientIDnumber'];
     console.log(patientIDnumber);
     console.log(userInfo, "this are all the data of the user");
+   
 
     const [userData, setUserData] = useState([]);
     const [firstName, setFirstValue] = useState('');
@@ -38,24 +39,32 @@ const UserProfile = () => {
     const [provinceValue, setProvinceValue] = useState('');
     const [zipValue, setZipValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
+    const bcrypt = require("bcryptjs");
 
-    //change password
-    // const [currentPassword, setCurrentPassword] = useState("");
-    // const [newPassword, setNewPassword] = useState("");
-    // const [reEnterPassword, setReEnterPassword] = useState("");
+    // change password
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [reEnterPassword, setReEnterPassword] = useState("");
+    console.log("USER PASSWORD", passwordValue);
+    console.log("USER CURRENT PASSWORD",currentPassword)
 
-    // const changePassword = () =>{
+    const changePassword = async () => {
 
-    //     if (newPassword == reEnterPassword){
-    //         console.log("password match")
-    //         console.log(currentPassword)
-    //     }else{
-    //         console.log("password not match")
-    //     }
+        if (await bcrypt.compare(currentPassword, passwordValue)){
+            console.log("password works")
+            if (newPassword == reEnterPassword){
+                await Axios.put("http://localhost:3001/changePassword",{
+                    userEmail:emailValue,
+                    newPass:newPassword
+                })
+            }else{
+            alert("Password not match")
+            }
+        }else{
+            alert("Current Password incorrect")
+        }
 
-    // }
-    
-
+    }
 
     console.log(firstName, 'updated');
     const defaultUserInfo = async () => {
@@ -75,7 +84,7 @@ const UserProfile = () => {
             setAgeValue(response.data[0].age)
             setGenderValue(response.data[0].gender)
             setProfessionValue(response.data[0].profession)
-            setEmailValue(response.data[0].mobile)
+            setEmailValue(response.data[0].email)
             setCellValue(response.data[0].mobile)
             setTellNumber(response.data[0].tellphone)
             setBloodValue(response.data[0].blood)
@@ -119,25 +128,10 @@ const UserProfile = () => {
             brgyValue: brgyValue,
             provinceValue: provinceValue,
             zipValue: zipValue,
-            passwordValue: passwordValue,
         });
         console.log("New info saved in DB");
         setModalState('show-modal')
     }
-
-    // function validatePassword() {
-    //     let newPassword = document.getElementById("newPassword");
-    //     let renewPassword = document.getElementById("renewPassword");
-    //     if (!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')) {
-    //         if (newPassword.value != renewPassword.value) {
-    //             renewPassword.setCustomValidity("Passwords Does Not Match");
-    //         } else {
-    //             renewPassword.setCustomValidity('');
-    //             document.getElementById('passwordForm').submit();   
-    //         }
-    //     }
-
-    // }
 
     return (
         <>
@@ -415,7 +409,7 @@ const UserProfile = () => {
                                     </div>
                                     {/* Change Password */}
                                     <div class="tab-pane fade pt-3" id="profile-change-password">
-                                        <form id='passwordForm'>
+                                        <form id='passwordForm' onSubmit={(e) => {e.preventDefault()}}>
                                             <div class="row mb-3">
                                                 <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                 <div class="col-md-8 col-lg-9">
