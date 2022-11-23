@@ -4,6 +4,7 @@ import UserProfileWidget from "../../../components/userprofile-widget";
 import { Button } from 'react-bootstrap';
 import "../../../styles/patient-info-edit.css";
 import UserProfileSave from '../../../components/modals/success-modals/userprofile-saved';
+import Modal from 'react-bootstrap/Modal';
 
 const DentistUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -29,41 +30,42 @@ const DentistUserProfile = () => {
     const [passwordValue, setPasswordValue] = useState('');
     const bcrypt = require("bcryptjs");
 
-     // change password
-     const [emailValue, setEmailValue] = useState('');
-     const [currentPassword, setCurrentPassword] = useState("");
-     const [newPassword, setNewPassword] = useState("");
-     const [reEnterPassword, setReEnterPassword] = useState("");
-     console.log("USER PASSWORD", passwordValue);
-     console.log("USER CURRENT PASSWORD",currentPassword)
- 
-     const changePassword = async () => {
- 
-         if (await bcrypt.compare(currentPassword, passwordValue)){
-             console.log("password works")
-             if (newPassword == reEnterPassword){
-                 await Axios.put("http://localhost:3001/changePassword",{
-                     userEmail:emailValue,
-                     newPass:newPassword
-                 })
-             }else{
-             alert("Password not match")
-             }
-         }else{
-             alert("Current Password incorrect")
-         }
- 
-     }
-     
+    // change password
+    const [emailValue, setEmailValue] = useState('');
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [reEnterPassword, setReEnterPassword] = useState("");
+    console.log("USER PASSWORD", passwordValue);
+    console.log("USER CURRENT PASSWORD", currentPassword)
+
+    const changePassword = async () => {
+
+        if (await bcrypt.compare(currentPassword, passwordValue)) {
+            console.log("password works")
+            if (newPassword == reEnterPassword) {
+                handleShow();
+                await Axios.put("http://localhost:3001/changePassword", {
+                    userEmail: emailValue,
+                    newPass: newPassword
+                })
+            } else {
+                alert("Password not match")
+            }
+        } else {
+            alert("Current Password incorrect")
+        }
+
+    }
+
     const defaultUserInfo = async () => {
         try {
 
             const response = await Axios.get("http://localhost:3001/getUserUsingEmail", {
-                params:{
-                    emailValue:userInfo['email']
+                params: {
+                    emailValue: userInfo['email']
                 }
             });
-            console.log("RESPONSE",response.data)
+            console.log("RESPONSE", response.data)
             setUserData(response.data);
             setFirstValue(response.data[0].fname)
             setLastValue(response.data[0].lname)
@@ -83,7 +85,7 @@ const DentistUserProfile = () => {
             setLicenceValue(response.data[0].licence)
             setEmailValue(response.data[0].email)
             setPasswordValue(response.data[0].password)
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -91,6 +93,12 @@ const DentistUserProfile = () => {
     useEffect(() => {
         defaultUserInfo()
     }, []);
+
+    const [modalState, setModalState] = useState(false);
+    const handleModalClose = () => setModalState(false);
+    const handleShow = () => {
+        setModalState('show-modal');
+    }
 
 
     const updatePatientInfo = async () => {
@@ -117,7 +125,7 @@ const DentistUserProfile = () => {
         console.log("New info saved in DB")
     }
 
-    return(
+    return (
         <>
             <div class="pagetitle">
                 <h1>My Profile</h1>
@@ -392,37 +400,37 @@ const DentistUserProfile = () => {
                                                     ))}
                                                 </div>
                                             </div>
-                                            <Button className='edit-save text-right' onClick={() => updatePatientInfo()}>Save Changes</Button>
+                                            <Button className='edit-save text-right' onClick={() => { updatePatientInfo(); handleShow(); }}>Save Changes</Button>
                                             {/* <UserProfileSave/> */}
                                         </div>
                                     </div>
 
-                                            {/* Change Password */}
-                                            <div class="tab-pane fade pt-3" id="profile-change-password">
-                                        <form id='passwordForm' onSubmit={(e) => {e.preventDefault()}}>
+                                    {/* Change Password */}
+                                    <div class="tab-pane fade pt-3" id="profile-change-password">
+                                        <form id='passwordForm' onSubmit={(e) => { e.preventDefault() }}>
                                             <div class="row mb-3">
                                                 <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <input name="password" type="password" class="form-control" id="currentPassword" onChange={(e) => {setCurrentPassword(e.target.value)}} required />
+                                                    <input name="password" type="password" class="form-control" id="currentPassword" onChange={(e) => { setCurrentPassword(e.target.value) }} required />
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <input name="newpassword" type="password" class="form-control" id="newPassword" onChange={(e) => {setNewPassword(e.target.value)}} required />
+                                                    <input name="newpassword" type="password" class="form-control" id="newPassword" onChange={(e) => { setNewPassword(e.target.value) }} required />
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <input name="renewpassword" type="password" class="form-control" id="renewPassword" onChange={(e) => {setReEnterPassword(e.target.value)}} required />
+                                                    <input name="renewpassword" type="password" class="form-control" id="renewPassword" onChange={(e) => { setReEnterPassword(e.target.value) }} required />
                                                 </div>
                                             </div>
 
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-primary" onClick={() => { changePassword()}} >Change Password</button>
+                                                <button type="submit" class="btn btn-primary" onClick={() => { changePassword() }} >Change Password</button>
                                             </div>
                                         </form>
                                     </div>
@@ -432,6 +440,24 @@ const DentistUserProfile = () => {
                     </div>
                 </div>
             </section>
+
+            <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+
+                <Modal.Header closeButton>
+                    <Modal.Title>Profile Changes</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body >
+                    {/* <img src={successful} alt="success image" className='success-img' /> */}
+                    <p className='modal-txt'>You have succesfully updated your changes!</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleModalClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }
