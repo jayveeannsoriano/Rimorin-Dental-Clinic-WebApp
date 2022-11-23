@@ -49,6 +49,7 @@ require("./models/dentalRecords");
 require("./models/notificationDetails");
 require("./models/appointmentHistory");
 require("./models/availableTime");
+require("./models/archiveAccount");
 
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
@@ -59,6 +60,7 @@ const DentalRecords = mongoose.model("UserDentalRecords");
 const NotifDetails = mongoose.model("NotificationDetails");
 const AppHistory = mongoose.model("AppointmentHistory");
 const AvailableTime = mongoose.model("AvailableTime");
+const UserArchive = mongoose.model("UserArchive");
 
 
 //sign in
@@ -145,6 +147,7 @@ app.post("/RegisterUser", async (req, res) => {
     allergies:allergies,
     conditions:conditions.toString(),
     user_role_id:userRole,
+    accountType:"Patient",
   });
   console.log("Sign up Details for User Data: ", UserData);
   try {
@@ -1467,4 +1470,166 @@ app.post("/reset-password", async (req, res) => {
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
 });
+
+////////////////////////////////////////////////ADMIN MODULE//////////////////////////////////////////////////////////////////
+
+
+app.post("/InsertNewUser", async (req, res) => {
+
+  const accountType = req.body.accountType;
+  const fname = req.body.fname;
+  const mname = req.body.mname;
+  const lname = req.body.lname;
+  const suffix = req.body.suffix;
+  const email = req.body.email;
+  const gender = req.body.gender;
+  const mobile = req.body.mobile;
+  const bday = req.body.bday;
+
+  console.log(accountType);
   
+  const password = req.body.password;
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  
+  const letters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789'
+  
+  function generateString() {
+      let numberLength = 3;
+      let letterLength = 2;
+      let numbersResult = '';
+      let lettersResult = '';
+      const lettersLength = letters.length;
+      const numbersLength = numbers.length;
+      for ( let i = 0; i < numberLength; i++ ) {
+          numbersResult += numbers.charAt(Math.floor(Math.random() * numbersLength));
+      }
+      for ( let i = 0; i < letterLength; i++ ) {
+        lettersResult += letters.charAt(Math.floor(Math.random() * lettersLength));
+      }
+      return numbersResult+lettersResult;
+  }
+  const patientIDNumber = "PT#"+generateString();
+  const dentistIDNumber = "DT#"+generateString();
+  const secretaryIDNumber = "SC#"+generateString();
+  const adminIDNumber = "AD#"+generateString();
+
+if(accountType == "patient"){
+  const UserData = new User({
+    patientIDnumber:patientIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:1,
+  });
+  console.log("Add Details for Patient: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+
+}if(accountType == "secretary"){
+  const UserData = new User({
+    secretaryIDnumber:secretaryIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:2,
+  });
+  console.log("Add Details for Secretary: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+
+}if(accountType == "dentist"){
+  const UserData = new User({
+    dentistIDnumber:dentistIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:3,
+  });
+  console.log("Add Details for Dentist: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+}
+if(accountType == "admin"){
+  const UserData = new User({
+    adminIDnumbe:adminIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:4,
+  });
+  console.log("Add Details for Admin: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+}else{
+  console.log("Cannot create account. Missing values.")
+}
+});

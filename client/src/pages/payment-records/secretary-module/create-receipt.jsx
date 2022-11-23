@@ -373,7 +373,7 @@ const createReceipt = () => {
                             name="group1"
                             type="radio"
                             value={0}
-                            //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 following-info"></div>

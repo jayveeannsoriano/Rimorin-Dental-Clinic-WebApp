@@ -19,6 +19,10 @@ const AdminTable = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
+    const ArchiveUsers = (objectID) =>{
+        console.log(objectID)
+    }
+
     const getUsers = async() => {
         try{
             const response = await axios.get('http://localhost:3001/getUserforAdmin');
@@ -38,7 +42,7 @@ const AdminTable = () => {
         },
         {
             name: "Account Type",
-            selector: (row) => row.user_role_id,
+            selector: (row) => row.accountType,
             sortable: true,
         },
         {
@@ -49,7 +53,8 @@ const AdminTable = () => {
         {
             name: "Action",
             selector: row => <div className="action-buttons" >
-                <Button className="cancel-button"><i class="bi bi-archive"></i> Archive</Button>
+                <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
+                <Button className="cancel-button" onClick={() => {ArchiveUsers(row._id)}}><i class="bi bi-archive"></i> Archive</Button>
             </div>
         },
     ];
