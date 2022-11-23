@@ -218,13 +218,14 @@ const CreateAccount = () => {
                                                     >
                                                         Cancel
                                                     </button>
-                                                    <button
+                                                    <AccountCreated />
+                                                    {/* <button
                                                         type="submit"
                                                         className="btn btn-primary ad-btn-space"
                                                         onClick={<AccountCreated />}
                                                     >
                                                         Next
-                                                    </button>
+                                                    </button> */}
                                                 </div>
                                             </div>
                                         </div>
