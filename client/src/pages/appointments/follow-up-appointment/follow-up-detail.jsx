@@ -3,7 +3,7 @@ import React from 'react';
 import 'react-bootstrap';
 
 const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
-    console.log(values);
+
     const Continue = (e) => {
         e.preventDefault();
         nextStep();
@@ -76,8 +76,8 @@ const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
                         <h1>APPOINTMENT DETAILS</h1>
                         <h2>Date of Consultation</h2>
                         {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
-                        <h2>Reason for Consultation</h2>
-                        
+                        <h2>Reason for Follow Up</h2>
+                          {values.consultation}
                     </div>
                 </div>
             </div>

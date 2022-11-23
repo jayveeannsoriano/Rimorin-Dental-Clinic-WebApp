@@ -274,6 +274,83 @@ app.post("/insertAppointment", async(req,res) => {
   }
 });
 
+app.post("/insertFollowUpAppointment", async(req,res) => {
+
+  //Patient Id Number
+  const patientIDnumber = req.body.patientIDnumber;
+  console.log(patientIDnumber);
+
+  //User Info value
+  const userNameApp = req.body.userNameApp;
+  console.log(userNameApp)
+
+  //Doctor name
+  const docName = "Pamela Rimorin Concepcion";
+
+  //Appointment Number
+
+  const randomnum = Math.floor(Math.random() * 1000);
+  const appNumber = "#APT"+randomnum;
+  console.log(appNumber)
+  
+  //date value
+  const startDate = req.body.startDate;
+  const slicedDate = startDate.slice(0,10)//removes unnecessary data
+  console.log(slicedDate)
+
+  //consul value
+  const consulInput = req.body.consulInput;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.getTime;
+  console.log(getTime);
+
+  //appt status default when creating an appointment
+  const insertAppStatus = "Accepted";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.")
+    if(insertAppStatus == "Accepted"){
+      //Sending Email
+      sgMail.setApiKey('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');
+      const msg = {
+        "personalizations":[
+          {
+            "to":[
+                {
+                  "email":req.body.recep                
+                }
+            ],
+            "dynamic_template_data":{
+                "firstName":userNameApp,
+                "Appttime":slicedDate + " " + getTime,
+                "consultation":consulInput
+              }
+          }
+      ],
+      "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
+        from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+      }
+      sgMail
+        .send(msg)
+        .then(() => {
+          res.json('Email Sent')
+        })
+        .catch((error) => {
+          res.json('Error: Email Not Sent')
+        })
+    }
+  } catch(err){
+    console.log(err);
+  }
+});
+
 app.put("/updateClinicHours", async (req, res) => {
   await AvailableTime.findOneAndUpdate({}, {config: req.body.clinicHours})
   console.log("Clinic Hours Updated!");
@@ -352,6 +429,21 @@ app.get("/getUserInfo", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    app.get("/getUserInfoFollowUp", async(req,res) => {
+
+      const patientIDNumber = req.query.patientIDNum;
+      console.log(patientIDNumber);
+      
+      await User.find({patientIDnumber: patientIDNumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+    
 
 
 app.get("/getProfileWidget", async(req,res) => {

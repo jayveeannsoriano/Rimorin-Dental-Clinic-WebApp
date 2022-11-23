@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
 import "../../../styles/booking.css";
@@ -7,19 +7,44 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //Axios
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,values}) => {
 
-        //user info
-        try {
-            var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-            var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
-            const userNameApp = JSON.parse(getUserName)
-        } catch (error) {
-            console.error("Website error");
-            console.error(error);
+        const location = useLocation()
+        const paramsID = new URLSearchParams(location.search)
+        const getPatientID = paramsID.get('patientIDValue');
+        const [patientUser, setPatientUser] = useState([]);
+        const [patientMobile, setPatientNumber] = useState([]);
+        const [patientEmail, setPatientEmail] = useState([])
+        const StringfyPatientID = useMemo(() => JSON.stringify(getPatientID).replace(/"/g, ""));
+        console.log(StringfyPatientID, 'FOLLOW UP ID');
+        window.localStorage.setItem('patientIDNum', "PT#"+StringfyPatientID);
+        window.localStorage.setItem('userName', patientUser);
+        window.localStorage.setItem('userPhone', patientMobile);
+        window.localStorage.setItem('userEmail', patientEmail);
+  
+        
+    
+
+        const getUser = async() => {
+            try{
+                const response = await axios.get('http://localhost:3001/getUserInfoFollowUp',{
+                params: {
+                    patientIDNum:"PT#"+StringfyPatientID
+                }
+            });
+                setPatientUser(response.data[0].fname + " " + response.data[0].lname);
+                setPatientNumber(response.data[0].mobile)
+                setPatientEmail(response.data[0].email)
+            }catch (error){
+                console.log(error)
+            }
         }
+        useEffect(() => {
+            getUser ();
+        }, []);
+
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
@@ -65,14 +90,6 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
 
         const Continue = (e) => {
         e.preventDefault();
-
-        //adds data
-        //  console.log("Inserting ",userNameApp," to the database.")
-        //  console.log("Inserting ",values.date, " to the database.");
-        //  console.log("Inserting ",values.consultation, " to the database.");
-        //  console.log("Inserting ",values.time, " to the database.");
-
-        //go to next modal
         nextStep();
 
 
@@ -136,15 +153,15 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
                             <h1>PATIENT DETAILS</h1>
                             <h2>Patient Name:</h2>
                             {/* Insert Patient Name */}
-                            <h3>Shermax Swift</h3>
+                            <h3>{patientUser}</h3>
 
                             <h2>Patient ID:</h2>
                             {/* Insert Patient ID */}
-                            <h3>#P0143</h3>
+                            <h3>PT#{StringfyPatientID}</h3>
 
-                            <h2>Reason for Consultaion:</h2>
+                            <h2>Reason for Follow Up:</h2>
                             {/* Insert Reason for Consultation */}
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+                            <h3>{values.consultation}</h3>
                         </div>
                     </div>
 
@@ -195,6 +212,18 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
                             <Timeslot GetTimeCheck={setTimeCheck} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
                         </div>
                     </div>
+
+                    <div className="col-12 reason-form">
+                            <label htmlFor="validationCustom01" className="form-label">Reason for Follow Up <span className="text-danger font-weight-bold">*</span></label>
+                            <textarea
+                                className="form-control"
+                                value={values.consultation}
+                                onChange={handleChange('consultation')}
+                                id="reason" rows="5" placeholder="Write reason here..." required ></textarea>
+                            <div className="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
 
                         <div className="col-12">
                             <div className="appt-bttns">
