@@ -1085,7 +1085,6 @@ padding-right: 4px;
   color: var(--text-color);
 }
 
-
 /* cols for admin-datatable */
 .account-datatable .rdt_TableCol,
 .account-data-table .rdt_TableCol { 
@@ -1110,6 +1109,24 @@ padding-right: 4px;
   max-width: 320px !important;
 }
 
+/* client\src\pages\eprescription\dentist-module\dental-eprescriptiondatatable.jsx */
+/* client\src\components\patient-dataTables\eprescription-datatable.jsx */
+.prescription-datatable #cell-1-undefined,
+.prescription-datatable #cell-2-undefined,
+.prescription-datatable #cell-3-undefined{
+  max-width: 229px !important;
+}
+
+/* created by column */
+.prescription-datatable #cell-4-undefined{
+  max-width: 255px !important;
+}
+
+.prescription-datatable #cell-3-undefined{
+  text-overflow:ellipsis !important;
+  overflow: hidden !important;
+}
+
 /* existing dental table for dental records 4cols*/
 /* client\src\components\patient-dataTables\dentalrecord-datatable.jsx */
 .existing-dental-table #cell-1-undefined,
@@ -1119,6 +1136,12 @@ padding-right: 4px;
 }
 .existing-dental-table #cell-4-undefined{
   max-width: 255px !important;
+}
+
+/* overflow text */
+.existing-dental-table .kEIRkz div:first-child{
+  text-overflow:ellipsis !important;
+  overflow: hidden !important;
 }
 
 /* client\src\components\patient-dataTables\transaction-datatable.jsx */
@@ -1194,10 +1217,7 @@ padding-right: 4px;
   overflow: unset !important;
 }
 
-.existing-dental-table .kEIRkz div:first-child{
-  text-overflow:ellipsis !important;
-  overflow: hidden !important;
-}
+
 
 /*--------------------------------------------------------------
 # Landing Page Footer

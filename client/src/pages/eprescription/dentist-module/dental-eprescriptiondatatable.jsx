@@ -4,7 +4,6 @@ import DataTable, { Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import { useSearchParams, useLocation } from "react-router-dom";
 import ExportFile from "../../../components/modals/export";
-import ViewFile from "../../../components/modals/view-file";
 import PrintFile from "../../../components/modals/print";
 
 const DentistEPrescriptionDataTable = () => {
@@ -72,7 +71,6 @@ const DentistEPrescriptionDataTable = () => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                <ViewFile/>
                 <ExportFile data={["download","prescription",row,patientList]}/>
                 <PrintFile data={["print","prescription",row,patientList]}/>
             </div>
@@ -134,7 +132,7 @@ const DentistEPrescriptionDataTable = () => {
 
     return <DataTable
         pagination
-        className="transaction-datatable"
+        className="prescription-datatable"
         subHeaderAlign={Alignment.LEFT}
         columns={columns}
         data={appointment}

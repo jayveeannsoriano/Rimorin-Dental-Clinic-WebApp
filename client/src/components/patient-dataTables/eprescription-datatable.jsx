@@ -67,7 +67,6 @@ const EPrescriptionDataTable = () => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                <ViewFile/>
                 <ExportFile/>
                 <PrintFile/>
             </div>
@@ -128,7 +127,7 @@ const EPrescriptionDataTable = () => {
 
     return <DataTable
         pagination
-        className="transaction-datatable"
+        className="prescription-datatable"
         subHeaderAlign={Alignment.LEFT}
         columns={columns}
         data={appointment}
