@@ -10,9 +10,9 @@ import Axios from "axios";
 import { Button } from "react-bootstrap";
 import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
-import Modal from 'react-bootstrap/Modal';
-import Table from 'react-bootstrap/Table';
-import { useNavigate } from 'react-router-dom';
+import Modal from "react-bootstrap/Modal";
+import Table from "react-bootstrap/Table";
+import { useNavigate } from "react-router-dom";
 
 const createReceipt = () => {
   const location = useLocation();
@@ -32,25 +32,66 @@ const createReceipt = () => {
   );
 
   const [patientUser, setPatientUser] = useState([]);
-  const [patientAddress,setPatientAddress] = useState([]);
+  const [patientAddress, setPatientAddress] = useState([]);
 
-  const getUser = async() => {
-    try{
-        const response = await Axios.get('http://localhost:3001/getUserInfoFollowUp',{
-        params: {
-            patientIDNum:"PT#"+getPatientID
+  const getUser = async () => {
+    try {
+      const response = await Axios.get(
+        "http://localhost:3001/getUserInfoFollowUp",
+        {
+          params: {
+            patientIDNum: "PT#" + getPatientID,
+          },
         }
-    });
-        setPatientUser(response.data[0].fname + " " + response.data[0].lname);
-        setPatientAddress(response.data[0].house + " ," + response.data[0].brgy + " ," + response.data[0].municipality + " ," + response.data[0].province + " ," + response.data[0].country)
-    }catch (error){
-        console.log(error)
+      );
+      setPatientUser(response.data[0].fname + " " + response.data[0].lname);
+      setPatientAddress(
+        response.data[0].house +
+          " ," +
+          response.data[0].brgy +
+          " ," +
+          response.data[0].municipality +
+          " ," +
+          response.data[0].province +
+          " ," +
+          response.data[0].country
+      );
+    } catch (error) {
+      console.log(error);
     }
-}
-useEffect(() => {
-    getUser ();
-}, []);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
+  const [getDocName,setDocName] = useState([]);
+  const [getDateValue, setDateValue] = useState([]);
+  const [getTimeValue, setTimeValue] = useState([]);
+  const [getConValue, setConValue] = useState([]);
+
+  const getAppDetails = async () => {
+    try {
+      const response = await Axios.get(
+        "http://localhost:3001/getDetailsforReceipt",
+        {
+          params: {
+            patientIDNum: "PT#" + getPatientID,
+            appNumber: "#" + getAppNumber,
+          },
+        }
+      );
+
+      setDocName(response.data[0].dName)
+      setDateValue(response.data[0].date)
+      setTimeValue(response.data[0].time)
+      setConValue(response.data[0].consultation)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAppDetails();
+  }, []);
 
   console.log("OBJECT", ObjectID);
 
@@ -64,7 +105,7 @@ useEffect(() => {
     { serviceValue: "", quantityValue: "", amountToPay: "" },
   ]);
 
-  console.log("THIS ARE THE SERVICE ITEM", serviceItem)
+  console.log("THIS ARE THE SERVICE ITEM", serviceItem);
 
   //get amount value sum
   const newAmountArray = serviceItem.map(function (item) {
@@ -129,7 +170,7 @@ useEffect(() => {
 
   //MAP TWICE
   const [getPrice, setPrice] = useState([]);
-  const [dentalItem, setDentalItem] = useState([])
+  const [dentalItem, setDentalItem] = useState([]);
   const procedurePriceTotal = getPrice.reduce(
     (index, value) => (index = index + value),
     0
@@ -139,34 +180,31 @@ useEffect(() => {
     const price = recordProcedures.map((item) =>
       item.chosen != null
         ? item.chosen.map(
-          (proc) => (
-            setPrice((current) => [...current, parseInt(proc.price)]),
-            setDentalItem((current) => [...current, proc])
+            (proc) => (
+              setPrice((current) => [...current, parseInt(proc.price)]),
+              setDentalItem((current) => [...current, proc])
+            )
           )
-        )
         : null
     );
   }, [recordProcedures]);
-
 
   var [PWDSeniorDiscount, setPWDSeniorDiscount] = useState();
   if (isNaN(PWDSeniorDiscount)) {
     PWDSeniorDiscount = 0;
   }
-  console.log(PWDSeniorDiscount)
+  console.log(PWDSeniorDiscount);
 
   var finalTotal = useState();
 
   //total numbermodalState
   if (PWDSeniorDiscount == 0) {
-    console.log("NO DISCOUNT")
-    finalTotal = totalAmountPaid + procedurePriceTotal
+    console.log("NO DISCOUNT");
+    finalTotal = totalAmountPaid + procedurePriceTotal;
   } else {
-    console.log("MAY DISCOUNT LUGI")
+    console.log("MAY DISCOUNT LUGI");
     finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
   }
-
-
 
   console.log(StringfyAppNumber);
   console.log(serviceItem);
@@ -179,29 +217,43 @@ useEffect(() => {
 
   const [modalState, setModalState] = useState(false);
   const handleModalClose = () => {
-    setModalState(false)
+    setModalState(false);
   };
 
+  const createUserReceipt = () => {
+    Axios.put(
+      "http://localhost:3001/getandUpdateReceipt",
+      {
+        OBJECTID: ObjectID,
+        addedItem: serviceItem,
+        patientIDnumber: StringfyIDNumber,
+        appNum: StringfyAppNumber,
+        dateIssued: dateIssue,
+        paymentType: paymentType,
+        totalAmount: finalTotal,
+        officialReceiptNum: getOrNum,
+        addedProcedurePrice: recordProcedures,
+        amountPaid: amountPaid,
+        disValue: PWDSeniorDiscount,
+        imgFile: getFile[0],
+      },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
 
-  const createUserReceipt = async () => {
-
-    await Axios.put("http://localhost:3001/getandUpdateReceipt", {
-      OBJECTID: ObjectID,
-      addedItem: serviceItem,
-      patientIDnumber: StringfyIDNumber,
-      appNum:StringfyAppNumber,
-      dateIssued: dateIssue,
-      paymentType: paymentType,
-      totalAmount: finalTotal,
-      officialReceiptNum: getOrNum,
-      addedProcedurePrice: recordProcedures,
-      amountPaid: amountPaid,
-      disValue: PWDSeniorDiscount,
-      imgFile: getFile[0],
-    },{
-      headers: { 'Content-Type': 'multipart/form-data' }
-  });
-    
+     Axios.post(
+      "http://localhost:3001/moveToAppointmentHistoryAsFinished",
+      {
+        patientIDnumber: StringfyIDNumber,
+        appNum: StringfyAppNumber,
+        pName: patientUser,
+        dName: getDocName,
+        dateVal: getDateValue,
+        timeVal: getTimeValue,
+        conValue: getConValue,
+      }
+    );
   };
 
   // const handleShow = () => {
@@ -222,9 +274,7 @@ useEffect(() => {
                     <li className="breadcrumb-item">
                       <a href="/secretary">Home</a>
                     </li>
-                    <li className="breadcrumb-item active">
-                      Create E-Receipt
-                    </li>
+                    <li className="breadcrumb-item active">Create E-Receipt</li>
                   </ol>
                 </nav>
               </div>
@@ -264,7 +314,9 @@ useEffect(() => {
                         </h6>
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">
-                        <label for="dateOfIssue">Date of Issue: <span class="text-danger">*</span></label>
+                        <label for="dateOfIssue">
+                          Date of Issue: <span class="text-danger">*</span>
+                        </label>
                         <input
                           name="dateOfIssue"
                           type="date"
@@ -277,7 +329,9 @@ useEffect(() => {
                         />
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">
-                        <label for="ORnum">OR Number: <span class="text-danger">*</span></label>
+                        <label for="ORnum">
+                          OR Number: <span class="text-danger">*</span>
+                        </label>
                         <input
                           name="ORnum"
                           type="text"
@@ -298,16 +352,20 @@ useEffect(() => {
                             label="Senior Citizen"
                             name="group1"
                             type="radio"
-                            value={0.20}
-                            onChange={(e) => { setPWDSeniorDiscount(e.target.value) }}
+                            value={0.2}
+                            onChange={(e) => {
+                              setPWDSeniorDiscount(e.target.value);
+                            }}
                           />
                           <Form.Check
                             inline
                             label="PWD"
                             name="group1"
                             type="radio"
-                            value={0.20}
-                            onChange={(e) => { setPWDSeniorDiscount(e.target.value) }}
+                            value={0.2}
+                            onChange={(e) => {
+                              setPWDSeniorDiscount(e.target.value);
+                            }}
                           />
                           <Form.Check
                             inline
@@ -315,7 +373,7 @@ useEffect(() => {
                             name="group1"
                             type="radio"
                             value={0}
-                          //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            //onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 following-info"></div>
@@ -343,7 +401,9 @@ useEffect(() => {
                         {serviceItem.map((item, index) => (
                           <tr key={index}>
                             <th>{item.serviceValue}</th>
-                            <th style={{ textAlign: "center" }}>{item.quantityValue}</th>
+                            <th style={{ textAlign: "center" }}>
+                              {item.quantityValue}
+                            </th>
                             <th>{item.amountToPay}</th>
                           </tr>
                         ))}
@@ -511,8 +571,8 @@ useEffect(() => {
                         type="submit"
                         className="btn btn-primary submit-btn rx-btn"
                         onClick={() => {
-                          createUserReceipt()
-                          setModalState('show-modal')
+                          createUserReceipt();
+                          setModalState("show-modal");
                         }}
                       >
                         Create
@@ -532,28 +592,36 @@ useEffect(() => {
           </div>
         </div>
       </section>
-      
-      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
+      <Modal
+        show={modalState == "show-modal"}
+        onHide={handleModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Receipt Created</Modal.Title>
         </Modal.Header>
 
         <Modal.Body closeButton>
           {/* <img src={successful} alt="success image" className='success-img' />  */}
-          <p className='modal-txt'>You have created a receipt!</p>
+          <p className="modal-txt">You have created a receipt!</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" href={"/secretary/payment-records/view-transactions?patientIDNum=" + StringfyIDNumber} onClick={handleModalClose}>
+          <Button
+            variant="primary"
+            href={
+              "/secretary/payment-records/view-transactions?patientIDNum=" +
+              StringfyIDNumber
+            }
+            onClick={handleModalClose}
+          >
             Close
           </Button>
         </Modal.Footer>
-      </Modal> 
-
-
+      </Modal>
     </>
   );
 };
 export default createReceipt;
-
