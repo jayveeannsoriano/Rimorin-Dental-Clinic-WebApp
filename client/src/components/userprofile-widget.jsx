@@ -6,6 +6,11 @@ export default function UserProfileWidget() {
     const fullName = userInfo['fname'] + " " + userInfo['lname'] 
     console.log(fullName)
 
+    const bdayInput = userInfo['bday']
+    let AgeOut = () => {
+        return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    } 
+
     const userRole = userInfo["user_role_id"];
 
     var userRoleName = "";
@@ -37,7 +42,7 @@ export default function UserProfileWidget() {
                         <h3>Phone</h3>
                             <p id="contact_num"> (+63) {userInfo['mobile']} </p>
                             <h3>Age</h3>
-                            <p id="age"> {userInfo['age']} </p>
+                            <p id="age"> {AgeOut()} </p>
                         </div>
                     </div>
                 </div>

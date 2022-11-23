@@ -18,7 +18,7 @@ const UserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     const patientIDnumber = userInfo['patientIDnumber'];
     console.log(patientIDnumber);
-    console.log(userInfo, "this are all the data of the user");
+    console.log(userInfo, "These are all the data of the user");
    
 
     const [userData, setUserData] = useState([]);
