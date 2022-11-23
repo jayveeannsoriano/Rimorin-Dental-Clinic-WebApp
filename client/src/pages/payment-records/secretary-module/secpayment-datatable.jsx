@@ -40,37 +40,53 @@ const SecTransactionDataTable = (patientIDNum) => {
     }
 
     const columns = [
-        {
-            name: 'Appt #',
-            selector: (row) => row.appNum,
-        },
-        {
-            name: 'Date',
-            selector: (row) => row.date,
-            sortable: true,
-        },
-        {
-            name: 'Status',
-            selector: (row) => <div className="payment-details">
-                <PaymentStatusText payStats={row.payStatus} />
-            </div>
-        },
-        {
-            name: "Action",
-            selector: (row) => 
-            (
-            <div className="action-buttons" >
-                {row.payStatus == "Pending" ? (
-                <Button id="create-button" 
-                className="create-button" 
-                href={"/secretary/payment-records/create-receipt?patientValue=" 
-                + row.appNum.substring(1) +"&patientID=" + 
-                row.patientIDnumber.substring(3) + "&dateValue="+ 
-                row.date + "&ObjectID="+ row._id}>Create Receipt</Button>)
-                : (<><ExportFile/><PrintFile/></>)}
-            </div>
-            ),
-        }
+      {
+        name: "Appt #",
+        selector: (row) => row.appNum,
+      },
+      {
+        name: "Date",
+        selector: (row) => row.date,
+        sortable: true,
+      },
+      {
+        name: "Status",
+        selector: (row) => (
+          <div className="payment-details">
+            <PaymentStatusText payStats={row.payStatus} />
+          </div>
+        ),
+      },
+      {
+        name: "Action",
+        selector: (row) => (
+          <div className="action-buttons">
+            {row.payStatus == "Pending" ? (
+              <Button
+                id="create-button"
+                className="create-button"
+                href={
+                  "/secretary/payment-records/create-receipt?patientValue=" +
+                  row.appNum.substring(1) +
+                  "&patientID=" +
+                  row.patientIDnumber.substring(3) +
+                  "&dateValue=" +
+                  row.date +
+                  "&ObjectID=" +
+                  row._id
+                }
+              >
+                Create Receipt
+              </Button>
+            ) : (
+              <>
+                <ExportFile />
+                <PrintFile />
+              </>
+            )}
+          </div>
+        ),
+      },
     ];
 
     // Loading effect
@@ -124,23 +140,6 @@ const SecTransactionDataTable = (patientIDNum) => {
     //     console.log(result, "This is the result");
     //     setFilteredAppointment(result)
     // },[search])
-
-    
-    //function renderButtons (props){
-    //    const [hidden, setHidden] = useState(true);
-
-    //    if (payStatus == "Paid") {
-    //        !hidden ? <PrintFile /> : null;
-    //        //Show Export and Print button
-    //        //Hide Create Receipt
-    //      }else{ 
-    //        // Pending
-            
-    //        //Hide button Export and Print
-    //        //Show Create Receipt
-    //      }
-
-    //}
 
 
     return <DataTable

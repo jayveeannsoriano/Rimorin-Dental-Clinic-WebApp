@@ -1096,19 +1096,6 @@ padding-right: 4px;
   color: var(--text-color);
 }
 
-/* div of action buttons in dashboardTable.jsx */
-.action-buttons{
-  width: 800px;
-}
-
-/* div of action buttons in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
-.transaction-datatable .action-buttons{
-  /* width: 213px !important; */
-  width: 340px !important;
-}
-
-
-
 .appointment-request-table #cell-4-undefined{
   max-width: 780px !important;
 }
@@ -1120,37 +1107,31 @@ padding-right: 4px;
   max-width: 250px !important;
 }
 #cell-5-undefined{
-  max-width: 780px !important;
+  max-width: 320px !important;
 }
 
-/* existing dental table for dental records */
-
+/* existing dental table for dental records 4cols*/
+/* client\src\components\patient-dataTables\dentalrecord-datatable.jsx */
 .existing-dental-table #cell-1-undefined,
 .existing-dental-table #cell-2-undefined,
-.existing-dental-table #cell-3-undefined,
+.existing-dental-table #cell-3-undefined{
+  max-width: 167px !important;
+}
 .existing-dental-table #cell-4-undefined{
-  max-width: 140px !important;
+  max-width: 255px !important;
 }
 
-.existing-dental-table #cell-5-undefined{
-  max-width: 13px !important;
-}
-
-.transaction-datatable .dental-action-buttons {
-  max-width: 100px !important;
-}
-
-/* secretary module 5 cols*/
+/* client\src\components\patient-dataTables\transaction-datatable.jsx */
 .transaction-datatable #cell-1-undefined,
 .transaction-datatable #cell-2-undefined,
-.transaction-datatable #cell-3-undefined,
-.transaction-datatable #cell-4-undefined{
-  max-width: 140px !important;
+.transaction-datatable #cell-3-undefined{
+  max-width: 167px !important;
 }
-.transaction-datatable #cell-5-undefined{
-  max-width: 13px !important;
+.transaction-datatable #cell-4-undefined{
+  max-width: 255px !important;
 }
 
+/* client\src\components\patient-dataTables\transaction-datatable.jsx */
 /* patient module transaction table 4 cols */
 .patient-transaction-table #cell-1-undefined,
 .patient-transaction-table #cell-2-undefined,
@@ -1172,13 +1153,15 @@ padding-right: 4px;
 }
 
 /* data row content */
+
+/* 3rd col */
 .rdt_TableRow,
 .dtqzBx div:first-child{
   font-weight: 500 !important;
   font-size: 14px !important;
   line-height: 17px !important;
   color: var(--text-color) !important;
-  text-overflow: unset !important;
+  /*text-overflow: unset !important;*/
 }
 
 .rdt_TableRow:hover{
@@ -1205,9 +1188,15 @@ padding-right: 4px;
   border-radius: 5px !important;
 }
 
+/* 4th col */
 .kEIRkz div:first-child{
   text-overflow: unset !important;
   overflow: unset !important;
+}
+
+.existing-dental-table .kEIRkz div:first-child{
+  text-overflow:ellipsis !important;
+  overflow: hidden !important;
 }
 
 /*--------------------------------------------------------------
