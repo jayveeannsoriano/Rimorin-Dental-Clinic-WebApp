@@ -18,9 +18,18 @@ const DashboardTable = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
+    var getTodayDate = new Date();
+    window.localStorage.setItem('getTodayDate', getTodayDate);
+    var todayDate = window.localStorage.getItem('getTodayDate');
+    console.log(todayDate, 'dateToday');
+
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserAppointmentDetails');
+          const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
+            params: {
+                date:todayDate
+            }
+        });
             console.log(response, "Responses");
             setAppointment(response.data);
             setFilteredAppointment(response.data);

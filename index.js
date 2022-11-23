@@ -664,6 +664,19 @@ app.get("/getUserTransaction", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    app.get("/getUserTransactionPaid", async(req,res) => {
+
+      const patientIDnumber = 'PT#'+req.query.patientIDnumber;
+    
+      await ReceiptDetails.find({patientIDnumber: patientIDnumber,payStatus:"Paid"})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
   
     app.get("/getPatientListforUserTransaction", async(req,res) => {
     
