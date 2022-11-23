@@ -724,7 +724,7 @@ async function zipPrescription(prescriptions){
 	var zip = new JSZip();
 
 	prescriptions.forEach (async function (item, idx, array) {
-		prescription(
+		await prescription(
 			item.presDate, 
 			item.fname+" "+item.lname, 
 			item.age, 
@@ -755,7 +755,7 @@ async function zipTransaction(transaction){
 	
 	//receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
 	transaction.forEach(async function (info, idx, array) {
-		receipt(
+		await receipt(
 			info.fname+" "+info.lname,
 			info.house+" "+info.brgy+" "+info.municipality+" "+info.province+" "+info.country, 
 			info.date, 
