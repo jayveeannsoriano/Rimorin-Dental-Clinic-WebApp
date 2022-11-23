@@ -26,13 +26,44 @@ const DentistUserProfile = () => {
     const [zipValue, setZipValue] = useState('');
     const [ptrValue, setPtrValue] = useState('');
     const [licenceValue, setLicenceValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+    const bcrypt = require("bcryptjs");
 
-    console.log(firstName, 'updated');
+     // change password
+     const [emailValue, setEmailValue] = useState('');
+     const [currentPassword, setCurrentPassword] = useState("");
+     const [newPassword, setNewPassword] = useState("");
+     const [reEnterPassword, setReEnterPassword] = useState("");
+     console.log("USER PASSWORD", passwordValue);
+     console.log("USER CURRENT PASSWORD",currentPassword)
+ 
+     const changePassword = async () => {
+ 
+         if (await bcrypt.compare(currentPassword, passwordValue)){
+             console.log("password works")
+             if (newPassword == reEnterPassword){
+                 await Axios.put("http://localhost:3001/changePassword",{
+                     userEmail:emailValue,
+                     newPass:newPassword
+                 })
+             }else{
+             alert("Password not match")
+             }
+         }else{
+             alert("Current Password incorrect")
+         }
+ 
+     }
+     
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserInfo", {
+            const response = await Axios.get("http://localhost:3001/getUserUsingEmail", {
+                params:{
+                    emailValue:userInfo['email']
+                }
             });
+            console.log("RESPONSE",response.data)
             setUserData(response.data);
             setFirstValue(response.data[0].fname)
             setLastValue(response.data[0].lname)
@@ -50,7 +81,9 @@ const DentistUserProfile = () => {
             setZipValue(response.data[0].zipcode)
             setPtrValue(response.data[0].ptr)
             setLicenceValue(response.data[0].licence)
-
+            setEmailValue(response.data[0].email)
+            setPasswordValue(response.data[0].password)
+            
         } catch (error) {
             console.log(error);
         }
@@ -82,20 +115,6 @@ const DentistUserProfile = () => {
         });
 
         console.log("New info saved in DB")
-    }
-
-    function validatePassword(){
-        let newPassword = document.getElementById("newPassword");
-        let renewPassword = document.getElementById("renewPassword");
-        if(!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')){
-            if(newPassword.value != renewPassword.value) {
-                renewPassword.setCustomValidity("Passwords Does Not Match");
-            } else {
-                renewPassword.setCustomValidity('');
-                document.getElementById('passwordForm').submit();
-            }
-        }
-
     }
 
     return(
@@ -379,31 +398,31 @@ const DentistUserProfile = () => {
                                     </div>
 
                                             {/* Change Password */}
-                                    <div class="tab-pane fade pt-3" id="profile-change-password">
-                                        <form id='passwordForm' onSubmit={(e) => {e.preventDefault();}}>
+                                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                                        <form id='passwordForm' onSubmit={(e) => {e.preventDefault()}}>
                                             <div class="row mb-3">
-                                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control" id="currentPassword"/>
-                                            </div>
+                                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="password" type="password" class="form-control" id="currentPassword" onChange={(e) => {setCurrentPassword(e.target.value)}} required />
+                                                </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <input name="newpassword" type="password" class="form-control" id="newPassword" />
+                                                    <input name="newpassword" type="password" class="form-control" id="newPassword" onChange={(e) => {setNewPassword(e.target.value)}} required />
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <input name="renewpassword" type="password" class="form-control" id="renewPassword" />
+                                                    <input name="renewpassword" type="password" class="form-control" id="renewPassword" onChange={(e) => {setReEnterPassword(e.target.value)}} required />
                                                 </div>
                                             </div>
 
-                                                    <div class="text-right">
-                                                    <button type="submit" class="btn btn-primary" onClick={() => {validatePassword();}}>Change Password</button>
+                                            <div class="text-right">
+                                                <button type="submit" class="btn btn-primary" onClick={() => { changePassword()}} >Change Password</button>
                                             </div>
                                         </form>
                                     </div>

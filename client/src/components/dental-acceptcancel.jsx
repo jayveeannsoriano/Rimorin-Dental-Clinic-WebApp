@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import AcceptDental from "./modals/accept-dental";
 import CancelDental from "./modals/cancel-dental";
+import ApptDetailsText from "./modals/appt-details-text";
 
 const AcceptCancel = () => {
 
@@ -43,7 +44,7 @@ const AcceptCancel = () => {
         },
         {
             name: "Status",
-            selector: (row) => row.appStatus,
+            selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
             sortable: true,
         },
         {

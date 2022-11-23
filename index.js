@@ -161,6 +161,15 @@ app.post("/RegisterUser", async (req, res) => {
   }
 });
 
+app.put("/changePassword", async (req, res) => {
+
+  const userEmail = req.body.userEmail;
+  const newPassword = req.body.newPass;
+  const encryptedPassword = await bcrypt.hash(newPassword, 10);
+
+  await User.findOneAndUpdate({email:userEmail}, {password:encryptedPassword})
+});
+
 //read user data
 app.get("/userData", async (req, res) => {
   const { token } = req.body;
@@ -401,6 +410,20 @@ app.get("/getTodayUserAppointmentDetails", async(req,res) => {
           });
         });
 
+app.get("/getTodayAppointmentDetails", async(req,res) => {
+
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(slicedDate)
+    
+      await AppDetails.find({date:slicedDate})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
 //filtered Upcoming
 app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
 
@@ -410,6 +433,21 @@ app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
   console.log(patientIDNumber + " " + slicedDate);
 
   await AppDetails.find({patientIDnumber: patientIDNumber, date:{$ne: slicedDate}})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+
+});
+app.get("/getUpcomingAppointmentDetails", async(req,res) => {
+
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(slicedDate);
+
+  await AppDetails.find({date:{$ne: slicedDate}})
   .then((data) => {
     res.json(data);
   })
@@ -549,6 +587,19 @@ app.get("/getUserTransaction", async(req,res) => {
     app.get("/getUserforAdmin", async(req,res) => {
     
       await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+      app.get("/getUserUsingEmail", async(req,res) => {
+
+        const emailVal = req.query.emailValue;
+
+      await User.find({email:emailVal})
           .then((data) => {
             res.json(data);
           })
@@ -952,10 +1003,10 @@ app.post("/createReceipt", async (req,res) => {
 })
 
 const ImgStorageERec = multer.diskStorage({
-  destination: "uploads/e-prescription",
+  destination: "uploads/e-receipt",
   filename:(req,file,cb) =>{
-    const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
-    cb(null, req.body.patientIDNum+"_"+slicedDate + ".png");
+    //const slicedDate = req.body.dateValue.slice(0,10)//removes unnecessary data 
+    cb(null, req.body.patientIDnumber+"_"+ req.body.dateIssued + ".png");
   },
 });
 
@@ -963,31 +1014,37 @@ const uploadImg3 = multer({
   storage:ImgStorageERec
 });
 
-app.put("/updateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
-  const patientIDnumber = "PT#"+req.body.patientIDnumber;
-  const date = req.body.dateIssued;
+app.put("/getandUpdateReceipt",uploadImg3.single('imgFile'), async (req,res) =>{
+  const objectID = req.body.OBJECTID
+  const dateIssued = req.body.dateIssued;
   const paymentType = req.body.paymentType;
   const totalAmount = req.body.totalAmount;
   const addedItemValue = req.body.addedItem;
   const officialReceiptNum = req.body.officialReceiptNum;
   const addedProcedurePrice = req.body.addedProcedurePrice;
   const amountPaid = req.body.amountPaid;
-  const appNum = req.body.appNum;
+  const discountValue = req.body.disValue
+  const payStatus = "Paid";
 
-  await ReceiptDetails.findOneAndUpdate(
-    {patientIDnumber:patientIDnumber,
-    appNum:appNum
-    }, 
-    {dateIssued:date, 
-    addedItem: addedItemValue,
+
+try{
+  console.log(objectID)
+  await ReceiptDetails.findOneAndUpdate({_id:objectID},{
+    payStatus: payStatus,
+    dateIssued:dateIssued,
     paymentType:paymentType,
-    totalAmount:totalAmount,
+    addedItem:addedItemValue,
     officialReceiptNum:officialReceiptNum,
     addedProcedurePrice:addedProcedurePrice,
     amountPaid:amountPaid,
-  }
-  )
-  console.log("Receipt Details Updated!")
+    totalAmount:totalAmount,
+    discountValue:discountValue,
+  })
+}catch(error){
+console.log(error)
+}
+
+
 });
 
 const ImgStorageEPres = multer.diskStorage({
@@ -1010,6 +1067,7 @@ app.post("/createEprescription",uploadImg2.single('imgFile'), async (req,res)=>{
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const presDetails = req.body.presDetails;
   const notesValue = req.body.notesValue;
+
   
   await PresDetails.create({
       patientIDNumber: patientIDNum,

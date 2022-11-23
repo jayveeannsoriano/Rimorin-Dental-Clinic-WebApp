@@ -1,5 +1,7 @@
 import { jsPDF } from "jspdf";
 import autoTable from 'jspdf-autotable';
+import JSZip from "jszip";
+import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 import '../assets/fonts/Fira_Mono/FiraMono-Regular-normal';
 import '../assets/fonts/Fira_Mono/FiraMono-Bold-normal';
@@ -15,7 +17,7 @@ function convertPts(pts){
 	return pts*(0.352778);
 }
 
-export function receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , willDownload ) {
+export function receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs ) {
 	var width = 127;
 	var height = 190.5;
 	
@@ -192,19 +194,21 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		
 		
 		//save document
-		if(willDownload){
+		if(saveAs=="download"){
 			doc.save("Receipt_"+name+"_"+date+".pdf");
-		}else{
+		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
+		}else if(saveAs=="zip"){
+			return doc;
 		}
 		div.remove();
 	}
 	generate();
 }
 
-export function prescription(date, name, age, medArray, ptr, license, backPath, signPath, willDownload){
+export function prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs){
 	const width = 95.3;
 	const height = 127;
 	
@@ -334,18 +338,21 @@ export function prescription(date, name, age, medArray, ptr, license, backPath, 
 			}
 			await Promise.all([generate()]);
 		}
-		if(willDownload){
+
+		if(saveAs=="download"){
 			doc.save("Prescription_"+name+"_"+date+".pdf");
-		}else{
+		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
+		}else if(saveAs=="zip"){
+			return doc;
 		}
 	}
 	download();
 }
 
-export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, willDownload){
+export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, saveAs){
 	const width = convertInch(8.5);
 	const height = convertInch(14);
 	
@@ -463,16 +470,18 @@ export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, 
 		startX: convertInch(0.5),
 	});
 
-	if(willDownload){
+	if(saveAs=="download"){
 		doc.save("Dental-Records_"+name+".pdf");
-	}else{
+	}else if(saveAs=="print"){
 		doc.autoPrint();
 		var blob = doc.output("blob");
 		window.open(URL.createObjectURL(blob));
+	}else if(saveAs=="zip"){
+		return doc;
 	}
 }
 
-export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, willDownload){
+export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, saveAs){
 	const width = convertInch(8.5);
 	const height = convertInch(14);
 	
@@ -554,14 +563,108 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, w
 		
 		var imgData = canvas.toDataURL('image/png');
 		doc.addImage(imgData,'PNG',convertInch(0.5),convertInch(3.0),(width-convertInch(1.0)),(canvas.height/canvas.width)*(width-convertInch(1.0)));
-		if(willDownload){
+
+		if(saveAs=="download"){
 			doc.save("Dental-Record_"+name+".pdf");
-		}else{
+		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
 			window.open(URL.createObjectURL(blob));
+		}else if(saveAs=="zip"){
+			return doc;
 		}
+
 	}
 	generate();
 }
 
+
+function zipAll(dentals, transactions, prescriptions){
+	
+}
+
+//prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs)
+function zipPrescription(prescriptions){
+	const zip = new JSZip();
+	prescriptions.forEach (function (item) {
+		var doc = prescription(
+
+			item[1].presDate, 
+			item[0].fname+" "+item[0].lname, 
+			item[0].age, 
+			fixArrayTable(item[1].presDetails), 
+			"1953834", 
+			"2719432", 
+			require('../assets/img/watermark_for_eprescription.png'), 
+			require('../assets/img/tempsignaturedentist.png'), 
+			"zip"
+		);
+		try{
+			zip.file("Dental-Record_"+item[0].fname+" "+item[0].lname+".pdf", doc.output('blob'));
+		}catch{
+			console.error('Zip has Failed')
+		}
+		
+	});
+
+	zip.generateAsync({type:'blob'}).then(function(content) {
+		saveAs(content, 'reports.zip');
+	});
+}
+
+function fixArrayTable(arr){
+	var newArr = [];
+	for(let arrOut = 0 ; arrOut<arr.length ; arrOut++){
+	  newArr.push([
+		arr[arrOut].generic,
+		arr[arrOut].brand,
+		arr[arrOut].dosage,
+		arr[arrOut].duration,
+		arr[arrOut].form,
+		arr[arrOut].frequency
+	  ])
+	}
+	return newArr;
+  }
+
+/*
+function zipDental(dentals){
+	const zip = new JSZip();
+	dental.forEach (function (items) {
+
+	});
+}
+*/
+/*
+function zipTransaction(transactions){
+	const zip = new JSZip();
+	transaction.forEach (function (student) {
+		var doc = createFile(student);
+		if (typeof doc !== 'undefined') {
+			try {
+				zip.file(student.name + '.pdf', doc.output('blob'));
+			}
+			catch {
+				console.error('Something went wrong!');
+			}
+		}
+	});
+}
+
+*/
+/*
+function zipPrescription(prescription){
+	const zip = new JSZip();
+
+zip.file("Hello.txt", "Hello World\n");
+
+const img = zip.folder("images");
+img.file("smile.gif", imgData, {base64: true});
+
+zip.generateAsync({type:"blob"}).then(function(content) {
+    // see FileSaver.js
+    saveAs(content, "example.zip");
+});
+
+}
+*/

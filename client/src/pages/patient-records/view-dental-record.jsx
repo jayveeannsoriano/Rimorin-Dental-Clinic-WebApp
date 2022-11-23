@@ -70,8 +70,11 @@ const ViewDentalRecord = () => {
         });
         
         procedures.forEach(procedure => {
-            if(procedure.chosen!=null){
-                recordProcedures.push(procedure.chosen);
+            if(procedure.chosen.length!=0){
+                procedure.chosen.forEach(chosen =>{
+                    console.log(chosen);
+                    recordProcedures.push(chosen.procedure+" ");
+                })
             }
         });
     
@@ -128,12 +131,12 @@ const ViewDentalRecord = () => {
                                 <div className="card patient-info">
                                     <div className="card-body pt-3">
                                         <h5 className="card-title">Dental Record</h5>
-                                        <button className="btn btn-primary" type="submit" onClick={() =>{Export(false)}}>
+                                        <button className="btn btn-primary" type="submit" onClick={() =>{Export("print")}}>
                                             <i class="bi bi-printer-fill"></i>
                                             Print
                                             </button>
                                             
-                                            <button className="btn btn-primary" type="submit" onClick={() =>{Export(true)}}>
+                                            <button className="btn btn-primary" type="submit" onClick={() =>{Export("download")}}>
                                             <i class="bi bi-download"></i>
                                                 Export
                                             </button>

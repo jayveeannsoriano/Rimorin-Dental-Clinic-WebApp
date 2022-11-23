@@ -6,6 +6,7 @@ import PaymentStatusText from "./payment-status-text";
 import ViewFile from "../../../components/modals/view-file"
 import { Button } from "react-bootstrap";
 import PrintFile from "../../../components/modals/print";
+import ExportFile from "../../../components/modals/export";
 
 const SecTransactionDataTable = (patientIDNum) => {
 
@@ -56,11 +57,12 @@ const SecTransactionDataTable = (patientIDNum) => {
         },
         {
             name: "Action",
-            selector: (row) => <div className="action-buttons" >
-                <PrintFile />
-                <ViewFile />
-                <Button className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date}>Create Receipt</Button>
+            selector: (row) => 
+            (<div className="action-buttons" >
+                {row.payStatus == "Pending" ? (<Button id="create-button" className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date + "&ObjectID="+ row._id}>Create Receipt</Button>)
+                : (<ExportFile/>)}
             </div>
+            ),
         }
     ];
 
@@ -115,6 +117,24 @@ const SecTransactionDataTable = (patientIDNum) => {
     //     console.log(result, "This is the result");
     //     setFilteredAppointment(result)
     // },[search])
+
+    
+    //function renderButtons (props){
+    //    const [hidden, setHidden] = useState(true);
+
+    //    if (payStatus == "Paid") {
+    //        !hidden ? <PrintFile /> : null;
+    //        //Show Export and Print button
+    //        //Hide Create Receipt
+    //      }else{ 
+    //        // Pending
+            
+    //        //Hide button Export and Print
+    //        //Show Create Receipt
+    //      }
+
+    //}
+
 
     return <DataTable
         className="transaction-datatable"

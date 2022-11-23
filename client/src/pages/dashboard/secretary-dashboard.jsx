@@ -3,6 +3,7 @@ import axios from "axios";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DentistDTable from '../../components/dental-table';
+import UpDentalDashboardTable from "../../components/dental-tableUpcomingTable";
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -136,7 +137,7 @@ export default function DentistDashboard() {
                            UPCOMING APPOINTMENTS
                          </h5>
                          {/* Pachange nalang yung datatable here */}
-                             <DentistDTable/>
+                             <UpDentalDashboardTable/>
                        </div>
                      </div>
                    </div>

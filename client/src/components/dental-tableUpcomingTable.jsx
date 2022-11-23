@@ -7,10 +7,9 @@ import styled, { keyframes } from 'styled-components';
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import Rebook from "./modals/rebook"
-import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
 
-const DashboardTable = () => {
+const UpDentalDashboardTable = () => {
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -25,7 +24,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingAppointmentDetails',{
             params: {
                 date:todayDate
             }
@@ -39,55 +38,41 @@ const DashboardTable = () => {
     }
 
     const columns = [
-      {
-        name: "Patient",
-        selector: (row) => row.pName,
-        sortable: true,
-      },
-      {
-        name: "Appt #",
-        selector: (row) => row.appNum,
-        sortable: true,
-      },
-      {
-        name: "Date & Time",
-        selector: (row) => row.date + " | " + row.time,
-        sortable: true,
-      },
-      {
-        name: "Appt. Status",
-        selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
-        sortable: true,
-      },
-      {
-        name: "Action",
-        selector: (row) => (
-          <div className="action-buttons">
-            {row.appStatus == "Finished" ? (<FollowUp/>) : (
-                <Rebook
-                  patientIDnumber={row.patientIDnumber}
-                  appNum={row.appNum}
-                  pName={row.pName}
-                  dName={row.dName}
-                  date={row.date}
-                  time={row.time}
-                  consultation={row.consultation}
-                />
-            )}
-            <ApptDetails
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              consultation={row.consultation}
-            />
-          </div>
-        ),
-      },
+        {
+            name: 'Patient',
+            selector: (row) => row.pName,
+            sortable: true,
+        },
+        {
+            name: "Appt #",
+            selector: (row) => row.appNum,
+            sortable: true,
+        },
+        {
+            name: "Date & Time",
+            selector: (row) => row.date + " | " + row.time,
+            sortable: true,
+        },
+        {
+            name: "Appt. Status",
+            selector: row =>
+            <ApptDetailsText appStats = {row.appStatus}/>,
+            sortable:true,
+        },
+        {
+            name: "Action",
+            selector: row =>
+            <div className="action-buttons">
+                < Rebook patientIDnumber = {row.patientIDnumber} appNum = {row.appNum} pName = {row.pName} dName = {row.dName} date = {row.date} time={row.time} consultation={row.consultation}/>
+                < ReschedConfirmation patientIDnumber = {row.patientIDnumber} pName = {row.pName} appNum = {row.appNum}/>
+                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
+            </div>
+        },
     ];
 
    
+
+    
     // Loading effect
     const rotate360 = keyframes` 
         from {
@@ -163,4 +148,4 @@ const DashboardTable = () => {
   
 }
 
-export default DashboardTable
+export default UpDentalDashboardTable

@@ -9,6 +9,7 @@ import {useNavigate} from 'react-router-dom';
 import '../../styles/dashboard.css';
 //datatable
 import DentistDTable from '../../components/dental-table';
+import UpDentalDashboardTable from "../../components/dental-tableUpcomingTable";
 
 export default function DentistDashboard() {  
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -129,7 +130,7 @@ export default function DentistDashboard() {
                           UPCOMING APPOINTMENTS
                         </h5>
                         {/* Pachange nalang yung datatable here */}
-                            <DentistDTable/>
+                            <UpDentalDashboardTable/>
                       </div>
                     </div>
                   </div>

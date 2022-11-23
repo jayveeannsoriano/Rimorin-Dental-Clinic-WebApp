@@ -34,6 +34,15 @@ const AdminDentalRecord = () => {
       );
       // console.log(response, "Responses");
       setAppointment(response.data);
+
+      response.data.forEach(specificData => {
+        const chartedTeeth = specificData.chartedTeeth; 
+        chartedTeeth.forEach(teeth => {
+            var el = document.getElementById(teeth);
+            el.classList.toggle('marked');
+        });
+      })
+
       console.log(appointment);
       // setFilteredAppointment(response.data);
     } catch (error) {
@@ -106,19 +115,6 @@ const AdminDentalRecord = () => {
     <>
     <div className="container dental-record-container">
         <div className="row">
-        <div className="button-div">
-            <button className="btn btn-primary" type="submit" 
-                onClick={() => {Export(false);}}>
-                  <i class="bi bi-printer-fill"></i>
-                  Print
-                </button>
-
-                <button className="btn btn-primary" type="submit"
-                  onClick={() => {Export(true);}}>
-                  <i class="bi bi-download"></i>
-                  Export
-                </button>
-            </div>
           <div class="col-xl-12">
               <div className="card-body">
                 <div className="divider"></div>
