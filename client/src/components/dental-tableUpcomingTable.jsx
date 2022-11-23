@@ -8,6 +8,7 @@ import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
+import FollowUp from "./modals/followUp"
 
 const UpDentalDashboardTable = () => {
 
@@ -63,8 +64,24 @@ const UpDentalDashboardTable = () => {
             name: "Action",
             selector: row =>
             <div className="action-buttons">
-                < Rebook patientIDnumber = {row.patientIDnumber} appNum = {row.appNum} pName = {row.pName} dName = {row.dName} date = {row.date} time={row.time} consultation={row.consultation}/>
-                < ReschedConfirmation patientIDnumber = {row.patientIDnumber} pName = {row.pName} appNum = {row.appNum}/>
+                {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
+                <>
+                    <Rebook
+                        patientIDnumber={row.patientIDnumber}
+                        appNum={row.appNum}
+                        pName={row.pName}
+                        dName={row.dName}
+                        date={row.date}
+                        time={row.time}
+                        consultation={row.consultation} />
+                    <ReschedConfirmation
+                        patientIDnumber={row.patientIDnumber}
+                        pName={row.pName}
+                        appNum={row.appNum} />
+                </>
+                ) 
+                : (<FollowUp patientIDnumber={row.patientIDnumber} appNum={row.appNum}/>)
+            }
                 < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
             </div>
         },

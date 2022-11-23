@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
 
 //project imports
 import ProfileWidgetTwo from "../../components/profile-widget2";
@@ -8,6 +9,7 @@ import DentalChart from "../../components/dental-teeth-chart";
 import { dentalRecord } from '../../config/FileGeneration.js'
 import "../../styles/profilewidgettwo.css";
 import '../../styles/dental-record.css'
+
 
 const ViewDentalRecord = () => {
 
@@ -153,7 +155,7 @@ const ViewDentalRecord = () => {
                                         {/* Summary of Treatment */}
                                         <h5 className="card-title">Summary of Treatment</h5>
                                         <div class="row">
-                                            <div className="col-3">
+                                            {/* <div className="col-3">
                                                 <h6>Selected Tooth/Teeth</h6>
                                                 <p>{recordData.chartedTeeth}</p>
                                             </div>
@@ -168,7 +170,35 @@ const ViewDentalRecord = () => {
                                             <div className="col-3">
                                                 <h6>Procedure/s</h6>
                                                 <p>{recordProcedures.toString()}</p>
-                                            </div>
+                                            </div> */}
+                                            <Table striped>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Selected Tooth/Root</th>
+                                                        <th>Date of Treatment</th>
+                                                        <th>Treatment Description</th>
+                                                        <th>Procedures</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {/* map recordData.chartedTeeth */}
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                  {/* map recordData.dentalDate*/}
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                  {/* map recordData.dentalDesc */}
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                  {/* map recordData.recordProcedures */}
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </Table>
                                         </div>
 
                                         {/* Treatment Attatchments */}
