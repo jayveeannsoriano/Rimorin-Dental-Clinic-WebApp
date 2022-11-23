@@ -58,9 +58,16 @@ const SecTransactionDataTable = (patientIDNum) => {
         {
             name: "Action",
             selector: (row) => 
-            (<div className="action-buttons" >
-                {row.payStatus == "Pending" ? (<Button id="create-button" className="create-button" href={"/secretary/payment-records/create-receipt?patientValue=" + row.appNum.substring(1) +"&patientID=" + row.patientIDnumber.substring(3) + "&dateValue="+ row.date + "&ObjectID="+ row._id}>Create Receipt</Button>)
-                : (<ExportFile/>)}
+            (
+            <div className="action-buttons" >
+                {row.payStatus == "Pending" ? (
+                <Button id="create-button" 
+                className="create-button" 
+                href={"/secretary/payment-records/create-receipt?patientValue=" 
+                + row.appNum.substring(1) +"&patientID=" + 
+                row.patientIDnumber.substring(3) + "&dateValue="+ 
+                row.date + "&ObjectID="+ row._id}>Create Receipt</Button>)
+                : (<><ExportFile/><PrintFile/></>)}
             </div>
             ),
         }

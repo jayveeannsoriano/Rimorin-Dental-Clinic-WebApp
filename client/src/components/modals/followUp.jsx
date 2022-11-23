@@ -23,7 +23,7 @@ const FollowUp = () => {
   return (
     <>
       <Button className="followUp-button" variant="primary" href={FollowUpAppointmentRoute}>
-        <i class="fa-regular fa-calendar-pen"></i>Follow Up
+        <i class="bi bi-calendar2-heart"></i>Follow Up
       </Button>
     </>
   )
