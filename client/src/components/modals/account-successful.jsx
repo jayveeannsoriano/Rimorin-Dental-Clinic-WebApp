@@ -12,7 +12,14 @@ export default function AccountCreated() {
 
     return (
         <>
-            <button type="button" class="btn btn-primary spc" onClick={handleShow}> <i class="bi bi-eye"></i> View Archived Accounts</button>
+            
+            <button
+                type="submit"
+                className="btn btn-primary ad-btn-space"
+                onClick={handleShow}
+            >
+                Create
+            </button>
 
             <Modal show={show} onHide={handleClose}>
 

@@ -18,9 +18,18 @@ const DashboardTable = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
+    var getTodayDate = new Date();
+    window.localStorage.setItem('getTodayDate', getTodayDate);
+    var todayDate = window.localStorage.getItem('getTodayDate');
+    console.log(todayDate, 'dateToday');
+
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserAppointmentDetails');
+          const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
+            params: {
+                date:todayDate
+            }
+        });
             console.log(response, "Responses");
             setAppointment(response.data);
             setFilteredAppointment(response.data);
@@ -54,22 +63,6 @@ const DashboardTable = () => {
         name: "Action",
         selector: (row) => (
           <div className="action-buttons">
-            {/*{row.appStatus == "Finished" ? (<FollowUp/>) : (
-                <>
-                <Rebook
-                        patientIDnumber={row.patientIDnumber}
-                        appNum={row.appNum}
-                        pName={row.pName}
-                        dName={row.dName}
-                        date={row.date}
-                        time={row.time}
-                        consultation={row.consultation} />
-                        <ReschedConfirmation
-                            patientIDnumber={row.patientIDnumber}
-                            pName={row.pName}
-                            appNum={row.appNum} />
-                        </>
-            )}*/}
             {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
                 <>
                     <Rebook
@@ -86,7 +79,7 @@ const DashboardTable = () => {
                         appNum={row.appNum} />
                 </>
                 ) 
-                : (<FollowUp/>)
+                : (<FollowUp patientIDnumber={row.patientIDnumber} appNum={row.appNum}/>)
             }
 
             <ApptDetails
