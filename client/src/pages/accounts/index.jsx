@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/dashboard.css";
 import "../../styles/accounts.css";
 import AdminTable from "../../components/admin-table";
+import AdminArchiveTable from "../../components/admin-archive-table";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
@@ -46,7 +47,7 @@ const accountspage = () => {
                     <div className="tab-pane fade" id="archived-accounts">
                       <h5 className="card-title">ARCHIVED ACCOUNTS</h5>
                       {/* insert datatable for archived accounts */}
-                        <AdminTable/>
+                        <AdminArchiveTable/>
                     </div>
                   </div>
               </div>
