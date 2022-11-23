@@ -247,11 +247,11 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             Next
           </button>
         </div>
-
-        <div className="signup-link">
+        
+        
+        <div className="signup-link"><p class="text-center">
           Already registered? <a href="/auth/login">Sign In</a>
-        </div>
-
+          </p></div>
       </form>
     </>
   );
