@@ -86,9 +86,6 @@ const createReceipt = () => {
   //cancel button navigate to previous page
   const navigate = useNavigate();
 
-
-
-
   const [recordProcedures, setRecordProcedures] = useState([]);
   console.log(recordProcedures, "this are the vals");
   const addPreviousReceipt = async () => {
@@ -166,6 +163,7 @@ const createReceipt = () => {
 
 
   const createUserReceipt = async () => {
+
     await Axios.put("http://localhost:3001/getandUpdateReceipt", {
       OBJECTID: ObjectID,
       addedItem: serviceItem,
@@ -177,12 +175,11 @@ const createReceipt = () => {
       officialReceiptNum: getOrNum,
       addedProcedurePrice: recordProcedures,
       amountPaid: amountPaid,
+      disValue: PWDSeniorDiscount,
       imgFile: getFile[0],
     },{
       headers: { 'Content-Type': 'multipart/form-data' }
   });
-
-     setModalState('show-modal')
     
   };
 
@@ -494,7 +491,7 @@ const createReceipt = () => {
                         className="btn btn-primary submit-btn rx-btn"
                         onClick={() => {
                           createUserReceipt()
-                        
+                          setModalState('show-modal')
                         }}
                       >
                         Create
@@ -514,20 +511,15 @@ const createReceipt = () => {
           </div>
         </div>
       </section>
-    </>
-  );
-};
-export default createReceipt;
-
-
-      {/* <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+      
+      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
         <Modal.Header closeButton>
           <Modal.Title>Receipt Created</Modal.Title>
         </Modal.Header>
 
         <Modal.Body closeButton>
-          {/* <img src={successful} alt="success image" className='success-img' /> 
+          {/* <img src={successful} alt="success image" className='success-img' />  */}
           <p className='modal-txt'>You have created a receipt!</p>
         </Modal.Body>
 
@@ -537,4 +529,10 @@ export default createReceipt;
           </Button>
         </Modal.Footer>
       </Modal> 
-*/}
+
+
+    </>
+  );
+};
+export default createReceipt;
+
