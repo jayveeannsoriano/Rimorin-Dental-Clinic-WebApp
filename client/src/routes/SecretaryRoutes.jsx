@@ -28,6 +28,9 @@ const TransactionsPatientList = lazy(() => import('../pages/patient-list/transac
 //create receipt routing
 const CreateReceipt = lazy(() => import('../pages/payment-records/secretary-module/create-receipt'));
 
+//create follow-up appointment
+const CreateFollowUpAppointment = lazy(() => import('../pages/appointments/follow-up-appointment'));
+
 // ==============================|| DASHBOARD ROUTING ||============================== //
 
 const SecretaryRoutes = {
@@ -44,7 +47,16 @@ const SecretaryRoutes = {
         },
         {
             path: '/secretary/appointments',
-            element: <Appointments />
+            children: [
+                {
+                    path: '/secretary/appointments',
+                    element: <Appointments />
+                },
+                {
+                    path: '/secretary/appointments/follow-up-appointment',
+                    element: <CreateFollowUpAppointment />
+                },
+            ]
         },
         {
             path: '/secretary/calendar',

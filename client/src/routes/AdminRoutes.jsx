@@ -20,6 +20,8 @@ const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 
 const AdminPatientUI = lazy(() => import ("../pages/patients/admin-module/admin-patient-ui")); 
 
+//create follow-up appointment
+const CreateFollowUpAppointment = lazy(() => import('../pages/appointments/follow-up-appointment'));
 
 // ==============================|| ADMIN ROUTING ||============================== //
 const AdminRoute ={
@@ -33,6 +35,10 @@ const AdminRoute ={
         {
             path: '/admin',
             element: <Dashboard />
+        },
+        {
+            path: '/admin/follow-up-appointment',
+            element: <CreateFollowUpAppointment />
         },
         {
             path: '/admin/clinic-hours',
