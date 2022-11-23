@@ -53,9 +53,10 @@ const UserProfile = () => {
         if (await bcrypt.compare(currentPassword, passwordValue)){
             console.log("password works")
             if (newPassword == reEnterPassword){
+                handleShow();
                 await Axios.put("http://localhost:3001/changePassword",{
                     userEmail:emailValue,
-                    newPass:newPassword
+                    newPass:newPassword,
                 })
             }else{
             alert("Password not match")
@@ -130,7 +131,12 @@ const UserProfile = () => {
             zipValue: zipValue,
         });
         console.log("New info saved in DB");
-        setModalState('show-modal')
+        // setModalState('show-modal');
+        
+    }
+
+    const handleShow= () => {
+        setModalState('show-modal');
     }
 
     return (
@@ -404,7 +410,7 @@ const UserProfile = () => {
                                                 </div>
                                             </div>
                                             {/* <Button className='edit-save text-right' onClick={() => { handleShow(); updatePatientInfo(); }}>Save Changes</Button> */}
-                                            <Button className='edit-save text-right' onClick={() => { updatePatientInfo() }}>Save Changes</Button>
+                                            <Button className='edit-save text-right' onClick={() => { updatePatientInfo(); handleShow(); }}>Save Changes</Button>
                                         </div>
                                     </div>
                                     {/* Change Password */}
