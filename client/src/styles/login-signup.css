@@ -2,9 +2,12 @@
 # Header Login Page
 --------------------------------------------------------------*/
 #headerlogin {
+  background: var(--bg-color);
+  position: fixed;
   transition: all 0.5s;
   z-index: 997;
   padding: 24px;
+  top: 40px;
   box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
 }
 
@@ -20,10 +23,6 @@
 
 #headerlogin .logo a {
   color: var(--text-color);
-}
-
-#headerlogin {
-  display: block;
 }
 
 .auth-container{
@@ -135,7 +134,8 @@ input[type="submit"]:hover {
 }
 
 .signup_link {
-  margin: 30px 0;
+  margin: 30px 0x;
+  /* display: block; */
   text-align: center;
   font-size: var(--normal-font-size);
   color: var(--text-color-alt);
@@ -151,6 +151,10 @@ input[type="submit"]:hover {
   text-decoration: underline;
   transition: .5s;
 }
+
+/* .field-signup{
+  display: block;
+} */
 
 .auth-inner-signup .signup_link {
   text-align: center;
@@ -210,18 +214,18 @@ input[type="submit"]:hover {
 # SIGN UP CSS
 --------------------------------------------------------------*/
 
-/** {
+/* /** {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
-html {
+/* html {
   height: 100%;
   box-sizing: border-box !important;
-}*/
+}
 
-/*body,
+body,
 html,
 .App,
 #root,
@@ -229,7 +233,7 @@ html,
   width: 100%;
   height: 100%;
   
-}*/
+} */
 
 .auth-inner {
   width: 500px;
