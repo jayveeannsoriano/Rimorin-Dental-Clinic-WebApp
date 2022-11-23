@@ -31,6 +31,27 @@ const createReceipt = () => {
     JSON.stringify(getDateReceipt).replace(/"/g, "")
   );
 
+  const [patientUser, setPatientUser] = useState([]);
+  const [patientAddress,setPatientAddress] = useState([]);
+
+  const getUser = async() => {
+    try{
+        const response = await Axios.get('http://localhost:3001/getUserInfoFollowUp',{
+        params: {
+            patientIDNum:"PT#"+getPatientID
+        }
+    });
+        setPatientUser(response.data[0].fname + " " + response.data[0].lname);
+        setPatientAddress(response.data[0].house + " ," + response.data[0].brgy + " ," + response.data[0].municipality + " ," + response.data[0].province + " ," + response.data[0].country)
+    }catch (error){
+        console.log(error)
+    }
+}
+useEffect(() => {
+    getUser ();
+}, []);
+
+
   console.log("OBJECT", ObjectID);
 
   const [dateIssue, setDateIssued] = useState("");
@@ -236,10 +257,10 @@ const createReceipt = () => {
                           Appointment #:<span> #{StringfyAppNumber}</span>
                         </h6>
                         <h6>
-                          Bill to:<span> Shermax Soriano</span>
+                          Bill to:<span> {patientUser}</span>
                         </h6>
                         <h6>
-                          Address:<span> #10 Todafuckingmoon</span>
+                          Address:<span> {patientAddress}</span>
                         </h6>
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">
