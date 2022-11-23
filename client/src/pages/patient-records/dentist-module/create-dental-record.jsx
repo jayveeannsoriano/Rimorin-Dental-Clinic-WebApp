@@ -54,6 +54,7 @@ const CreateDentalRecord = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
+  console.log(chartedTeeth)
   //procedure checkbox options 
   const [checked, setChecked] = useState([
     {
@@ -418,11 +419,11 @@ const CreateDentalRecord = () => {
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>November 6, 2022</p>
+                  <p>{startDate}</p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                  <p>{treatDesc}</p>
                 </div>
                 <div className="col-3">
                   <h6>Procedure/s</h6>

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-bootstrap';
 import Timeslot from "../../../components/timeslot.jsx";
 import "../../../styles/booking.css";
-import {useState,} from 'react';
 //datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //Axios
-import Axios from 'axios';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,values}) => {
 
@@ -27,13 +27,41 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
         //time input
         const [time, setGetTime] = useState("");
 
-        //retrieve Time data from Timeslot
-        const getBookingData = (data)=>{
-            console.log('Retrieving Data from Booking Input: ', data)
-            // handleTimeChange(data);
-            setGetTime(data);
-            window.localStorage.setItem('time',data);
+        const [chosenDate, setChosenDate] = useState("");
+
+        const [timeCheck, setTimeCheck] = useState("")
+        console.log("CURRENT TIME BOOKING",timeCheck)
+        window.localStorage.setItem('time', timeCheck);
+
+        const [takenAppointments, setTakenAppointments] = useState([]);
+
+        console.log("CURRENT DATE BOOKING",startDate);
+        window.localStorage.setItem('date', startDate);
+
+        const navigate = useNavigate();
+
+            //Get All appointments on date
+    const getAppointmenstbyDate = async(date) => {
+        try{
+            
+            setChosenDate(date);
+            const response = await axios.get('http://localhost:3001/getAppointmentsbyDate',{
+                params:{
+                    date: date
+                }
+            })
+
+            var data = response.data
+            var tempArr = [];
+            data.forEach(appt => {
+                tempArr.push(appt.time);
+            });
+            setTakenAppointments(tempArr);
+       
+        }catch (error){
+            console.log(error)
         }
+    }
 
         const Continue = (e) => {
         e.preventDefault();
@@ -49,6 +77,11 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
 
 
     };
+
+    useEffect(() => {
+        var initialDate = new Date();
+        getAppointmenstbyDate(initialDate.toString().substring(0, 10));
+    }, []);
 
     return(
         
@@ -135,28 +168,31 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
                     <form className="row g-3 needs-validation" noValidate/>
                         <div className="col-md-4">
                             <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-
-                            <DatePicker 
-                            selected={startDate} 
-                            onChange={(date) => {
-                                setStartDate(date);
-                                console.log("This is the calendar data:", date)
-                                window.localStorage.setItem('date',date);
-                            }}
-                            isClearable
-                            placeholderText="Choose a date"
-                            minDate={new Date()}
-                            shouldCloseOnSelect={false}
-                            dateFormat="MMMM d, yyyy"
-                            //exclude sundays
-                            filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
-                            />
+                            <DatePicker
+                                    selected={startDate}
+                                    onChange={(date) => {
+                                        setStartDate(date);
+                                        getAppointmenstbyDate(date.toString().substring(0, 10));
+                                        setTakenAppointments([]);
+                                    }}
+                                    isClearable
+                                    placeholderText="Choose a date"
+                                    minDate={new Date()}
+                                    shouldCloseOnSelect={false}
+                                    //exclude sundays
+                                    filterDate={date => date.getDay() !== 7 && date.getDay() !== 0}
+                                    required
+                                />
+                            
+                            <div className="valid-feedback">
+                                    Looks good!
+                                </div>
                         </div>
 
                         <div className="col-md-6">
                             <label htmlFor="validationCustom01" className="form-label">Select Time for Appointment <span className="text-danger font-weight-bold">*</span></label>
                             <p> Available Times </p>
-                            <Timeslot onSubmit={getBookingData}/>
+                            <Timeslot GetTimeCheck={setTimeCheck} takenAppointments={takenAppointments} chosenDate={chosenDate}/>
                         </div>
                     </div>
 

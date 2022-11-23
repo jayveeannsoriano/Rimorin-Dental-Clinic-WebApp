@@ -63,7 +63,7 @@ const DashboardTable = () => {
         name: "Action",
         selector: (row) => (
           <div className="action-buttons">
-            {row.appStatus == "Finished" ? (<FollowUp />) : (
+            {row.appStatus == "Finished" ? (<FollowUp/>) : (
                 <Rebook
                   patientIDnumber={row.patientIDnumber}
                   appNum={row.appNum}
