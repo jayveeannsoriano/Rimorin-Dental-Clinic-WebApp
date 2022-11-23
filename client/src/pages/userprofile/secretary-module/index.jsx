@@ -4,6 +4,8 @@ import UserProfileWidget from "../../../components/userprofile-widget";
 import { Button } from 'react-bootstrap';
 import "../../../styles/patient-info-edit.css";
 import Modal from 'react-bootstrap/Modal';
+import error from '../../../assets/img/error.png';
+import success from '../../../assets/img/check.png';
 
 const SecretaryUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -417,8 +419,8 @@ const handleIncorrect = () => {
                 </Modal.Header>
 
                 <Modal.Body >
-                    {/* <img src={successful} alt="success image" className='success-img' /> */}
-                    <p className='modal-txt'>You have succesfully updated your changes!</p>
+                    <img src={success} alt="success image" className='success-img' />
+                    <p className='modal-txt-cn'>You have succesfully updated your changes!</p>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -435,7 +437,8 @@ const handleIncorrect = () => {
                 </Modal.Header>
 
                 <Modal.Body >
-                    <p className='modal-txt'>The password you want to change does not match! Please try again.</p>
+                    <img src={error} alt="error image" className='error-img' />
+                    <p className='modal-txt-cn'>The password you want to change does not match! Please try again.</p>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -452,7 +455,8 @@ const handleIncorrect = () => {
                 </Modal.Header>
 
                 <Modal.Body >
-                    <p className='modal-txt'>Your current password is incorrect.</p>
+                <img src={error} alt="error image" className='error-img' />
+                    <p className='modal-txt-cn'>Your current password is incorrect.</p>
                 </Modal.Body>
 
                 <Modal.Footer>
