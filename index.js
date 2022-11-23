@@ -727,6 +727,21 @@ app.get("/getUserTransaction", async(req,res) => {
           });
         });
 
+      app.get("/getDetailsforReceipt", async(req,res) => {
+      
+      const patientIDnum = req.query.patientIDNum;
+      const appNumber = req.query.appNumber;
+      console.log(appNumber)
+
+      await AppDetails.find({patientIDnumber: patientIDnum ,appNum: appNumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
     app.get("/getTransaction", async(req,res) => {
 
       const patientIDnumber = req.query.patientIDnumber;
@@ -1333,6 +1348,56 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
   try{
     await AppData.save();
     console.log("Successfully inserted No Show ", AppData, " to the History database.")
+    await AppDetails.findOneAndDelete({appNum: appNumber})
+  } catch(err){
+    console.log(err);
+  }
+});
+
+
+app.post("/moveToAppointmentHistoryAsFinished", async (req,res)=>{
+
+  console.log("FINISHED APP")
+
+  //Patient ID name
+  const PatientIDnum = "PT#"+req.body.patientIDnumber;
+  console.log(PatientIDnum)
+
+  //User Info value
+  const userNameApp = req.body.pName;
+  console.log(userNameApp)
+
+  //Doctor name
+  const docName = req.body.dName;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = "#"+req.body.appNum;
+  console.log(appNumber)
+  
+  //date value
+  const dateValue = req.body.dateVal;
+  console.log(dateValue)
+
+  //consul value
+  const consulInput = req.body.conValue;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.timeVal;
+  console.log(getTime);
+
+  //appt status default when appointment is accepted by the dentist
+  const insertAppStatus = "Finished";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppHistory({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted Finished ", AppData, " to the History database.")
     await AppDetails.findOneAndDelete({appNum: appNumber})
   } catch(err){
     console.log(err);

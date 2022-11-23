@@ -23,7 +23,7 @@ const CreateDentalRecord = () => {
   const getPatientAppNum = paramsID.get('appNum');
   const StringfyAppnumber = useMemo(() => JSON.stringify(getPatientAppNum).replace(/"/g, ""));
   console.log(StringfyAppnumber, 'create dental record');
-  const [patientIDNumber, setPatientIDNumber] = useState("");
+  const [patientIDNumber, setPatientIDNumber] = useState([]);
   console.log(patientIDNumber);
 
   const [modalState, setModalState] = useState(false);
@@ -188,7 +188,6 @@ const CreateDentalRecord = () => {
   }
 
 
-
   const navigate = useNavigate();
   return (
     <>
@@ -216,7 +215,7 @@ const CreateDentalRecord = () => {
         </nav>
       </div>
 
-      <form onSubmit={() => uploadDentalRecords()}>
+      <form onSubmit={(e) => e.preventDefault}>
         <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
           <div className="card dental-record-form">
             <div className="card-body pt-3">
@@ -415,19 +414,19 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  <p>16</p>
+                  <p>{JSON.stringify(chartedTeeth).replace(/"/g, "")}</p>
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>{startDate}</p>
+                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0,10)}</p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
-                  <p>{treatDesc}</p>
+                  <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
                 </div>
                 <div className="col-3">
                   <h6>Procedure/s</h6>
-                  <p>Root Canal Therapy</p>
+                  <p>{JSON.stringify(checked).replace(/"/g, "")}</p>
                 </div>
                 <div class="dental-form-buttons">
                   <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
