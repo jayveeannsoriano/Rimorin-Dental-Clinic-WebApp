@@ -5,10 +5,11 @@ import { receipt, prescription } from '../../config/FileGeneration.js'
 
 async function Export(willDownload,File,data,info){
   if(File==="prescription"){
+    //prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs)
     prescription(
       data.presDate, 
       info[0].fname+" "+info[0].lname, 
-      16, 
+      info[0].age, 
       fixArrayTable(data.presDetails), 
       "1953834", 
       "2719432", 
@@ -17,16 +18,18 @@ async function Export(willDownload,File,data,info){
       willDownload
       )
   }else if(File==="receipt"){
+
+    //receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
     receipt(
       info[0].fname+" "+info[0].lname,
       info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
       data.date, 
       data.appNum, 
-      [[data.serviceValue, data.totalAmount, data.quantityValue]], 
-      0, 
+      data.addedItem, 
+      (data.discountValue*100), 
       data.paymentType, 
-      0, 
-      require('../../assets/img/tempsignaturesec.png'), 
+      data.amountPaid, 
+      require("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png"), 
       willDownload)
   }
 }

@@ -67,10 +67,13 @@ export default function UpdateDentalRecord() {
         var proceString = "";
         for (let num = 0; num < appointment.length; num++) {
             for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
-                if (appointment[num].procedures[proceNum].chosen.length != 0) {
-                    proceString += " " + appointment[num].procedures[proceNum].chosen.join();
+                if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
+                    for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
+                        proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
+                    }
                 }
             }
+            
             treatData.push([appointment[num].dentalDate, appointment[num].chartedTeeth.join(), appointment[num].dentalDesc, proceString])
         }
         {/*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/ }
