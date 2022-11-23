@@ -8,6 +8,7 @@ import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
+import FollowUp from "./modals/followUp"
 
 const UpDentalDashboardTable = () => {
 
