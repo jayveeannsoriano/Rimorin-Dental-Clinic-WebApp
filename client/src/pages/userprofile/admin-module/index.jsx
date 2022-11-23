@@ -4,6 +4,8 @@ import UserProfileWidget from "../../../components/userprofile-widget";
 import { Button } from 'react-bootstrap';
 import "../../../styles/patient-info-edit.css";
 import Modal from 'react-bootstrap/Modal';
+import error from '../../../assets/img/error.png';
+import success from '../../../assets/img/check.png';
 
 const AdminUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
@@ -46,10 +48,12 @@ const AdminUserProfile = () => {
                     newPass: newPassword
                 })
             } else {
-                alert("Password not match")
+                handleNotMatch();
+                // alert("Password not match")
             }
         } else {
-            alert("Current Password incorrect")
+            handleIncorrect();
+            // alert("Current Password incorrect")
         }
 
     }
@@ -92,6 +96,14 @@ const AdminUserProfile = () => {
     const handleModalClose = () => setModalState(false);
     const handleShow= () => {
         setModalState('show-modal');
+    }
+
+    const handleNotMatch = () => {
+        setModalState('pwd-notmatch');
+    }
+
+    const handleIncorrect = () => {
+        setModalState('pwd-incorrect');
     }
 
     const updatePatientInfo = async () => {
@@ -406,8 +418,44 @@ const AdminUserProfile = () => {
                 </Modal.Header>
 
                 <Modal.Body >
-                    {/* <img src={successful} alt="success image" className='success-img' /> */}
-                    <p className='modal-txt'>You have succesfully updated your changes!</p>
+                    <img src={success} alt="success image" className='success-img' />
+                    <p className='modal-txt-cn'>You have succesfully updated your changes!</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleModalClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={modalState == 'pwd-notmatch'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+
+                <Modal.Header closeButton>
+                    <Modal.Title>Password does not match</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body >
+                <img src={error} alt="error image" className='error-img' />
+                    <p className='modal-txt-cn'>The password you want to change does not match! Please try again.</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleModalClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={modalState == 'pwd-incorrect'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+
+                <Modal.Header closeButton>
+                    <Modal.Title>Current password incorrect</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body >
+                <img src={error} alt="error image" className='error-img' />
+                    <p className='modal-txt-cn'>Your current password is incorrect.</p>
                 </Modal.Body>
 
                 <Modal.Footer>
