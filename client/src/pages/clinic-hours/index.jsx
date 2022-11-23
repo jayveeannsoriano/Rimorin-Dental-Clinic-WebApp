@@ -51,6 +51,8 @@ const ClinicHours = () => {
     },
   ]);
 
+  const [checked, setChecked] = useState([false,false,false,false,false,false,false ]);
+
   const handleTimeSlotStartChange = event => {
     var time = event.target.value;
     var id = event.target.id;
@@ -69,7 +71,6 @@ const ClinicHours = () => {
   const handledaySwitch = input => e =>{
   
     var selectRange = document.querySelectorAll('#'+input)
-    console.log(selectRange);
     if(e){
       selectRange[0].disabled = false;
       selectRange[1].disabled = false;
@@ -201,12 +202,13 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Mon")}
+                  disabled={!timeSlot[0].enabled}
                 />
               </div>
                 <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotStartChange} disabled={!timeSlot[0].enabled}>
                         <option key="Mon">Select Time</option>
                         <option key="Mon" value="9:00 AM">9:00 AM</option>
                         <option key="Mon" value="9:30 AM">9:30 AM</option>
@@ -233,7 +235,7 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotEndChange} disabled>
+                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotEndChange} disabled={!timeSlot[0].enabled}>
                         <option key="Mon">Select Time</option>
                         <option key="Mon" value="9:00 AM">9:00 AM</option>
                         <option key="Mon" value="9:30 AM">9:30 AM</option>
@@ -267,13 +269,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Tue")}
+                  disabled={!timeSlot[1].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Tue" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Tue" onChange={handleTimeSlotStartChange} disabled={!timeSlot[1].enabled}>
                         <option key="Tue">Select Time</option>
                         <option key="Tue" value="9:00 AM">9:00 AM</option>
                         <option key="Tue" value="9:30 AM">9:30 AM</option>
@@ -299,7 +302,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Tue" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select defaultValue="Select Time" id="Tue" onChange={handleTimeSlotEndChange} disabled={!timeSlot[1].enabled}>
                         <option key="Tue">Select Time</option>
                         <option key="Tue" value="9:00 AM">9:00 AM</option>
                         <option key="Tue" value="9:30 AM">9:30 AM</option>
@@ -331,13 +334,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Wed")}
+                  disabled={!timeSlot[2].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select
-                    defaultValue="Select Time" id="Wed" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Wed" onChange={handleTimeSlotStartChange} disabled={!timeSlot[2].enabled}>
                         <option key="Wed">Select Time</option>
                         <option key="Wed" value="9:00 AM">9:00 AM</option>
                         <option key="Wed" value="9:30 AM">9:30 AM</option>
@@ -363,7 +367,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Wed" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select defaultValue="Select Time" id="Wed" onChange={handleTimeSlotEndChange} disabled={!timeSlot[2].enabled}>
                         <option key="Wed">Select Time</option>
                         <option key="Wed" value="9:00 AM">9:00 AM</option>
                         <option key="Wed" value="9:30 AM">9:30 AM</option>
@@ -395,13 +399,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Thu")}
+                  disabled={!timeSlot[3].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Thu" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Thu" onChange={handleTimeSlotStartChange} disabled={!timeSlot[3].enabled}>
                         <option key="Thu">Select Time</option>
                         <option key="Thu" value="9:00 AM">9:00 AM</option>
                         <option key="Thu" value="9:30 AM">9:30 AM</option>
@@ -427,7 +432,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select  defaultValue="Select Time" id="Thu" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select  defaultValue="Select Time" id="Thu" onChange={handleTimeSlotEndChange} disabled={!timeSlot[3].enabled}>
                         <option key="Thu">Select Time</option>
                         <option key="Thu" value="9:00 AM">9:00 AM</option>
                         <option key="Thu" value="9:30 AM">9:30 AM</option>
@@ -460,13 +465,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Fri")}
+                  disabled={!timeSlot[4].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Fri" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Fri" onChange={handleTimeSlotStartChange} disabled={!timeSlot[4].enabled}>
                         <option key="Fri">Select Time</option>
                         <option key="Fri" value="9:00 AM">9:00 AM</option>
                         <option key="Fri" value="9:30 AM">9:30 AM</option>
@@ -492,7 +498,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Fri" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select defaultValue="Select Time" id="Fri" onChange={handleTimeSlotEndChange} disabled={!timeSlot[4].enabled}>
                         <option key="Fri">Select Time</option>
                         <option key="Fri" value="9:00 AM">9:00 AM</option>
                         <option key="Fri" value="9:30 AM">9:30 AM</option>
@@ -525,13 +531,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Sat")}
+                  disabled={!timeSlot[5].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Sat" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Sat" onChange={handleTimeSlotStartChange} disabled={!timeSlot[5].enabled}>
                         <option key="Sat">Select Time</option>
                         <option key="Sat" value="9:00 AM">9:00 AM</option>
                         <option key="Sat" value="9:30 AM">9:30 AM</option>
@@ -557,7 +564,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Sat" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select defaultValue="Select Time" id="Sat" onChange={handleTimeSlotEndChange} disabled={!timeSlot[5].enabled}>
                         <option key="Sat">Select Time</option>
                         <option key="Sat" value="9:00 AM">9:00 AM</option>
                         <option key="Sat" value="9:30 AM">9:30 AM</option>
@@ -590,13 +597,14 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Sun")}
+                  disabled={!timeSlot[6].enabled}
                 />
               </div>
 
               <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Sun" onChange={handleTimeSlotStartChange} disabled>
+                    defaultValue="Select Time" id="Sun" onChange={handleTimeSlotStartChange} disabled={!timeSlot[6].enabled}>
                         <option key="Sun">Select Time</option>
                         <option key="Sun" value="9:00 AM">9:00 AM</option>
                         <option key="Sun" value="9:30 AM">9:30 AM</option>
@@ -622,7 +630,7 @@ const ClinicHours = () => {
 
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
-                    <Form.Select defaultValue="Select Time" id="Sun" onChange={handleTimeSlotEndChange} disabled>
+                    <Form.Select defaultValue="Select Time" id="Sun" onChange={handleTimeSlotEndChange} disabled={!timeSlot[6].enabled}>
                         <option key="Sun">Select Time</option>
                         <option key="Sun" value="9:00 AM">9:00 AM</option>
                         <option key="Sun" value="9:30 AM">9:30 AM</option>
