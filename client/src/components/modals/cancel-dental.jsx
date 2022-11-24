@@ -48,6 +48,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
         
         await Axios.put("http://localhost:3001/deleteAppointment", {
+            patientIDnumber: PatientIDnumber,
             appNum: AppNumber,
         });
     }

@@ -947,6 +947,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const userNameApp = req.body.pName;
   const updateDate = req.body.newDate;
   const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
+  const formattedDate = req.body.newFormattedDate;
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
   const insertAppStatus = "Rebooked";
@@ -957,7 +958,8 @@ app.put("/rescheduleAppointment", async (req, res) => {
     pName: userNameApp,
     dName: docName ,
     appNum: appNumber,
-    date: updateSlicedDate, 
+    date: updateSlicedDate,
+    formattedDate:formattedDate,
     consultation: updateConsult, 
     time:updateTime, 
     appStatus:insertAppStatus});
@@ -969,15 +971,24 @@ app.put("/rescheduleAppointment", async (req, res) => {
 });
 
 
-//delete Appointment
+//delete Request Appointment
 
-app.put("/deleteAppointment", async (req,res) => {
+app.put("/deleteRequestAppointment", async (req,res) => {
 
   const appNumber = req.body.appNum;
   await AppRequest.findOneAndDelete({appNum: appNumber})
     console.log("Appointment Successfully Deleted!.");
   
 })
+//delete Appointment
+app.put("/deleteAppointment", async (req,res) => {
+  const patientIDNum = req.body.patientIDnumber;
+  const appNumber = req.body.appNum;
+  await AppDetails.findOneAndDelete({appNum: appNumber,patientIDnumber:patientIDNum})
+    console.log("Appointment Successfully Deleted!.");
+  
+})
+
 
 //update status
 app.put("/updateStatus", async (req,res) => {

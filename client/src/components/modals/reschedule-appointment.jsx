@@ -19,6 +19,8 @@ function RescheduleAppointment(pName,appNum,patientIDnumber) {
 
   //calendar input
   const [newStartDate, setStartDate] = useState(new Date());
+  const newFormattedDate = (newStartDate!=null?newStartDate.toISOString().substring(0,10):"");
+
   var date = window.localStorage.getItem('date');
   window.localStorage.setItem('date',newStartDate);
 
@@ -72,7 +74,8 @@ useEffect(() => {
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
      pName: PatientName,
-     newDate: date,
+     newDate: newStartDate,
+     newFormattedDate: newFormattedDate,
      newTime: timeCheck,
      newConsultation: newConsulInput});
     setModalState("modal-2");
