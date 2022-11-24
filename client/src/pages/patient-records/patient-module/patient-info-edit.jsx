@@ -332,7 +332,7 @@ const PatientInfoEdit = () => {
                     </div>
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-6">
-                        <label for="phoneNum">Phone Number</label>
+                        <label for="phoneNum">Mobile Number</label>
                         {userData.map((item, index) => (
                           <input
                             type="tel"
@@ -348,7 +348,7 @@ const PatientInfoEdit = () => {
                         ))}
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-6">
-                        <label for="tellNumber">Telephone Number</label>
+                        <label for="tellNumber">TeleMobile Number</label>
                         {userData.map((item, index) => (
                           <input
                             type="tel"

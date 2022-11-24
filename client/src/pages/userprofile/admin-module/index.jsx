@@ -327,9 +327,9 @@ const AdminUserProfile = () => {
                                                     ))}
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
-                                                    <label for='phoneNum'>Phone Number</label>
+                                                    <label for='phoneNum'>Mobile Number</label>
                                                     {userData.map((item, index) => (
-                                                        <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
+                                                        <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} maxLength="10" onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
                                                     ))}
                                                 </div>
                                             </div>

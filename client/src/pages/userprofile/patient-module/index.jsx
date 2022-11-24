@@ -326,6 +326,7 @@ const handleIncorrect = () => {
                                                             label="Male"
                                                             name="group1"
                                                             type="radio"
+                                                            value='Male'
                                                             checked={item.gender === 'Male'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
@@ -334,6 +335,7 @@ const handleIncorrect = () => {
                                                             label="Female"
                                                             name="group1"
                                                             type="radio"
+                                                            value='Female'
                                                             checked={item.gender === 'Female'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
@@ -350,9 +352,9 @@ const handleIncorrect = () => {
                                                     ))}
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
-                                                    <label for='phoneNum'>Phone Number</label>
+                                                    <label for='phoneNum'>Mobile Number</label>
                                                     {userData.map((item, index) => (
-                                                        <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
+                                                        <input type="tel" class="form-control" id="phoneNum" maxLength="10" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" />
                                                     ))}
                                                 </div>
                                             </div>

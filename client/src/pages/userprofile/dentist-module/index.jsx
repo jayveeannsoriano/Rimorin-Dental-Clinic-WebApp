@@ -29,8 +29,6 @@ const DentistUserProfile = () => {
     const [brgyValue, setBrgyValue] = useState('');
     const [provinceValue, setProvinceValue] = useState('');
     const [zipValue, setZipValue] = useState('');
-    const [ptrValue, setPtrValue] = useState('');
-    const [licenceValue, setLicenceValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
     const bcrypt = require("bcryptjs");
 
@@ -87,8 +85,6 @@ const DentistUserProfile = () => {
             setBrgyValue(response.data[0].brgy)
             setProvinceValue(response.data[0].province)
             setZipValue(response.data[0].zipcode)
-            setPtrValue(response.data[0].ptr)
-            setLicenceValue(response.data[0].licence)
             setEmailValue(response.data[0].email)
             setPasswordValue(response.data[0].password)
 
@@ -348,9 +344,9 @@ const DentistUserProfile = () => {
                                                     ))}
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
-                                                    <label for='phoneNum'>Phone Number</label>
+                                                    <label for='phoneNum'>Mobile Number</label>
                                                     {userData.map((item, index) => (
-                                                        <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
+                                                        <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} maxLength="10" defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
                                                     ))}
                                                 </div>
                                             </div>
@@ -401,23 +397,6 @@ const DentistUserProfile = () => {
                                                 </div>
                                             </div>
 
-                                            <h5 class="form-section-title">Professional Information</h5>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <label for='ptr'>PTR Number</label>
-                                                    {userData.map((item, index) => (
-                                                        <input name="ptr" type="text" className="form-control" id="ptr" placeholder={item.ptr} defaultValue={item.ptr} onChange={(e) => setPtrValue(e.target.value)} required />
-                                                    ))}
-                                                </div>
-
-
-                                                <div className="col">
-                                                    <label for='licence'>Licence Number</label>
-                                                    {userData.map((item, index) => (
-                                                        <input name="licence" type="text" className="form-control" id="licence" placeholder={item.licence} defaultValue={item.licence} onChange={(e) => setLicenceValue(e.target.value)} required />
-                                                    ))}
-                                                </div>
-                                            </div>
                                             <Button className='edit-save text-right' onClick={() => { updatePatientInfo(); handleShow(); }}>Save Changes</Button>
                                             {/* <UserProfileSave/> */}
                                         </div>

@@ -13,13 +13,16 @@ export default function AccountCreated() {
     return (
         <>
             
-            <button
+            {/* <button
                 type="submit"
                 className="btn btn-primary ad-btn-space"
-                onClick={handleShow}
+                onClick={() => {
+                    // InsertUser();
+                    handleShow;
+                }}
             >
-                Create
-            </button>
+                Create Account
+            </button> */}
 
             <Modal show={show} onHide={handleClose}>
 

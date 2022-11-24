@@ -49,7 +49,7 @@ export default function UserProfileWidget() {
             {UserData.map((item, index) => (
                 <div key={index} class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <Avatar name={item.fname + " " + item.lname} maxInitials={2} round={true} size="100" alt="Avatar" id="avatar-profile"/>
-                    <h2 id="">{item.fname} {item.lname}</h2>
+                    <h2 id="">{item.fname} {item.lname} {item.suffix} </h2>
                     <h3>User Role: <span>{userRoleName}</span></h3>
                     <div className="divider"></div>
                     <div class="row patient-info">
