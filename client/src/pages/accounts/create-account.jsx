@@ -32,16 +32,12 @@ const CreateAccount = () => {
         setModalState(false);
     };
 
-<<<<<<< HEAD
-    // const InsertUser = async () => {
-=======
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const InsertUser = async () => {
->>>>>>> fa84b967d3ee8344221be38479671afee208a9f2
+    // const InsertUser = async () => {
 
     //     await Axios.post("http://localhost:3001/InsertNewUser", {
     //         accountType: getAccountValue,
@@ -220,6 +216,7 @@ const CreateAccount = () => {
                                         </div>
                                     </div>
 
+                                    {}
                                     <div className="row">
                                     <h5 class="form-section-title">Professional Information</h5>
                                         <div className="col">
@@ -259,7 +256,6 @@ const CreateAccount = () => {
                                                         required
                                                     />
                                                 </div>
-<<<<<<< HEAD
                                             </div>
                                             <div className="col-lg-6">
                                                 <label>Re-enter Password</label>
@@ -270,91 +266,6 @@ const CreateAccount = () => {
                                                     id="reEnterPassword"
                                                 // onChange={(e) => { setReEnterPassword(e.target.value) }} required 
                                                 />
-=======
-
-                                                <div className="row mb-3">
-                                                    <label>Gender</label>
-                                                    <div className="col-4">
-                                                        <div className="form-check">
-                                                            <label>
-                                                                <input
-                                                                    type="radio"
-                                                                    // onChange={handleChange('gender')}
-                                                                    // defaultValue={values.gender}
-                                                                    className="form-check-input"
-                                                                    value="Female"
-                                                                    name="gender"
-                                                                    onChange={(e) => {setGenderValue(e.target.value)}}
-                                                                    required
-                                                                />
-                                                                <span>Female</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-6">
-                                                        <div className="form-check">
-                                                            <input
-                                                                type="radio"
-                                                                className="form-check-input"
-                                                                name="gender"
-                                                                value="Male"
-                                                                onChange={(e) => {setGenderValue(e.target.value)}}
-                                                                required
-                                                            />
-                                                            Male
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="row">
-                                                    <div className="col-7">
-                                                        <div className="mb-3">
-                                                            <label>Mobile Number</label>
-                                                            <input
-                                                                type="number"
-                                                                className="form-control"
-                                                                placeholder="09XXXXXXXXX"
-                                                                maxLength="11"
-                                                                onChange={(e) => {setPhoneValue(e.target.value)}}
-                                                                required
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-5">
-                                                        <div className="mb-3">
-                                                            <label>Date of Birth</label>
-                                                            <input
-                                                                type="date"
-                                                                className="form-control"
-                                                                placeholder="Enter birthday"
-                                                                onChange={(e) => {setBDAYValue(e.target.value)}}
-                                                                required
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                            <div className="d-grid ad-btn">
-                                                <div className='col-md-auto '>
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-outline-primary ad-btn-space"
-                                                        onClick={() => navigate(-1)}
-                                                    >
-                                                        Cancel
-                                                    </button>
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-primary submit-btn rx-btn"
-                                                        onClick={() => InsertUser()}
-                                                    >
-                                                        Create Account
-                                                    </button>
-                                                    
-                                                </div>
->>>>>>> fa84b967d3ee8344221be38479671afee208a9f2
                                             </div>
                                         </div>
                                     </div>{/* end of container */}
