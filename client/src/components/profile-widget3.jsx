@@ -4,18 +4,20 @@ import "../styles/profilewidgettwo.css";
 import Axios from 'axios';
 import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
+import { zipAll } from "../config/FileGeneration";
 
 const ProfileWidgetThree = () => {
     const [patientList, setPatientList] = useState([]);
     const [patientIDNum, setpatientIDNum] = useState();
-    console.log(patientIDNum);
+    const [dentalData, setDentalData] = useState([]);
+    const [presData, setPresData] = useState([]);
+    const [transData, setTransData] = useState([]);
 
     const getPatientDetails = async() => {
         try{
             var url = require('url');
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-
             const response = await Axios.get('http://localhost:3001/getPatientInfo', {
                 params: {
                     patientIDnumber: query.patientIDNum
@@ -28,8 +30,145 @@ const ProfileWidgetThree = () => {
         }
     }
 
+    //const bdayInput = userInfo['bday']
+    //let AgeOut = () => {
+    //    return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    //}
+
+    const getDental = async () => {
+        try {
+          var url = require("url");
+          var url_parts = url.parse(window.location.href, true);
+          var query = url_parts.query;
+          const response = await Axios.get(
+            "http://localhost:3001/getUserDentalRecord",
+            {
+                params: {
+                    patientIDnumber: query.patientIDNum
+                },
+            }
+          );
+          // console.log(response, "Responses");
+          setDentalData(response.data);
+          console.log(response.data);
+          // setFilteredAppointment(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+    const getPrescription = async () => {
+        try {
+            var url = require("url");
+            var url_parts = url.parse(window.location.href, true);
+            var query = url_parts.query;
+            const response = await Axios.get('http://localhost:3001/getUserEPresRecord', {
+                params: {
+                    patientIDnumber: query.patientIDNum
+                }
+            });
+
+            response.data.forEach(data => {
+                data = Object.assign(data,{"genericName": "Dr. Pamela Rimorin Concepcion"});
+                //appendObjTo(data,{"Created By": "Pamela Rimorin Concepcion"});
+            })
+            setPresData(response.data);
+            console.log(response.data, "Responses");
+            // setFilteredAppointment(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getTransaction = async() => {
+        try{
+            var url = require("url");
+            var url_parts = url.parse(window.location.href, true);
+            var query = url_parts.query;
+            const response = await Axios.get('http://localhost:3001/getUserTransactionPaid',{
+                params: {
+                    patientIDnumber: query.patientIDNum
+                }
+            });
+            console.log(response, "Responses");
+            setTransData(response.data);
+            // setFilteredAppointment(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function downloadAll(){
+        await Promise.all([getTransaction(), getPrescription(),getDental(),getPatientDetails()]);
+
+        //Create Dental Object
+        var treatData = [];
+        var proceString = "";
+        for (let num = 0; num < dentalData.length; num++) {
+            for (let proceNum = 0; proceNum < dentalData[num].procedures.length; proceNum++) {
+                if (dentalData[num].procedures[proceNum].hasOwnProperty('chosen')) {
+                    for(let chosenNum = 0; chosenNum<dentalData[num].procedures[proceNum].chosen.length ; chosenNum++){
+                        proceString += " " + dentalData[num].procedures[proceNum].chosen[chosenNum].procedure;
+                    }
+                }
+            }
+        treatData.push([
+            dentalData[num].dentalDate,
+            (dentalData[num].hasOwnProperty('chartedTeeth') ? dentalData[num].chartedTeeth.join() : ''),
+            dentalData[num].dentalDesc, 
+            proceString])
+        }
+
+        var dentals = Object.assign({"treatData": treatData}, patientList[0]);
+
+        //Create Transaction Object
+        /*
+        receipt(
+			info.fname+" "+info.lname,
+			info.house+" "+info.brgy+" "+info.municipality+" "+info.province+" "+info.country, 
+			info.date, 
+			info.appNum, 
+			info.addedItem, 
+			(info.discountValue*100), 
+			info.paymentType, 
+			info.amountPaid, 
+			require("../../../../uploads/e-receipt/"+info.patientIDnumber+"_"+info.date+".png"),
+			"zip");
+        */
+
+            
+        var transactions = [];
+        for(let transNo=0; transNo<transData.length; transNo++){
+            transactions.push(Object.assign(transData[transNo], patientList[0]));
+        }
+
+       //Create Prescription Object
+       /*
+       prescription(
+			item.presDate, 
+			item.fname+" "+item.lname, 
+			item.age, 
+			fixArrayTable(item.presDetails), 
+			"1953834", 
+			"2719432", 
+			require('../assets/img/watermark_for_eprescription.png'), 
+			require('../assets/img/tempsignaturedentist.png'), 
+			"zip"
+		);
+        */
+        var prescriptions = [];
+        for(let presNo=0; presNo<presData.length; presNo++){
+            prescriptions.push(Object.assign(presData[presNo], patientList[0]));
+        }
+
+       zipAll(dentals, transactions, prescriptions);
+    }
+
     useEffect(() => {
-        getPatientDetails ();
+        getTransaction();
+        getPrescription();
+        getDental();
+        getPatientDetails();
     }, []);
 
     const proceedtoViewInfo = (value) => {
@@ -65,9 +204,11 @@ const ProfileWidgetThree = () => {
                                 </div>
 
                                 <div className="widget-button-container">
-                                    <Button className="widget-btn"> 
+                                    <Button className="widget-btn" onClick={()=>{
+                                        downloadAll();
+                                    }}> 
                                         <i class="bi bi-download"></i> Export Records
-                                    </Button>
+                                    </Button >
                                 </div>
                             </div>
 

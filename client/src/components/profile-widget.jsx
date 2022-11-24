@@ -34,6 +34,11 @@ const PatientProfileWidget = () => {
         setpatientIDNum(value.substring(3));
     }
 
+    //const bdayInput = userInfo['bday']
+    //let AgeOut = () => {
+    //    return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    //} 
+
     return (
         <>
         {/* replace 'patients' with proper get value variable */}
@@ -50,7 +55,7 @@ const PatientProfileWidget = () => {
                         <h3>Phone</h3>
                             <p id="contact_num"> (+63) {item['mobile']} </p>
                             <h3>Age</h3>
-                            <p id="age"> {item['age']} </p>
+                            <p id="age"> {item.age} </p>
                         </div>
                     </div>
                 </div>

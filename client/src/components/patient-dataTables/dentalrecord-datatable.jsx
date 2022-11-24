@@ -64,7 +64,7 @@ const DentalRecordDataTable = (response,patientIDNum) => {
         },
         {
             name: "Action",
-            selector: (row) => <div className="dental-action-buttons">
+            selector: (row) => <div className="existing-dental-action-buttons">
                     <Button className="view-button" href={DentalRecordRoute + query.patientIDNum+"&date="+row.dentalDate}>
                         <i class="bi bi-eye-fill"></i>View
                     </Button>
@@ -105,7 +105,7 @@ const DentalRecordDataTable = (response,patientIDNum) => {
     );
 
     return <DataTable
-    //className="existing-dental-table"
+    className="existing-dental-table"
     pagination
     subHeaderAlign={Alignment.LEFT}
     columns={columns}

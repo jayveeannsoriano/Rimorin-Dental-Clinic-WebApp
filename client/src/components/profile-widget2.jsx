@@ -35,6 +35,11 @@ const ProfileWidgetTwo = () => {
         setpatientIDNum(value.substring(3));
     }
 
+    //const bdayInput = userInfo['bday']
+    //let AgeOut = () => {
+    //    return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    //} 
+
     return (
         <>
          {patientList.map((item) => (
@@ -60,7 +65,7 @@ const ProfileWidgetTwo = () => {
                             <div class="patient-info">
                                 <ul>
                                     <li>Phone <span> (+63) {item.mobile}</span></li>
-                                    <li>Age <span>{item.age}, {item.gender}</span></li>
+                                    <li>Age <span> {item.age}, {item.gender}</span></li>
                                 </ul>
                             </div>
                         </div>

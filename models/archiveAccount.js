@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserDetailsScehma = new mongoose.Schema(
+const ArchiveDetailsScehma = new mongoose.Schema(
   {
     fname: String,
     minitial: String,
@@ -34,9 +34,9 @@ const UserDetailsScehma = new mongoose.Schema(
     precautions: String,
   },
   {
-    collection: "UserInfo",
+    collection: "UserArchive",
   }
 );
 
-mongoose.model("UserInfo", UserDetailsScehma);
+mongoose.model("UserArchive", ArchiveDetailsScehma);
 

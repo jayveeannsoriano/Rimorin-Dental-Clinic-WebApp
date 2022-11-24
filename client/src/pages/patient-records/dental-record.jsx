@@ -112,10 +112,11 @@ const DentalRecord = () => {
         proceNum < appointment[num].procedures.length;
         proceNum++
       ) {
-        if (appointment[num].procedures[proceNum].hasOwnProperty("chosen")) {
-          proceString +=
-            " " + appointment[num].procedures[proceNum].chosen.join();
-        }
+        if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
+          for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
+              proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
+          }
+      }
       }
       treatData.push([
         appointment[num].dentalDate,
@@ -126,9 +127,7 @@ const DentalRecord = () => {
         proceString,
       ]);
     }
-    {
-      /*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/
-    }
+    /*dental Records(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/
     dentalRecords(
       patientList[0].fname + " " + patientList[0].lname,
       patientList[0].bday,

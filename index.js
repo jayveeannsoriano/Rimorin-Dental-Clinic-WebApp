@@ -49,6 +49,7 @@ require("./models/dentalRecords");
 require("./models/notificationDetails");
 require("./models/appointmentHistory");
 require("./models/availableTime");
+require("./models/archiveAccount");
 
 const User = mongoose.model("UserInfo");
 const AppDetails = mongoose.model("AppointmentDetails");
@@ -59,6 +60,7 @@ const DentalRecords = mongoose.model("UserDentalRecords");
 const NotifDetails = mongoose.model("NotificationDetails");
 const AppHistory = mongoose.model("AppointmentHistory");
 const AvailableTime = mongoose.model("AvailableTime");
+const UserArchive = mongoose.model("UserArchive");
 
 
 //sign in
@@ -145,6 +147,7 @@ app.post("/RegisterUser", async (req, res) => {
     allergies:allergies,
     conditions:conditions.toString(),
     user_role_id:userRole,
+    accountType:"Patient",
   });
   console.log("Sign up Details for User Data: ", UserData);
   try {
@@ -274,6 +277,83 @@ app.post("/insertAppointment", async(req,res) => {
   }
 });
 
+app.post("/insertFollowUpAppointment", async(req,res) => {
+
+  //Patient Id Number
+  const patientIDnumber = req.body.patientIDnumber;
+  console.log(patientIDnumber);
+
+  //User Info value
+  const userNameApp = req.body.userNameApp;
+  console.log(userNameApp)
+
+  //Doctor name
+  const docName = "Pamela Rimorin Concepcion";
+
+  //Appointment Number
+
+  const randomnum = Math.floor(Math.random() * 1000);
+  const appNumber = "#APT"+randomnum;
+  console.log(appNumber)
+  
+  //date value
+  const startDate = req.body.startDate;
+  const slicedDate = startDate.slice(0,10)//removes unnecessary data
+  console.log(slicedDate)
+
+  //consul value
+  const consulInput = req.body.consulInput;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.getTime;
+  console.log(getTime);
+
+  //appt status default when creating an appointment
+  const insertAppStatus = "Accepted";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.")
+    if(insertAppStatus == "Accepted"){
+      //Sending Email
+      sgMail.setApiKey('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');
+      const msg = {
+        "personalizations":[
+          {
+            "to":[
+                {
+                  "email":req.body.recep                
+                }
+            ],
+            "dynamic_template_data":{
+                "firstName":userNameApp,
+                "Appttime":slicedDate + " " + getTime,
+                "consultation":consulInput
+              }
+          }
+      ],
+      "template_id":"d-9a171e9b1d6f41b3b323bda330392e96",
+        from: 'rimorin.secretary@gmail.com', // Change to your verified sender
+      }
+      sgMail
+        .send(msg)
+        .then(() => {
+          res.json('Email Sent')
+        })
+        .catch((error) => {
+          res.json('Error: Email Not Sent')
+        })
+    }
+  } catch(err){
+    console.log(err);
+  }
+});
+
 app.put("/updateClinicHours", async (req, res) => {
   await AvailableTime.findOneAndUpdate({}, {config: req.body.clinicHours})
   console.log("Clinic Hours Updated!");
@@ -352,6 +432,21 @@ app.get("/getUserInfo", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    app.get("/getUserInfoFollowUp", async(req,res) => {
+
+      const patientIDNumber = req.query.patientIDNum;
+      console.log(patientIDNumber);
+      
+      await User.find({patientIDnumber: patientIDNumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+    
 
 
 app.get("/getProfileWidget", async(req,res) => {
@@ -572,6 +667,19 @@ app.get("/getUserTransaction", async(req,res) => {
        console.log('error: ', error)
       });
     });
+
+    app.get("/getUserTransactionPaid", async(req,res) => {
+
+      const patientIDnumber = 'PT#'+req.query.patientIDnumber;
+    
+      await ReceiptDetails.find({patientIDnumber: patientIDnumber,payStatus:"Paid"})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
   
     app.get("/getPatientListforUserTransaction", async(req,res) => {
     
@@ -587,6 +695,17 @@ app.get("/getUserTransaction", async(req,res) => {
     app.get("/getUserforAdmin", async(req,res) => {
     
       await User.find({})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+    app.get("/getArchiveUserforAdmin", async(req,res) => {
+    
+      await UserArchive.find({})
           .then((data) => {
             res.json(data);
           })
@@ -614,6 +733,21 @@ app.get("/getUserTransaction", async(req,res) => {
       console.log(appNumber)
 
       await AppDetails.find({appNum: appNumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+
+      app.get("/getDetailsforReceipt", async(req,res) => {
+      
+      const patientIDnum = req.query.patientIDNum;
+      const appNumber = req.query.appNumber;
+      console.log(appNumber)
+
+      await AppDetails.find({patientIDnumber: patientIDnum ,appNum: appNumber})
           .then((data) => {
             res.json(data);
           })
@@ -858,6 +992,7 @@ app.put("/updateStatus", async (req,res) => {
 //index.js code for integrating Google Calendar
   
 const { google } = require('googleapis');
+//const { default: ArchiveAccount } = require("./client/src/components/modals/archive-account");
   
 const SCOPES = 'https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/calendar.events,https://www.googleapis.com/auth/admin.directory.resource.calendar';
 const GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC0QBw/1OPaexNw\na49s8SeguA7yORAI7PDMj096/iaB+J3uDMwfq8cAlLJvKSRC7lxegRW9tnLebFQe\nOdF4GFfIPwdexIVZWfGXkMfB4KDFDfFySWJnXi91IhkoXY7AeqRKWJ6Dnb3nZZZ4\nMMkx1Yqn3DYoPEoqNd3l6CHTHMmrWV4euKEvw/2E7OIuL2wc+q1xfHPPeL+ub9m0\nrfIFgTyRexr4qj0yFzPlO8aipMP1l5ReWYgsps4A0D56fzyzcNnP0IaU+h3UUB41\nHFa5sSXPhPSPpN/OouNfXa/hcjQwT7kopmmlyreWm/9McYgC2g6PVZhhQ7C9YoM2\nhWGNoHsTAgMBAAECggEADkD1muycWhYaeuzeiihl0FVNxUTS6knGXv7EM78uT1/Y\nKU90wtpkIb0ggR7ZQbu0rTp6/CYV3lXlrwA2es89/dVSIWHcA61Tp/8odMHtJLgO\nDFIWSINPsG0SXTlMxRbNsB1i55iNQGOtqvJ8roaq8Mw+sh7WZJEe64PYTOf9YKHN\n4Bs+50zmxye+1IwoCLhHQNThTbTuxfClrr1t+UX8UyoF89pch9WdDqAnXIKNG5m2\n0GCaovzhA+AaJFTEguw0Id7GKc67p9jkYGDLUjdk9x/YXzXQAiaEyQ1ROodxfLCF\nu977NKAADfgmSLSIPIlV5dKAL3ILWTXiEyT8tGU6qQKBgQDuwTWb9yxTZ5Dz1eLi\nmHO4WSjAXEaE6NIFqz1zz0Uys8/jHV9v+3VYsVLY/ewG0vzkMOfAbhXBsgXcelUe\ne3f8oPF8V2LHpHt8j9B/4HtsEQJUUKiltDL/bsYqWQwcuyyxYE4eGjdru/CJ1Vb/\nmocF/SByXHZuOjfuOvTHC0vumwKBgQDBRRqLlCJ9reTC72ezldmf54pzbVsOpFoA\nB83EykeEu8o71tS5S/byreKn0AwQ1LbGTYgoChGz0z4rJggkA22DJ0TL0szJOn98\nEN/fS3qswHiGQq5RLGqPBdorRHHY6hVzM5/kbHhEa+MK7E6f92yGjOcG2hY0ZZ2Q\naX6uDSnw6QKBgE4+17jjio1S9bhTsmWcnOAfqDFSjHHmc14UPrGDjiQNteWyrKJg\ngJauln4yyXV7FBIczPbNnSe7lhwpo1e4ExyiCkI7yU2wZB/wad5ezVQfRuom/P5B\nTi1UOnGKeWO5G+6Np0xKPzt5fl1No5NlKzcVO9r+3nlFbysN+0Z4N0xdAoGBAIGe\nR+ROkCc75c165FDD8jVVAzzQnZ4fSaD1muIdS4PQshwZw4cWVGODjRxA4qazEnXC\nb8tynVa+GNa1ZgZJKjworPIJyYA3tGJPquVF6NtNJkfdFq2oHTsYkK4t9DCnJYWi\nnNyEhtBUjuu3ei+8r9M5UoP85aF0eQzuQ6CVgYhpAoGBAJZ2IAZlX8Mm4jmpzOOK\nBZe52fzCoUbKxMFtlipKP8u8Bd/XBD4mz4CkHugy622IZwvv0der3yzPjONtD7Ze\nA6D/S89QLrynBCqzCE1PYSivevEz9ueKuq5biFXvXjNKF40bOwBRiqgEiHyDndhy\nXfYHAnkzU5VeRTVoXzJ5LDTZ\n-----END PRIVATE KEY-----\n"
@@ -1234,6 +1369,56 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req,res)=>{
   }
 });
 
+
+app.post("/moveToAppointmentHistoryAsFinished", async (req,res)=>{
+
+  console.log("FINISHED APP")
+
+  //Patient ID name
+  const PatientIDnum = "PT#"+req.body.patientIDnumber;
+  console.log(PatientIDnum)
+
+  //User Info value
+  const userNameApp = req.body.pName;
+  console.log(userNameApp)
+
+  //Doctor name
+  const docName = req.body.dName;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = "#"+req.body.appNum;
+  console.log(appNumber)
+  
+  //date value
+  const dateValue = req.body.dateVal;
+  console.log(dateValue)
+
+  //consul value
+  const consulInput = req.body.conValue;
+  console.log(consulInput)
+
+  //time value
+  const getTime = req.body.timeVal;
+  console.log(getTime);
+
+  //appt status default when appointment is accepted by the dentist
+  const insertAppStatus = "Finished";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppHistory({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+
+  try{
+    await AppData.save();
+    console.log("Successfully inserted Finished ", AppData, " to the History database.")
+    await AppDetails.findOneAndDelete({appNum: appNumber})
+  } catch(err){
+    console.log(err);
+  }
+});
+
 app.post("/forgot-password", async (req, res) => {
   const {email} = req.body;
   try {
@@ -1297,4 +1482,193 @@ app.post("/reset-password", async (req, res) => {
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", 'index.html' ));
 });
+
+////////////////////////////////////////////////ADMIN MODULE//////////////////////////////////////////////////////////////////
+
+
+app.post("/InsertNewUser", async (req, res) => {
+
+  const accountType = req.body.accountType;
+  const fname = req.body.fname;
+  const mname = req.body.mname;
+  const lname = req.body.lname;
+  const suffix = req.body.suffix;
+  const email = req.body.email;
+  const gender = req.body.gender;
+  const mobile = req.body.mobile;
+  const bday = req.body.bday;
+
+  console.log(accountType);
+  
+  const password = req.body.password;
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  
+  const letters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789'
+  
+  function generateString() {
+      let numberLength = 3;
+      let letterLength = 2;
+      let numbersResult = '';
+      let lettersResult = '';
+      const lettersLength = letters.length;
+      const numbersLength = numbers.length;
+      for ( let i = 0; i < numberLength; i++ ) {
+          numbersResult += numbers.charAt(Math.floor(Math.random() * numbersLength));
+      }
+      for ( let i = 0; i < letterLength; i++ ) {
+        lettersResult += letters.charAt(Math.floor(Math.random() * lettersLength));
+      }
+      return numbersResult+lettersResult;
+  }
+  const patientIDNumber = "PT#"+generateString();
+  const dentistIDNumber = "DT#"+generateString();
+  const secretaryIDNumber = "SC#"+generateString();
+  const adminIDNumber = "AD#"+generateString();
+
+if(accountType == "patient"){
+  const UserData = new User({
+    patientIDnumber:patientIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:1,
+  });
+  console.log("Add Details for Patient: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+
+}if(accountType == "secretary"){
+  const UserData = new User({
+    secretaryIDnumber:secretaryIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:2,
+  });
+  console.log("Add Details for Secretary: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+
+}if(accountType == "dentist"){
+  const UserData = new User({
+    dentistIDnumber:dentistIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:3,
+  });
+  console.log("Add Details for Dentist: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+}
+if(accountType == "admin"){
+  const UserData = new User({
+    adminIDnumbe:adminIDNumber,
+    accountType:accountType,
+    fname:fname,
+    suffix:suffix, 
+    lname:lname,
+    mname:mname,
+    email:email,
+    password:encryptedPassword,
+    gender:gender,
+    mobile:mobile,
+    bday:bday,
+    user_role_id:4,
+  });
+  console.log("Add Details for Admin: ", UserData);
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      return res.json({ error: "User already exists!" });
+    }
+    await UserData.save();
+    console.log("Successfully inserted ", UserData, " to the database.");
+    res.send({ status: "ok" });
+
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+}else{
+  console.log("Cannot create account. Missing values.")
+}
+});
+
+app.post("/ArchiveUser", async (req, res) => {
+
+  const userObjectID = req.body.UserObjectID
+
+  await User.find({_id:userObjectID}, function(err,result){
+  console.log((result[0]).toObject()) 
+  const moveToUserArchive = new UserArchive((result[0]).toObject()) 
+  moveToUserArchive.save() 
+  }).clone()
+
+  await User.findOneAndDelete({_id:userObjectID})
+  });
+
+  app.post("/UnArchiveUser", async (req, res) => {
+
+    const userObjectID = req.body.UserObjectID
+  
+    await UserArchive.find({_id:userObjectID}, function(err,result){
+    console.log((result[0]).toObject()) 
+    const moveToUserArchive = new User((result[0]).toObject()) 
+    moveToUserArchive.save() 
+    }).clone()
+  
+    await UserArchive.findOneAndDelete({_id:userObjectID})
+    });
   

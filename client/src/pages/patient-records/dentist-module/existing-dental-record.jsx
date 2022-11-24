@@ -69,7 +69,9 @@ export default function ExistingDentalRecord() {
         for (let num = 0; num < appointment.length; num++) {
             for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
                 if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
-                    proceString += " " + appointment[num].procedures[proceNum].chosen.join();
+                    for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
+                        proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
+                    }
                 }
             }
             treatData.push([

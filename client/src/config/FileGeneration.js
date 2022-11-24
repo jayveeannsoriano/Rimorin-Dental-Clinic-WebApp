@@ -7,7 +7,7 @@ import '../assets/fonts/Fira_Mono/FiraMono-Regular-normal';
 import '../assets/fonts/Fira_Mono/FiraMono-Bold-normal';
 import '../assets/fonts/Fira_Sans/FiraSans-Regular-normal';
 import '../assets/fonts/Fira_Sans/FiraSans-Bold-normal';
-
+//import { eventNames } from "../../../models/receiptDetails";
 
 function convertInch(inch){
 	return inch*(25.4);
@@ -80,9 +80,9 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 	var finalArray = [];
 	var totalPrice = 0;
 	for(let num = 1; num<= transactionItems.length; num++){
-		var serve = transactionItems[num-1][0];
-		var price = transactionItems[num-1][1];
-		var quantity = transactionItems[num-1][2];
+		var serve = transactionItems[num-1].serviceValue;
+		var price = transactionItems[num-1].amountToPay;
+		var quantity = transactionItems[num-1].quantityValue;
 		
 		finalArray.push([num,serve,price,quantity,(price*quantity)]);
 		totalPrice+=(price*quantity);
@@ -165,7 +165,6 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 	async function signCanvas(){
 		return await html2canvas(imgSign);
 	}
-	
 	//-----Generate PDF Function-----
 	async function generate(){
 		let [canvas] = await Promise.all([signCanvas()]);
@@ -205,7 +204,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		}
 		div.remove();
 	}
-	generate();
+	return generate();
 }
 
 export function prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs){
@@ -349,7 +348,7 @@ export function prescription(date, name, age, medArray, ptr, license, backPath, 
 			return doc;
 		}
 	}
-	download();
+	return download();
 }
 
 export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, saveAs){
@@ -481,6 +480,148 @@ export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, 
 	}
 }
 
+export function compiledDentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, treatData, saveAs){
+	const width = convertInch(8.5);
+	const height = convertInch(14);
+	
+	const doc = new jsPDF({
+	  orientation: "portrait",
+	  unit: "mm",
+	  format: [width,height]
+	});
+	
+	//-----Header-----
+	doc.setFont("FiraSans-Bold");
+	doc.setFontSize(convertPts(21));
+	doc.text("Dr. Pamela Rimorin-Concepcion", width/2, convertInch(0.5), {
+		align:"center"
+	});
+	
+	doc.setFontSize(convertPts(14));
+	doc.setFont("FiraSans-Regular");
+	doc.text("Dentist / General Orthodontics", width/2, convertInch(0.6), {
+		align:"center"
+	});
+	
+	var headerAdd = doc.splitTextToSize("Room 211 2/F Victriashoppesville Upper Mabini St. Baguio City Philippines", convertInch(1.6));
+	doc.text(headerAdd,  width/2, convertInch(0.7), {
+		align:"center"
+	});
+
+	doc.text("Contact No.: 0912 367 1234", width/2, convertInch(0.9), {
+		align:"center"
+	});
+
+	doc.line(convertInch(0.5),convertInch(1.0),(width-convertInch(0.5)),convertInch(1.0));
+	
+	
+	//-----Patient Information-----
+	doc.setFont("FiraMono-Bold");
+	doc.setFontSize(convertPts(19));
+	doc.setTextColor(93, 94, 238);
+	doc.text("Patient Information", convertInch(0.5), convertInch(1.3));
+	
+	doc.setFontSize(convertPts(14));
+	doc.setTextColor(163, 167, 171);
+	doc.text("Patient Name", convertInch(0.5), convertInch(1.5));
+	doc.text("Birthdate", convertInch(0.5), convertInch(1.7));
+	doc.text("Treating Doctor", convertInch(0.5), convertInch(1.9));
+	
+	doc.setFont("FiraMono-Regular");
+	doc.setTextColor(0);
+	doc.text(name, convertInch(1.5), convertInch(1.5));
+	doc.text(bd, convertInch(1.5), convertInch(1.7));
+	doc.text(doct, convertInch(1.5), convertInch(1.9));
+	
+	doc.setFontSize(convertPts(15));
+	doc.text("Medical Conditions", convertInch(0.5), convertInch(2.2));
+	
+	doc.setFontSize(convertPts(14));
+	doc.setFont("FiraMono-Bold");
+	doc.setTextColor(163, 167, 171);
+	doc.text("Medications/ Maintenance", convertInch(0.5), convertInch(2.4));
+	doc.text("Conditions", convertInch(2.375), convertInch(2.4));
+	doc.text("Allergies", convertInch(4.25), convertInch(2.4));
+	doc.text("Precautions", convertInch(6.125), convertInch(2.4));
+	
+	doc.setFont("FiraMono-Regular");
+	doc.setTextColor(0);
+	doc.text(med, convertInch(0.5), convertInch(2.6));
+	doc.text(cond, convertInch(2.375), convertInch(2.6));
+	doc.text(alle, convertInch(4.25), convertInch(2.6));
+	doc.text(prec, convertInch(6.125), convertInch(2.6));
+	
+	doc.line(convertInch(0.5),convertInch(2.8),(width-convertInch(0.5)),convertInch(2.8));
+	
+	async function dentRecCanvas(DentRecID){
+		return await html2canvas(DentRecID);
+	}
+	
+	async function generate(){
+		let [canvas] = await Promise.all([dentRecCanvas(DentRecID)]);
+		
+		var imgData = canvas.toDataURL('image/png');
+		doc.addImage(imgData,'PNG',convertInch(0.5),convertInch(3.0),(width-convertInch(1.0)),(canvas.height/canvas.width)*(width-convertInch(1.0)));
+
+		doc.line(convertInch(0.5),convertInch(6.35),(width-convertInch(0.5)),convertInch(6.35));
+
+		//-----Treatments-----
+		doc.setFont("FiraMono-Bold");
+		doc.setFontSize(convertPts(19));
+		doc.setTextColor(93, 94, 238);
+		doc.text("Treatments", convertInch(0.5), convertInch(6.5));
+		doc.setTextColor(0);
+		doc.autoTable({
+			head: [["Date","Tooth No.","Treatment Description","Procedure/s"]],
+			body: treatData,
+			theme: "plain",
+			styles: {
+				fontSize: 5,
+				font: "FiraMono-Regular",
+				lineWidth: 0.1
+			},
+			columnStyles:{
+				valign: 'middle',
+				0:{
+					font: "FiraMono-Bold",
+					halign: 'center'
+				},
+				1:{
+					halign: 'center'
+				},
+				2:{
+					halign: 'center'
+				},
+				3:{
+					halign: 'center'
+				}
+			},
+			alternateRowStyles:{
+				fillColor: [240, 240, 240]
+			},
+			headStyles:{
+				valign: 'middle',
+				halign: 'center',
+				font: "FiraMono-Bold"
+			},
+			startY: convertInch(6.65),
+			startX: convertInch(0.5),
+		});
+
+		if(saveAs=="download"){
+			doc.save("Dental-Record_"+name+".pdf");
+		}else if(saveAs=="print"){
+			doc.autoPrint();
+			var blob = doc.output("blob");
+			window.open(URL.createObjectURL(blob));
+		}else if(saveAs=="zip"){
+			return doc;
+		}
+
+	}
+	generate();
+}
+
 export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, saveAs){
 	const width = convertInch(8.5);
 	const height = convertInch(14);
@@ -578,38 +719,90 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, s
 	generate();
 }
 
-
-function zipAll(dentals, transactions, prescriptions){
-	
-}
-
 //prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs)
-function zipPrescription(prescriptions){
-	const zip = new JSZip();
-	prescriptions.forEach (function (item) {
-		var doc = prescription(
+async function zipPrescription(prescriptions){
+	var zip = new JSZip();
 
-			item[1].presDate, 
-			item[0].fname+" "+item[0].lname, 
-			item[0].age, 
-			fixArrayTable(item[1].presDetails), 
+	prescriptions.forEach (async function (item, idx, array) {
+		await prescription(
+			item.presDate, 
+			item.fname+" "+item.lname, 
+			item.age, 
+			fixArrayTable(item.presDetails), 
 			"1953834", 
 			"2719432", 
 			require('../assets/img/watermark_for_eprescription.png'), 
 			require('../assets/img/tempsignaturedentist.png'), 
 			"zip"
-		);
-		try{
-			zip.file("Dental-Record_"+item[0].fname+" "+item[0].lname+".pdf", doc.output('blob'));
-		}catch{
-			console.error('Zip has Failed')
-		}
-		
-	});
+		).then(prescription=>{
+			try{
+				zip.file("EPrescription"+(idx+1)+"_"+item.fname+" "+item.lname+"_"+item.presdate+".pdf", prescription.output('blob'));
+			}catch(e){
+				console.error(e);
+			}
+		}).then(()=>{
+			if (idx === array.length - 1){
+				zip.generateAsync({type:'blob'}).then(function(content) {
+					saveAs(content, item.fname+" "+item.lname+'_EPrescriptions.zip');
+				})
+			}
+		})
+	})
+}
 
-	zip.generateAsync({type:'blob'}).then(function(content) {
-		saveAs(content, 'reports.zip');
-	});
+async function zipTransaction(transaction){
+	var zip = new JSZip();
+	
+	//receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
+	transaction.forEach(async function (info, idx, array) {
+		await receipt(
+			info.fname+" "+info.lname,
+			info.house+" "+info.brgy+" "+info.municipality+" "+info.province+" "+info.country, 
+			info.date, 
+			info.appNum, 
+			info.addedItem, 
+			(info.discountValue*100), 
+			info.paymentType, 
+			info.amountPaid, 
+			require('../assets/img/tempsignaturesec.png'),
+			//require("../../../uploads/e-receipt/"+info.patientIDnumber+"_"+info.date+".png"), 
+			"zip"
+		).then(receipt=>{
+			try{
+				zip.file("Transaction"+(idx+1)+"_"+info.fname+" "+info.lname+"_"+info.date+".pdf", receipt.output('blob'));
+			}catch(e){
+				console.error(e);
+			}
+		}).then(()=>{
+			if (idx === array.length - 1){
+				zip.generateAsync({type:'blob'}).then(function(content) {
+					saveAs(content,info.fname+" "+info.lname+'_Transactions.zip');
+				})
+			}
+		})
+	})
+}
+
+function compileDentalRecords(dental){
+	//compiledDentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, treatData, saveAs)
+	var doc = compiledDentalRecord(
+		dental.fname+" "+dental.lname,
+		dental.bday,
+		"Dr. Pamela R. Concepcion",
+		dental.medications,
+		dental.conditions,
+		dental.allergies,
+		dental.hasOwnProperty("precaution") ? dental.precaution: "N/A",
+		document.getElementById("dental-chart-Image"), 
+		dental.treatData,
+		"download"
+	)
+}
+
+export function zipAll(dentals, transactions, prescriptions){
+	compileDentalRecords(dentals);
+	zipTransaction(transactions);
+	zipPrescription(prescriptions);
 }
 
 function fixArrayTable(arr){
@@ -625,46 +818,4 @@ function fixArrayTable(arr){
 	  ])
 	}
 	return newArr;
-  }
-
-/*
-function zipDental(dentals){
-	const zip = new JSZip();
-	dental.forEach (function (items) {
-
-	});
 }
-*/
-/*
-function zipTransaction(transactions){
-	const zip = new JSZip();
-	transaction.forEach (function (student) {
-		var doc = createFile(student);
-		if (typeof doc !== 'undefined') {
-			try {
-				zip.file(student.name + '.pdf', doc.output('blob'));
-			}
-			catch {
-				console.error('Something went wrong!');
-			}
-		}
-	});
-}
-
-*/
-/*
-function zipPrescription(prescription){
-	const zip = new JSZip();
-
-zip.file("Hello.txt", "Hello World\n");
-
-const img = zip.folder("images");
-img.file("smile.gif", imgData, {base64: true});
-
-zip.generateAsync({type:"blob"}).then(function(content) {
-    // see FileSaver.js
-    saveAs(content, "example.zip");
-});
-
-}
-*/

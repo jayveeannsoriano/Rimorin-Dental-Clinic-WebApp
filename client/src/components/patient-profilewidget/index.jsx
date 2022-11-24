@@ -7,6 +7,11 @@ const PatientProfileWidget = () => {
     const fullName = userInfo['fname'] + " " + userInfo['lname'] 
     console.log(fullName)
 
+    const bdayInput = userInfo['bday']
+    let AgeOut = () => {
+        return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    }
+    
     return (
         <div class="col-xl-4">
             <div class="card">
@@ -20,7 +25,7 @@ const PatientProfileWidget = () => {
                             <h3>Phone</h3>
                             <p id="contact_num"> (+63) {userInfo['mobile']} </p>
                             <h3>Age</h3>
-                            <p id="age"> {userInfo['age']} </p>
+                            <p id="age"> {AgeOut()} </p>
                         </div>
                     </div>
                 </div>

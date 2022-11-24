@@ -19,10 +19,15 @@ switch (userRole) {
     break;
 }
 
-const FollowUp = () => {
+const FollowUp = (patientIDnumber) => {
+
+  const StringAppNum = JSON.stringify(patientIDnumber);
+  const ConvertStringApp = JSON.parse(StringAppNum);
+  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g, "");
+
   return (
     <>
-      <Button className="followUp-button" variant="primary" href={FollowUpAppointmentRoute}>
+      <Button className="followUp-button" variant="primary" href={FollowUpAppointmentRoute+"?patientIDValue="+PatientIDNumber.substring(3)}>
         <i class="fa-regular fa-calendar-pen"></i>Follow Up
       </Button>
     </>

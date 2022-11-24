@@ -58,8 +58,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                 </div>
 
                 <div className="mb-3">
-                    <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions. 
-                        (Don't click any checkbox if there is None)</label>
+                    <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions. </label>
                     <br />
                     <div class="container">
                         <div class="row">
@@ -118,6 +117,10 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                                 <div className='form-check'>
                                     <input class="form-check-input" type="checkbox" value="Stroke" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} />
                                     <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
+                                </div>
+                                <div className='form-check'>
+                                    <input class="form-check-input" type="checkbox" value="None" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} />
+                                    <label class="form-check-label px-1" for="flexCheckDefault"> None </label>
                                 </div>
 
                             </div>

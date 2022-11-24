@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 import ViewAccount from "./modals/view-account";
 import ArchiveAccount from "./modals/archive-account";
 
-const AdminTable = () => {
+const AdminArchiveTable = () => {
 
     const [search, setSearch] = useState("");
     const [accountType, setAccountType] = useState([]);
@@ -22,14 +22,14 @@ const AdminTable = () => {
     const ArchiveUser = async (objectID) =>{
         console.log(objectID)
 
-        await axios.post('http://localhost:3001/ArchiveUser',{
+        await axios.post('http://localhost:3001/UnArchiveUser',{
             UserObjectID:objectID
         })
     }
 
     const getUsers = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUserforAdmin');
+            const response = await axios.get('http://localhost:3001/getArchiveUserforAdmin');
             console.log(response);
             setUsers(response.data);
             setFilteredUsers(response.data);
@@ -58,7 +58,7 @@ const AdminTable = () => {
             name: "Action",
             selector: row => <div className="action-buttons" >
                 <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
-                <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Archive</Button>
+                <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Unarchive</Button>
             </div>
         },
     ];
@@ -188,4 +188,4 @@ const AdminTable = () => {
     />
 }
 
-export default AdminTable;
+export default AdminArchiveTable;
