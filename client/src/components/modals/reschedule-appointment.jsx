@@ -66,6 +66,8 @@ useEffect(() => {
   getAppointmenstbyDate(initialDate.toString().substring(0, 10));
 }, []);
 
+
+
   //update date and time
   const newDateTime = () =>{
     console.log("Updating " + AppNumber);
