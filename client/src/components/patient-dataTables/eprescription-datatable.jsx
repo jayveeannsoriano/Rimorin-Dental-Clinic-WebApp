@@ -136,16 +136,6 @@ const EPrescriptionDataTable = () => {
         progressComponent={<CustomLoader />}
         fixedHeader
         highlightOnHover
-        subHeader
-        subHeaderComponent={
-            <input
-                type="text"
-                placeholder="Search"
-                className="w-50 form-control datatable-search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-        }
     />
 
 }

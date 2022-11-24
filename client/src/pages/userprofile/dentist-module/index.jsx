@@ -239,17 +239,16 @@ const DentistUserProfile = () => {
                                         </div>
 
 
-
                                         {/* Professional Information */}
                                         <h5 class="form-section-title">Professional Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">PTR Number</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['ptr']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['ptr']}</div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label ">Licence Number</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['license']}</div>
+                                            <div class="col-lg-3 col-md-4 label ">License Number</div>
+                                            <div class="col-lg-9 col-md-8">{item['license']}</div>
                                         </div>
                                     </div>
 
@@ -318,17 +317,20 @@ const DentistUserProfile = () => {
                                                         <Form.Check
                                                             inline
                                                             label="Male"
+                                                            value="Male"
                                                             name="group1"
                                                             type="radio"
+                                                            defaultValue={item.gender === 'Male'}
                                                             checked={item.gender === 'Male'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         <Form.Check
                                                             inline
                                                             label="Female"
+                                                            value="Female"
                                                             name="group1"
                                                             type="radio"
-                                                            checked={item.gender === 'Female'}
+                                                            defaultValue={item.gender === 'Female'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         </div>

@@ -1010,7 +1010,9 @@ padding-right: 4px;
 .appt_status[data-status="No Show"]:after,
 .appt_status[data-status="Arrived"]:after,
 .payment_status[data-status="Paid"]:after,
-.payment_status[data-status="Pending"]:after{
+.payment_status[data-status="Pending"]:after,
+.dental_record_status[data-status="Pending"]:after,
+.dental_record_status[data-status="Finished"]:after{
   border-radius: 22px;
   padding: 6px 12px;
   align-items: center;
@@ -1066,6 +1068,19 @@ padding-right: 4px;
 }
 
 .payment_status[data-status="Pending"]:after{
+  content: "Pending";
+  background: #FFFBEB;
+  color: #D97706;
+}
+
+/* Dental Record Status */
+.dental_record_status[data-status="Finished"]:after{
+  content: "Finished";
+  color: #fff;
+  background: #1F9254;
+}
+
+.dental_record_status[data-status="Pending"]:after{
   content: "Pending";
   background: #FFFBEB;
   color: #D97706;
@@ -1130,19 +1145,21 @@ padding-right: 4px;
   max-width: 255px !important;
 }
 
-.prescription-datatable #cell-3-undefined{
+/* overflow text */
+.prescription-datatable .kEIRkz div:first-child{
   text-overflow:ellipsis !important;
   overflow: hidden !important;
 }
 
-/* existing dental table for dental records 4cols*/
+/* existing dental table for dental records 5cols*/
 /* client\src\components\patient-dataTables\dentalrecord-datatable.jsx */
 .existing-dental-table #cell-1-undefined,
 .existing-dental-table #cell-2-undefined,
-.existing-dental-table #cell-3-undefined{
+.existing-dental-table #cell-3-undefined,
+.existing-dental-table #cell-4-undefined{
   max-width: 167px !important;
 }
-.existing-dental-table #cell-4-undefined{
+.existing-dental-table #cell-5-undefined{
   max-width: 255px !important;
 }
 
@@ -1224,8 +1241,6 @@ padding-right: 4px;
   text-overflow: unset !important;
   overflow: unset !important;
 }
-
-
 
 /*--------------------------------------------------------------
 # Landing Page Footer

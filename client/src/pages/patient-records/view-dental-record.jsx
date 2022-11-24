@@ -188,17 +188,19 @@ const ViewDentalRecord = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                             
-                                                    <tr>
-                                                    {chartedTeethValue.map((item, index) => (
-                                                        <td key={index}>{item}</td>
-                                                        ))}
-                                                        <td>{dentalDate.toString()}</td>
-                                                        <td>{dentalDesc.toString()}</td>
-                                                    {recordProcedures.map((item, index) => (
-                                                        <td key={index}>{item}</td>
-                                                    ))}
-                                                    </tr>
+                                                    
+                                                    {chartedTeethValue.map((item1,index) => {
+                                                        return(
+                                                            <tr key={index}>
+                                                                <td>{item1}</td>
+                                                                <td>{dentalDate.toString()}</td>
+                                                                <td>{dentalDesc.toString()}</td>
+                                                                {recordProcedures.map((item2) => (
+                                                                <td>{item2}</td>
+                                                                ))}
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </Table>
                                         </div>
@@ -206,7 +208,7 @@ const ViewDentalRecord = () => {
                                         {/* Treatment Attatchments */}
                                         <h5 className="card-title">Treatment Attachments</h5>
                                         <div className="row attatchment-container" 
-                                        style={{border: "2px solid #885df1", borderRadius: "15px", width: "784px", height: "289px"}}>
+                                        style={{border: "1px solid #E8E8E8", borderRadius: "15px", width: "784px", height: "289px"}}>
                                             {/* Insert uploaded image/s for that specific record*/}
                                             <img src={"../../../../../uploads/dental-record-images/" + query.patientIDNum + "_" + query.date + ".jpg"} alt="Treatment attatchment"/>
                                         </div>

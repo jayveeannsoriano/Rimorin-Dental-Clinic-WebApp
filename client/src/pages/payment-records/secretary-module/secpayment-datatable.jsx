@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import DataTable, { Alignment } from 'react-data-table-component';
 import styled, { keyframes } from 'styled-components';
 import PaymentStatusText from "./payment-status-text";
-import ViewFile from "../../../components/modals/view-file"
 import { Button } from "react-bootstrap";
 import PrintFile from "../../../components/modals/print";
 import ExportFile from "../../../components/modals/export";
@@ -67,9 +66,7 @@ const SecTransactionDataTable = (patientIDNum) => {
       {
         name: "Status",
         selector: (row) => (
-          <div className="payment-details">
             <PaymentStatusText payStats={row.payStatus} />
-          </div>
         ),
       },
       {
@@ -168,16 +165,6 @@ const SecTransactionDataTable = (patientIDNum) => {
         progressComponent={<CustomLoader />}
         fixedHeader
         highlightOnHover
-        subHeader
-        subHeaderComponent={
-            <input
-                type="text"
-                placeholder="Search"
-                className="w-50 form-control datatable-search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-        }
     />
 
 }

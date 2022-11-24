@@ -128,15 +128,6 @@ const TransactionDataTable = () => {
         getPatientDetails();
     }, []);
 
-    // useEffect(() => {
-    //     const result = appointment.filter((appointment) => {
-    //         return appointment.pName.toLowerCase().match(search.toLowerCase());
-    //     });
-
-    //     console.log(result, "This is the result");
-    //     setFilteredAppointment(result)
-    // },[search])
-
     return <DataTable
     className="patient-transaction-datatable"
     pagination
@@ -147,16 +138,6 @@ const TransactionDataTable = () => {
     progressComponent={<CustomLoader />}
     fixedHeader
     highlightOnHover
-    subHeader
-    subHeaderComponent={
-        <input 
-        type="text" 
-        placeholder="Search" 
-        className="w-50 form-control datatable-search" 
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        />
-    }
     />
   
 }
