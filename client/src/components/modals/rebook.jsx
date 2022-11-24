@@ -92,16 +92,6 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
   }
 
-  const finishedAppointments = () => {
-    Axios.put("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
-        patientIDnumber: PatientIDNumber,
-        appNum: AppNumber,
-      })
-      console.log("Moving ", appNum, pName, " to Appointment History")
-    
-    handleModalClose();
-  }
-
   return (
     <>
       <Button className="update-button" onClick={handleShow}>

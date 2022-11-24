@@ -43,7 +43,7 @@ const AcceptCancel = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.date + " | " + row.time,
+            selector: (row) => row.date.substring(0,10) + " | " + row.time,
             sortable: true,
         },
         {

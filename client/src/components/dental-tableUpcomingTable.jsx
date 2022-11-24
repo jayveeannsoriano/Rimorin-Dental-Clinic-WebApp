@@ -22,15 +22,14 @@ const UpDentalDashboardTable = () => {
     
     var getTodayDate = new Date();
     window.localStorage.setItem('getTodayDate', getTodayDate);
-    var todayDate = window.localStorage.getItem('getTodayDate');
-    console.log(todayDate, 'dateToday');
+    const convertDate = getTodayDate.toString().substring(0, 15);
 
     const getAppointment = async() => {
         try{
             const response = await axios.get('http://localhost:3001/getUpcomingDentalAppointmentDetails',{
             params: {
                 dentistIDnumber:dentistIDnumber,
-                date:todayDate
+                date:convertDate
             }
         });
             console.log(response, "Responses");
@@ -54,7 +53,7 @@ const UpDentalDashboardTable = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.date + " | " + row.time,
+            selector: (row) => row.date.substring(0,10) + " | " + row.time,
             sortable: true,
         },
         {

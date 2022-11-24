@@ -14,8 +14,7 @@ const UpcomingDashboardTable = () => {
 
     var getTodayDate = new Date();
     window.localStorage.setItem('getTodayDate', getTodayDate);
-    var todayDate = window.localStorage.getItem('getTodayDate');
-    console.log(todayDate, 'dateToday');
+    const convertDate = getTodayDate.toString().substring(0, 15);
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -33,7 +32,7 @@ const UpcomingDashboardTable = () => {
             const response = await axios.get('http://localhost:3001/getUpcomingUserAppointmentDetails',{
                 params:{
                     patientIDnumber: patientIDnumber,
-                    date:todayDate,
+                    date:convertDate,
                 }
             });
             setAppointment(response.data);
@@ -56,7 +55,7 @@ const UpcomingDashboardTable = () => {
         },
         {
             name: "Date & Time",
-            selector: (row) => row.date + " |  " + row.time,
+            selector: (row) => row.date.substring(0,10) + " |  " + row.time,
             sortable: true,
         },
         {
