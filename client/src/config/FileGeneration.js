@@ -198,7 +198,19 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
-			window.open(URL.createObjectURL(blob));
+			//window.open(URL.createObjectURL(blob));
+			var blobURL = URL.createObjectURL(blob);
+			var iframe =  document.createElement('iframe'); //load content in an iframe to print later
+			document.body.appendChild(iframe);
+
+			iframe.style.display = 'none';
+			iframe.src = blobURL;
+			iframe.onload = function() {
+			setTimeout(function() {
+				iframe.focus();
+				iframe.contentWindow.print();
+			}, 1);
+			};
 		}else if(saveAs=="zip"){
 			return doc;
 		}
@@ -346,7 +358,20 @@ export function prescription(date, name, age, medArray, inst, ptr, license, back
 		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
-			window.open(URL.createObjectURL(blob));
+			//doc.output("dataurlnewwindow");
+			var blobURL = URL.createObjectURL(blob);
+			var iframe =  document.createElement('iframe'); //load content in an iframe to print later
+			document.body.appendChild(iframe);
+
+			iframe.style.display = 'none';
+			iframe.src = blobURL;
+			iframe.onload = function() {
+			setTimeout(function() {
+				iframe.focus();
+				iframe.contentWindow.print();
+			}, 1);
+			};
+			//window.open(URL.createObjectURL(blob));
 		}else if(saveAs=="zip"){
 			return doc;
 		}
@@ -477,7 +502,19 @@ export function dentalRecords(name, bd, doct, med, cond, alle, prec, treatData, 
 	}else if(saveAs=="print"){
 		doc.autoPrint();
 		var blob = doc.output("blob");
-		window.open(URL.createObjectURL(blob));
+		//window.open(URL.createObjectURL(blob));
+		var blobURL = URL.createObjectURL(blob);
+			var iframe =  document.createElement('iframe'); //load content in an iframe to print later
+			document.body.appendChild(iframe);
+
+			iframe.style.display = 'none';
+			iframe.src = blobURL;
+			iframe.onload = function() {
+			setTimeout(function() {
+				iframe.focus();
+				iframe.contentWindow.print();
+			}, 1);
+			};
 	}else if(saveAs=="zip"){
 		return doc;
 	}
@@ -616,7 +653,19 @@ export function compiledDentalRecord(name, bd, doct, med, cond, alle, prec, Dent
 		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
-			window.open(URL.createObjectURL(blob));
+			//window.open(URL.createObjectURL(blob));
+			var blobURL = URL.createObjectURL(blob);
+			var iframe =  document.createElement('iframe'); //load content in an iframe to print later
+			document.body.appendChild(iframe);
+
+			iframe.style.display = 'none';
+			iframe.src = blobURL;
+			iframe.onload = function() {
+			setTimeout(function() {
+				iframe.focus();
+				iframe.contentWindow.print();
+			}, 1);
+			};
 		}else if(saveAs=="zip"){
 			return doc;
 		}
@@ -713,7 +762,19 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, s
 		}else if(saveAs=="print"){
 			doc.autoPrint();
 			var blob = doc.output("blob");
-			window.open(URL.createObjectURL(blob));
+			//window.open(URL.createObjectURL(blob));
+			var blobURL = URL.createObjectURL(blob);
+			var iframe =  document.createElement('iframe'); //load content in an iframe to print later
+			document.body.appendChild(iframe);
+
+			iframe.style.display = 'none';
+			iframe.src = blobURL;
+			iframe.onload = function() {
+			setTimeout(function() {
+				iframe.focus();
+				iframe.contentWindow.print();
+			}, 1);
+			};
 		}else if(saveAs=="zip"){
 			return doc;
 		}
