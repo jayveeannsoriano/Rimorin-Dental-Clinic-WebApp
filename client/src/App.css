@@ -849,6 +849,12 @@ h6 {
 	width: 95%;
 }
 
+.time.btn:focus,
+.time.btn:active{
+  background-color: #5d5fef !important;
+  color: #fff !important;
+}
+
 .slots {
 	width: 100%;
 	display: grid;
