@@ -26,11 +26,14 @@ const DashboardTable = () => {
     const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
-    const [selectRow, setSelectRowValues] = useState({date:"", time: ""})
-    const handleButtonClick = (state) => {
-        console.log('clicked');
-        console.log(state.target.id);
-    };
+
+    const alluserdate = appointment.map(function (item) {
+        return item.date
+    })
+
+    console.log("ALL USER DATE",alluserdate);
+
+
 
     const getAppointment = async() => {
         try{

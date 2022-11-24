@@ -249,7 +249,7 @@ const DentistUserProfile = () => {
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Licence Number</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['licence']}</div>
+                                            <div class="col-lg-9 col-md-8">{userInfo['license']}</div>
                                         </div>
                                     </div>
 
