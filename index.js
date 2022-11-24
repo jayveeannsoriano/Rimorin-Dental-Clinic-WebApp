@@ -1176,6 +1176,7 @@ app.post("/createDentalRecord",uploadImg.single('imgValue'), async (req,res)=>{
   const procedures =  req.body.procedures;
   const chartedTeeth = req.body.chartedTeeth;
   const appNumber = '#'+req.body.appNum;
+  const dentalStatus = req.body.dentalStatus;
 
   
   await DentalRecords.create({
@@ -1185,6 +1186,24 @@ app.post("/createDentalRecord",uploadImg.single('imgValue'), async (req,res)=>{
     dentalDesc: descValue,
     chartedTeeth: chartedTeeth,
     procedures:procedures,
+    dentalStatus:dentalStatus,
+  });
+  console.log('Dental Record Created');
+
+})
+
+app.post("/createDentalRecordforSec",uploadImg.single('imgValue'), async (req,res)=>{
+
+  console.log("sec records")
+  const patientIDNum = req.body.patientIDNum;
+  const appNumber = '#'+req.body.appNum;
+  const dentalStatus = req.body.dentalStatus;
+
+  
+  await DentalRecords.create({
+    patientIDNumber: patientIDNum,
+    appNum:appNumber,
+    dentalStatus:dentalStatus,
   });
   console.log('Dental Record Created');
 
