@@ -1579,6 +1579,8 @@ app.post("/InsertNewUser", async (req, res) => {
   const gender = req.body.gender;
   const mobile = req.body.mobile;
   const bday = req.body.bday;
+  const ptr = req.body.ptr;
+  const license = req.body.license;
 
   console.log(accountType);
   
@@ -1687,6 +1689,8 @@ if(accountType == "patient"){
     mobile:mobile,
     bday:bday,
     age:AgeOut(),
+    ptr:ptr,
+    license:license,
     user_role_id:3,
   });
   console.log("Add Details for Dentist: ", UserData);

@@ -25,6 +25,8 @@ const UserDetailsScehma = new mongoose.Schema(
     dentistIDnumber: String,
     secretaryIDnumber: String,
     adminIDnumber: String,
+    ptr:String,
+    license:String,
     //new records
     profession: String,
     tellphone: String,
