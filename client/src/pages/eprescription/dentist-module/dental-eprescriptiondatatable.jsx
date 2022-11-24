@@ -6,8 +6,7 @@ import { useSearchParams, useLocation } from "react-router-dom";
 import ExportFile from "../../../components/modals/export";
 import PrintFile from "../../../components/modals/print";
 
-const DentistEPrescriptionDataTable = () => {
-
+const DentistEPrescriptionDataTable = () => { 
   const location = useLocation()
   const paramsID = new URLSearchParams(location.search)
   const getPatientIDNumber = paramsID.get('patientIDNum');
@@ -29,11 +28,6 @@ const DentistEPrescriptionDataTable = () => {
                 }
             });
             console.log(response, "Responses");
-
-            response.data.forEach(data => {
-                data = Object.assign(data,{"genericName": "Dr. Pamela Rimorin Concepcion"});
-                //appendObjTo(data,{"Created By": "Pamela Rimorin Concepcion"});
-            })
             setAppointment(response.data);
             // setFilteredAppointment(response.data);
         } catch (error) {
@@ -62,7 +56,7 @@ const DentistEPrescriptionDataTable = () => {
         },
         {
             name: 'Created By',
-            selector: (row) => row.genericName,
+            selector: (row) => row.dentistName,
         },
         {
             name: 'Description',

@@ -6,13 +6,11 @@ import styled, { keyframes } from 'styled-components';
 //project imports
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import Rebook from "./modals/rebook"
+import SecAdminRebook from "./modals/secadminrebook";
 import ApptDetailsText from "./modals/appt-details-text";
 import FollowUp from "./modals/followUp"
 
-const UpDentalDashboardTable = () => {
-    var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
-    const dentistIDnumber = userInfo["dentistIDnumber"];
+const UpSecAdminDashboardTable = () => {
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -27,9 +25,8 @@ const UpDentalDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUpcomingDentalAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingAppointmentDetails',{
             params: {
-                dentistIDnumber:dentistIDnumber,
                 date:todayDate
             }
         });
@@ -69,7 +66,7 @@ const UpDentalDashboardTable = () => {
             <div className="action-buttons">
                 {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
                 <>
-                    <Rebook
+                    <SecAdminRebook
                         patientIDnumber={row.patientIDnumber}
                         appNum={row.appNum}
                         pName={row.pName}
@@ -168,4 +165,4 @@ const UpDentalDashboardTable = () => {
   
 }
 
-export default UpDentalDashboardTable
+export default UpSecAdminDashboardTable

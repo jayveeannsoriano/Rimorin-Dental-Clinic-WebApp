@@ -119,7 +119,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                                     <label class="form-check-label px-1" for="flexCheckDefault"> Stroke </label>
                                 </div>
                                 <div className='form-check'>
-                                    <input class="form-check-input" type="checkbox" value="None" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} />
+                                    <input class="form-check-input" type="checkbox" value="None" id="flexCheckDefault" onChange={handleChangeCheckbox('conditions')} required/>
                                     <label class="form-check-label px-1" for="flexCheckDefault"> None </label>
                                 </div>
 

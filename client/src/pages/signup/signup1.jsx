@@ -114,7 +114,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
                 placeholder="09123456789"
                 onChange={handleChange('mobile')}
                 defaultValue={values.mobile}
-                maxLength={11}
+                maxLength={10}
                 required
               />
               {/* <PhoneInput

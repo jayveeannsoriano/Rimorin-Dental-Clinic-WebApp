@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const AppointmentDetails = new mongoose.Schema(
   {
+    dentistIDnumber: String,
     patientIDnumber: String,
     pName: String,
     dName: String,
