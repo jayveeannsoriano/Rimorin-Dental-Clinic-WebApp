@@ -50,6 +50,8 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
   const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g, "");
   const passAppNumber = AppNumber.substring(1);
 
+  console.log("SUBSTRING APPNUMBER",PatientIDNumber)
+
   const newStatus = () => {
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
@@ -66,8 +68,15 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
     }
 
     if (selectValue == "Finished") {
+      Axios.post("http://localhost:3001/createDentalRecordforSec", {
+        patientIDNum: PatientIDNumber,
+        appNum: passAppNumber,
+        dentalStatus: "Pending",
+    })
+
+
       handleFinished();
-      console.log("Receipt Created with ", appNum, pName)
+      console.log("Dental Record with ", appNum, pName)
     } else {
       console.log("Receipt not created")
     }
