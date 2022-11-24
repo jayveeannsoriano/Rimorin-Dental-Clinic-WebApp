@@ -16,11 +16,12 @@ const UserProfile = () => {
     const navigate = useNavigate();
   
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const UserObjectID = userInfo['_id'];
     const patientIDnumber = userInfo['patientIDnumber'];
     console.log(patientIDnumber);
-    console.log(userInfo, "These are all the data of the user");
-
+    
     const [userData, setUserData] = useState([]);
+    console.log("These are all the data of the user",userData);
     const [firstName, setFirstValue] = useState('');
     const [lastName, setLastValue] = useState('');
     const [middleName, setMiddleValue] = useState('');
@@ -74,9 +75,9 @@ const UserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserInfo", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
-                    patientIDnumber: patientIDnumber
+                    ObjectID: UserObjectID
                 }
             });
             setUserData(response.data);
@@ -111,6 +112,8 @@ const UserProfile = () => {
 
     const updatePatientInfo = async () => {
         await Axios.put("http://localhost:3001/updatePatientInfo", {
+
+            ObjectID: UserObjectID,
 
             patientIDnumber: patientIDnumber,
 

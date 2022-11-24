@@ -105,7 +105,7 @@ app.post("/RegisterUser", async (req, res) => {
   } = req.body;
 
   const userRole = 1;
-  
+  //UUID GENERATION
   const letters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const numbers = '0123456789'
   
@@ -125,8 +125,17 @@ app.post("/RegisterUser", async (req, res) => {
       return numbersResult+lettersResult;
   }
   const patientIDNumber = "PT#"+generateString();
-
+  //
+  //BDAY TO AGE CONVERTER
+  const bdayInput = req.body.bday;
+  let AgeOut = () => {
+      return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+  }
+  //
+  //
+  //BCRYPT PASSWORD
   const encryptedPassword = await bcrypt.hash(password, 10);
+  //
 
   const UserData = new User({
     patientIDnumber:patientIDNumber,
@@ -138,6 +147,7 @@ app.post("/RegisterUser", async (req, res) => {
     gender:gender,
     mobile:mobile,
     bday:bday,
+    age:AgeOut(),
     house:house,
     brgy:brgy,
     municipality:municipality,
@@ -425,6 +435,19 @@ app.get("/getUserInfo", async(req,res) => {
   console.log(patientIDNumber);
   
   await User.find({patientIDnumber: patientIDNumber})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+       console.log('error: ', error)
+      });
+    });
+  
+  app.get("/getCurrentUserInfo", async(req,res) => {
+
+  const ObjectID = req.query.ObjectID;
+  
+  await User.find({_id:ObjectID})
       .then((data) => {
         res.json(data);
       })
@@ -1216,13 +1239,13 @@ app.post("/createEprescription",uploadImg2.single('imgFile'), async (req,res)=>{
 
 app.put("/updatePatientInfo", async (req, res) => {
 
+  const ObjectID = req.body.ObjectID;
   const patientIDnumber = req.body.patientIDnumber;
 
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const middleName = req.body.middleName;
   const birthDate = req.body.birthDate;
-  const ageValue = req.body.ageValue;
   const genderValue = req.body.genderValue;
   const professionValue = req.body.professionValue;
   const cellNumber = req.body.cellNumber;
@@ -1241,15 +1264,19 @@ app.put("/updatePatientInfo", async (req, res) => {
 
   const patientName = firstName + " " + lastName;
 
+  const bdayInput = req.body.birthDate;
+  let AgeOut = () => {
+      return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+  }
 
   await User.findOneAndUpdate(
-    {patientIDnumber:patientIDnumber}, 
+    {_id:ObjectID}, 
     
     {fname:firstName,
      lname:lastName,
      mname:middleName,
      bday:birthDate,
-     age:ageValue,
+     age:AgeOut(),
      gender:genderValue,
      profession: professionValue,
      mobile: cellNumber,
@@ -1526,6 +1553,11 @@ app.post("/InsertNewUser", async (req, res) => {
   const secretaryIDNumber = "SC#"+generateString();
   const adminIDNumber = "AD#"+generateString();
 
+  const bdayInput = req.body.bday;
+  let AgeOut = () => {
+      return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+  }
+
 if(accountType == "patient"){
   const UserData = new User({
     patientIDnumber:patientIDNumber,
@@ -1539,6 +1571,7 @@ if(accountType == "patient"){
     gender:gender,
     mobile:mobile,
     bday:bday,
+    age:AgeOut(),
     user_role_id:1,
   });
   console.log("Add Details for Patient: ", UserData);
@@ -1568,6 +1601,7 @@ if(accountType == "patient"){
     gender:gender,
     mobile:mobile,
     bday:bday,
+    age:AgeOut(),
     user_role_id:2,
   });
   console.log("Add Details for Secretary: ", UserData);
@@ -1597,6 +1631,7 @@ if(accountType == "patient"){
     gender:gender,
     mobile:mobile,
     bday:bday,
+    age:AgeOut(),
     user_role_id:3,
   });
   console.log("Add Details for Dentist: ", UserData);
@@ -1626,6 +1661,7 @@ if(accountType == "admin"){
     gender:gender,
     mobile:mobile,
     bday:bday,
+    age:AgeOut(),
     user_role_id:4,
   });
   console.log("Add Details for Admin: ", UserData);

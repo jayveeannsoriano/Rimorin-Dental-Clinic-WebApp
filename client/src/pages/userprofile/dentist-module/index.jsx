@@ -12,6 +12,7 @@ import success from '../../../assets/img/check.png';
 const DentistUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     console.log(userInfo, "this are all the data of the user");
+    const UserObjectID = userInfo['_id'];
 
     const [userData, setUserData] = useState([]);
     const [firstName, setFirstValue] = useState('');
@@ -65,9 +66,9 @@ const DentistUserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserUsingEmail", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
-                    emailValue: userInfo['email']
+                     ObjectID: UserObjectID
                 }
             });
             console.log("RESPONSE", response.data)
@@ -115,6 +116,7 @@ const DentistUserProfile = () => {
 
     const updatePatientInfo = async () => {
         await Axios.put("http://localhost:3001/updatePatientInfo", {
+            ObjectID: UserObjectID,
 
             firstName: firstName,
             lastName: lastName,
@@ -176,12 +178,12 @@ const DentistUserProfile = () => {
                                         <h5 class="form-section-title">Personal Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                            <div class="col-lg-9 col-md-8">{item['fname']} </div>
+                                            <div class="col-lg-9 col-md-8">{item.fname} </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Middle Name</div>
-                                            <div class="col-lg-9 col-md-8">{item['mname']}</div>
+                                            <div class="col-lg-9 col-md-8">{item.mname}</div>
                                         </div>
 
                                         <div class="row">

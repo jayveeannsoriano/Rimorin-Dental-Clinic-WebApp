@@ -10,6 +10,7 @@ import success from '../../../assets/img/check.png';
 
 const AdminUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const UserObjectID = userInfo['_id'];
     console.log(userInfo, "this are all the data of the user");
 
     const [userData, setUserData] = useState([]);
@@ -62,9 +63,9 @@ const AdminUserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserUsingEmail", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
-                    emailValue: userInfo['email']
+                    ObjectID: UserObjectID
                 }
             });
             setUserData(response.data);
@@ -110,6 +111,7 @@ const AdminUserProfile = () => {
     const updatePatientInfo = async () => {
         await Axios.put("http://localhost:3001/updatePatientInfo", {
 
+            ObjectID: UserObjectID,
             firstName: firstName,
             lastName: lastName,
             middleName: middleName,

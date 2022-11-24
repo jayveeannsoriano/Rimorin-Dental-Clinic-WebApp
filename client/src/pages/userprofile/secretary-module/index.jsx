@@ -11,6 +11,7 @@ import success from '../../../assets/img/check.png';
 const SecretaryUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     console.log(userInfo, "this are all the data of the user");
+    const UserObjectID = userInfo['_id'];
 
     const [userData, setUserData] = useState([]);
     const [firstName, setFirstValue] = useState('');
@@ -76,9 +77,9 @@ const handleIncorrect = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserUsingEmail", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
-                    emailValue: userInfo['email']
+                    ObjectID: UserObjectID
                 }
             });
             setUserData(response.data);
@@ -110,6 +111,7 @@ const handleIncorrect = () => {
 
     const updatePatientInfo = async () => {
         await Axios.put("http://localhost:3001/updatePatientInfo", {
+            ObjectID: UserObjectID,
 
             firstName: firstName,
             lastName: lastName,
