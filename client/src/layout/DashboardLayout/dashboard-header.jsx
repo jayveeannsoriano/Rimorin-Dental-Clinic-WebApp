@@ -7,8 +7,26 @@ import DefaultProfile from '../../assets/img/default-profile.jpg'
 
 function dashboardHeader(){
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
-    const fullName = userInfo['fname'] + " " + userInfo['lname'] 
-    console.log(fullName)
+    const UserObjectID = userInfo['_id'];
+    const [UserData, setUserData] = useState([])
+
+    const defaultUserInfo = async () => {
+        try {
+
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
+                params: {
+                    ObjectID: UserObjectID
+                }
+            });
+            setUserData(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        defaultUserInfo()
+    }, []);
 
     //notification data
     const [appointmentDetails, setAppointmentDetails] = useState([]);
@@ -59,10 +77,12 @@ function dashboardHeader(){
                         <li className="nav-item dropdown pe-3">
 
                         {/* <!-- Profile Image Icon --> */}
+                        {UserData.map((item, index) => (
                         <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <Avatar name={fullName} maxInitials={2} round={true} size="40" alt="Avatar"/>
-                            <span className="d-none d-md-block dropdown-toggle ps-2">{userInfo['fname'] + " " + userInfo['lname']}</span>
+                            <Avatar name={item.fname + " " + item.lname} maxInitials={2} round={true} size="40" alt="Avatar"/>
+                            <span className="d-none d-md-block dropdown-toggle ps-2">{item.fname} {item.lname}</span>
                         </a>
+                        ))}
                         {/* <!-- End Profile Image Icon --> */}
 
                         {/* <!-- Profile Dropdown Menu --> */}
