@@ -24,12 +24,33 @@ const SecAdminDashboardTable = () => {
     var todayDate = window.localStorage.getItem('getTodayDate');
     console.log(todayDate, 'dateToday');
 
+       //move user no show that day to app history as no show
+       const convertDate = getTodayDate.toString().substring(0, 15);
+       console.log(convertDate, "dateToday");
+ 
+     appointment.map(function (item) {
+         if (item.date != convertDate) {
+             axios.post("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
+                 patientIDnumber: item.patientIDnumber,
+                 appNum: item.appNum,
+                 pName: item.pName,
+                 dName: item.dName,
+                 date: item.date,
+                 time: item.time,
+                 consultation: item.consultation,
+               })
+               console.log("Moving ", item.appNum, item.pName, " to Appointment History")
+           } else {
+             console.log("USER MAY PAG ASA PANG MAG SHOW SA APPOINTMENT");
+           }
+      });
+
     const getAppointment = async() => {
         try{
           const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
             params: {
                 
-                date:todayDate
+                date:convertDate
             }
         });
             console.log(response, "Responses");
@@ -53,7 +74,7 @@ const SecAdminDashboardTable = () => {
       },
       {
         name: "Date & Time",
-        selector: (row) => row.date + " | " + row.time,
+        selector: (row) => row.date.substring(0,10) + " | " + row.time,
         sortable: true,
       },
       {
