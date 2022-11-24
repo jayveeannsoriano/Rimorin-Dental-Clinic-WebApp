@@ -68,6 +68,7 @@ const createReceipt = () => {
   const [getDateValue, setDateValue] = useState([]);
   const [getTimeValue, setTimeValue] = useState([]);
   const [getConValue, setConValue] = useState([]);
+  const [formattedDate, setFormattedDate] = useState([]);
 
   const getAppDetails = async () => {
     try {
@@ -80,7 +81,7 @@ const createReceipt = () => {
           },
         }
       );
-
+      setFormattedDate(response.data[0].formattedDate)
       setDocName(response.data[0].dName)
       setDateValue(response.data[0].date)
       setTimeValue(response.data[0].time)
@@ -249,6 +250,7 @@ const createReceipt = () => {
         appNum: StringfyAppNumber,
         pName: patientUser,
         dName: getDocName,
+        formattedDate:formattedDate,
         dateVal: getDateValue,
         timeVal: getTimeValue,
         conValue: getConValue,

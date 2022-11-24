@@ -817,11 +817,11 @@ app.get("/getPatientIDforDental", async (req, res) => {
 app.get("/getDetailsforReceipt", async (req, res) => {
   const patientIDnum = req.query.patientIDNum;
   const appNumber = req.query.appNumber;
-  console.log(appNumber);
 
   await AppDetails.find({ patientIDnumber: patientIDnum, appNum: appNumber })
     .then((data) => {
       res.json(data);
+      console.log(data)
     })
     .catch((error) => {
       console.log("error: ", error);
@@ -835,6 +835,7 @@ app.get("/getTransaction", async (req, res) => {
   await ReceiptDetails.find({ patientIDnumber: patientIDnumber })
     .then((data) => {
       res.json(data);
+     
     })
     .catch((error) => {
       console.log("error: ", error);
@@ -1753,6 +1754,8 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
   const consulInput = req.body.conValue;
   console.log(consulInput);
 
+  const formattedDate = req.body.formattedDate;
+
   //time value
   const getTime = req.body.timeVal;
   console.log(getTime);
@@ -1768,6 +1771,7 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
     dName: docName,
     appNum: appNumber,
     date: dateValue,
+    formattedDate:formattedDate,
     consultation: consulInput,
     time: getTime,
     appStatus: insertAppStatus,
