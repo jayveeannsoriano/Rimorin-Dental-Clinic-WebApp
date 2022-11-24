@@ -1444,7 +1444,7 @@ padding-right: 4px;
 # Error 404
 --------------------------------------------------------------*/
 
-.success-img, .error-img{
+.success-img, .error-img, .warning-img{
   width: 80px;
   height: 80px;
   margin-left: 40%;
