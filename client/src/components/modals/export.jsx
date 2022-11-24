@@ -6,11 +6,14 @@ import { receipt, prescription } from '../../config/FileGeneration.js'
 async function Export(willDownload,File,data,info){
   if(File==="prescription"){
     //prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs)
+    console.log(data.presDetails);
+    console.log(fixArrayTable(data.presDetails));
     prescription(
       data.presDate, 
       info[0].fname+" "+info[0].lname, 
       info[0].age, 
-      fixArrayTable(data.presDetails), 
+      fixArrayTable(data.presDetails),
+      data.presInstruction, 
       "123456", 
       "123456", 
       require('../../assets/img/watermark_for_eprescription.png'), 

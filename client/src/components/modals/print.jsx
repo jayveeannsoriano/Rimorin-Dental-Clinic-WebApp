@@ -9,6 +9,7 @@ async function Export(willDownload,File,data,info){
       info[0].fname+" "+info[0].lname, 
       info[0].age, 
       fixArrayTable(data.presDetails), 
+      data.presInstruction,
       "1953834", 
       "2719432", 
       require('../../assets/img/watermark_for_eprescription.png'), 

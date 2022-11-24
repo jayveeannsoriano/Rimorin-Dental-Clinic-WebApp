@@ -207,7 +207,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 	return generate();
 }
 
-export function prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs){
+export function prescription(date, name, age, medArray, inst, ptr, license, backPath, signPath, saveAs){
 	const width = 95.3;
 	const height = 127;
 	
@@ -233,7 +233,7 @@ export function prescription(date, name, age, medArray, ptr, license, backPath, 
 			imgBack.src = backPath;
 			imgSign.src = signPath;
 			div.style.position = "absolute";
-			div.style.left = '100%';
+			div.style.left = '200%';
 			
 			div.appendChild(imgBack);
 			div.appendChild(imgSign);
@@ -299,32 +299,35 @@ export function prescription(date, name, age, medArray, ptr, license, backPath, 
 				doc.setFont("FiraMono-Regular");
 				doc.setFontSize(convertPts(14));
 				
-				for(let num = 0; num< (page==(parseInt(medArray.length/3)+(medArray.length%3>0?0:-1))?(medArray.length%3):3); num++){
+				for(let num = 0; num< (page==(parseInt(medArray.length/3)+(medArray.length%3>0?0:-1))?( (medArray.length%3==0)? 3 : medArray.length%3 ): 3); num++){
 					doc.setFont("FiraSans-Bold");
 					doc.setFontSize(convertPts(13));
 					doc.text(medArray[num+(page*3)][0], convertInch(0.5), convertInch(1.4+0.075+(num*0.5)));
 					doc.setFont("FiraMono-Regular");
 					doc.setFontSize(convertPts(14));
 					doc.text(medArray[num+(page*3)][1], convertInch(0.5), convertInch(1.4+0.15+(num*0.5)));
-					doc.text(medArray[num+(page*3)][2], convertInch(.65), convertInch(1.4+0.225+(num*0.5)));
-					doc.text(medArray[num+(page*3)][3], convertInch(0.65), convertInch(1.4+0.30+(num*0.5)));
-					doc.text(medArray[num+(page*3)][4], convertInch(0.5), convertInch(1.4+0.375+(num*0.5)));
-					doc.text(medArray[num+(page*3)][5], convertInch(0.8), convertInch(1.4+0.45+(num*0.5)));
+					doc.text(medArray[num+(page*3)][4], convertInch(.65), convertInch(1.4+0.225+(num*0.5)));
+					doc.text(medArray[num+(page*3)][2], convertInch(0.65), convertInch(1.4+0.30+(num*0.5)));
+					doc.text(medArray[num+(page*3)][5] +" for "+medArray[num+(page*3)][3], convertInch(0.65), convertInch(1.4+0.375+(num*0.5)));
+					if((num+(page*3)+1)==medArray.length){
+						var instruction = doc.splitTextToSize(inst, (width-convertInch(1.3)));
+						doc.text(instruction, convertInch(0.8), convertInch(1.4+0.55+(num*0.5)));
+					}
 				}
 
 
 				//-----Signature-----
 				doc.setFont("FiraSans-Regular");
 				doc.setFontSize(convertPts(17));
-				doc.line((width/2), (height-convertInch(1.5)),(width-convertInch(0.5)), (height-convertInch(1.5)));
-				doc.text("Dr. Pamela Rimorin Concepcion",(width-convertInch(1.75)), (height-convertInch(1.4)));
-				doc.text("PTR No.:",(width-convertInch(1.75)), (height-convertInch(1.25)));
-				doc.text("License No.:",(width-convertInch(1.75)), (height-convertInch(1.1)));
-				doc.text(ptr,(width-convertInch(1.4)), (height-convertInch(1.25)));
-				doc.text(license,(width-convertInch(1.2)), (height-convertInch(1.1)));
+				doc.line((width/2), (height-convertInch(1.4)),(width-convertInch(0.5)), (height-convertInch(1.4)));
+				doc.text("Dr. Pamela Rimorin Concepcion",(width-convertInch(1.75)), (height-convertInch(1.3)));
+				doc.text("PTR No.:",(width-convertInch(1.75)), (height-convertInch(1.15)));
+				doc.text("License No.:",(width-convertInch(1.75)), (height-convertInch(1.0)));
+				doc.text(ptr,(width-convertInch(1.4)), (height-convertInch(1.15)));
+				doc.text(license,(width-convertInch(1.2)), (height-convertInch(1.0)));
 
 				var imgData2 = canvas2.toDataURL('image/png');
-				doc.addImage(imgData2,'PNG',(width-convertInch(1.70)), (height-convertInch(2.0)),25,12);
+				doc.addImage(imgData2,'PNG',(width-convertInch(1.70)), (height-convertInch(1.9)),25,12);
 
 
 
@@ -729,8 +732,9 @@ async function zipPrescription(prescriptions){
 			item.fname+" "+item.lname, 
 			item.age, 
 			fixArrayTable(item.presDetails), 
+			item.presInstruction,
 			"1953834", 
-			"2719432", 
+			"2719432",
 			require('../assets/img/watermark_for_eprescription.png'), 
 			require('../assets/img/tempsignaturedentist.png'), 
 			"zip"
