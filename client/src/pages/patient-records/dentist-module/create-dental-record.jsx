@@ -54,7 +54,6 @@ const CreateDentalRecord = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
-  console.log("SLOW DACNE",chartedTeeth)
   //procedure checkbox options 
   const [checked, setChecked] = useState([
     {

@@ -1389,7 +1389,7 @@ app.post(
     const procedures = req.body.procedures;
     const chartedTeeth = req.body.chartedTeeth;
     const appNumber = "#" + req.body.appNum;
-    const dentalStatus = req.body.dentalStatus;
+    const dentalStatus = "Finished";
 
     await DentalRecords.create({
       patientIDNumber: patientIDNum,
@@ -1411,7 +1411,7 @@ app.post(
     console.log("sec records");
     const patientIDNum = req.body.patientIDNum;
     const appNumber = "#" + req.body.appNum;
-    const dentalStatus = req.body.dentalStatus;
+    const dentalStatus = "Pending";
 
     await DentalRecords.create({
       patientIDNumber: patientIDNum,
