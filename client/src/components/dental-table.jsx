@@ -11,6 +11,8 @@ import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
 
 const DashboardTable = () => {
+  var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+  const dentistIDnumber = userInfo["dentistIDnumber"];
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
@@ -25,8 +27,9 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-          const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
+          const response = await axios.get('http://localhost:3001/getTodayDentalAppointmentDetails',{
             params: {
+                dentistIDnumber:dentistIDnumber,
                 date:todayDate
             }
         });

@@ -542,6 +542,39 @@ app.get("/getTodayAppointmentDetails", async(req,res) => {
            console.log('error: ', error)
           });
         });
+  app.get("/getTodayDentalAppointmentDetails", async(req,res) => {
+  const dentistIDnumber = req.query.dentistIDnumber;
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(slicedDate)
+  console.log(dentistIDnumber)
+    
+      await AppDetails.find({date:slicedDate, dentistIDnumber:dentistIDnumber})
+          .then((data) => {
+            res.json(data);
+          })
+          .catch((error) => {
+           console.log('error: ', error)
+          });
+        });
+    
+  app.get("/getUpcomingDentalAppointmentDetails", async(req,res) => {
+
+  const dentistIDnumber = req.query.dentistIDnumber;
+  const todayDate = req.query.date;
+  const slicedDate = todayDate.substring(0,10);
+  console.log(slicedDate);
+
+  await AppDetails.find({date:{$ne: slicedDate}, dentistIDnumber:dentistIDnumber})
+  .then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+   console.log('error: ', error)
+  });
+
+});
+
 //filtered Upcoming
 app.get("/getUpcomingUserAppointmentDetails", async(req,res) => {
 
@@ -964,6 +997,10 @@ app.put("/updateStatus", async (req,res) => {
   //Accept Appointment
   app.post("/acceptAppointment", async(req,res) => {
 
+    //Dentist ID num
+    const DentistIDNum = req.body.dentistIDnumber;
+    console.log(DentistIDNum)
+
     //Patient ID name
     const PatientIDnum = req.body.patientIDnumber;
     console.log(PatientIDnum)
@@ -998,7 +1035,7 @@ app.put("/updateStatus", async (req,res) => {
     console.log(insertAppStatus);
   
     //inserting all data
-    const AppData = new AppDetails({patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+    const AppData = new AppDetails({dentistIDnumber:DentistIDNum,patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
     try{
       await AppData.save();
@@ -1225,10 +1262,12 @@ app.post("/createEprescription",uploadImg2.single('imgFile'), async (req,res)=>{
   const slicedDate = dateValue.slice(0,10)//removes unnecessary data
   const presDetails = req.body.presDetails;
   const notesValue = req.body.notesValue;
+  const dentistName = req.body.dentistName;
 
   
   await PresDetails.create({
       patientIDNumber: patientIDNum,
+      dentistName:dentistName,
       presDate: slicedDate,
       presDetails: presDetails,
       presInstruction: notesValue,

@@ -4,8 +4,8 @@ import moment from 'moment'
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import ApptRequestTable from '../../components/dental-acceptcancel';
-import DentistDTable from '../../components/dental-table';
-import UpDentalDashboardTable from "../../components/dental-tableUpcomingTable";
+import SecAdminDashboardTable from "../../components/secadmin-table";
+import UpSecAdminDashboardTable from "../../components/secadmin-tableUpcomingTable";
 import '../../styles/dashboard.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -122,7 +122,7 @@ import {useNavigate} from 'react-router-dom';
                             <h5 className="card-title">
                               TODAY&apos;S APPOINTMENTS
                             </h5>
-                                <DentistDTable/>
+                                <SecAdminDashboardTable/>
                           </div>
       
                           <div className="tab-pane fade today-appt" id="upcoming-appt">
@@ -130,7 +130,7 @@ import {useNavigate} from 'react-router-dom';
                               UPCOMING APPOINTMENTS
                             </h5>
                             {/* Pachange nalang yung datatable here */}
-                                <UpDentalDashboardTable/>
+                                <UpSecAdminDashboardTable/>
                           </div>
                         </div>
                       </div>

@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
-import DentistDTable from '../../components/dental-table';
-import UpDentalDashboardTable from "../../components/dental-tableUpcomingTable";
+import SecAdminDashboardTable from "../../components/secadmin-table";
+import UpSecAdminDashboardTable from "../../components/secadmin-tableUpcomingTable";
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -129,7 +129,7 @@ export default function DentistDashboard() {
                          <h5 className="card-title">
                            TODAY&apos;S APPOINTMENTS
                          </h5>
-                             <DentistDTable/>
+                             <SecAdminDashboardTable/>
                        </div>
    
                        <div className="tab-pane fade today-appt" id="upcoming-appt">
@@ -137,7 +137,7 @@ export default function DentistDashboard() {
                            UPCOMING APPOINTMENTS
                          </h5>
                          {/* Pachange nalang yung datatable here */}
-                             <UpDentalDashboardTable/>
+                             <UpSecAdminDashboardTable/>
                        </div>
                      </div>
                    </div>

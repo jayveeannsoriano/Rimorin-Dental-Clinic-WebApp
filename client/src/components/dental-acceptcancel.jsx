@@ -9,6 +9,10 @@ import ApptDetailsText from "./modals/appt-details-text";
 
 const AcceptCancel = () => {
 
+    var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+    const dentistIDnumber = userInfo["dentistIDnumber"];
+    const dentistFullName = userInfo["fname"] + " " + userInfo["lname"]
+
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);
@@ -51,7 +55,7 @@ const AcceptCancel = () => {
             name: "Action",
             selector: row =>
                 <div className="action-buttons">
-                    <AcceptDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
+                    <AcceptDental dentistIDnumber = {dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={dentistFullName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
                 </div>

@@ -12,7 +12,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const createEprescription = () => {
-
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const dentistFullName = userInfo["fname"] + " " + userInfo["lname"]
     const location = useLocation()
     const paramsID = new URLSearchParams(location.search)
     const getPatientIDNumber = paramsID.get('patientIDNum');
@@ -89,6 +90,7 @@ const createEprescription = () => {
 
         Axios.post("http://localhost:3001/createEprescription", {
             patientIDNum: StringfyIDnumber,
+            dentistName:dentistFullName,
             dateValue: startDate,
             presDetails: prescriptionItem,
             notesValue: notesValue,

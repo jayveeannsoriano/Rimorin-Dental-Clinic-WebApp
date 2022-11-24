@@ -6,20 +6,19 @@ import styled, { keyframes } from 'styled-components';
 //project imports
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import Rebook from "./modals/rebook"
-import ApptDetailsText from "./modals/appt-details-text";
+import SecAdminRebook from "./modals/secadminrebook";
 import FollowUp from "./modals/followUp"
+import ApptDetailsText from "./modals/appt-details-text";
 
-const UpDentalDashboardTable = () => {
-    var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
-    const dentistIDnumber = userInfo["dentistIDnumber"];
+const SecAdminDashboardTable = () => {
+  var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
 
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
-    
+
     var getTodayDate = new Date();
     window.localStorage.setItem('getTodayDate', getTodayDate);
     var todayDate = window.localStorage.getItem('getTodayDate');
@@ -27,9 +26,9 @@ const UpDentalDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('http://localhost:3001/getUpcomingDentalAppointmentDetails',{
+          const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
             params: {
-                dentistIDnumber:dentistIDnumber,
+                
                 date:todayDate
             }
         });
@@ -42,34 +41,33 @@ const UpDentalDashboardTable = () => {
     }
 
     const columns = [
-        {
-            name: 'Patient',
-            selector: (row) => row.pName,
-            sortable: true,
-        },
-        {
-            name: "Appt #",
-            selector: (row) => row.appNum,
-            sortable: true,
-        },
-        {
-            name: "Date & Time",
-            selector: (row) => row.date + " | " + row.time,
-            sortable: true,
-        },
-        {
-            name: "Appt. Status",
-            selector: row =>
-            <ApptDetailsText appStats = {row.appStatus}/>,
-            sortable:true,
-        },
-        {
-            name: "Action",
-            selector: row =>
-            <div className="action-buttons">
-                {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
+      {
+        name: "Patient",
+        selector: (row) => row.pName,
+        sortable: true,
+      },
+      {
+        name: "Appt #",
+        selector: (row) => row.appNum,
+        sortable: true,
+      },
+      {
+        name: "Date & Time",
+        selector: (row) => row.date + " | " + row.time,
+        sortable: true,
+      },
+      {
+        name: "Appt. Status",
+        selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
+        sortable: true,
+      },
+      {
+        name: "Action",
+        selector: (row) => (
+          <div className="action-buttons">
+            {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
                 <>
-                    <Rebook
+                    <SecAdminRebook
                         patientIDnumber={row.patientIDnumber}
                         appNum={row.appNum}
                         pName={row.pName}
@@ -85,14 +83,21 @@ const UpDentalDashboardTable = () => {
                 ) 
                 : (<FollowUp patientIDnumber={row.patientIDnumber} appNum={row.appNum}/>)
             }
-                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
-            </div>
-        },
+
+            <ApptDetails
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              consultation={row.consultation}
+            />
+          </div>
+        ),
+      },
     ];
 
    
-
-    
     // Loading effect
     const rotate360 = keyframes` 
         from {
@@ -168,4 +173,4 @@ const UpDentalDashboardTable = () => {
   
 }
 
-export default UpDentalDashboardTable
+export default SecAdminDashboardTable;
