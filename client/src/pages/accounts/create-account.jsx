@@ -263,21 +263,15 @@ const CreateAccount = () => {
                                                     >
                                                         Cancel
                                                     </button>
-                                                    <button
+                                                    {/* <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
                                                         onClick={() => InsertUser()}
                                                     >
                                                         Create Account
-                                                    </button>
-                                                    {/* <AccountCreated onClick={InsertUser()}/> */}
-                                                    {/* <button
-                                                        type="submit"
-                                                        className="btn btn-primary ad-btn-space"
-                                                        onClick={<AccountCreated />}
-                                                    >
-                                                        Next
                                                     </button> */}
+                                                    <AccountCreated/>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
