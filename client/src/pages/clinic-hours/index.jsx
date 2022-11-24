@@ -202,7 +202,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Mon")}
-                  disabled={!timeSlot[0].enabled}
+                  checked={timeSlot[0].enabled}
                 />
               </div>
                 <Form id="time-select">
@@ -269,7 +269,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Tue")}
-                  disabled={!timeSlot[1].enabled}
+                  checked={timeSlot[1].enabled}
                 />
               </div>
 
@@ -334,7 +334,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Wed")}
-                  disabled={!timeSlot[2].enabled}
+                  checked={timeSlot[2].enabled}
                 />
               </div>
 
@@ -399,7 +399,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Thu")}
-                  disabled={!timeSlot[3].enabled}
+                  checked={timeSlot[3].enabled}
                 />
               </div>
 
@@ -465,7 +465,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Fri")}
-                  disabled={!timeSlot[4].enabled}
+                  checked={timeSlot[4].enabled}
                 />
               </div>
 
@@ -531,7 +531,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Sat")}
-                  disabled={!timeSlot[5].enabled}
+                  checked={timeSlot[5].enabled}
                 />
               </div>
 
@@ -597,7 +597,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Sun")}
-                  disabled={!timeSlot[6].enabled}
+                  checked={timeSlot[6].enabled}
                 />
               </div>
 
