@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import success from '../../assets/img/check.png';
 import warning from '../../assets/img/warning.png';
 
-function ArchiveAccount() {
+function UnarchiveAccount() {
     const [modalState, setModalState] = useState(false);
 
 
@@ -26,9 +26,9 @@ function ArchiveAccount() {
     return (
         <>
 
-
-            <Button className="cancel-button" onClick={() => { handleModal1(); }}>
-                <i class="bi bi-archive"></i> Archive
+        
+            <Button className="cancel-button" onClick={() => {handleModal1();}}>
+            <i class="bi bi-box-arrow-in-up"></i> Unarchive
             </Button>
 
             <Modal
@@ -43,15 +43,18 @@ function ArchiveAccount() {
                     <Modal.Title>Confirm</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img src={warning} alt="warning image" className='warning-img' /> <br />
-                    <p className='modal-txt-cn'>You are about to archive an account. Would you like to proceed?.</p>
-                </Modal.Body>
+                    
+                            <img src={warning} alt="warning image" className='warning-img' /> <br/>
+                            <p className='modal-txt-cn'>You are about to unarchive an account. Would you like to proceed?.</p>
+                            
+                            </Modal.Body>
+                    
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
                     <Button variant="danger" onClick={handleModal2}>
-                        Yes. Continue.
+                        Yes. Continue
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -66,8 +69,8 @@ function ArchiveAccount() {
                     <Modal.Title>Success!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img src={success} alt="success image" className='success-img' /><br />
-                    <p className='modal-txt-cn'>You have successfully archived the account.</p>
+                <img src={success} alt="success image" className='success-img' /> <br/>
+                <p className='modal-txt-cn'>You have successfully unarchived the account.</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -79,4 +82,4 @@ function ArchiveAccount() {
     );
 }
 
-export default ArchiveAccount;
+export default UnarchiveAccount;
