@@ -29,6 +29,11 @@ const CreateAccount = () => {
       setModalState(false);
     };
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const InsertUser = async () => {
 
         await Axios.post("http://localhost:3001/InsertNewUser", {
@@ -263,14 +268,13 @@ const CreateAccount = () => {
                                                     >
                                                         Cancel
                                                     </button>
-                                                    {/* <button
+                                                    <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
                                                         onClick={() => InsertUser()}
                                                     >
                                                         Create Account
-                                                    </button> */}
-                                                    <AccountCreated/>
+                                                    </button>
                                                     
                                                 </div>
                                             </div>
