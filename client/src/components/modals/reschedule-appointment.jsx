@@ -39,6 +39,7 @@ function RescheduleAppointment(pName,appNum,patientIDnumber) {
 
   const [takenAppointments, setTakenAppointments] = useState([]);
   const [chosenDate, setChosenDate] = useState("");
+  const [userDetails,setUserDetails] = useState([]);
 
   const getAppointmenstbyDate = async(date) => {
     try{
@@ -66,12 +67,33 @@ useEffect(() => {
   getAppointmenstbyDate(initialDate.toString().substring(0, 10));
 }, []);
 
+const getAppDetails = async () => {
+  try {
+    const response = await Axios.get(
+      "http://localhost:3001/getDetailsforReceipt",
+      {
+        params: {
+          patientIDNum: PatientIDnum,
+          appNumber: AppNumber,
+        },
+      }
+    );
+    setUserDetails(response.data)
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+useEffect(() => {
+  getAppDetails();
+}, []);
+
 
 
   //update date and time
   const newDateTime = () =>{
     console.log("Updating " + AppNumber);
-    console.log("Update values: " + date + " " + timeCheck + " " + newConsulInput);
+    console.log("Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput);
     Axios.put("http://localhost:3001/rescheduleAppointment",{
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
@@ -108,22 +130,30 @@ useEffect(() => {
         {/* Appointment Details  */}
         <div className="appointment-details-modal">
         <h4>Appointment Details</h4>
+        {userDetails.map((item)=>(
           <div class="row">
               <div class="col modal-label">Patient Name:</div>
-              <div class="col modal-values">Ricci Blynthe</div>
+              <div class="col modal-values">{item.pName}</div>
             </div>
+            ))}
+        {userDetails.map((item)=>(
             <div class="row">
               <div class="col modal-label">Appt #:</div>
-              <div class="col modal-values">{AppNumber}</div>
+              <div class="col modal-values">{item.appNum}</div>
             </div>
+        ))}
+        {userDetails.map((item)=>(
             <div class="row">
               <div class="col modal-label">Date & Time:</div>
-              <div class="col modal-values"></div>
+              <div class="col modal-values">{item.date} | {item.time}</div>
             </div>
+        ))}
+        {userDetails.map((item)=>(
             <div class="row">
               <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">Lorem ipsum dolor sit amet.</div>
+              <div class="col modal-values">{item.consultation}</div>
             </div>
+        ))}
           </div>
 
           <div className="divider"></div>

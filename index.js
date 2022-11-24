@@ -476,7 +476,6 @@ app.get("/getUserInfo", async(req,res) => {
 app.get("/getProfileWidget", async(req,res) => {
 
   const patientID = req.query.patientIDnumber;
-  console.log('asldjhasd',patientID, 'wtd');
   
   await User.find({patientIDnumber: patientID})
       .then((data) => {
