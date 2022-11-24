@@ -46,6 +46,9 @@ const ViewDentalRecord = () => {
 
     const [recordData,setRecordData] = useState([]);
     const [recordProcedures,setProcedures] = useState([]);
+    const [chartedTeethValue, setchartedTeethValue] = useState([])
+    const [dentalDesc, setDentalDesc] = useState([]);
+    const [dentalDate, setDentalDate] = useState([]);
     var url = require('url');
     var url_parts = url.parse(window.location.href, true);
     var query = url_parts.query;
@@ -64,6 +67,10 @@ const ViewDentalRecord = () => {
         // var query = url_parts.query;
         const response = await axios.get('http://localhost:3001/getSpecificDentalRecord', { params: { patientIDNum: query.patientIDNum,date:query.date} });
         setRecordData(response.data);
+        console.log(response.data)
+        setchartedTeethValue(response.data.chartedTeeth);
+        setDentalDesc(response.data.dentalDesc);
+        setDentalDate(response.data.dentalDate)
         const chartedTeeth = response.data.chartedTeeth; 
         const procedures = response.data.procedures; 
         chartedTeeth.forEach(teeth => {
@@ -181,21 +188,16 @@ const ViewDentalRecord = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                  {/* map recordData.chartedTeeth */}
+                                             
                                                     <tr>
-                                                        <td></td>
-                                                    </tr>
-                                                  {/* map recordData.dentalDate*/}
-                                                    <tr>
-                                                        <td></td>
-                                                    </tr>
-                                                  {/* map recordData.dentalDesc */}
-                                                    <tr>
-                                                        <td></td>
-                                                    </tr>
-                                                  {/* map recordData.recordProcedures */}
-                                                    <tr>
-                                                        <td></td>
+                                                    {chartedTeethValue.map((item, index) => (
+                                                        <td key={index}>{item}</td>
+                                                        ))}
+                                                        <td>{dentalDate.toString()}</td>
+                                                        <td>{dentalDesc.toString()}</td>
+                                                    {recordProcedures.map((item, index) => (
+                                                        <td key={index}>{item}</td>
+                                                    ))}
                                                     </tr>
                                                 </tbody>
                                             </Table>

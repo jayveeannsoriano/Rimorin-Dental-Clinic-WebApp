@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const UserDetailsScehma = new mongoose.Schema(
   {
     fname: String,
-    minitial: String,
     lname: String,
     mname:String,
     suffix: String,

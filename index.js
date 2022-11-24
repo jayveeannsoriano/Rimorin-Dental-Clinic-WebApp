@@ -1245,6 +1245,7 @@ app.put("/updatePatientInfo", async (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const middleName = req.body.middleName;
+  const suffix = req.body.suffix;
   const birthDate = req.body.birthDate;
   const genderValue = req.body.genderValue;
   const professionValue = req.body.professionValue;
@@ -1275,6 +1276,7 @@ app.put("/updatePatientInfo", async (req, res) => {
     {fname:firstName,
      lname:lastName,
      mname:middleName,
+     suffix:suffix,
      bday:birthDate,
      age:AgeOut(),
      gender:genderValue,
