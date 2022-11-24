@@ -11,6 +11,35 @@ export default function AccountCreated() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [getAccountValue, setAccountValue] = useState([]);
+    const [getFNameValue, setFNameValue] = useState("");
+    const [getMNameValue, setMNameValue] = useState("");
+    const [getLNameValue, setLNameValue] = useState("");
+    const [getSuffixValue, setSuffixValue] = useState("");
+    const [getEmailValue, setEmailValue] = useState("");
+    const [getPassValue, setPassValue] = useState("");
+    const [getGenderValue, setGenderValue] = useState("");
+    const [getPhoneValue, setPhoneValue] = useState("");
+    const [getBDAYValue, setBDAYValue] = useState("");
+
+    const InsertUser = async () => {
+
+        await Axios.post("http://localhost:3001/InsertNewUser", {
+            accountType:getAccountValue,
+            fname:getFNameValue,
+            mname:getMNameValue,
+            lname:getLNameValue,
+            suffix: getSuffixValue,
+            email: getEmailValue,
+            password: getPassValue,
+            gender: getGenderValue,
+            mobile: getPhoneValue,
+            bday: getBDAYValue,
+        })
+        handleShow();
+    // setModalState("show-modal");
+    }
     // const { fname, lname, mname, suffix, email, password, gender, mobile, bday, house, brgy, municipality, province, country, medications, allergies, conditions, tellphone, profession, zipcode, blood } = values;
 
     // const Continue = e => {
@@ -52,8 +81,9 @@ export default function AccountCreated() {
                                 type="submit"
                                 className="btn btn-primary"
                                 style={{ padding: "10px 30px" }}
+                                onClick={() => InsertUser()}
                             >
-                                Next
+                                Create Account
                             </button>
             <Modal show={show} onHide={handleClose}>
 

@@ -22,6 +22,7 @@ const SecTransactionDataTable = (patientIDNum) => {
     const [filteredappointment, setFilteredAppointment] = useState([]);
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
+    const [patientList, setPatientList] = useState([]);
 
     const getAppointment = async() => {
 
@@ -38,6 +39,20 @@ const SecTransactionDataTable = (patientIDNum) => {
             console.log(error)
         }
     }
+    const getPatientDetails = async() => {
+      try{
+          const response = await axios.get('http://localhost:3001/getPatientInfo',{
+            params:{
+            patientIDnumber: PatientIDNumber}
+          });
+          console.log(response, "Responses");
+          setPatientList(response.data);
+      }catch (error){
+          console.log(error)
+      }
+  }
+
+
 
     const columns = [
       {
@@ -80,8 +95,8 @@ const SecTransactionDataTable = (patientIDNum) => {
               </Button>
             ) : (
               <>
-                <ExportFile />
-                <PrintFile />
+                <ExportFile data={["download","receipt",row,patientList]} />
+                <PrintFile data={["print","receipt",row,patientList]}/>
               </>
             )}
           </div>
@@ -130,6 +145,7 @@ const SecTransactionDataTable = (patientIDNum) => {
 
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
 
     // useEffect(() => {
