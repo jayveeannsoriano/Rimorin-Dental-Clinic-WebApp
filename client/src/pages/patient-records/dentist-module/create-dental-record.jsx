@@ -54,7 +54,7 @@ const CreateDentalRecord = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
-  console.log(chartedTeeth)
+  console.log("SLOW DACNE",chartedTeeth)
   //procedure checkbox options 
   const [checked, setChecked] = useState([
     {
@@ -83,6 +83,20 @@ const CreateDentalRecord = () => {
     },
   ]);
   console.log(checked, 'values');
+
+  const [dentalItem, setDentalItem] = useState([]);
+
+  useEffect(() => {
+   checked.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setDentalItem((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [checked]);
 
   const othersOptions = [{ procedure: 'ORAL PROPHYLAXIS', price: 1000 }, { procedure: 'TOOTH RESTORATION', price: 1200 }, { procedure: 'TOOTH EXTRACTION', price: 800 }, { procedure: 'DEEP SCALING', price: 10200 }, { procedure: 'PTS AND FISSURES SEALANT', price: 700 }, { procedure: 'FLOURIDE TREATMENT', price: 5500 }, { procedure: 'INTERMEDIATE RESTORATION', price: 7000 }, { procedure: 'ORTHODONTICS', price: 48000 }];
   const cosmeticOptions = [{ procedure: 'DIRECT COMPOSITE VENEER', price: 3000 }, { procedure: 'DIRECT COMPOSITE CLASS IV', price: 2000 }, { procedure: 'DIASTEMA CLOSURE (BONDING)', price: 1000 }, { procedure: 'CERAMIC/PORCELAIN VENEER', price: 20000 }];
@@ -177,6 +191,7 @@ const CreateDentalRecord = () => {
 
     if (index > -1) {
       chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+      setchartedTeeth(chartedTeeth)
       console.log(chartedTeeth)
 
     } else {
@@ -414,7 +429,9 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  <p>{JSON.stringify(chartedTeeth).replace(/"/g, "")}</p>
+                  {chartedTeeth.map((item) => 
+                  <p>{item}</p>
+                  )}
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
@@ -424,9 +441,15 @@ const CreateDentalRecord = () => {
                   <h6>Treatment Description</h6>
                   <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
                 </div>
+            
                 <div className="col-3">
                   <h6>Procedure/s</h6>
-                  <p>{JSON.stringify(checked).replace(/"/g, "")}</p>
+                  {checked.map((item) => 
+                     item.chosen != null
+                     ? item.chosen.map((proc) => (
+                  <p>{proc.procedure}</p>
+                  )): null
+                   )}
                 </div>
                 <div class="dental-form-buttons">
                   <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
