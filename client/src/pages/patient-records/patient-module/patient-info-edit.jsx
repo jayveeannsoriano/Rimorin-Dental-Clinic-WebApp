@@ -22,7 +22,7 @@ const PatientInfoEdit = () => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
-  const conditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE']
+  const Listconditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
 
   // const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState('');
@@ -129,8 +129,6 @@ const PatientInfoEdit = () => {
     console.log("New info saved in DB")
   }
 
-
-
   return (
     <>
       <div class="pagetitle">
@@ -140,10 +138,14 @@ const PatientInfoEdit = () => {
             <li class="breadcrumb-item">
               <a href="/patient">Home</a>
             </li>
+            <li class="breadcrumb-item">Patient Records</li>
             <li class="breadcrumb-item">
-              Patient Records
+              {" "}
+              <a href="/patient/patient-records/patient-info">
+                {" "}
+                Patient Information{" "}
+              </a>
             </li>
-            <li class="breadcrumb-item"> <a href="/patient/patient-records/patient-info"> Patient Information </a></li>
             <li class="breadcrumb-item active">Patient Information Edit</li>
           </ol>
         </nav>
@@ -162,65 +164,108 @@ const PatientInfoEdit = () => {
 
                   <div className="divider"></div>
                   <div className="container form-container">
-
                     <h5 class="form-section-title">Personal Information</h5>
                     <div className="row">
                       <div className="col-lg-3">
-                        <label for='firstName'>First Name</label>
-                        {userData.map((item, index) => (
-                          <input name="firstName" type="text" className="form-control" id="firstName" placeholder={item.fname} defaultValue={item.fname} onChange={(e) => setFirstValue(e.target.value)} required />
-                        ))}
-                      </div>
-
-                      <div className="col-lg-3">
-                        <label for='middleName'>Middle Name</label>
-                        {userData.map((item, index) => (
-                          <input name="middleName" type="text" className="form-control" id="middleName" placeholder={item.mname} defaultValue={item.mname} onChange={(e) => setMiddleValue(e.target.value)} required />
-                        ))}
-                      </div>
-
-                      <div className="col-lg-3">
-                        <label for='lastName'>Last Name</label>
-                        {userData.map((item, index) => (
-                          <input name="lastName" type="text" className="form-control" id="lastName" placeholder={item.lname} defaultValue={item.lname} onChange={(e) => setLastValue(e.target.value)} required />
-                        ))}
-                      </div>
-
-                      <div className="col-lg-2">
-                        <label for='suffix'>Suffix</label>
-                        {userData.map((item, index) => (
-                          <input name="suffix" type="text" className="form-control" id="suffix" placeholder={item.suffix} defaultValue={item.suffix} onChange={(e) => setSuffix(e.target.value)} required />
-                        ))}
-                      </div>
-
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-3">
-                        <label for='bday'>Date of Birth</label>
+                        <label for="firstName">First Name</label>
                         {userData.map((item, index) => (
                           <input
-                            type="date"
+                            name="firstName"
+                            type="text"
                             className="form-control"
-                            placeholder={item.bday} defaultValue={item.bday}
-                            onChange={(e) => setBirthDate(e.target.value)}
+                            id="firstName"
+                            placeholder={item.fname}
+                            defaultValue={item.fname}
+                            onChange={(e) => setFirstValue(e.target.value)}
                             required
                           />
                         ))}
                       </div>
 
                       <div className="col-lg-3">
-                        <label for='age'>Age</label>
+                        <label for="middleName">Middle Name</label>
                         {userData.map((item, index) => (
-                          <input name="age" type="text" className="form-control" id="age" placeholder={item.age} defaultValue={item.age} onChange={(e) => setAgeValue(e.target.value)} required />
+                          <input
+                            name="middleName"
+                            type="text"
+                            className="form-control"
+                            id="middleName"
+                            placeholder={item.mname}
+                            defaultValue={item.mname}
+                            onChange={(e) => setMiddleValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
 
                       <div className="col-lg-3">
-                        <label for='blood'>Blood Type</label>
+                        <label for="lastName">Last Name</label>
                         {userData.map((item, index) => (
-                          <Form.Select name="blood" placeholder={item.blood} defaultValue={item.blood} onChange={(e) => setBloodValue(e.target.value)} required >
-                            <option value="" selected disabled>Select</option>
+                          <input
+                            name="lastName"
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            placeholder={item.lname}
+                            defaultValue={item.lname}
+                            onChange={(e) => setLastValue(e.target.value)}
+                            required
+                          />
+                        ))}
+                      </div>
+
+                      <div className="col-lg-2">
+                        <label for="suffix">Suffix</label>
+                        {userData.map((item, index) => (
+                          <input
+                            name="suffix"
+                            type="text"
+                            className="form-control"
+                            id="suffix"
+                            placeholder={item.suffix}
+                            defaultValue={item.suffix}
+                            onChange={(e) => setSuffix(e.target.value)}
+                            required
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3">
+                        <label for="bday">Date of Birth</label>
+                        {userData.map((item, index) => (
+                          <input
+                            type="date"
+                            className="form-control"
+                            placeholder={item.bday}
+                            defaultValue={item.bday}
+                            onChange={(e) => setBirthDate(e.target.value)}
+                            required
+                          />
+                        ))}
+                      </div>
+
+                      {/*<div className="col-lg-3">
+                        <label for='age'>Age</label>
+                        {userData.map((item, index) => (
+                          <input name="age" type="text" className="form-control" id="age" placeholder={item.age} defaultValue={item.age} onChange={(e) => setAgeValue(e.target.value)} required />
+                        ))}
+                      </div>*/}
+
+                      <div className="col-lg-3">
+                        <label for="blood">Blood Type</label>
+                        {userData.map((item, index) => (
+                          <Form.Select
+                            name="blood"
+                            placeholder={item.blood}
+                            defaultValue={item.blood}
+                            onChange={(e) => setBloodValue(e.target.value)}
+                            required
+                          >
+                            <option value="" selected disabled>
+                              Select
+                            </option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="AB">AB</option>
@@ -230,45 +275,92 @@ const PatientInfoEdit = () => {
                         ))}
                       </div>
 
-                      <div className="col-lg-3">
-                        <label for="gender">Gender</label><br />
-                        <div className="col">
-                          <input class="form-check-input" type="radio" id="male" value="Male" onChange={(e) => setGenderValue(e.target.value)}></input>
-                          <label class="form-check-label" for="male">Male</label>
-                        </div>
-
-                        <div className="col">
-                          <input class="form-check-input" type="radio" id="female" value="Female" onChange={(e) => setGenderValue(e.target.value)}></input>
-                          <label class="form-check-label" for="female">Female</label>
-                        </div>
+                      <div className="col-lg-5">
+                        <Form.Label>Gender:</Form.Label>
+                        {userData.map((item, index) => (
+                          <div className="mb-3">
+                            <Form.Check
+                              inline
+                              label="Male"
+                              name="group1"
+                              type="radio"
+                              checked={item.gender === "Male"}
+                              onChange={(e) => setGenderValue(e.target.value)}
+                            />
+                            <Form.Check
+                              inline
+                              label="Female"
+                              name="group1"
+                              type="radio"
+                              checked={item.gender === "Female"}
+                              onChange={(e) => setGenderValue(e.target.value)}
+                            />
+                          </div>
+                        ))}
                       </div>
                     </div>
 
                     <div className="row">
                       <div className="col-6">
-                        <label for='email'>Email Address</label>
+                        <label for="email">Email Address</label>
                         {userData.map((item, index) => (
-                          <input type="email" class="form-control" id="email" placeholder={item.email} defaulValue={item.email} onChange={(e) => setEmailValue(e.target.value)} required />
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder={item.email}
+                            defaulValue={item.email}
+                            onChange={(e) => setEmailValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                       <div className="col-6">
-                        <label for='profession'>Profession</label>
+                        <label for="profession">Profession</label>
                         {userData.map((item, index) => (
-                          <input type="text" class="form-control" id="profession" placeholder={item.profession} defaultValue={item.profession} onChange={(e) => setProfessionValue(e.target.value)} required />
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="profession"
+                            placeholder={item.profession}
+                            defaultValue={item.profession}
+                            onChange={(e) => setProfessionValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-6">
-                        <label for='phoneNum'>Phone Number</label>
+                        <label for="phoneNum">Phone Number</label>
                         {userData.map((item, index) => (
-                          <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="phoneNum"
+                            pattern="[0-9]{4} [0-9]{3} [0-9]{4}"
+                            placeholder={item.mobile}
+                            defaultValue={item.mobile}
+                            onChange={(e) => {
+                              setCellValue(e.target.value);
+                            }}
+                          />
                         ))}
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-6">
-                        <label for='tellNumber'>Telephone Number</label>
+                        <label for="tellNumber">Telephone Number</label>
                         {userData.map((item, index) => (
-                          <input type="tel" class="form-control" id="tellNumber" placeholder={item.tellNumber} defaultValue={item.tellNumber} onChange={(e) => { setTellNumber(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="tellNumber"
+                            pattern="[0-9]{4} [0-9]{3} [0-9]{4}"
+                            placeholder={item.tellNumber}
+                            defaultValue={item.tellNumber}
+                            onChange={(e) => {
+                              setTellNumber(e.target.value);
+                            }}
+                          />
                         ))}
                       </div>
                     </div>
@@ -276,45 +368,98 @@ const PatientInfoEdit = () => {
                     <div className="row">
                       <h5 class="form-section-title">Address Information</h5>
                       <div className="col-lg-6">
-                        <label for='houseStreet'>House No. & Name of Street</label>
+                        <label for="houseStreet">
+                          House No. & Name of Street
+                        </label>
                         {userData.map((item, index) => (
-                          <input type="text" className="form-control" id="houseStreet" placeholder={item.house} defaultValue={item.house} onChange={(e) => setHouseValue(e.target.value)} required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="houseStreet"
+                            placeholder={item.house}
+                            defaultValue={item.house}
+                            onChange={(e) => setHouseValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                       <div className="col-lg-6">
-                        <label for='brgy'>District/Barangay</label>
+                        <label for="brgy">District/Barangay</label>
                         {userData.map((item, index) => (
-                          <input type="text" className="form-control" id="brgy" placeholder={item.brgy} defaultValue={item.brgy} onChange={(e) => setBrgyValue(e.target.value)} required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="brgy"
+                            placeholder={item.brgy}
+                            defaultValue={item.brgy}
+                            onChange={(e) => setBrgyValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                     </div>
 
                     <div className="row">
                       <div className="col-lg-6">
-                        <label for='city'>Municipality/City</label>
+                        <label for="city">Municipality/City</label>
                         {userData.map((item, index) => (
-                          <input name="city" type="address-city" className="form-control" id="Address" placeholder={item.municipality} defaultValue={item.municipality} onChange={(e) => setCityValue(e.target.value)} required />
+                          <input
+                            name="city"
+                            type="address-city"
+                            className="form-control"
+                            id="Address"
+                            placeholder={item.municipality}
+                            defaultValue={item.municipality}
+                            onChange={(e) => setCityValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                       <div className="col-lg-6">
-                        <label for='brgy'>Province</label>
+                        <label for="brgy">Province</label>
                         {userData.map((item, index) => (
-                          <input name="brgy" type="address" className="form-control" id="Address" placeholder={item.province} defaultValue={item.province} onChange={(e) => setProvinceValue(e.target.value)} required />
+                          <input
+                            name="brgy"
+                            type="address"
+                            className="form-control"
+                            id="Address"
+                            placeholder={item.province}
+                            defaultValue={item.province}
+                            onChange={(e) => setProvinceValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                     </div>
 
                     <div className="row">
                       <div className="col-lg-6">
-                        <label for='country'>Country</label>
+                        <label for="country">Country</label>
                         {userData.map((item, index) => (
-                          <input name="country" type="address" className="form-control" id="Address" placeholder={item.country} defaultValue={item.country} onChange={(e) => setCountryValue(e.target.value)} required />
+                          <input
+                            name="country"
+                            type="address"
+                            className="form-control"
+                            id="Address"
+                            placeholder={item.country}
+                            defaultValue={item.country}
+                            onChange={(e) => setCountryValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                       <div className="col-lg-6">
-                        <label for='zip'>ZIP Code</label>
+                        <label for="zip">ZIP Code</label>
                         {userData.map((item, index) => (
-                          <input type="zip" className="form-control" id="Address" placeholder={item.zipcode} defaultValue={item.zipcode} onChange={(e) => setZipValue(e.target.value)} required />
+                          <input
+                            type="zip"
+                            className="form-control"
+                            id="Address"
+                            placeholder={item.zipcode}
+                            defaultValue={item.zipcode}
+                            onChange={(e) => setZipValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                     </div>
@@ -323,45 +468,98 @@ const PatientInfoEdit = () => {
                       <h5 class="form-section-title">Medical Conditions</h5>
 
                       <div className="col-lg-12">
-                        <label for='medical-conditions'>Medications/Maintenance</label>
+                        <label for="medical-conditions">
+                          Medications/Maintenance
+                        </label>
                         {userData.map((item, index) => (
-                          <input name='medical-conditions' type="text" className="form-control" id="Medications" placeholder={item.medications} defaultValue={item.medications} onChange={(e) => setMedValue(e.target.value)} required></input>
+                          <input
+                            name="medical-conditions"
+                            type="text"
+                            className="form-control"
+                            id="Medications"
+                            placeholder={item.medications}
+                            defaultValue={item.medications}
+                            onChange={(e) => setMedValue(e.target.value)}
+                            required
+                          ></input>
                         ))}
                       </div>
                       <div className="col-lg-12">
-                        <label for='allergies'>Do you have any allergies? Please specify.</label>
+                        <label for="allergies">
+                          Do you have any allergies? Please specify.
+                        </label>
                         {userData.map((item, index) => (
-                          <input type="allergies" className="form-control" id="Allergies" placeholder={item.allergies} defaultValue={item.allergies} onChange={(e) => setAllergiesValue(e.target.value)} required />
+                          <input
+                            type="allergies"
+                            className="form-control"
+                            id="Allergies"
+                            placeholder={item.allergies}
+                            defaultValue={item.allergies}
+                            onChange={(e) => setAllergiesValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                       <div className="col-lg-12">
-                        <label for='conditions'>Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions:</label>
-                        <div className="slots2">
-                          <Form>
-                            {conditions.map((item, index) => (
-                              <div key={index} className="conditions-row">
-                                <Form.Check
-                                  input value={[item]}
-                                  id={[item]}
-                                  type="checkbox"
-                                  label={`${item}`}
-                                  onChange={(e) => setCondValue(e.target.value)} required
-                                />
-
+                        <label for="conditions">
+                          Check the appropriate box of the conditions that
+                          applies to you if you have or ever had any of the
+                          following conditions:
+                        </label>
+                        <br/>
+                        {userData.map((item, index) => {
+                          return(
+                            <div className="slots2">
+                              <Form>
+                                  {Listconditions.map((item2, index) => (
+                                    <div key={index} className="conditions-row">
+                                      <Form.Check
+                                        input
+                                        value={[item2]}
+                                        id={[item2]}
+                                        type="checkbox"
+                                        checked = {item.conditions === [item2]}
+                                        label={`${item2}`}
+                                        onChange={(e) => setCondValue(e.target.value)}
+                                        required
+                                      />
+                                    </div>
+                                    ))}
+                                </Form>
                               </div>
-                            ))}
-                          </Form>
-                        </div>
+                            );
+                          })}
                       </div>
                       <div className="col-lg-12">
-                        <label for='precautions'>Is there any other pertinent information regarding your health that we should know so we can take necessary precautions, if needed?</label>
+                        <label for="precautions">
+                          Is there any other pertinent information regarding
+                          your health that we should know so we can take
+                          necessary precautions, if needed?
+                        </label>
+                        <br/>
                         {userData.map((item, index) => (
-                          <input type="precautions" className="form-control" id="precautions" placeholder={item.precautions} defaultValue={item.precautions} onChange={(e) => setPrecautionValue(e.target.value)} required />
+                          <input
+                            type="precautions"
+                            className="form-control"
+                            id="precautions"
+                            placeholder={item.precautions}
+                            defaultValue={item.precautions}
+                            onChange={(e) => setPrecautionValue(e.target.value)}
+                            required
+                          />
                         ))}
                       </div>
                     </div>
                   </div>
-                  <Button className='edit-save text-right' onClick={() => { handleModal(); updatePatientInfo(); }}>Save Changes</Button>
+                  <Button
+                    className="edit-save text-right"
+                    onClick={() => {
+                      handleModal();
+                      updatePatientInfo();
+                    }}
+                  >
+                    Save Changes
+                  </Button>
                   {/* <ProfileInfoEditSaved/> */}
                 </div>
               </form>
@@ -370,15 +568,16 @@ const PatientInfoEdit = () => {
         </div>
       </section>
 
-      <Modal show={modalState == 'show-modal'} onHide={handleModalClose}>
-
+      <Modal show={modalState == "show-modal"} onHide={handleModalClose}>
         {/* <Modal.Header closeButton>
           <Modal.Title>Appointment Marked as No Show</Modal.Title>
         </Modal.Header> */}
 
         <Modal.Body closeButton>
           {/* <img src={successful} alt="success image" className='success-img' /> */}
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className="modal-txt">
+            You have succesfully updated your changes!
+          </p>
         </Modal.Body>
 
         <Modal.Footer>
@@ -387,8 +586,6 @@ const PatientInfoEdit = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-
     </>
   );
 };

@@ -376,7 +376,6 @@ const createReceipt = () => {
                             onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
                           />
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 following-info"></div>
                       </div>
                     </div>
 

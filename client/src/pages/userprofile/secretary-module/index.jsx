@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import UserProfileWidget from "../../../components/userprofile-widget";
 import { Button } from 'react-bootstrap';
+import Form from "react-bootstrap/Form";
 import "../../../styles/patient-info-edit.css";
 import Modal from 'react-bootstrap/Modal';
 import error from '../../../assets/img/error.png';
@@ -163,74 +164,75 @@ const handleIncorrect = () => {
                                     </li>
                                 </ul>
 
+                                {userData.map((item, index) => (
                                 <div class="tab-content pt-2">
                                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                                         <h5 class="form-section-title">Personal Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['fname']} </div>
+                                            <div class="col-lg-9 col-md-8">{item['fname']} </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label ">Middle Initial</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['mname']}</div>
+                                            <div class="col-lg-3 col-md-4 label ">Middle Name</div>
+                                            <div class="col-lg-9 col-md-8">{item['mname']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Last Name</div>
-                                            <div class="col-lg-9 col-md-8"> {userInfo['lname']}</div>
+                                            <div class="col-lg-9 col-md-8"> {item['lname']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Date of Birth</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['bday']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['bday']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Gender</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['gender']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['gender']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Phone</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['mobile']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['mobile']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Email</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['email']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['email']}</div>
                                         </div>
 
                                         <h5 class="form-section-title">Address Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">House No. & Name of Street</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['house']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['house']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">District/Barangay</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['brgy']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['brgy']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Municipality/City</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['municipality']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['municipality']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Province</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['province']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['province']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Country</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['country']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['country']}</div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Zipcode</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['zip']}</div>
+                                            <div class="col-lg-3 col-md-4 label">ZIP Code</div>
+                                            <div class="col-lg-9 col-md-8">{item['zip']}</div>
                                         </div>
                                     </div>
 
@@ -240,7 +242,7 @@ const handleIncorrect = () => {
 
                                             <h5 class="form-section-title">Personal Information</h5>
                                             <div className="row">
-                                                <div className="col">
+                                                <div className="col-lg-3">
                                                     <label for='firstName'>First Name</label>
                                                     {userData.map((item, index) => (
                                                         <input name="firstName" type="text" className="form-control" id="firstName" placeholder={item.fname} defaultValue={item.fname} onChange={(e) => setFirstValue(e.target.value)} required />
@@ -248,35 +250,31 @@ const handleIncorrect = () => {
                                                 </div>
 
 
-                                                <div className="col">
+                                                <div className="col-lg-3">
                                                     <label for='middleName'>Middle Name</label>
                                                     {userData.map((item, index) => (
                                                         <input name="middleName" type="text" className="form-control" id="middleName" placeholder={item.mname} defaultValue={item.mname} onChange={(e) => setMiddleValue(e.target.value)} required />
                                                     ))}
                                                 </div>
 
-
-                                            </div>
-
-                                            <div className="row">
-                                                <div className="col">
+                                                <div className="col-lg-3">
                                                     <label for='lastName'>Last Name</label>
                                                     {userData.map((item, index) => (
                                                         <input name="lastName" type="text" className="form-control" id="lastName" placeholder={item.lname} defaultValue={item.lname} onChange={(e) => setLastValue(e.target.value)} required />
                                                     ))}
                                                 </div>
 
-                                                <div className="col">
+                                                <div className="col-lg-2">
                                                     <label for='suffix'>Suffix</label>
                                                     {userData.map((item, index) => (
                                                         <input name="suffix" type="text" className="form-control" id="suffix" placeholder={item.suffix} defaultValue={item.suffix} onChange={(e) => setSuffix(e.target.value)} required />
                                                     ))}
                                                 </div>
+
                                             </div>
 
-
                                             <div className="row">
-                                                <div className="col">
+                                                <div className="col-lg-5">
                                                     <label for='bday'>Date of Birth</label>
                                                     {userData.map((item, index) => (
                                                         <input
@@ -289,36 +287,45 @@ const handleIncorrect = () => {
                                                     ))}
                                                 </div>
 
-                                                <div className="col-2">
+                                                {/*<div className="col-lg-3">
                                                     <label for='age'>Age</label>
                                                     {userData.map((item, index) => (
                                                         <input name="age" type="text" className="form-control" id="Birthday" placeholder={item.age} defaultValue={item.age} onChange={(e) => setAgeValue(e.target.value)} required />
                                                     ))}
-                                                </div>
+                                                </div>*/}
 
-                                                <div className="col">
-                                                    <label for="gender">Gender</label><br />
-                                                    <div className="col">
-                                                        <input class="form-check-input" type="radio" id="male" value="Male" onChange={(e) => setGenderValue(e.target.value)}></input>
-                                                        <label class="form-check-label" for="male"> Male</label>
-                                                    </div>
-
-                                                    <div className="col">
-                                                        <input class="form-check-input" type="radio" id="female" value="Female" onChange={(e) => setGenderValue(e.target.value)}></input>
-                                                        <label class="form-check-label" for="female"> Female</label>
+                                                <div className="col-lg-5">
+                                                    <Form.Label>Gender:</Form.Label>
+                                                    {userData.map((item, index) => (
+                                                        <div className="mb-3">
+                                                        <Form.Check
+                                                            inline
+                                                            label="Male"
+                                                            name="group1"
+                                                            type="radio"
+                                                            checked={item.gender === 'Male'}
+                                                            onChange={(e) => setGenderValue(e.target.value)}
+                                                        />
+                                                        <Form.Check
+                                                            inline
+                                                            label="Female"
+                                                            name="group1"
+                                                            type="radio"
+                                                            checked={item.gender === 'Female'}
+                                                            onChange={(e) => setGenderValue(e.target.value)}
+                                                        />
+                                                        </div>
+                                                        ))}
                                                     </div>
                                                 </div>
-                                            </div>
 
                                             <div className="row">
-                                                <div className="col-8">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
                                                     <label for='email'>Email Address</label>
                                                     {userData.map((item, index) => (
                                                         <input type="email" class="form-control" id="email" placeholder={item.email} defaultValue={item.email} />
                                                     ))}
                                                 </div>
-                                            </div>
-                                            <div className="row">
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                                     <label for='phoneNum'>Phone Number</label>
                                                     {userData.map((item, index) => (
@@ -406,6 +413,7 @@ const handleIncorrect = () => {
                                         </form>
                                     </div>
                                 </div>
+                                ))}
                             </div>
                         </div>
                     </div>

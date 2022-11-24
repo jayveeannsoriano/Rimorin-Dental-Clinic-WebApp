@@ -30,6 +30,11 @@ const ProfileWidgetThree = () => {
         }
     }
 
+    //const bdayInput = userInfo['bday']
+    //let AgeOut = () => {
+    //    return Math.floor((Date.now() - new Date(bdayInput).getTime()) / 31557600000)
+    //}
+
     const getDental = async () => {
         try {
           var url = require("url");

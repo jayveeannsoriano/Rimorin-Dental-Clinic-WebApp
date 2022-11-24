@@ -19,7 +19,6 @@ const UserProfile = () => {
     const patientIDnumber = userInfo['patientIDnumber'];
     console.log(patientIDnumber);
     console.log(userInfo, "These are all the data of the user");
-   
 
     const [userData, setUserData] = useState([]);
     const [firstName, setFirstValue] = useState('');
@@ -185,79 +184,75 @@ const handleIncorrect = () => {
                                     </li>
                                 </ul>
 
+                                {userData.map((item, index) => (
                                 <div class="tab-content pt-2">
                                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                                         <h5 class="form-section-title">Personal Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['fname']} </div>
+                                            <div class="col-lg-9 col-md-8">{item['fname']} </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Middle Name</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['mname']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['mname']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Last Name</div>
-                                            <div class="col-lg-9 col-md-8"> {userInfo['lname']}</div>
+                                            <div class="col-lg-9 col-md-8"> {item['lname']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Date of Birth</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['bday']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['bday']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Gender</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['gender']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['gender']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Phone</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['mobile']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['mobile']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Email</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['email']}</div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Profession</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['profession']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['email']}</div>
                                         </div>
 
                                         <h5 class="form-section-title">Address Information</h5>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">House No. & Name of Street</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['house']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['house']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">District/Barangay</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['brgy']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['brgy']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Municipality/City</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['municipality']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['municipality']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Province</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['province']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['province']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Country</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['country']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['country']}</div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">ZIP Code</div>
-                                            <div class="col-lg-9 col-md-8">{userInfo['zipcode']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['zipcode']}</div>
                                         </div>
 
                                     </div>
@@ -276,7 +271,7 @@ const handleIncorrect = () => {
                                                 </div>
 
                                                 <div className="col-lg-3">
-                                                    <label for='middleName'>Middle Initial</label>
+                                                    <label for='middleName'>Middle Name</label>
                                                     {userData.map((item, index) => (
                                                         <input name="middleName" type="text" className="form-control" id="middleName" placeholder={item.mname} defaultValue={item.mname} onChange={(e) => setMiddleValue(e.target.value)} required />
                                                     ))}
@@ -299,7 +294,7 @@ const handleIncorrect = () => {
                                             </div>
 
                                             <div className="row">
-                                                <div className="col-lg-3">
+                                                <div className="col-lg-5">
                                                     <label for='bday'>Date of Birth</label>
                                                     {userData.map((item, index) => (
                                                         <input
@@ -312,66 +307,49 @@ const handleIncorrect = () => {
                                                     ))}
                                                 </div>
 
-                                                <div className="col-lg-3">
+                                                {/*<div className="col-lg-3">
                                                     <label for='age'>Age</label>
                                                     {userData.map((item, index) => (
-                                                        <input name="age" type="text" className="form-control" id="age" placeholder={item.age} defaultValue={item.age} onChange={(e) => setAgeValue(e.target.value)} required />
+                                                        <input name="age" type="text" className="form-control" id="age" placeholder={AgeOut()} defaultValue={item.age} onChange={(e) => setAgeValue(e.target.value)} required />
                                                     ))}
-                                                </div>
+                                                </div>*/}
 
-                                                <div className="col-lg-3">
-                                                    <label for='blood'>Blood Type</label>
+                                                <div className="col-lg-5">
+                                                    <Form.Label>Gender:</Form.Label>
                                                     {userData.map((item, index) => (
-                                                        <Form.Select name="blood" placeholder={item.blood} defaultValue={item.blood} onChange={(e) => setBloodValue(e.target.value)} required >
-                                                            <option value="" selected disabled>Select</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="AB">AB</option>
-                                                            <option value="O">O</option>
-                                                        </Form.Select>
-                                                        //<input name="blood" type="text" className="form-control" id="blood" placeholder={item.blood} defaultValue={item.blood} onChange={(e) => setBloodValue(e.target.value)} required />
-                                                    ))}
-                                                </div>
-
-                                                <div className="col-lg-3">
-                                                    <label for="gender">Gender</label><br />
-                                                    <div className="col">
-                                                        <input class="form-check-input" type="radio" id="male" value="Male" onChange={(e) => setGenderValue(e.target.value)}></input>
-                                                        <label class="form-check-label" for="male">Male</label>
-                                                    </div>
-
-                                                    <div className="col">
-                                                        <input class="form-check-input" type="radio" id="female" value="Female" onChange={(e) => setGenderValue(e.target.value)}></input>
-                                                        <label class="form-check-label" for="female">Female</label>
+                                                        <div className="mb-3">
+                                                        <Form.Check
+                                                            inline
+                                                            label="Male"
+                                                            name="group1"
+                                                            type="radio"
+                                                            checked={item.gender === 'Male'}
+                                                            onChange={(e) => setGenderValue(e.target.value)}
+                                                        />
+                                                        <Form.Check
+                                                            inline
+                                                            label="Female"
+                                                            name="group1"
+                                                            type="radio"
+                                                            checked={item.gender === 'Female'}
+                                                            onChange={(e) => setGenderValue(e.target.value)}
+                                                        />
+                                                        </div>
+                                                        ))}
                                                     </div>
                                                 </div>
-                                            </div>
 
                                             <div className="row">
-                                                <div className="col-6">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
                                                     <label for='email'>Email Address</label>
                                                     {userData.map((item, index) => (
                                                         <input type="email" class="form-control" id="email" placeholder={item.email} defaulValue={item.email} onChange={(e) => setEmailValue(e.target.value)} required />
                                                     ))}
                                                 </div>
-                                                <div className="col-6">
-                                                    <label for='profession'>Profession</label>
-                                                    {userData.map((item, index) => (
-                                                        <input type="text" class="form-control" id="profession" placeholder={item.profession} defaultValue={item.profession} onChange={(e) => setProfessionValue(e.target.value)} required />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                            <div className="row">
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                                     <label for='phoneNum'>Phone Number</label>
                                                     {userData.map((item, index) => (
                                                         <input type="tel" class="form-control" id="phoneNum" placeholder={item.mobile} defaultValue={item.mobile} onChange={(e) => { setCellValue(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
-                                                    ))}
-                                                </div>
-                                                <div className="col-lg-6 col-md-6 col-sm-6">
-                                                    <label for='tellNumber'>Telephone Number</label>
-                                                    {userData.map((item, index) => (
-                                                        <input type="tel" class="form-control" id="tellNumber" placeholder={item.tellNumber} defaultValue={item.tellNumber} onChange={(e) => { setTellNumber(e.target.value) }} pattern="[0-9]{4} [0-9]{3} [0-9]{4}" />
                                                     ))}
                                                 </div>
                                             </div>
@@ -455,6 +433,7 @@ const handleIncorrect = () => {
                                         </form>
                                     </div>
                                 </div>
+                                ))}
                             </div>
                         </div>
                     </div>
