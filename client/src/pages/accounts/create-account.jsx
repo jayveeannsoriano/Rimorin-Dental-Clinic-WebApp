@@ -275,7 +275,7 @@ const CreateAccount = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>{/* end of container */}
+                                    </div>
                                     <Button
                                         className="btn btn-outline-danger text-right"
                                         onClick={() => navigate(-1)}>
@@ -287,8 +287,7 @@ const CreateAccount = () => {
                                     onClick={() => InsertUser()}>
                                     Create Account
                                 </Button>
-                                    {/* <AccountCreated /> */}
-                                </div>{/* end of card-body */}
+                                </div>
                             </div>
                         </div>
                 </section>
