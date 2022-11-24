@@ -79,7 +79,6 @@ const TransactionDataTable = () => {
             selector: (row) => 
             <div className="action-buttons">
                     <PrintFile data={["print","receipt",row,patientList]}/>
-                    <ViewFile/>
                     <ExportFile data={["download","receipt",row,patientList]}/>
             </div>
         }

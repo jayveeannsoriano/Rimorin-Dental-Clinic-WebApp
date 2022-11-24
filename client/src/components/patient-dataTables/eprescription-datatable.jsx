@@ -67,8 +67,8 @@ const EPrescriptionDataTable = () => {
         {
             name: "Action",
             selector: (row) => <div className="action-buttons">
-                <ExportFile/>
-                <PrintFile/>
+                <ExportFile data={["download","prescription",row,patientList]} />
+                <PrintFile data={["print","prescription",row,patientList]} />
             </div>
         }
     ];
@@ -114,6 +114,7 @@ const EPrescriptionDataTable = () => {
 
     useEffect(() => {
         getAppointment();
+        getPatientDetails();
     }, []);
 
     // useEffect(() => {
