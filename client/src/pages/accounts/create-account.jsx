@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
-// import '../../styles/dashboard.css';
-// import '../../styles/accounts.css';
-// import '../../styles/login-signup.css';
 import "../../styles/patient-info-edit.css";
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
-import AccountCreated from '../../components/modals/account-successful';
 import successful from '../../assets/img/check.png';
 import Modal from "react-bootstrap/Modal";
 import { Button } from 'react-bootstrap';
@@ -86,7 +82,7 @@ const CreateAccount = () => {
 
                     <div class="col-lg-12">
                         <div class="card overflow-auto">
-                            <div class="card-body pt-3">
+                            <div class="card-body create-account pt-3">
                                 <h5 className="card-title">Create Account</h5>
 
                                 <div className="divider"></div>
@@ -275,18 +271,20 @@ const CreateAccount = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <Button
-                                        className="btn btn-outline-danger text-right"
-                                        onClick={() => navigate(-1)}>
-                                        Cancel
-                                    </Button>
-                                    <Button
-                                    type='submit'
-                                    className="edit-save text-right"
-                                    onClick={() => InsertUser()}>
-                                    Create Account
-                                </Button>
+                                        <Button
+                                            type='submit'
+                                            className="edit-save text-right"
+                                            onClick={() => InsertUser()}>
+                                            Create Account
+                                        </Button>
+                                        <Button
+                                            variant="outline-danger"
+                                            className="text-right"
+                                            onClick={() => navigate(-1)}>
+                                            Cancel
+                                        </Button>
+
+                                    </div> {/*end of card-body*/}
                                 </div>
                             </div>
                         </div>

@@ -21,3 +21,7 @@
 .edit-save{
     width: auto;
 }
+
+.create-account .text-right{
+    margin-right: 5px;
+}
