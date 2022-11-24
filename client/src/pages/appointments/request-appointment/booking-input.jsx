@@ -38,8 +38,6 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
     //calendar input
     const [startDate, setStartDate] = useState(new Date());
 
-    const [Stringdate, setStringDate] = useState("");
-
     const [chosenDate, setChosenDate] = useState("");
 
     const [timeCheck, setTimeCheck] = useState("")
@@ -51,6 +49,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
     console.log("CURRENT DATE BOOKING",startDate);
     window.localStorage.setItem('date', startDate);
+    window.localStorage.setItem('formattedDate',startDate!=null?startDate.toISOString().substring(0,10):"")
   
     //useNavigate
     const navigate = useNavigate();

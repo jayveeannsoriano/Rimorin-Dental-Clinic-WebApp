@@ -58,7 +58,7 @@ const EPrescriptionDataTable = () => {
         },
         {
             name: 'Created By',
-            selector: (row) => row.genericName,
+            selector: (row) => row.dentistName,
         },
         {
             name: 'Description',

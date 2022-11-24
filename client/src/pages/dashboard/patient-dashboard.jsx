@@ -2,6 +2,7 @@ import React from "react";
 import '../../styles/dashboard.css';
 import Button from 'react-bootstrap/Button';
 import DashboardTable from '../../components/dashboardTable';
+import UpcomingDashboardTable from "../../components/dashboardUpcomingTable";
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -78,7 +79,7 @@ const PatientDashboard = () => {
                         UPCOMING APPOINTMENTS
                       </h5>
                       {/* Pachange nalang yung datatable for upcoming appt ng respective patient here */}
-                        <DashboardTable/>
+                        <UpcomingDashboardTable/>
                     </div>
                   </div>
                 </div>

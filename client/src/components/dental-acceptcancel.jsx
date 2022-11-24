@@ -55,7 +55,7 @@ const AcceptCancel = () => {
             name: "Action",
             selector: row =>
                 <div className="action-buttons">
-                    <AcceptDental dentistIDnumber = {dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={dentistFullName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
+                    <AcceptDental dentistIDnumber = {dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={dentistFullName} formattedDate={row.formattedDate} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
                 </div>

@@ -24,7 +24,7 @@ function CancelAppointment(appNum) {
 
   const cancelAppointment = () => {
             console.log("Deleting " + AppNumber);
-        Axios.put("http://localhost:3001/deleteAppointment", {
+        Axios.put("http://localhost:3001/deleteRequestAppointment", {
             appNum: AppNumber,
         });
     

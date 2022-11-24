@@ -5,13 +5,13 @@ import '../../styles/accounts.css';
 import successful from '../../assets/img/check.png';
 import Modal from 'react-bootstrap/Modal';
 
-function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date, time, consultation) {
+function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   //Get values 
-  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date, time, consultation);
+  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   //values
   const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g, "");
@@ -19,6 +19,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const PatientValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g, "");
   const DentistValue = JSON.stringify(ConvertStringfyValues.dName).replace(/"/g, "");
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g, "");
+  const FormattedDateValue = JSON.stringify(ConvertStringfyValues.formattedDate).replace(/"/g, "");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
   const ConsultValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g, "");
   const dentistNumber = JSON.stringify(ConvertStringfyValues.dentistIDnumber).replace(/"/g, "");
@@ -27,7 +28,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
 
   const AcceptAppointment = () => {
     handleShow();
-    Axios.post("http://localhost:3001/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
+    Axios.post("http://localhost:3001/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
   }
 
 

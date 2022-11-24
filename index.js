@@ -240,17 +240,18 @@ app.post("/insertAppointment", async(req,res) => {
   const getTime = req.body.getTime;
   console.log(getTime);
 
+  const formattedDate= req.body.formattedDate;
+  console.log(formattedDate);
+
   //appt status default when creating an appointment
   const insertAppStatus = "Pending";
   console.log(insertAppStatus);
 
   //inserting all data
-  const AppData = new AppRequest({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
-  const NotifData = new NotifDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const AppData = new AppRequest({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime,formattedDate:formattedDate, appStatus:insertAppStatus});
   
   try{
     await AppData.save();
-    await NotifData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
     if(insertAppStatus == "Accepted"){
       //Sending Email
@@ -475,7 +476,6 @@ app.get("/getUserInfo", async(req,res) => {
 app.get("/getProfileWidget", async(req,res) => {
 
   const patientID = req.query.patientIDnumber;
-  console.log('asldjhasd',patientID, 'wtd');
   
   await User.find({patientIDnumber: patientID})
       .then((data) => {
@@ -946,6 +946,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const userNameApp = req.body.pName;
   const updateDate = req.body.newDate;
   const updateSlicedDate = updateDate.slice(0,10)//removes unnecessary data
+  const formattedDate = req.body.newFormattedDate;
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
   const insertAppStatus = "Rebooked";
@@ -956,7 +957,8 @@ app.put("/rescheduleAppointment", async (req, res) => {
     pName: userNameApp,
     dName: docName ,
     appNum: appNumber,
-    date: updateSlicedDate, 
+    date: updateSlicedDate,
+    formattedDate:formattedDate,
     consultation: updateConsult, 
     time:updateTime, 
     appStatus:insertAppStatus});
@@ -968,15 +970,24 @@ app.put("/rescheduleAppointment", async (req, res) => {
 });
 
 
-//delete Appointment
+//delete Request Appointment
 
-app.put("/deleteAppointment", async (req,res) => {
+app.put("/deleteRequestAppointment", async (req,res) => {
 
   const appNumber = req.body.appNum;
   await AppRequest.findOneAndDelete({appNum: appNumber})
     console.log("Appointment Successfully Deleted!.");
   
 })
+//delete Appointment
+app.put("/deleteAppointment", async (req,res) => {
+  const patientIDNum = req.body.patientIDnumber;
+  const appNumber = req.body.appNum;
+  await AppDetails.findOneAndDelete({appNum: appNumber,patientIDnumber:patientIDNum})
+    console.log("Appointment Successfully Deleted!.");
+  
+})
+
 
 //update status
 app.put("/updateStatus", async (req,res) => {
@@ -1021,6 +1032,8 @@ app.put("/updateStatus", async (req,res) => {
     //date value
     const dateValue = req.body.dateValue;
     console.log(dateValue)
+
+    const formattedDate = req.body.formattedDate;
   
     //consul value
     const consulInput = req.body.consulInput;
@@ -1035,7 +1048,7 @@ app.put("/updateStatus", async (req,res) => {
     console.log(insertAppStatus);
   
     //inserting all data
-    const AppData = new AppDetails({dentistIDnumber:DentistIDNum,patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+    const AppData = new AppDetails({dentistIDnumber:DentistIDNum,patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue,formattedDate:formattedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
     try{
       await AppData.save();
@@ -1565,6 +1578,8 @@ app.post("/InsertNewUser", async (req, res) => {
   const gender = req.body.gender;
   const mobile = req.body.mobile;
   const bday = req.body.bday;
+  const ptr = req.body.ptr;
+  const license = req.body.license;
 
   console.log(accountType);
   
@@ -1673,6 +1688,8 @@ if(accountType == "patient"){
     mobile:mobile,
     bday:bday,
     age:AgeOut(),
+    ptr:ptr,
+    license:license,
     user_role_id:3,
   });
   console.log("Add Details for Dentist: ", UserData);

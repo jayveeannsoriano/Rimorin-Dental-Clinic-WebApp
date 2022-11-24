@@ -25,7 +25,7 @@ const CreateAccount = () => {
     const [getBDAYValue, setBDAYValue] = useState("");
     //professional info
     const [getptrValue, setPtrValue] = useState('');
-    const [licenceValue, setLicenceValue] = useState('');
+    const [getlicenceValue, setLicenceValue] = useState('');
 
     const [modalState, setModalState] = useState(false);
     const handleModalClose = () => {
@@ -37,25 +37,25 @@ const CreateAccount = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const InsertUser = async () => {
+    const InsertUser = async () => {
 
-    //     await Axios.post("http://localhost:3001/InsertNewUser", {
-    //         accountType: getAccountValue,
-    //         fname: getFNameValue,
-    //         mname: getMNameValue,
-    //         lname: getLNameValue,
-    //         suffix: getSuffixValue,
-    //         email: getEmailValue,
-    //         password: getPassValue,
-    //         gender: getGenderValue,
-    //         mobile: getPhoneValue,
-    //         bday: getBDAYValue,
-    //         ptr: getptrValue,
-    //         licence: getlicenceValue,
-    //     })
+        await Axios.post("http://localhost:3001/InsertNewUser", {
+            accountType: getAccountValue,
+            fname: getFNameValue,
+            mname: getMNameValue,
+            lname: getLNameValue,
+            suffix: getSuffixValue,
+            email: getEmailValue,
+            password: getPassValue,
+            gender: getGenderValue,
+            mobile: getPhoneValue,
+            bday: getBDAYValue,
+            ptr: getptrValue,
+            licence: getlicenceValue,
+        })
 
-    //     setModalState("show-modal");
-    // }
+        setModalState("show-modal");
+    }
 
 
 
@@ -274,22 +274,21 @@ const CreateAccount = () => {
                                                     />
                                                 </div>
                                             </div>
-
-                                            <Button
-                                                className="btn btn-outline-danger text-right"
-                                                onClick={() => navigate(-1)}>
-                                                Cancel
-                                            </Button>
-                                            {/* <Button
-                                            type='submit'
-                                            className="edit-save text-right"
-                                            onClick={() => InsertUser()}>
-                                            Create Account
-                                        </Button> */}
-
-                                        </div>{/* end of container */}
-                                    </div>{/* end of card-body */}
-                                </div>
+                                        </div>
+                                    </div>{/* end of container */}
+                                    <Button
+                                        className="btn btn-outline-danger text-right"
+                                        onClick={() => navigate(-1)}>
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                    type='submit'
+                                    className="edit-save text-right"
+                                    onClick={() => InsertUser()}>
+                                    Create Account
+                                </Button>
+                                    {/* <AccountCreated /> */}
+                                </div>{/* end of card-body */}
                             </div>
                         </div>
                 </section>
