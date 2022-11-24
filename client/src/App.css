@@ -849,11 +849,17 @@ h6 {
 	width: 95%;
 }
 
+.time.btn:focus,
+.time.btn:active{
+  background-color: #5d5fef !important;
+  color: #fff !important;
+}
+
 .slots {
 	width: 100%;
 	display: grid;
 	gap: 5px 0px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
   background: white;
   pointer-events: auto;
 }
@@ -866,6 +872,7 @@ h6 {
 .slots2 {
 	width: 100%;
 	gap: 2px 0px;
+  display: grid;
 	grid-template-columns: repeat(3, 1fr) !important;
 }
 
