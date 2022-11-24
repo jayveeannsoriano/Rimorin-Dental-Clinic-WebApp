@@ -13,9 +13,56 @@ var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
 const getUserAppointments = async() => {
   try{
-      const response = await axios.get('http://localhost:3001/getUserAppts', { params: { pName: userInfo['fname'] + " " + userInfo['lname'] } });
+      var response;
+      if(userInfo['user_role_id']==1){
+        response = await axios.get('http://localhost:3001/getUserAppts', { params: { pName: userInfo['fname'] + " " + userInfo['lname'] } });
+      }else if(userInfo['user_role_id']==2||userInfo['user_role_id']==4){
+        response = await axios.get('http://localhost:3001/getUserApptsOthers');
+      }else if(userInfo['user_role_id']==3){
+        response = await axios.get('http://localhost:3001/getUserApptsDent', { params: { dentistIDnumber: userInfo['dentistIDnumber'] } });
+      }
       // setEvents(response.data);
-      return response.data;
+      var arr = [];
+
+      response.data.forEach(item=>{
+        var date = new Date(item.date+" "+item.time);
+        var newTime= new Date(date.getTime() + 60*60000);
+        var pastDate = new Date(item.date+" "+item.time);
+        var futureDate = pastDate.setHours(pastDate.getHours()+1);
+        if(userInfo['user_role_id']==1){
+          arr.push({
+            start: pastDate,
+            end: futureDate,
+            title: item.time+" - "+
+            (newTime.getHours()<12?
+            (newTime.getHours()<10?'0'+newTime.getHours():newTime.getHours())
+            :(newTime.getHours()-12<10?'0'+((newTime.getHours()-12)):(newTime.getHours()-12)))
+            +":"+
+            (newTime.getMinutes()<10?'0'+newTime.getMinutes():newTime.getMinutes())+
+            (newTime.getHours()<12?" AM":" PM"),
+            //if (currentHours < 10)  currentHours = '0'+currentHours;
+            description: item.time+" - "+
+            (newTime.getHours()<12?
+            (newTime.getHours()<10?'0'+newTime.getHours():newTime.getHours())
+            :(newTime.getHours()-12<10?'0'+((newTime.getHours()-12)):(newTime.getHours()-12)))
+            +":"+
+            (newTime.getMinutes()<10?'0'+newTime.getMinutes():newTime.getMinutes())+
+            (newTime.getHours()<12?" AM":" PM")
+            +" \n "+item.dent+" - "+item.cons,
+            color: item.color
+          })
+        }else{
+          arr.push({
+            start: pastDate,
+            end: futureDate,
+            title: item.patient,
+            color: item.color
+          })
+        }
+
+
+      })
+      return arr;
   }catch (error){
       console.log(error)
   }
@@ -79,6 +126,11 @@ export default class Calendar extends React.Component {
               right: "dayGridMonth timeGridWeek timeGridDay",
               center: "title",
               left: "today prev next"
+            }}
+            eventTimeFormat={{
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true
             }}
           />
         </div>
