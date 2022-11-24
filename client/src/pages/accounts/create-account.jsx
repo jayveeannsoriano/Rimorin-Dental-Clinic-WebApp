@@ -95,8 +95,10 @@ const CreateAccount = () => {
                                     <h5 class="form-section-title">Account Information</h5>
                                     <div className="col-lg-5">
                                         <div className="mb-3">
-                                            <Form.Label>Type of User:</Form.Label>
-                                            <Form.Select onChange={(e) => setAccountValue(e.target.value)}>
+                                            <Form.Label>Type of User: <span className="text-danger font-weight-bold">*</span></Form.Label>
+                                            <Form.Select 
+                                                value={getAccountValue}
+                                                onChange={(e) => setAccountValue(e.target.value)}>
                                                 <option value="" selected disabled>--Select Type--</option>
                                                 <option value="patient">Patient</option>
                                                 <option value="secretary">Secretary</option>
@@ -108,7 +110,7 @@ const CreateAccount = () => {
                                     <div className="row">
                                         <div className="col-lg-3">
                                             <div className="mb-3">
-                                                <label>First Name</label>
+                                                <label>First Name <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
@@ -120,7 +122,7 @@ const CreateAccount = () => {
                                         </div>
                                         <div className="col-lg-3">
                                             <div className="mb-3">
-                                                <label>Middle Name</label>
+                                                <label>Middle Name <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
@@ -132,7 +134,7 @@ const CreateAccount = () => {
                                         </div>
                                         <div className="col-lg-3">
                                             <div className="mb-3">
-                                                <label>Last name</label>
+                                                <label>Last Name <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
@@ -144,7 +146,7 @@ const CreateAccount = () => {
                                         </div>
                                         <div className="col-lg-2">
                                             <div className="mb-3 suffix">
-                                                <label>Suffix</label>
+                                                <label>Suffix <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="text"
                                                     className="form-control suffix"
@@ -155,7 +157,7 @@ const CreateAccount = () => {
                                         </div>
                                         <div className="row">
                                             <div className="col-lg-4">
-                                                <label>Date of Birth</label>
+                                                <label>Date of Birth <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="date"
                                                     className="form-control"
@@ -165,7 +167,7 @@ const CreateAccount = () => {
                                                 />
                                             </div>
                                             <div className="col-lg-4">
-                                                <Form.Label>Gender:</Form.Label>
+                                                <Form.Label>Gender: <span className="text-danger font-weight-bold">*</span></Form.Label>
                                                 <div className="mb-3">
                                                     <Form.Check
                                                         inline
@@ -191,7 +193,7 @@ const CreateAccount = () => {
                                     <div className="row">
                                         <div className="col-lg-4">
                                             <div className="mb-3">
-                                                <label>Email Address</label>
+                                                <label>Email Address <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type='email'
                                                     className="form-control"
@@ -203,11 +205,11 @@ const CreateAccount = () => {
                                         </div>
                                         <div className="col-lg-4">
                                             <div className="mb-3">
-                                                <label>Mobile Number</label>
+                                                <label>Mobile Number <span className="text-danger font-weight-bold">*</span></label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="09XXXXXXXXX"
+                                                    placeholder="9XXXXXXXXX"
                                                     maxLength="10"
                                                     onChange={(e) => { setPhoneValue(e.target.value) }}
                                                     required
@@ -216,59 +218,64 @@ const CreateAccount = () => {
                                         </div>
                                     </div>
 
-                                    {}
-                                    <div className="row">
-                                    <h5 class="form-section-title">Professional Information</h5>
-                                        <div className="col">
-                                            <label for='ptr'>PTR Number</label>
-                                            <input 
-                                            name="ptr" 
-                                            type="text" 
-                                            className="form-control" 
-                                            id="ptr"
-                                            maxLength={7} 
-                                            placeholder="0123456" 
-                                            onChange={(e) => {setPtrValue(e.target.value)}} required />
-                                        </div>
+                                    {getAccountValue == "dentist" ? (
+                                            <>
+                                                <div className="row">
+                                                <h5 class="form-section-title">Professional Information</h5>
+                                                    <div className="col-lg-4">
+                                                        <label for='ptr'>PTR Number <span className="text-danger font-weight-bold">*</span></label>
+                                                        <input 
+                                                        name="ptr" 
+                                                        type="text" 
+                                                        className="form-control" 
+                                                        id="ptr"
+                                                        maxLength={7} 
+                                                        placeholder="0123456" 
+                                                        onChange={(e) => {setPtrValue(e.target.value)}} required />
+                                                    </div>
 
-                                        <div className="col">
-                                            <label for='licence'>Licence Number</label>
-                                            <input 
-                                            name="licence" 
-                                            type="text" 
-                                            className="form-control" 
-                                            id="licence"
-                                            maxLength={6}
-                                            placeholder="012345"
-                                            onChange={(e) => {setLicenceValue(e.target.value)}} required />
-                                        </div>
+                                                    <div className="col-lg-4">
+                                                        <label for='licence'>Licence Number <span className="text-danger font-weight-bold">*</span></label>
+                                                        <input 
+                                                        name="licence" 
+                                                        type="text" 
+                                                        className="form-control" 
+                                                        id="licence"
+                                                        maxLength={6}
+                                                        placeholder="012345"
+                                                        onChange={(e) => {setLicenceValue(e.target.value)}} required />
+                                                    </div>
+                                                </div>
+                                            </>
+                                            ) : null }
+                                            
 
-                                        <div className="row">
-                                            <h5 class="form-section-title">Account Password</h5>
-                                            <div className="col-lg-6">
-                                                <div className="mb-3">
-                                                    <label>Password</label>
-                                                    <input
+                                            <div className="row">
+                                                <h5 class="form-section-title">Account Password</h5>
+                                                <div className="col-lg-4">
+                                                    <div className="mb-3">
+                                                        <label>Password <span className="text-danger font-weight-bold">*</span></label>
+                                                        <input
+                                                            type="password"
+                                                            className="form-control"
+                                                            onChange={(e) => { setPassValue(e.target.value) }}
+                                                            required
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-4">
+                                                    <label>Re-enter Password<span className="text-danger font-weight-bold">*</span></label>
+                                                    <input 
+                                                        name="reEnterpassword"
                                                         type="password"
-                                                        className="form-control"
-                                                        placeholder="Enter password"
-                                                        onChange={(e) => { setPassValue(e.target.value) }}
-                                                        required
+                                                        class="form-control"
+                                                        id="reEnterPassword"
+                                                    // onChange={(e) => { setReEnterPassword(e.target.value) }} required 
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-6">
-                                                <label>Re-enter Password</label>
-                                                <input 
-                                                    name="reEnterpassword"
-                                                    type="password"
-                                                    class="form-control"
-                                                    id="reEnterPassword"
-                                                // onChange={(e) => { setReEnterPassword(e.target.value) }} required 
-                                                />
-                                            </div>
                                         </div>
-                                    </div>{/* end of container */}
+                                    </div>
                                     <Button
                                         className="btn btn-outline-danger text-right"
                                         onClick={() => navigate(-1)}>
@@ -280,13 +287,10 @@ const CreateAccount = () => {
                                     onClick={() => InsertUser()}>
                                     Create Account
                                 </Button>
-                                    {/* <AccountCreated /> */}
-                                </div>{/* end of card-body */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
             <Modal
                 show={modalState == "show-modal"}
