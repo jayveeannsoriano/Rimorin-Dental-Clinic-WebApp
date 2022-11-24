@@ -240,17 +240,18 @@ app.post("/insertAppointment", async(req,res) => {
   const getTime = req.body.getTime;
   console.log(getTime);
 
+  const formattedDate= req.body.formattedDate;
+  console.log(formattedDate);
+
   //appt status default when creating an appointment
   const insertAppStatus = "Pending";
   console.log(insertAppStatus);
 
   //inserting all data
-  const AppData = new AppRequest({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
-  const NotifData = new NotifDetails({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+  const AppData = new AppRequest({patientIDnumber:patientIDnumber, pName: userNameApp,dName: docName ,appNum: appNumber,date: slicedDate, consultation: consulInput, time:getTime,formattedDate:formattedDate, appStatus:insertAppStatus});
   
   try{
     await AppData.save();
-    await NotifData.save();
     console.log("Successfully inserted ", AppData, " to the database.")
     if(insertAppStatus == "Accepted"){
       //Sending Email
@@ -1021,6 +1022,8 @@ app.put("/updateStatus", async (req,res) => {
     //date value
     const dateValue = req.body.dateValue;
     console.log(dateValue)
+
+    const formattedDate = req.body.formattedDate;
   
     //consul value
     const consulInput = req.body.consulInput;
@@ -1035,7 +1038,7 @@ app.put("/updateStatus", async (req,res) => {
     console.log(insertAppStatus);
   
     //inserting all data
-    const AppData = new AppDetails({dentistIDnumber:DentistIDNum,patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
+    const AppData = new AppDetails({dentistIDnumber:DentistIDNum,patientIDnumber:PatientIDnum, pName: userNameApp,dName: docName ,appNum: appNumber,date: dateValue,formattedDate:formattedDate, consultation: consulInput, time:getTime, appStatus:insertAppStatus});
   
     try{
       await AppData.save();

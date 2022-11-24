@@ -8,6 +8,7 @@ const AppointmentDetails = new mongoose.Schema(
     appNum: String,
     date: String,
     time: String,
+    formattedDate:String,
     consultation: String,
     appStatus: String,
     reasonCancel: String,
