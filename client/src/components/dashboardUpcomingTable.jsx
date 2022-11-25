@@ -124,7 +124,7 @@ const UpcomingDashboardTable = () => {
 
     useEffect(() => {
         const result = appointment.filter((appointment) => {
-            return appointment.dName.toLowerCase().match(search.toLowerCase());
+            return appointment.appNum.toLowerCase().match(search.toLowerCase());
         });
 
         setFilteredAppointment(result)
