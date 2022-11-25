@@ -32,7 +32,6 @@ const CreateDentalRecord = () => {
 
   const getPatientIDnumber = async () => {
 
-    console.log(StringfyPatID,"askndjkalsndklsa11111")
     try {
       const response = await Axios.get(
         "http://localhost:3001/getPatientAppNumforDental",
