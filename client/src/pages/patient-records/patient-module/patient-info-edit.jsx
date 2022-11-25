@@ -14,6 +14,7 @@ import { Button } from 'react-bootstrap';
 const PatientInfoEdit = () => {
   var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const patientIDnumber = userInfo['patientIDnumber'];
+  const ObjectID = userInfo['_id']
   console.log(patientIDnumber);
   console.log(userInfo, "this are all the data of the user");
 
@@ -100,6 +101,7 @@ const PatientInfoEdit = () => {
   const updatePatientInfo = async () => {
     await Axios.put("http://localhost:3001/updatePatientInfo", {
 
+      ObjectID:ObjectID,
       patientIDnumber: patientIDnumber,
 
       firstName: firstName,
