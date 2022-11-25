@@ -20,16 +20,6 @@ const AdminArchiveTable = () => {
     const [pending, setPending] = useState(true);
     const [rows, setRows] = useState([]);
 
-
-
-    const ArchiveUser = async (objectID) => {
-        console.log(objectID)
-
-        await axios.post('http://localhost:3001/UnArchiveUser', {
-            UserObjectID: objectID
-        })
-    }
-
     const getUsers = async () => {
         try {
             const response = await axios.get('http://localhost:3001/getArchiveUserforAdmin');
@@ -61,8 +51,7 @@ const AdminArchiveTable = () => {
             name: "Action",
             selector: row => <div className="action-buttons" >
                 <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
-                {/* <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Unarchive</Button> */}
-                <UnarchiveAccount/>
+                <UnarchiveAccount ObjectID = {row._id}/>
             </div>
         },
     ];

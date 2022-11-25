@@ -32,15 +32,6 @@ const AdminTable = () => {
     //     setModalState("modal-2")
     // }
 
-
-    const ArchiveUser = async (objectID) => {
-        // handleModal1();
-        console.log(objectID)
-        await axios.post('http://localhost:3001/ArchiveUser', {
-            UserObjectID: objectID
-        })
-    }
-
     const getUsers = async () => {
         try {
             const response = await axios.get('http://localhost:3001/getUserforAdmin');
@@ -72,8 +63,7 @@ const AdminTable = () => {
             name: "Action",
             selector: row => <div className="action-buttons" >
                 <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
-                {/* <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Archive</Button> */}
-                <ArchiveAccount/>
+                <ArchiveAccount ObjectID = {row._id}/>
              
                 
             </div>
