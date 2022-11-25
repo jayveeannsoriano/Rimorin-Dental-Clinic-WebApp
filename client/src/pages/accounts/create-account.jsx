@@ -21,7 +21,7 @@ const CreateAccount = () => {
     const [getBDAYValue, setBDAYValue] = useState("");
     //professional info
     const [getptrValue, setPtrValue] = useState('');
-    const [getlicenceValue, setLicenceValue] = useState('');
+    const [getlicenseValue, setLicenseValue] = useState('');
 
     const [modalState, setModalState] = useState(false);
     const handleModalClose = () => {
@@ -47,7 +47,7 @@ const CreateAccount = () => {
             mobile: getPhoneValue,
             bday: getBDAYValue,
             ptr: getptrValue,
-            licence: getlicenceValue,
+            license: getlicenseValue,
         })
 
         setModalState("show-modal");
@@ -247,15 +247,15 @@ const CreateAccount = () => {
                                                     </div>
 
                                                     <div className="col-lg-4">
-                                                        <label for='licence'>Licence Number <span className="text-danger font-weight-bold">*</span></label>
+                                                        <label for='license'>Licence Number <span className="text-danger font-weight-bold">*</span></label>
                                                         <input 
-                                                        name="licence" 
+                                                        name="license" 
                                                         type="text" 
                                                         className="form-control" 
-                                                        id="licence"
+                                                        id="license"
                                                         maxLength={6}
                                                         placeholder="012345"
-                                                        onChange={(e) => {setLicenceValue(e.target.value)}} required />
+                                                        onChange={(e) => {setLicenseValue(e.target.value)}} required />
                                                     </div>
                                                 </div>
                                             </>
@@ -315,7 +315,7 @@ const CreateAccount = () => {
                 onHide={handleModalClose}
                 backdrop="static"
                 keyboard={false}
-            >
+                >
                 <Modal.Header closeButton>
                     <Modal.Title>Success</Modal.Title>
                 </Modal.Header>
@@ -324,7 +324,6 @@ const CreateAccount = () => {
                     <img src={successful} alt="success image" className='success-img' />
                     <p className='modal-txt'>You have succesfully created an account!</p>
                 </Modal.Body>
-
 
                 <Modal.Footer>
                     <Button

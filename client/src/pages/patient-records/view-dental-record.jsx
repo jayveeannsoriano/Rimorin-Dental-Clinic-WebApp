@@ -118,106 +118,125 @@ const ViewDentalRecord = () => {
     
     const navigate = useNavigate();
     
-    return(
-        <>
-                <div class="pagetitle">
-                    <h1>Dental Records</h1>
-                    <nav>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href={HomeRoute}>Home</a></li>
-                            <li class="breadcrumb-item"><a href={DentalRecordListRoute}>Patients</a></li>
-                            <li class="breadcrumb-item" onClick = {() => navigate(-1)}> Dental Records</li>
-                            <li class="breadcrumb-item active">View Dental Record</li>
-                        </ol>
-                    </nav>
+    return (
+      <>
+        <div class="pagetitle">
+          <h1>Dental Records</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href={HomeRoute}>Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href={DentalRecordListRoute}>Patients</a>
+              </li>
+              <li class="breadcrumb-item" onClick={() => navigate(-1)}>
+                {" "}
+                Dental Records
+              </li>
+              <li class="breadcrumb-item active">View Dental Record</li>
+            </ol>
+          </nav>
+        </div>
+        <div className="container">
+          <ProfileWidgetTwo />
+        </div>
+
+        <div className="container">
+          <div class="row">
+            <div className="card patient-info">
+              <div className="card-body pt-3">
+                <h5 className="card-title">Dental Record</h5>
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  onClick={() => {
+                    Export("print");
+                  }}
+                >
+                  <i class="bi bi-printer-fill"></i>
+                  Print
+                </button>
+
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  onClick={() => {
+                    Export("download");
+                  }}
+                >
+                  <i class="bi bi-download"></i>
+                  Export
+                </button>
+                <div className="divider"></div>
+
+                {/* Dental Teeth Chart */}
+                <h5 className="card-title">Dental Chart</h5>
+                <div className="container dental-chart-container">
+                  <div className="row" id="dental-chart-Image">
+                    <DentalChart />
+                  </div>
                 </div>
-                    <div className="container">
-                        <ProfileWidgetTwo />
-                    </div>
-                    
-                    <div className="container">
-                        <div class="row">
-                                <div className="card patient-info">
-                                    <div className="card-body pt-3">
-                                        <h5 className="card-title">Dental Record</h5>
-                                        <button className="btn btn-primary" type="submit" onClick={() =>{Export("print")}}>
-                                            <i class="bi bi-printer-fill"></i>
-                                            Print
-                                            </button>
-                                            
-                                            <button className="btn btn-primary" type="submit" onClick={() =>{Export("download")}}>
-                                            <i class="bi bi-download"></i>
-                                                Export
-                                            </button>
-                                        <div className="divider"></div>
 
-                                        {/* Dental Teeth Chart */}
-                                        <h5 className="card-title">Dental Chart</h5>
-                                        <div className="container dental-chart-container">
-                                            <div className="row" id="dental-chart-Image">
-                                                <DentalChart/>
-                                            </div>
-                                        </div>
-
-                                        {/* Summary of Treatment */}
-                                        <h5 className="card-title">Summary of Treatment</h5>
-                                        <div class="row">
-                                            {/* <div className="col-3">
-                                                <h6>Selected Tooth/Teeth</h6>
-                                                <p>{recordData.chartedTeeth}</p>
-                                            </div>
-                                            <div className="col-3">
-                                                <h6>Date of Treatment</h6>
-                                                <p>{recordData.dentalDate}</p>
-                                            </div>
-                                            <div className="col-3">
-                                                <h6>Treatment Description</h6>
-                                                <p>{recordData.dentalDesc}</p>
-                                            </div>
-                                            <div className="col-3">
-                                                <h6>Procedure/s</h6>
-                                                <p>{recordProcedures.toString()}</p>
-                                            </div> */}
-                                            <Table striped>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Selected Tooth/Root</th>
-                                                        <th>Date of Treatment</th>
-                                                        <th>Treatment Description</th>
-                                                        <th>Procedures</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    
-                                                    {chartedTeethValue.map((item1,index) => {
-                                                        return(
-                                                            <tr key={index}>
-                                                                <td>{item1}</td>
-                                                                <td>{dentalDate.toString()}</td>
-                                                                <td>{dentalDesc.toString()}</td>
-                                                                {recordProcedures.map((item2) => (
-                                                                <td>{item2}</td>
-                                                                ))}
-                                                            </tr>
-                                                        )
-                                                    })}
-                                                </tbody>
-                                            </Table>
-                                        </div>
-
-                                        {/* Treatment Attatchments */}
-                                        <h5 className="card-title">Treatment Attachments</h5>
-                                        <div className="row attatchment-container" 
-                                        style={{border: "1px solid #E8E8E8", borderRadius: "15px", width: "784px", height: "289px"}}>
-                                            {/* Insert uploaded image/s for that specific record*/}
-                                            <img src={"../../../../../uploads/dental-record-images/" + query.patientIDNum + "_" + query.date + ".jpg"} alt="Treatment attatchment"/>
-                                        </div>
-
-                                    </div>
-                                </div>
+                {/* Summary of Treatment */}
+                <h5 className="card-title">Summary of Treatment</h5>
+                <div class="row summary-of-treatment">
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th>Selected Tooth/Root</th>
+                        <th>Date of Treatment</th>
+                        <th>Treatment Description</th>
+                        <th>Procedures</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {chartedTeethValue.map((item1, index) => (
+                            <div key={index}>
+                                <td>{item1}</td>
                             </div>
-                        </div>
-                    </>
+                        ))}
+                        <td>{dentalDate.toString()}</td>
+                        <td>{dentalDesc.toString()}</td>
+                        {recordProcedures.map((item2) => (
+                            <div>
+                                <td>{item2}</td>
+                            </div>
+                        ))}
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
+
+                {/* Treatment Attatchments */}
+                <h5 className="card-title">Treatment Attachments</h5>
+                <div
+                  className="row attatchment-container"
+                  style={{
+                    border: "1px solid #E8E8E8",
+                    borderRadius: "15px",
+                    width: "1074px",
+                    height: "289px",
+                  }}
+                >
+                  {/* Insert uploaded image/s for that specific record*/}
+                  <img
+                    src={
+                      "../../../../../uploads/dental-record-images/" +
+                      query.patientIDNum +
+                      "_" +
+                      query.date +
+                      ".jpg"
+                    }
+                    alt="Treatment attatchment"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
 }
 export default ViewDentalRecord;

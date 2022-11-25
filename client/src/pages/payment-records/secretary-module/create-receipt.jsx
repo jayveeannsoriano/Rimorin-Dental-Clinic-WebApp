@@ -579,7 +579,7 @@ const createReceipt = () => {
                           setModalState("show-modal");
                         }}
                       >
-                        Create
+                        Create Receipt
                       </Button>
                       <button
                         className="btn btn-outline-danger rx-btn"
@@ -608,19 +608,14 @@ const createReceipt = () => {
         </Modal.Header>
 
         <Modal.Body closeButton>
-          {/* <img src={successful} alt="success image" className='success-img' />  */}
           <p className="modal-txt">You have created a receipt!</p>
         </Modal.Body>
 
         <Modal.Footer>
           <Button
             variant="primary"
-            href={
-              "/secretary/payment-records/view-transactions?patientIDNum=" +
-              StringfyIDNumber
-            }
             onClick={handleModalClose}
-          >
+            >
             Close
           </Button>
         </Modal.Footer>

@@ -70,7 +70,10 @@ function dashboardHeader(){
                 {/* <!-- ======= Dashboard Header ======= --> */}
                 <header className="header fixed-top d-flex align-items-center">
 
-                    {/* <!-- Search Icon --> */}
+                    <div class="d-flex align-items-center justify-content-between">
+                        <i class="bi bi-list toggle-sidebar-btn"></i>
+                    </div>
+                    
                     <nav className="header-nav ms-auto">
                         <ul className="d-flex align-items-center">
 
@@ -83,7 +86,6 @@ function dashboardHeader(){
                             <span className="d-none d-md-block dropdown-toggle ps-2">{item.fname} {item.lname}</span>
                         </a>
                         ))}
-                        {/* <!-- End Profile Image Icon --> */}
 
                         {/* <!-- Profile Dropdown Menu --> */}
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -100,7 +102,6 @@ function dashboardHeader(){
                             </a>
                         </li>
 
-                        {/* <!-- Sign Out --> */}
                         <li>
                             <a className="dropdown-item d-flex align-items-center" href="/auth/login" onClick={clearSession}>
                                 <i className="bi bi-box-arrow-right"></i>

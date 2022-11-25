@@ -22,7 +22,7 @@ const PatientInfoEdit = () => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
-  const Listconditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
+  const conditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
 
   // const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState('');
@@ -284,7 +284,8 @@ const PatientInfoEdit = () => {
                               label="Male"
                               name="group1"
                               type="radio"
-                              checked={item.gender === "Male"}
+                              defaultValue={item.gender === "Male"}
+                              //checked={item.gender === "Male"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                             <Form.Check
@@ -292,7 +293,7 @@ const PatientInfoEdit = () => {
                               label="Female"
                               name="group1"
                               type="radio"
-                              checked={item.gender === "Female"}
+                              defaultValue={item.gender === "Female"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                           </div>
@@ -507,19 +508,17 @@ const PatientInfoEdit = () => {
                           following conditions:
                         </label>
                         <br/>
-                        {userData.map((item, index) => {
-                          return(
+                        {/*{userData.map((item, index) => {*/}
                             <div className="slots2">
                               <Form>
-                                  {Listconditions.map((item2, index) => (
+                              {conditions.map((item, index) => (
                                     <div key={index} className="conditions-row">
                                       <Form.Check
                                         input
-                                        value={[item2]}
-                                        id={[item2]}
+                                        value={[item]}
+                                        id={[item]}
                                         type="checkbox"
-                                        checked = {item.conditions === [item2]}
-                                        label={`${item2}`}
+                                        label={`${item}`}
                                         onChange={(e) => setCondValue(e.target.value)}
                                         required
                                       />
@@ -527,8 +526,8 @@ const PatientInfoEdit = () => {
                                     ))}
                                 </Form>
                               </div>
-                            );
-                          })}
+                            {/*);*/}
+                          {/*})}*/}
                       </div>
                       <div className="col-lg-12">
                         <label for="precautions">
