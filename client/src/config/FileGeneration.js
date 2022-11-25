@@ -674,7 +674,7 @@ export function compiledDentalRecord(name, bd, doct, med, cond, alle, prec, Dent
 	generate();
 }
 
-export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, saveAs){
+export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, treatData, saveAs){
 	const width = convertInch(8.5);
 	const height = convertInch(14);
 	
@@ -756,6 +756,84 @@ export function dentalRecord(name, bd, doct, med, cond, alle, prec, DentRecID, s
 		
 		var imgData = canvas.toDataURL('image/png');
 		doc.addImage(imgData,'PNG',convertInch(0.5),convertInch(3.0),(width-convertInch(1.0)),(canvas.height/canvas.width)*(width-convertInch(1.0)));
+
+		var finalTreat = [];
+		var arrLength = (treatData.chartedTeeth.length>treatData.procedures.length?treatData.chartedTeeth.length:treatData.procedures.length)
+		var arrShort = (treatData.chartedTeeth.length<treatData.procedures.length?treatData.chartedTeeth.length:treatData.procedures.length)
+		
+		var proceData = [];
+		for(let idx = 0; idx< treatData.procedures.length; idx++){
+			var procString = "";
+			if(typeof treatData.procedures[idx].chosen !== 'undefined'){
+				for(let idx2 = 0 ; idx2 < treatData.procedures[idx].chosen.length; idx2++){
+					procString+=treatData.procedures[idx].chosen[idx2].procedure+" ";
+				}
+			}
+			proceData.push(procString);
+		}
+
+		for(let idx = 0; idx<arrLength;idx++){
+			
+			if(idx==0){
+				finalTreat.push([treatData.chartedTeeth[idx],treatData.dentalDate,treatData.dentalDesc,proceData[idx]]);
+			}else if(arrShort>idx&&idx>0){
+				finalTreat.push([treatData.chartedTeeth[idx],"","",proceData[idx]]);
+			}else{
+				if(treatData.chartedTeeth.length==proceData.length){
+					finalTreat.push(["","","",""]);
+				}else if(arrShort==treatData.chartedTeeth.length){
+					finalTreat.push(["","","",proceData[idx]]);
+				}else if(arrShort==treatData.procedures.length){
+					finalTreat.push([treatData.chartedTeeth[idx],"","",""]);
+				}
+			}
+		}
+
+		doc.line(convertInch(0.5),convertInch(6.3),(width-convertInch(0.5)),convertInch(6.3));
+
+		//-----Treatments-----
+		doc.setFont("FiraMono-Bold");
+		doc.setFontSize(convertPts(19));
+		doc.setTextColor(93, 94, 238);
+		doc.text("Treatments", convertInch(0.5), convertInch(6.45));
+		doc.setTextColor(0);
+		doc.autoTable({
+			head: [["Selected Tooth/Root","Date of Treatment","Treatment Description","Procedures"]],
+			body: finalTreat,
+			theme: "plain",
+			styles: {
+				fontSize: 5,
+				font: "FiraMono-Regular",
+				lineColor: 255,
+				lineWidth: 0.1
+			},
+			columnStyles:{
+				valign: 'middle',
+				0:{
+					halign: 'center'
+				},
+				1:{
+					halign: 'center'
+				},
+				2:{
+					halign: 'center'
+				},
+				3:{
+					halign: 'center'
+				}
+			},
+			headStyles:{
+				valign: 'middle',
+				halign: 'center',
+				font: "FiraMono-Bold",
+				lineColor: 0,
+				lineWidth: 0.1
+			},
+			startY: convertInch(6.6),
+			startX: convertInch(0.5),
+		});
+
+
 
 		if(saveAs=="download"){
 			doc.save("Dental-Record_"+name+".pdf");

@@ -4,7 +4,8 @@ import Form from "react-bootstrap/Form";
 import Axios from "axios";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
+import Modal from 'react-bootstrap/Modal';
+
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
 import "../../../styles/dental-record.css";
@@ -30,6 +31,8 @@ const CreateDentalRecord = () => {
   };
 
   const getPatientIDnumber = async () => {
+
+    console.log(StringfyPatID,"askndjkalsndklsa11111")
     try {
       const response = await Axios.get(
         "http://localhost:3001/getPatientAppNumforDental",
@@ -83,13 +86,15 @@ const CreateDentalRecord = () => {
   console.log(checked, "values");
   const [dentalItem, setDentalItem] = useState([]);
   useEffect(() => {
-    checked.map((item) =>
+   checked.map((item) =>(
       item.chosen != null
-        ? item.chosen.map((proc) =>
-            setDentalItem((current) => [...current, proc])
+        ? item.chosen.map(
+            (proc) => (
+              setDentalItem((current) => [...current, proc])
+            )
           )
         : null
-    );
+    ))
   }, [checked]);
   const othersOptions = [
     { procedure: "ORAL PROPHYLAXIS", price: 1000 },
@@ -170,22 +175,20 @@ const CreateDentalRecord = () => {
     console.log(treatDesc);
     console.log(chartedTeeth);
     console.log(getFile);
-    Axios.post(
-      "http://localhost:3001/createDentalRecord",
-      {
-        patientIDNum: patientIDNumber,
-        appNum: StringfyAppnumber,
-        dateValue: startDate,
-        descValue: treatDesc,
-        imgValue: getFile[0],
-        procedures: checked,
-        chartedTeeth: chartedTeeth,
-      },
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
 
+
+    Axios.post("http://localhost:3001/createDentalRecord", {
+      patientIDNum: patientIDNumber,
+      appNum: StringfyAppnumber,
+      dateValue: startDate,
+      descValue: treatDesc,
+      imgValue: getFile[0],
+      procedures: checked,
+      chartedTeeth: chartedTeeth
+    }, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
@@ -439,39 +442,30 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  {chartedTeeth.map((item) => (
-                    <p>{item}</p>
-                  ))}
+                  {chartedTeeth.map((item) => 
+                  <p>{item}</p>
+                  )}
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>
-                    {JSON.stringify(startDate)
-                      .replace(/"/g, "")
-                      .substring(0, 10)}
-                  </p>
+                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0,10)}</p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
                   <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
                 </div>
-
+            
                 <div className="col-3">
                   <h6>Procedure/s</h6>
-                  {checked.map((item) =>
-                    item.chosen != null
-                      ? item.chosen.map((proc) => <p>{proc.procedure}</p>)
-                      : null
-                  )}
+                  {checked.map((item) => 
+                     item.chosen != null
+                     ? item.chosen.map((proc) => (
+                  <p>{proc.procedure}</p>
+                  )): null
+                   )}
                 </div>
                 <div class="dental-form-buttons">
-                  <Button
-                    type="submit"
-                    class="btn btn-primary"
-                    onClick={() => uploadDentalRecords()}
-                  >
-                    Create
-                  </Button>
+                  <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
                   <button class="btn btn-outline-secondary">Cancel</button>
                 </div>
               </div>
@@ -479,26 +473,19 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </form>
+      
+      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
-      <Modal
-        show={modalState == "show-modal"}
-        onHide={handleModalClose}
-        backdrop="static"
-        keyboard={false}
-      >
         <Modal.Header closeButton>
-          <Modal.Title>Dental Record</Modal.Title>
+          <Modal.Title>Dental Record Created!</Modal.Title>
         </Modal.Header>
         <Modal.Body closeButton>
           {/* <img src={successful} alt="success image" className='success-img' /> */}
-          <p className="modal-txt">You have created a dental record!</p>
+          <p className='modal-txt'>You have created a dental record!</p>
         </Modal.Body>
+
         <Modal.Footer>
-          <Button
-            variant="primary"
-            href={"/dentist"}
-            onClick={handleModalClose}
-          >
+          <Button variant="primary" href={"/dentist"} onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>
