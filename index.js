@@ -1698,12 +1698,11 @@ const uploadImg = multer({
   storage: ImgStorageDentRec,
 });
 
-app.post(
-  "/createDentalRecord",
+app.post("/createDentalRecord",
   uploadImg.single("imgValue"),
   async (req, res) => {
     console.log("dent records");
-    const patientIDNum = "PT#"+req.body.patientIDNum;
+    const patientIDNum = req.body.patientIDNum;
     const dateValue = req.body.dateValue;
     const slicedDate = dateValue.slice(0, 10); //removes unnecessary data
     const descValue = req.body.descValue;
@@ -1744,7 +1743,7 @@ app.post(
 );
 
 app.post("/createReceipt", async (req, res) => {
-  const PatientIDNumber = "PT"+req.body.patientIDnumber;
+  const PatientIDNumber = req.body.patientIDnumber;
   const appNumber = "#" + req.body.appNum;
   const dateValue = req.body.date;
   const slicedDate = dateValue.slice(0, 10);
