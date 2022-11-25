@@ -16,25 +16,31 @@ They are needed to run the program since they contain code that are required by 
 
 Next, it's time to get both the server and the client sides running.
 
-To activate the server side, type in:
+The command to activate both the server and the client is:
 ```bash
-  node index.js
-```
-and for the client side, the user must first go to the client folder and then type:
-```bash
-  npm start
+npm run develop
 ```
 
 
 ## PATIENT MODULE
 
-## Landing Page // insert landing page sc below text
-The first thing the user will encounter when the web app loads is the landing page. It contains a navigation bar at the top that has the **Login** button.
-It also has the **Make an Appointment** button at the left side of the page. Both will lead to the login page.
+## Landing Page 
+The first thing the user will encounter when the web app loads is the landing page. It contains a navigation bar at the top that has the "Login" button.
+It also has the "Make an Appointment" button at the left side of the page. Both will lead to the login page.
+
+![LandingPage](/readmeImages/landing-page.PNG)
 
 ## Login Page // insert login page sc
+This page has a card wherein the user can input their credentials. If the user forgets their password, they can click the "Forgot Password" button located right below the text field for the password.
+
+### Forgot Password // insert forgot password sc
+The user needs to input their email and upon clicking "Continue", an email will be sent to them that contains the link to reset their password.
+
+#### Reset Password // insert reset password sc
+After the user clicks the link in the email sent by the server, they will be redirected to this page. The user will then input the new password and re-enter it for confirmation before going back to login.
 
 ## Signup Pages // insert signup page scs
+These are comprised of 3 pages. The first page focuses more on the personal info. The second page focuses on the address. The third page focuses on the user's medical conditions that they may have. 
 
 ## Patient Menu: Dashboard // insert patient dashboard scs
 The upper right has a dropdown button after the name that shows options to either view the User Profile or Log Out. This page has a navigation bar to its left that contains the Patient Menu. There are also three (3) buttons near the middle of the page namely "Today", "Upcoming", and "Request Appointment".
@@ -119,7 +125,7 @@ In this page, there are three (3) tabs, namely: Overview, Edit Profile, and Chan
 ## Secretary Menu: Dashboard // insert secretary dashboard scs
 For the secretary's dashboard, it shows the number of appointments, total patients, and pending appointment requests. On the left of the page is the secretary menu, and on the top right is the dropdown button that shows the View Profile and the Log Out.
 There are also two (2) buttons near the middle of the page, namely "Today" and "Upcoming".
-By default, the dashboard shows the secretary's appointments for today. When the secretary presses "Upcoming", it will show the upcoming appointments.
+By default, the dashboard shows the dentist's appointments for today. When the secretary presses "Upcoming", it will show the upcoming appointments.
 
 ## Secretary Menu: Appointments // insert secretary appointment sc
 This page shows the appointment requests from patients.
@@ -157,4 +163,26 @@ In this page, there are three (3) tabs, namely: Overview, Edit Profile, and Chan
 
 ## ADMIN MODULE
 
+## Admin Menu: Dashboard // insert admin dashboard scs
+For the admin's dashboard, it shows the number of appointments, total patients, and pending appointment requests. On the left of the page is the admin menu, and on the top right is the dropdown button that shows the View Profile and the Log Out.
+There are also two (2) buttons near the middle of the page, namely "Today" and "Upcoming".
+By default, the dashboard shows the dentist's appointments for today. When the secretary presses "Upcoming", it will show the upcoming appointments.
 
+## Admin Menu: Clinic Hours // insert admin clinic hours
+This page gives the admin the ability to adjust the dental clinic's start and end times and on which days that it will be open and closed.
+
+## Admin Menu: Calendar // insert admin calendar scs
+The calendar in this page shows the dentist's upcoming appointment/s. The buttons on the top right can also change what the calendar will show, either a month, a week, or a day.
+The checkboxes at the top of the calendar can be toggled to filter the appointments that are pending, accepted, finished, and/or cancelled.
+
+## Admin Menu: Accounts // insert admin accounts scs
+In this page, there are three (3) buttons, namely: Active Accounts, Archived Accounts, and Add New Account. The default page shown is the Active Accounts page, which contains the accounts in the database that are active. The accounts can be either viewed or archived. The Archived Accounts page contains the accounts that have been archived. They can either be viewed or unarchived. The third button leads to a page that allows the admin to create a new account that can be assigned to be a patient, the dentist or the secretary through the Type of User dropdown button. 
+
+## Admin Menu: Patients
+This page shows all the widgets of the patients that are in the database, and each one of them has a "View Patient Records" button, allowing for more details to be shown.
+
+### Patient Records
+This page combines the patient information and dental records pages from the previous modules into one page. The four (4) buttons below the patient information are Dental Record, Transactions, E-Prescriptions, and Patient Information, also pages from the previous modules merged into one page. 
+
+## Admin Menu: My Profile //insert my profile scs
+In this page, there are three (3) tabs, namely: Overview, Edit Profile, and Change Password. Overview lets the user see their personal info, address info, and medical conditions that they've inputted from the sign up page. Edit profile and change password are self-explanatory.
