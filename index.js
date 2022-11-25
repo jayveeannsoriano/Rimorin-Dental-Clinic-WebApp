@@ -869,7 +869,23 @@ app.get("/getUserAppts", async (req, res) => {
   var url = require("url");
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
-  await AppDetails.find({ pName: query.pName })
+
+  var arr = [];
+  if(query.pend!=""){
+    arr.push(query.pend);
+  }
+  if(query.acc!=""){
+    arr.push(query.acc);
+  }
+  if(query.fin!=""){
+    arr.push(query.fin);
+  }
+  if(query.can!=""){
+    arr.push(query.can);
+  }
+
+  if(arr==0){
+    await AppDetails.find({ pName: query.pName})
     .then((data) => {
       var allEvents = [];
 
@@ -887,9 +903,11 @@ app.get("/getUserAppts", async (req, res) => {
           color = "#DC3545";
         }
         tempArr = {
-          title: data[key].dName + " at " + data[key].time,
-          start: data[key].date,
-          color: color,
+          dent: data[key].dName,
+          date: data[key].formattedDate,
+          time: data[key].time,
+          cons: data[key].consultation,
+          color: color
         };
         allEvents.push(tempArr);
       }
@@ -898,43 +916,64 @@ app.get("/getUserAppts", async (req, res) => {
     .catch((error) => {
       console.log("error: ", error);
     });
-});
-
-app.get("/getUserApptsOthers", async(req,res) => {
-  await AppDetails.find()
+  }else{
+  await AppDetails.find({ pName: query.pName, appStatus: {"$in":arr}})
     .then((data) => {
       var allEvents = [];
+
       for (var key in data) {
         let color = "";
-        if(data[key].appStatus==="Pending"){
-          color = "#FFC107"
-        }else if(data[key].appStatus==="Accepted"){
-          color = "#0DCAF0"
-        }else if(data[key].appStatus==="Finished"){
-          color = "#198754"
-        }else if(data[key].appStatus==="No Show"){
-          color = "#A9A9A9"
-        }else{
-          color = "#DC3545"
+        if (data[key].appStatus === "Pending") {
+          color = "#FFC107";
+        } else if (data[key].appStatus === "Accepted") {
+          color = "#0DCAF0";
+        } else if (data[key].appStatus === "Finished") {
+          color = "#198754";
+        } else if (data[key].appStatus === "No Show") {
+          color = "#A9A9A9";
+        } else {
+          color = "#DC3545";
         }
         tempArr = {
-          patient: data[key].pName,
+          dent: data[key].dName,
           date: data[key].formattedDate,
           time: data[key].time,
           cons: data[key].consultation,
           color: color
-        }
+        };
         allEvents.push(tempArr);
       }
       res.json(allEvents);
     })
     .catch((error) => {
-      console.log('error: ', error)
+      console.log("error: ", error);
     });
-  });
-  
-  app.get("/getUserApptsReqOthers", async(req,res) => {
-    await AppRequest.find()
+  }
+});
+
+
+
+app.get("/getUserApptsOthers", async(req,res) => {
+  var url = require('url');
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+
+  var arr = [];
+  if(query.pend!=""){
+    arr.push(query.pend);
+  }
+  if(query.acc!=""){
+    arr.push(query.acc);
+  }
+  if(query.fin!=""){
+    arr.push(query.fin);
+  }
+  if(query.can!=""){
+    arr.push(query.can);
+  }
+
+  if(arr.length==0){
+    await AppDetails.find()
       .then((data) => {
         var allEvents = [];
         for (var key in data) {
@@ -964,9 +1003,144 @@ app.get("/getUserApptsOthers", async(req,res) => {
       .catch((error) => {
         console.log('error: ', error)
       });
+    }else{
+      await AppDetails.find({appStatus: {"$in":arr}})
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if(data[key].appStatus==="Pending"){
+            color = "#FFC107"
+          }else if(data[key].appStatus==="Accepted"){
+            color = "#0DCAF0"
+          }else if(data[key].appStatus==="Finished"){
+            color = "#198754"
+          }else if(data[key].appStatus==="No Show"){
+            color = "#A9A9A9"
+          }else{
+            color = "#DC3545"
+          }
+          tempArr = {
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color
+          }
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    }
+  });
+  
+  app.get("/getUserApptsReqOthers", async(req,res) => {
+    var url = require('url');
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+  
+    var arr = [];
+    if(query.pend!=""){
+      arr.push(query.pend);
+    }
+    if(query.acc!=""){
+      arr.push(query.acc);
+    }
+    if(query.fin!=""){
+      arr.push(query.fin);
+    }
+    if(query.can!=""){
+      arr.push(query.can);
+    }
+
+    if(arr==0){
+      await AppRequest.find()
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if(data[key].appStatus==="Pending"){
+            color = "#FFC107"
+          }else if(data[key].appStatus==="Accepted"){
+            color = "#0DCAF0"
+          }else if(data[key].appStatus==="Finished"){
+            color = "#198754"
+          }else if(data[key].appStatus==="No Show"){
+            color = "#A9A9A9"
+          }else{
+            color = "#DC3545"
+          }
+          tempArr = {
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color
+          }
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    }else{
+      await AppRequest.find({appStatus: {"$in":arr}})
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if(data[key].appStatus==="Pending"){
+            color = "#FFC107"
+          }else if(data[key].appStatus==="Accepted"){
+            color = "#0DCAF0"
+          }else if(data[key].appStatus==="Finished"){
+            color = "#198754"
+          }else if(data[key].appStatus==="No Show"){
+            color = "#A9A9A9"
+          }else{
+            color = "#DC3545"
+          }
+          tempArr = {
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color
+          }
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log('error: ', error)
+      });
+    }
     });
 
     app.get("/getUserApptsHistOthers", async(req,res) => {
+      var url = require('url');
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+    
+      var arr = [];
+      if(query.pend!=""){
+        arr.push(query.pend);
+      }
+      if(query.acc!=""){
+        arr.push(query.acc);
+      }
+      if(query.fin!=""){
+        arr.push(query.fin);
+      }
+      if(query.can!=""){
+        arr.push(query.can);
+      }
+
+      if(arr==0){
       await AppHistory.find()
         .then((data) => {
           var allEvents = [];
@@ -998,13 +1172,63 @@ app.get("/getUserApptsOthers", async(req,res) => {
         .catch((error) => {
           console.log('error: ', error)
         });
+      }else{
+        await AppHistory.find({appStatus: {"$in":arr}})
+        .then((data) => {
+          var allEvents = [];
+          for (var key in data) {
+            let color = "";
+            if(data[key].appStatus==="Pending"){
+              color = "#FFC107"
+            }else if(data[key].appStatus==="Accepted"){
+              color = "#0DCAF0"
+            }else if(data[key].appStatus==="Finished"){
+              color = "#198754"
+            }else if(data[key].appStatus==="No Show"){
+              color = "#A9A9A9"
+            }else{
+              color = "#DC3545"
+            }
+            tempArr = {
+              dent: data[key].dName,
+              patient: data[key].pName,
+              date: data[key].formattedDate,
+              time: data[key].time,
+              cons: data[key].consultation,
+              color: color
+            }
+            allEvents.push(tempArr);
+          }
+          res.json(allEvents);
+        })
+        .catch((error) => {
+          console.log('error: ', error)
+        });
+      }
       });
 
     app.get("/getUserApptsDent", async(req,res) => {
       var url = require('url');
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
-      await AppDetails.find({dentistIDnumber:query.dentistIDnumber})
+
+      var arr = [];
+      if(query.pend!=""){
+        arr.push(query.pend);
+      }
+      if(query.acc!=""){
+        arr.push(query.acc);
+      }
+      if(query.fin!=""){
+        arr.push(query.fin);
+      }
+      if(query.can!=""){
+        arr.push(query.can);
+      }
+
+
+      if(arr==0){
+        await AppDetails.find({dentistIDnumber:query.dentistIDnumber})
         .then((data) => {
           var allEvents = [];
         
@@ -1036,45 +1260,129 @@ app.get("/getUserApptsOthers", async(req,res) => {
         .catch((error) => {
           console.log('error: ', error)
         });
+      }else{
+        await AppDetails.find({dentistIDnumber:query.dentistIDnumber, appStatus: {"$in":arr}})
+        .then((data) => {
+          var allEvents = [];
+        
+          for (var key in data) {
+            let color = "";
+            if(data[key].appStatus==="Pending"){
+              color = "#FFC107"
+            }else if(data[key].appStatus==="Accepted"){
+              color = "#0DCAF0"
+            }else if(data[key].appStatus==="Finished"){
+              color = "#198754"
+            }else if(data[key].appStatus==="No Show"){
+              color = "#A9A9A9"
+            }else{
+              color = "#DC3545"
+            }
+            tempArr = {
+              dent: data[key].dName,
+              patient: data[key].pName,
+              date: data[key].formattedDate,
+              time: data[key].time,
+              cons: data[key].consultation,
+              color: color
+            }
+            allEvents.push(tempArr);
+          }
+          res.json(allEvents);
+        })
+        .catch((error) => {
+          console.log('error: ', error)
+        });
+      }
       });
 
-        app.get("/getUserApptsHistDent", async(req,res) => {
-          var url = require('url');
-          var url_parts = url.parse(req.url, true);
-          var query = url_parts.query;
+      app.get("/getUserApptsHistDent", async(req,res) => {
+        var url = require('url');
+        var url_parts = url.parse(req.url, true);
+        var query = url_parts.query;
+
+        var arr = [];
+        if(query.pend!=""){
+          arr.push(query.pend);
+        }
+        if(query.acc!=""){
+          arr.push(query.acc);
+        }
+        if(query.fin!=""){
+          arr.push(query.fin);
+        }
+        if(query.can!=""){
+          arr.push(query.can);
+        }
+
+        if(arr==0){
           await AppHistory.find({dentistIDnumber:query.dentistIDnumber})
-            .then((data) => {
-              var allEvents = [];
-            
-              for (var key in data) {
-                let color = "";
-                if(data[key].appStatus==="Pending"){
-                  color = "#FFC107"
-                }else if(data[key].appStatus==="Accepted"){
-                  color = "#0DCAF0"
-                }else if(data[key].appStatus==="Finished"){
-                  color = "#198754"
-                }else if(data[key].appStatus==="No Show"){
-                  color = "#A9A9A9"
-                }else{
-                  color = "#DC3545"
-                }
-                tempArr = {
-                  dent: data[key].dName,
-                  patient: data[key].pName,
-                  date: data[key].formattedDate,
-                  time: data[key].time,
-                  cons: data[key].consultation,
-                  color: color
-                }
-                allEvents.push(tempArr);
+          .then((data) => {
+            var allEvents = [];
+          
+            for (var key in data) {
+              let color = "";
+              if(data[key].appStatus==="Pending"){
+                color = "#FFC107"
+              }else if(data[key].appStatus==="Accepted"){
+                color = "#0DCAF0"
+              }else if(data[key].appStatus==="Finished"){
+                color = "#198754"
+              }else if(data[key].appStatus==="No Show"){
+                color = "#A9A9A9"
+              }else{
+                color = "#DC3545"
               }
-              res.json(allEvents);
-            })
-            .catch((error) => {
-              console.log('error: ', error)
-            });
+              tempArr = {
+                dent: data[key].dName,
+                patient: data[key].pName,
+                date: data[key].formattedDate,
+                time: data[key].time,
+                cons: data[key].consultation,
+                color: color
+              }
+              allEvents.push(tempArr);
+            }
+            res.json(allEvents);
+          })
+          .catch((error) => {
+            console.log('error: ', error)
           });
+        }else{
+          await AppHistory.find({dentistIDnumber:query.dentistIDnumber, appStatus: {"$in":arr}})
+          .then((data) => {
+            var allEvents = [];
+          
+            for (var key in data) {
+              let color = "";
+              if(data[key].appStatus==="Pending"){
+                color = "#FFC107"
+              }else if(data[key].appStatus==="Accepted"){
+                color = "#0DCAF0"
+              }else if(data[key].appStatus==="Finished"){
+                color = "#198754"
+              }else if(data[key].appStatus==="No Show"){
+                color = "#A9A9A9"
+              }else{
+                color = "#DC3545"
+              }
+              tempArr = {
+                dent: data[key].dName,
+                patient: data[key].pName,
+                date: data[key].formattedDate,
+                time: data[key].time,
+                cons: data[key].consultation,
+                color: color
+              }
+              allEvents.push(tempArr);
+            }
+            res.json(allEvents);
+          })
+          .catch((error) => {
+            console.log('error: ', error)
+          });
+        }
+        });
 
 
     
