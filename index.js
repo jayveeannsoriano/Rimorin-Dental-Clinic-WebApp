@@ -801,11 +801,24 @@ app.get("/getUserUsingEmail", async (req, res) => {
     });
 });
 
-app.get("/getPatientIDforDental", async (req, res) => {
+app.get("/getPatientAppNumforDental", async (req, res) => {
   const appNumber = "#" + req.query.appNumber;
   console.log(appNumber);
 
   await AppDetails.find({ appNum: appNumber })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getPatientIDforDental", async (req, res) => {
+  const patientIDnumber = "PT#" + req.query.patientIDnumber;
+  console.log((patientIDnumber),'asdasdasd')
+
+  await AppDetails.find({ patientIDnumber: patientIDnumber })
     .then((data) => {
       res.json(data);
     })
@@ -1382,7 +1395,7 @@ app.post(
   uploadImg.single("imgValue"),
   async (req, res) => {
     console.log("dent records");
-    const patientIDNum = req.body.patientIDNum;
+    const patientIDNum = "PT#"+req.body.patientIDNum;
     const dateValue = req.body.dateValue;
     const slicedDate = dateValue.slice(0, 10); //removes unnecessary data
     const descValue = req.body.descValue;
@@ -1423,7 +1436,7 @@ app.post(
 );
 
 app.post("/createReceipt", async (req, res) => {
-  const PatientIDNumber = req.body.patientIDnumber;
+  const PatientIDNumber = "PT"+req.body.patientIDnumber;
   const appNumber = "#" + req.body.appNum;
   const dateValue = req.body.date;
   const slicedDate = dateValue.slice(0, 10);
