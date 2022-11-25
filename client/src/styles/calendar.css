@@ -151,9 +151,11 @@
     font-family: var(--body-font);
     font-size: 25px;
     font-weight: bolder;
+}
 
-    
-
+.fc-today-button.fc-button.fc-button-primary.fc-button-active{
+    background-color: #5d5fef;
+    border-color: #2c3e5000;
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {

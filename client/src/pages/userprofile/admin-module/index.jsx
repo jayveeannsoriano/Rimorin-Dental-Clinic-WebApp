@@ -301,17 +301,19 @@ const AdminUserProfile = () => {
                                                         <Form.Check
                                                             inline
                                                             label="Male"
+                                                            value="Male"
                                                             name="group1"
                                                             type="radio"
-                                                            checked={item.gender === 'Male'}
+                                                            defaultValue={item.gender === 'Male'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         <Form.Check
                                                             inline
                                                             label="Female"
+                                                            value="Female"
                                                             name="group1"
                                                             type="radio"
-                                                            checked={item.gender === 'Female'}
+                                                            defaultValue={item.gender === 'Female'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         </div>
