@@ -55,7 +55,6 @@ const accountspage = () => {
 
                   <div className="tab-pane fade" id="archived-accounts">
                     <h5 className="card-title">ARCHIVED ACCOUNTS</h5>
-                    {/* insert datatable for archived accounts */}
                     <AdminArchiveTable />
                   </div>
                 </div>

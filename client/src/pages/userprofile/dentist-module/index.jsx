@@ -321,7 +321,6 @@ const DentistUserProfile = () => {
                                                             name="group1"
                                                             type="radio"
                                                             defaultValue={item.gender === 'Male'}
-                                                            checked={item.gender === 'Male'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         <Form.Check

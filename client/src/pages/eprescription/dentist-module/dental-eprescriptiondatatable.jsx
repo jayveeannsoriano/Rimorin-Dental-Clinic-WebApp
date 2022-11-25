@@ -59,10 +59,6 @@ const DentistEPrescriptionDataTable = () => {
             selector: (row) => row.dentistName,
         },
         {
-            name: 'Description',
-            selector: (row) => row.presInstruction,
-        },
-        {
             name: "Action",
             selector: (row) => <div className="action-buttons">
                 <ExportFile data={["download","prescription",row,patientList]}/>

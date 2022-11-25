@@ -71,11 +71,9 @@ const AdminTable = () => {
         {
             name: "Action",
             selector: row => <div className="action-buttons" >
-                <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
                 {/* <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Archive</Button> */}
+                <ViewAccount/>
                 <ArchiveAccount/>
-             
-                
             </div>
         },
     ];
