@@ -396,7 +396,7 @@ const createEprescription = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onSubmit={() => {
+                                                        onClcik={() => {
                                                             createEPrescription();
                                                             setModalState("show-modal");
                                                             navigate(-1);
