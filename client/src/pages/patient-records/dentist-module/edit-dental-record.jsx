@@ -18,101 +18,134 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const EditDentalRecord = () => {
 
-  const location = useLocation()
-  const paramsID = new URLSearchParams(location.search)
-  const getPatientAppNum = paramsID.get('appNum');
-  const StringfyAppnumber = useMemo(() => JSON.stringify(getPatientAppNum).replace(/"/g, ""));
-  console.log(StringfyAppnumber, 'edit dental record');
+  const location = useLocation();
+  const paramsID = new URLSearchParams(location.search);
+  const getPatientAppNum = paramsID.get("appNum");
+  const StringfyAppnumber = useMemo(() =>
+    JSON.stringify(getPatientAppNum).replace(/"/g, "")
+  );
+  console.log(StringfyAppnumber, "create dental record");
   const [patientIDNumber, setPatientIDNumber] = useState([]);
   console.log(patientIDNumber);
 
   const [modalState, setModalState] = useState(false);
   const handleModalClose = () => {
-    setModalState(false)
+    setModalState(false);
   };
 
   const getPatientIDnumber = async () => {
-    try {
 
-      const response = await Axios.get("http://localhost:3001/getPatientIDforDental", {
-        params: {
-          appNumber: StringfyAppnumber
+    try {
+      const response = await Axios.get(
+        "http://localhost:3001/getPatientAppNumforDental",
+        {
+          params: {
+            appNumber: StringfyAppnumber,
+          },
         }
-      });
-      console.log(response.data)
-      setPatientIDNumber(response.data[0].patientIDnumber)
+      );
+      console.log(response.data);
+      setPatientIDNumber(response.data[0].patientIDnumber);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
-    getPatientIDnumber()
+    getPatientIDnumber();
   }, []);
-
 
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
-  //procedure checkbox options 
+  //procedure checkbox options
   const [checked, setChecked] = useState([
     {
-      option: 'Others',
+      option: "Others",
       chosen: [],
     },
     {
-      option: 'Cosmetic',
+      option: "Cosmetic",
       chosen: [],
     },
     {
-      option: 'Cementation',
+      option: "Cementation",
       chosen: [],
     },
     {
-      option: 'Endodontic',
+      option: "Endodontic",
       chosen: [],
     },
     {
-      option: 'Prosthetic',
+      option: "Prosthetic",
       chosen: [],
     },
     {
-      option: 'Surgical',
+      option: "Surgical",
       chosen: [],
     },
   ]);
-  console.log(checked, 'values');
-
+  console.log(checked, "values");
   const [dentalItem, setDentalItem] = useState([]);
-
   useEffect(() => {
-   checked.map((item) =>
+    checked.map((item) => (
       item.chosen != null
         ? item.chosen.map(
-            (proc) => (
-              setDentalItem((current) => [...current, proc])
-            )
+          (proc) => (
+            setDentalItem((current) => [...current, proc])
           )
+        )
         : null
-    );
+    ))
   }, [checked]);
-
-  const othersOptions = [{ procedure: 'ORAL PROPHYLAXIS', price: 1000 }, { procedure: 'TOOTH RESTORATION', price: 1200 }, { procedure: 'TOOTH EXTRACTION', price: 800 }, { procedure: 'DEEP SCALING', price: 10200 }, { procedure: 'PTS AND FISSURES SEALANT', price: 700 }, { procedure: 'FLOURIDE TREATMENT', price: 5500 }, { procedure: 'INTERMEDIATE RESTORATION', price: 7000 }, { procedure: 'ORTHODONTICS', price: 48000 }];
-  const cosmeticOptions = [{ procedure: 'DIRECT COMPOSITE VENEER', price: 3000 }, { procedure: 'DIRECT COMPOSITE CLASS IV', price: 2000 }, { procedure: 'DIASTEMA CLOSURE (BONDING)', price: 1000 }, { procedure: 'CERAMIC/PORCELAIN VENEER', price: 20000 }];
-  const cementationOptions = [{ procedure: 'GLASS IONOMER', price: 11000 }, { procedure: 'DIRECT COMPOSITE CLASS IV', price: 2000 }, { procedure: 'DIASTEMA CLOSURE (BONDING)', price: 1000 }, { procedure: 'CERAMIC/PORCELAIN VENEER', price: 20000 }];
-  const endodonticOptions = [{ procedure: 'ROOT CANAL THERAPY', price: 4400 }, { procedure: 'PULPOTOMY', price: 5300 }, { procedure: 'POST AND CORE', price: 6200 }];
-  const prostheticOptions = [{ procedure: 'DENTAL REPAIR', price: 12000 }, { procedure: 'DENTURE RELINE (LABORATORY MADE)', price: 35000 }, { procedure: 'DENTURE RELINE (DIRECT)', price: 30000 }, { procedure: 'SOFT RELINE', price: 16000 }, { procedure: 'DENTURE REPLACEMENT', price: 15000 }];
-  const surgicalOptions = [{ procedure: 'ODONTECTOMY', price: 5000 }, { procedure: 'OPERCULECTOMY', price: 5000 }, { procedure: 'FRENECTOMY', price: 5200 }, { procedure: 'ALVEOLECTOMY', price: 8300 }, { procedure: 'GINGIVECTOMY OR CONTOURING', price: 5000 }, { procedure: 'APICOECTOMY', price: 8500 }];
-
-
+  const othersOptions = [
+    { procedure: "ORAL PROPHYLAXIS", price: 1000 },
+    { procedure: "TOOTH RESTORATION", price: 1200 },
+    { procedure: "TOOTH EXTRACTION", price: 800 },
+    { procedure: "DEEP SCALING", price: 10200 },
+    { procedure: "PTS AND FISSURES SEALANT", price: 700 },
+    { procedure: "FLOURIDE TREATMENT", price: 5500 },
+    { procedure: "INTERMEDIATE RESTORATION", price: 7000 },
+    { procedure: "ORTHODONTICS", price: 48000 },
+  ];
+  const cosmeticOptions = [
+    { procedure: "DIRECT COMPOSITE VENEER", price: 3000 },
+    { procedure: "DIRECT COMPOSITE CLASS IV", price: 2000 },
+    { procedure: "DIASTEMA CLOSURE (BONDING)", price: 1000 },
+    { procedure: "CERAMIC/PORCELAIN VENEER", price: 20000 },
+  ];
+  const cementationOptions = [
+    { procedure: "GLASS IONOMER", price: 11000 },
+    { procedure: "DIRECT COMPOSITE CLASS IV", price: 2000 },
+    { procedure: "DIASTEMA CLOSURE (BONDING)", price: 1000 },
+    { procedure: "CERAMIC/PORCELAIN VENEER", price: 20000 },
+  ];
+  const endodonticOptions = [
+    { procedure: "ROOT CANAL THERAPY", price: 4400 },
+    { procedure: "PULPOTOMY", price: 5300 },
+    { procedure: "POST AND CORE", price: 6200 },
+  ];
+  const prostheticOptions = [
+    { procedure: "DENTAL REPAIR", price: 12000 },
+    { procedure: "DENTURE RELINE (LABORATORY MADE)", price: 35000 },
+    { procedure: "DENTURE RELINE (DIRECT)", price: 30000 },
+    { procedure: "SOFT RELINE", price: 16000 },
+    { procedure: "DENTURE REPLACEMENT", price: 15000 },
+  ];
+  const surgicalOptions = [
+    { procedure: "ODONTECTOMY", price: 5000 },
+    { procedure: "OPERCULECTOMY", price: 5000 },
+    { procedure: "FRENECTOMY", price: 5200 },
+    { procedure: "ALVEOLECTOMY", price: 8300 },
+    { procedure: "GINGIVECTOMY OR CONTOURING", price: 5000 },
+    { procedure: "APICOECTOMY", price: 8500 },
+  ];
   //const [checked, setChecked] = useState([{ option: "Others", chosen: [] }]);
-
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
     console.log("value is:", value[0].procedure);
     var tempArr = { procedure: value[0].procedure, price: value[0].price };
-
     setChecked((current) =>
       current.map((obj) => {
         if (obj.option === input) {
@@ -129,20 +162,16 @@ const EditDentalRecord = () => {
       })
     );
   };
-
   const [treatDesc, getTreatDesc] = useState("");
   const [CheckboxIndex, getBoxIndex] = useState([]);
-
-
   //drag n drop
   const [getFile, setGetFile] = useState("");
   // console.log(getFile, "this is the img value");
   const onFileChange = (files) => {
     setGetFile(files);
-  }
-
+  };
   const uploadDentalRecords = () => {
-    console.log(patientIDNumber)
+    console.log(patientIDNumber);
     console.log(StringfyAppnumber);
     console.log(startDate);
     console.log(treatDesc);
@@ -161,47 +190,35 @@ const EditDentalRecord = () => {
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    
+
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
       date: startDate,
-    })
+    });
     console.log("Receipt Created with ", patientIDNumber, StringfyAppnumber);
-
     // setModalState('show-modal');
     handleShow();
-  }
-
+  };
   const handleShow = () => {
-    setModalState('show-modal');
-  }
-  const handleClickTeeth = event => {
-
-    event.currentTarget.classList.toggle('unmarked');
-    event.currentTarget.classList.toggle('marked');
-
+    setModalState("show-modal");
+  };
+  const handleClickTeeth = (event) => {
+    event.currentTarget.classList.toggle("unmarked");
+    event.currentTarget.classList.toggle("marked");
     var chosenTeeth = event.currentTarget.id;
     // console.log(chosenTeeth);
-
     var index = chartedTeeth.indexOf(chosenTeeth);
-
     // console.log(index);
-
     if (index > -1) {
       chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-      setchartedTeeth(chartedTeeth)
-      console.log(chartedTeeth)
-
+      setchartedTeeth(chartedTeeth);
+      console.log(chartedTeeth);
     } else {
-      setchartedTeeth(chartedTeeth => [...chartedTeeth, chosenTeeth]);
-      console.log(chartedTeeth)
+      setchartedTeeth((chartedTeeth) => [...chartedTeeth, chosenTeeth]);
+      console.log(chartedTeeth);
     }
-
-
-  }
-
-
+  };
   const navigate = useNavigate();
   return (
     <>
