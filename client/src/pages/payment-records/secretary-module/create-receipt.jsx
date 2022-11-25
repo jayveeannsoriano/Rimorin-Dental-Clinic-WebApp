@@ -13,6 +13,8 @@ import DropFileInput from "../../../components/dragNdrop";
 import Modal from "react-bootstrap/Modal";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
+import success from '../../../assets/img/check.png';
+import warning from '../../../assets/img/warning.png';
 
 const createReceipt = () => {
   const location = useLocation();
@@ -47,14 +49,14 @@ const createReceipt = () => {
       setPatientUser(response.data[0].fname + " " + response.data[0].lname);
       setPatientAddress(
         response.data[0].house +
-          " ," +
-          response.data[0].brgy +
-          " ," +
-          response.data[0].municipality +
-          " ," +
-          response.data[0].province +
-          " ," +
-          response.data[0].country
+        " ," +
+        response.data[0].brgy +
+        " ," +
+        response.data[0].municipality +
+        " ," +
+        response.data[0].province +
+        " ," +
+        response.data[0].country
       );
     } catch (error) {
       console.log(error);
@@ -64,7 +66,7 @@ const createReceipt = () => {
     getUser();
   }, []);
 
-  const [getDocName,setDocName] = useState([]);
+  const [getDocName, setDocName] = useState([]);
   const [getDateValue, setDateValue] = useState([]);
   const [getTimeValue, setTimeValue] = useState([]);
   const [getConValue, setConValue] = useState([]);
@@ -184,11 +186,11 @@ const createReceipt = () => {
     const price = recordProcedures.map((item) =>
       item.chosen != null
         ? item.chosen.map(
-            (proc) => (
-              setPrice((current) => [...current, parseInt(proc.price)]),
-              setDentalItem((current) => [...current, proc])
-            )
+          (proc) => (
+            setPrice((current) => [...current, parseInt(proc.price)]),
+            setDentalItem((current) => [...current, proc])
           )
+        )
         : null
     );
   }, [recordProcedures]);
@@ -246,24 +248,26 @@ const createReceipt = () => {
       }
     );
 
-     Axios.post(
+    Axios.post(
       "http://localhost:3001/moveToAppointmentHistoryAsFinished",
       {
         patientIDnumber: StringfyIDNumber,
         appNum: StringfyAppNumber,
         pName: patientUser,
         dName: getDocName,
-        formattedDate:formattedDate,
+        formattedDate: formattedDate,
         dateVal: getDateValue,
         timeVal: getTimeValue,
         conValue: getConValue,
       }
     );
+
+    // handleShow();
   };
 
-  // const handleShow = () => {
-  //   setModalState('show-modal')
-  // }
+  const handleShow = () => {
+    setModalState('show-modal')
+  }
 
   return (
     <>
@@ -378,7 +382,7 @@ const createReceipt = () => {
                             name="group1"
                             type="radio"
                             value={0}
-                            onChange={(e) => {setPWDSeniorDiscount(e.target.value)}}
+                            onChange={(e) => { setPWDSeniorDiscount(e.target.value) }}
                           />
                         </div>
                       </div>
@@ -577,6 +581,7 @@ const createReceipt = () => {
                         onClick={() => {
                           createUserReceipt();
                           setModalState("show-modal");
+                          navigate(-1);
                         }}
                       >
                         Create Receipt
@@ -603,12 +608,12 @@ const createReceipt = () => {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Receipt Created</Modal.Title>
         </Modal.Header>
-
         <Modal.Body closeButton>
-          <p className="modal-txt">You have created a receipt!</p>
+          <img src={success} alt="success image" className='success-img' />
+          <p className='modal-txt-cn'>You have created a receipt!</p>
         </Modal.Body>
 
         <Modal.Footer>

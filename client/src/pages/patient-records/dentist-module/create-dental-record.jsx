@@ -5,6 +5,7 @@ import Axios from 'axios';
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
+import success from '../../../assets/img/check.png';
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
@@ -53,7 +54,7 @@ const CreateDentalRecord = () => {
 
   const getPatientIDnumber = async () => {
 
-    console.log(StringfyPatID,"askndjkalsndklsa11111")
+    console.log(StringfyPatID, "askndjkalsndklsa11111")
     try {
 
       const response = await Axios.get("http://localhost:3001/getPatientIDforDental", {
@@ -107,13 +108,13 @@ const CreateDentalRecord = () => {
   const [dentalItem, setDentalItem] = useState([]);
 
   useEffect(() => {
-   checked.map((item) =>
+    checked.map((item) =>
       item.chosen != null
         ? item.chosen.map(
-            (proc) => (
-              setDentalItem((current) => [...current, proc])
-            )
+          (proc) => (
+            setDentalItem((current) => [...current, proc])
           )
+        )
         : null
     );
   }, [checked]);
@@ -182,7 +183,7 @@ const CreateDentalRecord = () => {
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    
+
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
@@ -449,30 +450,30 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  {chartedTeeth.map((item) => 
-                  <p>{item}</p>
+                  {chartedTeeth.map((item) =>
+                    <p>{item}</p>
                   )}
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0,10)}</p>
+                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0, 10)}</p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
                   <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
                 </div>
-            
+
                 <div className="col-3">
                   <h6>Procedure/s</h6>
-                  {checked.map((item) => 
-                     item.chosen != null
-                     ? item.chosen.map((proc) => (
-                  <p>{proc.procedure}</p>
-                  )): null
-                   )}
+                  {checked.map((item) =>
+                    item.chosen != null
+                      ? item.chosen.map((proc) => (
+                        <p>{proc.procedure}</p>
+                      )) : null
+                  )}
                 </div>
                 <div class="dental-form-buttons">
-                  <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
+                  <Button type="submit" class="btn btn-primary" onClick={() => {uploadDentalRecords(); navigate(-1)}}>Create</Button>
                   <button class="btn btn-outline-secondary">Cancel</button>
                 </div>
               </div>
@@ -480,23 +481,23 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </form>
-      
+
       <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
         <Modal.Header closeButton>
-          <Modal.Title>Dental Record</Modal.Title>
+          <Modal.Title>Dental Record Created!</Modal.Title>
         </Modal.Header>
 
         <Modal.Body closeButton>
-          {/* <img src={successful} alt="success image" className='success-img' /> */}
+          <img src={success} alt="success image" className='success-img' />
           <p className='modal-txt'>You have created a dental record!</p>
         </Modal.Body>
 
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="primary" href={"/dentist"} onClick={handleModalClose}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
 
     </>
