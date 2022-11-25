@@ -52,7 +52,7 @@ const AdminArchiveTable = () => {
             selector: row => <div className="action-buttons" >
                 <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
                 {/* <Button className="cancel-button" onClick={() => {ArchiveUser(row._id)}}><i class="bi bi-archive"></i> Unarchive</Button> */}
-                <UnarchiveAccount/>
+                <UnarchiveAccount ObjectID = {row._id}/>
             </div>
         },
     ];
