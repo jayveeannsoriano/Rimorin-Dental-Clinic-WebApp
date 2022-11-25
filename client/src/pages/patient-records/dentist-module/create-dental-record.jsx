@@ -32,7 +32,7 @@ const CreateDentalRecord = () => {
 
   const getPatientIDnumber = async () => {
 
-    console.log(StringfyPatID,"askndjkalsndklsa11111")
+    console.log(StringfyPatID, "askndjkalsndklsa11111")
     try {
       const response = await Axios.get(
         "http://localhost:3001/getPatientAppNumforDental",
@@ -86,13 +86,13 @@ const CreateDentalRecord = () => {
   console.log(checked, "values");
   const [dentalItem, setDentalItem] = useState([]);
   useEffect(() => {
-   checked.map((item) =>(
+    checked.map((item) => (
       item.chosen != null
         ? item.chosen.map(
-            (proc) => (
-              setDentalItem((current) => [...current, proc])
-            )
+          (proc) => (
+            setDentalItem((current) => [...current, proc])
           )
+        )
         : null
     ))
   }, [checked]);
@@ -188,7 +188,7 @@ const CreateDentalRecord = () => {
     }, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    
+
     Axios.post("http://localhost:3001/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
@@ -442,27 +442,27 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  {chartedTeeth.map((item) => 
-                  <p>{item}</p>
+                  {chartedTeeth.map((item) =>
+                    <p>{item}</p>
                   )}
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0,10)}</p>
+                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0, 10)}</p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
                   <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
                 </div>
-            
+
                 <div className="col-3">
                   <h6>Procedure/s</h6>
-                  {checked.map((item) => 
-                     item.chosen != null
-                     ? item.chosen.map((proc) => (
-                  <p>{proc.procedure}</p>
-                  )): null
-                   )}
+                  {checked.map((item) =>
+                    item.chosen != null
+                      ? item.chosen.map((proc) => (
+                        <p>{proc.procedure}</p>
+                      )) : null
+                  )}
                 </div>
                 <div class="dental-form-buttons">
                   <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
@@ -473,7 +473,7 @@ const CreateDentalRecord = () => {
           </div>
         </div>
       </form>
-      
+
       <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
         <Modal.Header closeButton>
