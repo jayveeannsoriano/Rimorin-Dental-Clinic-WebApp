@@ -123,14 +123,6 @@ export default function UpdateDentalRecord() {
 
                                 {/* Record Table*/}
                                 <div class="row">
-                                    <div className="add-trtmnt">
-                                        <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
-                                            <button className="btn btn-primary" type="submit" >
-                                                <i class="bi bi-download"></i>
-                                                Add Treatment
-                                            </button>
-                                        </a>
-                                    </div>
                                     {appointment.length == 0 ? <div className="card patient-info">
                                         <div className="card-body pt-3">
                                             {/* <h5 className="card-title">Dental Records</h5>

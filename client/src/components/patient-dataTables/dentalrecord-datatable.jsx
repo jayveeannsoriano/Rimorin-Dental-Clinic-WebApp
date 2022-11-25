@@ -87,7 +87,6 @@ const DentalRecordDataTable = (response, patientIDNum) => {
               >
                 <i class="bi bi-eye-fill"></i>View
               </Button>
-              <ExportFile />
             </>
           )}
         </div>

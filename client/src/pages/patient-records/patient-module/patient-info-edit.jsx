@@ -23,7 +23,7 @@ const PatientInfoEdit = () => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
-  const Listconditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
+  const conditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
 
   // const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState('');
@@ -513,14 +513,14 @@ const PatientInfoEdit = () => {
                         {/*{userData.map((item, index) => {*/}
                             <div className="slots2">
                               <Form>
-                                  {Listconditions.map((item2, index) => (
+                              {conditions.map((item, index) => (
                                     <div key={index} className="conditions-row">
                                       <Form.Check
                                         input
-                                        value={[item2]}
-                                        id={[item2]}
+                                        value={[item]}
+                                        id={[item]}
                                         type="checkbox"
-                                        label={`${item2}`}
+                                        label={`${item}`}
                                         onChange={(e) => setCondValue(e.target.value)}
                                         required
                                       />

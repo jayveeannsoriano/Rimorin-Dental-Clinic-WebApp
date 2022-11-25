@@ -469,7 +469,7 @@ h6 {
   left: 0;
   bottom: 0;
   width: 300px;
-  z-index: 996;
+  z-index: 998;
   transition: all 0.3s;
   padding: 20px;
   overflow-y: auto;
