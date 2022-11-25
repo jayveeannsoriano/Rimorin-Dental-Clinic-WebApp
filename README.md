@@ -28,41 +28,72 @@ npm run develop
 The first thing the user will encounter when the web app loads is the landing page. It contains a navigation bar at the top that has the "Login" button.
 It also has the "Make an Appointment" button at the left side of the page. Both will lead to the login page.
 
-![LandingPage](/readmeImages/landing-page.PNG)
+![Landing Page](/readmeImages/landing-page.PNG)
 
-## Login Page // insert login page sc
+## Login Page
 This page has a card wherein the user can input their credentials. If the user forgets their password, they can click the "Forgot Password" button located right below the text field for the password.
 
-### Forgot Password // insert forgot password sc
+![Login Page](/readmeImages/login-page.PNG)
+
+### Forgot Password
 The user needs to input their email and upon clicking "Continue", an email will be sent to them that contains the link to reset their password.
+
+![Forgot Password](/readmeImages/forgot-password.PNG)
 
 #### Reset Password // insert reset password sc
 After the user clicks the link in the email sent by the server, they will be redirected to this page. The user will then input the new password and re-enter it for confirmation before going back to login.
 
-## Signup Pages // insert signup page scs
+![Reset Password](/readmeImages/reset-password.PNG)
+
+## Signup Pages 
 These are comprised of 3 pages. The first page focuses more on the personal info. The second page focuses on the address. The third page focuses on the user's medical conditions that they may have. 
 
-## Patient Menu: Dashboard // insert patient dashboard scs
+![Sign up Page 1](/readmeImages/signup-page-1.PNG)
+![Sign up Page 2](/readmeImages/signup-page-2.PNG)
+![Sign up Page 3](/readmeImages/signup-page-3.PNG)
+
+## Patient Menu: Dashboard 
 The upper right has a dropdown button after the name that shows options to either view the User Profile or Log Out. This page has a navigation bar to its left that contains the Patient Menu. There are also three (3) buttons near the middle of the page namely "Today", "Upcoming", and "Request Appointment".
 By default, the dashboard shows the user their appointments for today. When the user presses "Upcoming", they will see their future appointments. The "Request Appointment" button takes the user to a new page wherein they can request for an appointment.
 
-### Request Appointment // insert request appointment scs
+![Patient Dashboard](/readmeImages/patient-dashboard.PNG)
+![Patient Dashboard Upcoming](/readmeImages/patient-dashboard-upcoming-appts.PNG)
+
+### Request Appointment
 The user is then given the chance to select the appointment's date and time of their choice. If there is already an appointment taking place at a certain time/s on that day, the time selection will mark those as grayed out.
 The user will then provide a reason for consultation in the text box below, right before hitting "Next". And then, the next page contains notes for the patient, and the third page will show that your request has been sent in for approval.
 
-## Patient Menu: Appointments // insert patient appointment sc
+![Request Appointment Page 1.1](/readmeImages/request-appointment-page-1_1.PNG)
+![Request Appointment Page 1.2](/readmeImages/request-appointment-page-1_2.PNG)
+![Request Appointment Page 2](/readmeImages/request-appointment-page-2.PNG)
+![Request Appointment Page 3](/readmeImages/request-appointment-page-3.PNG)
+
+## Patient Menu: Appointments
 This page contains the user's ongoing appointments, follow-up appointments, and appointment history.
 
-### Request Appointment // insert request appointment scs
+![Appointments](/readmeImages/patient-appointments-tab.PNG)
+
+### Request Appointment
 The user is then given the chance to select the appointment's date and time of their choice. If there is already an appointment taking place at a certain time/s on that day, the time selection will mark those as grayed out.
 The user will then provide a reason for consultation in the text box below, right before hitting "Next". And then, the next page contains notes for the patient, and the third page will show that your request has been sent in for approval.
 
-## Patient Menu: Calendar // insert calendar scs
+![Request Appointment Page 1.1](/readmeImages/request-appointment-page-1_1.PNG)
+![Request Appointment Page 1.2](/readmeImages/request-appointment-page-1_2.PNG)
+![Request Appointment Page 2](/readmeImages/request-appointment-page-2.PNG)
+![Request Appointment Page 3](/readmeImages/request-appointment-page-3.PNG)
+
+## Patient Menu: Calendar
 The calendar in this page shows the user their upcoming appointment/s. The buttons on the top right can also change what the calendar will show, either a month, a week, or a day.
 The checkboxes at the top of the calendar can be toggled to filter the appointments that are pending, accepted, finished, and/or cancelled.
 
-## Patient Menu: Patient Records: Patient Information // insert patient info sc
+![Calendar 1.1](/readmeImages/patient-calendar-tab-1_1.PNG)
+![Calendar 1.2](/readmeImages/patient-calendar-tab-1_2.PNG)
+![Calendar 1.3](/readmeImages/patient-calendar-tab-1_3.PNG)
+
+## Patient Menu: Patient Records: Patient Information 
 This page features a widget that shows the user their phone number and age, and the card that shows the patient's personal info, address info, and medical conditions.
+
+
 
 ## Patient Menu: Patient Records: Dental Records // insert dental records sc
 The main feature of this page is the dental chart and it can be exported and/or printed, highlighting the tooth/teeth and root/s that have been worked on during an appointment.
