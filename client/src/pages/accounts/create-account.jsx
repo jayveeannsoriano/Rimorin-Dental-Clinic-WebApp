@@ -63,6 +63,20 @@ const CreateAccount = () => {
     //     setGetFile(files);
     // }
 
+    function validatePassword() {
+        let newPassword = document.getElementById("newPassword");
+        let renewPassword = document.getElementById("renewPassword");
+        if (!(newPassword == null || newPassword.value == '' || renewPassword == null || renewPassword.value == '')) {
+            if (newPassword.value != renewPassword.value) {
+                renewPassword.setCustomValidity("Passwords Does Not Match");
+            } else {
+                renewPassword.setCustomValidity('');
+                document.getElementById('passwordForm').nextStep();
+                
+            }
+        }
+      }
+
     return (
         <>
             <nav>
@@ -77,11 +91,13 @@ const CreateAccount = () => {
                 </ol>
             </nav>
 
+            <form id="passwordForm" onSubmit={() => InsertUser()}>
             <section className="section profile">
                 <div className="row">
 
                     <div class="col-lg-12">
                         <div class="card overflow-auto">
+                            {/* <form id="passwordForm" onSubmit={() => InsertUser()}> */}
                             <div class="card-body create-account pt-3">
                                 <h5 className="card-title">Create Account</h5>
 
@@ -92,7 +108,7 @@ const CreateAccount = () => {
                                     <div className="col-lg-5">
                                         <div className="mb-3">
                                             <Form.Label>Type of User: <span className="text-danger font-weight-bold">*</span></Form.Label>
-                                            <Form.Select 
+                                            <Form.Select required
                                                 value={getAccountValue}
                                                 onChange={(e) => setAccountValue(e.target.value)}>
                                                 <option value="" selected disabled>--Select Type--</option>
@@ -165,7 +181,7 @@ const CreateAccount = () => {
                                             <div className="col-lg-4">
                                                 <Form.Label>Gender: <span className="text-danger font-weight-bold">*</span></Form.Label>
                                                 <div className="mb-3">
-                                                    <Form.Check
+                                                    <Form.Check 
                                                         inline
                                                         label="Male"
                                                         name="group1"
@@ -252,6 +268,7 @@ const CreateAccount = () => {
                                                     <div className="mb-3">
                                                         <label>Password <span className="text-danger font-weight-bold">*</span></label>
                                                         <input
+                                                            id="newPassword"
                                                             type="password"
                                                             className="form-control"
                                                             onChange={(e) => { setPassValue(e.target.value) }}
@@ -262,10 +279,11 @@ const CreateAccount = () => {
                                                 <div className="col-lg-4">
                                                     <label>Re-enter Password<span className="text-danger font-weight-bold">*</span></label>
                                                     <input 
+                                                        id="renewPassword"
                                                         name="reEnterpassword"
                                                         type="password"
                                                         class="form-control"
-                                                        id="reEnterPassword"
+                                                        required
                                                     // onChange={(e) => { setReEnterPassword(e.target.value) }} required 
                                                     />
                                                 </div>
@@ -274,7 +292,8 @@ const CreateAccount = () => {
                                         <Button
                                             type='submit'
                                             className="edit-save text-right"
-                                            onClick={() => InsertUser()}>
+                                            onSubmit={() => InsertUser()}
+                                            onClick={() => {validatePassword(); }}>
                                             Create Account
                                         </Button>
                                         <Button
@@ -285,6 +304,7 @@ const CreateAccount = () => {
                                         </Button>
 
                                     </div> {/*end of card-body*/}
+                                    {/* </form> */}
                                 </div>
                             </div>
                         </div>
@@ -318,7 +338,7 @@ const CreateAccount = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
+            </form>
         </>
     )
 }
