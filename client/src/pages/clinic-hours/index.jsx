@@ -5,6 +5,10 @@ import "../../styles/clinic-hours.css";
 import "antd/dist/antd.css";
 import axios from "axios";
 
+import success from '../../assets/img/check.png';
+import error from '../../assets/img/error.png';
+import Modal from "react-bootstrap/Modal";
+
 const ClinicHours = () => {
   const [timeSlot, setTimeSlot] = useState([
     {
@@ -50,7 +54,13 @@ const ClinicHours = () => {
       enabled: false,
     },
   ]);
-
+  const [modalState, setModalState] = useState(false);
+  const handleModalClose = () => {
+    setModalState(false);
+  };
+  const handleShow = () => {
+    setModalState('show-modal')
+  }
   const [checked, setChecked] = useState([false,false,false,false,false,false,false ]);
 
   const handleTimeSlotStartChange = event => {
@@ -131,8 +141,10 @@ const ClinicHours = () => {
     console.log('Clicked');
     try{
       axios.put("http://localhost:3001/updateClinicHours", {clinicHours:timeSlot})
+      handleShow();
     }catch (error){
       console.log(error)
+      setModalState('error-modal');
     }
   }
 
@@ -665,6 +677,55 @@ const ClinicHours = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        show={modalState == "show-modal"}
+        onHide={handleModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>Clinic Hours Updated</Modal.Title>
+        </Modal.Header>
+        <Modal.Body closeButton>
+          <img src={success} alt="success image" className='success-img' />
+          <p className='modal-txt-cn'>You have successfully updated your clinic hours!</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={handleModalClose}
+            >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+      <Modal
+        show={modalState == "show-error"}
+        onHide={handleModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>Clinic Hours Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body closeButton>
+          <img src={error} alt="error image" className='error-img' />
+          <p className='modal-txt-cn'>You have an error.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={handleModalClose}
+            >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
