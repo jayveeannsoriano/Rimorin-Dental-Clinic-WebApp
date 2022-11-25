@@ -68,6 +68,9 @@ const createReceipt = () => {
   const [getDateValue, setDateValue] = useState([]);
   const [getTimeValue, setTimeValue] = useState([]);
   const [getConValue, setConValue] = useState([]);
+  const [formattedDate, setFormattedDate] = useState([]);
+  console.log(formattedDate)
+
 
   const getAppDetails = async () => {
     try {
@@ -80,7 +83,8 @@ const createReceipt = () => {
           },
         }
       );
-
+      console.log(response.data[0].formattedDate)
+      setFormattedDate(response.data[0].formattedDate)
       setDocName(response.data[0].dName)
       setDateValue(response.data[0].date)
       setTimeValue(response.data[0].time)
@@ -205,7 +209,7 @@ const createReceipt = () => {
     console.log("MAY DISCOUNT LUGI");
     finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
   }
-
+  console.log(formattedDate)
   console.log(StringfyAppNumber);
   console.log(serviceItem);
   console.log(paymentType);
@@ -249,6 +253,7 @@ const createReceipt = () => {
         appNum: StringfyAppNumber,
         pName: patientUser,
         dName: getDocName,
+        formattedDate:formattedDate,
         dateVal: getDateValue,
         timeVal: getTimeValue,
         conValue: getConValue,

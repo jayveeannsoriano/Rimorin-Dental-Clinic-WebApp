@@ -21,22 +21,44 @@ const CreateDentalRecord = () => {
   const location = useLocation()
   const paramsID = new URLSearchParams(location.search)
   const getPatientAppNum = paramsID.get('appNum');
+  const getPatientID = paramsID.get('patientIDNum');
+  const StringfyPatID = useMemo(() => JSON.stringify(getPatientID).replace(/"/g, ""));
   const StringfyAppnumber = useMemo(() => JSON.stringify(getPatientAppNum).replace(/"/g, ""));
   console.log(StringfyAppnumber, 'create dental record');
   const [patientIDNumber, setPatientIDNumber] = useState([]);
-  console.log(patientIDNumber);
+  const [patientAppNum, setPatientAppNum] = useState([]);
 
   const [modalState, setModalState] = useState(false);
   const handleModalClose = () => {
     setModalState(false)
   };
 
+  const getPatientAppnumber = async () => {
+    try {
+
+      const response = await Axios.get("http://localhost:3001/getPatientAppNumforDental", {
+        params: {
+          appNumber: StringfyAppnumber
+        }
+      });
+      console.log(response.data)
+      setPatientAppNum(response.data[0].appNum)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getPatientAppnumber()
+  }, []);
+
   const getPatientIDnumber = async () => {
+
+    console.log(StringfyPatID,"askndjkalsndklsa11111")
     try {
 
       const response = await Axios.get("http://localhost:3001/getPatientIDforDental", {
         params: {
-          appNumber: StringfyAppnumber
+          patientIDnumber: StringfyPatID
         }
       });
       console.log(response.data)
@@ -49,12 +71,10 @@ const CreateDentalRecord = () => {
     getPatientIDnumber()
   }, []);
 
-
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
-  console.log("SLOW DACNE",chartedTeeth)
   //procedure checkbox options 
   const [checked, setChecked] = useState([
     {

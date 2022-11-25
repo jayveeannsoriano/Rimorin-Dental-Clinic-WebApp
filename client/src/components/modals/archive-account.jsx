@@ -8,17 +8,25 @@ import Form from 'react-bootstrap/Form';
 import success from '../../assets/img/check.png';
 import warning from '../../assets/img/warning.png';
 
-function ArchiveAccount() {
+function ArchiveAccount(ObjectID) {
+
+    const StringfyValues = JSON.stringify(ObjectID);
+    const ConvertStringfyValues = JSON.parse(StringfyValues);
+    const objectID = JSON.stringify(ConvertStringfyValues.ObjectID).replace(/"/g, "");
+
     const [modalState, setModalState] = useState(false);
 
 
     const handleClose = () => setModalState(false);
 
-    const handleModal1 = () => {
+    const handleModal1 =() => {
         setModalState("modal-1")
     }
 
     const handleModal2 = () => {
+        Axios.post('http://localhost:3001/ArchiveUser', {
+            UserObjectID: objectID 
+        })
         setModalState("modal-2")
     }
 

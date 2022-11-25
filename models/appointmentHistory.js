@@ -8,6 +8,7 @@ const AppointmentHistory = new mongoose.Schema(
     date: String,
     time: String,
     consultation: String,
+    formattedDate: String,
     appStatus: String,
     reasonCancel: String,
   },
