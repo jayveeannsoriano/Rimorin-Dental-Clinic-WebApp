@@ -48,6 +48,7 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
 
         //calendar input
         const [startDate, setStartDate] = useState(new Date());
+        window.localStorage.setItem('formattedDate',startDate!=null?startDate.toISOString().substring(0,10):"")
 
         //time input
         const [time, setGetTime] = useState("");
