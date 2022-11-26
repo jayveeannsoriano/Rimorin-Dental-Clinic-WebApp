@@ -137,12 +137,11 @@ import {useNavigate} from 'react-router-dom';
                     </div>
                   </div>
       
-                  <div className="col-12">
-                  <div className="card overflow-auto appointment-request-table">
-                      <h5 className="card-title">APPOINTMENT REQUEST</h5>
-                      <ApptRequestTable/>
-                  </div>
-                  </div>
+                  {/*<div className="col-12">
+                    <div className="card overflow-auto appointment-request-table">
+                        <h5 className="card-title">BACKUP AND RESTORE</h5>
+                    </div>
+                  </div>*/}
               </div>
             </section>
           </>);

@@ -70,7 +70,7 @@ const DentalRecordDataTable = (response, patientIDNum) => {
       name: "Action",
       selector: (row) => (
         <div className="existing-dental-action-buttons">
-          {row.dentalStatus == "Pending" ? (
+          {row.dentalStatus == "Pending" && userRole == "3" ? (
             <Button className="update-button" href={"/dentist/patient-records/dental-record/edit-dental-record?appNum="+ row.appNum.substring(1)}>
               <i class="bi bi-pencil-fill"></i>Edit
             </Button>
