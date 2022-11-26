@@ -321,10 +321,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(userNameApp);
 
   //Doctor name
-  const docName = req.body.docName;
-
-  //Doc ID
-  const docID = req.body.docID;
+  const docName = "Pamela Rimorin Concepcion";
 
   //Appointment Number
 
@@ -356,14 +353,11 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(formattedDate);
 
   //appt status default when creating an appointment
-  const insertAppStatus = "Accepted";
+  const insertAppStatus = "Pending";
   console.log(insertAppStatus);
 
-  const prevAppNum = req.body.prevAppNum;
-
   //inserting all data
-  const AppData = new AppDetails({
-    dentistIDnumber:docID,
+  const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dName: docName,
@@ -378,9 +372,6 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   try {
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
-    console.log("prevAppNum", prevAppNum)
-    await AppDetails.findOneAndDelete({appNum:prevAppNum});
-
     if (insertAppStatus == "Accepted") {
       //Sending Email
       sgMail.setApiKey(
@@ -396,7 +387,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
             ],
             dynamic_template_data: {
               firstName: userNameApp,
-              Appttime: slidedDate  + " " + getTime,
+              Appttime: slicedDate + " " + getTime,
               consultation: consulInput,
             },
           },
@@ -1538,8 +1529,6 @@ app.put("/deleteAppointment", async (req, res) => {
   console.log("Appointment Successfully Deleted!.");
 });
 
-
-
 //update status
 app.put("/updateStatus", async (req, res) => {
   const appNumber = req.body.appNum;
@@ -1725,7 +1714,7 @@ const ImgStorageDentRec = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename: (req, file, cb) => {
     const slicedDate = req.body.dateValue.slice(0, 10); //removes unnecessary data
-    cb(null, req.body.patientIDNum + "_" + slicedDate + ".jpg");
+    cb(null, req.body.patientIDNum.replace('#', '') + "_" + slicedDate + ".jpg");
   },
 });
 

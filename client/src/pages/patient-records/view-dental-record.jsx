@@ -9,12 +9,21 @@ import DentalChart from "../../components/dental-teeth-chart";
 import { dentalRecord } from '../../config/FileGeneration.js'
 import "../../styles/profilewidgettwo.css";
 import '../../styles/dental-record.css'
+// import '../../../../uploads'
 
 
 const ViewDentalRecord = () => {
 
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
     const userRole = userInfo["user_role_id"];
+
+    const tryRequire = () => {
+      try {
+       return require("../../../../uploads/dental-record-images/PT" +query.patientIDNum + "_" + query.date + ".jpg");
+      } catch (err) {
+       return null;
+      }
+    };
   
     var HomeRoute = "";
     switch (userRole) {
@@ -62,9 +71,6 @@ const ViewDentalRecord = () => {
   
 
     const getDentalCharts = async() => {
-        // var url = require('url');
-        // var url_parts = url.parse(window.location.href, true);
-        // var query = url_parts.query;
         const response = await axios.get('http://localhost:3001/getSpecificDentalRecord', { params: { patientIDNum: query.patientIDNum,date:query.date} });
         setRecordData(response.data);
         console.log(response.data)
@@ -222,16 +228,13 @@ const ViewDentalRecord = () => {
                   }}
                 >
                   {/* Insert uploaded image/s for that specific record*/}
+                  {tryRequire() == null ? <h3>No Attachments for this Dental Record</h3>  :
                   <img
-                    src={
-                      "../../../../../uploads/dental-record-images/" +
-                      query.patientIDNum +
-                      "_" +
-                      query.date +
-                      ".jpg"
-                    }
-                    alt="Treatment attatchment"
+                    src={"../../../../uploads/dental-record-images/PT" +query.patientIDNum + "_" + query.date + ".jpg"}
+                    // src={tryRequire()}
+                    alt="Treatment attachment"
                   />
+                  }
                 </div>
               </div>
             </div>
