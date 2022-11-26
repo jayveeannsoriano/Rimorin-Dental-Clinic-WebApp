@@ -530,6 +530,29 @@ app.get("/getPatientInfo", async (req, res) => {
     });
 });
 
+app.get("/getDentistInfo", async (req, res) => {
+  await User.find({ user_role_id: 3 })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getDentistInfoID", async (req, res) => {
+
+  const ObjectID = req.query.ObjectID;
+
+  await User.find({dentistIDnumber:ObjectID})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
 //
 app.get("/getUserAppointmentDetails", async (req, res) => {
   await AppDetails.find({})
