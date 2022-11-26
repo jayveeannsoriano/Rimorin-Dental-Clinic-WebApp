@@ -17,16 +17,29 @@ async function Export(willDownload,File,data,info){
       willDownload
       )
   }else if(File==="receipt"){
+    var addProc = [];
+    for(let idx=0; idx<data.addedProcedurePrice.length; idx++){
+      if(typeof data.addedProcedurePrice[idx].chosen !== 'undefined'){
+        for(let idx2=0; idx2<data.addedProcedurePrice[idx].chosen.length; idx2++){
+          addProc.push({
+            serviceValue: data.addedProcedurePrice[idx].chosen[idx2].procedure,
+            quantityValue: "1",
+            amountToPay: data.addedProcedurePrice[idx].chosen[idx2].price
+          });
+        }
+      }
+    }
+
     receipt(
       info[0].fname+" "+info[0].lname,
       info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
       data.date, 
       data.appNum, 
-      data.addedItem, 
+      [...data.addedItem,addProc], 
       (data.discountValue*100), 
       data.paymentType, 
       data.amountPaid, 
-      require("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png"), 
+      require("../../assets/img/tempsignaturesec.png"), 
       willDownload)
   }
 }

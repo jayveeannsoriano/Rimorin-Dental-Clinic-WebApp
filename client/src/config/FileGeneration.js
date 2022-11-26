@@ -132,7 +132,7 @@ export function receipt(name, address, date, transNo, transactionItems, discount
 	doc.setFont("FiraMono-Regular");
 	doc.text(totalPrice+" pesos", convertInch(3.9), (height-convertInch(1.7)));
 	doc.text(discount+"%", convertInch(3.9), (height-convertInch(1.6)));
-	doc.text((totalPrice*(discount/100))+" pesos", convertInch(3.9), (height-convertInch(1.5)));
+	doc.text((totalPrice - (totalPrice*(discount/100)))+" pesos", convertInch(3.9), (height-convertInch(1.5)));
 	
 	
 	doc.setDrawColor(0, 0, 0);
@@ -898,12 +898,25 @@ async function zipTransaction(transaction){
 	
 	//receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
 	transaction.forEach(async function (info, idx, array) {
+		var addProc = [];
+		for(let idx=0; idx<info.addedProcedurePrice.length; idx++){
+		  if(typeof info.addedProcedurePrice[idx].chosen !== 'undefined'){
+			for(let idx2=0; idx2<info.addedProcedurePrice[idx].chosen.length; idx2++){
+			  addProc.push({
+				serviceValue: info.addedProcedurePrice[idx].chosen[idx2].procedure,
+				quantityValue: "1",
+				amountToPay: info.addedProcedurePrice[idx].chosen[idx2].price
+			  });
+			}
+		  }
+		}
+
 		await receipt(
 			info.fname+" "+info.lname,
 			info.house+" "+info.brgy+" "+info.municipality+" "+info.province+" "+info.country, 
 			info.date, 
 			info.appNum, 
-			info.addedItem, 
+			[...info.addedItem,...addProc], 
 			(info.discountValue*100), 
 			info.paymentType, 
 			info.amountPaid, 
