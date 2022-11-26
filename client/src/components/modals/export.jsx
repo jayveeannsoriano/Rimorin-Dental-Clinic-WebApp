@@ -34,9 +34,7 @@ async function Export(willDownload,File,data,info){
         }
       }
     }
-
     console.log(addProc);
-    console.log([...data.addedItem,...addProc])
     //receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
     receipt(
       info[0].fname+" "+info[0].lname,
