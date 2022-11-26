@@ -321,7 +321,10 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(userNameApp);
 
   //Doctor name
-  const docName = "Pamela Rimorin Concepcion";
+  const docName = req.body.docName;
+
+  //Doc ID
+  const docID = req.body.docID;
 
   //Appointment Number
 
@@ -353,11 +356,14 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(formattedDate);
 
   //appt status default when creating an appointment
-  const insertAppStatus = "Pending";
+  const insertAppStatus = "Accepted";
   console.log(insertAppStatus);
 
+  const prevAppNum = req.body.prevAppNum;
+
   //inserting all data
-  const AppData = new AppRequest({
+  const AppData = new AppDetails({
+    dentistIDnumber:docID,
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dName: docName,
@@ -372,6 +378,9 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   try {
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
+    console.log("prevAppNum", prevAppNum)
+    await AppDetails.findOneAndDelete({appNum:prevAppNum});
+
     if (insertAppStatus == "Accepted") {
       //Sending Email
       sgMail.setApiKey(
@@ -387,7 +396,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
             ],
             dynamic_template_data: {
               firstName: userNameApp,
-              Appttime: slicedDate + " " + getTime,
+              Appttime: slidedDate  + " " + getTime,
               consultation: consulInput,
             },
           },
@@ -1527,6 +1536,8 @@ app.put("/deleteAppointment", async (req, res) => {
   });
   console.log("Appointment Successfully Deleted!.");
 });
+
+
 
 //update status
 app.put("/updateStatus", async (req, res) => {
