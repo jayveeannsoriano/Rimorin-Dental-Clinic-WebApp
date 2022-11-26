@@ -36,7 +36,7 @@ const Sec_Payments = () => {
                         <div class="col-xl">
                             <div className="card patient-info">
                                 <div className="card-body pt-3">
-                                    <h5 className="card-title">Transactions Patient</h5>
+                                    <h5 className="card-title">Transactions</h5>
                                     <div className="divider"></div>
 
                                     <SecTransactionDataTable patientIDNum = {StringfyIDnumber}/>

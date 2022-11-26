@@ -35,7 +35,7 @@ async function Export(willDownload,File,data,info){
       info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
       data.date, 
       data.appNum, 
-      [...data.addedItem,addProc], 
+      (addProc.length==0?data.addedItem:[...data.addedItem,...addProc]), 
       (data.discountValue*100), 
       data.paymentType, 
       data.amountPaid, 

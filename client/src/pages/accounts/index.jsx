@@ -16,12 +16,6 @@ const accountspage = () => {
     setValue(e.target.value);
   };
 
-  
-
-
-
-
-
   return (
     <>
       <nav>

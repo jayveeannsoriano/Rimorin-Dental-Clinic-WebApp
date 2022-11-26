@@ -30,17 +30,15 @@ const createEprescription = () => {
     const [notesValue, setNotesValue] = useState("");
 
     const [modalState, setModalState] = useState(false);
+    const navigate = useNavigate();
     const handleModalClose = () => {
         setModalState(false)
+        navigate(-1)
     };
-    const handleShow = () => {
-        setModalState('show-modal')
-        // goBack();
-    }
 
-    const goBack = () => {
-        navigate(-2);
-    }
+    const handleModal = () => {
+        setModalState('show-modal')
+      }
 
     const [getFile, setGetFile] = useState("");
     console.log(getFile, "this is the img value");
@@ -126,8 +124,6 @@ const createEprescription = () => {
     //     });
 
     // }
-
-    const navigate = useNavigate();
 
     return (
         <>
@@ -398,8 +394,7 @@ const createEprescription = () => {
                                                         className="btn btn-primary submit-btn rx-btn"
                                                         onClick={() => {
                                                             createEPrescription();
-                                                            setModalState("show-modal");
-                                                            navigate(-1);
+                                                            handleModal();
                                                         }}
                                                         
                                                     >
@@ -442,7 +437,6 @@ const createEprescription = () => {
                 <Modal.Footer>
                     <Button
                         variant="primary"
-                        href={"/dentist/eprescription/view-eprescription?patientIDNum=" + StringfyIDnumber}
                         onClick={handleModalClose}
                     >
                         Close

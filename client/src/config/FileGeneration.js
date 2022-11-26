@@ -916,7 +916,7 @@ async function zipTransaction(transaction){
 			info.house+" "+info.brgy+" "+info.municipality+" "+info.province+" "+info.country, 
 			info.date, 
 			info.appNum, 
-			[...info.addedItem,...addProc], 
+			(addProc.length==0?info.addedItem:[...info.addedItem,...addProc]),
 			(info.discountValue*100), 
 			info.paymentType, 
 			info.amountPaid, 

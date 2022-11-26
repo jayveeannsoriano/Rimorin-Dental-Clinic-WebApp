@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 import ProfileWidget from "../../../components/patient-profilewidget";
 import Axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 import ProfileInfoEditSaved from '../../../components/modals/success-modals/profile-info-edit-saved';
+
 
 //datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -50,7 +52,11 @@ const PatientInfoEdit = () => {
   const [precautionValue, setPrecautionValue] = useState('');
 
   const [modalState, setModalState] = useState(false);
-  const handleModalClose = () => setModalState(false);
+  const navigate = useNavigate();
+  const handleModalClose = () => {
+    setModalState(false)
+    navigate(-1)
+  };
   const handleModal = () => {
     setModalState('show-modal')
   }
@@ -589,9 +595,6 @@ const PatientInfoEdit = () => {
       </section>
 
       <Modal show={modalState == "show-modal"} onHide={handleModalClose}>
-        {/* <Modal.Header closeButton>
-          <Modal.Title>Appointment Marked as No Show</Modal.Title>
-        </Modal.Header> */}
 
         <Modal.Body closeButton>
           {/* <img src={successful} alt="success image" className='success-img' /> */}

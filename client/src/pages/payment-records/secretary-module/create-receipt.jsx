@@ -151,8 +151,6 @@ const createReceipt = () => {
     setGetFile(files);
     console.log(files);
   };
-  //cancel button navigate to previous page
-  const navigate = useNavigate();
 
   const [recordProcedures, setRecordProcedures] = useState([]);
   console.log(recordProcedures, "this are the vals");
@@ -222,9 +220,16 @@ const createReceipt = () => {
   console.log(getOrNum);
 
   const [modalState, setModalState] = useState(false);
+  const navigate = useNavigate();
   const handleModalClose = () => {
-    setModalState(false);
+      setModalState(false)
+      navigate(-1)
   };
+
+  const handleModal = () => {
+      setModalState('show-modal')
+    }
+
 
   const createUserReceipt = () => {
     Axios.put(
@@ -580,8 +585,7 @@ const createReceipt = () => {
                         className="btn btn-primary submit-btn rx-btn"
                         onClick={() => {
                           createUserReceipt();
-                          setModalState("show-modal");
-                          navigate(-1);
+                          handleModal();
                         }}
                       >
                         Create Receipt

@@ -26,9 +26,15 @@ const CreateDentalRecord = () => {
   console.log(patientIDNumber);
 
   const [modalState, setModalState] = useState(false);
+  const navigate = useNavigate();
   const handleModalClose = () => {
-    setModalState(false);
+      setModalState(false)
+      navigate(-1)
   };
+
+  const handleModal = () => {
+      setModalState('show-modal')
+    }
 
   const getPatientIDnumber = async () => {
 
@@ -218,7 +224,7 @@ const CreateDentalRecord = () => {
       console.log(chartedTeeth);
     }
   };
-  const navigate = useNavigate();
+
   return (
     <>
       <div class="pagetitle">
@@ -466,8 +472,19 @@ const CreateDentalRecord = () => {
                   )}
                 </div>
                 <div class="dental-form-buttons">
-                  <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Create</Button>
-                  <button class="btn btn-outline-secondary">Cancel</button>
+                  <Button 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    onClick={() =>{
+                      uploadDentalRecords() 
+                      handleModal();
+                    }}
+                  >Create</Button>
+                  <button 
+                    class="btn btn-outline-secondary"
+                    onClick={() => navigate(-1)}
+                  >Cancel
+                  </button>
                 </div>
               </div>
             </div>
@@ -475,7 +492,10 @@ const CreateDentalRecord = () => {
         </div>
       </form>
 
-      <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+      <Modal 
+      show={modalState == 'show-modal'} 
+      onHide={handleModalClose} 
+      backdrop="static" keyboard={false}>
 
         <Modal.Header closeButton>
           <Modal.Title>Dental Record Created!</Modal.Title>
@@ -486,7 +506,7 @@ const CreateDentalRecord = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" href={"/dentist"} onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>
