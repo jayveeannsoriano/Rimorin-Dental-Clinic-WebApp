@@ -6,10 +6,16 @@ import successful from '../../assets/img/check.png';
 import Modal from 'react-bootstrap/Modal';
 
 function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation) {
+  console.log("ACCEPT DENTAL:",dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // if(dentistIDnumber =! undefined || null){ 
+  //   console.log("This is Dentist")
+  // }else{
+  //   dentistIDnumber = "DT#000SC"
+  // }
   //Get values 
   const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
@@ -22,8 +28,16 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const FormattedDateValue = JSON.stringify(ConvertStringfyValues.formattedDate).replace(/"/g, "");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
   const ConsultValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g, "");
-  const dentistNumber = JSON.stringify(ConvertStringfyValues.dentistIDnumber).replace(/"/g, "");
+  if (JSON.stringify(ConvertStringfyValues.dentistIDnumber) == undefined){
+    console.log("THIS IS SEC")
+     var dentistNumber = "SC#000XX"
+  }else{
+     var dentistNumber = JSON.stringify(ConvertStringfyValues.dentistIDnumber).replace(/"/g, "");
+  }
 
+
+
+  
 
 
   const AcceptAppointment = () => {
