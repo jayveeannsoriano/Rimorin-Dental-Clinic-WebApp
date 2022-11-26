@@ -68,14 +68,6 @@ const UpDentalDashboardTable = () => {
             <div className="action-buttons">
                 {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
                 <>
-                    <Rebook
-                        patientIDnumber={row.patientIDnumber}
-                        appNum={row.appNum}
-                        pName={row.pName}
-                        dName={row.dName}
-                        date={row.date}
-                        time={row.time}
-                        consultation={row.consultation} />
                     <ReschedConfirmation
                         patientIDnumber={row.patientIDnumber}
                         pName={row.pName}

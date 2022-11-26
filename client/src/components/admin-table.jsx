@@ -62,10 +62,7 @@ const AdminTable = () => {
         {
             name: "Action",
             selector: row => <div className="action-buttons" >
-                <Button className="view-button" variant="primary"><i class="bi bi-eye-fill"></i> View</Button>
                 <ArchiveAccount ObjectID = {row._id}/>
-             
-                
             </div>
         },
     ];

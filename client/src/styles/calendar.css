@@ -135,27 +135,23 @@
 
 /* Calendar Header */
 
-.fc-today-button.fc-button.fc-button-primary {
-    background-color: #2c3e5000;
-    color: black;
+/* today button */
+.fc-today-button.fc-button.fc-button-primary,
+.fc-today-button.fc-button.fc-button-primary:active,
+.fc-today-button.fc-button.fc-button-primary:focus
+ {
+    background-color: #5d5fef;
     border-color: #2c3e5000;
 }
 
-.fc-today-button.fc-button.fc-button-primary:active{
-    background-color: #2c3e5000;
-    color: black;
-}
+/*  */
+
 
 #fc-dom-1.fc-toolbar-title{
     color: rgba(110, 92, 245);
     font-family: var(--body-font);
     font-size: 25px;
     font-weight: bolder;
-}
-
-.fc-today-button.fc-button.fc-button-primary.fc-button-active{
-    background-color: rgb(93, 95, 239);
-    border-color: rgba(44, 62, 80, 0);
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
@@ -210,13 +206,6 @@
     background-color: #2c3e5000;
     color: black;
 }
-
-/* Calanedar Days Grid */
-
-/*.fc-col-header-cell.fc-day.fc-day-sun {
-    padding-bottom: 25px;
-}*/
-
 
 
 .fc-col-header-cell.fc-day {
