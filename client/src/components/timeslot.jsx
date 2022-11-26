@@ -15,6 +15,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   const [getTime, setGetTime] = useState("");
 
   const [blurHandler, setblurHandler] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
 
   function intervals(startString, endString) {
@@ -108,15 +109,22 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
                 className="time btn" 
                 id={time}
                 value={time}
-                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : {background:"white"}}
+                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : (isActive? (getTime==time?{background: "#5d5fef", color: "#fff"}:{background:"white"}):{background:"white"})}
                 disabled={takenAppointments.indexOf(time)>-1 ? true : false}
                 onClick={(e)=>{
                   e.preventDefault();
                   setGetTime(e.target.value)
+                  setIsActive(!isActive);
                   //props.onSubmit(time)
                   GetTimeCheck(time);
                   console.log(time);
-                }}>{time}
+                  if(getTime!=time){
+                    setIsActive(true);
+                  }
+                  console.log(time);
+                  console.log(document.getElementById(time).style.background);
+                }}
+                >{time}
                 </Button>
                   
             </div>
