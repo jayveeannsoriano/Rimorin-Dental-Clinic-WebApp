@@ -14,17 +14,24 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
         const location = useLocation()
         const paramsID = new URLSearchParams(location.search)
         const getPatientID = paramsID.get('patientIDValue');
+        const getPrevID = paramsID.get('patientAppNum');
+        const getDocName = paramsID.get('dentistName');
+        const getDocID = paramsID.get('dentistIDnumber');
         const [patientUser, setPatientUser] = useState([]);
         const [patientMobile, setPatientNumber] = useState([]);
         const [patientEmail, setPatientEmail] = useState([])
         const StringfyPatientID = useMemo(() => JSON.stringify(getPatientID).replace(/"/g, ""));
+        const StringfygetPrevID  = useMemo(() => JSON.stringify(getPrevID).replace(/"/g, ""));
+        const StringfyDocName = useMemo(() => JSON.stringify(getDocName).replace(/"/g, ""));
+        const StringfyDocID = useMemo(() => JSON.stringify(getDocID).replace(/"/g, ""));
         console.log(StringfyPatientID, 'FOLLOW UP ID');
         window.localStorage.setItem('patientIDNum', "PT#"+StringfyPatientID);
         window.localStorage.setItem('userName', patientUser);
         window.localStorage.setItem('userPhone', patientMobile);
         window.localStorage.setItem('userEmail', patientEmail);
-  
-        
+        window.localStorage.setItem('prevAppNum', "#"+StringfygetPrevID);
+        window.localStorage.setItem('docName', StringfyDocName);
+        window.localStorage.setItem('docID', "DT#"+StringfyDocID);
     
 
         const getUser = async() => {

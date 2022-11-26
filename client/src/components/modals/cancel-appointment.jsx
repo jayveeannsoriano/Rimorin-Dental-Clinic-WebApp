@@ -11,6 +11,11 @@ function CancelAppointment(appNum) {
 
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
+    console.log("Deleting " + AppNumber);
+    Axios.put("http://localhost:3001/deleteAppointment", {
+        appNum: AppNumber,
+    });
+
     setModalState("modal-1")
   }
 
@@ -21,17 +26,6 @@ function CancelAppointment(appNum) {
   const StringAppNum = JSON.stringify(appNum);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
-
-  const cancelAppointment = () => {
-            console.log("Deleting " + AppNumber);
-        Axios.put("http://localhost:3001/deleteRequestAppointment", {
-            appNum: AppNumber,
-        });
-    
-  }
-
-
-
   return (
     <>
       <Button className="cancel-button" onClick={handleModal1}>
