@@ -2,6 +2,7 @@ import React from "react";
 import DentistDTable from '../../../components/dental-acceptcancel';
 import '../../../styles/dashboard.css';
 import '../../../styles/modals.css';
+import { Form } from "react-bootstrap";
 
 export default function SecretaryAppointmentPage() {  
 
@@ -21,6 +22,16 @@ export default function SecretaryAppointmentPage() {
          <div className="col-12">
             <div className="card overflow-auto">
               <div className="card-body appointment-request-table">
+                {/*//pa-map nalang mga dentists accounts*/}
+                <div className="col-lg-4">
+                  <label>Dentist</label>
+                    <Form.Select>
+                      <option value="" selected disabled>Select a Dentist</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </Form.Select>
+                  </div>
                 <h5 className="card-title">APPOINTMENT REQUEST</h5>
                 <DentistDTable/>
               </div>
