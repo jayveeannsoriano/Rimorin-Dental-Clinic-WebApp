@@ -23,7 +23,7 @@ const PatientInfoEdit = () => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
-  const conditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
+  const Listconditions = ['HEART DISEASE', 'HIGH BLOOD PRESSURE', 'RHEUMATIC', 'BLOOD DISORDERS', 'DIABETES', 'SEIZURES', 'TUBERCOLOSIS', 'BLOOD TUMORS / GROWTHS', 'ASTHMA', 'HEPATITIS', 'SEXUALLY TRANSMITTED DISEASES', 'STROKE', "NONE"]
 
   // const [modalState, setModalState] = useState('close');
   const [firstName, setFirstValue] = useState('');
@@ -46,7 +46,7 @@ const PatientInfoEdit = () => {
   const [zipValue, setZipValue] = useState('');
   const [medValue, setMedValue] = useState('');
   const [allergiesValue, setAllergiesValue] = useState('');
-  const [condValue, setCondValue] = useState('');
+  const [condValue, setCondValue] = useState([]);
   const [precautionValue, setPrecautionValue] = useState('');
 
   const [modalState, setModalState] = useState(false);
@@ -87,7 +87,6 @@ const PatientInfoEdit = () => {
       setAllergiesValue(response.data[0].allergies)
       setCondValue(response.data[0].conditions)
       setPrecautionValue(response.data[0].precautions)
-
 
     } catch (error) {
       console.log(error);
@@ -286,8 +285,7 @@ const PatientInfoEdit = () => {
                               label="Male"
                               name="group1"
                               type="radio"
-                              defaultValue={item.gender === "Male"}
-                              //checked={item.gender === "Male"}
+                              defaultChecked={item.gender === "Male"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                             <Form.Check
@@ -295,7 +293,7 @@ const PatientInfoEdit = () => {
                               label="Female"
                               name="group1"
                               type="radio"
-                              defaultValue={item.gender === "Female"}
+                              defaultChecked={item.gender === "Female"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                           </div>
@@ -510,17 +508,18 @@ const PatientInfoEdit = () => {
                           following conditions:
                         </label>
                         <br/>
-                        {/*{userData.map((item, index) => {*/}
+                        {userData.map((item1, index) => {
+                          return(
                             <div className="slots2">
                               <Form>
-                              {conditions.map((item, index) => (
+                              {Listconditions.map((item2, index) => (
                                     <div key={index} className="conditions-row">
                                       <Form.Check
-                                        input
-                                        value={[item]}
-                                        id={[item]}
+                                        value={[item2]}
+                                        id={[item2]}
                                         type="checkbox"
-                                        label={`${item}`}
+                                        label={`${item2}`}
+                                        defaultChecked={item1.conditions === item2}
                                         onChange={(e) => setCondValue(e.target.value)}
                                         required
                                       />
@@ -528,8 +527,7 @@ const PatientInfoEdit = () => {
                                     ))}
                                 </Form>
                               </div>
-                            {/*);*/}
-                          {/*})}*/}
+                          )})}
                       </div>
                       <div className="col-lg-12">
                         <label for="precautions">

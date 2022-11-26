@@ -327,7 +327,7 @@ const handleIncorrect = () => {
                                                             value="Male"
                                                             name="group1"
                                                             type="radio"
-                                                            defaultValue={item.gender === 'Male'}
+                                                            defaultChecked={item.gender === 'Male'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         <Form.Check
@@ -336,7 +336,7 @@ const handleIncorrect = () => {
                                                             value="Female"
                                                             name="group1"
                                                             type="radio"
-                                                            defaultValue={item.gender === 'Female'}
+                                                            defaultChecked={item.gender === 'Female'}
                                                             onChange={(e) => setGenderValue(e.target.value)}
                                                         />
                                                         </div>
