@@ -158,15 +158,10 @@ function Calendar() {
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
             events={calData}
             initialView="dayGridMonth"
-            selectable = "true"
             nowIndicator
-            droppable = 'true'
-            editable = 'true'
-            eventDurationEditable
-            scrollTimeReset = 'false'
+            editable = {false}
             dateClick={(e) => console.log(e.dateStr)}
             eventClick={(e) => console.log(e.event.id)}
-            expandRows = 'true'
             headerToolbar={{
               right: "dayGridMonth timeGridWeek timeGridDay",
               center: "title",
