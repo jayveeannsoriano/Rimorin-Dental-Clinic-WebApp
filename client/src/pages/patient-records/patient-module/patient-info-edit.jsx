@@ -56,6 +56,7 @@ const PatientInfoEdit = () => {
   }
 
   console.log(firstName, 'updated');
+  console.log(userData)
   const defaultUserInfo = async () => {
     try {
 
@@ -96,6 +97,25 @@ const PatientInfoEdit = () => {
     defaultUserInfo()
   }, []);
 
+  function editCondition(condi){
+    var shallow = "";
+    if(condValue.includes(condi)){
+      if(condValue.includes(","+condi)){
+        shallow = condValue.replace(","+condi,"");
+        setCondValue(shallow);
+      }else{
+        shallow = condValue.replace(condi,"")
+        setCondValue(shallow);
+      }
+    }else{
+      if(condValue==""){
+        shallow = condi;
+      }else{
+        shallow = condValue+","+condi;
+      }
+      setCondValue(shallow);
+    }
+  }
 
   const updatePatientInfo = async () => {
     await Axios.put("http://localhost:3001/updatePatientInfo", {
@@ -285,7 +305,8 @@ const PatientInfoEdit = () => {
                               label="Male"
                               name="group1"
                               type="radio"
-                              defaultChecked={item.gender === "Male"}
+                              defaultValue={item.gender === "Male"}
+                              //checked={item.gender === "Male"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                             <Form.Check
@@ -293,7 +314,7 @@ const PatientInfoEdit = () => {
                               label="Female"
                               name="group1"
                               type="radio"
-                              defaultChecked={item.gender === "Female"}
+                              defaultValue={item.gender === "Female"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                           </div>
@@ -519,8 +540,8 @@ const PatientInfoEdit = () => {
                                         id={[item2]}
                                         type="checkbox"
                                         label={`${item2}`}
-                                        defaultChecked={item1.conditions === item2}
-                                        onChange={(e) => setCondValue(e.target.value)}
+                                        defaultChecked={item1.conditions.includes(item2)}
+                                        onChange={(e) => editCondition(item2)}
                                         required
                                       />
                                     </div>
