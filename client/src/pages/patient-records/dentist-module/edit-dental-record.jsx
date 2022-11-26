@@ -29,9 +29,16 @@ const EditDentalRecord = () => {
   console.log(patientIDNumber);
 
   const [modalState, setModalState] = useState(false);
+  const navigate = useNavigate();
   const handleModalClose = () => {
-    setModalState(false);
+      setModalState(false)
+      navigate(-1)
   };
+
+  const handleModal = () => {
+      setModalState('show-modal')
+    }
+
 
   const getPatientIDnumber = async () => {
 
@@ -220,7 +227,6 @@ const EditDentalRecord = () => {
       console.log(chartedTeeth);
     }
   };
-  const navigate = useNavigate();
   return (
     <>
       <div class="pagetitle">
@@ -469,8 +475,20 @@ const EditDentalRecord = () => {
                    )}
                 </div>
                 <div class="dental-form-buttons">
-                  <Button type="submit" class="btn btn-primary" onClick={() => uploadDentalRecords()}>Save Changes</Button>
-                  <button class="btn btn-outline-secondary">Cancel</button>
+                  <Button 
+                  type="submit" 
+                  class="btn btn-primary" 
+                  onClick={() =>{
+                    uploadDentalRecords();
+                    handleModal();
+                    }}
+                  >
+                    Save Changes</Button>
+                  <button 
+                    class="btn btn-outline-secondary"
+                    onClick={() => navigate(-1)}
+                  >Cancel
+                  </button>
                 </div>
               </div>
             </div>
@@ -490,7 +508,7 @@ const EditDentalRecord = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" href={"/dentist"} onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>
