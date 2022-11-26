@@ -74,7 +74,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
     // });
 
     // setTaken(takenAppointments);
-    console.log(takenAppointments);
+    console.log("TAKEN APPTS:",takenAppointments);
   },[]);
 
   useEffect(() => {

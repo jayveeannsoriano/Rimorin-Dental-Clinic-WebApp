@@ -100,7 +100,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
     useEffect(() => {
         var initialDate = new Date();
-        getAppointmenstbyDate(initialDate.toString().substring(0, 10));
+        getAppointmenstbyDate(initialDate.toString().substring(0, 15));
     }, []);
 
     return (
@@ -169,8 +169,8 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
                                     selected={startDate}
                                     onChange={(date) => {
                                         setStartDate(date);
-                                        getAppointmenstbyDate(date.toString().substring(0, 10));
-                                        setTakenAppointments([]);
+                                        getAppointmenstbyDate(date.toString().substring(0, 15));
+                                        // setTakenAppointments([]);
                                     }}
                                     isClearable
                                     placeholderText="Choose a date"
