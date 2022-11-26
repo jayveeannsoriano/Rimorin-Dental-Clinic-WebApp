@@ -211,8 +211,9 @@ const EditDentalRecord = () => {
     var index = chartedTeeth.indexOf(chosenTeeth);
     // console.log(index);
     if (index > -1) {
-      chartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-      setchartedTeeth(chartedTeeth);
+      const shallowChartedTeeth = [...chartedTeeth];
+      shallowChartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+      setchartedTeeth(shallowChartedTeeth);
       console.log(chartedTeeth);
     } else {
       setchartedTeeth((chartedTeeth) => [...chartedTeeth, chosenTeeth]);
