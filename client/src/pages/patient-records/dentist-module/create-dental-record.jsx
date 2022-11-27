@@ -25,11 +25,13 @@ const CreateDentalRecord = () => {
   const [patientIDNumber, setPatientIDNumber] = useState([]);
   console.log(patientIDNumber);
 
+  //href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}
+
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
   const handleModalClose = () => {
       setModalState(false)
-      navigate(-1)
+      navigate('/dentist/patient-records/dental-record/view-dental-records?patientIDNum=' + patientIDNumber)
   };
 
   const handleModal = () => {
