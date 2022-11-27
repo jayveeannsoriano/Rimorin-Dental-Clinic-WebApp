@@ -12,7 +12,7 @@ function CancelAppointment(appNum) {
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     console.log("Deleting " + AppNumber);
-    Axios.put("http://localhost:3001/deleteAppointment", {
+    Axios.put("https://rimorin-dental-clinic.herokuapp.com/deleteAppointment", {
         appNum: AppNumber,
     });
 

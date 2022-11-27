@@ -22,7 +22,7 @@ const AdminArchiveTable = () => {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/getArchiveUserforAdmin');
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getArchiveUserforAdmin');
             console.log(response);
             setUsers(response.data);
             setFilteredUsers(response.data);

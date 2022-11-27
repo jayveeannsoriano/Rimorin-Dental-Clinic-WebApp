@@ -25,7 +25,7 @@ export default function AccountCreated() {
 
     const InsertUser = async () => {
 
-        await Axios.post("http://localhost:3001/InsertNewUser", {
+        await Axios.post("https://rimorin-dental-clinic.herokuapp.com/InsertNewUser", {
             accountType:getAccountValue,
             fname:getFNameValue,
             mname:getMNameValue,
@@ -44,7 +44,7 @@ export default function AccountCreated() {
 
     // const Continue = e => {
     //     // handleModal();
-    //     Axios.post("http://localhost:3001/RegisterUser", {
+    //     Axios.post("https://rimorin-dental-clinic.herokuapp.com/RegisterUser", {
     //         fname: fname,
     //         mname: mname,
     //         suffix: suffix,
