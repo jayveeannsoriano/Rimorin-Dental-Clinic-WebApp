@@ -75,7 +75,6 @@ export default function ExistingDentalRecord() {
 
         var treatData = [];
         var proceString = "";
-        console.log(appointment);
         for (let num = 0; num < appointment.length; num++) {
             if(typeof appointment[num].procedures !== 'undefined'){
                 for (let proceNum = 0; proceNum < appointment[num].procedures.length; proceNum++) {
