@@ -75,25 +75,27 @@ const AdminDentalRecord = () => {
     var treatData = [];
     var proceString = "";
     for (let num = 0; num < appointment.length; num++) {
-      for (
-        let proceNum = 0;
-        proceNum < appointment[num].procedures.length;
-        proceNum++
-      ) {
-        if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
-          for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
-              proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
-          }
+      if(typeof appointment[num].procedures !== 'undefined'){
+        for (
+          let proceNum = 0;
+          proceNum < appointment[num].procedures.length;
+          proceNum++
+        ) {
+          if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
+            for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
+                proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
+            }
+        }
+        }
+        treatData.push([
+          appointment[num].dentalDate,
+          appointment[num].hasOwnProperty("chartedTeeth")
+            ? appointment[num].chartedTeeth.join()
+            : "",
+          appointment[num].dentalDesc,
+          proceString,
+        ]);
       }
-      }
-      treatData.push([
-        appointment[num].dentalDate,
-        appointment[num].hasOwnProperty("chartedTeeth")
-          ? appointment[num].chartedTeeth.join()
-          : "",
-        appointment[num].dentalDesc,
-        proceString,
-      ]);
     }
 
     {
