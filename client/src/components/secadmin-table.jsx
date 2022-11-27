@@ -102,7 +102,7 @@ const SecAdminDashboardTable = () => {
                         appNum={row.appNum} />
                 </>
                 ) 
-                : (<FollowUp patientIDnumber={row.patientIDnumber} appNum={row.appNum}/>)
+                : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
             }
 
             <ApptDetails

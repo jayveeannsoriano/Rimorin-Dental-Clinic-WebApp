@@ -19,7 +19,11 @@ function RescheduleAppointment(pName,appNum,patientIDnumber) {
 
   //calendar input
   const [newStartDate, setStartDate] = useState(new Date());
-  const newFormattedDate = (newStartDate!=null?newStartDate.toISOString().substring(0,10):"");
+  const stringDate = newStartDate.toString();
+
+  const [newFormattedDate,setFormattedDate] = useState(new Date().toISOString())
+  console.log("THIS IS THE dsa DATE" ,newStartDate);
+  console.log("THIS IS THE FORMATTED DATE" ,newFormattedDate);
 
   var date = window.localStorage.getItem('date');
   window.localStorage.setItem('date',newStartDate);
@@ -98,7 +102,7 @@ useEffect(() => {
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
      pName: PatientName,
-     newDate: newStartDate,
+     newDate: stringDate,
      newFormattedDate: newFormattedDate,
      newTime: timeCheck,
      newConsultation: newConsulInput});
@@ -168,7 +172,8 @@ useEffect(() => {
                         selected={newStartDate} 
                         onChange={(date) => {
                             setStartDate(date);
-                            getAppointmenstbyDate(date.toString().substring(0, 10));
+                            setFormattedDate(date);
+                            getAppointmenstbyDate(date.toString().substring(0, 15));
                             console.log("This is the calendar data:", date)
                             setTakenAppointments([]);
                         }}

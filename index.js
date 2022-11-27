@@ -227,17 +227,9 @@ app.post("/insertAppointment", async (req, res) => {
 
   //Appointment Number
 
-  const event = new Date();
-  console.log(event.toISOString());
-  const firstNumber = event.toISOString().substring(9, 10);
-  console.log(firstNumber);
-  const secondNumber = event.toISOString().substring(20, 21);
-  const thirdNumber = event.toISOString().substring(18, 19);
-
-  const UUIDAPPNUM = firstNumber + secondNumber + thirdNumber;
-
-  const appNumber = "#APT" + UUIDAPPNUM;
-  console.log(appNumber);
+    const event = new Date();
+    const firstNumber = event.toISOString().substring(20,23)
+    const appNumberUUID = "#APT" + firstNumber;
 
   //date value
   const startDate = req.body.startDate;
@@ -263,7 +255,7 @@ app.post("/insertAppointment", async (req, res) => {
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dName: docName,
-    appNum: appNumber,
+    appNum: appNumberUUID,
     date: slidedDate,
     consultation: consulInput,
     time: getTime,
@@ -1485,12 +1477,11 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const appNumber = req.body.appNum;
   const patientIDnumber = req.body.patientIDNum;
   const userNameApp = req.body.pName;
-  const updateDate = req.body.newDate;
-  const updateSlicedDate = updateDate.slice(0, 15); //removes unnecessary data
-  const formattedDate = req.body.newFormattedDate;
+  const updateDate = req.body.newDate.substring(0,15);
+  const formattedDate = req.body.newFormattedDate.substring(0,10);
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
-  const insertAppStatus = "Rebooked";
+  const insertAppStatus = "Pending";
   const docName = "Pamela Rimorin Concepcion";
 
   const AppData = new AppRequest({
@@ -1498,7 +1489,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
     pName: userNameApp,
     dName: docName,
     appNum: appNumber,
-    date: updateSlicedDate,
+    date: updateDate ,
     formattedDate: formattedDate,
     consultation: updateConsult,
     time: updateTime,
