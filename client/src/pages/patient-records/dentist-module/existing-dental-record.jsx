@@ -27,7 +27,7 @@ export default function ExistingDentalRecord() {
             var url = require('url');
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-            const response = await axios.get('http://localhost:3001/getUserDentalRecord', {
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserDentalRecord', {
                 params: {
                     patientIDnumber: query.patientIDNum,
                 }
@@ -52,7 +52,7 @@ export default function ExistingDentalRecord() {
 
     const getPatientDetails = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/getPatientInfo', {
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
                 params: {
                     patientIDnumber: StringfyIDnumber
                 }
@@ -138,9 +138,6 @@ export default function ExistingDentalRecord() {
                                 <div class="row">
                                     {appointment.length == 0 ? <div className="card patient-info">
                                         <div className="card-body pt-3">
-                                            {/* <h5 className="card-title">Dental Records</h5>
-
-                                            <div className="divider"></div> */}
 
                                             {/* Dental Record */}
                                             {/* This UI is only shown when the patient is new */}
@@ -148,7 +145,7 @@ export default function ExistingDentalRecord() {
                                                 <img src={NoRecordImg} alt="no-record-img" />
                                                 <div className="empty-message">
                                                     <h2>DENTAL RECORD NOT FOUND</h2>
-                                                    <p> It seems that you have no dental record for this patient. Click the <b>Add Treatment</b> button to create one.</p>
+                                                    <p> It seems that you have no dental record for this patient. A dental record will be created upon their first appointment.</p>
                                                 </div>
                                                 {/*<div className="create-record">
                                                     <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
