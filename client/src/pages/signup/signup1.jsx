@@ -111,7 +111,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="09123456789"
+                placeholder="9XX-XXX-XXXX"
                 onChange={handleChange('mobile')}
                 defaultValue={values.mobile}
                 maxLength={10}

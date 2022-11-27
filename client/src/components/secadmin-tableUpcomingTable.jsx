@@ -71,7 +71,7 @@ const UpSecAdminDashboardTable = () => {
                         appNum={row.appNum} />
                 </>
                 ) 
-                : (<FollowUp patientIDnumber={row.patientIDnumber} appNum={row.appNum}/>)
+                : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
             }
                 < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
             </div>

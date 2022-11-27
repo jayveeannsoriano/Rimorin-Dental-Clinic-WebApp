@@ -69,9 +69,14 @@ const UpcomingDashboardTable = () => {
             name: "Action",
             selector: row => 
             <div className="action-buttons">
-                < ReschedConfirmation patientIDnumber = {row.patientIDnumber} pName = {row.pName} appNum = {row.appNum}/>
-                < CancelAppointment appNum = {row.appNum}/>
-                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation={row.consultation}/>
+                {row.appStatus == "Arrived" ? (
+                    < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation={row.consultation}/>
+                ) : (
+                    <>
+                    < ReschedConfirmation patientIDnumber = {row.patientIDnumber} pName = {row.pName} appNum = {row.appNum}/>
+                    < CancelAppointment appNum = {row.appNum}/>
+                    </>
+                )}
             </div>
         },
     ];
