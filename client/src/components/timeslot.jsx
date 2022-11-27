@@ -33,7 +33,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
       }
       else {
         result.push(current.format('hh:mm A'));
-        current.add(30, 'minutes'); //minute interval
+        current.add(60, 'minutes'); //minute interval
       }
     }
 
