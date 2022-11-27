@@ -14,7 +14,7 @@ const PatientProfileWidget = () => {
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
 
-            const response = await Axios.get('http://localhost:3001/getPatientInfo', {
+            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
                 params: {
                     patientIDnumber: query.patientIDNum
                 }

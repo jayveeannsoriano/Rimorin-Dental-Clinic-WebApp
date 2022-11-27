@@ -156,7 +156,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalPatients = async() => {
       try{
-          let resp = await axios.get('http://localhost:3001/getTotalPatients');
+          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPatients');
           setTotalPatients(resp.data);
       }catch (error){
           console.log(error)
@@ -165,7 +165,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalAppts = async() => {
       try{
-          let resp = await axios.get('http://localhost:3001/getTotalAppts');
+          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalAppts');
           console.log(resp);
           setTotalAppts(resp.data);
       }catch (error){
@@ -175,7 +175,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalPendingAppts = async() => {
       try{
-          let resp = await axios.get('http://localhost:3001/getTotalPendingAppts');
+          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
           setTotalPendingAppts(resp.data);
       }catch (error){
           console.log(error)

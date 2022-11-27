@@ -266,7 +266,7 @@ app.post("/insertAppointment", async (req, res) => {
   try {
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
-    if (insertAppStatus == "Accepted") {
+    if (insertAppStatus == "Pending") {
       //Sending Email
       sgMail.setApiKey(
         "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"
@@ -281,7 +281,7 @@ app.post("/insertAppointment", async (req, res) => {
             ],
             dynamic_template_data: {
               firstName: userNameApp,
-              Appttime: slicedDate + " " + getTime,
+              Appttime: slidedDate + " " + getTime,
               consultation: consulInput,
             },
           },
@@ -2136,7 +2136,7 @@ app.post("/forgot-password", async (req, res) => {
       const token = jwt.sign({ email: oldUser.email }, secret, {
         expiresIn: "5m",
       });
-      const link = `http://localhost:3000/auth/reset-password?email=${email}`;
+      const link = `https://rimorin-dental-clinic.herokuapp.com/auth/reset-password?email=${email}`;
       sgMail.setApiKey(
         "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"
       );

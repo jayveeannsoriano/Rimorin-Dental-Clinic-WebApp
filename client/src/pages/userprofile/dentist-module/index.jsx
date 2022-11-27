@@ -46,7 +46,7 @@ const DentistUserProfile = () => {
             console.log("password works")
             if (newPassword == reEnterPassword) {
                 handleShow();
-                await Axios.put("http://localhost:3001/changePassword", {
+                await Axios.put("https://rimorin-dental-clinic.herokuapp.com/changePassword", {
                     userEmail: emailValue,
                     newPass: newPassword
                 })
@@ -64,7 +64,7 @@ const DentistUserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
+            const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getCurrentUserInfo", {
                 params: {
                      ObjectID: UserObjectID
                 }
@@ -111,7 +111,7 @@ const DentistUserProfile = () => {
     }
 
     const updatePatientInfo = async () => {
-        await Axios.put("http://localhost:3001/updatePatientInfo", {
+        await Axios.put("https://rimorin-dental-clinic.herokuapp.com/updatePatientInfo", {
             ObjectID: UserObjectID,
 
             firstName: firstName,
