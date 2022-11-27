@@ -22,16 +22,14 @@ const CreateDentalRecord = () => {
     JSON.stringify(getPatientAppNum).replace(/"/g, "")
   );
   console.log(StringfyAppnumber, "create dental record");
-  const [patientIDNumber, setPatientIDNumber] = useState([]);
+  const [patientIDNumber, setPatientIDNumber] = useState("");
   console.log(patientIDNumber);
-
-  //href={"/dentist/patient-records/dental-record/view-dental-records?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}
 
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
   const handleModalClose = () => {
-      setModalState(false)
-      navigate('/dentist/patient-records/dental-record/view-dental-records?patientIDNum=' + patientIDNumber)
+      setModalState(false);
+      navigate('/dentist/patient-records/dental-record/view-dental-records?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length));
   };
 
   const handleModal = () => {
