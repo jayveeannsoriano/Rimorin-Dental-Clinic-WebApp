@@ -274,7 +274,7 @@ app.post("/insertAppointment", async (req, res) => {
   try {
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
-    if (insertAppStatus == "Accepted") {
+    if (insertAppStatus == "Pending") {
       //Sending Email
       sgMail.setApiKey(
         "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"
