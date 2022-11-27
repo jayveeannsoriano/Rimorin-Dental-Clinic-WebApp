@@ -175,7 +175,7 @@ const createEprescription = () => {
                                         <p> Licence Number: 12345678</p>
                                     </div>
 
-                                    <form onSubmit={() => createEPrescription()}>
+                                    <form onSubmit={() => {createEPrescription(); handleModal();}} >
                                         <div className="biller-info">
                                             <br />
                                             <h5 className="rx-pr"> Prescription Information </h5>
@@ -392,7 +392,7 @@ const createEprescription = () => {
                                                     <button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onClick={() => {
+                                                        onSubmit={() => {
                                                             createEPrescription();
                                                             handleModal();
                                                         }}
