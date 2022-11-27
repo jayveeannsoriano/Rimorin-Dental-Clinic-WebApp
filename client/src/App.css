@@ -996,7 +996,9 @@ padding-right: 4px;
 }
 
 /* Appointment Status */
-.appt_status{
+.appt_status,
+.payment_status,
+.dental_record_status{
   font-size: 12px;
 }
 
@@ -1095,7 +1097,7 @@ padding-right: 4px;
   line-height: 17px;
   color: var(--text-color);
 }
-/* cols in /pages/payment-records/secretary-module/secpayment-datatable.jsx */
+
 .transaction-datatable .rdt_TableCol,
 .patient-transaction-table .rdt_TableCol,
 .existing-dental-table .rdt_TableCol { 
@@ -1116,9 +1118,9 @@ padding-right: 4px;
   color: var(--text-color);
 }
 
-.appointment-request-table #cell-4-undefined{
+/*.appointment-request-table #cell-4-undefined{
   max-width: 780px !important;
-}
+}*/
 
 #cell-1-undefined,
 #cell-2-undefined,
