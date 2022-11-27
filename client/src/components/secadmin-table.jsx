@@ -86,7 +86,7 @@ const SecAdminDashboardTable = () => {
         name: "Action",
         selector: (row) => (
           <div className="action-buttons">
-            {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
+            {row.appStatus == "Accepted"  ? (
                 <>
                     <SecAdminRebook
                         patientIDnumber={row.patientIDnumber}
@@ -101,7 +101,16 @@ const SecAdminDashboardTable = () => {
                         pName={row.pName}
                         appNum={row.appNum} />
                 </>
-                ) 
+                ) : row.appStatus == "Arrived" ? (
+                    <SecAdminRebook
+                      patientIDnumber={row.patientIDnumber}
+                      appNum={row.appNum}
+                      pName={row.pName}
+                      dName={row.dName}
+                      date={row.date}
+                      time={row.time}
+                      consultation={row.consultation} />
+                )
                 : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
             }
 

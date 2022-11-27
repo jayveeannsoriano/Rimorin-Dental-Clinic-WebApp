@@ -83,7 +83,7 @@ const DashboardTable = () => {
         name: "Action",
         selector: (row) => (
           <div className="action-buttons">
-            {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
+            {row.appStatus == "Accepted" ? (
                 <>
                     <Rebook
                         patientIDnumber={row.patientIDnumber}
@@ -98,8 +98,16 @@ const DashboardTable = () => {
                         pName={row.pName}
                         appNum={row.appNum} />
                 </>
-                ) 
-                : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
+                ) : row.appStatus == "Arrived" ? (
+                  <Rebook
+                        patientIDnumber={row.patientIDnumber}
+                        appNum={row.appNum}
+                        pName={row.pName}
+                        dName={row.dName}
+                        date={row.date}
+                        time={row.time}
+                        consultation={row.consultation} />
+                ) : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
             }
 
             <ApptDetails
