@@ -14,9 +14,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   const [availableTime, setAvailableTime] = useState([]);
   const [getTime, setGetTime] = useState("");
 
-  const [blurHandler, setblurHandler] = useState("");
   const [isActive, setIsActive] = useState(false);
-
 
   function intervals(startString, endString) {
     var start = moment(startString, 'hh:mm a');
