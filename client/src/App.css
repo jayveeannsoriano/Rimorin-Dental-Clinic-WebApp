@@ -1006,6 +1006,7 @@ padding-right: 4px;
 .appt_status[data-status="Cancelled"]:after,
 .appt_status[data-status="Finished"]:after,
 .appt_status[data-status="Rescheduled"]:after,
+.appt_status[data-status="Follow-Up"]:after,
 .appt_status[data-status="Pending"]:after,
 .appt_status[data-status="No Show"]:after,
 .appt_status[data-status="Arrived"]:after,
@@ -1040,6 +1041,12 @@ padding-right: 4px;
   content: "Rescheduled";
   color: #6C0386;
   background: #F9DBFE;
+}
+
+.appt_status[data-status="Follow-Up"]:after{
+  content: "Follow-Up";
+  background: #FFFBEB;
+  color: #D97706;
 }
 
 .appt_status[data-status="Pending"]:after{
