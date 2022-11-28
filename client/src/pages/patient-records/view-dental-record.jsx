@@ -218,22 +218,23 @@ const ViewDentalRecord = () => {
 
                 {/* Treatment Attatchments */}
                 <h5 className="card-title">Treatment Attachments</h5>
+
                 <div
-                  className="row attatchment-container"
+                  className="row attachment-container"
                   style={{
                     border: "1px solid #E8E8E8",
-                    borderRadius: "15px",
-                    width: "1074px",
-                    height: "289px",
+                    borderRadius: "15px"
                   }}
                 >
                   {/* Insert uploaded image/s for that specific record*/}
-                  {tryRequire() == null ? <h3>No Attachments for this Dental Record</h3>  :
-                  <img
-                    src={"../../../../uploads/dental-record-images/PT" +query.patientIDNum + "_" + query.date + ".jpg"}
-                    // src={tryRequire()}
-                    alt="Treatment attachment"
-                  />
+                  {tryRequire() == null ? 
+                    <h3>No Attachments for this Dental Record</h3>  :
+                    <img
+                      src={"../../../../uploads/dental-record-images/PT" +query.patientIDNum + "_" + query.date + ".jpg"}
+                      // src={tryRequire()}
+                      className="img-fluid p-5"
+                      alt="Treatment attachment"
+                    />
                   }
                 </div>
               </div>

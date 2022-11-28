@@ -4,22 +4,41 @@ import "../styles/profilewidgettwo.css";
 import Axios from 'axios';
 import Avatar from 'react-avatar';
 
-const ProfileWidgetTwo = () => {
+const ProfileWidgetTwo = (patientID) => {
     const [patientList, setPatientList] = useState([]);
     const [patientIDNum, setpatientIDNum] = useState();
-    console.log(patientIDNum);
 
     const getPatientDetails = async() => {
         try{
             var url = require('url');
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-
-            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
-                params: {
-                    patientIDnumber: query.patientIDNum
+            var response;
+            if( query.patientIDNum!="" && typeof query.patientIDNum!=='undefined'){
+                response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
+                    params: {
+                        patientIDnumber: query.patientIDNum
+                    }
+                });
+            }else if(patientID!="" && typeof patientID!=='undefined'){
+                var patientData;
+                if(typeof patientID == 'object'){
+                    patientData = patientID.patientID;
+                    if(patientData.includes("PT#")){
+                        patientData = patientData.substring(3,patientData.length);
+                    }
+                }else{
+                    patientData = patientID
+                    if(patientData.includes("PT#")){
+                        patientData = patientData.substring(3,patientData.length);
+                    }
                 }
-            });
+                response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
+                    params: {
+                        patientIDnumber: patientData
+                    }
+                });
+            }
             console.log(response, "Responses");
             setPatientList(response.data);
         }catch (error){
@@ -28,8 +47,9 @@ const ProfileWidgetTwo = () => {
     }
 
     useEffect(() => {
-        getPatientDetails ();
+        getPatientDetails();
     }, []);
+    getPatientDetails();
 
     const proceedtoViewInfo = (value) => {
         setpatientIDNum(value.substring(3));

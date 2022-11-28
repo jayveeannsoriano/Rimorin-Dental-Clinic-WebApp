@@ -238,14 +238,10 @@ const CreateDentalRecord = () => {
               <a href="/dentist/patient-records/dental-record">Patients</a>
             </li>
             <li class="breadcrumb-item" onClick={() => navigate(-1)}>
-              {/* <a href="/dentist/patient-records/dental-record"> */}
               Dental Records
-              {/* </a> */}
             </li>
             <li class="breadcrumb-item active">
-              <a href="/dentist/patient-records/dental-record/create-dental-record">
                 Create Dental Record
-              </a>
             </li>
           </ol>
         </nav>
