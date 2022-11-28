@@ -13,7 +13,7 @@ const Timeslot2 = ({GetTimeCheck,takenAppointments,chosenDate}) => {
 
   const [availableTime, setAvailableTime] = useState([]);
   
-
+  const [isActive, setIsActive] = useState(false);
   const [getTime, setGetTime] = useState("");
 
   function intervals(startString, endString) {
@@ -31,7 +31,7 @@ const Timeslot2 = ({GetTimeCheck,takenAppointments,chosenDate}) => {
       }
       else {
         result.push(current.format('hh:mm A'));
-        current.add(30, 'minutes'); //minute interval
+        current.add(60, 'minutes'); //minute interval
       }
     }
 
@@ -107,14 +107,18 @@ const Timeslot2 = ({GetTimeCheck,takenAppointments,chosenDate}) => {
                 className="time btn" 
                 id={time}
                 value={time}
-                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : {background:"white"}}
+                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : (isActive? (getTime==time?{background: "#5d5fef", color: "#fff"}:{background:"white"}):{background:"white"})}
                 disabled={takenAppointments.indexOf(time)>-1 ? true : false}
                 onClick={(e)=>{
                   e.preventDefault();
                   setGetTime(e.target.value)
+                  setIsActive(!isActive);
                   //props.onSubmit(time)
                   GetTimeCheck(time);
                   console.log(time);
+                  if(getTime!=time){
+                    setIsActive(true);
+                  }
                 }}>{time}
                 </Button>
                   
