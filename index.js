@@ -1481,7 +1481,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const formattedDate = req.body.newFormattedDate.substring(0,10);
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
-  const insertAppStatus = "Pending";
+  const insertAppStatus = "Rescheduled";
   const docName = "Pamela Rimorin Concepcion";
 
   const AppData = new AppRequest({
@@ -1489,6 +1489,40 @@ app.put("/rescheduleAppointment", async (req, res) => {
     pName: userNameApp,
     dName: docName,
     appNum: appNumber,
+    date: updateDate ,
+    formattedDate: formattedDate,
+    consultation: updateConsult,
+    time: updateTime,
+    appStatus: insertAppStatus,
+  });
+
+  await AppData.save();
+  await AppDetails.findOneAndDelete({ appNum: appNumber });
+
+  console.log("Appointment Details Updated!");
+});
+
+app.put("/rescheduleDentistAppointment", async (req, res) => {
+  const appNumber = req.body.appNum;
+  const patientIDnumber = req.body.patientIDNum;
+  const userNameApp = req.body.pName;
+  const updateDate = req.body.newDate.substring(0,15);
+  const formattedDate = req.body.newFormattedDate.substring(0,10);
+  const updateTime = req.body.newTime;
+  const updateConsult = req.body.newConsultation;
+  const insertAppStatus = "Rescheduled";
+  const docName = req.body.dName;
+  const dentistIDnum = req.body.dentistIDnumber;
+  const event = new Date();
+  const firstNumber = event.toISOString().substring(20,23)
+  const appNumberUUID = "#APT" + firstNumber;
+
+  const AppData = new AppDetails({
+    patientIDnumber: patientIDnumber,
+    dentistIDnumber:dentistIDnum,
+    pName: userNameApp,
+    dName: docName,
+    appNum: appNumberUUID,
     date: updateDate ,
     formattedDate: formattedDate,
     consultation: updateConsult,

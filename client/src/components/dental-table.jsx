@@ -6,6 +6,7 @@ import styled, { keyframes } from 'styled-components';
 //project imports
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
+import DentistRescheduleAppointment from "./modals/dentist-reschedule-appointment";
 import Rebook from "./modals/rebook"
 import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
@@ -93,10 +94,12 @@ const DashboardTable = () => {
                         date={row.date}
                         time={row.time}
                         consultation={row.consultation} />
-                    <ReschedConfirmation
+                    <DentistRescheduleAppointment
+                        dentistIDnumber={row.dentistIDnumber}
                         patientIDnumber={row.patientIDnumber}
+                        appNum={row.appNum}
                         pName={row.pName}
-                        appNum={row.appNum} />
+                        dName={row.dName} />
                     <ApptDetails
                         pName={row.pName}
                         appNum={row.appNum}

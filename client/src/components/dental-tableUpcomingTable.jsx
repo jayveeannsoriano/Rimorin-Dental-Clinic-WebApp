@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 
 //project imports
 import ApptDetails from "./modals/appt-details";
-import ReschedConfirmation from "./modals/reschedule-appointment";
+import DentistRescheduleAppointment from "./modals/dentist-reschedule-appointment";
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
 import FollowUp from "./modals/followUp"
@@ -68,10 +68,12 @@ const UpDentalDashboardTable = () => {
             <div className="action-buttons">
                 {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
                 <>
-                    <ReschedConfirmation
-                        patientIDnumber={row.patientIDnumber}
-                        pName={row.pName}
-                        appNum={row.appNum} />
+                    <DentistRescheduleAppointment
+                          dentistIDnumber={row.dentistIDnumber}
+                          patientIDnumber={row.patientIDnumber}
+                          appNum={row.appNum}
+                          pName={row.pName}
+                          dName={row.dName}  />
                 </>
                 ) 
                 : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
