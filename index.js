@@ -287,7 +287,7 @@ app.post("/insertAppointment", async (req, res) => {
           },
         ],
         template_id: "d-9a171e9b1d6f41b3b323bda330392e96",
-        from: "rimorin.secretary@gmail.com", // Change to your verified sender
+        from: "rimorin.dental@gmail.com", // Change to your verified sender
       };
       sgMail
         .send(msg)
