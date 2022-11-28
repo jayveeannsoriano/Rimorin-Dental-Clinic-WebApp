@@ -63,17 +63,63 @@ const UpSecAdminDashboardTable = () => {
             name: "Action",
             selector: row =>
             <div className="action-buttons">
-                {row.appStatus == "Arrived" || row.appStatus == "No Show" || row.appStatus == "Accepted"  ? (
+                          {row.appStatus == "Accepted" ? (
                 <>
                     <ReschedConfirmation
+                        dentistIDnumber={row.dentistIDnumber}
                         patientIDnumber={row.patientIDnumber}
+                        appNum={row.appNum}
                         pName={row.pName}
-                        appNum={row.appNum} />
+                        dName={row.dName} />
+                    <ApptDetails
+                        pName={row.pName}
+                        appNum={row.appNum}
+                        date={row.date}
+                        time={row.time}
+                        appStats={row.appStatus}
+                        consultation={row.consultation}/>
                 </>
-                ) 
-                : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
+                ) : row.appStatus == "Arrived" ? (
+                  <>
+                    <SecAdminRebook
+                          patientIDnumber={row.patientIDnumber}
+                          appNum={row.appNum}
+                          pName={row.pName}
+                          dName={row.dName}
+                          date={row.date}
+                          time={row.time}
+                          consultation={row.consultation} />
+                    <ApptDetails
+                          pName={row.pName}
+                          appNum={row.appNum}
+                          date={row.date}
+                          time={row.time}
+                          appStats={row.appStatus}
+                          consultation={row.consultation}/>
+                  </>
+                ) : row.appStatus == "Rescheduled" ? (
+                  <h5>Resched Info</h5>
+                ) : row.appStatus == "Follow-Up" ? (
+                  <h5>FOllow-Up Info</h5>
+                ) :
+                (
+                <>
+                  <FollowUp 
+                    dentistIDnumber={row.dentistIDnumber} 
+                    patientIDnumber={row.patientIDnumber} 
+                    appNum={row.appNum} 
+                    dName={row.dName}/>
+                  <ApptDetails
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
+                </>
+                  )
             }
-                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation = {row.consultation}/>
+
             </div>
         },
     ];
