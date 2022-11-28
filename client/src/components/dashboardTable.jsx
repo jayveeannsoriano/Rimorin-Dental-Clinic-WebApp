@@ -6,7 +6,7 @@ import styled, { keyframes } from "styled-components";
 //project imports
 import "../styles/dashboard.css";
 import "../styles/modals.css";
-import ApptDetails from "./modals/appt-details";
+import ApptPatientDetails from "./modals/appt-patient-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import CancelAppointment from "./modals/cancel-appointment";
 import ApptDetailsText from "./modals/appt-details-text";
@@ -121,7 +121,8 @@ const DashboardTable = () => {
             appStats={row.appStatus}
             consultation={row.consultation}/>
           ) : (
-          <ApptDetails
+          <ApptPatientDetails
+            dName={row.dName}
             pName={row.pName}
             appNum={row.appNum}
             date={row.date}

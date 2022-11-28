@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DataTable, { Alignment } from "react-data-table-component";
 import styled, { keyframes } from "styled-components";
-import ApptDetails from "./modals/appt-details";
+import ApptPatientDetails from "./modals/appt-patient-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import CancelAppointment from "./modals/cancel-appointment";
 import ApptDetailsText from "./modals/appt-details-text";
@@ -83,17 +83,19 @@ const UpcomingDashboardTable = () => {
                 appNum={row.appNum}
               />
               <CancelAppointment appNum={row.appNum} />
-              <ApptDetails
-                pName={row.pName}
-                appNum={row.appNum}
-                date={row.date}
-                time={row.time}
-                appStats={row.appStatus}
-                consultation={row.consultation}/>
+              <ApptPatientDetails
+              dName={row.dName}
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              consultation={row.consultation}/>
             </>
 
           ) : row.appStatus == "Arrived" ? (
-            <ApptDetails
+            <ApptPatientDetails
+            dName={row.dName}
             pName={row.pName}
             appNum={row.appNum}
             date={row.date}
@@ -119,7 +121,8 @@ const UpcomingDashboardTable = () => {
             appStats={row.appStatus}
             consultation={row.consultation}/>
           ) : (
-            <ApptDetails
+            <ApptPatientDetails
+            dName={row.dName}
             pName={row.pName}
             appNum={row.appNum}
             date={row.date}
