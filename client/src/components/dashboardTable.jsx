@@ -92,12 +92,16 @@ const DashboardTable = () => {
       name: "Action",
       selector: (row) => (
         <div className="action-buttons">
-          <ReschedConfirmation
-            patientIDnumber={row.patientIDnumber}
-            pName={row.pName}
-            appNum={row.appNum}
-          />
-          <CancelAppointment appNum={row.appNum} />
+          {row.appStats == "Pending" ? (
+            <>
+            <ReschedConfirmation
+              patientIDnumber={row.patientIDnumber}
+              pName={row.pName}
+              appNum={row.appNum}
+              />
+            <CancelAppointment appNum={row.appNum} />
+          </>
+          ) : (null)}
           <ApptDetails
             pName={row.pName}
             appNum={row.appNum}

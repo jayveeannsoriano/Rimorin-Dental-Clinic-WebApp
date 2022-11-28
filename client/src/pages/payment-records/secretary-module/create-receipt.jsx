@@ -266,13 +266,8 @@ const createReceipt = () => {
         conValue: getConValue,
       }
     );
-
-    // handleShow();
   };
 
-  const handleShow = () => {
-    setModalState('show-modal')
-  }
 
   return (
     <>
@@ -288,7 +283,7 @@ const createReceipt = () => {
                     <li className="breadcrumb-item">
                       <a href="/secretary">Home</a>
                     </li>
-                    <li className="breadcrumb-item active">Create E-Receipt</li>
+                    <li className="breadcrumb-item active">Create Receipt</li>
                   </ol>
                 </nav>
               </div>
@@ -318,13 +313,13 @@ const createReceipt = () => {
                     <div className="row transaction-details-row">
                       <div className="col-xl-12 col-lg-12 col-md-12 patient-transaction-details">
                         <h6>
-                          Appointment #:<span> #{StringfyAppNumber}</span>
+                          Appointment #: <span> #{StringfyAppNumber}</span>
                         </h6>
                         <h6>
-                          Bill to:<span> {patientUser}</span>
+                          Bill to: <span> {patientUser}</span>
                         </h6>
                         <h6>
-                          Address:<span> {patientAddress}</span>
+                          Address: <span> {patientAddress}</span>
                         </h6>
                       </div>
                       <div className="col-xl-5 col-lg-5 col-md-5">

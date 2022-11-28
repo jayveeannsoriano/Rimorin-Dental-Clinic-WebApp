@@ -78,8 +78,12 @@ const TransactionDataTable = () => {
             name: "Action",
             selector: (row) => 
             <div className="action-buttons">
+                {row.payStatus == "Paid" ? (
+                   <>
                     <PrintFile data={["print","receipt",row,patientList]}/>
                     <ExportFile data={["download","receipt",row,patientList]}/>
+                   </>
+                ) : (null)}
             </div>
         }
     ];

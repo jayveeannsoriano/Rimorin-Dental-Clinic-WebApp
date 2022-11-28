@@ -15,7 +15,7 @@ switch (userRole) {
     break;
   case 4:
     FollowUpAppointmentRoute =
-      "/admin/appointments/follow-up-appointment";
+      "/admin/follow-up-appointment";
     break;
 }
 
