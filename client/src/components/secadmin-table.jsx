@@ -9,6 +9,8 @@ import ReschedConfirmation from "./modals/reschedule-appointment";
 import SecAdminRebook from "./modals/secadminrebook";
 import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
+import ApptDetailsResched from "./modals/appt-details-reschedule";
+import ApptDetailsFollowUp from "./modals/appt-details-followup";
 
 const SecAdminDashboardTable = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -100,28 +102,70 @@ const SecAdminDashboardTable = () => {
                         patientIDnumber={row.patientIDnumber}
                         pName={row.pName}
                         appNum={row.appNum} />
-                </>
+                    <ApptDetails
+                        pName={row.pName}
+                        appNum={row.appNum}
+                        date={row.date}
+                        time={row.time}
+                        appStats={row.appStatus}
+                        consultation={row.consultation}/>
+                  </>
                 ) : row.appStatus == "Arrived" ? (
-                    <SecAdminRebook
-                      patientIDnumber={row.patientIDnumber}
-                      appNum={row.appNum}
-                      pName={row.pName}
-                      dName={row.dName}
-                      date={row.date}
-                      time={row.time}
-                      consultation={row.consultation} />
+                  <>
+                      <SecAdminRebook
+                        patientIDnumber={row.patientIDnumber}
+                        appNum={row.appNum}
+                        pName={row.pName}
+                        dName={row.dName}
+                        date={row.date}
+                        time={row.time}
+                        consultation={row.consultation} />
+                        <ApptDetails
+                        pName={row.pName}
+                        appNum={row.appNum}
+                        date={row.date}
+                        time={row.time}
+                        appStats={row.appStatus}
+                        consultation={row.consultation}
+                      />
+                    </>
+                ) : row.appStatus == "Rescheduled" ? (
+                  <ApptDetailsResched
+                  pName={row.pName}
+                  appNum={row.appNum}
+                  date={row.date}
+                  time={row.time}
+                  appStats={row.appStatus}
+                  consultation={row.consultation}/>
+
+                ) : row.appStatus == "Follow-Up" ? (
+                  <ApptDetailsFollowUp
+                  pName={row.pName}
+                  appNum={row.appNum}
+                  date={row.date}
+                  time={row.time}
+                  appStats={row.appStatus}
+                  consultation={row.consultation}/>
                 )
-                : (<FollowUp dentistIDnumber={row.dentistIDnumber} patientIDnumber={row.patientIDnumber} appNum={row.appNum} dName={row.dName}/>)
+                : (
+                <>
+                  <FollowUp 
+                    dentistIDnumber={row.dentistIDnumber} 
+                    patientIDnumber={row.patientIDnumber} 
+                    appNum={row.appNum} dName={row.dName}
+                    />
+                  <ApptDetails
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
+                </>
+                  )
             }
 
-            <ApptDetails
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              consultation={row.consultation}
-            />
+
           </div>
         ),
       },

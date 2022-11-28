@@ -6,6 +6,8 @@ import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
 import CancelAppointment from "./modals/cancel-appointment";
 import ApptDetailsText from "./modals/appt-details-text";
+import ApptDetailsResched from "./modals/appt-details-reschedule";
+import ApptDetailsFollowUp from "./modals/appt-details-followup";
 
 const UpcomingDashboardTable = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -81,16 +83,51 @@ const UpcomingDashboardTable = () => {
                 appNum={row.appNum}
               />
               <CancelAppointment appNum={row.appNum} />
+              <ApptDetails
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                consultation={row.consultation}/>
             </>
-          ) : null}
-          <ApptDetails
+
+          ) : row.appStatus == "Arrived" ? (
+            <ApptDetails
             pName={row.pName}
             appNum={row.appNum}
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}
-          />
+            consultation={row.consultation}/> 
+
+          ) : row.appStatus == "Rescheduled" ? (
+            <ApptDetailsResched
+            pName={row.pName}
+            appNum={row.appNum}
+            date={row.date}
+            time={row.time}
+            appStats={row.appStatus}
+            consultation={row.consultation}/>
+
+          ) : row.appStatus == "Follow-Up" ? (
+            <ApptDetailsFollowUp
+            pName={row.pName}
+            appNum={row.appNum}
+            date={row.date}
+            time={row.time}
+            appStats={row.appStatus}
+            consultation={row.consultation}/>
+          ) : (
+            <ApptDetails
+            pName={row.pName}
+            appNum={row.appNum}
+            date={row.date}
+            time={row.time}
+            appStats={row.appStatus}
+            consultation={row.consultation}/> 
+            )
+          }
         </div>
       ),
     },

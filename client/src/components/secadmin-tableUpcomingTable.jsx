@@ -9,6 +9,8 @@ import ReschedConfirmation from "./modals/reschedule-appointment";
 import SecAdminRebook from "./modals/secadminrebook";
 import ApptDetailsText from "./modals/appt-details-text";
 import FollowUp from "./modals/followUp"
+import ApptDetailsResched from "./modals/appt-details-reschedule";
+import ApptDetailsFollowUp from "./modals/appt-details-followup";
 
 const UpSecAdminDashboardTable = () => {
 
@@ -98,9 +100,21 @@ const UpSecAdminDashboardTable = () => {
                           consultation={row.consultation}/>
                   </>
                 ) : row.appStatus == "Rescheduled" ? (
-                  <h5>Resched Info</h5>
+                    <ApptDetailsResched
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
                 ) : row.appStatus == "Follow-Up" ? (
-                  <h5>FOllow-Up Info</h5>
+                    <ApptDetailsFollowUp
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
                 ) :
                 (
                 <>
