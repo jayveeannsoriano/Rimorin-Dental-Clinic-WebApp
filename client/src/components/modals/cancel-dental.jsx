@@ -11,7 +11,10 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
     const [reasonInput, setReasonInput] = useState("");
 
 
-    const handleClose = () => setModalState(false);
+    const handleClose = () => {
+        setModalState(false)
+        refreshPage();
+    };
     const handleModal1 = () => {
         setModalState("modal-1")
     }
@@ -19,6 +22,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
     const handleModal2 = () => {
         CancelAppointment();
         setModalState("modal-2")
+       
     }
     //retrieve app number
     const StringfyValues = JSON.stringify(patientIDnumber, pName, dName, appNum, date, time, consultation);
@@ -45,12 +49,10 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             consulInput: ConsultValue, 
             getTime: TimeValue 
         })
+    }
 
-        
-        // await Axios.put("http://localhost:3001/deleteAppointment", {
-        //     patientIDnumber: PatientIDnumber,
-        //     appNum: AppNumber,
-        // });
+    function refreshPage(){
+        window.location.reload();
     }
 
     return (
