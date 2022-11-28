@@ -27,7 +27,7 @@ const DashboardTable = () => {
 
  appointment.map(function (item) {
      if (item.date != convertDate) {
-         axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsNoShow", {
+         axios.post("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
              patientIDnumber: item.patientIDnumber,
              appNum: item.appNum,
              pName: item.pName,
@@ -44,7 +44,7 @@ const DashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-          const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTodayDentalAppointmentDetails',{
+          const response = await axios.get('http://localhost:3001/getTodayDentalAppointmentDetails',{
             params: {
                 dentistIDnumber:dentistIDnumber,
                 date:convertDate,

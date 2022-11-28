@@ -42,7 +42,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
 
   const AcceptAppointment = () => {
     handleShow();
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
+    Axios.post("http://localhost:3001/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
   }
 
 

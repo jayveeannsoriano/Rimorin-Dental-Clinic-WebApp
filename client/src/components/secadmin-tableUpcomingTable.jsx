@@ -24,7 +24,7 @@ const UpSecAdminDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUpcomingAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingAppointmentDetails',{
             params: {
                 date:convertDate
             }

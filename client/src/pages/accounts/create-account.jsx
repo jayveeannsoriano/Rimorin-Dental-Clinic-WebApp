@@ -35,7 +35,7 @@ const CreateAccount = () => {
 
     const InsertUser = async () => {
 
-        await Axios.post("https://rimorin-dental-clinic.herokuapp.com/InsertNewUser", {
+        await Axios.post("http://localhost:3001/InsertNewUser", {
             accountType: getAccountValue,
             fname: getFNameValue,
             mname: getMNameValue,

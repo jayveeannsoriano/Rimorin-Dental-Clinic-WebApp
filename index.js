@@ -1930,7 +1930,7 @@ app.put("/updatePatientInfo", async (req, res) => {
 
   await AppDetails.updateMany(
     { patientIDnumber: patientIDnumber },
-    { pName: patientName }
+    { pName: patientName },
   );
   await AppRequest.updateMany(
     { patientIDnumber: patientIDnumber },
@@ -1943,6 +1943,87 @@ app.put("/updatePatientInfo", async (req, res) => {
   await ReceiptDetails.updateMany(
     { patientIDnumber: patientIDnumber },
     { pName: patientName }
+  );
+  console.log("User info updated!");
+});
+
+app.put("/updateDentistInfo", async (req, res) => {
+  const ObjectID = req.body.ObjectID;
+  const dentistIDnumber = req.body.dentistIDnumber;
+
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const middleName = req.body.middleName;
+  const suffix = req.body.suffix;
+  const birthDate = req.body.birthDate;
+  const genderValue = req.body.genderValue;
+  const professionValue = req.body.professionValue;
+  const cellNumber = req.body.cellNumber;
+  const tellNumber = req.body.tellNumber;
+  const bloodType = req.body.bloodType;
+  const houseNum = req.body.houseNum;
+  const cityValue = req.body.cityValue;
+  const countryValue = req.body.countryValue;
+  const brgyValue = req.body.brgyValue;
+  const provinceValue = req.body.provinceValue;
+  const zipValue = req.body.zipValue;
+  const medValue = req.body.medValue;
+  const allergiesValue = req.body.allergiesValue;
+  const condValue = req.body.condValue;
+  const precautionValue = req.body.precautionValue;
+
+  const dentistName = firstName + " " + lastName;
+
+  const bdayInput = req.body.birthDate;
+  let AgeOut = () => {
+    return Math.floor(
+      (Date.now() - new Date(bdayInput).getTime()) / 31557600000
+    );
+  };
+
+  await User.findOneAndUpdate(
+    { _id: ObjectID },
+
+    {
+      fname: firstName,
+      lname: lastName,
+      mname: middleName,
+      suffix: suffix,
+      bday: birthDate,
+      age: AgeOut(),
+      gender: genderValue,
+      profession: professionValue,
+      mobile: cellNumber,
+      tellphone: tellNumber,
+      blood: bloodType,
+      house: houseNum,
+      municipality: cityValue,
+      country: countryValue,
+      brgy: brgyValue,
+      province: provinceValue,
+      zipcode: zipValue,
+      medications: medValue,
+      allergies: allergiesValue,
+      conditions: condValue,
+      precautions: precautionValue,
+    }
+  );
+
+  await AppDetails.updateMany(
+    { dentistIDnumber: dentistIDnumber },
+    { dName: dentistName },
+  );
+  await AppRequest.updateMany(
+    { dentistIDnumber: dentistIDnumber },
+    { dName: dentistName }
+  );
+  await NotifDetails.updateMany(
+    { dentistIDnumber: dentistIDnumber },
+    { dName: dentistNamedentistName }
+  );
+  await ReceiptDetails.updateMany(
+    { dentistIDnumber: dentistIDnumber },
+    { dName: dentistName }
   );
   console.log("User info updated!");
 });
@@ -2136,7 +2217,7 @@ app.post("/forgot-password", async (req, res) => {
       const token = jwt.sign({ email: oldUser.email }, secret, {
         expiresIn: "5m",
       });
-      const link = `https://rimorin-dental-clinic.herokuapp.com/auth/reset-password?email=${email}`;
+      const link = `http://localhost:3001/auth/reset-password?email=${email}`;
       sgMail.setApiKey(
         "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"
       );

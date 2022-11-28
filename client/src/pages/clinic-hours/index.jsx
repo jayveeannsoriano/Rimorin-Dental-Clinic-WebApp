@@ -140,7 +140,7 @@ const ClinicHours = () => {
   const updateClinicHours = async() => {
     console.log('Clicked');
     try{
-      axios.put("https://rimorin-dental-clinic.herokuapp.com/updateClinicHours", {clinicHours:timeSlot})
+      axios.put("http://localhost:3001/updateClinicHours", {clinicHours:timeSlot})
       handleShow();
     }catch (error){
       console.log(error)
@@ -150,7 +150,7 @@ const ClinicHours = () => {
 
   const getAvailableTimes = async() => {
     try{
-      const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes')
+      const response = await axios.get('http://localhost:3001/getAvailableTimes')
 
       var data = response.data[0].config
       
