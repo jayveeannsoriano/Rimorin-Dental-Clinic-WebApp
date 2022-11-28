@@ -13,7 +13,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
     const handleClose = () => {
         setModalState(false)
-        refreshPage();
+        window.location.reload();
     };
     const handleModal1 = () => {
         setModalState("modal-1")
@@ -49,10 +49,6 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             consulInput: ConsultValue, 
             getTime: TimeValue 
         })
-    }
-
-    function refreshPage(){
-        window.location.reload();
     }
 
     return (

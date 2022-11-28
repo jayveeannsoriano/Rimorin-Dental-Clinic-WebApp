@@ -9,7 +9,10 @@ function CancelAppointment(appNum) {
   const [reasonInput, setReasonInput] = useState("");
   
 
-  const handleClose = () => setModalState(false);
+  const handleClose = () => {
+    setModalState(false)
+    window.location.reload();
+  };
   const handleModal1= () => {
     console.log("Deleting " + AppNumber);
     Axios.put("http://localhost:3001/deleteAppointment", {

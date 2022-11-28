@@ -7,7 +7,10 @@ import successful from '../../assets/img/check.png';
 export default function Success() {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        window.location.reload();
+    };
     const handleShow = () => setShow(true);
 
     return (

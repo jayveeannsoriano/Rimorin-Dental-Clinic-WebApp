@@ -12,7 +12,10 @@ import '../../styles/booking.css'
 function RescheduleAppointment(pName,appNum,patientIDnumber) {
   const [modalState, setModalState] = useState('close');
   
-  const handleClose = () => setModalState(false);
+  const handleClose = () => {
+    setModalState(false)
+    window.location.reload();
+  };
   const handleModal1= () => {
     setModalState("modal-1")
   }

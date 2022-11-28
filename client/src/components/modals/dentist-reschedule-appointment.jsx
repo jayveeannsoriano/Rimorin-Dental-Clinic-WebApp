@@ -12,7 +12,10 @@ import '../../styles/booking.css'
 function DentistRescheduleAppointment(dentistIDnumber,patientIDnumber,appNum,pName,dName,date,time,consultation) {
   const [modalState, setModalState] = useState('close');
   
-  const handleClose = () => setModalState(false);
+  const handleClose = () => {
+    setModalState(false)
+    window.location.reload();
+  };
   const handleModal1= () => {
     setModalState("modal-1")
   }

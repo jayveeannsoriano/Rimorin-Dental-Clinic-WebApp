@@ -17,7 +17,10 @@ function ArchiveAccount(ObjectID) {
     const [modalState, setModalState] = useState(false);
 
 
-    const handleClose = () => setModalState(false);
+    const handleClose = () => {
+        setModalState(false)
+        window.location.reload();
+    };
 
     const handleModal1 =() => {
         setModalState("modal-1")

@@ -17,7 +17,10 @@ function UnarchiveAccount(ObjectID) {
     const [modalState, setModalState] = useState(false);
 
 
-    const handleClose = () => setModalState(false);
+    const handleClose = () => {
+        setModalState(false)
+        window.location.reload();
+    };
 
     const handleModal1 =() => {
         

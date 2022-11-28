@@ -9,7 +9,10 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   console.log("ACCEPT DENTAL:",dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation)
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+    window.location.reload();
+  };
   const handleShow = () => setShow(true);
   // if(dentistIDnumber =! undefined || null){ 
   //   console.log("This is Dentist")
@@ -34,12 +37,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   }else{
      var dentistNumber = JSON.stringify(ConvertStringfyValues.dentistIDnumber).replace(/"/g, "");
   }
-
-
-
   
-
-
   const AcceptAppointment = () => {
     handleShow();
     Axios.post("http://localhost:3001/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
@@ -65,7 +63,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully accepted Appointment {AppNumber}</p>
+          <p className='modal-txt'>You have successfully accepted Appointment {AppNumber}</p>
         </Modal.Body>
 
         <Modal.Footer>
