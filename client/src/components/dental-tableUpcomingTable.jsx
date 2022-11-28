@@ -9,6 +9,8 @@ import DentistRescheduleAppointment from "./modals/dentist-reschedule-appointmen
 import Rebook from "./modals/rebook"
 import ApptDetailsText from "./modals/appt-details-text";
 import FollowUp from "./modals/followUp"
+import ApptDetailsResched from "./modals/appt-details-reschedule";
+import ApptDetailsFollowUp from "./modals/appt-details-followup";
 
 const UpDentalDashboardTable = () => {
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -101,9 +103,21 @@ const UpDentalDashboardTable = () => {
                           consultation={row.consultation}/>
                   </>
                 ) : row.appStatus == "Rescheduled" ? (
-                  <h5>Resched Info</h5>
+                    <ApptDetailsResched
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
                 ) : row.appStatus == "Follow-Up" ? (
-                  <h5>FOllow-Up Info</h5>
+                    <ApptDetailsFollowUp
+                    pName={row.pName}
+                    appNum={row.appNum}
+                    date={row.date}
+                    time={row.time}
+                    appStats={row.appStatus}
+                    consultation={row.consultation}/>
                 ) :
                 (
                 <>

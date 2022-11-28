@@ -308,26 +308,20 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   const patientIDnumber = req.body.patientIDnumber;
   console.log(patientIDnumber);
 
+  const dentistIDnumber = req.body.docID;
   //User Info value
   const userNameApp = req.body.userNameApp;
   console.log(userNameApp);
 
   //Doctor name
-  const docName = "Pamela Rimorin Concepcion";
+  const docName = req.body.docName;
 
   //Appointment Number
 
   const event = new Date();
-  console.log(event.toISOString());
-  const firstNumber = event.toISOString().substring(9, 10);
-  console.log(firstNumber);
-  const secondNumber = event.toISOString().substring(20, 21);
-  const thirdNumber = event.toISOString().substring(18, 19);
+  const firstNumber = event.toISOString().substring(20,23)
+  const appNumberUUID = "#APT" + firstNumber;
 
-  const UUIDAPPNUM = firstNumber + secondNumber + thirdNumber;
-
-  const appNumber = "#APT" + UUIDAPPNUM;
-  console.log(appNumber);
 
   //date value
   const startDate = req.body.startDate;
@@ -345,15 +339,16 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(formattedDate);
 
   //appt status default when creating an appointment
-  const insertAppStatus = "Pending";
+  const insertAppStatus = "Follow-Up";
   console.log(insertAppStatus);
 
   //inserting all data
-  const AppData = new AppRequest({
+  const AppData = new AppDetails({
+    dentistIDnumber:dentistIDnumber,
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dName: docName,
-    appNum: appNumber,
+    appNum: appNumberUUID,
     date: slidedDate,
     consultation: consulInput,
     time: getTime,
