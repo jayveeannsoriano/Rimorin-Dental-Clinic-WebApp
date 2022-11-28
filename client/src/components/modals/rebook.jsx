@@ -54,7 +54,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
 
-    Axios.put("https://rimorin-dental-clinic.herokuapp.com/updateStatus", {
+    Axios.put("http://localhost:3001/updateStatus", {
       appNum: AppNumber,
       newAppStatus: selectValue
     });
@@ -74,7 +74,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
     if (selectValue == "No Show") {
       handleNoShow();
-      Axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsNoShow", {
+      Axios.post("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
         patientIDnumber: PatientIDNumber,
         appNum: AppNumber,
         pName: patientValue,

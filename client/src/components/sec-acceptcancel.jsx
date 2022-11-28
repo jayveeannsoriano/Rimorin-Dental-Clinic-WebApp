@@ -17,7 +17,7 @@ const SecAcceptCancel = (dentistIDnum) => {
   const getDentistInfo = async () => {
 
     try {
-        const responses = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentistInfoID',{
+        const responses = await axios.get('http://localhost:3001/getDentistInfoID',{
             params:{
                 ObjectID: dentistObjectID
             }
@@ -48,7 +48,7 @@ console.log("dentistFullName", dentistFullName)
 
     const getAppointment = async () => {
         try {
-            const responses = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails');
+            const responses = await axios.get('http://localhost:3001/getAppointmentDetails');
             console.log(responses);
             setAppointment(responses.data);
             setFilteredAppointment(responses.data);

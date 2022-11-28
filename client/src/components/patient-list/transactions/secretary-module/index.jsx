@@ -14,7 +14,7 @@ const SecTransactionPatientProfileWidget = () => {
   const getReceiptDetails = async () => {
     try {
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getPatientListforUserTransaction"
+        "http://localhost:3001/getPatientListforUserTransaction"
       );
 
       setPatientReceipt(response.data);

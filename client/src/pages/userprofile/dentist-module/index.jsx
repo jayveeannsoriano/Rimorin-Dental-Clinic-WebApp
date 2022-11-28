@@ -13,7 +13,8 @@ const DentistUserProfile = () => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     console.log(userInfo, "this are all the data of the user");
     const UserObjectID = userInfo['_id'];
-
+    
+    const [dentistIDnumber, setDentistIDnumber] = useState('');
     const [userData, setUserData] = useState([]);
     const [firstName, setFirstValue] = useState('');
     const [lastName, setLastValue] = useState('');
@@ -46,7 +47,7 @@ const DentistUserProfile = () => {
             console.log("password works")
             if (newPassword == reEnterPassword) {
                 handleShow();
-                await Axios.put("https://rimorin-dental-clinic.herokuapp.com/changePassword", {
+                await Axios.put("http://localhost:3001/changePassword", {
                     userEmail: emailValue,
                     newPass: newPassword
                 })
@@ -64,7 +65,7 @@ const DentistUserProfile = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getCurrentUserInfo", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
                      ObjectID: UserObjectID
                 }
@@ -87,6 +88,7 @@ const DentistUserProfile = () => {
             setZipValue(response.data[0].zipcode)
             setEmailValue(response.data[0].email)
             setPasswordValue(response.data[0].password)
+            setDentistIDnumber(response.data[0].dentistIDnumber)
 
         } catch (error) {
             console.log(error);
@@ -111,8 +113,9 @@ const DentistUserProfile = () => {
     }
 
     const updatePatientInfo = async () => {
-        await Axios.put("https://rimorin-dental-clinic.herokuapp.com/updatePatientInfo", {
+        await Axios.put("http://localhost:3001/updateDentistInfo", {
             ObjectID: UserObjectID,
+            dentistIDnumber: dentistIDnumber,
 
             firstName: firstName,
             lastName: lastName,

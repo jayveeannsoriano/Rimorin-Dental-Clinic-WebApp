@@ -26,7 +26,7 @@ const UpDentalDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUpcomingDentalAppointmentDetails',{
+            const response = await axios.get('http://localhost:3001/getUpcomingDentalAppointmentDetails',{
             params: {
                 dentistIDnumber:dentistIDnumber,
                 date:convertDate
