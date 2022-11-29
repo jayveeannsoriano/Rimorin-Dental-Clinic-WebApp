@@ -56,7 +56,7 @@ const PrescriptionPatientProfileWidget = () => {
                                 <div class="patient-info">
                                     <ul>
                                         <li>Phone <span>{item.mobile}</span></li>
-                                        <li>Age <span>38 Years, {item.gender}</span></li>
+                                        <li>Age <span>{item.age}, {item.gender}</span></li>
                                     </ul>
                                 </div>
                                 
