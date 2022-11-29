@@ -2048,7 +2048,7 @@ app.put("/updateDentistInfo", async (req, res) => {
   );
   await NotifDetails.updateMany(
     { dentistIDnumber: dentistIDnumber },
-    { dName: dentistNamedentistName }
+    { dName: dentistName }
   );
   await ReceiptDetails.updateMany(
     { dentistIDnumber: dentistIDnumber },
