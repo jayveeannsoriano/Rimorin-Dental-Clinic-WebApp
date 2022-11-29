@@ -30,8 +30,11 @@ const BookingConfirm = ({nextStep, prevStep,handleDateChange, values}) => {
     //insert data
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {patientIDnumber: patientIDnumber, userNameApp: userNameApp, startDate: date,formattedDate:formattedDate, consulInput: values.consultation, getTime:time, recep:userInfo['email']})
 
-    fetch("https://cors-anywhere.herokuapp.com/https://api.movider.co/v1/sms", {
-        body: "api_key=9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X&api_secret=9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA&to=63"+userInfo['mobile']+ "&text= Hi "+userInfo['fname']+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "'. See you there!",
+    fetch("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
+        body: {
+            phone:userInfo['mobile'],
+            message:"Hi "+userInfo['fname']+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "'. See you there!"
+        },
         headers: {
             Accept: "application/json",
             "Content-Type": "application/x-www-form-urlencoded",
