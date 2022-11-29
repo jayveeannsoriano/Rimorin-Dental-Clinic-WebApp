@@ -2240,7 +2240,11 @@ const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
 app.post("/sendSMS", async (req, res) => {
   console.log(req.body.phone)
   console.log(req.body.message)
-
+  if(req.body.phone.substring(0,2)=="63"){
+    var phone = req.body.phone
+  }else{
+    var phone = "63"+req.body.phone
+  }
   sdk.postSms({
     api_key: '9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X',
     api_secret: '9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA',
