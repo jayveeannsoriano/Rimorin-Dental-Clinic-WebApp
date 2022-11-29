@@ -97,7 +97,7 @@ const PatientDashboard = () => {
   const getAppointment = async () => {
 
     try {
-      const response = await Axios.get('http://localhost:3001/getUserInfo', {
+      const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo', {
         params: {
           patientIDnumber: patientIDnumber,
         }

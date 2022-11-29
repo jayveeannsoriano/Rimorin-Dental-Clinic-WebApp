@@ -18,7 +18,7 @@ const ProfileWidgetThree = () => {
             var url = require('url');
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-            const response = await Axios.get('http://localhost:3001/getPatientInfo', {
+            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
                 params: {
                     patientIDnumber: query.patientIDNum
                 }
@@ -41,7 +41,7 @@ const ProfileWidgetThree = () => {
           var url_parts = url.parse(window.location.href, true);
           var query = url_parts.query;
           const response = await Axios.get(
-            "http://localhost:3001/getUserDentalRecord",
+            "https://rimorin-dental-clinic.herokuapp.com/getUserDentalRecord",
             {
                 params: {
                     patientIDnumber: query.patientIDNum
@@ -62,7 +62,7 @@ const ProfileWidgetThree = () => {
             var url = require("url");
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-            const response = await Axios.get('http://localhost:3001/getUserEPresRecord', {
+            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserEPresRecord', {
                 params: {
                     patientIDnumber: query.patientIDNum
                 }
@@ -85,7 +85,7 @@ const ProfileWidgetThree = () => {
             var url = require("url");
             var url_parts = url.parse(window.location.href, true);
             var query = url_parts.query;
-            const response = await Axios.get('http://localhost:3001/getUserTransactionPaid',{
+            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserTransactionPaid',{
                 params: {
                     patientIDnumber: query.patientIDNum
                 }

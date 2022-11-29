@@ -31,7 +31,7 @@ const UpcomingDashboardTable = () => {
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/getUpcomingUserAppointmentDetails",
+        "https://rimorin-dental-clinic.herokuapp.com/getUpcomingUserAppointmentDetails",
         {
           params: {
             patientIDnumber: patientIDnumber,

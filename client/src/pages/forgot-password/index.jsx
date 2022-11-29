@@ -22,7 +22,7 @@ function ForgotPswd() {
   }
 
   useEffect(() => {
-    Axios.post("http://localhost:3001/forgot-password", { email: email })
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/forgot-password", { email: email })
   });
 
   // const regex = new RegExp (/"^{([^>( ) [\]\+ {;:\s@\"]+(\. [^>( ) [\]\., ; :\s@\"]+)×) | (\".+\") )@(([^>()} [\]\., ; ;\s@\"]+\.)+[^< ( ) [\]\., ; :\s@\"]{2,}}$"/i);
