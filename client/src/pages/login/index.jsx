@@ -23,7 +23,7 @@ export default class Login extends Component {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Origin": "http://localhost:3001"
+        "Origin": "https://rimorin-dental-clinic.herokuapp.com"
       },
       body: JSON.stringify({
         email,
