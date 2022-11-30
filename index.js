@@ -2269,6 +2269,8 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
   const insertAppStatus = "Finished";
   console.log(insertAppStatus);
 
+  const appObjectID = req.body.objectID;
+
   //inserting all data
   const AppData = new AppHistory({
     patientIDnumber: PatientIDnum,
@@ -2288,8 +2290,7 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
       AppData,
       " to the History database."
     );
-    const removeFromDB = await AppDetails.find({ appNum: appNumber,date:dateValue,patientIDnumber:PatientIDnum});
-    removeFromDB.remove();
+    await AppDetails.findOneAndDelete({_id:appObjectID})
   } catch (err) {
     console.log(err);
   }

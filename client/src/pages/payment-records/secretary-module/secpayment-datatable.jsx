@@ -15,7 +15,6 @@ const SecTransactionDataTable = (patientIDNum) => {
 
     const [patientValue, setPatientValue] = useState("");
 
-
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);

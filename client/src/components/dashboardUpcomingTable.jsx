@@ -47,10 +47,10 @@ appointment.map(function (item) {
             date: item.date,
             time: item.time,
             consultation: item.consultation,
+            objectID: item._id
           })
           console.log("Moving ", item.appNum, item.pName, " to Appointment History")
       }
-      window.location.reload();
  });
 
   const getAppointment = async () => {
@@ -206,7 +206,7 @@ appointment.map(function (item) {
 
   useEffect(() => {
     getPreviousDay();
-  }, [getPreviousDay()]);
+  }, []);
 
   useEffect(() => {
     const result = appointment.filter((appointment) => {

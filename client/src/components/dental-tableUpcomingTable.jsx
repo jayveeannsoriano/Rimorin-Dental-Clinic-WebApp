@@ -45,10 +45,10 @@ const UpDentalDashboardTable = () => {
                 date: item.date,
                 time: item.time,
                 consultation: item.consultation,
+                objectID: item._id
               })
               console.log("Moving ", item.appNum, item.pName, " to Appointment History")
           }
-          window.location.reload();
      });
 
     const getAppointment = async() => {
@@ -213,7 +213,7 @@ const UpDentalDashboardTable = () => {
     
   useEffect(() => {
     getPreviousDay();
-  }, [getPreviousDay()]);
+  }, []);
 
     useEffect(() => {
         const result = appointment.filter((appointment) => {

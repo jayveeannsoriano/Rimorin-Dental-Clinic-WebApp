@@ -266,6 +266,8 @@ const createReceipt = () => {
         conValue: getConValue,
       }
     );
+
+    navigate(-1)
   };
 
 

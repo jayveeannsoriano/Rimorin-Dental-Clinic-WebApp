@@ -33,7 +33,7 @@ const createEprescription = () => {
     const navigate = useNavigate();
     const handleModalClose = () => {
         setModalState(false)
-        navigate(-1)
+        navigate(-2)
     };
 
     const handleModal = () => {
@@ -105,7 +105,7 @@ const createEprescription = () => {
             }
         );
 
-        setModalState("show-modal");
+        navigate(-1)
     };
 
     // function handleSubmit(event) {
@@ -393,8 +393,7 @@ const createEprescription = () => {
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
                                                         onSubmit={() => {
-                                                            createEPrescription();
-                                                            handleModal();
+                                                            createEPrescription();           
                                                         }}
                                                         
                                                     >
