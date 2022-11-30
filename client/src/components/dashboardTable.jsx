@@ -26,26 +26,7 @@ const DashboardTable = () => {
   
    //move user no show that day to app history as no show
       const getTodayDate = new Date();
-      const convertDate = getTodayDate.toString().substring(0, 15);
-      console.log(convertDate, "dateToday");
-
-    appointment.map(function (item) {
-        if (item.date != convertDate) {
-            axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsNoShow", {
-                patientIDnumber: item.patientIDnumber,
-                appNum: item.appNum,
-                pName: item.pName,
-                dName: item.dName,
-                date: item.date,
-                time: item.time,
-                consultation: item.consultation,
-              })
-              console.log("Moving ", item.appNum, item.pName, " to Appointment History")
-          } else {
-            console.log("USER MAY PAG ASA PANG MAG SHOW SA APPOINTMENT");
-          }
-     });
-
+      const convertDate = getTodayDate.toGMTString().substring(0, 15);
       
   const getAppointment = async () => {
     try {

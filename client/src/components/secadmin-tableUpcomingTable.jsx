@@ -24,6 +24,31 @@ const UpSecAdminDashboardTable = () => {
     window.localStorage.setItem('getTodayDate', getTodayDate);
     const convertDate = getTodayDate.toString().substring(0, 15);
 
+    function getPreviousDay(date = new Date()) {
+        const previous = new Date(date.getTime());
+        previous.setDate(date.getDate() - 1);
+      
+        return previous.toString().substring(0,15);
+      }
+    
+      console.log("YESTERDAY DATE",getPreviousDay());
+    
+    appointment.map(function (item) {
+        if (item.date == getPreviousDay()) {
+            axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsExpired", {
+                patientIDnumber: item.patientIDnumber,
+                appNum: item.appNum,
+                pName: item.pName,
+                dName: item.dName,
+                date: item.date,
+                time: item.time,
+                consultation: item.consultation,
+              })
+              console.log("Moving ", item.appNum, item.pName, " to Appointment History")
+          }
+          window.location.reload();
+     });
+
     const getAppointment = async() => {
         try{
             const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUpcomingAppointmentDetails',{
@@ -183,6 +208,10 @@ const UpSecAdminDashboardTable = () => {
     useEffect(() => {
         getAppointment();
     }, []);
+
+    useEffect(() => {
+        getPreviousDay();
+      }, [getPreviousDay()]);
 
     useEffect(() => {
         const result = appointment.filter((appointment) => {

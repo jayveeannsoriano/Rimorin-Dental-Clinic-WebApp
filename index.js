@@ -2235,6 +2235,66 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
   }
 });
 
+app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
+  //Patient ID name
+  const PatientIDnum = req.body.patientIDnumber;
+  console.log(PatientIDnum);
+
+  //User Info value
+  const userNameApp = req.body.pName;
+  console.log(userNameApp);
+
+  //Doctor name
+  const docName = req.body.dName;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = req.body.appNum;
+  console.log(appNumber);
+
+  //date value
+  const dateValue = req.body.date;
+  console.log(dateValue);
+
+  //consul value
+  const consulInput = req.body.consultation;
+  console.log(consulInput);
+
+  //time value
+  const getTime = req.body.time;
+  console.log(getTime);
+
+  //appt status default when appointment is accepted by the dentist
+  const insertAppStatus = "Finished";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppHistory({
+    patientIDnumber: PatientIDnum,
+    pName: userNameApp,
+    dName: docName,
+    appNum: appNumber,
+    date: dateValue,
+    consultation: consulInput,
+    time: getTime,
+    appStatus: insertAppStatus,
+  });
+
+  try {
+    await AppData.save();
+    console.log(
+      "Successfully inserted ",
+      AppData,
+      " to the History database."
+    );
+    const removeFromDB = await AppDetails.find({ appNum: appNumber,date:dateValue,patientIDnumber:PatientIDnum});
+    removeFromDB.remove();
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
 
 app.post("/sendSMS", async (req, res) => {
