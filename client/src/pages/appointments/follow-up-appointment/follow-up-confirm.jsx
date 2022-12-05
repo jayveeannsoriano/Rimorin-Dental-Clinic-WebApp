@@ -32,8 +32,8 @@ const BookingConfirm = ({nextStep, prevStep, values}) => {
     }
 
     //insert data
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertFollowUpAppointment", {patientIDnumber: patientIDNum ,docID:docID,docName:docName, prevAppNum:prevAppNum, userNameApp: getUserName, startDate: date,formattedDate:formattedDate, consulInput: values.consultation, getTime:time, recep:getUserEmail})
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: getUserPhone ,message:"Hi "+getUserName+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "'. See you there!"})
+    Axios.post("http://localhost:80/insertFollowUpAppointment", {patientIDnumber: patientIDNum ,docID:docID,docName:docName, prevAppNum:prevAppNum, userNameApp: getUserName, startDate: date,formattedDate:formattedDate, consulInput: values.consultation, getTime:time, recep:getUserEmail})
+    Axios.post("http://localhost:80/sendSMS", {phone: getUserPhone ,message:"Hi "+getUserName+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "'. See you there!"})
     
     return(
         

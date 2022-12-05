@@ -11,7 +11,7 @@ const DashboardLayout = () => {
     try {
         var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
         if(userInfo==null){
-            window.location.replace("https://rimorin-dental-clinic.herokuapp.com/");
+            window.location.replace("http://localhost:80/");
         }
         var userRole = userInfo['user_role_id'];
        

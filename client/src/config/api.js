@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetail",
+  baseURL: "http://localhost:80/getAppointmentDetail",
 });
 
 export default API;

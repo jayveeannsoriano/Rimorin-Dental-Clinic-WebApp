@@ -35,7 +35,7 @@ export default function UserProfileSave() {
         handleShow();
     }
     const updatePatientInfo = async () => {
-        await Axios.put("https://rimorin-dental-clinic.herokuapp.com/updatePatientInfo", {
+        await Axios.put("http://localhost:80/updatePatientInfo", {
 
             firstName: firstName,
             lastName: lastName,

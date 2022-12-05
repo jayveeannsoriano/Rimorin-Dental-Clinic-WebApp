@@ -155,7 +155,7 @@ export default function DentistDashboard() {
 
   const getTotalPatients = async() => {
     try{
-        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPatients');
+        let resp = await axios.get('http://localhost:80/getTotalPatients');
         setTotalPatients(resp.data);
     }catch (error){
         console.log(error)
@@ -164,7 +164,7 @@ export default function DentistDashboard() {
 
   const getTotalAppts = async() => {
     try{
-        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalAppts');
+        let resp = await axios.get('http://localhost:80/getTotalAppts');
         console.log(resp);
         setTotalAppts(resp.data);
     }catch (error){
@@ -174,7 +174,7 @@ export default function DentistDashboard() {
 
   const getTotalPendingAppts = async() => {
     try{
-        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
+        let resp = await axios.get('http://localhost:80/getTotalPendingAppts');
         setTotalPendingAppts(resp.data);
     }catch (error){
         console.log(error)

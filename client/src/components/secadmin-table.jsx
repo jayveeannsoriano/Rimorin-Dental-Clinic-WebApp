@@ -32,7 +32,7 @@ const SecAdminDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-          const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTodayAppointmentDetails',{
+          const response = await axios.get('http://localhost:80/getTodayAppointmentDetails',{
             params: {
                 
                 date:convertDate

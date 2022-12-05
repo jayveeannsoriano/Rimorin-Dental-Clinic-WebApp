@@ -25,7 +25,7 @@ const DashboardTableAppHistory = () => {
 
     const getAppointment = async() => {
         try{
-            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentHistory',{
+            const response = await axios.get('http://localhost:80/getAppointmentHistory',{
                 params:{
                     patientIDnumber: patientIDnumber
                 }

@@ -25,7 +25,7 @@ const AdminDentalRecord = () => {
       var url_parts = url.parse(window.location.href, true);
       var query = url_parts.query;
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserDentalRecord",
+        "http://localhost:80/getUserDentalRecord",
         {
           params: {
             patientIDnumber: query.patientIDNum,
@@ -52,7 +52,7 @@ const AdminDentalRecord = () => {
 
   const getPatientDetails = async () => {
     try {
-      const response = await axios.get("https://rimorin-dental-clinic.herokuapp.com/getPatientInfo", {
+      const response = await axios.get("http://localhost:80/getPatientInfo", {
         params: {
           patientIDnumber: StringfyIDnumber,
         },

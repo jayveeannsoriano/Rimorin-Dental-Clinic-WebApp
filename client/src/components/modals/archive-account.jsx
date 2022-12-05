@@ -27,7 +27,7 @@ function ArchiveAccount(ObjectID) {
     }
 
     const handleModal2 = () => {
-        Axios.post('https://rimorin-dental-clinic.herokuapp.com/ArchiveUser', {
+        Axios.post('http://localhost:80/ArchiveUser', {
             UserObjectID: objectID 
         })
         setModalState("modal-2")

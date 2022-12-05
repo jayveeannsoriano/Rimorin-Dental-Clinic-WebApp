@@ -12,7 +12,7 @@ const [patientIDNum, setpatientIDNum] = useState();
 //App Detail
 const getReceiptDetails = async() => {
     try{
-        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserDetails');
+        const response = await Axios.get('http://localhost:80/getUserDetails');
         console.log(response, "Responses");
         setPatientReceipt(response.data);
     }catch (error){

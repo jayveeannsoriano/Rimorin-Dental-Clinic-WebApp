@@ -13,7 +13,7 @@ export default function SecretaryAppointmentPage() {
 
   const getDentistInfo = async () => {
     try {
-        const responses = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentistInfo');
+        const responses = await Axios.get('http://localhost:80/getDentistInfo');
         console.log(responses.data);
         setDentistInfo(responses.data);
     } catch (error) {

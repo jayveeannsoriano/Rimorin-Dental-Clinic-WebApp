@@ -12,7 +12,7 @@ const PatientProfileWidget = () => {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getCurrentUserInfo", {
+            const response = await Axios.get("http://localhost:80/getCurrentUserInfo", {
                 params: {
                     ObjectID: UserObjectID
                 }

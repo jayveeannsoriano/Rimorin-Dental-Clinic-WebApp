@@ -18,7 +18,7 @@ const PatientInfo = () => {
   console.log(patientList);
   const getPatientDetails = async () => {
     try {
-      const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getPatientInfo", {
+      const response = await Axios.get("http://localhost:80/getPatientInfo", {
         params: {
           patientIDnumber: StringfyIDnumber,
         },
