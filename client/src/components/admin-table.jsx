@@ -34,7 +34,7 @@ const AdminTable = () => {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:80/getUserforAdmin');
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserforAdmin');
             console.log(response);
             setUsers(response.data);
             setFilteredUsers(response.data);

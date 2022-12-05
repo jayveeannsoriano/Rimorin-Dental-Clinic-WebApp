@@ -2328,7 +2328,7 @@ app.post("/forgot-password", async (req, res) => {
       const token = jwt.sign({ email: oldUser.email }, secret, {
         expiresIn: "5m",
       });
-      const link = `http://localhost:80/auth/reset-password?email=${email}`;
+      const link = `https://rimorin-dental-clinic.herokuapp.com/auth/reset-password?email=${email}`;
       sgMail.setApiKey(
         "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"
       );

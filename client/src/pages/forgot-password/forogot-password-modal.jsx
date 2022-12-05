@@ -15,7 +15,7 @@ export default function PasswordConfirmModal() {
     }
 
     useEffect(() => {
-        Axios.post("http://localhost:80/forgot-password", { email: email })
+        Axios.post("https://rimorin-dental-clinic.herokuapp.com/forgot-password", { email: email })
     });
     const [show, setShow] = useState(false);
 

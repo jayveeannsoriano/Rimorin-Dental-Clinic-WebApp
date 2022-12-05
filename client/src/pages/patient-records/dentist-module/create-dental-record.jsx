@@ -40,7 +40,7 @@ const CreateDentalRecord = () => {
 
     try {
       const response = await Axios.get(
-        "http://localhost:80/getPatientAppNumforDental",
+        "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
         {
           params: {
             appNumber: StringfyAppnumber,
@@ -182,7 +182,7 @@ const CreateDentalRecord = () => {
     console.log(getFile);
 
 
-    Axios.post("http://localhost:80/createDentalRecord", {
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/createDentalRecord", {
       patientIDNum: patientIDNumber,
       appNum: StringfyAppnumber,
       dateValue: startDate,
@@ -194,7 +194,7 @@ const CreateDentalRecord = () => {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
 
-    Axios.post("http://localhost:80/createReceipt", {
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppnumber,
       date: startDate,

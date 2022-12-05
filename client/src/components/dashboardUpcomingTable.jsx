@@ -39,7 +39,7 @@ const UpcomingDashboardTable = () => {
 
 appointment.map(function (item) {
     if (item.date == getPreviousDay()) {
-        axios.post("http://localhost:80/moveToAppointmentHistoryAsExpired", {
+        axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsExpired", {
             patientIDnumber: item.patientIDnumber,
             appNum: item.appNum,
             pName: item.pName,
@@ -56,7 +56,7 @@ appointment.map(function (item) {
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:80/getUpcomingUserAppointmentDetails",
+        "https://rimorin-dental-clinic.herokuapp.com/getUpcomingUserAppointmentDetails",
         {
           params: {
             patientIDnumber: patientIDnumber,

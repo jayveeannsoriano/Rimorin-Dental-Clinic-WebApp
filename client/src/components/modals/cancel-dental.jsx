@@ -40,7 +40,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
 
         console.log("Deleting " + AppNumber);
 
-        await Axios.post("http://localhost:80/moveToAppointmentHistoryAsCancelled", {
+        await Axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsCancelled", {
             patientIDnumber: PatientIDnumber, 
             userNameApp: PatientValue, 
             appNumber: AppNumber, 

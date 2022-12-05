@@ -52,7 +52,7 @@ function RescheduleAppointment(pName,appNum,patientIDnumber) {
     try{
         
         setChosenDate(date);
-        const response = await Axios.get('http://localhost:80/getAppointmentsbyDate',{
+        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate',{
             params:{
                 date: date
             }
@@ -77,7 +77,7 @@ useEffect(() => {
 const getAppDetails = async () => {
   try {
     const response = await Axios.get(
-      "http://localhost:80/getDetailsforReceipt",
+      "https://rimorin-dental-clinic.herokuapp.com/getDetailsforReceipt",
       {
         params: {
           patientIDNum: PatientIDnum,
@@ -101,7 +101,7 @@ useEffect(() => {
   const newDateTime = () =>{
     console.log("Updating " + AppNumber);
     console.log("Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput);
-    Axios.put("http://localhost:80/rescheduleAppointment",{
+    Axios.put("https://rimorin-dental-clinic.herokuapp.com/rescheduleAppointment",{
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
      pName: PatientName,

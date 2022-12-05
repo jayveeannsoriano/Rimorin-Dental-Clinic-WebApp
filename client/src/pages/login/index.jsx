@@ -17,7 +17,7 @@ export default class Login extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch("http://localhost:80/login-user", {
+    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {

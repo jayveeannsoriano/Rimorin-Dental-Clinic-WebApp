@@ -71,7 +71,7 @@ const ViewDentalRecord = () => {
   
 
     const getDentalCharts = async() => {
-        const response = await axios.get('http://localhost:80/getSpecificDentalRecord', { params: { patientIDNum: query.patientIDNum,date:query.date} });
+        const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getSpecificDentalRecord', { params: { patientIDNum: query.patientIDNum,date:query.date} });
         setRecordData(response.data);
         console.log(response.data)
         setchartedTeethValue(response.data.chartedTeeth);
@@ -98,7 +98,7 @@ const ViewDentalRecord = () => {
 
     const getPatientDetails = async() => {
         try{
-            const response = await axios.get('http://localhost:80/getPatientInfo',{
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo',{
               params:{
               patientIDnumber: StringfyIDnumber}
             });

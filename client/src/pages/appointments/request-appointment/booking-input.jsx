@@ -66,7 +66,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
         try{
             
             setChosenDate(date);
-            const response = await axios.get('http://localhost:80/getAppointmentsbyDate',{
+            const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate',{
                 params:{
                     date: date
                 }

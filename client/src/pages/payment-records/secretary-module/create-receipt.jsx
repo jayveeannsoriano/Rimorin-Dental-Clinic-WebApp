@@ -39,7 +39,7 @@ const createReceipt = () => {
   const getUser = async () => {
     try {
       const response = await Axios.get(
-        "http://localhost:80/getUserInfoFollowUp",
+        "https://rimorin-dental-clinic.herokuapp.com/getUserInfoFollowUp",
         {
           params: {
             patientIDNum: "PT#" + getPatientID,
@@ -77,7 +77,7 @@ const createReceipt = () => {
   const getAppDetails = async () => {
     try {
       const response = await Axios.get(
-        "http://localhost:80/getDetailsforReceipt",
+        "https://rimorin-dental-clinic.herokuapp.com/getDetailsforReceipt",
         {
           params: {
             patientIDNum: "PT#" + getPatientID,
@@ -156,7 +156,7 @@ const createReceipt = () => {
   console.log(recordProcedures, "this are the vals");
   const addPreviousReceipt = async () => {
     const response = await Axios.get(
-      "http://localhost:80/getUserDentalRecordforReceipt",
+      "https://rimorin-dental-clinic.herokuapp.com/getUserDentalRecordforReceipt",
       {
         params: {
           patientIDnumber: StringfyIDNumber,
@@ -233,7 +233,7 @@ const createReceipt = () => {
 
   const createUserReceipt = () => {
     Axios.put(
-      "http://localhost:80/getandUpdateReceipt",
+      "https://rimorin-dental-clinic.herokuapp.com/getandUpdateReceipt",
       {
         OBJECTID: ObjectID,
         addedItem: serviceItem,
@@ -254,7 +254,7 @@ const createReceipt = () => {
     );
 
     Axios.post(
-      "http://localhost:80/moveToAppointmentHistoryAsFinished",
+      "https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsFinished",
       {
         patientIDnumber: StringfyIDNumber,
         appNum: StringfyAppNumber,

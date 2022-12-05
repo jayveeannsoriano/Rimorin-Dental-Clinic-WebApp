@@ -18,7 +18,7 @@ function ResetPswd() {
     
     useEffect(() => {
         if (newPassword === confirmPassword) {
-            Axios.post("http://localhost:80/reset-password", { email: query.email, newPassword: newPassword, confirmPassword: confirmPassword })
+            Axios.post("https://rimorin-dental-clinic.herokuapp.com/reset-password", { email: query.email, newPassword: newPassword, confirmPassword: confirmPassword })
         } else {
             alert("Passwords must match.")
         }
