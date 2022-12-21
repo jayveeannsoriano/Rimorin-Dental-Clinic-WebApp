@@ -49,7 +49,7 @@ const BookingInput = ({ nextStep, handleChange, handleDateChange, handleTimeChan
 
     console.log("CURRENT DATE BOOKING",startDate);
     window.localStorage.setItem('date', startDate);
-    window.localStorage.setItem('formattedDate',startDate!=null?startDate.toISOString().substring(0,10):"")
+    window.localStorage.setItem('formattedDate',startDate!=null?startDate.getFullYear()+"-"+('0'+(startDate.getMonth()+1)).slice(-2)+"-"+('0' + startDate.getDate()).slice(-2):"")
   
     //useNavigate
     const navigate = useNavigate();
