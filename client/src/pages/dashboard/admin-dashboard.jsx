@@ -1,13 +1,15 @@
 import React from "react";
-import axios from "axios";
+import Axios from "axios";
 import moment from 'moment'
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import ApptRequestTable from '../../components/dental-acceptcancel';
 import SecAdminDashboardTable from "../../components/secadmin-table";
 import UpSecAdminDashboardTable from "../../components/secadmin-tableUpcomingTable";
+import SecAcceptCancel from "../../components/sec-acceptcancel";
 import '../../styles/dashboard.css';
 import {useNavigate} from 'react-router-dom';
+import { Form } from "react-bootstrap";
 
 
  const AdminDashboard = () => {  
@@ -29,6 +31,24 @@ import {useNavigate} from 'react-router-dom';
 
       }
     }
+
+    const [dentistInfo, setDentistInfo] = useState([]);
+    const [dentistIDnum, setDentistIDnumber] = useState("");
+    console.log("THIS IS THE ID NUM", dentistIDnum);
+  
+    const getDentistInfo = async () => {
+      try {
+          const responses = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentistInfo');
+          console.log(responses.data);
+          setDentistInfo(responses.data);
+      } catch (error) {
+          console.log(error)
+      }
+  }
+  
+  useEffect(() => {
+    getDentistInfo();
+  }, []);
 
     function compostieRender(){
       if(!redirectUnauth()){
@@ -129,7 +149,6 @@ import {useNavigate} from 'react-router-dom';
                             <h5 className="card-title">
                               UPCOMING APPOINTMENTS
                             </h5>
-                            {/* Pachange nalang yung datatable here */}
                                 <UpSecAdminDashboardTable/>
                           </div>
                         </div>
@@ -137,11 +156,21 @@ import {useNavigate} from 'react-router-dom';
                     </div>
                   </div>
       
-                  {/*<div className="col-12">
+                  <div className="col-12">
                     <div className="card overflow-auto appointment-request-table">
-                        <h5 className="card-title">BACKUP AND RESTORE</h5>
+                    <div className="col-lg-4">
+                      <label>Dentist</label>
+                        <Form.Select onChange={(e) => (setDentistIDnumber(e.target.value))}>
+                          <option selected disabled>Select a Dentist</option>
+                          {dentistInfo.map((item, index) => (
+                          <option value={item.dentistIDnumber}>{item.fname} {item.lname}</option>
+                          ))}
+                        </Form.Select>
+                      </div>
+                      <h5 className="card-title">APPOINTMENT REQUEST</h5>
+                      <SecAcceptCancel dentistIDnum={dentistIDnum}/>
                     </div>
-                  </div>*/}
+                  </div>
               </div>
             </section>
           </>);
@@ -156,7 +185,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalPatients = async() => {
       try{
-          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPatients');
+          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPatients');
           setTotalPatients(resp.data);
       }catch (error){
           console.log(error)
@@ -165,7 +194,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalAppts = async() => {
       try{
-          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalAppts');
+          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalAppts');
           console.log(resp);
           setTotalAppts(resp.data);
       }catch (error){
@@ -175,7 +204,7 @@ import {useNavigate} from 'react-router-dom';
   
     const getTotalPendingAppts = async() => {
       try{
-          let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
+          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
           setTotalPendingAppts(resp.data);
       }catch (error){
           console.log(error)

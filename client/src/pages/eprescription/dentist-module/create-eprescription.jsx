@@ -10,6 +10,7 @@ import PrescriptionDetails from "../../../components/modals/preview-prescription
 import DropFileInput from "../../../components/signature";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Form } from "react-bootstrap";
 import success from '../../../assets/img/check.png';
 
 const createEprescription = () => {
@@ -33,7 +34,7 @@ const createEprescription = () => {
     const navigate = useNavigate();
     const handleModalClose = () => {
         setModalState(false)
-        navigate(-2)
+        navigate(-1)
     };
 
     const handleModal = () => {
@@ -104,8 +105,6 @@ const createEprescription = () => {
                 headers: { "Content-Type": "multipart/form-data" },
             }
         );
-
-        navigate(-1)
     };
 
     // function handleSubmit(event) {
@@ -175,12 +174,12 @@ const createEprescription = () => {
                                         <p> Licence Number: 12345678</p>
                                     </div>
 
-                                    <form onSubmit={() => {createEPrescription(); handleModal();}} >
+                                    <form>
                                         <div className="biller-info">
                                             <br />
                                             <h5 className="rx-pr"> Prescription Information </h5>
                                             <div class="col-12 col-md-6 col-lg-4">
-                                                <label>Date of Prescription</label>
+                                                <label>Date of Prescription <span class="text-danger">*</span></label>
                                                 <DatePicker
                                                     selected={startDate}
                                                     onChange={(date) => {
@@ -375,9 +374,14 @@ const createEprescription = () => {
                                             <br />
                                             {/* Signature */}
                                             <div className="col-6">
-                                                <DropFileInput
+                                                {/*<DropFileInput
                                                     onFileChange={(files) => onFileChange(files)}
-                                                />
+                                                />*/}
+
+                                            <Form.Group controlId="formFile" className="mb-3">
+                                                    <Form.Label>Upload Signature</Form.Label>
+                                                    <Form.Control type="file" />
+                                            </Form.Group>
 
                                                 <div className="sign-name">
                                                     <p className="mb-0">
@@ -389,16 +393,16 @@ const createEprescription = () => {
                                             {/* Submit Section */}
                                             <div className="row rx-btn">
                                                 <div className="submit-section">
-                                                    <button
+                                                    <Button
                                                         type="submit"
                                                         className="btn btn-primary submit-btn rx-btn"
-                                                        onSubmit={() => {
-                                                            createEPrescription();           
+                                                        onClick={() => {
+                                                            createEPrescription();
+                                                            handleModal();           
                                                         }}
-                                                        
                                                     >
-                                                        Create Prescription
-                                                    </button>
+                                                    Create Prescription
+                                                    </Button>
                                                     <button
                                                         className="btn btn-outline-danger rx-btn"
                                                         onClick={() => navigate(-1)}

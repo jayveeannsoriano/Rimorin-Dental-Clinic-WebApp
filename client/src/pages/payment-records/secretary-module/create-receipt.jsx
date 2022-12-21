@@ -111,7 +111,7 @@ const createReceipt = () => {
     { serviceValue: "", quantityValue: "", amountToPay: "" },
   ]);
 
-  console.log("THIS ARE THE SERVICE ITEM", serviceItem);
+  console.log("THESE ARE THE SERVICE ITEM", serviceItem);
 
   //get amount value sum
   const newAmountArray = serviceItem.map(function (item) {
@@ -230,7 +230,6 @@ const createReceipt = () => {
       setModalState('show-modal')
     }
 
-
   const createUserReceipt = () => {
     Axios.put(
       "https://rimorin-dental-clinic.herokuapp.com/getandUpdateReceipt",
@@ -266,10 +265,7 @@ const createReceipt = () => {
         conValue: getConValue,
       }
     );
-
-    navigate(-1)
   };
-
 
   return (
     <>
@@ -612,6 +608,7 @@ const createReceipt = () => {
         <Modal.Header>
           <Modal.Title>Receipt Created</Modal.Title>
         </Modal.Header>
+        
         <Modal.Body closeButton>
           <img src={success} alt="success image" className='success-img' />
           <p className='modal-txt-cn'>You have created a receipt!</p>

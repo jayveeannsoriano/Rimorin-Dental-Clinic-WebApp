@@ -41,7 +41,6 @@ useEffect(() => {
          <div className="col-12">
             <div className="card overflow-auto">
               <div className="card-body appointment-request-table">
-                {/*//pa-map nalang mga dentists accounts*/}
                 <div className="col-lg-4">
                   <label>Dentist</label>
                     <Form.Select onChange={(e) => (setDentistIDnumber(e.target.value))}>
