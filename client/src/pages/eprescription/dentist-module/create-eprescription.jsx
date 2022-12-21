@@ -90,13 +90,14 @@ const createEprescription = () => {
     const createEPrescription = () => {
         console.log(prescriptionItem);
         console.log(notesValue);
+        console.log(startDate);
 
         Axios.post(
             "https://rimorin-dental-clinic.herokuapp.com/createEprescription",
             {
                 patientIDNum: StringfyIDnumber,
                 dentistName: dentistFullName,
-                dateValue: startDate,
+                dateValue: startDate.getFullYear()+"-"+('0'+(startDate.getMonth()+1)).slice(-2)+"-"+('0' + startDate.getDate()).slice(-2),
                 presDetails: prescriptionItem,
                 notesValue: notesValue,
                 imgFile: getFile[0],
@@ -184,7 +185,8 @@ const createEprescription = () => {
                                                     selected={startDate}
                                                     onChange={(date) => {
                                                         setStartDate(date);
-                                                        console.log("This is the calendar data:", date);
+                                                        console.log("This is the calendar data:", date.toString().slice(3,15));
+                                                        console.log("set Start: ", startDate.toString());
                                                         window.localStorage.setItem("date", date);
                                                     }}
                                                     isClearable
