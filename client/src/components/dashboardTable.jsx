@@ -26,12 +26,13 @@ const DashboardTable = () => {
   
    //move user no show that day to app history as no show
       const getTodayDate = new Date();
-      const convertDate = getTodayDate.toGMTString().substring(0, 15);
+      const convertDate = getTodayDate.toString().substring(0, 15);
+      //console.log(convertDate, "dateToday");
       
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getTodayUserAppointmentDetails",
+        "http://rimorin-dental-clinic.herokuapp.com/getTodayUserAppointmentDetails",
         {
           params: {
             patientIDnumber: patientIDnumber,

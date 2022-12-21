@@ -25,7 +25,7 @@ const DashboardTable = () => {
    //move user no show that day to app history as no show
    const getTodayDate = new Date();
    const convertDate = getTodayDate.toString().substring(0, 15);
-   console.log(convertDate, "dateToday");
+  // console.log(convertDate, "dateToday");
 
     const getAppointment = async() => {
         try{
