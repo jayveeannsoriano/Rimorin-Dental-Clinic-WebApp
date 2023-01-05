@@ -138,10 +138,9 @@ export default function ExistingDentalRecord() {
 
                                 {/* Record Table*/}
                                 <div class="row">
-                                    {appointment.length == 0 ? <div className="card patient-info">
+                                    {appointment.length == 0 ? 
+                                    <div className="card patient-info">
                                         <div className="card-body pt-3">
-
-                                            {/* Dental Record */}
                                             {/* This UI is only shown when the patient is new */}
                                             <div class="row no-record">
                                                 <img src={NoRecordImg} alt="no-record-img" />
@@ -149,11 +148,6 @@ export default function ExistingDentalRecord() {
                                                     <h2>DENTAL RECORD NOT FOUND</h2>
                                                     <p> It seems that you have no dental record for this patient. A dental record will be created upon their first appointment.</p>
                                                 </div>
-                                                {/*<div className="create-record">
-                                                    <a href={'/dentist/patient-records/dental-record/create-dental-record?patientIDNum=' + StringfyIDnumber}>
-                                                        <button className="btn btn-primary">Create Dental Record</button>
-                                                    </a>
-                                                </div>*/}
                                             </div>
                                         </div>
                                     </div> : <DentalRecordDataTable response={appointment} patientIDNum={StringfyIDnumber}/>}

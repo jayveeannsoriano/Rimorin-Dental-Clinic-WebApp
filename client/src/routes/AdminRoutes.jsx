@@ -18,7 +18,7 @@ const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/vie
 
 const CreateAccount = lazy(() => import('../pages/accounts/create-account'));
 
-const AdminPatientUI = lazy(() => import ("../pages/patients/admin-module/admin-patient-ui")); 
+const AdminPatientUI = lazy(() => import ("../pages/patients/admin-module")); 
 
 //create follow-up appointment
 const CreateFollowUpAppointment = lazy(() => import('../pages/appointments/follow-up-appointment'));

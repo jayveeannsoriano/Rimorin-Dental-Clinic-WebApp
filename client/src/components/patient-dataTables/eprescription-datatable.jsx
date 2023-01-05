@@ -8,7 +8,6 @@ import PrintFile from "../modals/print";
 import ViewFile from "../modals/view-file";
 
 const EPrescriptionDataTable = () => {
-
     const location = useLocation()
     const paramsID = new URLSearchParams(location.search)
     const getPatientIDNumber = paramsID.get('patientIDNum');

@@ -2,10 +2,11 @@ import React, { useMemo, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
-//import "../../../../styles/dental-record.css";
-import "../style.css"
+import "../../../../styles/dental-record.css";
+import "../style.css";
 import DentalRecordDataTable from "../../../../components/patient-dataTables/dentalrecord-datatable";
 import DentalChart from "../../../../components/dental-teeth-chart";
+import NoRecordImg from '../../../../assets/img/no-record.png'
 import { dentalRecords } from "../../../../config/FileGeneration";
 
 const AdminDentalRecord = () => {
@@ -35,13 +36,13 @@ const AdminDentalRecord = () => {
       // console.log(response, "Responses");
       setAppointment(response.data);
 
-      response.data.forEach(specificData => {
-        const chartedTeeth = specificData.chartedTeeth; 
-        chartedTeeth.forEach(teeth => {
-            var el = document.getElementById(teeth);
-            el.classList.toggle('marked');
+      response.data.forEach((specificData) => {
+        const chartedTeeth = specificData.chartedTeeth;
+        chartedTeeth.forEach((teeth) => {
+          var el = document.getElementById(teeth);
+          el.classList.toggle("marked");
         });
-      })
+      });
 
       console.log(appointment);
       // setFilteredAppointment(response.data);
@@ -52,11 +53,14 @@ const AdminDentalRecord = () => {
 
   const getPatientDetails = async () => {
     try {
-      const response = await axios.get("https://rimorin-dental-clinic.herokuapp.com/getPatientInfo", {
-        params: {
-          patientIDnumber: StringfyIDnumber,
-        },
-      });
+      const response = await axios.get(
+        "https://rimorin-dental-clinic.herokuapp.com/getPatientInfo",
+        {
+          params: {
+            patientIDnumber: StringfyIDnumber,
+          },
+        }
+      );
       console.log(response, "Responses");
       setPatientList(response.data);
     } catch (error) {
@@ -75,17 +79,24 @@ const AdminDentalRecord = () => {
     var treatData = [];
     var proceString = "";
     for (let num = 0; num < appointment.length; num++) {
-      if(typeof appointment[num].procedures !== 'undefined'){
+      if (typeof appointment[num].procedures !== "undefined") {
         for (
           let proceNum = 0;
           proceNum < appointment[num].procedures.length;
           proceNum++
         ) {
-          if (appointment[num].procedures[proceNum].hasOwnProperty('chosen')) {
-            for(let chosenNum = 0; chosenNum<appointment[num].procedures[proceNum].chosen.length ; chosenNum++){
-                proceString += " " + appointment[num].procedures[proceNum].chosen[chosenNum].procedure;
+          if (appointment[num].procedures[proceNum].hasOwnProperty("chosen")) {
+            for (
+              let chosenNum = 0;
+              chosenNum < appointment[num].procedures[proceNum].chosen.length;
+              chosenNum++
+            ) {
+              proceString +=
+                " " +
+                appointment[num].procedures[proceNum].chosen[chosenNum]
+                  .procedure;
             }
-        }
+          }
         }
         treatData.push([
           appointment[num].dentalDate,
@@ -116,38 +127,52 @@ const AdminDentalRecord = () => {
     );
   }
 
-  
   return (
     <>
-    <div className="container dental-record-container">
+      <div className="container dental-record-container">
         <div className="row">
           <div class="col-xl-12">
-              <div className="card-body">
-                <div className="divider"></div>
+            <div className="card-body">
+              <div className="divider"></div>
 
-                {/* Dental Teeth Chart to be updated; 
+              {/* Dental Teeth Chart to be updated; 
                 Dental chart should show all teeth that were selected per treatment*/}
-                <div class="row" id="dental-chart-Image">
-                  <DentalChart />
-                </div>
+              <div class="row" id="dental-chart-Image">
+                <DentalChart />
+              </div>
 
-                <div className="divider"></div>
+              <div className="divider"></div>
 
-                {/* Record Table*/}
-                <div class="row dental-record-table">
-                    <div className="col-xl-12">
-                        {appointment.length == 0 ? (
-                            <div className="card patient-info">
-                            </div>
-                        ) : (
-                            <DentalRecordDataTable response={appointment} />
-                        )}
+              {/* Record Table*/}
+              <div class="row dental-record-table">
+                <div className="col-xl-12">
+                  {appointment.length == 0 ? (
+                    <div className="card patient-info">
+                      <div className="card-body pt-3">
+                        {/* This UI is only shown when the patient is new */}
+                        <div class="row no-record">
+                          <img src={NoRecordImg} alt="no-record-img" />
+                          <div className="empty-message">
+                            <h2>DENTAL RECORD NOT FOUND</h2>
+                            <p>
+                              {" "}
+                              It seems that you have no dental record for this
+                              patient. A dental record will be created upon
+                              their first appointment.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  ) : (
+                    <DentalRecordDataTable response={appointment} patientIDNum={StringfyIDnumber} />
+                  )}
                 </div>
               </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };

@@ -30,6 +30,22 @@ const PatientProfileWidget = () => {
         setpatientIDNum(value.substring(3));
     }
 
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+    const userRole = userInfo['user_role_id'];
+
+    var viewPatientRecordsRoute = "";
+    switch (userRole) {
+        case 2: 
+        viewPatientRecordsRoute = "/secretary/patients/view-patient?patientIDNum="
+        break;
+        case 3: 
+        viewPatientRecordsRoute = "/dentist/patients/view-patient?patientIDNum=";
+        break;
+        case 4: 
+        viewPatientRecordsRoute = "/admin/patients/view-patient?patientIDNum=";
+        break;
+    }
+
     return (
         <>
         <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto">		
@@ -62,8 +78,9 @@ const PatientProfileWidget = () => {
                             </ul>
                         </div>
                         
+                        {/* add conditional rendering */}
                         <div className="widget-button-container">
-                            <Button className="widget-btn" href={"/admin/patients/view-patient?patientIDNum=" + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
+                            <Button className="widget-btn" href={viewPatientRecordsRoute + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                 View Patient Records
                             </Button>
                         </div>

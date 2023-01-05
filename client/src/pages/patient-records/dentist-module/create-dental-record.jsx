@@ -29,7 +29,7 @@ const CreateDentalRecord = () => {
   const navigate = useNavigate();
   const handleModalClose = () => {
       setModalState(false);
-      navigate('/dentist/patient-records/dental-record/view-dental-records?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length));
+      navigate('/dentist/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length));
   };
 
   const handleModal = () => {

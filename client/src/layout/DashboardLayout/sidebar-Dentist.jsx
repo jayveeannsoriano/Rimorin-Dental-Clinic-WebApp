@@ -29,7 +29,7 @@ function Sidebar_Dentist(){
                     
                     {/* Dashboard Nav */}
                       <li className="nav-item">
-                        <a className={"nav-link"+((window.location.href.split("/").pop()=='dentist') ? ' active': ' collapsed')} href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" } href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
+                        <a className={"nav-link"+((window.location.href.split("/").pop()=='dentist') ? ' active': ' collapsed')} href={userInfo['user_role_id']==1 ? "/patient" :"/dentist" }>
                         <i className="fa-solid fa-table-columns"></i>
                             <span>Dashboard</span>
                         </a>
@@ -54,7 +54,16 @@ function Sidebar_Dentist(){
                             <span>Calendar</span>
                         </a>
                     </li>
-                    
+
+                    {/* Patients Nav */}
+                    <li class="nav-item">
+                        <a class={"nav-link"+((window.location.href.split("/").pop()=='patients') ? ' active': ' collapsed')}
+                         href="/dentist/patients">
+                        <i class="bi bi-person-heart"></i>
+                        <span>Patients</span>
+                        </a>
+                    </li>
+
                     {/* Patient Records Nav/Patient Information/Dental Records */}
                     <li className="nav-item">
                         <a className={"nav-link"+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? ' active': ' collapsed')} data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
