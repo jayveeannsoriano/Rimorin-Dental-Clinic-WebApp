@@ -41,6 +41,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const AcceptAppointment = () => {
     handleShow();
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: getUserPhone ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "' has been accepted."})
   }
 
 
