@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 
 //project imports
-import ProfileWidgetTwo from "../../components/profile-widget2";
+import ProfileWidgetThree from "../../components/profile-widget3";
 import DentalChart from "../../components/dental-teeth-chart";
 import { dentalRecord } from '../../config/FileGeneration.js'
 import "../../styles/profilewidgettwo.css";
@@ -40,18 +40,19 @@ const ViewDentalRecord = () => {
         HomeRoute = "/admin";
         break;
     }
-    var DentalRecordListRoute = "";
+    var PatientListRoute = "";
     switch (userRole) {
       case 2:
-        DentalRecordListRoute = "/secretary/patient-records/dental-record";
+        PatientListRoute = "/secretary/patients";
         break;
       case 3:
-        DentalRecordListRoute = "/dentist/patient-records/dental-record";
+        PatientListRoute = "/dentist/patients";
         break;
       case 4:
-        DentalRecordListRoute = "/admin/patients";
+        PatientListRoute = "/admin/patients";
         break;
     }
+    const navigate = useNavigate();
 
     const [recordData,setRecordData] = useState([]);
     const [recordProcedures,setProcedures] = useState([]);
@@ -121,9 +122,6 @@ const ViewDentalRecord = () => {
         {/*dental Record(name, bd, doct, med, cond, alle, prec, treatData, DentRecID)*/}
         dentalRecord(patientList[0].fname+" "+patientList[0].lname, patientList[0].bday, "Dr. Pamela R. Concepcion", patientList[0].medications, patientList[0].conditions, patientList[0].allergies, (patientList[0].hasOwnProperty('precaution')?patientList[0].precaution:'N/A'), document.getElementById("dental-chart-Image"), recordData ,willDownload);
     };
-
-    
-    const navigate = useNavigate();
     
     return (
       <>
@@ -135,22 +133,20 @@ const ViewDentalRecord = () => {
                 <a href={HomeRoute}>Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href={DentalRecordListRoute}>Patients</a>
-              </li>
-              <li class="breadcrumb-item" onClick={() => navigate(-1)}>
-                {" "}
-                Dental Records
+                <a href={PatientListRoute}>Patients</a>
               </li>
               <li class="breadcrumb-item active">View Dental Record</li>
             </ol>
           </nav>
         </div>
-        <div className="container">
-          <ProfileWidgetTwo />
+
+        <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
+                <div className="card dental-record-form">
+                        <ProfileWidgetThree />
+                </div>
         </div>
 
-        <div className="container">
-          <div class="row">
+        <div className="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
             <div className="card patient-info">
               <div className="card-body pt-3">
                 <h5 className="card-title">Dental Record</h5>
@@ -186,7 +182,7 @@ const ViewDentalRecord = () => {
                 </div>
 
                 {/* Summary of Treatment */}
-                <h5 className="card-title">Summary of Treatment</h5>
+                <h5 className="card-title mt-5">Summary of Treatment</h5>
                 <div class="row summary-of-treatment">
                   <Table>
                     <thead>
@@ -217,7 +213,7 @@ const ViewDentalRecord = () => {
                 </div>
 
                 {/* Treatment Attatchments */}
-                <h5 className="card-title">Treatment Attachments</h5>
+                <h5 className="card-title mt-5">Treatment Attachments</h5>
 
                 <div
                   className="row attachment-container"
@@ -239,7 +235,6 @@ const ViewDentalRecord = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </>
     );

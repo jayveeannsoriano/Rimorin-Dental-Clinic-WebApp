@@ -203,7 +203,7 @@ const createReceipt = () => {
     console.log("NO DISCOUNT");
     finalTotal = totalAmountPaid + procedurePriceTotal;
   } else {
-    console.log("MAY DISCOUNT LUGI");
+    console.log("WITH DISCOUNT");
     finalTotal = (totalAmountPaid + procedurePriceTotal) * PWDSeniorDiscount;
   }
   console.log(formattedDate)
@@ -281,6 +281,10 @@ const createReceipt = () => {
                     </li>
                     <li className="breadcrumb-item">
                       <a href="/secretary/patients">Patients</a>
+                    </li>
+                    <li className="breadcrumb-item" onClick={() => navigate(-1)}>
+                      {" "}
+                      View Patient Records
                     </li>
                     <li className="breadcrumb-item active">Create Receipt</li>
                   </ol>

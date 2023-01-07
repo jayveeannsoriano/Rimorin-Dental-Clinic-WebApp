@@ -35,11 +35,7 @@ const AdminPatientUI = () => {
 
             <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
                 <div className="card dental-record-form">
-                    <div className="card-body pt-3">
-                        <div className="container profile-widget-container">
-                            <ProfileWidgetThree />
-                        </div>
-                    </div>
+                        <ProfileWidgetThree />
                 </div>
             </div>
 
