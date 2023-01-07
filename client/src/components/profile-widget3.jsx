@@ -177,7 +177,6 @@ const ProfileWidgetThree = () => {
     return (
         <>
         {patientList.map((item) => (
-            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div className="card widget-profile pat-widget-profile">
                         <div class="row">
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
@@ -214,22 +213,22 @@ const ProfileWidgetThree = () => {
 
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 label">Birthdate</div>
-                                    <div id="birthdate" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">Birthdate</div>
+                                    <div id="birthdate" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.bday}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 label">Address</div>
-                                    <div id="address" class="col-xl-8 col-lg-8 col-md-8 col-sm-8 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">Address</div>
+                                    <div id="address" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.house} {item.brgy}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 label">ZIP Code</div>
-                                    <div id="zipcode" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">ZIP Code</div>
+                                    <div id="zipcode" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.zipcode}
                                     </div>
                                 </div>
@@ -237,29 +236,28 @@ const ProfileWidgetThree = () => {
 
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 label">Email Address</div>
-                                    <div id="email" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">Email Address</div>
+                                    <div id="email" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.email}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 label">City</div>
-                                    <div id="city" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">City</div>
+                                    <div id="city" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.municipality}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 label">Gender</div>
-                                    <div id="gender" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-label">
+                                    <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto label">Gender</div>
+                                    <div id="gender" class="col-xl-auto col-lg-auto col-md-auto col-sm-auto pr-label">
                                         {item.gender}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </div>
+                </div>
             ))}
         </>
     );

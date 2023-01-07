@@ -15,7 +15,10 @@ const PatientInfo = lazy(() => import('../pages/patient-records/patient-info'));
 const DentalRecords = lazy(() => import('../pages/patient-records/dental-record'));
 const Eprescription = lazy(() => import('../pages/eprescription/index'));
 const PaymentRecords = lazy(() => import('../pages/payment-records/secretary-module/index'));
+const Patients = lazy(() => import('../pages/patients/index'));
+const SecretaryPatients = lazy(() => import('../pages/patients/secretary-module'));
 const SecretaryUserProfile = lazy(() => import('../pages/userprofile/secretary-module/index'));
+
 //View Specific Dental Record
 const ViewSpecificDentalRecord = lazy(() => import('../pages/patient-records/view-dental-record'));
 
@@ -61,6 +64,14 @@ const SecretaryRoutes = {
         {
             path: '/secretary/calendar',
             element: <Calendar/>
+        },
+        {
+            path: '/secretary/patients',
+            element: <Patients/>
+        },
+        {
+            path:'/secretary/patients/view-patient',
+            element: <SecretaryPatients/>
         },
         {
             path: '/secretary/patient-records',

@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Dropdown, DropdownButton, Tab } from "react-bootstrap";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate} from "react-router-dom";
 import "../../../styles/create-rx.css";
 import "../../../styles/create-receipt.css";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -8,11 +7,9 @@ import Form from "react-bootstrap/Form";
 import ProfileWidget from "../../../components/profile-widget";
 import Axios from "axios";
 import { Button } from "react-bootstrap";
-import ViewReceiptFile from "../../../components/modals/preview-transaction";
 import DropFileInput from "../../../components/dragNdrop";
 import Modal from "react-bootstrap/Modal";
 import Table from "react-bootstrap/Table";
-import { useNavigate } from "react-router-dom";
 import success from '../../../assets/img/check.png';
 import warning from '../../../assets/img/warning.png';
 
@@ -221,9 +218,10 @@ const createReceipt = () => {
 
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
+
   const handleModalClose = () => {
       setModalState(false)
-      navigate(-1)
+      navigate(-1);      
   };
 
   const handleModal = () => {
@@ -281,6 +279,9 @@ const createReceipt = () => {
                     <li className="breadcrumb-item">
                       <a href="/secretary">Home</a>
                     </li>
+                    <li className="breadcrumb-item">
+                      <a href="/secretary/patients">Patients</a>
+                    </li>
                     <li className="breadcrumb-item active">Create Receipt</li>
                   </ol>
                 </nav>
@@ -291,8 +292,7 @@ const createReceipt = () => {
       </div>
       {/* /Breadcrumb */}
 
-      <section class="content section profile">
-        <div className="container-fluid">
+      <section class="section profile">
           <div className="row">
             <ProfileWidget />
 
@@ -565,7 +565,7 @@ const createReceipt = () => {
                           onFileChange={(files) => onFileChange(files)}
                         />
                         <span className="text-muted">
-                          Cashier/ Authorized Representative
+                          Cashier/Authorized Representative
                         </span>
                       </div>
                     </div>
@@ -596,12 +596,10 @@ const createReceipt = () => {
               {/* End of Card */}
             </div>
           </div>
-        </div>
       </section>
 
       <Modal
         show={modalState == "show-modal"}
-        onHide={handleModalClose}
         backdrop="static"
         keyboard={false}
       >

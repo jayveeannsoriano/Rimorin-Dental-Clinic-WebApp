@@ -6,15 +6,15 @@ import ProfileWidgetThree from "../../../components/profile-widget3";
 import { Button } from "react-bootstrap";
 
 //patient Datatables
-import TransactionDataTable from "../../../components/patient-dataTables/transaction-datatable";
-import EPrescriptionDataTable from "../../../pages/eprescription/dentist-module";
+import TransactionDataTable from "../../../pages/payment-records/secretary-module";
+import EPrescriptionDataTable from "../../../components/patient-dataTables/eprescription-datatable";
 import PatientInfo from "../../../components/patient-dataTables/patient-information";
 
 //dental record
 //import DentalRecords from "../../patient-records/dentist-module/existing-dental-record"
 import DentalRecord from "../records/dental-record";
 
-const DentistPatients = () => {
+const SecretaryPatients = () => {
     return (
         <>
             <div class="pagetitle">
@@ -22,10 +22,10 @@ const DentistPatients = () => {
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/dentist">Home</a>
+                            <a href="/secretary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/dentist/patients">Patients</a>
+                            <a href="/secretary/patients">Patients</a>
                         </li>
                         <li class="breadcrumb-item active">View Patient Records</li>
                     </ol>
@@ -34,11 +34,7 @@ const DentistPatients = () => {
 
             <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
                 <div className="card dental-record-form">
-                    <div className="card-body pt-3">
-                        <div className="container profile-widget-container">
-                            <ProfileWidgetThree />
-                        </div>
-                    </div>
+                        <ProfileWidgetThree />
                 </div>
             </div>
 
@@ -77,4 +73,4 @@ const DentistPatients = () => {
     );
 };
 
-export default DentistPatients;
+export default SecretaryPatients;
