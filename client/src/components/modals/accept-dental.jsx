@@ -8,7 +8,6 @@ import Modal from 'react-bootstrap/Modal';
 function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation) {
   console.log("ACCEPT DENTAL:",dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation)
   const [show, setShow] = useState(false);
-  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
   const handleClose = () => {
     setShow(false)
     window.location.reload();
@@ -38,10 +37,16 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
      var dentistNumber = JSON.stringify(ConvertStringfyValues.dentistIDnumber).replace(/"/g, "");
   }
   
-  const AcceptAppointment = () => {
+  const AcceptAppointment = async () => {
     handleShow();
+    const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
+      params: {
+        PatientIDnumber:PatientIDnumber
+      }
+    })
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: userInfo['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been accepted."})
+    
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been accepted."})
   }
 
 

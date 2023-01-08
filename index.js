@@ -414,6 +414,7 @@ app.get("/getAppointmentDetails", async (req, res) => {
     });
 });
 
+
 //Get user for Appointment Details
 app.get("/get", async (req, res) => {
   await AppDetails.find({})
@@ -457,8 +458,7 @@ app.get("/getTimeConfig", async (req, res) => {
 });
 
 app.get("/getUserInfo", async (req, res) => {
-  const patientIDNumber = req.query.patientIDnumber;
-  console.log(patientIDNumber);
+  const patientIDNumber = req.query.PatientIDnumber;
 
   await User.find({ patientIDnumber: patientIDNumber })
     .then((data) => {

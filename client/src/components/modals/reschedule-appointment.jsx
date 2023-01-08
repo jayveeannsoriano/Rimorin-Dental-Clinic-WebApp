@@ -11,7 +11,7 @@ import '../../styles/booking.css'
 
 function RescheduleAppointment(pName,appNum,patientIDnumber) {
   const [modalState, setModalState] = useState('close');
-  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+  
   
   const handleClose = () => {
     setModalState(false)
@@ -99,9 +99,14 @@ useEffect(() => {
 
 
   //update date and time
-  const newDateTime = () =>{
+  const newDateTime = async () =>{
     console.log("Updating " + AppNumber);
     console.log("Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput);
+    const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
+      params: {
+        PatientIDnumber:"PT#"+PatientIDnum
+      }
+    })
     Axios.put("https://rimorin-dental-clinic.herokuapp.com/rescheduleAppointment",{
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
@@ -111,7 +116,7 @@ useEffect(() => {
      newTime: timeCheck,
      newConsultation: newConsulInput});
     setModalState("modal-2");
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: userInfo['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
 
   }
 
