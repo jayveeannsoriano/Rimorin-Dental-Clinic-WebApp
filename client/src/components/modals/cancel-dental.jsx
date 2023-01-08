@@ -9,7 +9,7 @@ import successful from '../../assets/img/check.png';
 function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consultation) {
     const [modalState, setModalState] = useState(false);
     const [reasonInput, setReasonInput] = useState("");
-
+    var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
 
     const handleClose = () => {
         setModalState(false)
@@ -49,7 +49,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             consulInput: ConsultValue, 
             getTime: TimeValue 
         })
-        Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: getUserPhone ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+time+" due to '" + values.consultation + "' has been cancelled."})
+        Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: userInfo['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
 
     }
     
