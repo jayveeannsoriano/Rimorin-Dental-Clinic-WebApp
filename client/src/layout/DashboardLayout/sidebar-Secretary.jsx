@@ -53,9 +53,18 @@ function Sidebar_Secretary(){
                             <span>Calendar</span>
                         </a>
                     </li>
+
+                    {/* Patients Nav */}
+                    <li class="nav-item">
+                        <a class={"nav-link"+((window.location.href.split("/").pop()=='patients') ? ' active': ' collapsed')}
+                         href="/secretary/patients">
+                        <i class="bi bi-person-heart"></i>
+                        <span>Patients</span>
+                        </a>
+                    </li>
                     
                     {/* Patient Records Nav/Patient Information/Dental Records */}
-                    <li className="nav-item">
+                    {/*<li className="nav-item">
                         <a className={"nav-link"+(((window.location.href.split("/").pop()=='patient-info')||(window.location.href.split("/").pop()=='dental-record')) ? ' active': ' collapsed')} data-bs-target="#patient-records-nav" data-bs-toggle="collapse" href="#">
                         <i className="fa-solid fa-file-medical"></i>
                             <span>Patient Records</span>
@@ -74,24 +83,24 @@ function Sidebar_Secretary(){
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>*/}
                     {/* /patientrecords */}
 
                     {/* E-Prescription Nav */}
-                    <li className="nav-item">
+                    {/*<li className="nav-item">
                         <a className={"nav-link"+((window.location.href.split("/").pop()=='eprescription') ? ' active': ' collapsed')} href="/secretary/eprescription">
                         <i className="fa-solid fa-file-prescription"></i>
                             <span>E-Prescription</span>
                         </a>
-                    </li>
+                    </li>*/}
 
                     {/* Payment Records Nav */}
-                    <li className="nav-item">
+                    {/*<li className="nav-item">
                         <a className={"nav-link"+((window.location.href.split("/").pop()=='payment-records') ? ' active': ' collapsed')} href="/secretary/payment-records">
                         <i className="fa-solid fa-file-invoice"></i>
                             <span>Payment Records</span>
                         </a>
-                    </li>
+                    </li>*/}
 
                     <div className="divider"></div>
 

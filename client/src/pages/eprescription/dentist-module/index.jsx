@@ -16,7 +16,7 @@ const Eprescription = () => {
             <a href={"/dentist/eprescription/create-eprescription?patientIDNum=" + StringfyIDnumber} className="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Create Prescription
             </a>
-            <div className="divider"></div>
+            <div className="divider mt-3"></div>
             <DentistEPrescriptionDataTable/>
         </div>
         </>

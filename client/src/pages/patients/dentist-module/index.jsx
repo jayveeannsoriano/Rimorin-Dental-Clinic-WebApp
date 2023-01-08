@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 //patient Datatables
 import TransactionDataTable from "../../../components/patient-dataTables/transaction-datatable";
 import EPrescriptionDataTable from "../../../pages/eprescription/dentist-module";
-import AdminModulePatientInfo from "../../../components/patient-dataTables/patient-information";
+import PatientInfo from "../../../components/patient-dataTables/patient-information";
 
 //dental record
 //import DentalRecords from "../../patient-records/dentist-module/existing-dental-record"
@@ -22,10 +22,10 @@ const DentistPatients = () => {
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin">Home</a>
+                            <a href="/dentist">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/patients">Patients</a>
+                            <a href="/dentist/patients">Patients</a>
                         </li>
                         <li class="breadcrumb-item active">View Patient Records</li>
                     </ol>
@@ -34,11 +34,7 @@ const DentistPatients = () => {
 
             <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
                 <div className="card dental-record-form">
-                    <div className="card-body pt-3">
-                        <div className="container profile-widget-container">
-                            <ProfileWidgetThree />
-                        </div>
-                    </div>
+                        <ProfileWidgetThree />
                 </div>
             </div>
 
@@ -67,7 +63,7 @@ const DentistPatients = () => {
                             </div>
                             <div className="tab-pane fade patientInfo" id="patientInfo">
                                 <h5 className="card-title">PATIENT INFORMATION</h5>
-                                <AdminModulePatientInfo />
+                                <PatientInfo />
                             </div>
                         </div>
                     </div>

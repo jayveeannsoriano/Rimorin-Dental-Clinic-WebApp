@@ -6,16 +6,15 @@ import ProfileWidgetThree from "../../../components/profile-widget3";
 import { Button } from "react-bootstrap";
 
 //patient Datatables
-//import DentalRecordDataTable from "../../../components/patient-dataTables/dentalrecord-datatable";
-import TransactionDataTable from "../../../components/patient-dataTables/transaction-datatable";
+import TransactionDataTable from "../../../pages/payment-records/secretary-module";
 import EPrescriptionDataTable from "../../../components/patient-dataTables/eprescription-datatable";
-import AdminModulePatientInfo from "../../../components/patient-dataTables/patient-information";
+import PatientInfo from "../../../components/patient-dataTables/patient-information";
 
 //dental record
 //import DentalRecords from "../../patient-records/dentist-module/existing-dental-record"
-import AdminDentalRecord from "../records/dental-record";
+import DentalRecord from "../records/dental-record";
 
-const AdminPatientUI = () => {
+const SecretaryPatients = () => {
     return (
         <>
             <div class="pagetitle">
@@ -23,10 +22,10 @@ const AdminPatientUI = () => {
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin">Home</a>
+                            <a href="/secretary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/patients">Patients</a>
+                            <a href="/secretary/patients">Patients</a>
                         </li>
                         <li class="breadcrumb-item active">View Patient Records</li>
                     </ol>
@@ -52,7 +51,7 @@ const AdminPatientUI = () => {
                         <div className="tab-content">
                             <div className="tab-pane fade show active dental-record" id="dental-record">
                                 <h5 className="card-title">DENTAL RECORDS</h5>
-                                <AdminDentalRecord/>
+                                <DentalRecord/>
                             </div>
                             <div className="tab-pane fade transactions" id="transactions">
                                 <h5 className="card-title">TRANSACTIONS</h5>
@@ -64,7 +63,7 @@ const AdminPatientUI = () => {
                             </div>
                             <div className="tab-pane fade patientInfo" id="patientInfo">
                                 <h5 className="card-title">PATIENT INFORMATION</h5>
-                                <AdminModulePatientInfo />
+                                <PatientInfo />
                             </div>
                         </div>
                     </div>
@@ -74,4 +73,4 @@ const AdminPatientUI = () => {
     );
 };
 
-export default AdminPatientUI;
+export default SecretaryPatients;
