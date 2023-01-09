@@ -63,7 +63,7 @@ function dashboardHeader(){
         console.error(error);
     }
 
-    console.log(userInfo);
+    //console.log(userInfo);
 
     return (
         <div>

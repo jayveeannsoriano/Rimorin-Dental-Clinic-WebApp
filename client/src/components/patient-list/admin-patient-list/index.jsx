@@ -1,30 +1,27 @@
-// ADMIN PATIENT LIST PROFILE WITH BUTTON
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useCallback} from "react";
 import "../../../styles/patient-profile-widget.css";
 import Axios from 'axios';
 import Avatar from 'react-avatar';
 import { Button } from "react-bootstrap";
 
+const PatientProfileWidget = ({ widgetData }) => {
 
-const PatientProfileWidget = () => {
-    const [patientList, setPatientList] = useState([]);
+    //const [patientList, setPatientList] = useState([]);
     const [patientIDNum, setpatientIDNum] = useState();
-    console.log(patientIDNum);
+    
+    //const getPatientDetails = async() => {
+    //    try{
+    //        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserDetails');
+    //        console.log(response, "Responses");
+    //        setPatientList(response.data);
+    //    }catch (error){
+    //        console.log(error)
+    //    }
+    //}
 
-
-    const getPatientDetails = async() => {
-        try{
-            const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserDetails');
-            console.log(response, "Responses");
-            setPatientList(response.data);
-        }catch (error){
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        getPatientDetails ();
-    }, []);
+    //useEffect(() => {
+    //    getPatientDetails ();
+    //}, []);
 
     const proceedtoViewInfo = (value) => {
         setpatientIDNum(value.substring(3));
@@ -50,9 +47,8 @@ const PatientProfileWidget = () => {
         <>
         <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto">		
         <div class="row">
-
         {/* replace 'patients' with proper get value variable */}
-        {patientList.map((item, index) => (
+        {widgetData.map((item, index) => (
             <div key={index} class="col-md-6 col-lg-4 col-xl-3">
                 <div class="card widget-profile pat-widget-profile">
                     <div class="card-body">
@@ -78,7 +74,6 @@ const PatientProfileWidget = () => {
                             </ul>
                         </div>
                         
-                        {/* add conditional rendering */}
                         <div className="widget-button-container">
                             <Button className="widget-btn" href={viewPatientRecordsRoute + patientIDNum} onClick={() => proceedtoViewInfo(item.patientIDnumber)}>
                                 View Patient Records
@@ -89,7 +84,7 @@ const PatientProfileWidget = () => {
             </div>
             ))}
         </div> 
-    </div> 
+    </div>
     </>
     )
 }
