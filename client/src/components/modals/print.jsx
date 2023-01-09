@@ -4,6 +4,13 @@ import { receipt, prescription } from '../../config/FileGeneration.js'
 
 async function Export(willDownload,File,data,info){
   if(File==="prescription"){
+
+    var pathPrescription = new Image("../../../../uploads/e-prescription/"+info[0].patientIDnumber+"_"+data.date+".png");
+    var pathing = require("../../assets/img/tempsignaturedentist.png");
+    pathPrescription.onload = () => {
+      pathing = require("../../../../uploads/e-prescription/"+info[0].patientIDnumber+"_"+data.date+".png");
+    }
+
     prescription(
       data.presDate, 
       info[0].fname+" "+info[0].lname, 
@@ -13,7 +20,7 @@ async function Export(willDownload,File,data,info){
       "1953834", 
       "2719432", 
       require('../../assets/img/watermark_for_eprescription.png'), 
-      require('../../assets/img/tempsignaturedentist.png'), 
+      require("../../../../uploads/e-prescription/6254_2022-11-25.png"), 
       willDownload
       )
   }else if(File==="receipt"){
@@ -30,17 +37,36 @@ async function Export(willDownload,File,data,info){
       }
     }
 
-    receipt(
-      info[0].fname+" "+info[0].lname,
-      info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
-      data.date, 
-      data.appNum, 
-      (addProc.length==0?data.addedItem:[...data.addedItem,...addProc]), 
-      (data.discountValue*100), 
-      data.paymentType, 
-      data.amountPaid, 
-      require("../../assets/img/tempsignaturesec.png"), 
-      willDownload)
+    var pathReceipt = new Image("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
+    var pathing = require("../../assets/img/PT#1324_2022-11-24.png");
+    pathReceipt.onload = () => {
+      pathing = require("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
+    }
+    if(typeof data.addedItem !== 'undefined'){
+      receipt(
+        info[0].fname+" "+info[0].lname,
+        info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
+        data.date,
+        data.appNum,
+        (addProc.length==0?data.addedItem:[...data.addedItem,...addProc]), 
+        (data.discountValue*100), 
+        data.paymentType, 
+        data.amountPaid, 
+        pathing, 
+        willDownload)
+    }else{
+      receipt(
+        info[0].fname+" "+info[0].lname,
+        info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
+        data.date,
+        data.appNum,
+        (addProc), 
+        (data.discountValue*100), 
+        data.paymentType, 
+        data.amountPaid, 
+        pathing, 
+        willDownload)
+    }
   }
 }
 

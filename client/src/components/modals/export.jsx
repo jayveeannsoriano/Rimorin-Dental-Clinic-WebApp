@@ -5,6 +5,13 @@ import { receipt, prescription } from '../../config/FileGeneration.js'
 
 async function Export(willDownload,File,data,info){
   if(File==="prescription"){
+
+    var pathPrescription = new Image("../../../../uploads/e-prescription/"+info[0].patientIDnumber+"_"+data.date+".png");
+    var pathing = require("../../assets/img/tempsignaturedentist.png");
+    pathPrescription.onload = () => {
+      pathing = require("../../../../uploads/e-prescription/"+info[0].patientIDnumber+"_"+data.date+".png");
+    }
+
     //prescription(date, name, age, medArray, ptr, license, backPath, signPath, saveAs)
     console.log(data.presDetails);
     console.log(fixArrayTable(data.presDetails));
@@ -17,7 +24,7 @@ async function Export(willDownload,File,data,info){
       "0123456", 
       "01234", 
       require('../../assets/img/watermark_for_eprescription.png'), 
-      require('../../assets/img/tempsignaturedentist.png'), 
+      pathing, 
       willDownload
       )
   }else if(File==="receipt"){
@@ -34,6 +41,13 @@ async function Export(willDownload,File,data,info){
         }
       }
     }
+
+    var pathReceipt = new Image("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
+    var pathing = require("../../assets/img/tempsignaturesec.png");
+    pathReceipt.onload = () => {
+      pathing = require("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
+    }
+
     console.log(addProc);
     //receipt(name, address, date, transNo, transactionItems, discount, payMethod, paidAmount, signPath , saveAs )
     receipt(
@@ -41,11 +55,11 @@ async function Export(willDownload,File,data,info){
       info[0].house+" "+info[0].brgy+" "+info[0].municipality+" "+info[0].province+" "+info[0].country, 
       data.date, 
       data.appNum, 
-      (addProc.length==0?data.addedItem:[...data.addedItem,...addProc]),  
+      (addProc.length==0?data.addedItem:(typeof data.addedItem !== 'undefined'?[...data.addedItem,...addProc]:addProc)),  
       (data.discountValue*100), 
       data.paymentType, 
       data.amountPaid, 
-      require("../../assets/img/tempsignaturesec.png"), 
+      pathing, 
       willDownload)
   }
 }
