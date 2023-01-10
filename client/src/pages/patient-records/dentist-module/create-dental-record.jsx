@@ -14,6 +14,8 @@ import DentalChart from "../../../components/dental-teeth-chart";
 //datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+
 const CreateDentalRecord = () => {
   const location = useLocation();
   const paramsID = new URLSearchParams(location.search);
@@ -29,7 +31,8 @@ const CreateDentalRecord = () => {
   const navigate = useNavigate();
   const handleModalClose = () => {
       setModalState(false);
-      navigate('/dentist/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length));
+      navigate('/dentist/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
+      window.location.reload();
   };
 
   const handleModal = () => {

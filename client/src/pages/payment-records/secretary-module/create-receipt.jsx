@@ -216,12 +216,16 @@ const createReceipt = () => {
   console.log(StringfyIDNumber);
   console.log(getOrNum);
 
+  //modal
   const [modalState, setModalState] = useState(false);
+  const [patientIDNumber, setPatientIDNumber] = useState("");
   const navigate = useNavigate();
 
   const handleModalClose = () => {
       setModalState(false)
-      navigate(-1);      
+      navigate(-1);
+      //navigate('/secretary/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
+      window.location.reload();      
   };
 
   const handleModal = () => {

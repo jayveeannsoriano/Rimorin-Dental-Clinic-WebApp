@@ -21,7 +21,10 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
   //selected values modal 
   const [modalState, setModalState] = useState(false);
-  const handleModalClose = () => setModalState(false);
+  const handleModalClose = () => {
+    setModalState(false);
+    window.location.reload();
+  }
 
   //no show modal
   const handleNoShow = () => {

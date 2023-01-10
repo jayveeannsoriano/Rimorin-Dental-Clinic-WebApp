@@ -98,10 +98,20 @@ const DentistUserProfile = () => {
         defaultUserInfo()
     }, []);
 
+    //modal
     const [modalState, setModalState] = useState(false);
-    const handleModalClose = () => setModalState(false);
-    const handleShow = () => {
+
+    const handleShow= () => {
         setModalState('show-modal');
+    }
+
+    const handleModalClose = () => {
+        setModalState(false);
+        window.location.reload();
+    }
+
+    const handleClose = () => {
+        setModalState(false);
     }
 
     const handleNotMatch = () => {
@@ -443,6 +453,7 @@ const DentistUserProfile = () => {
                 </div>
             </section>
 
+            {/* Changes Saved Modal */}
             <Modal show={modalState == 'show-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
 
                 <Modal.Header closeButton>
@@ -461,7 +472,8 @@ const DentistUserProfile = () => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={modalState == 'pwd-notmatch'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+            {/* Pass does not match modal */}
+            <Modal show={modalState == 'pwd-notmatch'} onHide={handleClose} backdrop="static" keyboard={false}>
 
                 <Modal.Header closeButton>
                     <Modal.Title>Password does not match</Modal.Title>
@@ -473,13 +485,14 @@ const DentistUserProfile = () => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleModalClose}>
+                    <Button variant="primary" onClick={handleClose}>
                         Close
                     </Button>
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={modalState == 'pwd-incorrect'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+            {/* Current pass is incorrect modal */}
+            <Modal show={modalState == 'pwd-incorrect'} onHide={handleClose} backdrop="static" keyboard={false}>
 
                 <Modal.Header closeButton>
                     <Modal.Title>Current password incorrect</Modal.Title>
@@ -491,7 +504,7 @@ const DentistUserProfile = () => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleModalClose}>
+                    <Button variant="primary" onClick={handleClose}>
                         Close
                     </Button>
                 </Modal.Footer>

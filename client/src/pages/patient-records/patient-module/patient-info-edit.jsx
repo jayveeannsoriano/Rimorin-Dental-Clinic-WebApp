@@ -8,7 +8,6 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
 import ProfileInfoEditSaved from '../../../components/modals/success-modals/profile-info-edit-saved';
 
-
 //datepicker
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from 'react-bootstrap';
@@ -51,11 +50,20 @@ const PatientInfoEdit = () => {
   const [condValue, setCondValue] = useState([]);
   const [precautionValue, setPrecautionValue] = useState('');
 
+  //modal
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
+  //const reloadPage = () => {
+  //  const navigate = useNavigate();
+  //  useEffect(() => {
+  //    navigate(-1);
+  //    window.location.reload(false);
+  //  }, []);
+  //}
+
   const handleModalClose = () => {
-    setModalState(false)
-    navigate(-1)
+    setModalState(false);
+    navigate(0);
   };
   const handleModal = () => {
     setModalState('show-modal')
@@ -173,7 +181,7 @@ const PatientInfoEdit = () => {
                 Patient Information{" "}
               </a>
             </li>
-            <li class="breadcrumb-item active">Patient Information Edit</li>
+            <li class="breadcrumb-item active">Edit Patient Information</li>
           </ol>
         </nav>
       </div>
@@ -309,18 +317,19 @@ const PatientInfoEdit = () => {
                             <Form.Check
                               inline
                               label="Male"
+                              value="Male"
                               name="group1"
                               type="radio"
-                              defaultValue={item.gender === "Male"}
-                              //checked={item.gender === "Male"}
+                              defaultChecked={item.gender === "Male"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                             <Form.Check
                               inline
                               label="Female"
+                              value="Female"
                               name="group1"
                               type="radio"
-                              defaultValue={item.gender === "Female"}
+                              defaultChecked={item.gender === "Female"}
                               onChange={(e) => setGenderValue(e.target.value)}
                             />
                           </div>
@@ -376,7 +385,7 @@ const PatientInfoEdit = () => {
                         ))}
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-6">
-                        <label for="tellNumber">TeleMobile Number</label>
+                        <label for="tellNumber">Telephone Number</label>
                         {userData.map((item, index) => (
                           <input
                             type="tel"

@@ -24,7 +24,7 @@ const SecAdminDashboardTable = () => {
     var getTodayDate = new Date();
     window.localStorage.setItem('getTodayDate', getTodayDate);
     var todayDate = window.localStorage.getItem('getTodayDate');
-    console.log(todayDate, 'dateToday');
+    //console.log(todayDate, 'dateToday');
 
        //move user no show that day to app history as no show
        const convertDate = getTodayDate.toString().substring(0, 15);

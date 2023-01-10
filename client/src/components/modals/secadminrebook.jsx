@@ -14,7 +14,10 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   // const handleShow = () => setShow(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    window.location.reload();
+  }
   // const handleClose = () => setShow(true);
   const [selectValue, setSelectedValue] = useState();
 

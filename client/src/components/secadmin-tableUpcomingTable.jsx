@@ -31,7 +31,7 @@ const UpSecAdminDashboardTable = () => {
         return previous.toString().substring(0,15);
       }
     
-      console.log("YESTERDAY DATE",getPreviousDay());
+    //  console.log("YESTERDAY DATE",getPreviousDay());
     
     appointment.map(function (item) {
         if (item.date == getPreviousDay()) {

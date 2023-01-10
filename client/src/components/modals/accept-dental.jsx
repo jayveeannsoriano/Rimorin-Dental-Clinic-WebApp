@@ -46,7 +46,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
     })
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
     
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been accepted."})
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment on "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been accepted. Patients are expected to arrive 5 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!"})
   }
 
 
