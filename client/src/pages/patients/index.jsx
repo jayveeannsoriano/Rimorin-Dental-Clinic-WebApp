@@ -50,10 +50,11 @@ const Patients = () => {
   //Change Page
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = pageNum => setCurrentPage(pageNum + 1);
-  const prevPage = pageNum => setCurrentPage(pageNum -1 );
+  const prevPage = pageNum => setCurrentPage(pageNum - 1 );
 
-  //const nextPage = () => this.setState({ currentPage: currentPage + 1 });
-  //const prevPage = () => this.setState({ currentPage: currentPage - 1 });
+
+  // const nextPagination = () => this.setState({ currentPage: currentPage + 1 });
+  // const prevPagination = () => this.setState({ currentPage: currentPage - 1 });
 
   return (
     <>
@@ -74,6 +75,7 @@ const Patients = () => {
           widgetsPerPage={widgetsPerPage}
           totalWidgets={widgetData.length}
           setCurrentPage={setCurrentPage}
+          currPage={currentPage}
           paginate={paginate}
           nextPage={nextPage}
           prevPage={prevPage}
