@@ -20,10 +20,10 @@ const CreateDentalRecord = () => {
   const location = useLocation();
   const paramsID = new URLSearchParams(location.search);
   const getPatientAppNum = paramsID.get("appNum");
-  const StringfyAppnumber = useMemo(() =>
+  const StringfyAppNumber = useMemo(() =>
     JSON.stringify(getPatientAppNum).replace(/"/g, "")
   );
-  console.log(StringfyAppnumber, "create dental record");
+  console.log(StringfyAppNumber, "create dental record");
   const [patientIDNumber, setPatientIDNumber] = useState("");
   console.log(patientIDNumber);
 
@@ -46,7 +46,7 @@ const CreateDentalRecord = () => {
         "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
         {
           params: {
-            appNumber: StringfyAppnumber,
+            appNumber: StringfyAppNumber,
           },
         }
       );
@@ -178,7 +178,7 @@ const CreateDentalRecord = () => {
   };
   const uploadDentalRecords = () => {
     console.log(patientIDNumber);
-    console.log(StringfyAppnumber);
+    console.log(StringfyAppNumber);
     console.log(startDate);
     console.log(treatDesc);
     console.log(chartedTeeth);
@@ -187,8 +187,13 @@ const CreateDentalRecord = () => {
 
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/createDentalRecord", {
       patientIDNum: patientIDNumber,
-      appNum: StringfyAppnumber,
-      dateValue: startDate,
+      appNum: StringfyAppNumber,
+      dateValue:
+      startDate.getFullYear() +
+      "-" +
+      ("0" + (startDate.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + startDate.getDate()).slice(-2),
       descValue: treatDesc,
       imgValue: getFile[0],
       procedures: checked,
@@ -199,12 +204,15 @@ const CreateDentalRecord = () => {
 
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/createReceipt", {
       patientIDnumber: patientIDNumber,
-      appNum: StringfyAppnumber,
-      date: startDate,
+      appNum: StringfyAppNumber,
+      dateValue:
+      startDate.getFullYear() +
+      "-" +
+      ("0" + (startDate.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + startDate.getDate()).slice(-2),
     });
-    console.log("Receipt Created with ", patientIDNumber, StringfyAppnumber);
-    // setModalState('show-modal');
-    handleShow();
+    console.log("Receipt Created with ", patientIDNumber, StringfyAppNumber);
   };
   const handleShow = () => {
     setModalState("show-modal");
@@ -271,7 +279,11 @@ const CreateDentalRecord = () => {
                         selected={startDate}
                         onChange={(date) => {
                           setStartDate(date);
-                          console.log("This is the calendar data:", date);
+                          console.log(
+                            "This is the calendar data:",
+                            date.toString().slice(3, 15)
+                          );
+                          console.log("set Start: ", startDate.toString());
                           window.localStorage.setItem("date", date);
                         }}
                         isClearable

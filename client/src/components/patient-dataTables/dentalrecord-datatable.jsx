@@ -54,9 +54,14 @@ const DentalRecordDataTable = (response, patientIDNum) => {
       sortable: true,
     },
     {
-      name: "Tooth No.",
-      selector: (row) => row.chartedTeeth,
+      name: "Appt #",
+      selector: (row) => row.appNum,
+      sortable: true,
     },
+    //{
+    //  name: "Tooth No.",
+    //  selector: (row) => row.chartedTeeth,
+    //},
     {
       name: "Treatment",
       selector: (row) => row.dentalDesc,
