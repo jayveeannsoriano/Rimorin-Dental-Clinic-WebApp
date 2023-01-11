@@ -30,6 +30,44 @@ const createReceipt = () => {
     JSON.stringify(getDateReceipt).replace(/"/g, "")
   );
 
+  //breadcrumb href ref
+  var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
+
+  //modal
+  const [modalState, setModalState] = useState(false);
+  const [patientIDNumber, setPatientIDNumber] = useState("");
+  const navigate = useNavigate();
+
+  const handleModalClose = () => {
+      setModalState(false)
+      navigate('/secretary/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
+      window.location.reload();      
+  };
+
+  const handleModal = () => {
+      setModalState('show-modal')
+    }
+
+  const getPatientIDnumber = async () => {
+    try {
+      const response = await Axios.get(
+        "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
+        {
+          params: {
+            appNumber: StringfyAppNumber,
+          },
+        }
+      );
+      console.log(response.data);
+      setPatientIDNumber(response.data[0].patientIDnumber);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getPatientIDnumber();
+  }, []);
+
   const [patientUser, setPatientUser] = useState([]);
   const [patientAddress, setPatientAddress] = useState([]);
 
@@ -216,22 +254,6 @@ const createReceipt = () => {
   console.log(StringfyIDNumber);
   console.log(getOrNum);
 
-  //modal
-  const [modalState, setModalState] = useState(false);
-  const [patientIDNumber, setPatientIDNumber] = useState("");
-  const navigate = useNavigate();
-
-  const handleModalClose = () => {
-      setModalState(false)
-      navigate(-1);
-      //navigate('/secretary/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
-      window.location.reload();      
-  };
-
-  const handleModal = () => {
-      setModalState('show-modal')
-    }
-
   const createUserReceipt = () => {
     Axios.put(
       "https://rimorin-dental-clinic.herokuapp.com/getandUpdateReceipt",
@@ -286,9 +308,8 @@ const createReceipt = () => {
                     <li className="breadcrumb-item">
                       <a href="/secretary/patients">Patients</a>
                     </li>
-                    <li className="breadcrumb-item" onClick={() => navigate(-1)}>
-                      {" "}
-                      View Patient Records
+                    <li className="breadcrumb-item">
+                      <a href={patientsRoute + patientIDNumber.substring(3,patientIDNumber.length)}>View Patient Records</a>
                     </li>
                     <li className="breadcrumb-item active">Create Receipt</li>
                   </ol>
