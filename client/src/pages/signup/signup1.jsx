@@ -35,7 +35,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <div className="row">
           <div className="col">
             <div className="mb-3">
-              <label>First name</label>
+              <label>First name<span class="text-danger">*</span></label>
               <input
                 type="text"
                 className="form-control"
@@ -50,13 +50,13 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
           <div className="col">
             <div className="mb-3 suffix">
-              <label>Middle Name</label>
+              <label>Middle Name<span class="text-danger">*</span></label>
               <input
                 type="text"
                 className="form-control suffix"
                 placeholder="Middle Name"
-                onChange={handleChange('midname')}
-                defaultValue={values.midname}
+                onChange={handleChange('mname')}
+                defaultValue={values.mname}
                 required
               />
             </div>
@@ -66,11 +66,11 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <div className="row">
           <div className="col-8">
             <div className="mb-3">
-              <label>Last name</label>
+              <label>Last Name<span class="text-danger">*</span></label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Last name"
+                placeholder="Last Name"
                 onChange={handleChange('lname')}
                 defaultValue={values.lname}
                 required
@@ -93,21 +93,24 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         </div>
 
         <div className="mb-3">
-          <label>Email address</label>
+          <label>Email Address<span class="text-danger">*</span></label>
           <input
             type='email'
             className="form-control"
-            placeholder="Enter email"
+            placeholder="Enter Email"
             onChange={handleChange('email')}
             defaultValue={values.email}
             required
           />
         </div>
+        {/*{this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
+          <strong>Error: This email is already in use.</strong>
+        </div> : ""}*/}
 
         <div className="row">
           <div className="col-6">
             <div className="mb-3">
-              <label>Mobile Number</label>
+              <label>Mobile Number<span class="text-danger">*</span></label>
               <input
                 type="text"
                 className="form-control"
@@ -129,7 +132,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
           <div className="col-6">
             <div className="mb-3">
-              <label>Telephone Number</label>
+              <label>Telephone Number<span class="text-danger">*</span></label>
               <input
                 type="tel"
                 className="form-control"
@@ -144,7 +147,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
         <div className="row">
           <div className="col-6">
-            <label>Gender</label>
+            <label>Gender<span class="text-danger">*</span></label>
             <div className="row">
               <div className="col-6">
                 <div className="form-check">
@@ -181,7 +184,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
 
           <div className="col-6">
             <div className="mb-3">
-              <label>Date of Birth</label>
+              <label>Date of Birth<span class="text-danger">*</span></label>
               <input
                 type="date"
                 className="form-control"
@@ -195,11 +198,11 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         </div>
 
         <div className="mb-3">
-          <label>Profession</label>
+          <label>Profession<span class="text-danger">*</span></label>
           <input
             type="text"
             className="form-control"
-            placeholder="Government Employee"
+            placeholder="(e.g. Student, Government Employee, etc.)"
             onChange={handleChange('profession')}
             defaultValue={values.profession}
             required
@@ -209,7 +212,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
         <div className="row">
           <div className="col">
             <div className="mb-3">
-              <label>Password</label>
+              <label>Password<span class="text-danger">*</span></label>
               <input
                 id="newPassword"
                 type="password"
@@ -223,7 +226,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
           </div>
           <div className="col">
             <div className="mb-3">
-              <label>Re-enter password</label>
+              <label>Re-enter Password<span class="text-danger">*</span></label>
               <input
                 id="renewPassword"
                 type="password"

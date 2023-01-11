@@ -22,7 +22,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                   <a href="/">Rimorin Dental Clinic</a>
                 </div>
                 <div className="mb-3">
-                    <label> Name any medications or maintenance you're taking. (Type N/A if None) </label>
+                    <label> Name any medications or maintenance you're taking.<span class="text-danger">*</span> (Type N/A if None)</label>
                     <input
                         type="text"
                         className="form-control"
@@ -33,7 +33,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                     />
                 </div>
                 <div className="mb-3">
-                    <label> Specify any allergies you have. (Type N/A if None) </label>
+                    <label> Specify any allergies you have.<span class="text-danger">*</span> (Type N/A if None)</label>
                     <input
                         type="text"
                         className="form-control"
@@ -46,7 +46,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
 
                 <div className="col-4">
                     <div className="mb-3">
-                        <label>Blood Type</label>
+                        <label>Blood Type<span class="text-danger">*</span></label>
                         <Form.Select defaultValue={values.blood} onChange={handleChange('blood')}>
                             <option value="" selected disabled>Select</option>
                             <option value="A">A</option>
@@ -58,7 +58,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                 </div>
 
                 <div className="mb-3">
-                    <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions.</label>
+                    <label> Check the appropriate box of the conditions that applies to you if you have or ever had any of the following conditions.<span class="text-danger">*</span></label>
                     <br />
                     <div class="container">
                         <div class="row">
@@ -152,9 +152,9 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                     </div>
                 </div>
 
-                <div className="signup-link">
-                    Already registered? <a href="/auth/login">Sign In</a>
-                </div>
+            <div className="signup-link"><p class="text-center">
+                Already registered? <a href="/auth/login">Sign In</a>
+            </p></div>
             </form>
         </>
 

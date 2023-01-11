@@ -19,7 +19,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                   <a href="/">Rimorin Dental Clinic</a>
               </div>
                 <div className="mb-3">
-                    <label> House No. & Street Name </label>
+                    <label> House No. & Street Name<span class="text-danger">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -32,7 +32,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 <div className="row">
                     <div className="col">
                         <div className="mb-3">
-                            <label> Barangay </label>
+                            <label>Barangay<span class="text-danger">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -45,7 +45,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                     </div>
                     <div className="col">
                         <div className="mb-3">
-                            <label> Municipality </label>
+                            <label> Municipality<span class="text-danger">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -61,7 +61,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 <div className="row">
                     <div className="col">
                     <div className="mb-3">
-                    <label> Province </label>
+                    <label> Province<span class="text-danger">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -74,7 +74,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                     </div>
                     <div className="col">
                     <div className="mb-3">
-                    <label> ZIP Code </label>
+                    <label> ZIP Code<span class="text-danger">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -88,7 +88,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 </div>
                 
                 <div className="mb-3">
-                    <label> Country </label>
+                    <label>Country<span class="text-danger">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -123,9 +123,9 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                     </div>
                 </div>
 
-                <div className="signup-link">
-                    Already registered? <a href="/auth/login">Sign In</a>
-                </div>
+            <div className="signup-link"><p class="text-center">
+                Already registered? <a href="/auth/login">Sign In</a>
+            </p></div>
             </form>
         </>
     )
