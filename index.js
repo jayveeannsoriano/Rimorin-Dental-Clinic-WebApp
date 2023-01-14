@@ -2464,10 +2464,12 @@ app.post("/InsertNewUser", async (req, res) => {
       const oldUser = await User.findOne({ email });
       if (oldUser) {
         return res.json({ error: "User already exists!" });
+      }else {
+        await UserData.save();
+        console.log("Successfully inserted ", UserData, " to the database.");
+        res.send({ status: "ok" });
       }
-      await UserData.save();
-      console.log("Successfully inserted ", UserData, " to the database.");
-      res.send({ status: "ok" });
+     
     } catch (error) {
       res.send({ status: "sign up error" + error });
     }
