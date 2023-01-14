@@ -455,12 +455,12 @@ app.get("/getTimeConfig", async (req, res) => {
     .catch((error) => {
       console.log("error: ", error);
     });
-});
+}); 
 
 app.get("/getUserInfo", async (req, res) => {
   const patientIDNumber = req.query.PatientIDnumber;
 
-  await User.find({ patientIDnumber: patientIDNumber })
+  await User.find({ patientIDnumber: "PT#"+patientIDNumber })
     .then((data) => {
       res.json(data);
     })

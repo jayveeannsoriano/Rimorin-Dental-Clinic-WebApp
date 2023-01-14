@@ -19,8 +19,8 @@ async function Export(willDownload,File,data,info){
       data.presInstruction,
       "1953834", 
       "2719432", 
-      require('../../assets/img/watermark_for_eprescription.png'), 
-      require("../../../../uploads/e-prescription/6254_2022-11-25.png"), 
+      // require('../../assets/img/watermark_for_eprescription.png'), 
+      // require("../../../../uploads/e-prescription/6254_2022-11-25.png"), 
       willDownload
       )
   }else if(File==="receipt"){
@@ -38,7 +38,7 @@ async function Export(willDownload,File,data,info){
     }
 
     var pathReceipt = new Image("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
-    var pathing = require("../../assets/img/PT#1324_2022-11-24.png");
+    // var pathing = require("../../assets/img/PT#1324_2022-11-24.png");
     pathReceipt.onload = () => {
       pathing = require("../../../../uploads/e-receipt/"+info[0].patientIDnumber+"_"+data.date+".png");
     }

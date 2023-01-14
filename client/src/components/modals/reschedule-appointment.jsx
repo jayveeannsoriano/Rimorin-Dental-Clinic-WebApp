@@ -116,7 +116,7 @@ useEffect(() => {
      newTime: timeCheck,
      newConsultation: newConsulInput});
     setModalState("modal-2");
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
 
   }
 

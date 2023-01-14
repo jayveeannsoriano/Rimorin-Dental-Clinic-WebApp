@@ -52,7 +52,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             consulInput: ConsultValue, 
             getTime: TimeValue 
         })
-        Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: response['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
+        Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
         //add reason for cancellation
     }
     
