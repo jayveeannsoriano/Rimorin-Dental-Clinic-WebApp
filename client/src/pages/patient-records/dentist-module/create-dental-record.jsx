@@ -27,6 +27,9 @@ const CreateDentalRecord = () => {
   const [patientIDNumber, setPatientIDNumber] = useState("");
   console.log(patientIDNumber);
 
+  //breadcrumb href ref
+  var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
+
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
   const handleModalClose = () => {
@@ -245,15 +248,13 @@ const CreateDentalRecord = () => {
             <li class="breadcrumb-item">
               <a href="/dentist">Home</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="/dentist/patient-records/dental-record">Patients</a>
+            <li className="breadcrumb-item">
+              <a href="/dentist/patients">Patients</a>
             </li>
-            <li class="breadcrumb-item" onClick={() => navigate(-1)}>
-              Dental Records
+            <li className="breadcrumb-item">
+              <a href={patientsRoute + patientIDNumber.substring(3, patientIDNumber.length)}>View Patient Records</a>
             </li>
-            <li class="breadcrumb-item active">
-                Create Dental Record
-            </li>
+            <li class="breadcrumb-item active">Create Dental Record</li>
           </ol>
         </nav>
       </div>
@@ -460,13 +461,17 @@ const CreateDentalRecord = () => {
               <div class="row">
                 <div className="col-3">
                   <h6>Selected Tooth/Teeth</h6>
-                  {chartedTeeth.map((item) =>
+                  {chartedTeeth.map((item) => (
                     <p>{item}</p>
-                  )}
+                  ))}
                 </div>
                 <div className="col-3">
                   <h6>Date of Treatment</h6>
-                  <p>{JSON.stringify(startDate).replace(/"/g, "").substring(0, 10)}</p>
+                  <p>
+                    {JSON.stringify(startDate)
+                      .replace(/"/g, "")
+                      .substring(0, 10)}
+                  </p>
                 </div>
                 <div className="col-3">
                   <h6>Treatment Description</h6>
@@ -477,24 +482,26 @@ const CreateDentalRecord = () => {
                   <h6>Procedure/s</h6>
                   {checked.map((item) =>
                     item.chosen != null
-                      ? item.chosen.map((proc) => (
-                        <p>{proc.procedure}</p>
-                      )) : null
+                      ? item.chosen.map((proc) => <p>{proc.procedure}</p>)
+                      : null
                   )}
                 </div>
                 <div class="dental-form-buttons">
-                  <Button 
-                    type="submit" 
-                    class="btn btn-primary" 
-                    onClick={() =>{
-                      uploadDentalRecords() 
+                  <Button
+                    type="submit"
+                    class="btn btn-primary"
+                    onClick={() => {
+                      uploadDentalRecords();
                       handleModal();
                     }}
-                  >Create</Button>
-                  <button 
+                  >
+                    Create
+                  </Button>
+                  <button
                     class="btn btn-outline-secondary"
                     onClick={() => navigate(-1)}
-                  >Cancel
+                  >
+                    Cancel
                   </button>
                 </div>
               </div>
@@ -503,17 +510,18 @@ const CreateDentalRecord = () => {
         </div>
       </form>
 
-      <Modal 
-      show={modalState == 'show-modal'} 
-      onHide={handleModalClose} 
-      backdrop="static" keyboard={false}>
-
+      <Modal
+        show={modalState == "show-modal"}
+        onHide={handleModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Dental Record Created!</Modal.Title>
         </Modal.Header>
         <Modal.Body closeButton>
           {/* <img src={successful} alt="success image" className='success-img' /> */}
-          <p className='modal-txt'>You have created a dental record!</p>
+          <p className="modal-txt">You have created a dental record!</p>
         </Modal.Body>
 
         <Modal.Footer>

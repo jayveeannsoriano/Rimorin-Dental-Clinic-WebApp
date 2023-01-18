@@ -31,7 +31,7 @@ const createReceipt = () => {
   );
 
   //breadcrumb href ref
-  var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
+  var patientsRoute = "/secretary/patients/view-patient?patientIDNum=";
 
   //modal
   const [modalState, setModalState] = useState(false);
