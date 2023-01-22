@@ -179,6 +179,7 @@ const CreateDentalRecord = () => {
   const onFileChange = (files) => {
     setGetFile(files);
   };
+
   const uploadDentalRecords = () => {
     console.log(patientIDNumber);
     console.log(StringfyAppNumber);
@@ -217,6 +218,8 @@ const CreateDentalRecord = () => {
     });
     console.log("Receipt Created with ", patientIDNumber, StringfyAppNumber);
   };
+
+  
   const handleShow = () => {
     setModalState("show-modal");
   };

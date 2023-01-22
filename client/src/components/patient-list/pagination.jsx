@@ -23,9 +23,7 @@ const PatientListPagination = ({ widgetsPerPage, totalWidgets, currPage, paginat
                 <ul className="pagination justify-content-center">
                     <li className="page-item">
                         <a className="page-link" id="number" href="#" onClick={() => {
-                    if(currPage<=1){
-                        alert("No more")
-                    }else{paginate(i--)}
+                    if(currPage<=1){}else{paginate(i--)}
                      }
                       }>Previous</a>
                     </li>
@@ -35,7 +33,8 @@ const PatientListPagination = ({ widgetsPerPage, totalWidgets, currPage, paginat
                         </li>
                     ))}
                     <li className="page-item">
-                        <a className="page-link" href="#" onClick={() => {if(currPage >= arrNum){alert("last page")}else{paginate(++i)}}}>Next</a>
+                        <a className="page-link" href="#" onClick={() => {
+                            if(currPage >= arrNum){}else{paginate(++i)}}}>Next</a>
                     </li>
                 </ul>
             </nav>

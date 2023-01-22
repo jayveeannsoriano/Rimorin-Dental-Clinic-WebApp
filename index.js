@@ -1770,28 +1770,10 @@ app.post("/createDentalRecord",
   }
 );
 
-app.post(
-  "/createDentalRecordforSec",
-  uploadImg.single("imgValue"),
-  async (req, res) => {
-    console.log("sec records");
-    const patientIDNum = req.body.patientIDNum;
-    const appNumber = "#" + req.body.appNum;
-    const dentalStatus = "Pending";
-
-    await DentalRecords.create({
-      patientIDNumber: patientIDNum,
-      appNum: appNumber,
-      dentalStatus: dentalStatus,
-    });
-    console.log("Dental Record Created");
-  }
-);
-
 app.post("/createReceipt", async (req, res) => {
   const PatientIDNumber = req.body.patientIDnumber;
   const appNumber = "#" + req.body.appNum;
-  const dateValue = req.body.date;
+  const dateValue = req.body.dateValue;
   const slicedDate = dateValue.slice(0, 10);
   const payStatus = "Pending";
 
@@ -1812,6 +1794,24 @@ app.post("/createReceipt", async (req, res) => {
     dateValue
   );
 });
+
+app.post(
+  "/createDentalRecordforSec",
+  uploadImg.single("imgValue"),
+  async (req, res) => {
+    console.log("sec records");
+    const patientIDNum = req.body.patientIDNum;
+    const appNumber = "#" + req.body.appNum;
+    const dentalStatus = "Pending";
+
+    await DentalRecords.create({
+      patientIDNumber: patientIDNum,
+      appNum: appNumber,
+      dentalStatus: dentalStatus,
+    });
+    console.log("Dental Record Created");
+  }
+);
 
 const ImgStorageERec = multer.diskStorage({
   destination: "uploads/e-receipt",

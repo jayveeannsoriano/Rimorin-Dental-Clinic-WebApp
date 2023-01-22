@@ -15,6 +15,21 @@ import success from '../../../assets/img/check.png';
 
 const createEprescription = () => {
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+    const dentistLicense = userInfo["license"];
+    var dentistLicenseDisplay;
+    if(dentistLicense == null || " "){
+        dentistLicenseDisplay = "12345678"
+    }else{
+        dentistLicenseDisplay = userInfo["license"];
+    }
+
+    const dentistPTR = userInfo["ptr"];
+    if(dentistPTR == null || " "){
+        dentistPTRDisplay = "12345678"
+    }else{
+        dentistPTRDisplay = userInfo["ptr"];
+    }
+
     const dentistFullName = userInfo["fname"] + " " + userInfo["lname"];
     const location = useLocation();
 
@@ -171,8 +186,8 @@ const createEprescription = () => {
 
                                     <div className="biller-info">
                                         <h5 className="rx-pr"> Professional Information </h5>
-                                        <p> PTR Number: 12345678</p>
-                                        <p> Licence Number: 12345678</p>
+                                        <p> PTR Number: {dentistPTRDisplay}</p>
+                                        <p> Licence Number: {dentistLicenseDisplay}</p>
                                     </div>
 
                                     <form>
