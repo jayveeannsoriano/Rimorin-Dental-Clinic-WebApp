@@ -1,10 +1,14 @@
-import React from "react";
 import "../../styles/login-signup.css";
+import Axios from 'axios';
+import React, { useEffect, useState } from "react";
+
 // import PhoneInput from 'react-phone-input-2';
 // import 'react-phone-input-2/lib/style.css';
 
 
 const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
+  const [validated, setValidated] = useState(true);
+  const [emailMessage, setEmailMessage] = useState(true);
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -24,7 +28,28 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
     }
   }
 
+  function validateEmail(input) {
+    if(input.includes('.com') && input.includes('@')){
+      const response =  Axios.get('https://rimorin-dental-clinic.herokuapp.com/checkEmail',{
+        params:{
+          email: input
+        }
+      }).then(response => {
+        console.log(response.data.status);
+        if(response.data.status=="ok"){
+          setValidated(false);
+          setEmailMessage("Email is valid.")
+        }else{
+          setValidated(true);
+          setEmailMessage("Email already exists..")
+        };
+      });
+      
+  
+      
+    }
 
+  }
   return (
     <>
       <form id='passwordForm' className="auth-inner-signup" onSubmit={Continue}>
@@ -98,10 +123,12 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             type='email'
             className="form-control"
             placeholder="Enter Email"
-            onChange={handleChange('email')}
+            onChange={function(event){handleChange('email');}}
+            onBlur={function(event){validateEmail(event.target.value)}}
             defaultValue={values.email}
             required
           />
+          <p>{emailMessage}</p>
         </div>
         {/*{this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
           <strong>Error: This email is already in use.</strong>
@@ -246,6 +273,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
             onClick={() => {validatePassword(); }}
+            disabled={validated}
           >
             Next
           </button>

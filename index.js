@@ -181,6 +181,21 @@ app.post("/RegisterUser", async (req, res) => {
   }
 });
 
+app.get("/checkEmail", async (req, res) => {
+  let email = req.query.email;
+  try {
+    const oldUser = await User.findOne({ email });
+    if (oldUser) {
+      res.send({ status: "User already exists." });
+    } else{
+      res.send({ status: "ok" });
+    }
+   
+  } catch (error) {
+    res.send({ status: "sign up error" + error });
+  }
+});
+
 app.put("/changePassword", async (req, res) => {
   const userEmail = req.body.userEmail;
   const newPassword = req.body.newPass;

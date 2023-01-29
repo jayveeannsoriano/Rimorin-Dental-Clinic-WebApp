@@ -5,6 +5,8 @@ import SignUp2 from '../signup/signup2';
 import SignUp3 from '../signup/signup3';
 import SignUpConfirm from '../signup/signup-confirm';
 import "../../styles/login-signup.css";
+import Axios from 'axios';
+
 
 
 //serves as the navigation for multi-page
@@ -47,6 +49,13 @@ class SignUpMain extends Component {
 
     //handles the navigations to retain data past the prevStep
     handleChange = input => e => {
+        this.setState({[input]: e.target.value});
+        console.log(input);
+    }
+
+    handleChangeEmail = input => e => {
+
+      
         this.setState({[input]: e.target.value});
         console.log(input);
     }
