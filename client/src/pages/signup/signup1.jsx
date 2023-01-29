@@ -29,27 +29,41 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
   }
 
   function validateEmail(input) {
-    if(input.includes('.com') && input.includes('@')){
-      const response =  Axios.get('https://rimorin-dental-clinic.herokuapp.com/checkEmail',{
-        params:{
-          email: input
+    if (input.includes(".com") && input.includes("@")) {
+      const response = Axios.get(
+        "https://rimorin-dental-clinic.herokuapp.com/checkEmail",
+        {
+          params: {
+            email: input,
+          },
         }
-      }).then(response => {
+      ).then((response) => {
         console.log(response.data.status);
-        if(response.data.status=="ok"){
+        if (response.data.status == "ok") {
           setValidated(false);
-          setEmailMessage("Email is valid.")
-        }else{
+          setEmailMessage(
+            <div style={{ fontSize: "12px" }}>
+              <a class="text-success">
+                <strong>Email is valid.</strong>
+              </a>
+            </div>
+          );
+        } else {
           setValidated(true);
-          setEmailMessage("Email already exists..")
-        };
+          setEmailMessage(
+            <div style={{ fontSize: "12px" }}>
+              <a class="text-danger">
+                <strong>
+                  This email is already in use. Please use another one.
+                </strong>
+              </a>
+            </div>
+          );
+        }
       });
-      
-  
-      
     }
-
   }
+
   return (
     <>
       <form id='passwordForm' className="auth-inner-signup" onSubmit={Continue}>
@@ -128,11 +142,8 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             defaultValue={values.email}
             required
           />
-          <p>{emailMessage}</p>
+          {emailMessage}
         </div>
-        {/*{this.state.logged || this.state.logged != null ? <div class="alert alert-danger">
-          <strong>Error: This email is already in use.</strong>
-        </div> : ""}*/}
 
         <div className="row">
           <div className="col-6">
