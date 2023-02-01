@@ -286,9 +286,9 @@ app.post("/insertAppointment", async (req, res) => {
     if (insertAppStatus == "Pending") {
       //Sending Email
       sgMail.setApiKey(
-        "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"
+        "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"
       );
-      const msg = {
+      let msg1 = {
         personalizations: [
           {
             to: [
@@ -304,15 +304,16 @@ app.post("/insertAppointment", async (req, res) => {
           },
         ],
         template_id: "d-9a171e9b1d6f41b3b323bda330392e96",
-        from: "rimorin.dental@gmail.com", // Change to your verified sender
+        from: "rimorin.secretary@gmail.com", // Change to your verified sender
       };
       sgMail
-        .send(msg)
+        .send(msg1)
         .then(() => {
           res.json("Email Sent");
         })
         .catch((error) => {
-          res.json("Error: Email Not Sent");
+          console.log();
+          res.json("Error: Email Not Sent" + error);
         });
     }
   } catch (err) {
@@ -328,7 +329,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   const dentistIDnumber = req.body.docID;
   //User Info value
   const userNameApp = req.body.userNameApp;
-  console.log(userNameApp);
+  console.log(userNameApp); 
 
   //Doctor name
   const docName = req.body.docName;
@@ -379,9 +380,9 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
     if (insertAppStatus == "Accepted") {
       //Sending Email
       sgMail.setApiKey(
-        "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"
+        "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"
       );
-      const msg = {
+      let msg2 = {
         personalizations: [
           {
             to: [
@@ -400,7 +401,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
         from: "rimorin.secretary@gmail.com", // Change to your verified sender
       };
       sgMail
-        .send(msg)
+        .send(msg2)
         .then(() => {
           res.json("Email Sent");
         })
@@ -2317,14 +2318,13 @@ const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
 
 app.post("/sendSMS", async (req, res) => {
   var phone = req.body.phone.toString();
-
   if(phone.substring(0,2)=="63"){
     phone = req.body.phone
   }else{
     phone = "63"+req.body.phone
   }
   sdk.postSms({
-    api_key: '9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X',
+    api_key: '9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X',  
     api_secret: '9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA',
     to: phone,
     text: req.body.message
@@ -2347,9 +2347,9 @@ app.post("/forgot-password", async (req, res) => {
       });
       const link = `https://rimorin-dental-clinic.herokuapp.com/auth/reset-password?email=${email}`;
       sgMail.setApiKey(
-        "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"
+        "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"
       );
-      const msg = {
+      let msg3 = {
         personalizations: [
           {
             to: [
@@ -2367,7 +2367,7 @@ app.post("/forgot-password", async (req, res) => {
       };
 
       sgMail
-        .send(msg)
+        .send(msg3)
         .then(() => {
           res.json("Email Sent");
         })

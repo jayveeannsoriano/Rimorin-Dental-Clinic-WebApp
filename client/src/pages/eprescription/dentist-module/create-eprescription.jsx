@@ -25,9 +25,9 @@ const createEprescription = () => {
 
     const dentistPTR = userInfo["ptr"];
     if(dentistPTR == null || " "){
-        dentistPTRDisplay = "12345678"
+        // dentistPTRDisplay = "12345678"
     }else{
-        dentistPTRDisplay = userInfo["ptr"];
+        // dentistPTRDisplay = userInfo["ptr"];
     }
 
     const dentistFullName = userInfo["fname"] + " " + userInfo["lname"];
@@ -186,7 +186,7 @@ const createEprescription = () => {
 
                                     <div className="biller-info">
                                         <h5 className="rx-pr"> Professional Information </h5>
-                                        <p> PTR Number: {dentistPTRDisplay}</p>
+                                        {/* <p> PTR Number: {dentistPTRDisplay}</p> */}
                                         <p> Licence Number: {dentistLicenseDisplay}</p>
                                     </div>
 
