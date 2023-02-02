@@ -88,6 +88,7 @@ app.post("/RegisterUser", async (req, res) => {
   const {
     fname,
     lname,
+    mname,
     suffix,
     email,
     password,
@@ -146,6 +147,7 @@ app.post("/RegisterUser", async (req, res) => {
   const UserData = new User({
     patientIDnumber: patientIDNumber,
     fname: fname,
+    mname: mname,
     suffix: suffix,
     lname: lname,
     email: email,
