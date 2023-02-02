@@ -44,13 +44,18 @@ const PatientDashboard = () => {
         </nav>
         
         {/* Page Title */}
-        {userInformation.map((item, index) => (
+        {/*{userInformation.map((item, index) => (
         <div className="pagetitle">
           <h1>Welcome, {item.fname}!</h1>
           <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
           <h2>{time}</h2>
         </div>
-        ))}
+        ))}*/}
+        <div className="pagetitle">
+          <h1>Welcome, {userInfo['fname']}!</h1>
+            <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
+            <h2>{time}</h2>
+        </div>
 
         <section className="section dashboard">
           <div className="row">
@@ -78,7 +83,6 @@ const PatientDashboard = () => {
                       <h5 className="card-title">
                         UPCOMING APPOINTMENTS
                       </h5>
-                      {/* Pachange nalang yung datatable for upcoming appt ng respective patient here */}
                         <UpcomingDashboardTable/>
                     </div>
                   </div>
