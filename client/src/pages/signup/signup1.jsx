@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 // import 'react-phone-input-2/lib/style.css';
 
 
-const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
+const SignUp1 = ({ nextStep, handleChange, values }) => {
   const [validated, setValidated] = useState(true);
   const [emailMessage, setEmailMessage] = useState(true);
   const Continue = (e) => {
@@ -137,7 +137,7 @@ const SignUp1 = ({ nextStep, handleChange, handleCheckbox, values }) => {
             type='email'
             className="form-control"
             placeholder="Enter Email"
-            onChange={function(event){handleChange('email');}}
+            onChange={handleChange('email')}
             onBlur={function(event){validateEmail(event.target.value)}}
             defaultValue={values.email}
             required
