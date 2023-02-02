@@ -25,7 +25,6 @@ const CreateDentalRecord = () => {
   );
   console.log(StringfyAppNumber, "create dental record");
   const [patientIDNumber, setPatientIDNumber] = useState("");
-  console.log(patientIDNumber);
 
   //breadcrumb href ref
   var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
