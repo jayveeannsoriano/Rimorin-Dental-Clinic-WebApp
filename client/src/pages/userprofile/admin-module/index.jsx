@@ -243,7 +243,7 @@ const AdminUserProfile = () => {
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">ZIP Code</div>
-                                            <div class="col-lg-9 col-md-8">{item['zip']}</div>
+                                            <div class="col-lg-9 col-md-8">{item['zipcode']}</div>
                                         </div>
                                     </div>
 

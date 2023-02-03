@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 // import { List, ListItem, ListItemText } from '@material-ui/core';
 // import "../../styles/login-signup.css";
 import Axios from 'axios';
-import AccountCreated from '../../components/modals/success-modals/create-acc';
-import successful from '../../assets/img/check.png';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Footer from '../../layout/LandingPageLayout/footer';
+
 
 const SignUpConfirm = ({ prevStep, nextStep, values }) => {
     console.log(values);
@@ -61,7 +57,7 @@ const SignUpConfirm = ({ prevStep, nextStep, values }) => {
                         <label className='label'>Full Name</label>
                     </div>
                     <div class="col">
-                        <p>{fname} {lname} {suffix}</p>
+                        <p>{fname} {mname} {lname} {suffix}</p>
                     </div>
                 </div>
 
