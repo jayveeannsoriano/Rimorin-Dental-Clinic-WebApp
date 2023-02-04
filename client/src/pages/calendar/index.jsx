@@ -22,6 +22,7 @@ function Calendar() {
           var checkBox2 = document.getElementById("gridCheck2");
           var checkBox3 = document.getElementById("gridCheck3");
           var checkBox4 = document.getElementById("gridCheck4");
+          var checkBox5 = document.getElementById("gridCheck5");
 
           var response;
           if(userInfo['user_role_id']==1){
@@ -149,6 +150,10 @@ function Calendar() {
                     <input className="form-check-input" type="checkbox" id="gridCheck4" onClick={()=>{getUserAppointments();}}/>
                     <label className="form-check-label" htmlFor="gridCheck4">Cancelled</label>
                     <span className="circle4"><i className = "fa fa-circle fa-2xs" aria-hidden="true" ></i></span>
+
+                    <input className="form-check-input" type="checkbox" id="gridCheck5" onClick={()=>{getUserAppointments();}}/>
+                    <label className="form-check-label" htmlFor="gridCheck5">Follow-Up</label>
+                    <span className="circle5"><i className = "fa fa-circle fa-2xs" aria-hidden="true" ></i></span>
               </div>
           </div>
 
