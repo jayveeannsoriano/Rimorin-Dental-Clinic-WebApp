@@ -915,11 +915,17 @@ app.get("/getUserAppts", async (req, res) => {
   if(query.acc!=""){
     arr.push(query.acc);
   }
+  if(query.res!=""){
+    arr.push(query.res);
+  }
   if(query.fin!=""){
     arr.push(query.fin);
   }
   if(query.can!=""){
     arr.push(query.can);
+  }
+  if(query.fol!=""){
+    arr.push(query.fol);
   }
 
   if(arr==0){
@@ -930,15 +936,19 @@ app.get("/getUserAppts", async (req, res) => {
       for (var key in data) {
         let color = "";
         if (data[key].appStatus === "Pending") {
-          color = "#FFC107";
+          color = "#FFC107"
         } else if (data[key].appStatus === "Accepted") {
-          color = "#0DCAF0";
-        } else if (data[key].appStatus === "Finished") {
-          color = "#198754";
+          color = "#0DCAF0"
+        } else if(data[key].appStatus === "Rescheduled"){
+          color = "#0DCAF0"
+        }else if (data[key].appStatus === "Finished") {
+          color = "#198754"
         } else if (data[key].appStatus === "No Show") {
-          color = "#A9A9A9";
+          color = "#A9A9A9"
+        } else if(data[key].appStatus==="Follow-Up"){
+          color = "#7823e7"
         } else {
-          color = "#DC3545";
+          color = "#DC3545"
         }
         tempArr = {
           dent: data[key].dName,
@@ -962,15 +972,19 @@ app.get("/getUserAppts", async (req, res) => {
       for (var key in data) {
         let color = "";
         if (data[key].appStatus === "Pending") {
-          color = "#FFC107";
+          color = "#FFC107"
         } else if (data[key].appStatus === "Accepted") {
-          color = "#0DCAF0";
+          color = "#0DCAF0"
+        } else if(data[key].appStatus === "Rescheduled"){
+          color = "#0DCAF0"
         } else if (data[key].appStatus === "Finished") {
-          color = "#198754";
+          color = "#198754"
         } else if (data[key].appStatus === "No Show") {
-          color = "#A9A9A9";
+          color = "#A9A9A9"
+        } else if(data[key].appStatus==="Follow-Up"){
+          color = "#7823e7"
         } else {
-          color = "#DC3545";
+          color = "#DC3545"
         }
         tempArr = {
           dent: data[key].dName,
@@ -1003,11 +1017,17 @@ app.get("/getUserApptsOthers", async(req,res) => {
   if(query.acc!=""){
     arr.push(query.acc);
   }
+  if(query.res!=""){
+    arr.push(query.res);
+  }
   if(query.fin!=""){
     arr.push(query.fin);
   }
   if(query.can!=""){
     arr.push(query.can);
+  }
+  if(query.fol!=""){
+    arr.push(query.fol);
   }
 
   if(arr.length==0){
@@ -1020,10 +1040,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
             color = "#FFC107"
           }else if(data[key].appStatus==="Accepted"){
             color = "#0DCAF0"
+          }else if(data[key].appStatus === "Rescheduled"){
+            color = "#0DCAF0"
           }else if(data[key].appStatus==="Finished"){
             color = "#198754"
           }else if(data[key].appStatus==="No Show"){
             color = "#A9A9A9"
+          }else if(data[key].appStatus==="Follow-Up"){
+            color = "#7823e7"
           }else{
             color = "#DC3545"
           }
@@ -1051,10 +1075,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
             color = "#FFC107"
           }else if(data[key].appStatus==="Accepted"){
             color = "#0DCAF0"
+          }else if(data[key].appStatus === "Rescheduled"){
+            color = "#0DCAF0"
           }else if(data[key].appStatus==="Finished"){
             color = "#198754"
           }else if(data[key].appStatus==="No Show"){
             color = "#A9A9A9"
+          }else if(data[key].appStatus==="Follow-Up"){
+            color = "#7823e7"
           }else{
             color = "#DC3545"
           }
@@ -1087,11 +1115,17 @@ app.get("/getUserApptsOthers", async(req,res) => {
     if(query.acc!=""){
       arr.push(query.acc);
     }
+    if(query.res!=""){
+      arr.push(query.res);
+    }
     if(query.fin!=""){
       arr.push(query.fin);
     }
     if(query.can!=""){
       arr.push(query.can);
+    }
+    if(query.fol!=""){
+      arr.push(query.fol);
     }
 
     if(arr==0){
@@ -1104,10 +1138,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
             color = "#FFC107"
           }else if(data[key].appStatus==="Accepted"){
             color = "#0DCAF0"
+          }else if(data[key].appStatus === "Rescheduled"){
+            color = "#0DCAF0"
           }else if(data[key].appStatus==="Finished"){
             color = "#198754"
           }else if(data[key].appStatus==="No Show"){
             color = "#A9A9A9"
+          }else if(data[key].appStatus==="Follow-Up"){
+            color = "#7823e7"
           }else{
             color = "#DC3545"
           }
@@ -1135,10 +1173,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
             color = "#FFC107"
           }else if(data[key].appStatus==="Accepted"){
             color = "#0DCAF0"
+          }else if(data[key].appStatus === "Rescheduled"){
+            color = "#0DCAF0"
           }else if(data[key].appStatus==="Finished"){
             color = "#198754"
           }else if(data[key].appStatus==="No Show"){
             color = "#A9A9A9"
+          }else if(data[key].appStatus==="Follow-Up"){
+            color = "#7823e7"
           }else{
             color = "#DC3545"
           }
@@ -1171,11 +1213,17 @@ app.get("/getUserApptsOthers", async(req,res) => {
       if(query.acc!=""){
         arr.push(query.acc);
       }
+      if(query.res!=""){
+        arr.push(query.res);
+      }
       if(query.fin!=""){
         arr.push(query.fin);
       }
       if(query.can!=""){
         arr.push(query.can);
+      }
+      if(query.fol!=""){
+        arr.push(query.fol);
       }
 
       if(arr==0){
@@ -1188,10 +1236,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
               color = "#FFC107"
             }else if(data[key].appStatus==="Accepted"){
               color = "#0DCAF0"
+            }else if(data[key].appStatus === "Rescheduled"){
+              color = "#0DCAF0"
             }else if(data[key].appStatus==="Finished"){
               color = "#198754"
             }else if(data[key].appStatus==="No Show"){
               color = "#A9A9A9"
+            }else if(data[key].appStatus==="Follow-Up"){
+              color = "#7823e7"
             }else{
               color = "#DC3545"
             }
@@ -1220,10 +1272,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
               color = "#FFC107"
             }else if(data[key].appStatus==="Accepted"){
               color = "#0DCAF0"
+            }else if(data[key].appStatus === "Rescheduled"){
+              color = "#0DCAF0"
             }else if(data[key].appStatus==="Finished"){
               color = "#198754"
             }else if(data[key].appStatus==="No Show"){
               color = "#A9A9A9"
+            }else if(data[key].appStatus==="Follow-Up"){
+              color = "#7823e7"
             }else{
               color = "#DC3545"
             }
@@ -1257,11 +1313,17 @@ app.get("/getUserApptsOthers", async(req,res) => {
       if(query.acc!=""){
         arr.push(query.acc);
       }
+      if(query.res!=""){
+        arr.push(query.res);
+      }
       if(query.fin!=""){
         arr.push(query.fin);
       }
       if(query.can!=""){
         arr.push(query.can);
+      }
+      if(query.fol!=""){
+        arr.push(query.fol);
       }
 
 
@@ -1276,10 +1338,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
               color = "#FFC107"
             }else if(data[key].appStatus==="Accepted"){
               color = "#0DCAF0"
+            }else if(data[key].appStatus === "Rescheduled"){
+              color = "#0DCAF0"
             }else if(data[key].appStatus==="Finished"){
               color = "#198754"
             }else if(data[key].appStatus==="No Show"){
               color = "#A9A9A9"
+            }else if(data[key].appStatus==="Follow-Up"){
+              color = "#7823e7"
             }else{
               color = "#DC3545"
             }
@@ -1309,10 +1375,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
               color = "#FFC107"
             }else if(data[key].appStatus==="Accepted"){
               color = "#0DCAF0"
+            }else if(data[key].appStatus === "Rescheduled"){
+              color = "#0DCAF0"
             }else if(data[key].appStatus==="Finished"){
               color = "#198754"
             }else if(data[key].appStatus==="No Show"){
               color = "#A9A9A9"
+            }else if(data[key].appStatus==="Follow-Up"){
+              color = "#7823e7"
             }else{
               color = "#DC3545"
             }
@@ -1346,11 +1416,17 @@ app.get("/getUserApptsOthers", async(req,res) => {
         if(query.acc!=""){
           arr.push(query.acc);
         }
+        if(query.res!=""){
+          arr.push(query.res);
+        }
         if(query.fin!=""){
           arr.push(query.fin);
         }
         if(query.can!=""){
           arr.push(query.can);
+        }
+        if(query.fol!=""){
+          arr.push(query.fol);
         }
 
         if(arr==0){
@@ -1364,10 +1440,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
                 color = "#FFC107"
               }else if(data[key].appStatus==="Accepted"){
                 color = "#0DCAF0"
+              }else if(data[key].appStatus === "Rescheduled"){
+                color = "#0DCAF0"
               }else if(data[key].appStatus==="Finished"){
                 color = "#198754"
               }else if(data[key].appStatus==="No Show"){
                 color = "#A9A9A9"
+              }else if(data[key].appStatus==="Follow-Up"){
+                color = "#7823e7"
               }else{
                 color = "#DC3545"
               }
@@ -1397,10 +1477,14 @@ app.get("/getUserApptsOthers", async(req,res) => {
                 color = "#FFC107"
               }else if(data[key].appStatus==="Accepted"){
                 color = "#0DCAF0"
+              }else if(data[key].appStatus === "Rescheduled"){
+                color = "#0DCAF0"
               }else if(data[key].appStatus==="Finished"){
                 color = "#198754"
               }else if(data[key].appStatus==="No Show"){
                 color = "#A9A9A9"
+              }else if(data[key].appStatus==="Follow-Up"){
+                color = "#7823e7"
               }else{
                 color = "#DC3545"
               }

@@ -30,30 +30,38 @@ function Calendar() {
               pName: userInfo['fname'] + " " + userInfo['lname'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"")
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
             response = dataApp1.data;
-            console.log(dataApp1.data)
+            console.log(dataApp1.data);
 
           }else if(userInfo['user_role_id']==2||userInfo['user_role_id']==4){
             var dataApp1 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"")
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             }});
             var dataApp2 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsReqOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"")
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             }});
             var dataApp3 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsHistOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"")
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             }});
             var combined = [...dataApp1.data,...dataApp2.data];
             response = [...combined,...dataApp3.data];
@@ -64,15 +72,19 @@ function Calendar() {
               dentistIDnumber: userInfo['dentistIDnumber'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"")
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
             var dataApp2  = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsHistDent', { params: { 
               dentistIDnumber: userInfo['dentistIDnumber'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
               fin:(checkBox3.checked==true?"Finished":""),
-              can:(checkBox4.checked==true?"No Show":"") 
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
             response = [...dataApp1.data,...dataApp2.data];
           }
