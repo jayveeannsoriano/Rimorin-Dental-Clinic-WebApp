@@ -17,22 +17,25 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const EditDentalRecord = () => {
-
   const location = useLocation();
   const paramsID = new URLSearchParams(location.search);
   const getPatientAppNum = paramsID.get("appNum");
   const StringfyAppnumber = useMemo(() =>
     JSON.stringify(getPatientAppNum).replace(/"/g, "")
   );
-  console.log(StringfyAppnumber, "create dental record");
+  console.log(StringfyAppnumber, "edit dental record");
   const [patientIDNumber, setPatientIDNumber] = useState([]);
   console.log(patientIDNumber);
 
+  //breadcrumb href ref
+  var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
   const handleModalClose = () => {
       setModalState(false)
-      navigate(-1)
+      //navigate(-1)
+      navigate('/dentist/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
+      window.location.reload();
   };
 
   const handleModal = () => {
@@ -237,17 +240,15 @@ const EditDentalRecord = () => {
               <a href="/dentist">Home</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="/dentist/patient-records/dental-record">Patients</a>
+              <a href="/dentist/patients">Patients</a>
             </li>
-            <li class="breadcrumb-item" onClick={() => navigate(-1)}>
-              {/* <a href="/dentist/patient-records/dental-record"> */}
-              Dental Records
-              {/* </a> */}
+            <li className="breadcrumb-item">
+              <a href={patientsRoute + patientIDNumber.substring(3, patientIDNumber.length)}>
+                View Patient Records
+              </a>
             </li>
             <li class="breadcrumb-item active">
-              <a href="/dentist/patient-records/dental-record/edit-dental-record">
                 Edit Dental Record
-              </a>
             </li>
           </ol>
         </nav>
