@@ -35,8 +35,16 @@ function Calendar() {
               can:(checkBox4.checked==true?"No Show":""),
               fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
-            response = dataApp1.data;
-            console.log(dataApp1.data);
+            var dataApp2 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsReq', { params: { 
+              pName: userInfo['fname'] + " " + userInfo['lname'],
+              pend:(checkBox1.checked==true?"Pending":""),
+              acc:(checkBox2.checked==true?"Accepted":""),
+              res:(checkBox2.checked==true?"Rescheduled":""),
+              fin:(checkBox3.checked==true?"Finished":""),
+              can:(checkBox4.checked==true?"No Show":""),
+              fol:(checkBox5.checked==true?"Follow-Up":"")
+            } });
+            response = [...dataApp1.data,...dataApp2.data];
 
           }else if(userInfo['user_role_id']==2||userInfo['user_role_id']==4){
             var dataApp1 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsOthers',{params:{

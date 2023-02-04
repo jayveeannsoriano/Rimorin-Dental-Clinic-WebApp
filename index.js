@@ -1003,6 +1003,104 @@ app.get("/getUserAppts", async (req, res) => {
   }
 });
 
+app.get("/getUserApptsReq", async(req,res) => {
+  var url = require('url');
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+
+  var arr = [];
+  if(query.pend!=""){
+    arr.push(query.pend);
+  }
+  if(query.acc!=""){
+    arr.push(query.acc);
+  }
+  if(query.res!=""){
+    arr.push(query.res);
+  }
+  if(query.fin!=""){
+    arr.push(query.fin);
+  }
+  if(query.can!=""){
+    arr.push(query.can);
+  }
+  if(query.fol!=""){
+    arr.push(query.fol);
+  }
+
+  if(arr==0){
+    await AppRequest.find({ pName: query.pName})
+    .then((data) => {
+      var allEvents = [];
+      for (var key in data) {
+        let color = "";
+        if(data[key].appStatus==="Pending"){
+          color = "#FFC107"
+        }else if(data[key].appStatus==="Accepted"){
+          color = "#0DCAF0"
+        }else if(data[key].appStatus === "Rescheduled"){
+          color = "#0DCAF0"
+        }else if(data[key].appStatus==="Finished"){
+          color = "#198754"
+        }else if(data[key].appStatus==="No Show"){
+          color = "#A9A9A9"
+        }else if(data[key].appStatus==="Follow-Up"){
+          color = "#7823e7"
+        }else{
+          color = "#DC3545"
+        }
+        tempArr = {
+          patient: data[key].dName,
+          date: data[key].formattedDate,
+          time: data[key].time,
+          cons: data[key].consultation,
+          color: color
+        }
+        allEvents.push(tempArr);
+      }
+      res.json(allEvents);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
+    });
+  }else{
+    await AppRequest.find({pName: query.pName, appStatus: {"$in":arr}})
+    .then((data) => {
+      var allEvents = [];
+      for (var key in data) {
+        let color = "";
+        if(data[key].appStatus==="Pending"){
+          color = "#FFC107"
+        }else if(data[key].appStatus==="Accepted"){
+          color = "#0DCAF0"
+        }else if(data[key].appStatus === "Rescheduled"){
+          color = "#0DCAF0"
+        }else if(data[key].appStatus==="Finished"){
+          color = "#198754"
+        }else if(data[key].appStatus==="No Show"){
+          color = "#A9A9A9"
+        }else if(data[key].appStatus==="Follow-Up"){
+          color = "#7823e7"
+        }else{
+          color = "#DC3545"
+        }
+        tempArr = {
+          patient: data[key].dName,
+          date: data[key].formattedDate,
+          time: data[key].time,
+          cons: data[key].consultation,
+          color: color
+        }
+        allEvents.push(tempArr);
+      }
+      res.json(allEvents);
+    })
+    .catch((error) => {
+      console.log('error: ', error)
+    });
+  }
+  });
+
 
 
 app.get("/getUserApptsOthers", async(req,res) => {
