@@ -161,7 +161,7 @@ app.post("/RegisterUser", async (req, res) => {
     bday: bday,
     age: AgeOut(),
     tellphone: tellphone,
-    profession : profession,
+    profession: profession,
     blood: blood,
     zipcode: zipcode,
     house: house,
@@ -180,12 +180,11 @@ app.post("/RegisterUser", async (req, res) => {
     const oldUser = await User.findOne({ email });
     if (oldUser) {
       return res.json({ error: "User already exists!" });
-    } else{
+    } else {
       await UserData.save();
       console.log("Successfully inserted ", UserData, " to the database.");
       res.send({ status: "ok" });
     }
-   
   } catch (error) {
     res.send({ status: "sign up error" + error });
   }
@@ -197,10 +196,9 @@ app.get("/checkEmail", async (req, res) => {
     const oldUser = await User.findOne({ email });
     if (oldUser) {
       res.send({ status: "User already exists." });
-    } else{
+    } else {
       res.send({ status: "ok" });
     }
-   
   } catch (error) {
     res.send({ status: "sign up error" + error });
   }
@@ -254,13 +252,13 @@ app.post("/insertAppointment", async (req, res) => {
 
   //Appointment Number
 
-    const event = new Date();
-    const firstNumber = event.toISOString().substring(20,23)
-    const appNumberUUID = "#APT" + firstNumber;
+  const event = new Date();
+  const firstNumber = event.toISOString().substring(20, 23);
+  const appNumberUUID = "#APT" + firstNumber;
 
   //date value
   const startDate = req.body.startDate;
-  const slidedDate = startDate.substring(0,15)
+  const slidedDate = startDate.substring(0, 15);
 
   //consul value
   const consulInput = req.body.consulInput;
@@ -277,10 +275,8 @@ app.post("/insertAppointment", async (req, res) => {
   const insertAppStatus = "Pending";
   console.log(insertAppStatus);
 
-
   //test aosjdnak
 
-  
   const PendingData = new AppDetails({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
@@ -292,8 +288,7 @@ app.post("/insertAppointment", async (req, res) => {
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
   });
-  
-  
+
   //inserting all data
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
@@ -309,7 +304,6 @@ app.post("/insertAppointment", async (req, res) => {
 
   await PendingData.save();
   try {
-    
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
     if (insertAppStatus == "Pending") {
@@ -350,6 +344,64 @@ app.post("/insertAppointment", async (req, res) => {
   }
 });
 
+app.post("/insertAppointmentasPending", async (req, res) => {
+  //Patient Id Number
+  const patientIDnumber = req.body.patientIDnumber;
+  console.log(patientIDnumber);
+
+  //User Info value
+  const userNameApp = req.body.userNameApp;
+  console.log(userNameApp);
+
+  //Doctor name
+  const docName = "Pamela Rimorin Concepcion";
+
+  //Appointment Number
+
+  const event = new Date();
+  const firstNumber = event.toISOString().substring(20, 23);
+  const appNumberUUID = "#APT" + firstNumber;
+
+  //date value
+  const startDate = req.body.startDate;
+  const slidedDate = startDate.substring(0, 15);
+
+  //consul value
+  const consulInput = req.body.consulInput;
+  console.log(consulInput);
+
+  //time value
+  const getTime = req.body.getTime;
+  console.log(getTime);
+
+  const formattedDate = req.body.formattedDate;
+  console.log(formattedDate);
+
+  //appt status default when creating an appointment
+  const insertAppStatus = "Pending";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new AppDetails({
+    patientIDnumber: patientIDnumber,
+    pName: userNameApp,
+    dName: docName,
+    appNum: appNumberUUID,
+    date: slidedDate,
+    consultation: consulInput,
+    time: getTime,
+    formattedDate: formattedDate,
+    appStatus: insertAppStatus,
+  });
+
+  try {
+    await AppData.save();
+    console.log("Successfully inserted ", AppData, " to the database.");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.post("/insertFollowUpAppointment", async (req, res) => {
   //Patient Id Number
   const patientIDnumber = req.body.patientIDnumber;
@@ -358,7 +410,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   const dentistIDnumber = req.body.docID;
   //User Info value
   const userNameApp = req.body.userNameApp;
-  console.log(userNameApp); 
+  console.log(userNameApp);
 
   //Doctor name
   const docName = req.body.docName;
@@ -366,13 +418,12 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   //Appointment Number
 
   const event = new Date();
-  const firstNumber = event.toISOString().substring(20,23)
+  const firstNumber = event.toISOString().substring(20, 23);
   const appNumberUUID = "#APT" + firstNumber;
-
 
   //date value
   const startDate = req.body.startDate;
-  const slidedDate = startDate.substring(0,15)
+  const slidedDate = startDate.substring(0, 15);
 
   //consul value
   const consulInput = req.body.consulInput;
@@ -391,7 +442,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
 
   //inserting all data
   const AppData = new AppDetails({
-    dentistIDnumber:dentistIDnumber,
+    dentistIDnumber: dentistIDnumber,
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dName: docName,
@@ -459,7 +510,6 @@ app.get("/getAppointmentDetails", async (req, res) => {
     });
 });
 
-
 //Get user for Appointment Details
 app.get("/get", async (req, res) => {
   await AppDetails.find({})
@@ -500,12 +550,12 @@ app.get("/getTimeConfig", async (req, res) => {
     .catch((error) => {
       console.log("error: ", error);
     });
-}); 
+});
 
 app.get("/getUserInfo", async (req, res) => {
   const patientIDNumber = req.query.PatientIDnumber;
 
-  await User.find({ patientIDnumber: "PT#"+patientIDNumber })
+  await User.find({ patientIDnumber: "PT#" + patientIDNumber })
     .then((data) => {
       res.json(data);
     })
@@ -575,10 +625,9 @@ app.get("/getDentistInfo", async (req, res) => {
 });
 
 app.get("/getDentistInfoID", async (req, res) => {
-
   const ObjectID = req.query.ObjectID;
 
-  await User.find({dentistIDnumber:ObjectID})
+  await User.find({ dentistIDnumber: ObjectID })
     .then((data) => {
       res.json(data);
     })
@@ -603,7 +652,7 @@ app.get("/getTodayUserAppointmentDetails", async (req, res) => {
   const todayDate = req.query.date;
   console.log(patientIDNumber + " " + todayDate);
 
-  await AppDetails.find({ patientIDnumber: patientIDNumber, date: todayDate})
+  await AppDetails.find({ patientIDnumber: patientIDNumber, date: todayDate })
     .then((data) => {
       res.json(data);
     })
@@ -629,7 +678,7 @@ app.get("/getTodayDentalAppointmentDetails", async (req, res) => {
   const dentistIDnumber = req.query.dentistIDnumber;
   const todayDate = req.query.date;
   const slicedDate = todayDate.substring(0, 15);
-  console.log("wtf",slicedDate);
+  console.log("wtf", slicedDate);
   console.log(dentistIDnumber);
 
   await AppDetails.find({ date: slicedDate, dentistIDnumber: dentistIDnumber })
@@ -874,7 +923,7 @@ app.get("/getPatientAppNumforDental", async (req, res) => {
 
 app.get("/getPatientIDforDental", async (req, res) => {
   const patientIDnumber = "PT#" + req.query.patientIDnumber;
-  console.log((patientIDnumber),'asdasdasd')
+  console.log(patientIDnumber, "asdasdasd");
 
   await AppDetails.find({ patientIDnumber: patientIDnumber })
     .then((data) => {
@@ -892,7 +941,7 @@ app.get("/getDetailsforReceipt", async (req, res) => {
   await AppDetails.find({ patientIDnumber: patientIDnum, appNum: appNumber })
     .then((data) => {
       res.json(data);
-      console.log(data)
+      console.log(data);
     })
     .catch((error) => {
       console.log("error: ", error);
@@ -906,7 +955,6 @@ app.get("/getTransaction", async (req, res) => {
   await ReceiptDetails.find({ patientIDnumber: patientIDnumber })
     .then((data) => {
       res.json(data);
-     
     })
     .catch((error) => {
       console.log("error: ", error);
@@ -929,706 +977,706 @@ app.get("/getUserAppts", async (req, res) => {
   var query = url_parts.query;
 
   var arr = [];
-  if(query.pend!=""){
+  if (query.pend != "") {
     arr.push(query.pend);
   }
-  if(query.acc!=""){
+  if (query.acc != "") {
     arr.push(query.acc);
   }
-  if(query.res!=""){
+  if (query.res != "") {
     arr.push(query.res);
   }
-  if(query.fin!=""){
+  if (query.fin != "") {
     arr.push(query.fin);
   }
-  if(query.can!=""){
+  if (query.can != "") {
     arr.push(query.can);
   }
-  if(query.fol!=""){
+  if (query.fol != "") {
     arr.push(query.fol);
   }
 
-  if(arr==0){
-    await AppDetails.find({ pName: query.pName})
-    .then((data) => {
-      var allEvents = [];
+  if (arr == 0) {
+    await AppDetails.find({ pName: query.pName })
+      .then((data) => {
+        var allEvents = [];
 
-      for (var key in data) {
-        let color = "";
-        if (data[key].appStatus === "Pending") {
-          color = "#FFC107"
-        } else if (data[key].appStatus === "Accepted") {
-          color = "#0DCAF0"
-        } else if(data[key].appStatus === "Rescheduled"){
-          color = "#0DCAF0"
-        }else if (data[key].appStatus === "Finished") {
-          color = "#198754"
-        } else if (data[key].appStatus === "No Show") {
-          color = "#A9A9A9"
-        } else if(data[key].appStatus==="Follow-Up"){
-          color = "#7823e7"
-        } else {
-          color = "#DC3545"
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
         }
-        tempArr = {
-          dent: data[key].dName,
-          date: data[key].formattedDate,
-          time: data[key].time,
-          cons: data[key].consultation,
-          color: color
-        };
-        allEvents.push(tempArr);
-      }
-      res.json(allEvents);
-    })
-    .catch((error) => {
-      console.log("error: ", error);
-    });
-  }else{
-  await AppDetails.find({ pName: query.pName, appStatus: {"$in":arr}})
-    .then((data) => {
-      var allEvents = [];
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  } else {
+    await AppDetails.find({ pName: query.pName, appStatus: { $in: arr } })
+      .then((data) => {
+        var allEvents = [];
 
-      for (var key in data) {
-        let color = "";
-        if (data[key].appStatus === "Pending") {
-          color = "#FFC107"
-        } else if (data[key].appStatus === "Accepted") {
-          color = "#0DCAF0"
-        } else if(data[key].appStatus === "Rescheduled"){
-          color = "#0DCAF0"
-        } else if (data[key].appStatus === "Finished") {
-          color = "#198754"
-        } else if (data[key].appStatus === "No Show") {
-          color = "#A9A9A9"
-        } else if(data[key].appStatus==="Follow-Up"){
-          color = "#7823e7"
-        } else {
-          color = "#DC3545"
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
         }
-        tempArr = {
-          dent: data[key].dName,
-          date: data[key].formattedDate,
-          time: data[key].time,
-          cons: data[key].consultation,
-          color: color
-        };
-        allEvents.push(tempArr);
-      }
-      res.json(allEvents);
-    })
-    .catch((error) => {
-      console.log("error: ", error);
-    });
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
   }
 });
 
-app.get("/getUserApptsReq", async(req,res) => {
-  var url = require('url');
+app.get("/getUserApptsReq", async (req, res) => {
+  var url = require("url");
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
 
   var arr = [];
-  if(query.pend!=""){
+  if (query.pend != "") {
     arr.push(query.pend);
   }
-  if(query.acc!=""){
+  if (query.acc != "") {
     arr.push(query.acc);
   }
-  if(query.res!=""){
+  if (query.res != "") {
     arr.push(query.res);
   }
-  if(query.fin!=""){
+  if (query.fin != "") {
     arr.push(query.fin);
   }
-  if(query.can!=""){
+  if (query.can != "") {
     arr.push(query.can);
   }
-  if(query.fol!=""){
+  if (query.fol != "") {
     arr.push(query.fol);
   }
 
-  if(arr==0){
-    await AppRequest.find({ pName: query.pName})
-    .then((data) => {
-      var allEvents = [];
-      for (var key in data) {
-        let color = "";
-        if(data[key].appStatus==="Pending"){
-          color = "#FFC107"
-        }else if(data[key].appStatus==="Accepted"){
-          color = "#0DCAF0"
-        }else if(data[key].appStatus === "Rescheduled"){
-          color = "#0DCAF0"
-        }else if(data[key].appStatus==="Finished"){
-          color = "#198754"
-        }else if(data[key].appStatus==="No Show"){
-          color = "#A9A9A9"
-        }else if(data[key].appStatus==="Follow-Up"){
-          color = "#7823e7"
-        }else{
-          color = "#DC3545"
+  if (arr == 0) {
+    await AppRequest.find({ pName: query.pName })
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            patient: data[key].dName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
         }
-        tempArr = {
-          patient: data[key].dName,
-          date: data[key].formattedDate,
-          time: data[key].time,
-          cons: data[key].consultation,
-          color: color
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  } else {
+    await AppRequest.find({ pName: query.pName, appStatus: { $in: arr } })
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            patient: data[key].dName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
         }
-        allEvents.push(tempArr);
-      }
-      res.json(allEvents);
-    })
-    .catch((error) => {
-      console.log('error: ', error)
-    });
-  }else{
-    await AppRequest.find({pName: query.pName, appStatus: {"$in":arr}})
-    .then((data) => {
-      var allEvents = [];
-      for (var key in data) {
-        let color = "";
-        if(data[key].appStatus==="Pending"){
-          color = "#FFC107"
-        }else if(data[key].appStatus==="Accepted"){
-          color = "#0DCAF0"
-        }else if(data[key].appStatus === "Rescheduled"){
-          color = "#0DCAF0"
-        }else if(data[key].appStatus==="Finished"){
-          color = "#198754"
-        }else if(data[key].appStatus==="No Show"){
-          color = "#A9A9A9"
-        }else if(data[key].appStatus==="Follow-Up"){
-          color = "#7823e7"
-        }else{
-          color = "#DC3545"
-        }
-        tempArr = {
-          patient: data[key].dName,
-          date: data[key].formattedDate,
-          time: data[key].time,
-          cons: data[key].consultation,
-          color: color
-        }
-        allEvents.push(tempArr);
-      }
-      res.json(allEvents);
-    })
-    .catch((error) => {
-      console.log('error: ', error)
-    });
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
   }
-  });
+});
 
-
-
-app.get("/getUserApptsOthers", async(req,res) => {
-  var url = require('url');
+app.get("/getUserApptsOthers", async (req, res) => {
+  var url = require("url");
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
 
   var arr = [];
-  if(query.pend!=""){
+  if (query.pend != "") {
     arr.push(query.pend);
   }
-  if(query.acc!=""){
+  if (query.acc != "") {
     arr.push(query.acc);
   }
-  if(query.res!=""){
+  if (query.res != "") {
     arr.push(query.res);
   }
-  if(query.fin!=""){
+  if (query.fin != "") {
     arr.push(query.fin);
   }
-  if(query.can!=""){
+  if (query.can != "") {
     arr.push(query.can);
   }
-  if(query.fol!=""){
+  if (query.fol != "") {
     arr.push(query.fol);
   }
 
-  if(arr.length==0){
+  if (arr.length == 0) {
     await AppDetails.find()
       .then((data) => {
         var allEvents = [];
         for (var key in data) {
           let color = "";
-          if(data[key].appStatus==="Pending"){
-            color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus === "Rescheduled"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
-            color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
-            color = "#A9A9A9"
-          }else if(data[key].appStatus==="Follow-Up"){
-            color = "#7823e7"
-          }else{
-            color = "#DC3545"
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
           tempArr = {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
             cons: data[key].consultation,
-            color: color
-          }
+            color: color,
+          };
           allEvents.push(tempArr);
         }
         res.json(allEvents);
       })
       .catch((error) => {
-        console.log('error: ', error)
+        console.log("error: ", error);
       });
-    }else{
-      await AppDetails.find({appStatus: {"$in":arr}})
+  } else {
+    await AppDetails.find({ appStatus: { $in: arr } })
       .then((data) => {
         var allEvents = [];
         for (var key in data) {
           let color = "";
-          if(data[key].appStatus==="Pending"){
-            color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus === "Rescheduled"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
-            color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
-            color = "#A9A9A9"
-          }else if(data[key].appStatus==="Follow-Up"){
-            color = "#7823e7"
-          }else{
-            color = "#DC3545"
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
           tempArr = {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
             cons: data[key].consultation,
-            color: color
-          }
+            color: color,
+          };
           allEvents.push(tempArr);
         }
         res.json(allEvents);
       })
       .catch((error) => {
-        console.log('error: ', error)
+        console.log("error: ", error);
       });
-    }
-  });
-  
-  app.get("/getUserApptsReqOthers", async(req,res) => {
-    var url = require('url');
-    var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
-  
-    var arr = [];
-    if(query.pend!=""){
-      arr.push(query.pend);
-    }
-    if(query.acc!=""){
-      arr.push(query.acc);
-    }
-    if(query.res!=""){
-      arr.push(query.res);
-    }
-    if(query.fin!=""){
-      arr.push(query.fin);
-    }
-    if(query.can!=""){
-      arr.push(query.can);
-    }
-    if(query.fol!=""){
-      arr.push(query.fol);
-    }
+  }
+});
 
-    if(arr==0){
-      await AppRequest.find()
+app.get("/getUserApptsReqOthers", async (req, res) => {
+  var url = require("url");
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+
+  var arr = [];
+  if (query.pend != "") {
+    arr.push(query.pend);
+  }
+  if (query.acc != "") {
+    arr.push(query.acc);
+  }
+  if (query.res != "") {
+    arr.push(query.res);
+  }
+  if (query.fin != "") {
+    arr.push(query.fin);
+  }
+  if (query.can != "") {
+    arr.push(query.can);
+  }
+  if (query.fol != "") {
+    arr.push(query.fol);
+  }
+
+  if (arr == 0) {
+    await AppRequest.find()
       .then((data) => {
         var allEvents = [];
         for (var key in data) {
           let color = "";
-          if(data[key].appStatus==="Pending"){
-            color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus === "Rescheduled"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
-            color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
-            color = "#A9A9A9"
-          }else if(data[key].appStatus==="Follow-Up"){
-            color = "#7823e7"
-          }else{
-            color = "#DC3545"
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
           tempArr = {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
             cons: data[key].consultation,
-            color: color
-          }
+            color: color,
+          };
           allEvents.push(tempArr);
         }
         res.json(allEvents);
       })
       .catch((error) => {
-        console.log('error: ', error)
+        console.log("error: ", error);
       });
-    }else{
-      await AppRequest.find({appStatus: {"$in":arr}})
+  } else {
+    await AppRequest.find({ appStatus: { $in: arr } })
       .then((data) => {
         var allEvents = [];
         for (var key in data) {
           let color = "";
-          if(data[key].appStatus==="Pending"){
-            color = "#FFC107"
-          }else if(data[key].appStatus==="Accepted"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus === "Rescheduled"){
-            color = "#0DCAF0"
-          }else if(data[key].appStatus==="Finished"){
-            color = "#198754"
-          }else if(data[key].appStatus==="No Show"){
-            color = "#A9A9A9"
-          }else if(data[key].appStatus==="Follow-Up"){
-            color = "#7823e7"
-          }else{
-            color = "#DC3545"
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
           tempArr = {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
             cons: data[key].consultation,
-            color: color
-          }
+            color: color,
+          };
           allEvents.push(tempArr);
         }
         res.json(allEvents);
       })
       .catch((error) => {
-        console.log('error: ', error)
+        console.log("error: ", error);
       });
-    }
-    });
+  }
+});
 
-    app.get("/getUserApptsHistOthers", async(req,res) => {
-      var url = require('url');
-      var url_parts = url.parse(req.url, true);
-      var query = url_parts.query;
-    
-      var arr = [];
-      if(query.pend!=""){
-        arr.push(query.pend);
-      }
-      if(query.acc!=""){
-        arr.push(query.acc);
-      }
-      if(query.res!=""){
-        arr.push(query.res);
-      }
-      if(query.fin!=""){
-        arr.push(query.fin);
-      }
-      if(query.can!=""){
-        arr.push(query.can);
-      }
-      if(query.fol!=""){
-        arr.push(query.fol);
-      }
+app.get("/getUserApptsHistOthers", async (req, res) => {
+  var url = require("url");
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
 
-      if(arr==0){
-      await AppHistory.find()
-        .then((data) => {
-          var allEvents = [];
-          for (var key in data) {
-            let color = "";
-            if(data[key].appStatus==="Pending"){
-              color = "#FFC107"
-            }else if(data[key].appStatus==="Accepted"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus === "Rescheduled"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus==="Finished"){
-              color = "#198754"
-            }else if(data[key].appStatus==="No Show"){
-              color = "#A9A9A9"
-            }else if(data[key].appStatus==="Follow-Up"){
-              color = "#7823e7"
-            }else{
-              color = "#DC3545"
-            }
-            tempArr = {
-              dent: data[key].dName,
-              patient: data[key].pName,
-              date: data[key].formattedDate,
-              time: data[key].time,
-              cons: data[key].consultation,
-              color: color
-            }
-            allEvents.push(tempArr);
+  var arr = [];
+  if (query.pend != "") {
+    arr.push(query.pend);
+  }
+  if (query.acc != "") {
+    arr.push(query.acc);
+  }
+  if (query.res != "") {
+    arr.push(query.res);
+  }
+  if (query.fin != "") {
+    arr.push(query.fin);
+  }
+  if (query.can != "") {
+    arr.push(query.can);
+  }
+  if (query.fol != "") {
+    arr.push(query.fol);
+  }
+
+  if (arr == 0) {
+    await AppHistory.find()
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
-          res.json(allEvents);
-        })
-        .catch((error) => {
-          console.log('error: ', error)
-        });
-      }else{
-        await AppHistory.find({appStatus: {"$in":arr}})
-        .then((data) => {
-          var allEvents = [];
-          for (var key in data) {
-            let color = "";
-            if(data[key].appStatus==="Pending"){
-              color = "#FFC107"
-            }else if(data[key].appStatus==="Accepted"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus === "Rescheduled"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus==="Finished"){
-              color = "#198754"
-            }else if(data[key].appStatus==="No Show"){
-              color = "#A9A9A9"
-            }else if(data[key].appStatus==="Follow-Up"){
-              color = "#7823e7"
-            }else{
-              color = "#DC3545"
-            }
-            tempArr = {
-              dent: data[key].dName,
-              patient: data[key].pName,
-              date: data[key].formattedDate,
-              time: data[key].time,
-              cons: data[key].consultation,
-              color: color
-            }
-            allEvents.push(tempArr);
-          }
-          res.json(allEvents);
-        })
-        .catch((error) => {
-          console.log('error: ', error)
-        });
-      }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
       });
-
-    app.get("/getUserApptsDent", async(req,res) => {
-      var url = require('url');
-      var url_parts = url.parse(req.url, true);
-      var query = url_parts.query;
-
-      var arr = [];
-      if(query.pend!=""){
-        arr.push(query.pend);
-      }
-      if(query.acc!=""){
-        arr.push(query.acc);
-      }
-      if(query.res!=""){
-        arr.push(query.res);
-      }
-      if(query.fin!=""){
-        arr.push(query.fin);
-      }
-      if(query.can!=""){
-        arr.push(query.can);
-      }
-      if(query.fol!=""){
-        arr.push(query.fol);
-      }
-
-
-      if(arr==0){
-        await AppDetails.find({dentistIDnumber:query.dentistIDnumber})
-        .then((data) => {
-          var allEvents = [];
-        
-          for (var key in data) {
-            let color = "";
-            if(data[key].appStatus==="Pending"){
-              color = "#FFC107"
-            }else if(data[key].appStatus==="Accepted"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus === "Rescheduled"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus==="Finished"){
-              color = "#198754"
-            }else if(data[key].appStatus==="No Show"){
-              color = "#A9A9A9"
-            }else if(data[key].appStatus==="Follow-Up"){
-              color = "#7823e7"
-            }else{
-              color = "#DC3545"
-            }
-            tempArr = {
-              dent: data[key].dName,
-              patient: data[key].pName,
-              date: data[key].formattedDate,
-              time: data[key].time,
-              cons: data[key].consultation,
-              color: color
-            }
-            allEvents.push(tempArr);
+  } else {
+    await AppHistory.find({ appStatus: { $in: arr } })
+      .then((data) => {
+        var allEvents = [];
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
           }
-          res.json(allEvents);
-        })
-        .catch((error) => {
-          console.log('error: ', error)
-        });
-      }else{
-        await AppDetails.find({dentistIDnumber:query.dentistIDnumber, appStatus: {"$in":arr}})
-        .then((data) => {
-          var allEvents = [];
-        
-          for (var key in data) {
-            let color = "";
-            if(data[key].appStatus==="Pending"){
-              color = "#FFC107"
-            }else if(data[key].appStatus==="Accepted"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus === "Rescheduled"){
-              color = "#0DCAF0"
-            }else if(data[key].appStatus==="Finished"){
-              color = "#198754"
-            }else if(data[key].appStatus==="No Show"){
-              color = "#A9A9A9"
-            }else if(data[key].appStatus==="Follow-Up"){
-              color = "#7823e7"
-            }else{
-              color = "#DC3545"
-            }
-            tempArr = {
-              dent: data[key].dName,
-              patient: data[key].pName,
-              date: data[key].formattedDate,
-              time: data[key].time,
-              cons: data[key].consultation,
-              color: color
-            }
-            allEvents.push(tempArr);
-          }
-          res.json(allEvents);
-        })
-        .catch((error) => {
-          console.log('error: ', error)
-        });
-      }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
       });
+  }
+});
 
-      app.get("/getUserApptsHistDent", async(req,res) => {
-        var url = require('url');
-        var url_parts = url.parse(req.url, true);
-        var query = url_parts.query;
+app.get("/getUserApptsDent", async (req, res) => {
+  var url = require("url");
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
 
-        var arr = [];
-        if(query.pend!=""){
-          arr.push(query.pend);
-        }
-        if(query.acc!=""){
-          arr.push(query.acc);
-        }
-        if(query.res!=""){
-          arr.push(query.res);
-        }
-        if(query.fin!=""){
-          arr.push(query.fin);
-        }
-        if(query.can!=""){
-          arr.push(query.can);
-        }
-        if(query.fol!=""){
-          arr.push(query.fol);
-        }
+  var arr = [];
+  if (query.pend != "") {
+    arr.push(query.pend);
+  }
+  if (query.acc != "") {
+    arr.push(query.acc);
+  }
+  if (query.res != "") {
+    arr.push(query.res);
+  }
+  if (query.fin != "") {
+    arr.push(query.fin);
+  }
+  if (query.can != "") {
+    arr.push(query.can);
+  }
+  if (query.fol != "") {
+    arr.push(query.fol);
+  }
 
-        if(arr==0){
-          await AppHistory.find({dentistIDnumber:query.dentistIDnumber})
-          .then((data) => {
-            var allEvents = [];
-          
-            for (var key in data) {
-              let color = "";
-              if(data[key].appStatus==="Pending"){
-                color = "#FFC107"
-              }else if(data[key].appStatus==="Accepted"){
-                color = "#0DCAF0"
-              }else if(data[key].appStatus === "Rescheduled"){
-                color = "#0DCAF0"
-              }else if(data[key].appStatus==="Finished"){
-                color = "#198754"
-              }else if(data[key].appStatus==="No Show"){
-                color = "#A9A9A9"
-              }else if(data[key].appStatus==="Follow-Up"){
-                color = "#7823e7"
-              }else{
-                color = "#DC3545"
-              }
-              tempArr = {
-                dent: data[key].dName,
-                patient: data[key].pName,
-                date: data[key].formattedDate,
-                time: data[key].time,
-                cons: data[key].consultation,
-                color: color
-              }
-              allEvents.push(tempArr);
-            }
-            res.json(allEvents);
-          })
-          .catch((error) => {
-            console.log('error: ', error)
-          });
-        }else{
-          await AppHistory.find({dentistIDnumber:query.dentistIDnumber, appStatus: {"$in":arr}})
-          .then((data) => {
-            var allEvents = [];
-          
-            for (var key in data) {
-              let color = "";
-              if(data[key].appStatus==="Pending"){
-                color = "#FFC107"
-              }else if(data[key].appStatus==="Accepted"){
-                color = "#0DCAF0"
-              }else if(data[key].appStatus === "Rescheduled"){
-                color = "#0DCAF0"
-              }else if(data[key].appStatus==="Finished"){
-                color = "#198754"
-              }else if(data[key].appStatus==="No Show"){
-                color = "#A9A9A9"
-              }else if(data[key].appStatus==="Follow-Up"){
-                color = "#7823e7"
-              }else{
-                color = "#DC3545"
-              }
-              tempArr = {
-                dent: data[key].dName,
-                patient: data[key].pName,
-                date: data[key].formattedDate,
-                time: data[key].time,
-                cons: data[key].consultation,
-                color: color
-              }
-              allEvents.push(tempArr);
-            }
-            res.json(allEvents);
-          })
-          .catch((error) => {
-            console.log('error: ', error)
-          });
+  if (arr == 0) {
+    await AppDetails.find({ dentistIDnumber: query.dentistIDnumber })
+      .then((data) => {
+        var allEvents = [];
+
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
         }
-        });
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  } else {
+    await AppDetails.find({
+      dentistIDnumber: query.dentistIDnumber,
+      appStatus: { $in: arr },
+    })
+      .then((data) => {
+        var allEvents = [];
 
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  }
+});
 
-    
+app.get("/getUserApptsHistDent", async (req, res) => {
+  var url = require("url");
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
 
-app.get("/getSpecificDentalRecord", async(req,res) => {
-  var url = require('url');
+  var arr = [];
+  if (query.pend != "") {
+    arr.push(query.pend);
+  }
+  if (query.acc != "") {
+    arr.push(query.acc);
+  }
+  if (query.res != "") {
+    arr.push(query.res);
+  }
+  if (query.fin != "") {
+    arr.push(query.fin);
+  }
+  if (query.can != "") {
+    arr.push(query.can);
+  }
+  if (query.fol != "") {
+    arr.push(query.fol);
+  }
+
+  if (arr == 0) {
+    await AppHistory.find({ dentistIDnumber: query.dentistIDnumber })
+      .then((data) => {
+        var allEvents = [];
+
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  } else {
+    await AppHistory.find({
+      dentistIDnumber: query.dentistIDnumber,
+      appStatus: { $in: arr },
+    })
+      .then((data) => {
+        var allEvents = [];
+
+        for (var key in data) {
+          let color = "";
+          if (data[key].appStatus === "Pending") {
+            color = "#FFC107";
+          } else if (data[key].appStatus === "Accepted") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Rescheduled") {
+            color = "#0DCAF0";
+          } else if (data[key].appStatus === "Finished") {
+            color = "#198754";
+          } else if (data[key].appStatus === "No Show") {
+            color = "#A9A9A9";
+          } else if (data[key].appStatus === "Follow-Up") {
+            color = "#7823e7";
+          } else {
+            color = "#DC3545";
+          }
+          tempArr = {
+            dent: data[key].dName,
+            patient: data[key].pName,
+            date: data[key].formattedDate,
+            time: data[key].time,
+            cons: data[key].consultation,
+            color: color,
+          };
+          allEvents.push(tempArr);
+        }
+        res.json(allEvents);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  }
+});
+
+app.get("/getSpecificDentalRecord", async (req, res) => {
+  var url = require("url");
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   await DentalRecords.findOne({
@@ -1702,8 +1750,8 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const appNumber = req.body.appNum;
   const patientIDnumber = req.body.patientIDNum;
   const userNameApp = req.body.pName;
-  const updateDate = req.body.newDate.substring(0,15);
-  const formattedDate = req.body.newFormattedDate.substring(0,10);
+  const updateDate = req.body.newDate.substring(0, 15);
+  const formattedDate = req.body.newFormattedDate.substring(0, 10);
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
   const insertAppStatus = "Rescheduled";
@@ -1714,7 +1762,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
     pName: userNameApp,
     dName: docName,
     appNum: appNumber,
-    date: updateDate ,
+    date: updateDate,
     formattedDate: formattedDate,
     consultation: updateConsult,
     time: updateTime,
@@ -1731,24 +1779,24 @@ app.put("/rescheduleDentistAppointment", async (req, res) => {
   const appNumber = req.body.appNum;
   const patientIDnumber = req.body.patientIDNum;
   const userNameApp = req.body.pName;
-  const updateDate = req.body.newDate.substring(0,15);
-  const formattedDate = req.body.newFormattedDate.substring(0,10);
+  const updateDate = req.body.newDate.substring(0, 15);
+  const formattedDate = req.body.newFormattedDate.substring(0, 10);
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
   const insertAppStatus = "Rescheduled";
   const docName = req.body.dName;
   const dentistIDnum = req.body.dentistIDnumber;
   const event = new Date();
-  const firstNumber = event.toISOString().substring(20,23)
+  const firstNumber = event.toISOString().substring(20, 23);
   const appNumberUUID = "#APT" + firstNumber;
 
   const AppData = new AppDetails({
     patientIDnumber: patientIDnumber,
-    dentistIDnumber:dentistIDnum,
+    dentistIDnumber: dentistIDnum,
     pName: userNameApp,
     dName: docName,
     appNum: appNumberUUID,
-    date: updateDate ,
+    date: updateDate,
     formattedDate: formattedDate,
     consultation: updateConsult,
     time: updateTime,
@@ -1818,7 +1866,7 @@ app.post("/acceptAppointment", async (req, res) => {
 
   //date value
   const dateValue = req.body.dateValue;
-  const slicedDate = dateValue.substring(0,15);
+  const slicedDate = dateValue.substring(0, 15);
 
   const formattedDate = req.body.formattedDate;
 
@@ -1964,7 +2012,10 @@ const ImgStorageDentRec = multer.diskStorage({
   destination: "uploads/dental-record-images",
   filename: (req, file, cb) => {
     const slicedDate = req.body.dateValue.slice(0, 10); //removes unnecessary data
-    cb(null, req.body.patientIDNum.replace('#', '') + "_" + slicedDate + ".jpg");
+    cb(
+      null,
+      req.body.patientIDNum.replace("#", "") + "_" + slicedDate + ".jpg"
+    );
   },
 });
 
@@ -1972,7 +2023,8 @@ const uploadImg = multer({
   storage: ImgStorageDentRec,
 });
 
-app.post("/createDentalRecord",
+app.post(
+  "/createDentalRecord",
   uploadImg.single("imgValue"),
   async (req, res) => {
     console.log("dent records");
@@ -2189,7 +2241,7 @@ app.put("/updatePatientInfo", async (req, res) => {
 
   await AppDetails.updateMany(
     { patientIDnumber: patientIDnumber },
-    { pName: patientName },
+    { pName: patientName }
   );
   await AppRequest.updateMany(
     { patientIDnumber: patientIDnumber },
@@ -2270,7 +2322,7 @@ app.put("/updateDentistInfo", async (req, res) => {
 
   await AppDetails.updateMany(
     { dentistIDnumber: dentistIDnumber },
-    { dName: dentistName },
+    { dName: dentistName }
   );
   await AppRequest.updateMany(
     { dentistIDnumber: dentistIDnumber },
@@ -2446,7 +2498,7 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    formattedDate:formattedDate,
+    formattedDate: formattedDate,
     consultation: consulInput,
     time: getTime,
     appStatus: insertAppStatus,
@@ -2515,35 +2567,34 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
 
   try {
     await AppData.save();
-    console.log(
-      "Successfully inserted ",
-      AppData,
-      " to the History database."
-    );
-    await AppDetails.findOneAndDelete({_id:appObjectID})
+    console.log("Successfully inserted ", AppData, " to the History database.");
+    await AppDetails.findOneAndDelete({ _id: appObjectID });
   } catch (err) {
     console.log(err);
   }
 });
 
-const sdk = require('api')('@movider/v1.0#3dy29x1ekssmjp2d');
+const sdk = require("api")("@movider/v1.0#3dy29x1ekssmjp2d");
 
 app.post("/sendSMS", async (req, res) => {
   var phone = req.body.phone.toString();
-  if(phone.substring(0,2)=="63"){
-    phone = req.body.phone
-  }else{
-    phone = "63"+req.body.phone
+  if (phone.substring(0, 2) == "63") {
+    phone = req.body.phone;
+  } else {
+    phone = "63" + req.body.phone;
   }
-  sdk.postSms({
-    api_key: '9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X',  
-    api_secret: '9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA',
-    to: phone,
-    text: req.body.message
-  }, {accept: 'application/json'})
+  sdk
+    .postSms(
+      {
+        api_key: "9rcBz4qgXLHOeilJ7OQwGFvlW8H3-X",
+        api_secret: "9bW6Qe6tNi4jyJ0a5RfzuqYS_oZqIA",
+        to: phone,
+        text: req.body.message,
+      },
+      { accept: "application/json" }
+    )
     .then(({ data }) => console.log(data))
-    .catch(err => console.error(err));
-  
+    .catch((err) => console.error(err));
 });
 
 app.post("/forgot-password", async (req, res) => {
@@ -2691,12 +2742,11 @@ app.post("/InsertNewUser", async (req, res) => {
       const oldUser = await User.findOne({ email });
       if (oldUser) {
         return res.json({ error: "User already exists!" });
-      }else {
+      } else {
         await UserData.save();
         console.log("Successfully inserted ", UserData, " to the database.");
         res.send({ status: "ok" });
       }
-     
     } catch (error) {
       res.send({ status: "sign up error" + error });
     }
