@@ -277,6 +277,23 @@ app.post("/insertAppointment", async (req, res) => {
   const insertAppStatus = "Pending";
   console.log(insertAppStatus);
 
+
+  //test aosjdnak
+
+  
+  const PendingData = new AppDetails({
+    patientIDnumber: patientIDnumber,
+    pName: userNameApp,
+    dName: docName,
+    appNum: appNumberUUID,
+    date: slidedDate,
+    consultation: consulInput,
+    time: getTime,
+    formattedDate: formattedDate,
+    appStatus: insertAppStatus,
+  });
+  
+  
   //inserting all data
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
@@ -290,7 +307,9 @@ app.post("/insertAppointment", async (req, res) => {
     appStatus: insertAppStatus,
   });
 
+  await PendingData.save();
   try {
+    
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the database.");
     if (insertAppStatus == "Pending") {
@@ -658,6 +677,7 @@ app.get("/getUpcomingUserAppointmentDetails", async (req, res) => {
       console.log("error: ", error);
     });
 });
+
 app.get("/getUpcomingAppointmentDetails", async (req, res) => {
   const todayDate = req.query.date;
   const slicedDate = todayDate.substring(0, 15);
