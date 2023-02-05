@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
-import {useLocation} from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "../../../styles/patient-info.css";
 import "react-bootstrap";
 import Axios from 'axios';
@@ -7,29 +6,30 @@ import ProfileWidget from "../../../components/patient-profilewidget";
 import { Button } from "react-bootstrap";
 
 const PatientInfo = () => {
+
+  var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
+  const patientIDnumber = userInfo['patientIDnumber'];
+  console.log(patientIDnumber)
+
   const [userInformation, setUserInfo] = useState([])
-  
-  const location = useLocation()
-  const paramsID = new URLSearchParams(location.search)
-  const getPatientIDNumber = paramsID.get('patientIDNum');
-  const StringfyIDnumber = useMemo(()=>JSON.stringify(getPatientIDNumber).replace(/"/g,""));
-  console.log(StringfyIDnumber);
-  
-  const getPatientDetails = async() => {
-    try{
-        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo',{
-          params:{
-          patientIDnumber: StringfyIDnumber}
-        });
-        console.log(response, "Responses");
-        setUserInfo(response.data);
-    }catch (error){
-        console.log(error)
+
+  const getAppointment = async () => {
+
+    try {
+      const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo', {
+        params: {
+          patientIDnumber: patientIDnumber,
+        }
+      });
+      setUserInfo(response.data);
+    } catch (error) {
+      console.log(error)
     }
-}
-useEffect(() => {
-    getPatientDetails ();
-}, []);
+  }
+
+  useEffect(() => {
+    getAppointment();
+  }, []);
 
   return (
     <>
