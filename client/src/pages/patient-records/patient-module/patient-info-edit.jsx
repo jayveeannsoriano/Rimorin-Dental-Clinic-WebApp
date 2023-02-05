@@ -72,11 +72,13 @@ const PatientInfoEdit = () => {
   console.log(firstName, 'updated');
   console.log(userData)
   const defaultUserInfo = async () => {
+
+    var patientIDnumbers = patientIDnumber.replace("PT#","");
     try {
 
       const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getUserInfo", {
         params: {
-          patientIDnumber: patientIDnumber
+          PatientIDnumber: patientIDnumbers,
         }
       });
       setUserData(response.data);
