@@ -296,12 +296,6 @@ const createReceipt = () => {
     );
   };
 
-  //discount show/hide
-  const [visibility, setVisibility] = useState(false);
-  const changeHandler = (e) => {
-    setVisibility(e.target.value);
-  };
-
   return (
     <>
       <div className="pagetitle">
@@ -407,7 +401,6 @@ const createReceipt = () => {
                           id="seniorDiscount"
                           value={0.2}
                           onChange={(e) => {
-                            changeHandler();
                             setPWDSeniorDiscount(e.target.value);
                           }}
                         />
@@ -419,7 +412,6 @@ const createReceipt = () => {
                           id="pwdDiscount"
                           value={0.2}
                           onChange={(e) => {
-                            changeHandler();
                             setPWDSeniorDiscount(e.target.value);
                           }}
                         />
@@ -431,7 +423,6 @@ const createReceipt = () => {
                           id="removeDiscount"
                           value={0}
                           onChange={(e) => {
-                            changeHandler();
                             setPWDSeniorDiscount(e.target.value);
                           }}
                         />
@@ -564,7 +555,7 @@ const createReceipt = () => {
                     {/* Total Bill */}
                     <div className="col-xl-10 col-lg-10 col-md-10 total-bill">
                       <label className="paylabel">
-                        Subtotal: ${totalAmountPaid.toString()}
+                        Subtotal: {totalAmountPaid.toString()}
                       </label>
                       {/* dioscount */}
                       {/* <div
@@ -592,7 +583,7 @@ const createReceipt = () => {
                       </div> */}
                       <br />
                       <label className="paylabel">
-                        Discount: ${PWDSeniorDiscount.toString()}
+                        Discount: {PWDSeniorDiscount.toString()}
                       </label>
                       <br />
                       <label className="paylabel">
