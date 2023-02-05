@@ -15,10 +15,12 @@ const PatientInfo = () => {
 
   const getAppointment = async () => {
 
+    var patientIDnumbers = patientIDnumber.replace("PT#","");
+
     try {
       const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo', {
         params: {
-          patientIDnumber: patientIDnumber,
+          PatientIDnumber: patientIDnumbers,
         }
       });
       setUserInfo(response.data);
@@ -88,7 +90,6 @@ const PatientInfo = () => {
                     </div>
                   </div>
                 ))}
-
                 {userInformation.map((item, index) => (
                   <div class="row">
                     <div class="col-lg-auto col-md-auto label">Middle Name</div>
