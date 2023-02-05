@@ -260,7 +260,6 @@ const CreateDentalRecord = () => {
           </ol>
         </nav>
       </div>
-      <form onSubmit={(e) => e.preventDefault}>
         <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
           <div className="card dental-record-form">
             <div className="card-body pt-3">
@@ -347,7 +346,7 @@ const CreateDentalRecord = () => {
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Others</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {othersOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -360,12 +359,12 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Cosmetic Restoration</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {cosmeticOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -377,12 +376,12 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Cementation</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {cementationOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -394,14 +393,14 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                 </div>
                 <div className="row procedure-row">
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Endodontic Treatment</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {endodonticOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -413,12 +412,12 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Prosthetic Procedures</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {prostheticOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -430,12 +429,12 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                   <div className="col-lg-4 col-xl-4 col-md-6">
                     <div className="procedure-label">Surgical Procedure</div>
                     <div className="divider procedure-div"></div>
-                    <Form>
+
                       {surgicalOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
@@ -447,7 +446,7 @@ const CreateDentalRecord = () => {
                           />
                         </div>
                       ))}
-                    </Form>
+
                   </div>
                 </div>
               </div>
@@ -510,7 +509,6 @@ const CreateDentalRecord = () => {
             </div>
           </div>
         </div>
-      </form>
 
       <Modal
         show={modalState == "show-modal"}

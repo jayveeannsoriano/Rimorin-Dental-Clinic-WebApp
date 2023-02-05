@@ -343,7 +343,6 @@ const createReceipt = () => {
               <h5 className="card-title">Create Receipt</h5>
               <div className="divider"></div>
 
-              <form>
                 <div className="container">
                   {/* Transaction Details */}
                   <div className="form-section-title">Transaction Details</div>
@@ -555,7 +554,7 @@ const createReceipt = () => {
                     {/* Total Bill */}
                     <div className="col-xl-10 col-lg-10 col-md-10 total-bill">
                       <label className="paylabel">
-                        Subtotal: {totalAmountPaid.toString()}
+                        Subtotal: ₱{totalAmountPaid.toString()}
                       </label>
                       {/* dioscount */}
                       {/* <div
@@ -583,7 +582,7 @@ const createReceipt = () => {
                       </div> */}
                       <br />
                       <label className="paylabel">
-                        Discount: {PWDSeniorDiscount.toString()}
+                        Discount: ₱{PWDSeniorDiscount.toString()}
                       </label>
                       <br />
                       <label className="paylabel">
@@ -663,7 +662,6 @@ const createReceipt = () => {
                     </button>
                   </div>
                 </div>
-              </form>
             </div>
             {/* End of Card */}
           </div>
