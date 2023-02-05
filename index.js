@@ -329,63 +329,63 @@ app.post("/insertAppointment", async (req, res) => {
   }
 });
 
-app.post("/insertAppointmentasPending", async (req, res) => {
-  //Patient Id Number
-  const patientIDnumber = req.body.patientIDnumber;
-  console.log(patientIDnumber);
+// app.post("/insertAppointmentasPending", async (req, res) => {
+//   //Patient Id Number
+//   const patientIDnumber = req.body.patientIDnumber;
+//   console.log(patientIDnumber);
 
-  //User Info value
-  const userNameApp = req.body.userNameApp;
-  console.log(userNameApp);
+//   //User Info value
+//   const userNameApp = req.body.userNameApp;
+//   console.log(userNameApp);
 
-  //Doctor name
-  const docName = "Pamela Rimorin Concepcion";
+//   //Doctor name
+//   const docName = "Pamela Rimorin Concepcion";
 
-  //Appointment Number
+//   //Appointment Number
 
-  const event = new Date();
-  const firstNumber = event.toISOString().substring(20, 23);
-  const appNumberUUID = "#APT" + firstNumber;
+//   const event = new Date();
+//   const firstNumber = event.toISOString().substring(20, 23);
+//   const appNumberUUID = "#APT" + firstNumber;
 
-  //date value
-  const startDate = req.body.startDate;
-  const slidedDate = startDate.substring(0, 15);
+//   //date value
+//   const startDate = req.body.startDate;
+//   const slidedDate = startDate.substring(0, 15);
 
-  //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput);
+//   //consul value
+//   const consulInput = req.body.consulInput;
+//   console.log(consulInput);
 
-  //time value
-  const getTime = req.body.getTime;
-  console.log(getTime);
+//   //time value
+//   const getTime = req.body.getTime;
+//   console.log(getTime);
 
-  const formattedDate = req.body.formattedDate;
-  console.log(formattedDate);
+//   const formattedDate = req.body.formattedDate;
+//   console.log(formattedDate);
 
-  //appt status default when creating an appointment
-  const insertAppStatus = "Pending";
-  console.log(insertAppStatus);
+//   //appt status default when creating an appointment
+//   const insertAppStatus = "Pending";
+//   console.log(insertAppStatus);
 
-  //inserting all data
-  const AppData = new AppDetails({
-    patientIDnumber: patientIDnumber,
-    pName: userNameApp,
-    dName: docName,
-    appNum: appNumberUUID,
-    date: slidedDate,
-    consultation: consulInput,
-    time: getTime,
-    formattedDate: formattedDate,
-    appStatus: insertAppStatus,
-  });
+//   //inserting all data
+//   const AppData = new AppDetails({
+//     patientIDnumber: patientIDnumber,
+//     pName: userNameApp,
+//     dName: docName,
+//     appNum: appNumberUUID,
+//     date: slidedDate,
+//     consultation: consulInput,
+//     time: getTime,
+//     formattedDate: formattedDate,
+//     appStatus: insertAppStatus,
+//   });
 
-  try {
-    await AppData.save();
-    console.log("Successfully inserted ", AppData, " to the database.");
-  } catch (err) {
-    console.log(err);
-  }
-});
+//   try {
+//     await AppData.save();
+//     console.log("Successfully inserted ", AppData, " to the database.");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 app.post("/insertFollowUpAppointment", async (req, res) => {
   //Patient Id Number
