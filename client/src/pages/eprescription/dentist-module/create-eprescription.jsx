@@ -44,7 +44,7 @@ const createEprescription = () => {
     JSON.stringify(getPatientAppNum).replace(/"/g, "")
   );
   console.log(StringfyIDnumber, "create e-prescription");
-  const [patientIDNumber, setPatientIDNumber] = useState("");
+  // const [patientIDNumber, setPatientIDNumber] = useState("");
 
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
@@ -60,8 +60,7 @@ const createEprescription = () => {
   const handleModalClose = () => {
     setModalState(false);
     navigate(
-      "/dentist/patients/view-patient?patientIDNum=" +
-        patientIDNumber.substring(3, patientIDNumber.length)
+      "/dentist/patients/view-patient?patientIDNum=" + StringfyIDnumber
     );
     window.location.reload();
   };
@@ -70,25 +69,25 @@ const createEprescription = () => {
     setModalState("show-modal");
   };
 
-  const getPatientIDnumber = async () => {
-    try {
-      const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
-        {
-          params: {
-            appNumber: StringfyAppNumber,
-          },
-        }
-      );
-      console.log(response.data);
-      setPatientIDNumber(response.data[0].patientIDnumber);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getPatientIDnumber();
-  }, []);
+  // const getPatientIDnumber = async () => {
+  //   try {
+  //     const response = await Axios.get(
+  //       "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
+  //       {
+  //         params: {
+  //           appNumber: StringfyAppNumber,
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data);
+  //     setPatientIDNumber(response.data[0].patientIDnumber);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getPatientIDnumber();
+  // }, []);
 
   const [getFile, setGetFile] = useState("");
   console.log(getFile, "this is the img value");
@@ -195,7 +194,7 @@ const createEprescription = () => {
                         <a href="/dentist">Home</a>
                       </li>
                       <li className="breadcrumb-item">
-                        <a href={patientsRoute + patientIDNumber.substring(3, patientIDNumber.length)}>View Patient Records</a>
+                        <a href={patientsRoute + StringfyIDnumber}>View Patient Records</a>
                       </li>
                       <li className="breadcrumb-item active">
                         Create E-Prescription
@@ -224,11 +223,11 @@ const createEprescription = () => {
 
                   <div className="biller-info">
                     <h5 className="rx-pr"> Professional Information </h5>
-                    {/* <p> PTR Number: {dentistPTRDisplay}</p> */}
+                    <p> PTR Number: {dentistPTRDisplay}</p>
                     <p> Licence Number: {dentistLicenseDisplay}</p>
                   </div>
 
-                  <form>
+                  {/* <Form> */}
                     <div className="biller-info">
                       <br />
                       <h5 className="rx-pr"> Prescription Information </h5>
@@ -473,7 +472,7 @@ const createEprescription = () => {
                         </div>
                       </div>
                     </div>
-                  </form>
+                  {/* </Form> */}
                 </div>
               </div>
             </div>
