@@ -78,41 +78,49 @@ const FollowUpTable = () => {
         <div className="action-buttons">
           {row.appStats == "Pending" ? (
             <>
-            <ReschedConfirmation
-              patientIDnumber={row.patientIDnumber}
-              pName={row.pName}
-              appNum={row.appNum}
+              <ReschedConfirmation
+                patientIDnumber={row.patientIDnumber}
+                pName={row.pName}
+                appNum={row.appNum}
               />
-            <CancelAppointment appNum={row.appNum} />
-          </>
+              <CancelAppointment appNum={row.appNum} />
+            </>
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched
-            pName={row.pName}
-            appNum={row.appNum}
-            date={row.date}
-            time={row.time}
-            appStats={row.appStatus}
-            consultation={row.consultation}/>
-
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              consultation={row.consultation}
+            />
           ) : row.appStatus == "Follow-Up" ? (
-            <ApptDetailsFollowUp
-            pName={row.pName}
-            appNum={row.appNum}
-            date={row.date}
-            time={row.time}
-            appStats={row.appStatus}
-            consultation={row.consultation}/>
+            <>
+              <ReschedConfirmation
+                patientIDnumber={row.patientIDnumber}
+                pName={row.pName}
+                appNum={row.appNum}
+              />
+              <ApptDetailsFollowUp
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                consultation={row.consultation}
+              />
+            </>
           ) : (
-          <ApptPatientDetails
-            dName={row.dName}
-            pName={row.pName}
-            appNum={row.appNum}
-            date={row.date}
-            time={row.time}
-            appStats={row.appStatus}
-            consultation={row.consultation} />
-            )
-          }
+            <ApptPatientDetails
+              dName={row.dName}
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              consultation={row.consultation}
+            />
+          )}
         </div>
       ),
     },

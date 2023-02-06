@@ -78,12 +78,14 @@ const OnGoingTable = () => {
         <div className="action-buttons">
           {row.appStats == "Pending" ? (
             <>
-            <ReschedConfirmation
-              patientIDnumber={row.patientIDnumber}
-              pName={row.pName}
-              appNum={row.appNum}
-              />
-            <CancelAppointment appNum={row.appNum} />
+            <ApptPatientDetails
+            dName={row.dName}
+            pName={row.pName}
+            appNum={row.appNum}
+            date={row.date}
+            time={row.time}
+            appStats={row.appStatus}
+            consultation={row.consultation} />
           </>
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched
@@ -103,7 +105,14 @@ const OnGoingTable = () => {
             appStats={row.appStatus}
             consultation={row.consultation}/>
           ) : (
-          <ApptPatientDetails
+            <>
+            <ReschedConfirmation
+              patientIDnumber={row.patientIDnumber}
+              pName={row.pName}
+              appNum={row.appNum}
+              />
+            <CancelAppointment appNum={row.appNum} />
+            <ApptPatientDetails
             dName={row.dName}
             pName={row.pName}
             appNum={row.appNum}
@@ -111,6 +120,7 @@ const OnGoingTable = () => {
             time={row.time}
             appStats={row.appStatus}
             consultation={row.consultation} />
+            </>
             )
           }
         </div>
