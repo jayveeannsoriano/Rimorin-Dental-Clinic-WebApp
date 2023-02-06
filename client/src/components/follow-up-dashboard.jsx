@@ -39,6 +39,7 @@ const FollowUpTable = () => {
           },
         }
       );
+      console.log("followup " + response.data);
       setAppointment(response.data);
       setFilteredAppointment(response.data);
     } catch (error) {

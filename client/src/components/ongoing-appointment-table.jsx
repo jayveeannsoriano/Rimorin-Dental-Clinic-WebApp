@@ -39,6 +39,7 @@ const OnGoingTable = () => {
           },
         }
       );
+      console.log("ongoing " + response.data);
       setAppointment(response.data);
       setFilteredAppointment(response.data);
     } catch (error) {
