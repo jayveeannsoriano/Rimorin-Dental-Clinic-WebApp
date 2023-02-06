@@ -712,6 +712,36 @@ app.get("/getUpcomingUserAppointmentDetails", async (req, res) => {
     });
 });
 
+app.get("/getFollowUpUserAppointment", async (req, res) => {
+  const patientIDNumber = req.query.patientIDnumber;
+
+  await AppDetails.find({
+    patientIDnumber: patientIDNumber,
+    appStatus: "Follow-Up",
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getOngoingUserAppointment", async (req, res) => {
+  const patientIDNumber = req.query.patientIDnumber;
+
+  await AppDetails.find({
+    patientIDnumber: patientIDNumber,
+    appStatus: "Accepted",
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
 app.get("/getUpcomingAppointmentDetails", async (req, res) => {
   const todayDate = req.query.date;
   const slicedDate = todayDate.substring(0, 15);

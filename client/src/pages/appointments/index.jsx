@@ -1,13 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import '../../styles/dashboard.css';
-import '../../styles/modals.css';
-import DashboardTable from "../../components/dashboardTable";
-import UpcomingDashboardTable from "../../components/dashboardUpcomingTable";
+import "../../styles/dashboard.css";
+import "../../styles/modals.css";
+import FollowupTable from "../../components/follow-up-dashboard";
+import OnGoingTable from "../../components/ongoing-appointment-table";
 import DashboardTableAppHistory from "../../components/dashboardAppHistory";
 
-export default function AppointmentPage() {  
-
+export default function AppointmentPage() {
   return (
     <div>
       <nav>
@@ -18,7 +17,7 @@ export default function AppointmentPage() {
           <li className="breadcrumb-item active">Appointments</li>
         </ol>
       </nav>
-        
+
       <div className="col-6 .col-md-4">
         <Button href="/patient/appointments/request-appointment">
           Request Appointment
@@ -27,24 +26,22 @@ export default function AppointmentPage() {
 
       <section className="section dashboard">
         <div className="row">
-         <div className="col-12">
+          <div className="col-12">
             <div className="card overflow-auto">
-
               <div className="card-body">
                 <h5 className="card-title">ONGOING APPOINTMENTS</h5>
-                <DashboardTable/>
+                <OnGoingTable/>
               </div>
 
               <div className="card-body">
                 <h5 className="card-title">FOLLOW-UP APPOINTMENTS</h5>
-                  <UpcomingDashboardTable/>
+                <FollowupTable />
               </div>
 
               <div className="card-body">
                 <h5 className="card-title">APPOINTMENT HISTORY</h5>
-                  <DashboardTableAppHistory/>
+                <DashboardTableAppHistory />
               </div>
-
             </div>
           </div>
         </div>
@@ -52,4 +49,3 @@ export default function AppointmentPage() {
     </div>
   );
 }
-
