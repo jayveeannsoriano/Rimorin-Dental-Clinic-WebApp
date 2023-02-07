@@ -44,14 +44,37 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         PatientIDnumber:PatientIDnumber.substring(3)
       }
     })
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/acceptAppointment", {dentistIDnumber:dentistNumber,patientIDnumber: PatientIDnumber, userNameApp: PatientValue, appNumber: AppNumber, dentistValue: DentistValue,formattedDate:FormattedDateValue, dateValue: DateValue, consulInput: ConsultValue, getTime: TimeValue })
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment on "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been accepted. Patients are expected to arrive 5 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!"})
+    Axios.post(
+      "https://rimorin-dental-clinic.herokuapp.com/acceptAppointment",
+      {
+        dentistIDnumber: dentistNumber,
+        patientIDnumber: PatientIDnumber,
+        userNameApp: PatientValue,
+        appNumber: AppNumber,
+        dentistValue: DentistValue,
+        formattedDate: FormattedDateValue,
+        dateValue: DateValue,
+        consulInput: ConsultValue,
+        getTime: TimeValue,
+      }
+    );
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
+      phone: "0" + response["data"][0]["mobile"],
+      message:
+        "Hi " +
+        PatientValue +
+        "! This is from Rimorin Dental Clinic notifying you that your requested appointment on " +
+        DateValue +
+        " at " +
+        TimeValue +
+        " with Dr. " +
+        DentistValue +
+        " due to '" +
+        ConsultValue +
+        "' has been accepted. Patients are expected to arrive 5 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!",
+    });
 
   }
-
-
-
-
 
   return (
     <>

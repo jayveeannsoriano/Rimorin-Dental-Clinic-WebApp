@@ -57,7 +57,7 @@ const AcceptCancel = () => {
       name: "Action",
       selector: (row) => (
         <div className="action-buttons">
-          {row.appStats == "Pending" ? (
+          {row.appStatus == "Pending" ? (
             <>
               <AcceptDental
                 dentistIDnumber={dentistIDnumber}
