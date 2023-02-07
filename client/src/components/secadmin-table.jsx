@@ -6,7 +6,7 @@ import styled, { keyframes } from 'styled-components';
 //project imports
 import ApptDetails from "./modals/appt-details";
 import ReschedConfirmation from "./modals/reschedule-appointment";
-import SecAdminRebook from "./modals/secadminrebook";
+import SecAdminRebook from "./modals/action-button-modals/secadmin-change-appt-status";
 import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
 import ApptDetailsResched from "./modals/appt-details-reschedule";

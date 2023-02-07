@@ -6,7 +6,7 @@ import styled, { keyframes } from 'styled-components';
 //project imports
 import ApptDetails from "./modals/appt-details";
 import DentistRescheduleAppointment from "./modals/dentist-reschedule-appointment";
-import Rebook from "./modals/rebook"
+import Rebook from "./modals/action-button-modals/change-appt-status"
 import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
 import ApptDetailsResched from "./modals/appt-details-reschedule";

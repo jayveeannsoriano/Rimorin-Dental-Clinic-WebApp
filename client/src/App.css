@@ -932,7 +932,7 @@ margin-bottom: 0;
 # Datatable action buttons
 --------------------------------------------------------------*/
 .view-button, 
-.update-button,
+.change-button,
 .cancel-button,
 .resched-button,
 .accept-button,
@@ -962,7 +962,7 @@ margin-bottom: 0;
   color: #EF4444 !important;
 }
 
-.update-button{
+.change-button{
   background: #FFFBEB !important;
   color: #D97706 !important;
 }
@@ -984,7 +984,7 @@ margin-bottom: 0;
 }
 
 .view-button i, 
-.update-button i,
+.change-button i,
 .cancel-button i,
 .resched-button i,
 .accept-button i,

@@ -3,28 +3,25 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios';
-import '../../styles/modals.css'
-import '../../styles/accounts.css';
-import successful from '../../assets/img/check.png';
+import '../../../styles/modals.css'
+import '../../../styles/accounts.css';
+import successful from '../../../assets/img/check.png';
 
-import FinishedAppointment from './success-modals/appt-finished';
-import NoShow from './success-modals/appt-noshow';
+import FinishedAppointment from '../success-modals/appt-finished';
+import NoShow from '../success-modals/appt-noshow';
 
 function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consultation) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
-  // const handleShow = () => setShow(false);
-  const handleClose = () => {
-    setShow(false);
-    window.location.reload();
-  }
-  // const handleClose = () => setShow(true);
+  const handleModalClose = () => setShow(false);
   const [selectValue, setSelectedValue] = useState();
-
 
   //selected values modal 
   const [modalState, setModalState] = useState(false);
-  const handleModalClose = () => setModalState(false);
+  const handleModalRefreshOnClose = () => {
+    setShow(false);
+    window.location.reload();
+  }
 
   //no show modal
   const handleNoShow = () => {
@@ -100,8 +97,8 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
       console.log("Receipt not created")
     }
 
-    handleClose();
-
+    handleModalClose();
+    
   }
 
   const finishedAppointments = () => {
@@ -111,24 +108,23 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
       })
       console.log("Moving ", appNum, pName, " to Appointment History")
     
-    handleModalClose();
   }
 
   return (
     <>
-      <Button className="update-button" onClick={handleShow}>
-        <i class="bi bi-pencil-fill"></i>Update
+      <Button className="change-button" onClick={handleShow}>
+        <i class="bi bi-pencil-fill"></i>Change Status
       </Button>
 
       <Modal
         show={show}
-        onHide={handleClose}
+        onHide={handleModalClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update Appointment Status</Modal.Title>
+          <Modal.Title>Change Appointment Status</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -170,7 +166,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
 
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleModalClose}>
             Close
           </Button>
           <Button variant="primary" onClick={newStatus}>
@@ -179,20 +175,20 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
         </Modal.Footer>
       </Modal>
 
-      {/* No Show Modal */}
-      <Modal show={modalState == 'no-show-modal'} onHide={handleModalClose}>
+      {/* Appointment Marked as No Show Modal */}
+      <Modal show={modalState == 'no-show-modal'} onHide={handleModalRefreshOnClose}>
 
         <Modal.Header closeButton>
-          <Modal.Title>Appointment Marked as No Show</Modal.Title>
+          <Modal.Title>{AppNumber} status changed to No Show</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className='modal-txt'>You have succesfully changed the appointment status for {AppNumber}!</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleModalRefreshOnClose}>
             Close
           </Button>
         </Modal.Footer>
@@ -200,37 +196,37 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
       </Modal>
 
       {/* Appointment Finished Modal */}
-      <Modal show={modalState == 'finished-modal'} onHide={handleModalClose} backdrop="static" keyboard={false}>
+      <Modal show={modalState == 'finished-modal'} onHide={handleModalRefreshOnClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>{AppNumber} Marked as Finished</Modal.Title>
+          <Modal.Title>{AppNumber} status changed to Finished</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className='modal-txt'>You have succesfully changed the appointment status for {AppNumber}!</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleModalRefreshOnClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
 
       {/* Appointment Arrived Modal */}
-      <Modal show={modalState == 'arrived-modal'} onHide={handleModalClose}>
+      <Modal show={modalState == 'arrived-modal'} onHide={handleModalRefreshOnClose}>
 
         <Modal.Header closeButton>
-          <Modal.Title>Appointment Marked as Arrived</Modal.Title>
+          <Modal.Title>{AppNumber} status changed to Arrived</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully updated your changes!</p>
+          <p className='modal-txt'>You have succesfully changed the appointment status for {AppNumber}!</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleModalRefreshOnClose}>
             Close
           </Button>
         </Modal.Footer>
