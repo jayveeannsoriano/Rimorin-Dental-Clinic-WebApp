@@ -10,24 +10,24 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-.doctor-info {
+.appointment-info {
 	padding: 0.3in;
 }
 
-.doctor-info h1 {
+.appointment-info h1 {
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 23px;
 }
 
-.doctor-info h2 {
+.appointment-info h2 {
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 23px;
 	color: #5d5fef;
 }
 
-.doctor-info h3 {
+.appointment-info h3 {
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 23px;
@@ -36,7 +36,7 @@
 .appointment-form {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	/* padding-top: 10px;
     padding-left: 0.3in;
     padding-bottom: 0.4in; */

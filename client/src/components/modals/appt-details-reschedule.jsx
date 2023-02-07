@@ -55,6 +55,10 @@ function ApptDetailsResched(pName,consultation,appNum,date,time,appStats) {
               <div class="col modal-values">{DateValue} | {TimeValue}</div>
             </div>
             <div class="row">
+              <div class="col modal-label">Reason for Consultation:</div>
+              <div class="col modal-values">{ConsulValue}</div>
+            </div>
+            <div class="row">
               <div class="col modal-label">Reason for Reschedule:</div>
               <div class="col modal-values">{ConsulValue}</div>
             </div>

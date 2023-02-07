@@ -157,7 +157,7 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
         <div className="container previous-appointment-details-container">
             <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-6">
-                        <div className="doctor-info">
+                        <div className="appointment-info">
                             <h1>PATIENT DETAILS</h1>
                             <h2>Patient Name:</h2>
                             {/* Insert Patient Name */}
@@ -174,7 +174,7 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
                     </div>
 
                     <div className='col-lg-6 col-md-6 col-sm-6'>
-                        <div className="doctor-info">
+                        <div className="appointment-info">
                             <h1>DOCTOR INFORMATION</h1>
                             <h2>Doctor Name:</h2>
                             {/* Insert Appointed Doctor from previous appt */}

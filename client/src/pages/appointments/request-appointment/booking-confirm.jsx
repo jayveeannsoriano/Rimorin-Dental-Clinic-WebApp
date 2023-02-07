@@ -1,13 +1,10 @@
 import React from 'react';
 import style from "../../../styles/booking.css";
 import 'react-bootstrap';
-import Timeslot from "../../../components/timeslot.jsx";
 import Axios from 'axios';
 
-// import Stepper from 'bs-stepper'
 
-
-const BookingConfirm = ({nextStep, prevStep,handleDateChange, values}) => {
+const BookingConfirm = ({values}) => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     var date = window.localStorage.getItem('date');
     var time = window.localStorage.getItem('time');
@@ -17,19 +14,35 @@ const BookingConfirm = ({nextStep, prevStep,handleDateChange, values}) => {
     var formattedDate = window.localStorage.getItem('formattedDate');
     console.log(values);
 
-    const Continue = (e) => {
-        e.preventDefault();
-        nextStep();
-    };
-
-    const Previous = e => {
-        e.preventDefault();
-        prevStep();
-    }
-
     //insert data
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/insertAppointment", {patientIDnumber: patientIDnumber, userNameApp: userNameApp, startDate: date,formattedDate:formattedDate, consulInput: values.consultation, getTime:time, recep:userInfo['email']});
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: userInfo['mobile'] ,message:"Hi "+userInfo['fname']+"! This is from Rimorin Dental Clinic notifying you of your requested Appointment on "+date+" at "+time+" due to '" + values.consultation + "'. Please wait for the clinic's approval of your appointment request. Thank you!"})
+    Axios.post(
+      "https://rimorin-dental-clinic.herokuapp.com/insertAppointment",
+      {
+        patientIDnumber: patientIDnumber,
+        userNameApp: userNameApp,
+        startDate: date,
+        formattedDate: formattedDate,
+        docName: values.doctor,
+        consulInput: values.consultation,
+        getTime: time,
+        recep: userInfo["email"],
+      }
+    );
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
+      phone: userInfo["mobile"],
+      message:
+        "Hi " +
+        userInfo["fname"] +
+        "! This is from Rimorin Dental Clinic notifying you of your requested Appointment on " +
+        date +
+        " at " +
+        time +
+        " with Dr. " +
+        values.doctor +
+        " due to '" +
+        values.consultation +
+        "'. Please wait for the clinic's approval of your appointment request. Thank you!",
+    });
     
     return(
         

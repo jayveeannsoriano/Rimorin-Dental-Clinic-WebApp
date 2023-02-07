@@ -12,6 +12,7 @@ class BookingMain extends Component {
         pName: "",
         time: "",
         date: "",
+        doctor: "",
         consultation: "",
     }
     
@@ -44,8 +45,8 @@ class BookingMain extends Component {
 
     render(){
         const {step} = this.state;
-        const {time,date,consultation} = this.state;
-        const values = {time,date,consultation};
+        const {doctor,time,date,consultation} = this.state;
+        const values = {doctor,time,date,consultation};
 
         switch (step) {
             case 1:

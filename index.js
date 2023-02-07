@@ -248,7 +248,8 @@ app.post("/insertAppointment", async (req, res) => {
   console.log(userNameApp);
 
   //Doctor name
-  const docName = "Pamela Rimorin Concepcion";
+  const docName = req.body.docName;
+  console.log(docName);
 
   //Appointment Number
 
@@ -282,6 +283,7 @@ app.post("/insertAppointment", async (req, res) => {
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
+    doctor: docName,
     consultation: consulInput,
     time: getTime,
     formattedDate: formattedDate,
