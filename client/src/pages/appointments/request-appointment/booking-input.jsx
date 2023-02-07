@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import "react-bootstrap";
 import Timeslot from "../../../components/timeslot.jsx";
 import { Form } from "react-bootstrap";
+
+//project imports
 import "../../../styles/booking.css";
+import AppointmentTerms from "../../../components/appointment-terms/appt-terms.jsx";
+
 //datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,8 +19,6 @@ import { useNavigate } from "react-router-dom";
 const BookingInput = ({
   nextStep,
   handleChange,
-  handleDateChange,
-  handleTimeChange,
   values,
 }) => {
   //user info
@@ -31,17 +33,6 @@ const BookingInput = ({
     console.error(error);
   }
 
-  //ToS validation
-  const [agree, setAgree] = useState(false);
-
-  const tosHandler = () => {
-    setAgree(!agree);
-  };
-
-  const btnHandler = () => {
-    nextStep();
-  };
-
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
 
@@ -52,7 +43,6 @@ const BookingInput = ({
   window.localStorage.setItem("time", timeCheck);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
-  const [loaded, setLoaded] = useState(false);
 
   console.log("CURRENT DATE BOOKING", startDate);
   window.localStorage.setItem("date", startDate);
@@ -69,9 +59,6 @@ const BookingInput = ({
 
   //useNavigate
   const navigate = useNavigate();
-
-  //time input
-  const [setTime, setGetTime] = useState("");
 
   const dateValue = "" + startDate;
   const stringDateValue = dateValue.toString().substring(0, 10);
@@ -100,11 +87,38 @@ const BookingInput = ({
     }
   };
 
+  const [error, setError] = useState("");
+  const [errorReason, setErrorReason] = useState("");
   const Continue = (e) => {
     e.preventDefault();
-    nextStep();
-  };
+    //time slot validation
+    if (!timeCheck) {
+      setError(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>Please select a time for your appointment.</strong>
+          </a>
+        </div>
+      );
+    }
+    //consultation validation
+    if (!values.consultation || !values.consultation.trim().length) {
+      setErrorReason(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>Please provide a reason for your appointment.</strong>
+          </a>
+        </div>
+      );
+    }
 
+    if (startDate && timeCheck && values.consultation && values.consultation.trim().length) {
+      nextStep();
+      setError("");
+      setErrorReason("");
+    }
+  };
+  
   useEffect(() => {
     var initialDate = new Date();
     getAppointmenstbyDate(initialDate.toString().substring(0, 15));
@@ -198,17 +212,24 @@ const BookingInput = ({
             {/* Booking deets */}
             <form onSubmit={Continue}>
               <div className="appointment-form" id="appointment-form">
-                <div className="col-md-4">
-                    
+                <div className="col-md-3">
                   {/* Select a dentist */}
                   <label className="form-label">
                     Select a Dentist{" "}
                     <span className="text-danger font-weight-bold">*</span>
                   </label>
-                  <Form.Select value={values.doctor} onChange={handleChange("doctor")}>
-                    <option value="" selected disabled>--Dentist--</option>
+                  <Form.Select
+                    value={values.doctor}
+                    onChange={handleChange("doctor")}
+                    required
+                  >
+                    <option value="" selected disabled>
+                      --Dentist--
+                    </option>
                     {dentistInfo.map((item, index) => (
-                      <option value={`${item.fname} ${item.mname} ${item.lname}`}>
+                      <option
+                        value={`${item.fname} ${item.mname} ${item.lname}`}
+                      >
                         Dr. {item.fname} {item.mname} {item.lname}
                       </option>
                     ))}
@@ -224,20 +245,24 @@ const BookingInput = ({
 
                   <DatePicker
                     selected={startDate}
+                    className="form-control col-md-3"
+                    style={{
+                      backgroundColor: "white",
+                      border: "1px solid #ced4da",
+                      borderRadius: "5px",
+                      color: "#495057",
+                      width: "300px",
+                    }}
                     onChange={(date) => {
                       setStartDate(date);
                       getAppointmenstbyDate(date.toString().substring(0, 15));
-                      // setTakenAppointments([]);
                     }}
-                    isClearable
                     placeholderText="Choose a date"
                     minDate={new Date()}
                     shouldCloseOnSelect={false}
-                    //exclude sundays
                     filterDate={(date) =>
                       date.getDay() !== 7 && date.getDay() !== 0
                     }
-                    required
                   />
                 </div>
 
@@ -252,8 +277,8 @@ const BookingInput = ({
                     GetTimeCheck={setTimeCheck}
                     takenAppointments={takenAppointments}
                     chosenDate={chosenDate}
-                    required
                   />
+                  {error}
                 </div>
               </div>
 
@@ -272,11 +297,16 @@ const BookingInput = ({
                   placeholder="Write reason here..."
                   required
                 ></textarea>
+                {errorReason}
               </div>
 
               {/* Terms n Conditions Checkbox */}
+              <div className="appointment-info">
+                <h1>TERMS AND CONDITIONS FOR APPOINTMENT REQUEST</h1>
+              </div>
               <div className="col-12">
                 <div className="form-check">
+                  <AppointmentTerms />
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -284,12 +314,12 @@ const BookingInput = ({
                     id="invalidCheck"
                     required
                   />
-                  <label className="form-check-label" htmlFor="invalidCheck">
-                    Agree to the{" "}
-                    <a href="/terms-of-use">
-                      Terms of Use.{" "}
-                      <span className="text-danger font-weight-bold">*</span>
-                    </a>
+                  <label className="form-check-label">
+                    <strong>
+                      By requesting an appointment, you agree to these terms and
+                      conditions.
+                    </strong>{" "}
+                    <span className="text-danger font-weight-bold">*</span>
                   </label>
                 </div>
               </div>
