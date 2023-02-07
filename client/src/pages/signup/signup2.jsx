@@ -1,6 +1,10 @@
-import React from 'react';
 import "../../styles/login-signup.css";
+import React, { useEffect, useState } from "react";
+
 const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
+
+    const [validated, setValidated] = useState(true);
+    const [inputMessage, setInputMessage] = useState(true);
 
     const Continue = e => {
         e.preventDefault();
@@ -11,6 +15,31 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
         e.preventDefault();
         prevStep();
     }
+
+    
+  function validateBlankspace(input){
+    const checkString = input.trim();
+
+    if(!checkString){
+      setValidated(true);
+      setInputMessage(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>
+              Input should contain characters and not only blackspaces.
+            </strong>
+          </a>
+        </div>
+      );
+    } else {
+      setValidated(false);
+      setInputMessage( <div style={{ fontSize: "12px" }}>
+      <a class="text-success">
+        <strong> </strong>
+      </a>
+    </div>);
+    }
+  }
 
     return (
         <>
@@ -25,6 +54,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         className="form-control"
                         placeholder="e.g. 98 Felipe St."
                         onChange={handleChange('house')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.house}
                     />
                 </div>
@@ -38,6 +68,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                                 className="form-control"
                                 placeholder="e.g. Lower Quarry"
                                 onChange={handleChange('brgy')}
+                                onBlur={function(event){validateBlankspace(event.target.value)}}
                                 defaultValue={values.brgy}
                                 required
                             />
@@ -51,6 +82,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                                 className="form-control"
                                 placeholder="e.g. Baguio City"
                                 onChange={handleChange('municipality')}
+                                onBlur={function(event){validateBlankspace(event.target.value)}}
                                 defaultValue={values.municipality}
                                 required
                             />
@@ -67,6 +99,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         className="form-control"
                         placeholder="e.g. Benguet"
                         onChange={handleChange('province')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.province}
                         required
                     />
@@ -80,6 +113,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         className="form-control"
                         placeholder="e.g. 2600"
                         onChange={handleChange('zipcode')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.zipcode}
                         required
                     />
@@ -94,6 +128,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                         className="form-control"
                         placeholder="e.g. Philippines"
                         onChange={handleChange('country')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.country}
                         required
                     />
@@ -116,11 +151,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                                 type="submit"
                                 className="btn btn-primary"
                                 style={{ padding: "10px 30px" }}
+                                disabled={validated}
                             >
                                 Next
                             </button>
                         </div>
                     </div>
+                    {inputMessage}
                 </div>
 
             <div className="signup-link"><p class="text-center">

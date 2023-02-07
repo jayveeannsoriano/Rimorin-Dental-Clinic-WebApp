@@ -1,8 +1,11 @@
-import React from 'react'
 import Form from 'react-bootstrap/Form';
+import React, { useEffect, useState } from "react";
 import Footer from '../../layout/LandingPageLayout/footer';
 
 const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbox }) => {
+
+    const [validated, setValidated] = useState(true);
+    const [inputMessage, setInputMessage] = useState(true);
 
     const Continue = e => {
         e.preventDefault();
@@ -13,6 +16,30 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
         e.preventDefault();
         prevStep();
     }
+
+    function validateBlankspace(input){
+        const checkString = input.trim();
+    
+        if(!checkString){
+          setValidated(true);
+          setInputMessage(
+            <div style={{ fontSize: "12px" }}>
+              <a class="text-danger">
+                <strong>
+                  Input should contain characters and not only blackspaces.
+                </strong>
+              </a>
+            </div>
+          );
+        } else {
+          setValidated(false);
+          setInputMessage( <div style={{ fontSize: "12px" }}>
+          <a class="text-success">
+            <strong> </strong>
+          </a>
+        </div>);
+        }
+      }
 
 
     return (
@@ -28,6 +55,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                         className="form-control"
                         placeholder="e.g. Antidepressants, Oral Contraceptives, etc"
                         onChange={handleChange('medications')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.medications}
                         required
                     />
@@ -39,6 +67,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                         className="form-control"
                         placeholder="e.g. Hives, Pollen, etc"
                         onChange={handleChange('allergies')}
+                        onBlur={function(event){validateBlankspace(event.target.value)}}
                         defaultValue={values.allergies}
                         required
                     />
@@ -145,11 +174,13 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values, handleChangeCheckbo
                                 type="submit"
                                 className="btn btn-primary"
                                 style={{ padding: "10px 30px" }}
+                                disabled={validated}
                             >
                                 Next
                             </button>
                         </div>
                     </div>
+                    {inputMessage}
                 </div>
 
             <div className="signup-link"><p class="text-center">

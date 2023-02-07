@@ -9,6 +9,8 @@ import React, { useEffect, useState } from "react";
 const SignUp1 = ({ nextStep, handleChange, values }) => {
   const [validated, setValidated] = useState(true);
   const [emailMessage, setEmailMessage] = useState(true);
+  const [inputMessage, setInputMessage] = useState(true);
+
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -64,6 +66,30 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
     }
   }
 
+  function validateBlankspace(input){
+    const checkString = input.trim();
+
+    if(!checkString){
+      setValidated(true);
+      setInputMessage(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>
+              Input should contain characters and not only blackspaces.
+            </strong>
+          </a>
+        </div>
+      );
+    } else {
+      setValidated(false);
+      setInputMessage( <div style={{ fontSize: "12px" }}>
+      <a class="text-success">
+        <strong> </strong>
+      </a>
+    </div>);
+    }
+  }
+
   return (
     <>
       <form id='passwordForm' className="auth-inner-signup" onSubmit={Continue}>
@@ -80,6 +106,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="First name"
                 onChange={handleChange('fname')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.fname}
                 required
               />
@@ -95,6 +122,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="Middle Name"
                 onChange={handleChange('mname')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.mname}
                 required
               />
@@ -111,6 +139,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Last Name"
                 onChange={handleChange('lname')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.lname}
                 required
               />
@@ -124,6 +153,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="(e.g. Jr. , Sr., II)"
                 onChange={handleChange('suffix')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.suffix}
               />
             </div>
@@ -155,6 +185,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 placeholder="9XX-XXX-XXXX"
                 onChange={handleChange('mobile')}
                 defaultValue={values.mobile}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 maxLength={10}
                 required
               />
@@ -176,6 +207,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="123-456-789"
                 onChange={handleChange('tellphone')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.tellphone}
               />
             </div>
@@ -229,6 +261,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 placeholder="Enter birthday"
                 onChange={handleChange('bday')}
                 defaultValue={values.bday}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 required
               />
             </div>
@@ -243,6 +276,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             placeholder="(e.g. Student, Government Employee, etc.)"
             onChange={handleChange('profession')}
             defaultValue={values.profession}
+            onBlur={function(event){validateBlankspace(event.target.value)}}
             required
           />
         </div>
@@ -257,6 +291,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Enter password"
                 onChange={handleChange('password')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.password}
                 required
               />
@@ -271,6 +306,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Re-enter password"
                 onChange={handleChange('confirmPassword')}
+                onBlur={function(event){validateBlankspace(event.target.value)}}
                 defaultValue={values.confirmPassword}
                 required
               />
@@ -288,8 +324,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           >
             Next
           </button>
+          {inputMessage}
         </div>
-        
         
         <div className="signup-link"><p class="text-center">
           Already registered? <a href="/auth/login">Sign In</a>
