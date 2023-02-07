@@ -205,6 +205,16 @@ const ClinicHours = () => {
             <h5 className="card-title">Clinic Hours</h5>
             <div className="divider"></div>
 
+            <div className="col-2">
+            <Form.Label>Time Slot Interval</Form.Label>
+              <Form.Select>
+                <option>Select Time Interval</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
+              </Form.Select>
+            </div>
+
             <div className="toggle-container">
               <div className="col-2 weekday">Monday</div>
 
