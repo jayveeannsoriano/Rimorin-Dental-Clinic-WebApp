@@ -62,7 +62,7 @@ const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
         <div className="container previous-appointment-details-container">
             <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-6">
-                    <div className="doctor-info">
+                    <div className="appointment-info">
                         <h1>DOCTOR INFORMATION</h1>
                         <h2>Doctor Name:</h2>
                         <h3 id="doctor-name">Pamela Rimorin Concepcion</h3>
@@ -72,7 +72,7 @@ const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
                 </div>
 
                 <div className="col-lg-6 col-md-6 col-sm-6">
-                    <div className="doctor-info">
+                    <div className="appointment-info">
                         <h1>APPOINTMENT DETAILS</h1>
                         <h2>Date of Consultation</h2>
                         {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
@@ -84,7 +84,7 @@ const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
         </div>
                         
                         <div className="divider"></div>
-                            <div className="doctor-info">
+                            <div className="appointment-info">
                                 <div className="col-12">
                                     <div className="appt-bttns">
                                     <button onClick={Previous} className="btn btn-outline-secondary" type="submit">Previous</button>

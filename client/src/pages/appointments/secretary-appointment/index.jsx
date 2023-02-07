@@ -41,15 +41,6 @@ useEffect(() => {
          <div className="col-12">
             <div className="card overflow-auto">
               <div className="card-body appointment-request-table">
-                <div className="col-lg-4">
-                  <label>Dentist</label>
-                    <Form.Select onChange={(e) => (setDentistIDnumber(e.target.value))}>
-                      <option selected disabled>Select a Dentist</option>
-                      {dentistInfo.map((item, index) => (
-                      <option value={item.dentistIDnumber}>{item.fname} {item.lname}</option>
-                      ))}
-                    </Form.Select>
-                  </div>
                 <h5 className="card-title">APPOINTMENT REQUEST</h5>
                 <SecAcceptCancel dentistIDnum={dentistIDnum}/>
               </div>

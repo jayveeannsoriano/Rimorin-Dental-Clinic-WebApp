@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-bootstrap';
 
-const BookingDetail = ({nextStep, prevStep,handleChange,values}) => {
+const BookingDetail = ({nextStep, prevStep,values}) => {
 
     console.log(JSON.stringify(window.localStorage.getItem('date')))
     console.log(JSON.stringify(window.localStorage.getItem('time')))
@@ -61,15 +61,18 @@ const BookingDetail = ({nextStep, prevStep,handleChange,values}) => {
 
                     <div className="divider"></div>
 
-                    <div className="doctor-info">
-                        <h1>DOCTOR INFORMATION</h1>
-                        <h2>Doctor Name:</h2>
-                        <h3 id="doctor-name">Pamela Rimorin Concepcion</h3>
-                        <h2>Clinic Location:</h2>
+                    <div className="appointment-info">
+                        <h1>CLINIC INFORMATION</h1>
                         <h3 id="clinic-location">Victoria Shoppesville, Upper Mabini Street, Baguio City, Philippines</h3>
                     </div>
-                    <div className="doctor-info">
-                        <h1>APPOINTMENT DETAILS</h1>
+                    
+                    <div className="divider"></div>
+
+                    <div className="appointment-info">
+                        <h1>APPOINTMENT INFORMATION</h1>
+                        <h2>Doctor's Name</h2>
+                            Dr. {values.doctor}
+                            <br/>
                         <h2>Date of Consultation</h2>
                             {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
                             <br/>
@@ -78,14 +81,14 @@ const BookingDetail = ({nextStep, prevStep,handleChange,values}) => {
                     </div>
                         
                         <div className="divider"></div>
-                            <div className="doctor-info">
+                            <div className="appointment-info">
                             <h1>Notes to Patient:</h1>
                                 <ol>
-                                    <li>The information above will be sent to dentist.</li>
+                                    <li>The information above will be sent to clinic.</li>
                                     <li>You will receive a notification containing the clinic’s response, including other reminders. Please check your Spam mailbox as well.</li>
-                                    <li>Wait for the dentist’s approval of your appointment request.</li>
-                                    <li>In the event that you could not come to your appointment, immediately rebook/contact the dentist.</li>
-                                    <li>If there is a conflict with your appointment, the dentist will notify and reschedule you at the earliest time of your convenience.</li>
+                                    <li>Wait for the clinic’s approval of your appointment request.</li>
+                                    <li>In the event that you could not come to your appointment, immediately rebook/contact the clinic.</li>
+                                    <li>If there is a conflict with your appointment, the clinic will notify and reschedule you at the earliest time of your convenience.</li>
                                 </ol>
                                 <div className="col-12">
                                     <div className="appt-bttns">
