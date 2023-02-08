@@ -280,11 +280,9 @@ app.post("/insertAppointment", async (req, res) => {
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
-    // dName: docName,
     dentistIDnumber:docIDnum,
     appNum: appNumberUUID,
     date: slidedDate,
-    doctor: docName,
     consultation: consulInput,
     time: getTime,
     formattedDate: formattedDate,
@@ -492,6 +490,18 @@ app.put("/updateClinicHours", async (req, res) => {
 //Get user for Appointment Request
 app.get("/getAppointmentDetails", async (req, res) => {
   await AppRequest.find({})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getAppointmentDetailsForDentist", async (req, res) => {
+
+  const DentistIDnumber = req.query.dentistIDNumber;
+  await AppRequest.find({dentistIDnumber: DentistIDnumber})
     .then((data) => {
       res.json(data);
     })
