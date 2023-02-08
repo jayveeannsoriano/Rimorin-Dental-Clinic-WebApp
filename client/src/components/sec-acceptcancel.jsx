@@ -7,38 +7,7 @@ import AcceptDental from "./modals/accept-dental";
 import CancelDental from "./modals/cancel-dental";
 import ApptDetailsText from "./modals/appt-details-text";
 
-const SecAcceptCancel = (dentistIDnum) => {
-  const StringfyValues = JSON.stringify(dentistIDnum);
-  const ConvertStringfyValues = JSON.parse(StringfyValues);
-  //values
-  const dentistObjectID = JSON.stringify(ConvertStringfyValues.dentistIDnum).replace(/"/g, "");
-  const [dentistInfo, setDentistInfo] = useState([]);
-
-  const getDentistInfo = async () => {
-
-    try {
-        const responses = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentistInfoID',{
-            params:{
-                ObjectID: dentistObjectID
-            }
-        });
-        setDentistInfo(responses.data);
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-
-const dentistIDnumber = dentistInfo.map(function (item){
-    return item.dentistIDnumber
-});
-
-const dentistFullName = dentistInfo.map(function (item){
-    return item.fname + " " + item.lname
-});
-console.log("dentistFullName", dentistFullName)
-/////////
+const SecAcceptCancel = () => {
     const [search, setSearch] = useState("");
     const [appointment, setAppointment] = useState([]);
     const [filteredappointment, setFilteredAppointment] = useState([]);
@@ -81,7 +50,7 @@ console.log("dentistFullName", dentistFullName)
             name: "Action",
             selector: row =>
                 <div className="action-buttons">
-                    <AcceptDental dentistIDnumber = {dentistIDnumber.toString()} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={dentistFullName.toString()} formattedDate={row.formattedDate} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
+                    <AcceptDental dentistIDnumber = {row.dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} formattedDate={row.formattedDate} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
                     <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
                 </div>
@@ -129,10 +98,6 @@ console.log("dentistFullName", dentistFullName)
         }, 1000);
         return () => clearTimeout(timeout);
     }, []);
-
-    useEffect(() => {
-        getDentistInfo();
-      }, [StringfyValues]);
 
     useEffect(() => {
         getAppointment();

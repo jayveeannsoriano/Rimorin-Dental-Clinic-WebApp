@@ -148,6 +148,7 @@ export default function DentistDashboard() {
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalAppts, setTotalAppts] = useState(0);
   const [totalPendingAppts, setTotalPendingAppts] = useState(0);
+  const dentistIDnumber = userInfo["dentistIDnumber"];
 
   // const handleTableChange = () => {
   //   console.log('Clicked')
@@ -174,7 +175,12 @@ export default function DentistDashboard() {
 
   const getTotalPendingAppts = async() => {
     try{
-        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
+        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts',{
+          params:{
+            dentistIDnumber:dentistIDnumber,
+          }
+        });
+        console.log("total apps", resp.data);
         setTotalPendingAppts(resp.data);
     }catch (error){
         console.log(error)

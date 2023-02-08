@@ -6,6 +6,8 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
   const [dentistDetails, setDentistDetails] = useState();
   console.log("DENTIST ID NUMBER", values.doctor);
 
+  window.localStorage.setItem("doctorName", dentistDetails);
+
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(

@@ -159,16 +159,9 @@ import { Form } from "react-bootstrap";
                   <div className="col-12">
                     <div className="card overflow-auto appointment-request-table">
                     <div className="col-lg-4">
-                      <label>Dentist</label>
-                        <Form.Select onChange={(e) => (setDentistIDnumber(e.target.value))}>
-                          <option selected disabled>Select a Dentist</option>
-                          {dentistInfo.map((item, index) => (
-                          <option value={item.dentistIDnumber}>{item.fname} {item.lname}</option>
-                          ))}
-                        </Form.Select>
                       </div>
                       <h5 className="card-title">APPOINTMENT REQUEST</h5>
-                      <SecAcceptCancel dentistIDnum={dentistIDnum}/>
+                      <SecAcceptCancel/>
                     </div>
                   </div>
               </div>
@@ -204,7 +197,7 @@ import { Form } from "react-bootstrap";
   
     const getTotalPendingAppts = async() => {
       try{
-          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
+          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingApp');
           setTotalPendingAppts(resp.data);
       }catch (error){
           console.log(error)
