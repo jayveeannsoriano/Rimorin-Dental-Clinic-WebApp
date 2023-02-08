@@ -71,7 +71,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         DentistValue +
         " due to '" +
         ConsultValue +
-        "' has been accepted. Patients are expected to arrive 5 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!",
+        "' has been accepted. Patients are expected to arrive 15 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!",
     });
 
   }
