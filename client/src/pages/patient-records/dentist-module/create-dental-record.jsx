@@ -69,7 +69,7 @@ const CreateDentalRecord = () => {
   //procedure checkbox options
   const [checked, setChecked] = useState([
     {
-      option: "Others",
+      option: "General",
       chosen: [],
     },
     {
@@ -77,7 +77,7 @@ const CreateDentalRecord = () => {
       chosen: [],
     },
     {
-      option: "Cementation",
+      option: "Orthodontic",
       chosen: [],
     },
     {
@@ -106,32 +106,34 @@ const CreateDentalRecord = () => {
         : null
     ))
   }, [checked]);
-  const othersOptions = [
+  const generalOptions = [
+    { procedure: "CONSULTATION", price: 300 },
+    { procedure: "COMPOSITE FILLING", price: 700 },
     { procedure: "ORAL PROPHYLAXIS", price: 1000 },
-    { procedure: "TOOTH RESTORATION", price: 1200 },
     { procedure: "TOOTH EXTRACTION", price: 800 },
-    { procedure: "DEEP SCALING", price: 10200 },
+    { procedure: "TOOTH RESTORATION", price: 1200 },
     { procedure: "PTS AND FISSURES SEALANT", price: 700 },
     { procedure: "FLOURIDE TREATMENT", price: 5500 },
     { procedure: "INTERMEDIATE RESTORATION", price: 7000 },
-    { procedure: "ORTHODONTICS", price: 48000 },
   ];
   const cosmeticOptions = [
+    { procedure: "GLASS IONOMER", price: 11000 },
     { procedure: "DIRECT COMPOSITE VENEER", price: 3000 },
     { procedure: "DIRECT COMPOSITE CLASS IV", price: 2000 },
     { procedure: "DIASTEMA CLOSURE (BONDING)", price: 1000 },
     { procedure: "CERAMIC/PORCELAIN VENEER", price: 20000 },
   ];
-  const cementationOptions = [
-    { procedure: "GLASS IONOMER", price: 11000 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", price: 2000 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", price: 1000 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", price: 20000 },
+  const orthodonticOptions = [
+    { procedure: "ORTHODONTICS- UPPER BRACES", price: 45000 },
+    { procedure: "ORTHODONTICS- LOWER BRACES", price: 52000 },
+    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", price: 95000 },
+    { procedure: "RETAINER (BOTH ARCH'S)", price: 8000 },
   ];
   const endodonticOptions = [
     { procedure: "ROOT CANAL THERAPY", price: 4400 },
     { procedure: "PULPOTOMY", price: 5300 },
     { procedure: "POST AND CORE", price: 6200 },
+    { procedure: "DEEP SCALING", price: 10200 },
   ];
   const prostheticOptions = [
     { procedure: "DENTAL REPAIR", price: 12000 },
@@ -139,6 +141,9 @@ const CreateDentalRecord = () => {
     { procedure: "DENTURE RELINE (DIRECT)", price: 30000 },
     { procedure: "SOFT RELINE", price: 16000 },
     { procedure: "DENTURE REPLACEMENT", price: 15000 },
+    { procedure: "PLASTIC JACKET CROWN", price: 3000 },
+    { procedure: "FULL DENTURE PLASTIC", price: 7500 },
+    { procedure: "FULL DENTURE PORCELAIN", price: 15000 },
   ];
   const surgicalOptions = [
     { procedure: "ODONTECTOMY", price: 5000 },
@@ -344,17 +349,17 @@ const CreateDentalRecord = () => {
                 <div className="row procedure-row">
                   <h6>Procedure</h6>
                   <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Others</div>
+                    <div className="procedure-label">General Dentistry Services</div>
                     <div className="divider procedure-div"></div>
 
-                      {othersOptions.map((item, index) => (
+                      {generalOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
                             value={JSON.stringify([item])}
                             id={[item]}
                             type="checkbox"
                             label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Others")}
+                            onClick={handleChangeCheckbox("General")}
                             required
                           />
                         </div>
@@ -379,17 +384,17 @@ const CreateDentalRecord = () => {
 
                   </div>
                   <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Cementation</div>
+                    <div className="procedure-label">Orthodontic Dentistry Services</div>
                     <div className="divider procedure-div"></div>
 
-                      {cementationOptions.map((item, index) => (
+                      {orthodonticOptions.map((item, index) => (
                         <div key={index} className="mb-3">
                           <Form.Check
                             value={JSON.stringify([item])}
                             id={[item]}
                             type="checkbox"
                             label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Cementation")}
+                            onClick={handleChangeCheckbox("Orthodontic")}
                           />
                         </div>
                       ))}
