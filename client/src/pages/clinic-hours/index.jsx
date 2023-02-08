@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import moment from 'moment';
 import { Button, Form} from "react-bootstrap";
 import { Switch } from "antd";
 import "../../styles/clinic-hours.css";
@@ -54,15 +55,15 @@ const ClinicHours = () => {
       enabled: false,
     },
   ]);
-  const [interval, setInterval] = useState(30);
+  const [interval, setInterval] = useState(45);
   const [modalState, setModalState] = useState(false);
+  const [result, setResult] = useState([]);
   const handleModalClose = () => {
     setModalState(false);
   };
   const handleShow = () => {
     setModalState('show-modal')
   }
-  const [checked, setChecked] = useState([false,false,false,false,false,false,false ]);
 
   const handleTimeSlotStartChange = event => {
     var time = event.target.value;
@@ -118,7 +119,7 @@ const ClinicHours = () => {
     var toApply = document.querySelectorAll('#Mon')
     var timeStart = toApply[0].value
     var timeEnd = toApply[1].value
-    var selects = document.querySelectorAll('select')
+    var selects = document.querySelectorAll('select:not([id="Interval"])')
     
     for (let i = 0; i < selects.length; i++) {
       if(i% 2 == 0){
@@ -153,8 +154,9 @@ const ClinicHours = () => {
     try{
       const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes')
 
-       var intervalField = document.querySelector('#Interval');
+      var intervalField = document.querySelector('#Interval');
       intervalField.value = response.data[0].interval;
+      setInterval(response.data[0].interval);
 
       var data = response.data[0].config
       var range;
@@ -168,22 +170,40 @@ const ClinicHours = () => {
           }),
         )
       ))
+
+      
     }catch (error){
       console.log(error)
     }
   }
 
-  useEffect(() => {
-  }, [timeSlot]);
+  const intervals = (startString, endString) =>  {
+    var start = moment(startString, 'hh:mm a');
+    var end = moment(endString, 'hh:mm a');
+    start.minutes(Math.ceil(start.minutes() / 15) * 15);
+
+    var current = moment(start);
+    var tempArr=[];
+    while (current <= end) {  
+      
+      tempArr.push(current.format('hh:mm A'));
+      current.add(interval, 'minutes'); //minute interval
+    
+    }
+    setResult(tempArr);
+  }
 
   useEffect(() => {
     getAvailableTimes();
-    
-    console.log(timeSlot)
-    
   }, []);
-  
 
+  // useEffect(() => {
+  // }, [timeSlot]);
+
+  useEffect(() => {
+    intervals("9:00 AM","5:00 PM");
+    console.log(result);
+  }, [interval]);
 
   return (
     <>
@@ -209,8 +229,7 @@ const ClinicHours = () => {
 
             <div className="col-2">
             <Form.Label>Time Slot Interval</Form.Label>
-              <Form.Select id="Interval" onChange={function(e){setInterval(e.target.value)}}>
-                <option>Select Time Interval</option>
+              <Form.Select id="Interval" onChange={function(e){setInterval(e.target.value);}}>
                 <option value="30">30 minutes</option>
                 <option value="45">45 minutes</option>
                 <option value="60">60 minutes</option>
@@ -226,31 +245,16 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Mon")}
-                  checked={true}
+                  checked={timeSlot[0].enabled}
                 />
               </div>
                 <Form id="time-select">
                     <Form.Label>Start Time</Form.Label>
                     <Form.Select 
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotStartChange} disabled={!timeSlot[0].enabled}>
-                        <option key="Mon">Select Time</option>
-                        <option key="Mon" value="9:00 AM">9:00 AM</option>
-                        <option key="Mon" value="9:30 AM">9:30 AM</option>
-                        <option key="Mon" value="10:00 AM">10:00 AM</option>
-                        <option key="Mon" value="10:30 AM">10:30 AM</option>
-                        <option key="Mon" value="11:00 AM">11:00 AM</option>
-                        <option key="Mon" value="11:30 AM">11:30 AM</option>
-                        <option key="Mon" value="12:00 AM">12:00 AM</option>
-                        <option key="Mon" value="12:30 AM">12:30 AM</option>
-                        <option key="Mon" value="1:00 PM">1:00 PM</option>
-                        <option key="Mon" value="1:30 PM">1:30 PM</option>
-                        <option key="Mon" value="2:00 PM">2:00 PM</option>
-                        <option key="Mon" value="2:30 PM">2:30 PM</option>
-                        <option key="Mon" value="3:00 PM">3:00 PM</option>
-                        <option key="Mon" value="3:30 PM">3:30 PM</option>
-                        <option key="Mon" value="4:00 PM">4:00 PM</option>
-                        <option key="Mon" value="4:30 PM">4:30 PM</option>
-                        <option key="Mon" value="5:00 PM">5:00 PM</option>
+                    id="Mon" onChange={handleTimeSlotStartChange} disabled={!timeSlot[0].enabled}>
+                     {result.map(value => (
+                        <option value={value}>{value}</option>
+                      ))}
                     </Form.Select>
                 </Form>
               
@@ -259,25 +263,10 @@ const ClinicHours = () => {
                 <Form id="time-select">
                     <Form.Label>End Time</Form.Label>
                     <Form.Select
-                    defaultValue="Select Time" id="Mon" onChange={handleTimeSlotEndChange} disabled={!timeSlot[0].enabled}>
-                        <option key="Mon">Select Time</option>
-                        <option key="Mon" value="9:00 AM">9:00 AM</option>
-                        <option key="Mon" value="9:30 AM">9:30 AM</option>
-                        <option key="Mon" value="10:00 AM">10:00 AM</option>
-                        <option key="Mon" value="10:30 AM">10:30 AM</option>
-                        <option key="Mon" value="11:00 AM">11:00 AM</option>
-                        <option key="Mon" value="11:30 AM">11:30 AM</option>
-                        <option key="Mon" value="12:00 AM">12:00 AM</option>
-                        <option key="Mon" value="12:30 AM">12:30 AM</option>
-                        <option key="Mon" value="1:00 PM">1:00 PM</option>
-                        <option key="Mon" value="1:30 PM">1:30 PM</option>
-                        <option key="Mon" value="2:00 PM">2:00 PM</option>
-                        <option key="Mon" value="2:30 PM">2:30 PM</option>
-                        <option key="Mon" value="3:00 PM">3:00 PM</option>
-                        <option key="Mon" value="3:30 PM">3:30 PM</option>
-                        <option key="Mon" value="4:00 PM">4:00 PM</option>
-                        <option key="Mon" value="4:30 PM">4:30 PM</option>
-                        <option key="Mon" value="5:00 PM">5:00 PM</option>
+                    id="Mon" onChange={handleTimeSlotEndChange} disabled={!timeSlot[0].enabled}>
+                         {result.map(value => (
+                        <option value={value}>{value}</option>
+                      ))}
                     </Form.Select>
                 </Form>
 
