@@ -248,6 +248,7 @@ app.post("/insertAppointment", async (req, res) => {
   console.log(userNameApp);
 
   //Doctor name
+  const docName = req.body.docName;
   const docIDnum = req.body.docIDnum;
   console.log(docIDnum);
 
@@ -281,6 +282,7 @@ app.post("/insertAppointment", async (req, res) => {
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
     dentistIDnumber:docIDnum,
+    dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
     consultation: consulInput,
@@ -638,7 +640,6 @@ app.get("/getDentistInfoID", async (req, res) => {
 
 app.get("/getDentistIDdetails", async (req, res) => {
   const ObjectID = req.query.ObjectID;
-  console.log("ashibdhajsbdhas", ObjectID);
 
   await User.find({ dentistIDnumber: ObjectID })
     .then((data) => {
@@ -1759,13 +1760,29 @@ app.get("/getTotalAppts", async (req, res) => {
 });
 
 app.get("/getTotalPendingAppts", async (req, res) => {
-  await AppRequest.countDocuments({ appStatus: "Pending" })
+
+  const dentistIDnum = req.query.dentistIDnumber;
+
+    await AppRequest.countDocuments({ appStatus: "Pending" , dentistIDnumber : dentistIDnum })
     .then((data) => {
       res.json(data);
     })
     .catch((error) => {
       console.log("error: ", error);
     });
+
+});
+
+app.get("/getTotalPendingApp", async (req, res) => {
+
+    await AppRequest.countDocuments({ appStatus: "Pending"})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+
 });
 
 //updateDataTable

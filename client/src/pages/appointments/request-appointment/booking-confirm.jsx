@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import style from "../../../styles/booking.css";
 import 'react-bootstrap';
 import Axios from 'axios';
@@ -8,11 +8,14 @@ const BookingConfirm = ({values}) => {
     var userInfo = JSON.parse(window.localStorage.getItem('current-session'));
     var date = window.localStorage.getItem('date');
     var time = window.localStorage.getItem('time');
+    var dentistDetails = window.localStorage.getItem('doctorName');
     var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
     const userNameApp = JSON.parse(getUserName)
     const patientIDnumber = userInfo['patientIDnumber'];
     var formattedDate = window.localStorage.getItem('formattedDate');
     console.log(values);
+  
+
 
     //insert data
     Axios.post(
@@ -22,6 +25,7 @@ const BookingConfirm = ({values}) => {
         userNameApp: userNameApp,
         startDate: date,
         formattedDate: formattedDate,
+        docName: dentistDetails,
         docIDnum: values.doctor,
         consulInput: values.consultation,
         getTime: time,

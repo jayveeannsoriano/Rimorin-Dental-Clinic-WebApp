@@ -175,7 +175,7 @@ export default function DentistDashboard() {
 
   const getTotalPendingAppts = async() => {
     try{
-        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingAppts');
+        let resp = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingApp');
         setTotalPendingAppts(resp.data);
     }catch (error){
         console.log(error)
