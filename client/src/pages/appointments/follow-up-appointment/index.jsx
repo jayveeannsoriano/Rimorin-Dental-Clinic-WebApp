@@ -13,6 +13,7 @@ class FollowUpMain extends Component {
         time: "",
         date: "",
         consultation: "",
+        reasonForFollowUp: ""
     }
     
 
@@ -44,8 +45,8 @@ class FollowUpMain extends Component {
 
     render(){
         const {step} = this.state;
-        const {time,date,consultation} = this.state;
-        const values = {time,date,consultation};
+        const {time,date,consultation,reasonForFollowUp} = this.state;
+        const values = {time,date,consultation,reasonForFollowUp};
 
         switch (step) {
             case 1:
