@@ -12,9 +12,14 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   const [outTime, setOutTime] = useState("")
 
   const [availableTime, setAvailableTime] = useState([]);
+  const [interval, setInterval] = useState("");
   const [getTime, setGetTime] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+
+  const getCurrentLocalTime = () => {
+    return moment().format('hh:mm A');
+  }
 
   function intervals(startString, endString) {
     var start = moment(startString, 'hh:mm a');
@@ -23,15 +28,13 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
 
     var current = moment(start);
 
-    
-
     while (current <= end) {
       if (result.includes(current.format('hh:mm A'))) {
         return null
       }
       else {
         result.push(current.format('hh:mm A'));
-        current.add(60, 'minutes'); //minute interval
+        current.add(interval, 'minutes'); //minute interval
       }
     }
 
@@ -49,7 +52,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
       var data = response.data
       console.log(data[0].config);
       setAvailableTime(data[0].config)
-
+      setInterval(data[0].interval)
     }catch (error){
       console.log(error)
     }
@@ -92,40 +95,41 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   
 
   });
+  function disableTimeSlot(time) {
+    const currentTime = moment(getCurrentLocalTime(),"hh:mm A");
+    const currentDate = moment().format("ddd MMM DD YYYY");
+    const timeSlot = moment(time, "hh:mm A");
+    return takenAppointments.indexOf(time) > -1 || (currentDate === chosenDate && moment(timeSlot).isBefore(moment(currentTime))) ? true : false;
+  }
   
-
-
-
-
   return (
     <div className='slots'>
       {result && result.length > 0 ? result.map((time, index) => {
         
           return (
             <div className="timeslot" key={index}>
-                <Button 
-                className="time btn" 
-                id={time}
-                value={time}
-                style={takenAppointments.indexOf(time)>-1 ? {background:"lightgray"} : (isActive? (getTime==time?{background: "#5d5fef", color: "#fff"}:{background:"white"}):{background:"white"})}
-                disabled={takenAppointments.indexOf(time)>-1 ? true : false}
-                onClick={(e)=>{
-                  e.preventDefault();
-                  setGetTime(e.target.value)
-                  setIsActive(!isActive);
-                  //props.onSubmit(time)
-                  GetTimeCheck(time);
-                  console.log(time);
-                  if(getTime!=time){
-                    setIsActive(true);
-                  }
-                  console.log(time);
-                  console.log(document.getElementById(time).style.background);
-                }}
-                >{time}
-                </Button>
-                  
-            </div>
+            <Button 
+            className="time btn" 
+            id={time}
+            value={time}
+            style={(isActive ? (getTime==time?{background: "#5d5fef", color: "#fff"} : {background:"white"}) : {background:"white"})}
+            disabled={disableTimeSlot(time)}
+            onClick={(e) => {
+              e.preventDefault();
+              setGetTime(e.target.value);
+              setIsActive(!isActive);
+              GetTimeCheck(time);
+              console.log(time);
+              if (getTime !== time) {
+                setIsActive(true);
+              }
+              console.log(time);
+              console.log(document.getElementById(time).style.background);
+            }}
+            >{time}
+            </Button>
+              
+        </div>
           )
         }) : <h2>No Available Time Slots </h2>
       }

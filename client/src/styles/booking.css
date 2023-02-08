@@ -11,10 +11,10 @@
 }
 
 .appointment-info {
-	padding: 0.3in;
+	padding: 0.2in 0.3in;
 }
 
-.appointment-info h1 {
+.appointment-info h1{
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 23px;
@@ -54,7 +54,6 @@
 }
 
 .reason-form {
-	margin-top: 1in;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 16px;
@@ -64,6 +63,15 @@
 
 .form-check {
 	padding-left: 0.55in;
+	padding-right: 0.55in;
+}
+
+.form-check .appt-terms{
+	line-height: 2;
+}
+
+.form-check .appt-terms ol{
+list-style-type: disc;
 }
 
 .appt-bttns {

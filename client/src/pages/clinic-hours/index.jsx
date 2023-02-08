@@ -8,6 +8,7 @@ import axios from "axios";
 import success from '../../assets/img/check.png';
 import error from '../../assets/img/error.png';
 import Modal from "react-bootstrap/Modal";
+import { navigate } from "@reach/router";
 
 const ClinicHours = () => {
   const [timeSlot, setTimeSlot] = useState([
@@ -54,9 +55,11 @@ const ClinicHours = () => {
       enabled: false,
     },
   ]);
+  const [interval, setInterval] = useState(30);
   const [modalState, setModalState] = useState(false);
   const handleModalClose = () => {
     setModalState(false);
+    navigate(0);
   };
   const handleShow = () => {
     setModalState('show-modal')
@@ -121,9 +124,9 @@ const ClinicHours = () => {
     
     for (let i = 0; i < selects.length; i++) {
       if(i% 2 == 0){
-        selects[i].value = timeStart;
-      }else{
         selects[i].value = timeEnd;
+      }else{
+        selects[i].value = timeStart;
       }
     }
 
@@ -140,7 +143,7 @@ const ClinicHours = () => {
   const updateClinicHours = async() => {
     console.log('Clicked');
     try{
-      axios.put("https://rimorin-dental-clinic.herokuapp.com/updateClinicHours", {clinicHours:timeSlot})
+      axios.put("https://rimorin-dental-clinic.herokuapp.com/updateClinicHours", {clinicHours:timeSlot,interval:interval})
       handleShow();
     }catch (error){
       console.log(error)
@@ -152,17 +155,18 @@ const ClinicHours = () => {
     try{
       const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes')
 
-      var data = response.data[0].config
-      
-      var range;
+       var intervalField = document.querySelector('#Interval');
+      intervalField.value = response.data[0].interval;
 
+      var data = response.data[0].config
+      var range;
       data.map(item => (
         range = document.querySelectorAll('#'+item.day),
         range[0].value = item.timeStart,
         range[1].value = item.timeEnd,
         setTimeSlot(current =>
           current.map(obj => {
-            return {...obj, timeStart: item.timeStart, timeEnd: item.timeEnd};
+            return {...obj, timeStart: item.timeStart, timeEnd: item.timeEnd,enabled:item.enabled};
           }),
         )
       ))
@@ -205,6 +209,16 @@ const ClinicHours = () => {
             <h5 className="card-title">Clinic Hours</h5>
             <div className="divider"></div>
 
+            <div className="col-2">
+            <Form.Label>Time Slot Interval</Form.Label>
+              <Form.Select id="Interval" onChange={function(e){setInterval(e.target.value)}}>
+                <option>Select Time Interval</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
+              </Form.Select>
+            </div>
+
             <div className="toggle-container">
               <div className="col-2 weekday">Monday</div>
 
@@ -214,7 +228,7 @@ const ClinicHours = () => {
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
                   onClick={handledaySwitch("Mon")}
-                  checked={timeSlot[0].enabled}
+                  checked={true}
                 />
               </div>
                 <Form id="time-select">
