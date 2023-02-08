@@ -248,8 +248,8 @@ app.post("/insertAppointment", async (req, res) => {
   console.log(userNameApp);
 
   //Doctor name
-  const docName = req.body.docName;
-  console.log(docName);
+  const docIDnum = req.body.docIDnum;
+  console.log(docIDnum);
 
   //Appointment Number
 
@@ -280,7 +280,8 @@ app.post("/insertAppointment", async (req, res) => {
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
-    dName: docName,
+    // dName: docName,
+    dentistIDnumber:docIDnum,
     appNum: appNumberUUID,
     date: slidedDate,
     doctor: docName,
@@ -613,6 +614,19 @@ app.get("/getDentistInfo", async (req, res) => {
 
 app.get("/getDentistInfoID", async (req, res) => {
   const ObjectID = req.query.ObjectID;
+
+  await User.find({ dentistIDnumber: ObjectID })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getDentistIDdetails", async (req, res) => {
+  const ObjectID = req.query.ObjectID;
+  console.log("ashibdhajsbdhas", ObjectID);
 
   await User.find({ dentistIDnumber: ObjectID })
     .then((data) => {

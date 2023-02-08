@@ -46,6 +46,7 @@ const BookingInput = ({
   const [startDate, setStartDate] = useState(new Date());
 
   const [chosenDate, setChosenDate] = useState("");
+  console.log("DENTIST ID NUMBER", values.doctor);
 
   const [timeCheck, setTimeCheck] = useState("");
   console.log("CURRENT TIME BOOKING", timeCheck);
@@ -113,7 +114,7 @@ const BookingInput = ({
   //Select Dentist
   const [dentistInfo, setDentistInfo] = useState([]);
   const [dentistIDnum, setDentistIDnumber] = useState("");
-  console.log("THIS IS THE ID NUM", dentistIDnum);
+
 
   const getDentistInfo = async () => {
     try {
@@ -208,7 +209,7 @@ const BookingInput = ({
                   <Form.Select value={values.doctor} onChange={handleChange("doctor")}>
                     <option value="" selected disabled>--Dentist--</option>
                     {dentistInfo.map((item, index) => (
-                      <option value={`${item.fname} ${item.mname} ${item.lname}`}>
+                      <option value={item.dentistIDnumber}>
                         Dr. {item.fname} {item.mname} {item.lname}
                       </option>
                     ))}

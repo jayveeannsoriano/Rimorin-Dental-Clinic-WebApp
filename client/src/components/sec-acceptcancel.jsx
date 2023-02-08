@@ -33,7 +33,6 @@ const SecAcceptCancel = (dentistIDnum) => {
 const dentistIDnumber = dentistInfo.map(function (item){
     return item.dentistIDnumber
 });
-console.log("ddentistIDnumber ACwepety", dentistIDnumber)
 
 const dentistFullName = dentistInfo.map(function (item){
     return item.fname + " " + item.lname
