@@ -178,7 +178,7 @@ const FollowUpInput = ({nextStep,handleChange,handleDateChange,handleTimeChange,
                             <h1>DOCTOR INFORMATION</h1>
                             <h2>Doctor Name:</h2>
                             {/* Insert Appointed Doctor from previous appt */}
-                            <h3>Pamela Rimorin Concepcion</h3>
+                            <h3>{getDocName}</h3>
 
                             <h2>Clinic Location:</h2>
                             <h3>Victoria Shoppesville, Upper Mabini Street, Baguio City, Philippines</h3>
