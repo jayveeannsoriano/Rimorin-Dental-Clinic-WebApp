@@ -77,7 +77,7 @@ const FollowUpDetail = ({nextStep, prevStep,handleChange,values}) => {
                         <h2>Date of Consultation</h2>
                         {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
                         <h2>Reason for Follow Up</h2>
-                          {values.consultation}
+                          {values.reasonForFollowUp}
                     </div>
                 </div>
             </div>
