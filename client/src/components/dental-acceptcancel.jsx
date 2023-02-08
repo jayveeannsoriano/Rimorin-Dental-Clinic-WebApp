@@ -22,7 +22,11 @@ const AcceptCancel = () => {
   const getAppointment = async () => {
     try {
       const responses = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetails"
+        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetailsForDentist",{
+          params: {
+            dentistIDNumber: dentistIDnumber,
+          }
+        }
       );
       console.log(responses);
       setAppointment(responses.data);
@@ -73,7 +77,7 @@ const AcceptCancel = () => {
               <CancelDental
                 patientIDnumber={row.patientIDnumber}
                 pName={row.pName}
-                dName={row.dName}
+                dName={dentistFullName}
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
@@ -104,7 +108,7 @@ const AcceptCancel = () => {
               <CancelDental
                 patientIDnumber={row.patientIDnumber}
                 pName={row.pName}
-                dName={row.dName}
+                dName={dentistFullName}
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
