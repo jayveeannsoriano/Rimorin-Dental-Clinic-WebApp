@@ -1,4 +1,4 @@
-import  React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -62,19 +62,6 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   const el = document.querySelectorAll ('.timeslot button');
   useEffect(() => {
     getAvailableTimes();
-    // el.forEach(function (value, i) {
-    //   let button = document.getElementById(value.value);
-
-    //   if(takenAppointments.indexOf(button.value)>-1){
-    //     console.log(takenAppointments)
-    //     console.log(button.value)
-    //     button.style.cssText = 'background: lightgray;pointer-events: none';
-    //   }else{
-    //     button.style.cssText = 'background: white;pointer-events: auto;';
-    //   }
-    // });
-
-    // setTaken(takenAppointments);
     console.log("TAKEN APPTS:",takenAppointments);
   },[]);
 

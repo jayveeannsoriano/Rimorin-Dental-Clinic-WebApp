@@ -119,7 +119,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   //treatment procedure checkbox options
   const [checked, setChecked] = useState([
     {
-      option: "Others",
+      option: "General",
       chosen: [],
     },
     {
@@ -127,7 +127,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       chosen: [],
     },
     {
-      option: "Cementation",
+      option: "Orthodontics",
       chosen: [],
     },
     {
@@ -154,47 +154,52 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
         : null
     );
   }, [checked]);
-  const othersOptions = [
-    { procedure: "ORAL PROPHYLAXIS", time: 1000 },
-    { procedure: "TOOTH RESTORATION", time: 1200 },
-    { procedure: "TOOTH EXTRACTION", time: 800 },
-    { procedure: "DEEP SCALING", time: 10200 },
-    { procedure: "PTS AND FISSURES SEALANT", time: 700 },
-    { procedure: "FLOURIDE TREATMENT", time: 5500 },
-    { procedure: "INTERMEDIATE RESTORATION", time: 7000 },
-    { procedure: "ORTHODONTICS", time: 48000 },
+  //time is in minutes
+  const generalOptions = [
+    { procedure: "CONSULTATION", time: 30 },
+    { procedure: "COMPOSITE FILLING", time: 60 },
+    { procedure: "ORAL PROPHYLAXIS", time: 60 },
+    { procedure: "TOOTH EXTRACTION", time: 90 },
+    { procedure: "TOOTH RESTORATION", time: 90 },
+    { procedure: "PTS AND FISSURES SEALANT", time: 60 },
+    { procedure: "FLOURIDE TREATMENT", time: 90 },
+    { procedure: "INTERMEDIATE RESTORATION", time: 120 },
   ];
   const cosmeticOptions = [
-    { procedure: "DIRECT COMPOSITE VENEER", time: 3000 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", time: 2000 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 1000 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", time: 20000 },
+    { procedure: "GLASS IONOMER", time: 60 },
+    { procedure: "DIRECT COMPOSITE VENEER", time: 60 },
+    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60 },
+    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90 },
+    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180 },
   ];
-  const cementationOptions = [
-    { procedure: "GLASS IONOMER", time: 11000 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", time: 2000 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 1000 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", time: 20000 },
+  const orthodonticOptions = [
+    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90 },
+    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90 },
+    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180 },
+    { procedure: "RETAINER (BOTH ARCH'S)", time: 90 },
   ];
   const endodonticOptions = [
-    { procedure: "ROOT CANAL THERAPY", time: 4400 },
-    { procedure: "PULPOTOMY", time: 5300 },
-    { procedure: "POST AND CORE", time: 6200 },
+    { procedure: "ROOT CANAL THERAPY", time: 90 },
+    { procedure: "PULPOTOMY", time: 60 },
+    { procedure: "POST AND CORE", time: 60 },
+    { procedure: "DEEP SCALING", time: 120 },
   ];
   const prostheticOptions = [
-    { procedure: "DENTAL REPAIR", time: 12000 },
-    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 35000 },
-    { procedure: "DENTURE RELINE (DIRECT)", time: 30000 },
-    { procedure: "SOFT RELINE", time: 16000 },
-    { procedure: "DENTURE REPLACEMENT", time: 15000 },
+    { procedure: "DENTAL REPAIR", time: 60 },
+    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60 },
+    { procedure: "DENTURE RELINE (DIRECT)", time: 60 },
+    { procedure: "SOFT RELINE", time: 60 },
+    { procedure: "DENTURE REPLACEMENT", time: 90 },
+    { procedure: "FULL DENTURE PLASTIC", time: 90 },
+    { procedure: "FULL DENTURE PORCELAIN", time: 90 },
   ];
   const surgicalOptions = [
-    { procedure: "ODONTECTOMY", time: 5000 },
-    { procedure: "OPERCULECTOMY", time: 5000 },
-    { procedure: "FRENECTOMY", time: 5200 },
-    { procedure: "ALVEOLECTOMY", time: 8300 },
-    { procedure: "GINGIVECTOMY OR CONTOURING", time: 5000 },
-    { procedure: "APICOECTOMY", time: 8500 },
+    { procedure: "ODONTECTOMY", time: 60 },
+    { procedure: "OPERCULECTOMY", time: 90 },
+    { procedure: "FRENECTOMY", time: 60 },
+    { procedure: "ALVEOLECTOMY", time: 60 },
+    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60 },
+    { procedure: "APICOECTOMY", time: 90 },
   ];
   //const [checked, setChecked] = useState([{ option: "Others", chosen: [] }]);
   const handleChangeCheckbox = (input) => (event) => {
@@ -248,7 +253,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
     //checkbox validation
-    if (checked.length != 0) {
+    if (checked.length === 0) {
       setErrorCheckbox(
         <div style={{ fontSize: "12px" }}>
           <a class="text-danger">
@@ -261,7 +266,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
     if (
       startDate &&
       timeCheck &&
-      checked &&
+      checked.length > 0 &&
       values.reasonForFollowUp &&
       values.reasonForFollowUp.trim().length
     ) {
@@ -367,17 +372,17 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                 </h6>
                 {errorCheckbox}
                 <div className="col-lg-4 col-xl-4 col-md-6">
-                  <div className="procedure-label">Others</div>
+                  <div className="procedure-label">General Dentistry Services</div>
                   <div className="divider procedure-div"></div>
 
-                  {othersOptions.map((item, index) => (
+                  {generalOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={[item]}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        onClick={handleChangeCheckbox("Others")}
+                        onClick={handleChangeCheckbox("General")}
                         required
                       />
                     </div>
@@ -400,17 +405,17 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   ))}
                 </div>
                 <div className="col-lg-4 col-xl-4 col-md-6">
-                  <div className="procedure-label">Cementation</div>
+                  <div className="procedure-label">Orthodontic Dentistry Services</div>
                   <div className="divider procedure-div"></div>
 
-                  {cementationOptions.map((item, index) => (
+                  {orthodonticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={[item]}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        onClick={handleChangeCheckbox("Cementation")}
+                        onClick={handleChangeCheckbox("Orthodontic")}
                       />
                     </div>
                   ))}
@@ -536,8 +541,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
             <div className="col-12">
               <div className="appt-bttns">
                 <button
-                  //  onClick={navigate(-1)}
                   className="btn btn-outline-secondary"
+                  onClick={() => navigate(-1)}
                   type="submit"
                 >
                   Cancel
