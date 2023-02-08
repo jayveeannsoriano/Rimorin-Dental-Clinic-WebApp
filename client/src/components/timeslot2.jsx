@@ -53,7 +53,7 @@ const Timeslot2 = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
       var data = response.data;
       console.log(data[0].config);
       setAvailableTime(data[0].config);
-      setInterval(data[0].interval)
+      setInterval(data[0].interval);
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +104,9 @@ const Timeslot2 = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
                 id={time}
                 value={time}
                 style={
-                  isActive
+                  disableTimeSlot(time)
+                    ? { background: "lightgray" }
+                    : isActive
                     ? getTime == time
                       ? { background: "#5d5fef", color: "#fff" }
                       : { background: "white" }
