@@ -11,7 +11,7 @@ import ApptDetailsResched from "./modals/appt-details-reschedule";
 const AcceptCancel = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
   const dentistIDnumber = userInfo["dentistIDnumber"];
-  const dentistFullName = userInfo["fname"] + " " + userInfo["lname"];
+  const dentistFullName = userInfo["fname"] + " " + userInfo["mname"] + " " + userInfo["lname"];
 
   const [search, setSearch] = useState("");
   const [appointment, setAppointment] = useState([]);
