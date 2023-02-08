@@ -4,6 +4,7 @@ const AppointmentRequest = new mongoose.Schema(
     patientIDnumber: String,
     pName: String,
     dName: String,
+    dentistIDnumber: String,
     appNum: String,
     formattedDate:String,
     date: String,

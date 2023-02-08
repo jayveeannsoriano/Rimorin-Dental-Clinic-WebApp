@@ -22,7 +22,7 @@ const BookingConfirm = ({values}) => {
         userNameApp: userNameApp,
         startDate: date,
         formattedDate: formattedDate,
-        docName: values.doctor,
+        docIDnum: values.doctor,
         consulInput: values.consultation,
         getTime: time,
         recep: userInfo["email"],

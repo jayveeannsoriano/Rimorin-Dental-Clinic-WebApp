@@ -18,3 +18,4 @@ const NotificationDetails = new mongoose.Schema(
 
 const NotifDetailsDB = mongoose.model("NotificationDetails", NotificationDetails);
 module.exports = NotifDetailsDB;
+	

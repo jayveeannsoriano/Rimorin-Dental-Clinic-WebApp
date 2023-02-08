@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import Axios from 'axios';
 import 'react-bootstrap';
 
 const BookingDetail = ({nextStep, prevStep,values}) => {
 
-    console.log(JSON.stringify(window.localStorage.getItem('date')))
-    console.log(JSON.stringify(window.localStorage.getItem('time')))
+    const [dentistDetails, setDentistDetails] = useState();
+    console.log("DENTIST ID NUMBER", values.doctor);
+    
+
+    const getDentistInfo = async () => {
+        try {
+          const responses = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getDentistIDdetails",{
+          params: {
+            ObjectID: values.doctor,
+        }});
+          console.log(responses.data, 'asihdbashjdbasjhdb');
+          setDentistDetails(responses.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    
+      useEffect(() => {
+        getDentistInfo();
+      }, []);
 
     const Continue = (e) => {
         e.preventDefault();
@@ -71,8 +90,11 @@ const BookingDetail = ({nextStep, prevStep,values}) => {
                     <div className="appointment-info">
                         <h1>APPOINTMENT INFORMATION</h1>
                         <h2>Doctor's Name</h2>
-                            Dr. {values.doctor}
-                            <br/>
+                        {/* {dentistDetails.map((item, index) => ( */}
+                            <br>
+                            {/* Dr. {item.fname} {item.mname} {item.lname} */}
+                            </br>
+                            {/* ))} */}
                         <h2>Date of Consultation</h2>
                             {JSON.stringify(window.localStorage.getItem('date')).replace(/"/g, "").substring(0,15) + " | " + window.localStorage.getItem('time')}
                             <br/>

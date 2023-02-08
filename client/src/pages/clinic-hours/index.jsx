@@ -9,6 +9,7 @@ import axios from "axios";
 import success from '../../assets/img/check.png';
 import error from '../../assets/img/error.png';
 import Modal from "react-bootstrap/Modal";
+import { navigate } from "@reach/router";
 
 const ClinicHours = () => {
   const [timeSlot, setTimeSlot] = useState([
@@ -60,6 +61,7 @@ const ClinicHours = () => {
   const [result, setResult] = useState([]);
   const handleModalClose = () => {
     setModalState(false);
+    navigate(0);
   };
   const handleShow = () => {
     setModalState('show-modal')
