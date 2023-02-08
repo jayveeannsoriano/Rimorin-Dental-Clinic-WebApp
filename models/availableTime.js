@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const availableTimeSchema = new mongoose.Schema(
   {
-   config: Object
+   config: Object,
+   interval:String
   },
   {
     collection: "AvailableTime",

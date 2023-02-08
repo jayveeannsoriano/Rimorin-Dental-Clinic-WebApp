@@ -12,6 +12,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
   const [outTime, setOutTime] = useState("")
 
   const [availableTime, setAvailableTime] = useState([]);
+  const [interval, setInterval] = useState("");
   const [getTime, setGetTime] = useState("");
 
   const [isActive, setIsActive] = useState(false);
@@ -31,7 +32,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
       }
       else {
         result.push(current.format('hh:mm A'));
-        current.add(60, 'minutes'); //minute interval
+        current.add(interval, 'minutes'); //minute interval
       }
     }
 
@@ -49,7 +50,7 @@ const Timeslot = ({GetTimeCheck,takenAppointments,chosenDate}) => {
       var data = response.data
       console.log(data[0].config);
       setAvailableTime(data[0].config)
-
+      setInterval(data[0].interval)
     }catch (error){
       console.log(error)
     }
