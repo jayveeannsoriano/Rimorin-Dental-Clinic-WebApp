@@ -34,7 +34,7 @@ const SecAdminDashboardTable = () => {
 
     const getAppointment = async() => {
         try{
-          const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getTodayAppointmentDetails',{
+          const response = await axios.get('http://localhost:3001/getTodayAppointmentDetails',{
             params: {
                 
                 date:convertDate
@@ -47,22 +47,6 @@ const SecAdminDashboardTable = () => {
             console.log(error)
         }
     }
-  //const getUserTransaction = async () => {
-  //  try {
-  //    const response = await axios.get(
-  //      "http://localhost:3001/getUserTransaction",
-  //      {
-  //        params: {
-  //          patientIDnumber: StringfyPatientIDnum,
-  //        },
-  //      }
-  //    );
-  //    console.log(response, "Responses");
-  //    setAppointment(response.data);
-  //  } catch (error) {
-  //    console.log(error);
-  //  }
-  //};
     const columns = [
       {
         name: "Patient",
@@ -82,11 +66,6 @@ const SecAdminDashboardTable = () => {
       {
         name: "Appt. Status",
         selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
-        sortable: true,
-      },
-      {
-        name: "Payment Status",
-        //selector: (row) => <PaymentStatusText payStats={row.payStatus} />,
         sortable: true,
       },
       {
@@ -218,7 +197,6 @@ const SecAdminDashboardTable = () => {
 
     useEffect(() => {
         getAppointment();
-        //getUserTransaction();
     }, []);
 
     useEffect(() => {

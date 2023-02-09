@@ -29,12 +29,6 @@ const DashboardTable = () => {
   const convertDate = getTodayDate.toString().substring(0, 15);
   // console.log(convertDate, "dateToday");
 
-  const location = useLocation()
-  const paramsID = new URLSearchParams(location.search)
-  const getPatientIDNumber = paramsID.get('patientIDNum');
-  const StringfyPatientIDnum = useMemo(() => JSON.stringify(getPatientIDNumber).replace(/"/g, ""));
-  console.log(StringfyPatientIDnum);
-
   const getAppointment = async () => {
     try {
       const response = await axios.get(
@@ -53,22 +47,6 @@ const DashboardTable = () => {
       console.log(error);
     }
   };
-  //const getUserTransaction = async () => {
-  //  try {
-  //    const response = await axios.get(
-  //      "http://localhost:3001/getUserTransaction",
-  //      {
-  //        params: {
-  //          patientIDnumber: StringfyPatientIDnum,
-  //        },
-  //      }
-  //    );
-  //    console.log(response, "Responses");
-  //    setAppointment(response.data);
-  //  } catch (error) {
-  //    console.log(error);
-  //  }
-  //};
 
   const columns = [
     {
@@ -89,11 +67,6 @@ const DashboardTable = () => {
     {
       name: "Appt. Status",
       selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
-      sortable: true,
-    },
-    {
-      name: "Payment Status",
-      //selector: (row) => <PaymentStatusText payStats={row.payStatus} />,
       sortable: true,
     },
     {
@@ -229,7 +202,6 @@ const DashboardTable = () => {
 
   useEffect(() => {
     getAppointment();
-    //getUserTransaction();
   }, []);
 
   useEffect(() => {
