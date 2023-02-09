@@ -47,7 +47,6 @@ require("./models/prescriptionDetails");
 require("./models/appointmentRequest");
 require("./models/receiptDetails");
 require("./models/dentalRecords");
-require("./models/notificationDetails");
 require("./models/appointmentHistory");
 require("./models/availableTime");
 require("./models/archiveAccount");
@@ -58,7 +57,6 @@ const PresDetails = mongoose.model("PrescriptionDetails");
 const AppRequest = mongoose.model("AppointmentRequest");
 const ReceiptDetails = mongoose.model("ReceiptDetails");
 const DentalRecords = mongoose.model("UserDentalRecords");
-const NotifDetails = mongoose.model("NotificationDetails");
 const AppHistory = mongoose.model("AppointmentHistory");
 const AvailableTime = mongoose.model("AvailableTime");
 const UserArchive = mongoose.model("UserArchive");
@@ -826,21 +824,6 @@ app.get("/getAppointmentHistory", async (req, res) => {
       console.log("error: ", error);
     });
 });
-
-//get notification details
-app.get("/getNotifDetails", async (req, res) => {
-  const patientIDnumber = req.query.patientIDnumber;
-  console.log(patientIDnumber);
-
-  await NotifDetails.find({ patientIDnumber: patientIDnumber })
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((error) => {
-      console.log("error: ", error);
-    });
-});
-
 //get receipt details
 app.get("/getReceiptDetails", async (req, res) => {
   await ReceiptDetails.find({})
@@ -2339,10 +2322,6 @@ app.put("/updatePatientInfo", async (req, res) => {
     { patientIDnumber: patientIDnumber },
     { pName: patientName }
   );
-  await NotifDetails.updateMany(
-    { patientIDnumber: patientIDnumber },
-    { pName: patientName }
-  );
   await ReceiptDetails.updateMany(
     { patientIDnumber: patientIDnumber },
     { pName: patientName }
@@ -2417,10 +2396,6 @@ app.put("/updateDentistInfo", async (req, res) => {
     { dName: dentistName }
   );
   await AppRequest.updateMany(
-    { dentistIDnumber: dentistIDnumber },
-    { dName: dentistName }
-  );
-  await NotifDetails.updateMany(
     { dentistIDnumber: dentistIDnumber },
     { dName: dentistName }
   );
