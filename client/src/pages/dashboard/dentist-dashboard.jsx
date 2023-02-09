@@ -180,6 +180,7 @@ export default function DentistDashboard() {
             dentistIDnumber:dentistIDnumber,
           }
         });
+        console.log(dentistIDnumber);
         console.log("total apps", resp.data);
         setTotalPendingAppts(resp.data);
     }catch (error){

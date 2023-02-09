@@ -660,6 +660,21 @@ app.get("/getUserAppointmentDetails", async (req, res) => {
       console.log("error: ", error);
     });
 });
+
+app.get("/getUserAppointmentDetailsforDuplicate", async (req, res) => {
+
+  const userID = req.query.patientIDnum;
+
+  await AppDetails.find({patientIDnumber: userID})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+
 //filtered TODAY
 app.get("/getTodayUserAppointmentDetails", async (req, res) => {
   const patientIDNumber = req.query.patientIDnumber;
@@ -1763,7 +1778,7 @@ app.get("/getTotalPendingAppts", async (req, res) => {
 
   const dentistIDnum = req.query.dentistIDnumber;
 
-    await AppRequest.countDocuments({ appStatus: "Pending" , dentistIDnumber : dentistIDnum })
+    await AppRequest.countDocuments({dentistIDnumber : dentistIDnum, appStatus: "Pending" })
     .then((data) => {
       res.json(data);
     })
