@@ -1755,7 +1755,7 @@ app.get("/getAppointmentsbyDate", async (req, res) => {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   console.log(query.date);
-  await AppDetails.find({ date: query.date })
+  await AppRequest.find({ date: query.date })
     .then((data) => {
       res.json(data);
     })
