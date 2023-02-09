@@ -55,7 +55,7 @@ const PatientDashboard = () => {
 const [validated, setValidateValue] = useState(false)
   const ValidateButton = () => {
     console.log(appointmentStatus)
-    if (appointmentStatus.includes("Accepted")) {
+    if (appointmentStatus.includes("Pending") || appointmentStatus.includes("Rescheduled") || appointmentStatus.includes("Follow-Up")) {
       console.log("nope");
       setValidateValue(true)
       setButtonMessage(

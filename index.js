@@ -291,9 +291,24 @@ app.post("/insertAppointment", async (req, res) => {
     appStatus: insertAppStatus,
   });
 
+  const AppDets = new AppDetails({
+    patientIDnumber: patientIDnumber,
+    pName: userNameApp,
+    dentistIDnumber:docIDnum,
+    dName: docName,
+    appNum: appNumberUUID,
+    date: slidedDate,
+    consultation: consulInput,
+    time: getTime,
+    formattedDate: formattedDate,
+    appStatus: insertAppStatus,
+  });
+
   try {
     await AppData.save();
+    await AppDets.save();
     console.log("Successfully inserted ", AppData, " to the database.");
+    console.log("Successfully inserted ", AppDets, " to the database.");
     if (insertAppStatus == "Pending") {
       //Sending Email
       sgMail.setApiKey(
@@ -1938,6 +1953,8 @@ app.post("/acceptAppointment", async (req, res) => {
 
   const appNumber = req.body.appNumber;
   console.log(appNumber);
+
+  await AppDetails.findOneAndDelete({ appNum: appNumber });
 
   //date value
   const dateValue = req.body.dateValue;
