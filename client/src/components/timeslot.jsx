@@ -3,7 +3,7 @@ import moment from "moment";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
-const Timeslot = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
+const Timeslot = ({ GetTimeCheck, takenAppointments, chosenDate, totalApptTime }) => {
   // let inTime = "09:00 AM"
   // let outTime = "05:00 PM"
   const [result, setResult] = useState([]);
@@ -21,6 +21,8 @@ const Timeslot = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
     return moment().format("hh:mm A");
   };
 
+
+
   function intervals(startString, endString) {
     var start = moment(startString, "hh:mm a");
     var end = moment(endString, "hh:mm a");
@@ -33,7 +35,7 @@ const Timeslot = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
         return null;
       } else {
         result.push(current.format("hh:mm A"));
-        current.add(interval, "minutes"); //minute interval
+        current.add((totalApptTime==0 ? 30 :totalApptTime), "minutes"); //minute interval
       }
     }
 

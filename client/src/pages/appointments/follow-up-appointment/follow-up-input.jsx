@@ -34,8 +34,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const StringfyDocID = useMemo(() =>
     JSON.stringify(getDocID).replace(/"/g, "")
   );
-  console.log(StringfyPatientID, "FOLLOW UP ID");
-  window.localStorage.setItem("patientIDNum", "PT#" + StringfyPatientID);
+    window.localStorage.setItem("patientIDNum", "PT#" + StringfyPatientID);
   window.localStorage.setItem("userName", patientUser);
   window.localStorage.setItem("userPhone", patientMobile);
   window.localStorage.setItem("userEmail", patientEmail);
@@ -75,14 +74,14 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const [time, setGetTime] = useState("");
 
   const [chosenDate, setChosenDate] = useState("");
+  var [totalApptTime, settotalApptTime] = useState(0);
+
 
   const [timeCheck, setTimeCheck] = useState("");
-  console.log("CURRENT TIME BOOKING", timeCheck);
   window.localStorage.setItem("time", timeCheck);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
 
-  console.log("CURRENT DATE BOOKING", startDate);
   window.localStorage.setItem("date", startDate);
 
   const navigate = useNavigate();
@@ -143,7 +142,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       chosen: [],
     },
   ]);
-  console.log(checked, "values");
   const [dentalItem, setDentalItem] = useState([]);
   useEffect(() => {
     checked.map((item) =>
@@ -153,6 +151,9 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
           )
         : null
     );
+    console.log(totalApptTime);
+
+
   }, [checked]);
   //time is in minutes
   const generalOptions = [
@@ -205,19 +206,28 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
-    console.log("value is:", value[0].procedure);
+    var tempVar = totalApptTime;
+    if (isChecked) {
+      tempVar = totalApptTime + parseInt(event.target.id);
+      settotalApptTime(tempVar);
+    }else{
+      tempVar = totalApptTime - parseInt(event.target.id);
+      settotalApptTime(tempVar);
+    }
     var tempArr = { procedure: value[0].procedure, time: value[0].time };
     setChecked((current) =>
       current.map((obj) => {
         if (obj.option === input) {
           if (isChecked) {
             return { ...obj, chosen: [...obj.chosen, tempArr] };
+            
           } else {
             var newArr = obj.chosen;
             var index = newArr.indexOf(event.target.value);
             newArr.splice(index, 1); // 2nd parameter means remove one item only
             return { ...obj, chosen: newArr };
           }
+          
         }
         return obj;
       })
@@ -338,9 +348,9 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                     <h2>Patient ID:</h2>
                     <h3>PT#{StringfyPatientID}</h3>
 
-                    <h2>Reason for Consultation:</h2>
+                    {/* <h2>Reason for Consultation:</h2> */}
                     {/* map previous reasonForFollowUp value of patient */}
-                    <h3>{values.consulation}</h3>
+                    {/* <h3>{values.consulation}</h3> */}
                   </div>
                 </div>
 
@@ -379,7 +389,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                     <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
-                        id={[item]}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("General")}
@@ -395,8 +405,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {cosmeticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                        value={JSON.stringify([item])}
-                        id={[item]}
+                       value={JSON.stringify([item])}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Cosmetic")}
@@ -411,8 +421,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {orthodonticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                        value={JSON.stringify([item])}
-                        id={[item]}
+                       value={JSON.stringify([item])}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Orthodontic")}
@@ -429,8 +439,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {endodonticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                        value={JSON.stringify([item])}
-                        id={[item]}
+                       value={JSON.stringify([item])}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Endodontic")}
@@ -445,8 +455,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {prostheticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                        value={JSON.stringify([item])}
-                        id={[item]}
+                       value={JSON.stringify([item])}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Prosthetic")}
@@ -461,8 +471,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {surgicalOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                        value={JSON.stringify([item])}
-                        id={[item]}
+                       value={JSON.stringify([item])}
+                        id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Surgical")}
@@ -515,6 +525,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   GetTimeCheck={setTimeCheck}
                   takenAppointments={takenAppointments}
                   chosenDate={chosenDate}
+                  totalApptTime={totalApptTime}
                 />
                 {error}
               </div>
