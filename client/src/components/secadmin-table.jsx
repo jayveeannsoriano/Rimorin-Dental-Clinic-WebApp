@@ -11,6 +11,8 @@ import FollowUp from "./modals/followUp"
 import ApptDetailsText from "./modals/appt-details-text";
 import ApptDetailsResched from "./modals/appt-details-reschedule";
 import ApptDetailsFollowUp from "./modals/appt-details-followup";
+import PaymentStatusText from "../pages/payment-records/secretary-module/payment-status-text";
+
 
 const SecAdminDashboardTable = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -45,7 +47,22 @@ const SecAdminDashboardTable = () => {
             console.log(error)
         }
     }
-
+  //const getUserTransaction = async () => {
+  //  try {
+  //    const response = await axios.get(
+  //      "http://localhost:3001/getUserTransaction",
+  //      {
+  //        params: {
+  //          patientIDnumber: StringfyPatientIDnum,
+  //        },
+  //      }
+  //    );
+  //    console.log(response, "Responses");
+  //    setAppointment(response.data);
+  //  } catch (error) {
+  //    console.log(error);
+  //  }
+  //};
     const columns = [
       {
         name: "Patient",
@@ -65,6 +82,11 @@ const SecAdminDashboardTable = () => {
       {
         name: "Appt. Status",
         selector: (row) => <ApptDetailsText appStats={row.appStatus} />,
+        sortable: true,
+      },
+      {
+        name: "Payment Status",
+        //selector: (row) => <PaymentStatusText payStats={row.payStatus} />,
         sortable: true,
       },
       {
@@ -196,6 +218,7 @@ const SecAdminDashboardTable = () => {
 
     useEffect(() => {
         getAppointment();
+        //getUserTransaction();
     }, []);
 
     useEffect(() => {
