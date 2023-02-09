@@ -69,7 +69,7 @@ const BookingInput = ({
     try {
       setChosenDate(date);
       const response = await Axios.get(
-        "http://localhost:3001/getAppointmentsbyDate",
+        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate",
         {
           params: {
             date: date,
@@ -133,7 +133,7 @@ const BookingInput = ({
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
-        "http://localhost:3001/getDentistInfo"
+        "https://rimorin-dental-clinic.herokuapp.com/getDentistInfo"
       );
       console.log(responses.data);
       setDentistInfo(responses.data);

@@ -5,7 +5,7 @@ import "./tooth-chart.css";
 const DentalChart = ({handleClickTeeth}) => {
     
     // const getDentalCharts = async(email) => {
-    //     const response = await axios.get('http://localhost:3001/getDentalChart', { params: { email: email } });
+    //     const response = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentalChart', { params: { email: email } });
     //     response.forEach(teeth => {
     //         var el = document.getElementById(teeth);
     //         el.classList.toggle('marked');

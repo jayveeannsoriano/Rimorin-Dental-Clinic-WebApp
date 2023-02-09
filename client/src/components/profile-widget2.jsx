@@ -15,7 +15,7 @@ const ProfileWidgetTwo = (patientID) => {
             var query = url_parts.query;
             var response;
             if( query.patientIDNum!="" && typeof query.patientIDNum!=='undefined'){
-                response = await Axios.get('http://localhost:3001/getPatientInfo', {
+                response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
                     params: {
                         patientIDnumber: query.patientIDNum
                     }
@@ -33,7 +33,7 @@ const ProfileWidgetTwo = (patientID) => {
                         patientData = patientData.substring(3,patientData.length);
                     }
                 }
-                response = await Axios.get('http://localhost:3001/getPatientInfo', {
+                response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getPatientInfo', {
                     params: {
                         patientIDnumber: patientData
                     }

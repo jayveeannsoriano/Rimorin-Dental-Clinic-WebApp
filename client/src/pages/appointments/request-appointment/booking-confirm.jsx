@@ -19,7 +19,7 @@ const BookingConfirm = ({values}) => {
 
     //insert data
     Axios.post(
-      "http://localhost:3001/insertAppointment",
+      "https://rimorin-dental-clinic.herokuapp.com/insertAppointment",
       {
         patientIDnumber: patientIDnumber,
         userNameApp: userNameApp,
@@ -32,7 +32,7 @@ const BookingConfirm = ({values}) => {
         recep: userInfo["email"],
       }
     );
-    Axios.post("http://localhost:3001/sendSMS", {
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
       phone: userInfo["mobile"],
       message:
         "Hi " +

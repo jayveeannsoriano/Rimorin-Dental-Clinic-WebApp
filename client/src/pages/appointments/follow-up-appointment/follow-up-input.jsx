@@ -45,7 +45,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/getUserInfoFollowUp",
+        "https://rimorin-dental-clinic.herokuapp.com/getUserInfoFollowUp",
         {
           params: {
             patientIDNum: "PT#" + StringfyPatientID,
@@ -91,7 +91,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
     try {
       setChosenDate(date);
       const response = await axios.get(
-        "http://localhost:3001/getAppointmentsbyDate",
+        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate",
         {
           params: {
             date: date,

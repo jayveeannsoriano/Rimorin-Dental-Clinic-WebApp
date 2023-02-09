@@ -32,7 +32,7 @@ const FollowUpTable = () => {
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/getFollowUpUserAppointment",
+        "https://rimorin-dental-clinic.herokuapp.com/getFollowUpUserAppointment",
         {
           params: {
             patientIDnumber: patientIDnumber,
