@@ -9,7 +9,7 @@ import Timeslot2 from '../timeslot2';
 import '../../styles/modals.css';
 import '../../styles/booking.css'
 
-function RescheduleAppointment(pName,appNum,patientIDnumber) {
+function RescheduleAppointment(dName,pName,appNum,patientIDnumber) {
   const [modalState, setModalState] = useState('close');
   
   
@@ -39,10 +39,11 @@ function RescheduleAppointment(pName,appNum,patientIDnumber) {
   const [timeCheck, setTimeCheck] = useState("")
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(pName,appNum,patientIDnumber);
+  const StringAppNum = JSON.stringify(dName,pName,appNum,patientIDnumber);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
+  const DoctorName = JSON.stringify(ConvertStringApp.dName).replace(/"/g,"");
   const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g,"");
 
   const [takenAppointments, setTakenAppointments] = useState([]);
@@ -111,6 +112,7 @@ useEffect(() => {
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
      pName: PatientName,
+     dName: DoctorName,
      newDate: stringDate,
      newFormattedDate: newFormattedDate,
      newTime: timeCheck,

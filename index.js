@@ -1845,7 +1845,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const updateTime = req.body.newTime;
   const updateConsult = req.body.newConsultation;
   const insertAppStatus = "Rescheduled";
-  const docName = "Pamela Rimorin Concepcion";
+  const docName = req.body.dName;
 
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,

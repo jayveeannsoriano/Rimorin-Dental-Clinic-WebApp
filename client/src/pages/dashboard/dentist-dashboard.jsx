@@ -209,10 +209,6 @@ export default function DentistDashboard() {
   useEffect(() => {
     getTotalPendingAppts();
   }, []);
-
-  // getTotalAppts();
-  // getTotalPatients();
-  // getTotalPendingAppts();
   
   return (
     compostieRender()
