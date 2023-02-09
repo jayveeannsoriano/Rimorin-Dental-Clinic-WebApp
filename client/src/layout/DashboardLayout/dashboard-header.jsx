@@ -13,7 +13,7 @@ function dashboardHeader(){
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getCurrentUserInfo", {
+            const response = await Axios.get("http://localhost:3001/getCurrentUserInfo", {
                 params: {
                     ObjectID: UserObjectID
                 }

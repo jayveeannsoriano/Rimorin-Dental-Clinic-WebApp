@@ -14,7 +14,7 @@ console.log(patientIDNum);
 
 const getPatientDetails = async() => {
     try{
-        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserDetails');
+        const response = await Axios.get('http://localhost:3001/getUserDetails');
         console.log(response, "Responses");
         setPatientList(response.data);
     }catch (error){

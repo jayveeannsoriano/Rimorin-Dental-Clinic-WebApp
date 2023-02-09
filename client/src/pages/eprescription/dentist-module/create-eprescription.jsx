@@ -72,7 +72,7 @@ const createEprescription = () => {
   // const getPatientIDnumber = async () => {
   //   try {
   //     const response = await Axios.get(
-  //       "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
+  //       "http://localhost:3001/getPatientAppNumforDental",
   //       {
   //         params: {
   //           appNumber: StringfyAppNumber,
@@ -140,7 +140,7 @@ const createEprescription = () => {
     console.log(startDate);
 
     Axios.post(
-      "https://rimorin-dental-clinic.herokuapp.com/createEprescription",
+      "http://localhost:3001/createEprescription",
       {
         patientIDNum: StringfyIDnumber,
         dentistName: dentistFullName,
@@ -162,7 +162,7 @@ const createEprescription = () => {
 
   // function handleSubmit(event) {
   //     event.preventDefault()
-  //     const url = 'https://rimorin-dental-clinic.herokuapp.com/uploadFile';
+  //     const url = 'http://localhost:3001/uploadFile';
   //     const formData = new FormData();
   //     formData.append('file', imgFile);
   //     formData.append('fileName', imgFile.name);
