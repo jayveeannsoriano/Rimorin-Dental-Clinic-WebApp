@@ -1132,12 +1132,10 @@ padding-right: 4px;
 #cell-1-undefined,
 #cell-2-undefined,
 #cell-3-undefined,
-#cell-4-undefined,
-#cell-5-undefined
-{
+#cell-4-undefined{
   max-width: 250px !important;
 }
-#cell-6-undefined{
+#cell-5-undefined{
   max-width: 320px !important;
 }
 
