@@ -25,13 +25,13 @@ export function createReceiptPatientRef(row) {
   }
   return (
     patientsRoute +
-    row.appNum.substring(1) +
+    row.getAppNumber.substring(1) +
     "&patientID=" +
-    row.patientIDnumber.substring(3) +
+    row.getpatientID.substring(3) +
     "&dateValue=" +
-    row.date +
+    row.getDateValue +
     "&ObjectID=" +
-    row._id
+    row.getObjectID
   );
 }
 
