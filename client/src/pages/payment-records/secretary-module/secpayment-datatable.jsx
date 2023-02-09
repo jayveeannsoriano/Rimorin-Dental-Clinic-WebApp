@@ -97,7 +97,7 @@ const SecTransactionDataTable = (patientIDNum) => {
       sortable: true,
     },
     {
-      name: "Status",
+      name: "Payment Status",
       selector: (row) => <PaymentStatusText payStats={row.payStatus} />,
     },
     {
@@ -166,15 +166,6 @@ const SecTransactionDataTable = (patientIDNum) => {
     getAppointment();
     getPatientDetails();
   }, []);
-
-  // useEffect(() => {
-  //     const result = appointment.filter((appointment) => {
-  //         return appointment.pName.toLowerCase().match(search.toLowerCase());
-  //     });
-
-  //     console.log(result, "This is the result");
-  //     setFilteredAppointment(result)
-  // },[search])
 
   return (
     <DataTable

@@ -7,7 +7,7 @@ const AppointmentTerms = () => {
         <li>
           <strong>Appointments:</strong> Appointments are subject to
           availability and confirmation. Upon acceptance of your request, a
-          consultation fee of <strong>₱250</strong> will be charged.
+          consultation fee of <strong>₱300</strong> will be charged.
         </li>
         <li>
           <strong>Cancellation Policy:</strong> If you need to cancel or

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 //project imports
 import Timeslot from "../../../components/timeslot.jsx";
 import "../../../styles/booking.css";
@@ -75,7 +76,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
 
   const [chosenDate, setChosenDate] = useState("");
   var [totalApptTime, settotalApptTime] = useState(0);
-
 
   const [timeCheck, setTimeCheck] = useState("");
   window.localStorage.setItem("time", timeCheck);
@@ -236,7 +236,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
 
   //form validations
   const [error, setError] = useState("");
-  const [errorReason, setErrorReason] = useState("");
   const [errorCheckbox, setErrorCheckbox] = useState("");
   const Continue = (e) => {
     e.preventDefault();
@@ -250,25 +249,13 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
         </div>
       );
     }
-    //reason for follow-up validation
-    if (!values.reasonForFollowUp || !values.reasonForFollowUp.trim().length) {
-      setErrorReason(
-        <div style={{ fontSize: "12px" }}>
-          <a class="text-danger">
-            <strong>
-              Please provide a reason for the follow-up appointment.
-            </strong>
-          </a>
-        </div>
-      );
-    }
     //checkbox validation
-    if (checked.length === 0) {
+    if (checked.length === 0 ||!checked) {
       setErrorCheckbox(
-        <div style={{ fontSize: "12px" }}>
-          <a class="text-danger">
-            <strong>Please select at least one procedure.</strong>
-          </a>
+        <div>
+          <Alert key={"danger"} variant={"danger"}>
+            Please select at least one treatment procedure.
+          </Alert>
         </div>
       );
     }
@@ -276,14 +263,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
     if (
       startDate &&
       timeCheck &&
-      checked.length > 0 &&
-      values.reasonForFollowUp &&
-      values.reasonForFollowUp.trim().length
+      checked.length > 0
     ) {
-      nextStep();
       setError("");
-      setErrorReason("");
       setErrorCheckbox("");
+      nextStep();
     }
   };
 
@@ -347,10 +331,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
 
                     <h2>Patient ID:</h2>
                     <h3>PT#{StringfyPatientID}</h3>
-
-                    {/* <h2>Reason for Consultation:</h2> */}
-                    {/* map previous reasonForFollowUp value of patient */}
-                    {/* <h3>{values.consulation}</h3> */}
                   </div>
                 </div>
 
@@ -380,7 +360,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   <strong>Select Treatment Procedure</strong>{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
-                {errorCheckbox}
                 <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">General Dentistry Services</div>
                   <div className="divider procedure-div"></div>
@@ -531,23 +510,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
               </div>
             </div>
 
-            {/* Reason for Follow-Up */}
-            <div className="col-12 reason-form">
-              <label className="form-label">
-                Reason for Follow-Up Appointment{" "}
-                <span className="text-danger font-weight-bold">*</span>
-              </label>
-              <textarea
-                className="form-control"
-                value={values.reasonForFollowUp}
-                onChange={handleChange("reasonForFollowUp")}
-                id="reason"
-                rows="5"
-                placeholder="Write reason here..."
-                required
-              ></textarea>
-              {errorReason}
-            </div>
+            {errorCheckbox}
 
             <div className="col-12">
               <div className="appt-bttns">
