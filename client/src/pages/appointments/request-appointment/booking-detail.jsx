@@ -105,14 +105,14 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
               <h2>Doctor's Name</h2>
                Dr. {dentistDetails}
               <br />
-              <h2>Date of Consultation</h2>
+              <h2>Date of Appointment</h2>
               {JSON.stringify(window.localStorage.getItem("date"))
                 .replace(/"/g, "")
                 .substring(0, 15) +
                 " | " +
                 window.localStorage.getItem("time")}
               <br />
-              <h2>Reason for Consultation</h2>
+              <h2>Treatment Procedure</h2>
               {values.consultation}
             </div>
 
