@@ -4,17 +4,18 @@ import Form from "react-bootstrap/Form";
 import Axios from "axios";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 
 //project imports
 import DropFileInput from "../../../components/dragNdrop";
 import "../../../styles/dental-record.css";
 import ProfileWidgetTwo from "../../../components/profile-widget2";
 import DentalChart from "../../../components/dental-teeth-chart";
+import { createReceiptPatientRef } from "../../payment-records/secretary-module/secpayment-datatable";
+
 //datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 const CreateDentalRecord = () => {
   const location = useLocation();
@@ -32,17 +33,19 @@ const CreateDentalRecord = () => {
   const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
   const handleModalClose = () => {
-      setModalState(false);
-      navigate('/dentist/patients/view-patient?patientIDNum=' + patientIDNumber.substring(3,patientIDNumber.length))
-      window.location.reload();
+    setModalState(false);
+    navigate(
+      "/dentist/patients/view-patient?patientIDNum=" +
+        patientIDNumber.substring(3, patientIDNumber.length)
+    );
+    window.location.reload();
   };
 
   const handleModal = () => {
-      setModalState('show-modal')
-    }
+    setModalState("show-modal");
+  };
 
   const getPatientIDnumber = async () => {
-
     try {
       const response = await Axios.get(
         "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
@@ -54,6 +57,8 @@ const CreateDentalRecord = () => {
       );
       console.log(response.data);
       setPatientIDNumber(response.data[0].patientIDnumber);
+      setPatientObjID(response.data[0]._id);
+      console.log(response.data[0]._id);
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +66,16 @@ const CreateDentalRecord = () => {
   useEffect(() => {
     getPatientIDnumber();
   }, []);
+
+  const [patientObjID, setPatientObjID] = useState("");
+
+  //patient reference for receipt creation
+  const getPatientReference = {
+    getAppNumber: StringfyAppNumber,
+    getpatientID: patientIDNumber,
+    getDateValue: startDate,
+    getObjectID: patientObjID,
+  };
 
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
@@ -96,15 +111,13 @@ const CreateDentalRecord = () => {
   console.log(checked, "values");
   const [dentalItem, setDentalItem] = useState([]);
   useEffect(() => {
-    checked.map((item) => (
+    checked.map((item) =>
       item.chosen != null
-        ? item.chosen.map(
-          (proc) => (
+        ? item.chosen.map((proc) =>
             setDentalItem((current) => [...current, proc])
           )
-        )
         : null
-    ))
+    );
   }, [checked]);
   const generalOptions = [
     { procedure: "CONSULTATION", price: 300 },
@@ -192,38 +205,40 @@ const CreateDentalRecord = () => {
     console.log(chartedTeeth);
     console.log(getFile);
 
-
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/createDentalRecord", {
-      patientIDNum: patientIDNumber,
-      appNum: StringfyAppNumber,
-      dateValue:
-      startDate.getFullYear() +
-      "-" +
-      ("0" + (startDate.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + startDate.getDate()).slice(-2),
-      descValue: treatDesc,
-      imgValue: getFile[0],
-      procedures: checked,
-      chartedTeeth: chartedTeeth
-    }, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    });
+    Axios.post(
+      "https://rimorin-dental-clinic.herokuapp.com/createDentalRecord",
+      {
+        patientIDNum: patientIDNumber,
+        appNum: StringfyAppNumber,
+        dateValue:
+          startDate.getFullYear() +
+          "-" +
+          ("0" + (startDate.getMonth() + 1)).slice(-2) +
+          "-" +
+          ("0" + startDate.getDate()).slice(-2),
+        descValue: treatDesc,
+        imgValue: getFile[0],
+        procedures: checked,
+        chartedTeeth: chartedTeeth,
+      },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
 
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/createReceipt", {
       patientIDnumber: patientIDNumber,
       appNum: StringfyAppNumber,
       dateValue:
-      startDate.getFullYear() +
-      "-" +
-      ("0" + (startDate.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + startDate.getDate()).slice(-2),
+        startDate.getFullYear() +
+        "-" +
+        ("0" + (startDate.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + startDate.getDate()).slice(-2),
     });
     console.log("Receipt Created with ", patientIDNumber, StringfyAppNumber);
   };
 
-  
   const handleShow = () => {
     setModalState("show-modal");
   };
@@ -235,7 +250,6 @@ const CreateDentalRecord = () => {
     var index = chartedTeeth.indexOf(chosenTeeth);
     // console.log(index);
     if (index > -1) {
-
       const shallowChartedTeeth = [...chartedTeeth];
       shallowChartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
       setchartedTeeth(shallowChartedTeeth);
@@ -259,261 +273,259 @@ const CreateDentalRecord = () => {
               <a href="/dentist/patients">Patients</a>
             </li>
             <li className="breadcrumb-item">
-              <a href={patientsRoute + patientIDNumber.substring(3, patientIDNumber.length)}>View Patient Records</a>
+              <a
+                href={
+                  patientsRoute +
+                  patientIDNumber.substring(3, patientIDNumber.length)
+                }
+              >
+                View Patient Records
+              </a>
             </li>
             <li class="breadcrumb-item active">Create Dental Record</li>
           </ol>
         </nav>
       </div>
-        <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
-          <div className="card dental-record-form">
-            <div className="card-body pt-3">
-              <h5 className="card-title">Create Dental Record</h5>
-              <div className="divider"></div>
-              <div className="container profile-widget-container">
-                <ProfileWidgetTwo patientID={patientIDNumber} />
-              </div>
-              <div className="divider"></div>
-              {/* Treatment Details */}
-              <div className="container treatment-details-container">
-                <div className="row treatment-details">
-                  <h4>Treatment Details</h4>
-                  <div className="col-lg-6 col-xl-6 col-md-6">
-                    {/* Date of Treatment*/}
-                    <div className="treatment-date">
-                      <h6>Date of Treatment</h6>
-                      <DatePicker
-                        selected={startDate}
-                        onChange={(date) => {
-                          setStartDate(date);
-                          console.log(
-                            "This is the calendar data:",
-                            date.toString().slice(3, 15)
-                          );
-                          console.log("set Start: ", startDate.toString());
-                          window.localStorage.setItem("date", date);
-                        }}
-                        isClearable
-                        placeholderText="Choose a date"
-                        minDate={new Date()}
-                        shouldCloseOnSelect={false}
-                        dateFormat="MMMM d, yyyy"
-                        //exclude sundays
-                        filterDate={(date) =>
-                          date.getDay() !== 7 && date.getDay() !== 0
-                        }
-                      />
-                    </div>
-                    <div className="treatment-desc">
-                      {/* Treatment Description*/}
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        <h6>
-                          Treatment Description{" "}
-                          <span className="text-danger font-weight-bold">
-                            *
-                          </span>
-                        </h6>
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="reason"
-                        rows="5"
-                        placeholder="Write treatment details"
-                        onChange={(e) => {
-                          getTreatDesc(e.target.value);
-                        }}
-                        required
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-xl-6 col-md-6 treatment-files">
-                    <h6>Treatment File Attatchments (Xrays, etc)</h6>
-                    <DropFileInput
-                      onFileChange={(files) => onFileChange(files)}
+      <div class="col-xl-auto col-lg-auto col-sm-auto col-md-auto">
+        <div className="card dental-record-form">
+          <div className="card-body pt-3">
+            <h5 className="card-title">Create Dental Record</h5>
+            <div className="divider"></div>
+            <div className="container profile-widget-container">
+              <ProfileWidgetTwo patientID={patientIDNumber} />
+            </div>
+            <div className="divider"></div>
+            {/* Treatment Details */}
+            <div className="container treatment-details-container">
+              <div className="row treatment-details">
+                <h4>Treatment Details</h4>
+                <div className="col-lg-6 col-xl-6 col-md-6">
+                  {/* Date of Treatment*/}
+                  <div className="treatment-date">
+                    <h6>Date of Treatment</h6>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => {
+                        setStartDate(date);
+                        console.log(
+                          "This is the calendar data:",
+                          date.toString().slice(3, 15)
+                        );
+                        console.log("set Start: ", startDate.toString());
+                        window.localStorage.setItem("date", date);
+                      }}
+                      isClearable
+                      placeholderText="Choose a date"
+                      minDate={new Date()}
+                      shouldCloseOnSelect={false}
+                      dateFormat="MMMM d, yyyy"
+                      //exclude sundays
+                      filterDate={(date) =>
+                        date.getDay() !== 7 && date.getDay() !== 0
+                      }
                     />
                   </div>
-                </div>
-              </div>
-              {/* Dental Teeth Chart */}
-              <div className="container dental-chart-container">
-                <div className="row">
-                  <h4>Dental Record</h4>
-                  <DentalChart handleClickTeeth={handleClickTeeth} />
-                </div>
-              </div>
-              {/* Procedure */}
-              <div className="container procedure-container">
-                <div className="row procedure-row">
-                  <h6>Procedure</h6>
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">General Dentistry Services</div>
-                    <div className="divider procedure-div"></div>
-
-                      {generalOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("General")}
-                            required
-                          />
-                        </div>
-                      ))}
-
-                  </div>
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Cosmetic Restoration</div>
-                    <div className="divider procedure-div"></div>
-
-                      {cosmeticOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Cosmetic")}
-                          />
-                        </div>
-                      ))}
-
-                  </div>
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Orthodontic Dentistry Services</div>
-                    <div className="divider procedure-div"></div>
-
-                      {orthodonticOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Orthodontic")}
-                          />
-                        </div>
-                      ))}
-
+                  <div className="treatment-desc">
+                    {/* Treatment Description*/}
+                    <label className="form-label">
+                      <h6>
+                        Treatment Description{" "}
+                        <span className="text-danger font-weight-bold">*</span>
+                      </h6>
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="reason"
+                      rows="5"
+                      placeholder="Write treatment details"
+                      onChange={(e) => {
+                        getTreatDesc(e.target.value);
+                      }}
+                      required
+                    ></textarea>
                   </div>
                 </div>
-                <div className="row procedure-row">
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Endodontic Treatment</div>
-                    <div className="divider procedure-div"></div>
-
-                      {endodonticOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Endodontic")}
-                          />
-                        </div>
-                      ))}
-
-                  </div>
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Prosthetic Procedures</div>
-                    <div className="divider procedure-div"></div>
-
-                      {prostheticOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Prosthetic")}
-                          />
-                        </div>
-                      ))}
-
-                  </div>
-                  <div className="col-lg-4 col-xl-4 col-md-6">
-                    <div className="procedure-label">Surgical Procedure</div>
-                    <div className="divider procedure-div"></div>
-
-                      {surgicalOptions.map((item, index) => (
-                        <div key={index} className="mb-3">
-                          <Form.Check
-                            value={JSON.stringify([item])}
-                            id={[item]}
-                            type="checkbox"
-                            label={`${item.procedure}`}
-                            onClick={handleChangeCheckbox("Surgical")}
-                          />
-                        </div>
-                      ))}
-
-                  </div>
+                <div className="col-lg-6 col-xl-6 col-md-6 treatment-files">
+                  <h6>Treatment File Attatchments (Xrays, etc)</h6>
+                  <DropFileInput
+                    onFileChange={(files) => onFileChange(files)}
+                  />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        {/* summary of treatment */}
-        <div class="col-xl-auto col-md-auto col-lg-auto">
-          <div className="card dental-record-form">
-            <div className="card-body pt-3">
-              <h5 className="card-title">Summary of Treatment</h5>
-              <div className="divider"></div>
-              <div class="row">
-                <div className="col-3">
-                  <h6>Selected Tooth/Teeth</h6>
-                  {chartedTeeth.map((item) => (
-                    <p>{item}</p>
+            {/* Dental Teeth Chart */}
+            <div className="container dental-chart-container">
+              <div className="row">
+                <h4>Dental Record</h4>
+                <DentalChart handleClickTeeth={handleClickTeeth} />
+              </div>
+            </div>
+            {/* Procedure */}
+            <div className="container procedure-container">
+              <div className="row procedure-row">
+                <h6>Procedure</h6>
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">
+                    General Dentistry Services
+                  </div>
+                  <div className="divider procedure-div"></div>
+
+                  {generalOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("General")}
+                        required
+                      />
+                    </div>
                   ))}
                 </div>
-                <div className="col-3">
-                  <h6>Date of Treatment</h6>
-                  <p>
-                    {JSON.stringify(startDate)
-                      .replace(/"/g, "")
-                      .substring(0, 10)}
-                  </p>
-                </div>
-                <div className="col-3">
-                  <h6>Treatment Description</h6>
-                  <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
-                </div>
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">Cosmetic Restoration</div>
+                  <div className="divider procedure-div"></div>
 
-                <div className="col-3">
-                  <h6>Procedure/s</h6>
-                  {checked.map((item) =>
-                    item.chosen != null
-                      ? item.chosen.map((proc) => <p>{proc.procedure}</p>)
-                      : null
-                  )}
+                  {cosmeticOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("Cosmetic")}
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div class="dental-form-buttons">
-                  <Button
-                    type="submit"
-                    class="btn btn-primary"
-                    onClick={() => {
-                      uploadDentalRecords();
-                      handleModal();
-                    }}
-                  >
-                    Create
-                  </Button>
-                  <button
-                    class="btn btn-outline-secondary"
-                    onClick={() => navigate(-1)}
-                  >
-                    Cancel
-                  </button>
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">
+                    Orthodontic Dentistry Services
+                  </div>
+                  <div className="divider procedure-div"></div>
+
+                  {orthodonticOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("Orthodontic")}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="row procedure-row">
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">Endodontic Treatment</div>
+                  <div className="divider procedure-div"></div>
+
+                  {endodonticOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("Endodontic")}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">Prosthetic Procedures</div>
+                  <div className="divider procedure-div"></div>
+
+                  {prostheticOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("Prosthetic")}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="col-lg-4 col-xl-4 col-md-6">
+                  <div className="procedure-label">Surgical Procedure</div>
+                  <div className="divider procedure-div"></div>
+
+                  {surgicalOptions.map((item, index) => (
+                    <div key={index} className="mb-3">
+                      <Form.Check
+                        value={JSON.stringify([item])}
+                        id={[item]}
+                        type="checkbox"
+                        label={`${item.procedure}`}
+                        onClick={handleChangeCheckbox("Surgical")}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      {/* summary of treatment */}
+      <div class="col-xl-auto col-md-auto col-lg-auto">
+        <div className="card dental-record-form">
+          <div className="card-body pt-3">
+            <h5 className="card-title">Summary of Treatment</h5>
+            <div className="divider"></div>
+            <div class="row">
+              <div className="col-3">
+                <h6>Selected Tooth/Teeth</h6>
+                {chartedTeeth.map((item) => (
+                  <p>{item}</p>
+                ))}
+              </div>
+              <div className="col-3">
+                <h6>Date of Treatment</h6>
+                <p>
+                  {JSON.stringify(startDate).replace(/"/g, "").substring(0, 10)}
+                </p>
+              </div>
+              <div className="col-3">
+                <h6>Treatment Description</h6>
+                <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
+              </div>
+
+              <div className="col-3">
+                <h6>Procedure/s</h6>
+                {checked.map((item) =>
+                  item.chosen != null
+                    ? item.chosen.map((proc) => <p>{proc.procedure}</p>)
+                    : null
+                )}
+              </div>
+              <div class="dental-form-buttons">
+                <Button
+                  type="submit"
+                  class="btn btn-primary"
+                  onClick={() => {
+                    uploadDentalRecords();
+                    handleModal();
+                  }}
+                >
+                  Create
+                </Button>
+                <button
+                  class="btn btn-outline-secondary"
+                  onClick={() => navigate(-1)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <Modal
         show={modalState == "show-modal"}
@@ -525,13 +537,18 @@ const CreateDentalRecord = () => {
           <Modal.Title>Dental Record Created!</Modal.Title>
         </Modal.Header>
         <Modal.Body closeButton>
-          {/* <img src={successful} alt="success image" className='success-img' /> */}
           <p className="modal-txt">You have created a dental record!</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="secondary" onClick={handleModalClose}>
             Close
+          </Button>
+          <Button
+            variant="primary"
+            href={createReceiptPatientRef(getPatientReference)}
+          >
+            Proceed to Payment
           </Button>
         </Modal.Footer>
       </Modal>
