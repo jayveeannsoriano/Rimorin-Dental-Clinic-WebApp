@@ -176,20 +176,11 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   //Radio handleChange
   const [selectedValue, setSelectedValue] = useState({});
   //const [selectedOption, setSelectedOption] = useState("");
-  
-  const handleChangeRadio = (group) => (event) => {
-    //setSelectedOption
+
+  const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
-
-    if (selectedValue[group] === event.target.value) {
-      setSelectedValue({...selectedValue, [group]: null});
-    } else {
-      setSelectedValue({...selectedValue, [group]: event.target.value});
-    }
-    
     var tempVar = totalApptTime;
-
     if (isChecked) {
       tempVar = totalApptTime + parseInt(event.target.id);
       settotalApptTime(tempVar);
@@ -197,34 +188,26 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       tempVar = totalApptTime - parseInt(event.target.id);
       settotalApptTime(tempVar);
     }
-    //Filter the checked array to find the group corresponding to the current radio button
-    var temp = checked.filter((obj) => obj.option === group)[0];
+    var tempArr = { procedure: value[0].procedure, time: value[0].time };
     setChecked((current) =>
       current.map((obj) => {
-        if (obj.option === group) {
-          //If the current radio button was checked, add its value to the chosen array
+        if (obj.option === input) {
           if (isChecked) {
-            var tempArr = {
-              procedure: value[0].procedure,
-              time: value[0].time,
-            };
-            return { ...obj, chosen: [...temp.chosen, tempArr] };
+            return { ...obj, chosen: [...obj.chosen, tempArr] };
           } else {
-            //If the current radio button was unchecked, remove its value from the chosen array
-            var newArr = temp.chosen;
+            var newArr = obj.chosen;
             var index = newArr.indexOf(event.target.value);
-            newArr.splice(index, 1);
+            newArr.splice(index, 1); // 2nd parameter means remove one item only
             return { ...obj, chosen: newArr };
           }
         }
-        //If the current group is not the target group, return it unchanged
         return obj;
       })
     );
   };
 
   const [error, setError] = useState("");
-  const [errorRadio, setRadioError] = useState("");
+  const [errorCheckBox, setCheckBoxError] = useState("");
   const Continue = (e) => {
     e.preventDefault();
     //time slot validation
@@ -238,7 +221,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       );
     }
     if (!selectedValue) {
-      setRadioError(
+      setCheckBoxError(
         <div>
           <Alert key={"danger"} variant={"danger"}>
             Please select one a treatment procedure.
@@ -250,7 +233,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
     if (startDate && timeCheck && selectedValue) {
       nextStep();
       setError("");
-      setRadioError("");
+      setCheckBoxError("");
     }
   };
 
@@ -349,7 +332,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <strong>Select Treatment Procedure</strong>{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
-
                 <div className="col-lg-4 col-xl-4 col-md-6">
                   <div className="procedure-label">
                     General Dentistry Services
@@ -357,14 +339,14 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {generalOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="General"
-                        onChange={handleChangeRadio("General")}
+                        onClick={handleChangeCheckbox("General")}
+                        required
                       />
                     </div>
                   ))}
@@ -374,14 +356,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {cosmeticOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="Cosmetic"
-                        onChange={handleChangeRadio("Cosmetic")}
+                        onClick={handleChangeCheckbox("Cosmetic")}
                       />
                     </div>
                   ))}
@@ -393,14 +374,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {orthodonticOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="Orthodontic"
-                        onChange={handleChangeRadio("Orthodontic")}
+                        onClick={handleChangeCheckbox("Orthodontic")}
                       />
                     </div>
                   ))}
@@ -412,14 +392,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {endodonticOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="Endodontic"
-                        onChange={handleChangeRadio("Endodontic")}
+                        onClick={handleChangeCheckbox("Endodontic")}
                       />
                     </div>
                   ))}
@@ -429,14 +408,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {prostheticOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="Prosthetic"
-                        onChange={handleChangeRadio("Prosthetic")}
+                        onClick={handleChangeCheckbox("Prosthetic")}
                       />
                     </div>
                   ))}
@@ -446,14 +424,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   <div className="divider procedure-div"></div>
 
                   {surgicalOptions.map((item, index) => (
-                    <div key={index} className="mb-3" id="radio">
+                    <div key={index} className="mb-3">
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
-                        type="radio"
+                        type="checkbox"
                         label={`${item.procedure}`}
-                        name="Surgical"
-                        onChange={handleChangeRadio("Surgical")}
+                        onClick={handleChangeCheckbox("Surgical")}
                       />
                     </div>
                   ))}
@@ -556,7 +533,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     <span className="text-danger font-weight-bold">*</span>
                   </label>
                 </div>
-                {errorRadio}
+                {errorCheckBox}
               </div>
 
               <div className="col-12">
