@@ -42,7 +42,7 @@ const BookingConfirm = ({values}) => {
         " at " +
         time +
         " with Dr. " +
-        values.doctor +
+        dentistDetails +
         " due to '" +
         values.consultation +
         "'. Please wait for the clinic's approval of your appointment request. Thank you!",
