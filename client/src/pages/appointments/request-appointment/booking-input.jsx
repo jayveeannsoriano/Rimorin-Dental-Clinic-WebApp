@@ -18,7 +18,7 @@ import Axios from "axios";
 //useNavigate (retains previous data)
 import { useNavigate } from "react-router-dom";
 
-const BookingInput = ({ nextStep, handleChange, values }) => {
+const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
   //user info
   try {
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -123,8 +123,10 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
           )
         : null
     );
-    console.log(totalApptTime);
   }, [checked]);
+
+  console.log(totalApptTime);
+  console.log(checked, "values");
   //time is in minutes
   const generalOptions = [
     { procedure: "CONSULTATION", time: 30 },
@@ -176,6 +178,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   //Radio handleChange
   const [selectedValue, setSelectedValue] = useState({});
   //const [selectedOption, setSelectedOption] = useState("");
+  const [isSelected, setIsSelected] = useState();
 
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
@@ -184,8 +187,10 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
     if (isChecked) {
       tempVar = totalApptTime + parseInt(event.target.id);
       settotalApptTime(tempVar);
+      !isSelected && setIsSelected(event.target.name);
     } else {
       tempVar = totalApptTime - parseInt(event.target.id);
+      setIsSelected(null);
       settotalApptTime(tempVar);
     }
     var tempArr = { procedure: value[0].procedure, time: value[0].time };
@@ -343,8 +348,11 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         onClick={handleChangeCheckbox("General")}
                         required
                       />
@@ -360,6 +368,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Cosmetic")}
@@ -378,6 +389,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Orthodontic")}
@@ -396,6 +410,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Endodontic")}
@@ -412,6 +429,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Prosthetic")}
@@ -428,6 +448,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
+                        disabled={isSelected ? isSelected !== item.procedure : false}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Surgical")}

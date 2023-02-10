@@ -13,7 +13,7 @@ class BookingMain extends Component {
         time: "",
         date: "",
         doctor: "",
-        treatmentProcedure: "",
+        treatmentProcedure: [],
     }
     
 
@@ -54,6 +54,7 @@ class BookingMain extends Component {
                     <BookingInput 
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
+                    handleCheckbox = {this.handleCheckbox}
                     values = {values}
                     />
                 )
@@ -71,6 +72,7 @@ class BookingMain extends Component {
                 return(
                     <BookingConfirm
                     nextStep = {this.nextStep}
+                    handleCheckbox = {this.handleCheckbox}
                     values = {values}
                     />
                 )
