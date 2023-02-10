@@ -25,15 +25,16 @@ export function createReceiptPatientRef(row) {
   }
   return (
     patientsRoute +
-    row.getAppNumber.substring(1) +
+    row.appNum.substring(1) +
     "&patientID=" +
-    row.getpatientID.substring(3) +
+    row.patientIDnumber.substring(3) +
     "&dateValue=" +
-    row.getDateValue +
+    row.date +
     "&ObjectID=" +
-    row.getObjectID
+    row._id
   );
 }
+console.log(createReceiptPatientRef);
 
 const SecTransactionDataTable = (patientIDNum) => {
   const StringAppNum = JSON.stringify(patientIDNum);

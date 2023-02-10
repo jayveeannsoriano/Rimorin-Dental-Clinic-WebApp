@@ -76,6 +76,7 @@ const CreateDentalRecord = () => {
     getDateValue: startDate,
     getObjectID: patientObjID,
   };
+  console.log(getPatientReference);
 
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
@@ -533,6 +534,7 @@ const CreateDentalRecord = () => {
         backdrop="static"
         keyboard={false}
       >
+        
         <Modal.Header closeButton>
           <Modal.Title>Dental Record Created!</Modal.Title>
         </Modal.Header>
@@ -544,12 +546,12 @@ const CreateDentalRecord = () => {
           <Button variant="secondary" onClick={handleModalClose}>
             Close
           </Button>
-          <Button
+          {/*<Button
             variant="primary"
             href={createReceiptPatientRef(getPatientReference)}
           >
             Proceed to Payment
-          </Button>
+          </Button>*/}
         </Modal.Footer>
       </Modal>
     </>
