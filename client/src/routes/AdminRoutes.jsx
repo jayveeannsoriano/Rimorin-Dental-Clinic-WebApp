@@ -41,7 +41,7 @@ const AdminRoute ={
             element: <CreateFollowUpAppointment />
         },
         {
-            path: '/admin/clinic-hours',
+            path: '/admin/clinic-days',
             element: <ClinicHours />
         },
         {

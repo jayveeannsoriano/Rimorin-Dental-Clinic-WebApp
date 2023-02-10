@@ -31,7 +31,7 @@ const FollowUp = (patientIDnumber,appNum,dName,dentistIDnumber) => {
   return (
     <>
       <Button className="followUp-button" variant="primary" href={FollowUpAppointmentRoute+"?patientIDValue="+PatientIDNumber.substring(3)+"&patientAppNum="+PatientPrevNum.substring(1)+"&dentistName="+dentistName+"&dentistIDnumber="+dentistIDnum.substring(3)}>
-        <i class="fa-regular fa-calendar-pen"></i>Follow Up
+        <i class="fa-regular fa-calendar-check"></i>Follow Up
       </Button>
     </>
   )
