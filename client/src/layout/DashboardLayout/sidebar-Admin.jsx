@@ -39,10 +39,10 @@ function Sidebar_Admin(){
                      <li className="nav-item">
                         <a 
                         className={"nav-link "+((window.location.href.split("/").pop()=='clinic-hours') ? 'active': 'collapsed')} 
-                        href="/admin/clinic-hours"
+                        href="/admin/clinic-days"
                         bs-toggle="collapsed">
-                        <i class="fa-regular fa-clock"></i>
-                        <span>Clinic Hours</span>
+                        <i class="bi bi-calendar-week"></i>
+                        <span>Clinic Days</span>
                         </a>
                     </li>
 

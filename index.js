@@ -496,9 +496,8 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
 });
 
 app.put("/updateClinicHours", async (req, res) => {
-  await AvailableTime.findOneAndUpdate({}, { config: req.body.clinicHours, interval:req.body.interval });
+  await AvailableTime.findOneAndUpdate({}, { config: req.body.clinicHours});
   console.log(req.body.clinicHours);
-  console.log(req.body.interval);
   console.log("Clinic Hours Updated!");
 });
 
