@@ -38,12 +38,12 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
     const CancelAppointment = async () => {
 
         console.log("Deleting " + AppNumber);
-        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
+        const response = await Axios.get('http://localhost:3001/getUserInfo',{
             params: {
                 PatientIDnumber:PatientIDnumber
             }
         })
-        await Axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsCancelled", {
+        await Axios.post("http://localhost:3001/moveToAppointmentHistoryAsCancelled", {
             patientIDnumber: PatientIDnumber, 
             userNameApp: PatientValue, 
             appNumber: AppNumber, 
@@ -52,7 +52,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             consulInput: ConsultValue, 
             getTime: TimeValue 
         })
-        Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
+        Axios.post("http://localhost:3001/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
         //add reason for cancellation
     }
     

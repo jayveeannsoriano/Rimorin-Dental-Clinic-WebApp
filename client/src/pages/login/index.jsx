@@ -17,13 +17,13 @@ export default class Login extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch("https://rimorin-dental-clinic.herokuapp.com/login-user", {
+    fetch("http://localhost:3001/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Origin": "https://rimorin-dental-clinic.herokuapp.com"
+        "Origin": "http://localhost:3001"
       },
       body: JSON.stringify({
         email,

@@ -76,7 +76,7 @@ const PatientInfoEdit = () => {
     var patientIDnumbers = patientIDnumber.replace("PT#","");
     try {
 
-      const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getUserInfo", {
+      const response = await Axios.get("http://localhost:3001/getUserInfo", {
         params: {
           PatientIDnumber: patientIDnumbers,
         }
@@ -134,7 +134,7 @@ const PatientInfoEdit = () => {
   }
 
   const updatePatientInfo = async () => {
-    await Axios.put("https://rimorin-dental-clinic.herokuapp.com/updatePatientInfo", {
+    await Axios.put("http://localhost:3001/updatePatientInfo", {
 
       ObjectID:ObjectID,
       patientIDnumber: patientIDnumber,

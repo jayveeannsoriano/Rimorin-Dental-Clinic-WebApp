@@ -42,7 +42,7 @@ const Timeslot2 = ({ GetTimeCheck, takenAppointments, chosenDate }) => {
     try {
       console.log(date);
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes",
+        "http://localhost:3001/getAvailableTimes",
         {
           params: {
             date: date,

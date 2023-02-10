@@ -3,6 +3,7 @@ import "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import Timeslot from "../../../components/timeslot.jsx";
 import { Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 //project imports
 import "../../../styles/booking.css";
@@ -18,10 +19,11 @@ import Axios from "axios";
 //useNavigate (retains previous data)
 import { useNavigate } from "react-router-dom";
 
-const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
+const BookingInput = ({ nextStep, handleChange, values }) => {
   //user info
   try {
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
+    var patientIDnumber = userInfo['patientIDnumber'];
     var getUserName = JSON.stringify(
       userInfo["fname"] + " " + userInfo["lname"]
     );
@@ -34,6 +36,7 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
   var [totalApptTime, settotalApptTime] = useState(0);
+  const [buttonMessage, setButtonMessage] = useState(true);
 
   const [chosenDate, setChosenDate] = useState("");
   console.log("DENTIST ID NUMBER", values.doctor);
@@ -43,6 +46,7 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
   window.localStorage.setItem("time", timeCheck);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
+  const [userAppointments, setUserAppointments] = useState([]);
 
   console.log("CURRENT DATE BOOKING", startDate);
   window.localStorage.setItem("date", startDate);
@@ -68,7 +72,7 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
     try {
       setChosenDate(date);
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate",
+        "http://localhost:3001/getAppointmentsbyDate",
         {
           params: {
             date: date,
@@ -86,6 +90,54 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
       console.log(error);
     }
   };
+
+  // const getAppointmenstToDisableDate = async () => {
+  //   try {
+  //     const response = await Axios.get(
+  //       "http://localhost:3001/getAppointmenstToDisableDate",
+  //       {
+  //         params: {
+  //           patientIDnumber:patientIDnumber,
+  //         },
+  //       }
+  //     );
+  //     setUserAppointments(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const appointmentStatus = userAppointments.map(function (item) {
+  //   return item.date;
+  // });
+  
+  // const [validated, setValidateValue] = useState(false)
+  // const ValidateButton = () => {
+  //   console.log(appointmentStatus)
+  //   if (appointmentStatus.includes(startDate.toString().substring(0, 15))) {
+  //     console.log("nope");
+  //     // setValidateValue(true)
+  //     // setButtonMessage(
+  //     //   <div style={{ fontSize: "12px" }}>
+  //     //     <a class="text-error">
+  //     //       <strong>
+  //     //         You already have an appointment on the choosen date. Please select another day.
+  //     //       </strong>
+  //     //     </a>
+  //     //   </div>
+  //     // );
+  //   } else {
+  //     console.log("yup");
+  //     // setValidateValue(false)
+  //     // setButtonMessage(
+  //     //   <div style={{ fontSize: "12px" }}>
+  //     //     <a class="text-success">
+  //     //       <strong> </strong>
+  //     //     </a>
+  //     //   </div>
+  //     // );
+  //   }
+  // };
+  // console.log(validated, "final value of validated");
 
   //treatment procedure radio options
   const [checked, setChecked] = useState([
@@ -114,6 +166,7 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
       chosen: [],
     },
   ]);
+
   const [dentalItem, setDentalItem] = useState([]);
   useEffect(() => {
     checked.map((item) =>
@@ -127,52 +180,55 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
 
   console.log(totalApptTime);
   console.log(checked, "values");
+
+  localStorage.setItem('totalProcedure', JSON.stringify(checked));
+
   //time is in minutes
   const generalOptions = [
-    { procedure: "CONSULTATION", time: 30 },
-    { procedure: "COMPOSITE FILLING", time: 60 },
-    { procedure: "ORAL PROPHYLAXIS", time: 60 },
-    { procedure: "TOOTH EXTRACTION", time: 90 },
-    { procedure: "TOOTH RESTORATION", time: 90 },
-    { procedure: "PTS AND FISSURES SEALANT", time: 60 },
-    { procedure: "FLOURIDE TREATMENT", time: 90 },
-    { procedure: "INTERMEDIATE RESTORATION", time: 120 },
+    { procedure: "CONSULTATION", time: 30 ,price: 300},
+    { procedure: "COMPOSITE FILLING", time: 60, price: 700 },
+    { procedure: "ORAL PROPHYLAXIS", time: 60, price: 1000 },
+    { procedure: "TOOTH EXTRACTION", time: 90 , price: 800 },
+    { procedure: "TOOTH RESTORATION", time: 90 , price: 1200 },
+    { procedure: "PTS AND FISSURES SEALANT", time: 60 , price: 700},
+    { procedure: "FLOURIDE TREATMENT", time: 90 , price: 5500},
+    { procedure: "INTERMEDIATE RESTORATION", time: 120 , price: 7000},
   ];
   const cosmeticOptions = [
-    { procedure: "GLASS IONOMER", time: 60 },
-    { procedure: "DIRECT COMPOSITE VENEER", time: 60 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180 },
+    { procedure: "GLASS IONOMER", time: 60 , price: 11000},
+    { procedure: "DIRECT COMPOSITE VENEER", time: 60 , price: 3000},
+    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60 , price: 2000},
+    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90 , price: 1000},
+    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180 , price: 20000 },
   ];
   const orthodonticOptions = [
-    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90 },
-    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90 },
-    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180 },
-    { procedure: "RETAINER (BOTH ARCH'S)", time: 90 },
+    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90 , price: 45000 },
+    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90 , price: 52000 },
+    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180 , price: 95000},
+    { procedure: "RETAINER (BOTH ARCH'S)", time: 90 , price: 8000},
   ];
   const endodonticOptions = [
-    { procedure: "ROOT CANAL THERAPY", time: 90 },
-    { procedure: "PULPOTOMY", time: 60 },
-    { procedure: "POST AND CORE", time: 60 },
-    { procedure: "DEEP SCALING", time: 120 },
+    { procedure: "ROOT CANAL THERAPY", time: 90 , price: 4400 },
+    { procedure: "PULPOTOMY", time: 60 , price: 5300},
+    { procedure: "POST AND CORE", time: 60 , price: 6200},
+    { procedure: "DEEP SCALING", time: 120 , price: 10200},
   ];
   const prostheticOptions = [
-    { procedure: "DENTAL REPAIR", time: 60 },
-    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60 },
-    { procedure: "DENTURE RELINE (DIRECT)", time: 60 },
-    { procedure: "SOFT RELINE", time: 60 },
-    { procedure: "DENTURE REPLACEMENT", time: 90 },
-    { procedure: "FULL DENTURE PLASTIC", time: 90 },
-    { procedure: "FULL DENTURE PORCELAIN", time: 90 },
+    { procedure: "DENTAL REPAIR", time: 60 , price: 12000},
+    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60 , price: 35000},
+    { procedure: "DENTURE RELINE (DIRECT)", time: 60 , price: 30000 },
+    { procedure: "SOFT RELINE", time: 60 , price: 16000 },
+    { procedure: "DENTURE REPLACEMENT", time: 90 , price: 15000},
+    { procedure: "FULL DENTURE PLASTIC", time: 90 , price: 7500},
+    { procedure: "FULL DENTURE PORCELAIN", time: 90 , price: 15000},
   ];
   const surgicalOptions = [
-    { procedure: "ODONTECTOMY", time: 60 },
-    { procedure: "OPERCULECTOMY", time: 90 },
-    { procedure: "FRENECTOMY", time: 60 },
-    { procedure: "ALVEOLECTOMY", time: 60 },
-    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60 },
-    { procedure: "APICOECTOMY", time: 90 },
+    { procedure: "ODONTECTOMY", time: 60 , price: 5000},
+    { procedure: "OPERCULECTOMY", time: 90 , price: 5000},
+    { procedure: "FRENECTOMY", time: 60 , price: 5200},
+    { procedure: "ALVEOLECTOMY", time: 60 , price: 8300},
+    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60 , price: 5000},
+    { procedure: "APICOECTOMY", time: 90 , price: 8500},
   ];
 
   //Radio handleChange
@@ -193,7 +249,7 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
       setIsSelected(null);
       settotalApptTime(tempVar);
     }
-    var tempArr = { procedure: value[0].procedure, time: value[0].time };
+    var tempArr = { procedure: value[0].procedure, time: value[0].time, price: value[0].price };
     setChecked((current) =>
       current.map((obj) => {
         if (obj.option === input) {
@@ -247,13 +303,17 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
     getAppointmenstbyDate(initialDate.toString().substring(0, 15));
   }, []);
 
+  // useEffect(() => {
+  //   getAppointmenstToDisableDate();
+  // }, []);
+
   //Select Dentist
   const [dentistInfo, setDentistInfo] = useState([]);
   const [dentistIDnum, setDentistIDnumber] = useState("");
 
   const getDentistInfo = async () => {
     try {
-      const responses = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getDentistInfo");
+      const responses = await Axios.get("http://localhost:3001/getDentistInfo");
       console.log(responses.data);
       setDentistInfo(responses.data);
     } catch (error) {
@@ -264,6 +324,8 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
   useEffect(() => {
     getDentistInfo();
   }, []);
+
+
 
   return (
     <>
@@ -353,7 +415,9 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
                         type="checkbox"
                         label={`${item.procedure}`}
                         disabled={isSelected ? isSelected !== item.procedure : false}
-                        onClick={handleChangeCheckbox("General")}
+                        onClick={ 
+                        handleChangeCheckbox("General")
+                      }
                         required
                       />
                     </div>
@@ -568,9 +632,11 @@ const BookingInput = ({ nextStep, handleChange,handleCheckbox, values }) => {
                   >
                     Cancel
                   </button>
-                  <button className="btn btn-primary" type="submit">
+                  {/* <ValidateButton/> */}
+                  <Button className="btn btn-primary" type="submit">
                     Next
-                  </button>
+                  </Button>
+                  {/* {buttonMessage} */}
                 </div>
               </div>
             </form>

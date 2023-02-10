@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import 'react-bootstrap';
 
 import BookingInput from './booking-input';
@@ -13,7 +13,30 @@ class BookingMain extends Component {
         time: "",
         date: "",
         doctor: "",
-        treatmentProcedure: [],
+        treatmentProcedure: [{
+            option: "General",
+            chosen: [],
+          },
+          {
+            option: "Cosmetic",
+            chosen: [],
+          },
+          {
+            option: "Orthodontics",
+            chosen: [],
+          },
+          {
+            option: "Endodontic",
+            chosen: [],
+          },
+          {
+            option: "Prosthetic",
+            chosen: [],
+          },
+          {
+            option: "Surgical",
+            chosen: [],
+          },],
     }
     
 
@@ -43,6 +66,47 @@ class BookingMain extends Component {
         });
     }
 
+    /////////-------------------------
+
+
+    // handleChangeCheckbox = (input) => (event) => {
+    //     var [totalApptTime, settotalApptTime] = useState(0);
+    //     var value = JSON.parse(event.target.value);
+    //     var isChecked = event.target.checked;
+    //     var tempVar = totalApptTime;
+    //     const [isSelected, setIsSelected] = useState();
+
+    //     let {  treatmentProcedure } = this.state;
+    //     console.log(treatmentProcedure, "ashkdbgahjsbd")
+
+    //     if (isChecked) {
+    //       tempVar = totalApptTime + parseInt(event.target.id);
+    //       settotalApptTime(tempVar);
+    //       !isSelected && setIsSelected(event.target.name);
+    //     } else {
+    //       tempVar = totalApptTime - parseInt(event.target.id);
+    //       setIsSelected(null);
+    //       settotalApptTime(tempVar);
+    //     }
+    //     var tempArr = { procedure: value[0].procedure, time: value[0].time };
+    //     treatmentProcedure((current) =>
+    //       current.map((obj) => {
+    //         if (obj.option === input) {
+    //           if (isChecked) {
+    //             return { ...obj, chosen: [...obj.chosen, tempArr] };
+    //           } else {
+    //             var newArr = obj.chosen;
+    //             var index = newArr.indexOf(event.target.value);
+    //             newArr.splice(index, 1); // 2nd parameter means remove one item only
+    //             return { ...obj, chosen: newArr };
+    //           }
+    //         }
+    //         return obj;
+    //       })
+    //     );
+    //   };
+
+
     render(){
         const {step} = this.state;
         const {doctor,time,date,treatmentProcedure} = this.state;
@@ -54,7 +118,6 @@ class BookingMain extends Component {
                     <BookingInput 
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
-                    handleCheckbox = {this.handleCheckbox}
                     values = {values}
                     />
                 )

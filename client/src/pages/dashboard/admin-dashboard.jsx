@@ -38,7 +38,7 @@ import { Form } from "react-bootstrap";
   
     const getDentistInfo = async () => {
       try {
-          const responses = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getDentistInfo');
+          const responses = await Axios.get('http://localhost:3001/getDentistInfo');
           console.log(responses.data);
           setDentistInfo(responses.data);
       } catch (error) {
@@ -178,7 +178,7 @@ import { Form } from "react-bootstrap";
   
     const getTotalPatients = async() => {
       try{
-          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPatients');
+          let resp = await Axios.get('http://localhost:3001/getTotalPatients');
           setTotalPatients(resp.data);
       }catch (error){
           console.log(error)
@@ -187,7 +187,7 @@ import { Form } from "react-bootstrap";
   
     const getTotalAppts = async() => {
       try{
-          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalAppts');
+          let resp = await Axios.get('http://localhost:3001/getTotalAppts');
           console.log(resp);
           setTotalAppts(resp.data);
       }catch (error){
@@ -197,7 +197,7 @@ import { Form } from "react-bootstrap";
   
     const getTotalPendingAppts = async() => {
       try{
-          let resp = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getTotalPendingApp');
+          let resp = await Axios.get('http://localhost:3001/getTotalPendingApp');
           setTotalPendingAppts(resp.data);
       }catch (error){
           console.log(error)

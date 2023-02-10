@@ -260,16 +260,14 @@ app.post("/insertAppointment", async (req, res) => {
   const startDate = req.body.startDate;
   const slidedDate = startDate.substring(0, 15);
 
-  //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput);
-
   //time value
   const getTime = req.body.getTime;
   console.log(getTime);
 
   const formattedDate = req.body.formattedDate;
   console.log(formattedDate);
+
+  const proceduresData = req.body.procedures;
 
   //appt status default when creating an appointment
   const insertAppStatus = "Pending";
@@ -283,7 +281,7 @@ app.post("/insertAppointment", async (req, res) => {
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
-    consultation: consulInput,
+    procedures: proceduresData,
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
@@ -296,7 +294,7 @@ app.post("/insertAppointment", async (req, res) => {
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
-    consultation: consulInput,
+    procedures: proceduresData,
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
@@ -790,6 +788,18 @@ app.get("/getOngoingUserAppointment", async (req, res) => {
     patientIDnumber: patientIDNumber,
     appStatus: "Accepted",
   })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+});
+
+app.get("/getAppointmenstToDisableDate", async (req, res) => {
+  const patientIDNumber = req.query.patientIDnumber;
+
+  await AppDetails.find({patientIDnumber: patientIDNumber})
     .then((data) => {
       res.json(data);
     })
@@ -2674,7 +2684,7 @@ app.post("/forgot-password", async (req, res) => {
       const token = jwt.sign({ email: oldUser.email }, secret, {
         expiresIn: "5m",
       });
-      const link = `https://rimorin-dental-clinic.herokuapp.com/auth/reset-password?email=${email}`;
+      const link = `http://localhost:3001/auth/reset-password?email=${email}`;
       sgMail.setApiKey(
         "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"
       );

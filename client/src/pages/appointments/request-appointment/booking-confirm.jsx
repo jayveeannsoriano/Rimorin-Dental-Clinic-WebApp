@@ -12,6 +12,8 @@ const BookingConfirm = ({values}) => {
     var getUserName = JSON.stringify(userInfo['fname'] + " " + userInfo['lname'])
     const userNameApp = JSON.parse(getUserName)
     const patientIDnumber = userInfo['patientIDnumber'];
+    var retrievedObject = localStorage.getItem('totalProcedure');
+    var totalProcedures = JSON.parse(retrievedObject)
     var formattedDate = window.localStorage.getItem('formattedDate');
     console.log(values);
   
@@ -19,7 +21,7 @@ const BookingConfirm = ({values}) => {
 
     //insert data
     Axios.post(
-      "https://rimorin-dental-clinic.herokuapp.com/insertAppointment",
+      "http://localhost:3001/insertAppointment",
       {
         patientIDnumber: patientIDnumber,
         userNameApp: userNameApp,
@@ -29,10 +31,11 @@ const BookingConfirm = ({values}) => {
         docIDnum: values.doctor,
         consulInput: values.consultation,
         getTime: time,
+        procedures: totalProcedures,
         recep: userInfo["email"],
       }
     );
-    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
+    Axios.post("http://localhost:3001/sendSMS", {
       phone: userInfo["mobile"],
       message:
         "Hi " +

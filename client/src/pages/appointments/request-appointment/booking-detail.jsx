@@ -6,18 +6,39 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
   const [dentistDetails, setDentistDetails] = useState();
   console.log("DENTIST ID NUMBER", values.doctor);
 
+  var retrievedObject = localStorage.getItem('totalProcedure');
+
+  var totalProcedures = JSON.parse(retrievedObject)
+
+  const [dentalItem, setDentalItem] = useState([]);
+  // const [dentPrice, setDentalPrice] = useState([]);
+
+  useEffect(() => {
+    const price = totalProcedures.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              // setDentalPrice((current) => [...current, parseInt(proc.price)]),
+              setDentalItem((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
+
+
+
   window.localStorage.setItem("doctorName", dentistDetails);
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getDentistIDdetails",
+        "http://localhost:3001/getDentistIDdetails",
         {
           params: {
             ObjectID: values.doctor,
           },
         }
       );
-      console.log(responses.data, "ashjdgashjdgahsgdjhasgdhj");
       console.log(
         responses.data[0].fname +
           " " +
@@ -124,7 +145,12 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
                 window.localStorage.getItem("time")}
               <br />
               <h2>Treatment Procedure</h2>
-              {values.consultation}
+              {dentalItem.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                        <td>{item.price}</td>
+                      </tr>
+                    ))}
             </div>
 
             <div className="divider"></div>
