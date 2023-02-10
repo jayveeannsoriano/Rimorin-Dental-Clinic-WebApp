@@ -127,10 +127,6 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
 
                     <h2>Patient ID:</h2>
                     <h3>PT#{StringfyPatientID}</h3>
-
-                    <h2>Reason for Consultation:</h2>
-                    {/* map previous reasonForFollowUp value of patient */}
-                    <h3>{values.consulation}</h3>
                   </div>
                 </div>
 
@@ -158,8 +154,7 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
                       window.localStorage.getItem("time")}
                     <h2>Treatment Procedures</h2>
                     {/* map selected treatment procedures */}
-                    <h2>Reason for Follow-Up Appointment</h2>
-                    {values.reasonForFollowUp}
+                    <h3>{values.consulation}</h3>
                   </div>
                 </div>
               </div>
