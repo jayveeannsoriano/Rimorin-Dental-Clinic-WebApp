@@ -7,7 +7,6 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
   console.log("DENTIST ID NUMBER", values.doctor);
 
   window.localStorage.setItem("doctorName", dentistDetails);
-
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
@@ -19,8 +18,20 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
         }
       );
       console.log(responses.data, "ashjdgashjdgahsgdjhasgdhj");
-      console.log(responses.data[0].fname + " " + responses.data[0].mname + " " + responses.data[0].lname);
-      setDentistDetails(responses.data[0].fname + " " + responses.data[0].mname + " " + responses.data[0].lname);
+      console.log(
+        responses.data[0].fname +
+          " " +
+          responses.data[0].mname +
+          " " +
+          responses.data[0].lname
+      );
+      setDentistDetails(
+        responses.data[0].fname +
+          " " +
+          responses.data[0].mname +
+          " " +
+          responses.data[0].lname
+      );
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +114,7 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
             <div className="appointment-info">
               <h1>APPOINTMENT INFORMATION</h1>
               <h2>Doctor's Name</h2>
-               Dr. {dentistDetails}
+              Dr. {dentistDetails}
               <br />
               <h2>Date of Appointment</h2>
               {JSON.stringify(window.localStorage.getItem("date"))
