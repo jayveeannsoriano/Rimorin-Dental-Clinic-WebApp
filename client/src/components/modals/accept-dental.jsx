@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import '../../styles/accounts.css';
 import successful from '../../assets/img/check.png';
 import Modal from 'react-bootstrap/Modal';
 
-function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation) {
-  console.log("ACCEPT DENTAL:",dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation)
+function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time,procedures) {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false)
@@ -19,7 +18,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   //   dentistIDnumber = "DT#000SC"
   // }
   //Get values 
-  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time, consultation);
+  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate,time,procedures);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   //values
   const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g, "");
@@ -29,7 +28,22 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g, "");
   const FormattedDateValue = JSON.stringify(ConvertStringfyValues.formattedDate).replace(/"/g, "");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
-  const ConsultValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g, "");
+  const proceduresValue = ConvertStringfyValues.procedures;
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
+
+
   if (JSON.stringify(ConvertStringfyValues.dentistIDnumber) == undefined){
     console.log("THIS IS SEC")
      var dentistNumber = "SC#000XX"
@@ -54,7 +68,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         dentistValue: DentistValue,
         formattedDate: FormattedDateValue,
         dateValue: DateValue,
-        consulInput: ConsultValue,
+        procedures:procValue,
         getTime: TimeValue,
       }
     );
@@ -70,7 +84,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         " with Dr. " +
         DentistValue +
         " due to '" +
-        ConsultValue +
+
         "' has been accepted. Patients are expected to arrive 15 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!",
     });
 

@@ -64,7 +64,7 @@ const DashboardTableAppHistory = () => {
             name: "Action",
             selector: row => 
             <div className="action-buttons">
-                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} consultation={row.consultation}/>
+                < ApptDetails pName = {row.pName} appNum = {row.appNum} date = {row.date} time ={row.time} appStats = {row.appStatus} procedures={row.procedures}/>
             </div>
         },
     ];

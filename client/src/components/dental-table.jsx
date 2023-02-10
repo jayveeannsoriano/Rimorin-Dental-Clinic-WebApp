@@ -82,7 +82,7 @@ const DashboardTable = () => {
                 dName={row.dName}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
               <DentistRescheduleAppointment
                 dentistIDnumber={row.dentistIDnumber}
@@ -97,7 +97,7 @@ const DashboardTable = () => {
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
             </>
           ) : row.appStatus == "Arrived" ? (
@@ -109,7 +109,7 @@ const DashboardTable = () => {
                 dName={row.dName}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
               <ApptDetails
                 pName={row.pName}
@@ -117,7 +117,7 @@ const DashboardTable = () => {
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
             </>
           ) : row.appStatus == "Rescheduled" ? (
@@ -127,7 +127,7 @@ const DashboardTable = () => {
               date={row.date}
               time={row.time}
               appStats={row.appStatus}
-              consultation={row.consultation}
+              procedures={row.procedures}
             />
           ) : row.appStatus == "Follow-Up" ? (
             <ApptDetailsFollowUp
@@ -136,7 +136,7 @@ const DashboardTable = () => {
               date={row.date}
               time={row.time}
               appStats={row.appStatus}
-              consultation={row.consultation}
+              procedures={row.procedures}
             />
           ) : (
             <>
@@ -152,7 +152,7 @@ const DashboardTable = () => {
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
             </>
           )}

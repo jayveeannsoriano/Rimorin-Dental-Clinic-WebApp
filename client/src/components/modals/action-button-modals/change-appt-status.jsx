@@ -1,53 +1,75 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import Axios from 'axios';
-import '../../../styles/modals.css'
-import '../../../styles/accounts.css';
-import successful from '../../../assets/img/check.png';
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import Axios from "axios";
+import "../../../styles/modals.css";
+import "../../../styles/accounts.css";
+import successful from "../../../assets/img/check.png";
 
-
-function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation) {
+function rebook(patientIDnumber, appNum, pName, dName, date, time, procedures) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleModalClose = () => setShow(false);
   const [selectValue, setSelectedValue] = useState();
 
-
-  //selected values modal 
+  //selected values modal
   const [modalState, setModalState] = useState(false);
   const handleModalRefreshOnClose = () => {
     setModalState(false);
     window.location.reload();
-  }
+  };
 
   //no show modal
   const handleNoShow = () => {
-    setModalState('no-show-modal')
-  }
+    setModalState("no-show-modal");
+  };
 
   //finished modal
   const handleFinished = () => {
-    setModalState('finished-modal')
-  }
+    setModalState("finished-modal");
+  };
 
   //arrived modal
   const handleArrived = () => {
-    setModalState('arrived-modal')
-  }
+    setModalState("arrived-modal");
+  };
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(patientIDnumber, appNum, pName, dName, date, time, consultation);
+  const StringAppNum = JSON.stringify(
+    patientIDnumber,
+    appNum,
+    pName,
+    dName,
+    date,
+    time,
+    procedures,
+  );
   const ConvertStringApp = JSON.parse(StringAppNum);
-  const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g, "");
+  const PatientIDNumber = JSON.stringify(
+    ConvertStringApp.patientIDnumber
+  ).replace(/"/g, "");
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
   const patientValue = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
   const dentistValue = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
   const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g, "");
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g, "");
-  const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g, "");
   const passAppNumber = AppNumber.substring(1);
+  const proceduresValue = ConvertStringApp.procedures;
+  console.log(proceduresValue);
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   const newStatus = () => {
     console.log("Updating " + AppNumber);
@@ -55,20 +77,20 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
 
     Axios.put("http://localhost:3001/updateStatus", {
       appNum: AppNumber,
-      newAppStatus: selectValue
+      newAppStatus: selectValue,
     });
 
     if (selectValue == "Arrived") {
       handleArrived();
     } else {
-      console.log("Receipt not created")
+      console.log("Receipt not created");
     }
 
     if (selectValue == "Finished") {
       handleFinished();
-      console.log("Receipt Created with ", appNum, pName)
+      console.log("Receipt Created with ", appNum, pName);
     } else {
-      console.log("Receipt not created")
+      console.log("Receipt not created");
     }
 
     if (selectValue == "No Show") {
@@ -80,15 +102,15 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
         dName: dentistValue,
         date: dateValue,
         time: timeValue,
-        consultation: consultationValue
-      })
-      console.log("Moving ", appNum, pName, " to Appointment History")
+        procedures: proceduresValue,
+      });
+      console.log("Moving ", appNum, pName, " to Appointment History");
     } else {
-      console.log("Receipt not created")
+      console.log("Receipt not created");
     }
 
     handleModalClose();
-  }
+  };
 
   return (
     <>
@@ -120,30 +142,38 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
             </div>
             <div class="row">
               <div class="col modal-label">Date & Time:</div>
-              <div class="col modal-values">{dateValue} | {timeValue}</div>
+              <div class="col modal-values">
+                {dateValue} | {timeValue}
+              </div>
             </div>
             <div class="row">
               <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">{consultationValue}</div>
+              <div class="col modal-values">
+                {procValue.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.procedure}</td>
+                  </tr>
+                ))}
+              </div>
             </div>
           </div>
           <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleFormControlSelect1"
-            >
+            <Form.Group className="mb-3" controlId="exampleFormControlSelect1">
               <Form.Label>Appointment Status</Form.Label>
-              <Form.Select value={selectValue} onChange={e => setSelectedValue(e.target.value)}>
-                <option value="" selected disabled>--Select Appointment Status--</option>
+              <Form.Select
+                value={selectValue}
+                onChange={(e) => setSelectedValue(e.target.value)}
+              >
+                <option value="" selected disabled>
+                  --Select Appointment Status--
+                </option>
                 <option onClick={handleFinished}> Finished</option>
                 <option onClick={handleArrived}>Arrived</option>
                 <option onClick={handleNoShow}>No Show</option>
               </Form.Select>
             </Form.Group>
           </Form>
-
         </Modal.Body>
-
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
@@ -156,15 +186,19 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
       </Modal>
 
       {/* No Show Modal */}
-      <Modal show={modalState == 'no-show-modal'} onHide={handleModalRefreshOnClose}>
-
+      <Modal
+        show={modalState == "no-show-modal"}
+        onHide={handleModalRefreshOnClose}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{AppNumber} status changed to No Show</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully changed the appointment status of {AppNumber}!</p>
+          <img src={successful} alt="success image" className="success-img" />
+          <p className="modal-txt">
+            You have succesfully changed the appointment status of {AppNumber}!
+          </p>
         </Modal.Body>
 
         <Modal.Footer>
@@ -172,37 +206,54 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
             Close
           </Button>
         </Modal.Footer>
-
       </Modal>
 
       {/* Appointment Finished Modal */}
-      <Modal show={modalState == 'finished-modal'} onHide={handleModalRefreshOnClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={modalState == "finished-modal"}
+        onHide={handleModalRefreshOnClose}
+        backdrop="static"
+        keyboard={false}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{AppNumber} status changed to Finished</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully changed the appointment status of {AppNumber}!</p>
+          <img src={successful} alt="success image" className="success-img" />
+          <p className="modal-txt">
+            You have succesfully changed the appointment status of {AppNumber}!
+          </p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalRefreshOnClose} href={'/dentist/patient-records/dental-record/create-dental-record?appNum=' + passAppNumber}>
+          <Button
+            variant="primary"
+            onClick={handleModalRefreshOnClose}
+            href={
+              "/dentist/patient-records/dental-record/create-dental-record?appNum=" +
+              passAppNumber
+            }
+          >
             Proceed to Dental Records
           </Button>
         </Modal.Footer>
       </Modal>
 
       {/* Appointment Arrived Modal */}
-      <Modal show={modalState == 'arrived-modal'} onHide={handleModalRefreshOnClose}>
-
+      <Modal
+        show={modalState == "arrived-modal"}
+        onHide={handleModalRefreshOnClose}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{AppNumber} status changed to Arrived</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <img src={successful} alt="success image" className='success-img' />
-          <p className='modal-txt'>You have succesfully changed the appointment status of {AppNumber}!</p>
+          <img src={successful} alt="success image" className="success-img" />
+          <p className="modal-txt">
+            You have succesfully changed the appointment status of {AppNumber}!
+          </p>
         </Modal.Body>
 
         <Modal.Footer>
@@ -210,9 +261,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, consultation)
             Close
           </Button>
         </Modal.Footer>
-
       </Modal>
-
     </>
   );
 }

@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../styles/modals.css';
 
-function ApptDetailsFollowUp(pName,consultation,appNum,date,time,appStats) {
+function ApptDetailsFollowUp(pName,appNum,date,time,appStats) {
   const [modalState, setModalState] = useState('close');
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
   }
   //Get values 
-  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats,consultation);
+  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   const PatientNameValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
@@ -56,7 +56,7 @@ function ApptDetailsFollowUp(pName,consultation,appNum,date,time,appStats) {
             </div>
             <div class="row">
               <div class="col modal-label">Reason for Follow-Up:</div>
-              <div class="col modal-values">{ConsulValue}</div>
+              <div class="col modal-values"></div>
             </div>
             <div class="row">
               <div className="col modal-label">Appointment Status:</div>

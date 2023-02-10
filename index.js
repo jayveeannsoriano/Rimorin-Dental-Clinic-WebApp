@@ -1954,9 +1954,7 @@ app.post("/acceptAppointment", async (req, res) => {
 
   const formattedDate = req.body.formattedDate;
 
-  //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput);
+  const procValue = req.body.procedures;
 
   //time value
   const getTime = req.body.getTime;
@@ -1975,7 +1973,7 @@ app.post("/acceptAppointment", async (req, res) => {
     appNum: appNumber,
     date: slicedDate,
     formattedDate: formattedDate,
-    consultation: consulInput,
+    procedures:procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2493,8 +2491,7 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-  const consulInput = req.body.consultation;
-  console.log(consulInput);
+const procValue = req.body.procedures;
 
   //time value
   const getTime = req.body.time;
@@ -2511,7 +2508,7 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req, res) => {
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    consultation: consulInput,
+    procedures:procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2554,8 +2551,7 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-  const consulInput = req.body.conValue;
-  console.log(consulInput);
+  const procValue = req.body.procedures;
 
   const formattedDate = req.body.formattedDate;
 
@@ -2575,7 +2571,7 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
     appNum: appNumber,
     date: dateValue,
     formattedDate: formattedDate,
-    consultation: consulInput,
+    procedures:procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2616,7 +2612,7 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-  const consulInput = req.body.consultation;
+  const procValue = req.body.procedures;
   console.log(consulInput);
 
   //time value
@@ -2636,7 +2632,7 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    consultation: consulInput,
+    procedures: procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });

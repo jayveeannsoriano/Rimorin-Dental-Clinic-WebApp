@@ -92,7 +92,7 @@ const FollowUpTable = () => {
               date={row.date}
               time={row.time}
               appStats={row.appStatus}
-              consultation={row.consultation}
+              procedures={row.procedures}
             />
           ) : row.appStatus == "Follow-Up" ? (
             <>
@@ -107,7 +107,7 @@ const FollowUpTable = () => {
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
             </>
           ) : (
@@ -118,7 +118,7 @@ const FollowUpTable = () => {
               date={row.date}
               time={row.time}
               appStats={row.appStatus}
-              consultation={row.consultation}
+              procedures={row.procedures}
             />
           )}
         </div>

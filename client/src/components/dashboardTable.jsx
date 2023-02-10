@@ -83,6 +83,7 @@ const DashboardTable = () => {
               pName={row.pName}
               dName={row.dName}
               appNum={row.appNum}
+              procedures={row.procedures}
               />
             <CancelAppointment appNum={row.appNum} />
           </>
@@ -93,7 +94,8 @@ const DashboardTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            procedures={row.procedures}
+            />
 
           ) : row.appStatus == "Follow-Up" ? (
             <ApptDetailsFollowUp
@@ -102,7 +104,8 @@ const DashboardTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            procedures={row.procedures}
+            />
           ) : (
           <ApptPatientDetails
             dName={row.dName}
@@ -111,7 +114,8 @@ const DashboardTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation} />
+            procedures={row.procedures}
+            />
             )
           }
         </div>

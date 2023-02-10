@@ -3,21 +3,21 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../styles/modals.css';
 
-function ApptDetailsResched(pName,consultation,appNum,date,time,appStats) {
+function ApptDetailsResched(pName,appNum,date,time,appStats,procedures) {
   const [modalState, setModalState] = useState('close');
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
   }
   //Get values 
-  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats,consultation);
+  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   const PatientNameValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g,"");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g,"");
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
-  const ConsulValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g,"");
+  
   
 
   return (
@@ -55,12 +55,19 @@ function ApptDetailsResched(pName,consultation,appNum,date,time,appStats) {
               <div class="col modal-values">{DateValue} | {TimeValue}</div>
             </div>
             <div class="row">
-              <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">{ConsulValue}</div>
+              <div class="col modal-label">Procedures Selected:</div>
+              {procedures.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                        <td style={{ textAlign: "center" }}>1</td>
+                        <td>{item.price}</td>
+                      </tr>
+                    ))}
+              <div class="col modal-values"></div>
             </div>
             <div class="row">
               <div class="col modal-label">Reason for Reschedule:</div>
-              <div class="col modal-values">{ConsulValue}</div>
+              <div class="col modal-values"></div>
             </div>
             <div class="row">
               <div className="col modal-label">Appointment Status:</div>

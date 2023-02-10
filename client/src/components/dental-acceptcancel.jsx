@@ -28,7 +28,7 @@ const AcceptCancel = () => {
           }
         }
       );
-      console.log(responses);
+      console.log('response.data:',responses.data);
       setAppointment(responses.data);
       setFilteredAppointment(responses.data);
     } catch (error) {
@@ -72,7 +72,7 @@ const AcceptCancel = () => {
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
               <CancelDental
                 patientIDnumber={row.patientIDnumber}
@@ -81,15 +81,15 @@ const AcceptCancel = () => {
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
               <ApptDetails
                 pName={row.pName}
-                consultation={row.consultation}
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
+                procedures={row.procedures}
               />
             </>
           ) : (
@@ -103,7 +103,7 @@ const AcceptCancel = () => {
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
               <CancelDental
                 patientIDnumber={row.patientIDnumber}
@@ -112,7 +112,8 @@ const AcceptCancel = () => {
                 appNum={row.appNum}
                 date={row.date}
                 time={row.time}
-                consultation={row.consultation}
+                procedures={row.procedures}
+        
               />
               <ApptDetailsResched
                 pName={row.pName}
@@ -120,7 +121,7 @@ const AcceptCancel = () => {
                 date={row.date}
                 time={row.time}
                 appStats={row.appStatus}
-                consultation={row.consultation}
+                procedures={row.procedures}
               />
             </>
           )}

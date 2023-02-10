@@ -46,7 +46,7 @@ appointment.map(function (item) {
             dName: item.dName,
             date: item.date,
             time: item.time,
-            consultation: item.consultation,
+            procedures: item.procedures,
             objectID: item._id
           })
           console.log("Moving ", item.appNum, item.pName, " to Appointment History")
@@ -116,7 +116,8 @@ appointment.map(function (item) {
               date={row.date}
               time={row.time}
               appStats={row.appStatus}
-              consultation={row.consultation}/>
+              procedures={row.procedures}
+              />
             </>
 
           ) : row.appStatus == "Arrived" ? (
@@ -127,7 +128,8 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/> 
+            procedures={row.procedures}
+           /> 
 
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched
@@ -136,7 +138,7 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            />
 
           ) : row.appStatus == "Follow-Up" ? (
             <ApptDetailsFollowUp
@@ -145,7 +147,7 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            />
           ) : (
             <ApptPatientDetails
             dName={row.dName}
@@ -154,7 +156,8 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/> 
+            procedures={row.procedures}
+            /> 
             )
           }
         </div>

@@ -85,7 +85,7 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation} />
+            procedures={row.procedures}/>
           </>
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched
@@ -94,7 +94,7 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            procedures={row.procedures}/>
 
           ) : row.appStatus == "Follow-Up" ? (
             <ApptDetailsFollowUp
@@ -103,7 +103,7 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation}/>
+            procedures={row.procedures}/>
           ) : (
             <>
             <ReschedConfirmation
@@ -120,7 +120,7 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            consultation={row.consultation} />
+            procedures={row.procedures}/>
             </>
             )
           }

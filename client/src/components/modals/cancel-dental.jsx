@@ -6,7 +6,7 @@ import Axios from 'axios';
 import '../../styles/accounts.css';
 import successful from '../../assets/img/check.png';
 
-function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consultation) {
+function CancelDental(patientIDnumber, pName, dName, appNum, date, time) {
     const [modalState, setModalState] = useState(false);
     const [reasonInput, setReasonInput] = useState("");
 
@@ -24,7 +24,7 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
        
     }
     //retrieve app number
-    const StringfyValues = JSON.stringify(patientIDnumber, pName, dName, appNum, date, time, consultation);
+    const StringfyValues = JSON.stringify(patientIDnumber, pName, dName, appNum, date, time);
     const ConvertStringfyValues = JSON.parse(StringfyValues);
     //values
     const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g, "");
@@ -33,7 +33,6 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
     const DentistValue = JSON.stringify(ConvertStringfyValues.dName).replace(/"/g, "");
     const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g, "");
     const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
-    const ConsultValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g, "");
 
     const CancelAppointment = async () => {
 
@@ -49,10 +48,10 @@ function CancelDental(patientIDnumber, pName, dName, appNum, date, time, consult
             appNumber: AppNumber, 
             dentistValue: DentistValue, 
             dateValue: DateValue, 
-            consulInput: ConsultValue, 
+
             getTime: TimeValue 
         })
-        Axios.post("http://localhost:3001/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + ConsultValue + "' has been cancelled."})
+        Axios.post("http://localhost:3001/sendSMS", {phone: "0" + response['data'][0]['mobile'] ,message:"Hi "+PatientValue+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+DateValue+" "+TimeValue+" due to '" + "' has been cancelled."})
         //add reason for cancellation
     }
     

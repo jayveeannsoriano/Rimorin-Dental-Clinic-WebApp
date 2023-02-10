@@ -44,7 +44,7 @@ const UpDentalDashboardTable = () => {
                 dName: item.dName,
                 date: item.date,
                 time: item.time,
-                consultation: item.consultation,
+                procedures: item.procedures,
                 objectID: item._id
               })
               console.log("Moving ", item.appNum, item.pName, " to Appointment History")
@@ -107,7 +107,7 @@ const UpDentalDashboardTable = () => {
                         date={row.date}
                         time={row.time}
                         appStats={row.appStatus}
-                        consultation={row.consultation}/>
+                        procedures={row.procedures}/>
                 </>
                 ) : row.appStatus == "Arrived" ? (
                   <>
@@ -118,14 +118,14 @@ const UpDentalDashboardTable = () => {
                           dName={row.dName}
                           date={row.date}
                           time={row.time}
-                          consultation={row.consultation} />
+                          procedures={row.procedures} />
                     <ApptDetails
                           pName={row.pName}
                           appNum={row.appNum}
                           date={row.date}
                           time={row.time}
                           appStats={row.appStatus}
-                          consultation={row.consultation}/>
+                          procedures={row.procedures}/>
                   </>
                 ) : row.appStatus == "Rescheduled" ? (
                     <ApptDetailsResched
@@ -134,7 +134,7 @@ const UpDentalDashboardTable = () => {
                     date={row.date}
                     time={row.time}
                     appStats={row.appStatus}
-                    consultation={row.consultation}/>
+                    procedures={row.procedures}/>
                 ) : row.appStatus == "Follow-Up" ? (
                     <ApptDetailsFollowUp
                     pName={row.pName}
@@ -142,7 +142,7 @@ const UpDentalDashboardTable = () => {
                     date={row.date}
                     time={row.time}
                     appStats={row.appStatus}
-                    consultation={row.consultation}/>
+                    procedures={row.procedures}/>
                 ) :
                 (
                 <>
@@ -157,7 +157,7 @@ const UpDentalDashboardTable = () => {
                     date={row.date}
                     time={row.time}
                     appStats={row.appStatus}
-                    consultation={row.consultation}/>
+                    procedures={row.procedures}/>
                 </>
                   )
             }

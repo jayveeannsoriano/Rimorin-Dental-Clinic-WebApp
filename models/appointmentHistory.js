@@ -7,10 +7,10 @@ const AppointmentHistory = new mongoose.Schema(
     appNum: String,
     date: String,
     time: String,
-    consultation: String,
     formattedDate: String,
     appStatus: String,
     reasonCancel: String,
+    procedures:Object,
   },
   {
     collection: "AppointmentHistory",
