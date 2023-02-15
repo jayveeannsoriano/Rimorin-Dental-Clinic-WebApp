@@ -1,62 +1,59 @@
 import "../../styles/login-signup.css";
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import validator from "validator";
 import Alert from "react-bootstrap/Alert";
 
-// import PhoneInput from 'react-phone-input-2';
-// import 'react-phone-input-2/lib/style.css';
-
 const SignUp1 = ({ nextStep, handleChange, values }) => {
-  const [validated, setValidated] = useState(true);
-  const [emailMessage, setEmailMessage] = useState(true);
-  const [inputMessage, setInputMessage] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(true);
 
   const Continue = (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setIsFormValid(true);
     nextStep();
   };
 
-  const [errorPass, setErrorPass] = useState("");
+  //Password Validator
+  const [passwordError, setPasswordError] = useState("");
+  //const [confirmPassword, setConfirmPassword] = useState("");
 
   function validatePassword() {
     let newPassword = document.getElementById("newPassword").value;
-    let renewPassword = document.getElementById("renewPassword").value;
-    let hasUppercase = /[A-Z]/.test(newPassword);
-    let hasNumber = /\d/.test(newPassword);
-    let isValid = newPassword.length >= 6 && hasUppercase && hasNumber;
-    if (newPassword && renewPassword) {
-      if (newPassword !== renewPassword) {
-        setErrorPass(
-          <div style={{ fontSize: "12px" }}>
-            <a className="text-danger">
-              <strong>Passwords Does Not Match</strong>
-            </a>
+    let reEnteredPassword = document.getElementById("reEnteredPassword").value;
+    
+    newPassword !== reEnteredPassword
+      ? setPasswordError("Passwords do not match")
+      : setPasswordError("");
+
+    const containsUppercase = /[A-Z]/.test(newPassword);
+    const containsNumber = /\d/.test(newPassword);
+    const isPasswordValid =
+      newPassword.length >= 6 && containsUppercase && containsNumber;
+
+    !isPasswordValid
+      ? setPasswordError(
+          <div style={{ fontSize: "12px" }} className="text-danger">
+            <strong>
+              Password must be at least 6 characters long and contain at least
+              one capital letter (A-Z) and one number (0-9)
+            </strong>
+          </div>
+        )
+      : setPasswordError(
+          <div style={{ fontSize: "12px" }} className="text-success">
+            <strong>Password is valid!</strong>
           </div>
         );
-      } else {
-        setErrorPass("");
-      }
-    }
-    if (!isValid) {
-      setErrorPass(
-        <div style={{ fontSize: "12px" }}>
-          <a className="text-danger">
-            <strong>
-              Password must be at least 6 characters long and contain at least a
-              capital letter (A-Z) and a number (0-9).
-            </strong>
-          </a>
-        </div>
-      );
-    } else {
-      setErrorPass("");
-    }
-  
-    return isValid;
-  }
-  
 
+    return isPasswordValid;
+  }
+
+  //Email Validator
+  const [emailMessage, setEmailMessage] = useState(true);
   function validateEmail(input) {
     if (validator.isEmail(input)) {
       if (validator.isEmail(input)) {
@@ -70,16 +67,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
         ).then((response) => {
           console.log(response.data.status);
           if (response.data.status == "ok") {
-            setValidated(false);
+            setIsFormValid(false);
             setEmailMessage(
               <div style={{ fontSize: "12px" }}>
                 <a class="text-success">
-                  <strong>Email is valid.</strong>
+                  <strong>Email is valid!</strong>
                 </a>
               </div>
             );
           } else {
-            setValidated(true);
+            setIsFormValid(true);
             setEmailMessage(
               <div style={{ fontSize: "12px" }}>
                 <a class="text-danger">
@@ -95,33 +92,35 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
     }
   }
 
+  //Blank input validator
+  const [blankInputError, setBlankInputError] = useState(true);
   function validateBlankspace(input) {
     const checkString = input.trim();
 
     if (!checkString) {
-      setValidated(true);
-      setInputMessage(
+      setIsFormValid(true);
+      setBlankInputError(
         <div>
           <Alert key={"danger"} variant={"danger"}>
-            Inputs should contain characters and not blankspaces.
+            Please fill-up the required fields.
           </Alert>
         </div>
       );
     } else {
-      setValidated(false);
-      setInputMessage(
-        <div style={{ fontSize: "12px" }}>
-          <a class="text-success">
-            <strong> </strong>
-          </a>
-        </div>
-      );
+      setIsFormValid(false);
+      setBlankInputError("");
     }
   }
 
   return (
     <>
-      <form id="passwordForm" className="auth-inner-signup" onSubmit={Continue}>
+      <form
+        id="passwordForm"
+        className="auth-inner-signup"
+        noValidate
+        isFormValid={isFormValid}
+        onSubmit={Continue}
+      >
         <div className="titleform">
           <a href="/">Rimorin Dental Clinic</a>
         </div>
@@ -137,9 +136,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="First name"
                 onChange={handleChange("fname")}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 defaultValue={values.fname}
                 required
               />
@@ -156,9 +152,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="Middle Name"
                 onChange={handleChange("mname")}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 defaultValue={values.mname}
                 required
               />
@@ -177,9 +170,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Last Name"
                 onChange={handleChange("lname")}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 defaultValue={values.lname}
                 required
               />
@@ -193,9 +183,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="(e.g. Jr. , Sr., II)"
                 onChange={handleChange("suffix")}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 defaultValue={values.suffix}
               />
             </div>
@@ -211,8 +198,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             className="form-control"
             placeholder="Enter Email"
             onChange={handleChange("email")}
-            onBlur={function (event) {
-              validateEmail(event.target.value);
+            onBlur={function (e) {
+              validateEmail(e.target.value);
             }}
             defaultValue={values.email}
             required
@@ -232,19 +219,9 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 placeholder="9XX-XXX-XXXX"
                 onChange={handleChange("mobile")}
                 defaultValue={values.mobile}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 maxLength={10}
                 required
               />
-              {/* <PhoneInput
-                country={'ph'}
-                placeholder="Enter mobile number"
-                onChange={handleChange('mobile')}
-                onlyCountries={['ph', 'us']}
-                required
-              /> */}
             </div>
           </div>
 
@@ -258,10 +235,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="123-456-789"
                 onChange={handleChange("tellphone")}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 defaultValue={values.tellphone}
+                maxLength={10}
               />
             </div>
           </div>
@@ -316,10 +291,9 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 placeholder="Enter birthday"
                 onChange={handleChange("bday")}
                 defaultValue={values.bday}
-                onBlur={function (event) {
-                  validateBlankspace(event.target.value);
-                }}
                 required
+                min="1960-01-01"
+                max="2005-12-31"
               />
             </div>
           </div>
@@ -335,9 +309,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             placeholder="(e.g. Student, Government Employee, etc.)"
             onChange={handleChange("profession")}
             defaultValue={values.profession}
-            onBlur={function (event) {
-              validateBlankspace(event.target.value);
-            }}
             required
           />
         </div>
@@ -353,17 +324,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
-                onChange={(event) => {
-                  handleChange("password")(event);
-                  validatePassword(event.target.value);
+                onChange={(e) => {
+                  handleChange("password")(e);
                 }}
-                onBlur={(event) => {
-                  validateBlankspace(event.target.value);
+                onBlur={function (e) {
+                  validatePassword(e.target.value);
                 }}
                 defaultValue={values.password}
                 required
               />
-              {errorPass}
+              {passwordError}
             </div>
           </div>
           <div className="col">
@@ -372,13 +342,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 Re-enter Password<span class="text-danger">*</span>
               </label>
               <input
-                id="renewPassword"
+                id="reEnteredPassword"
                 type="password"
                 className="form-control"
                 placeholder="Re-enter password"
                 onChange={handleChange("confirmPassword")}
-                onBlur={(event) => {
-                  validateBlankspace(event.target.value);
+                onBlur={function (e) {
+                  validatePassword(e.target.value);
                 }}
                 defaultValue={values.confirmPassword}
                 required
@@ -387,16 +357,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           </div>
         </div>
 
+        {blankInputError}
         <div className="d-grid justify-content-center">
-        {inputMessage}
           <button
             type="submit"
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
-            onClick={() => {
-              validatePassword();
+            onClick={(e) => {
+              validateBlankspace(e.target.value)
             }}
-            disabled={validated}
+            disabled={isFormValid}
           >
             Next
           </button>
