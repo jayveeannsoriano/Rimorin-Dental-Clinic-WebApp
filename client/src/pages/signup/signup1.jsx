@@ -3,6 +3,7 @@ import Axios from "axios";
 import React, { useState } from "react";
 import validator from "validator";
 import Alert from "react-bootstrap/Alert";
+import Form from 'react-bootstrap/Form';
 
 const SignUp1 = ({ nextStep, handleChange, values }) => {
   const [isFormValid, setIsFormValid] = useState(true);
@@ -19,16 +20,10 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
 
   //Password Validator
   const [passwordError, setPasswordError] = useState("");
-  //const [confirmPassword, setConfirmPassword] = useState("");
 
   function validatePassword() {
     let newPassword = document.getElementById("newPassword").value;
-    let reEnteredPassword = document.getElementById("reEnteredPassword").value;
-    
-    newPassword !== reEnteredPassword
-      ? setPasswordError("Passwords do not match")
-      : setPasswordError("");
-
+        
     const containsUppercase = /[A-Z]/.test(newPassword);
     const containsNumber = /\d/.test(newPassword);
     const isPasswordValid =
@@ -50,6 +45,30 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
         );
 
     return isPasswordValid;
+  }
+
+  //Password match Validator
+  const [passwordNotMatchError, setPasswordNotMatchError] = useState("");
+
+  function validatePasswordMatch(input) {
+    let newPassword = document.getElementById("newPassword").value;
+    let reEnteredPassword = document.getElementById("reEnteredPassword").value;
+
+    newPassword !== reEnteredPassword
+      ? setPasswordNotMatchError(
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Passwords does not match!</strong>
+            </a>
+          </div>
+        )
+      : setPasswordNotMatchError(
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-success">
+              <strong>Passwords match!</strong>
+            </a>
+          </div>
+        );
   }
 
   //Email Validator
@@ -94,30 +113,75 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
 
   //Blank input validator
   const [blankInputError, setBlankInputError] = useState(true);
-  function validateBlankspace(input) {
-    const checkString = input.trim();
-
-    if (!checkString) {
+  function validateBlankspace(input, field) {
+    const trimmedInput = input.trim();
+    const hasBlankspace = input !== trimmedInput;
+    
+    if (hasBlankspace) {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Blank spaces are not allowed.</strong>
+            </a>
+          </div>
+        ),
+      }));
       setIsFormValid(true);
-      setBlankInputError(
-        <div>
-          <Alert key={"danger"} variant={"danger"}>
-            Please fill-up the required fields.
-          </Alert>
-        </div>
-      );
+    } else if (!trimmedInput) {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Please fill in this field.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
     } else {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
       setIsFormValid(false);
-      setBlankInputError("");
     }
   }
 
+  //Suffix Blankspace input validator
+  const [suffixBlankInputError, setSuffixBlankInputError] = useState(true);
+  function suffixValidateBlankspace(input, field){
+    const trimmedInput = input.trim();
+    const hasBlankspace = input !== trimmedInput;
+    
+    if (hasBlankspace) {
+      setSuffixBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Blank spaces are not allowed.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
+  }else {
+    setSuffixBlankInputError((prevErrors) => ({
+      ...prevErrors,
+      [field]: "",
+    }));
+    setIsFormValid(false);
+  }
+}
+  
   return (
     <>
       <form
         id="passwordForm"
         className="auth-inner-signup"
-        noValidate
         isFormValid={isFormValid}
         onSubmit={Continue}
       >
@@ -136,9 +200,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="First name"
                 onChange={handleChange("fname")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "fname");
+                }}
                 defaultValue={values.fname}
                 required
               />
+              {blankInputError.fname}
             </div>
           </div>
 
@@ -152,9 +220,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="Middle Name"
                 onChange={handleChange("mname")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "mname");
+                }}
                 defaultValue={values.mname}
                 required
               />
+              {blankInputError.mname}
             </div>
           </div>
         </div>
@@ -170,11 +242,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Last Name"
                 onChange={handleChange("lname")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "lname");
+                }}
                 defaultValue={values.lname}
                 required
               />
+              {blankInputError.lname}
             </div>
           </div>
+
           <div className="col-4">
             <div className="mb-3 suffix">
               <label>Suffix</label>
@@ -183,8 +260,12 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control suffix"
                 placeholder="(e.g. Jr. , Sr., II)"
                 onChange={handleChange("suffix")}
+                onBlur={function (e) {
+                  suffixValidateBlankspace(e.target.value, "suffix");
+                }}
                 defaultValue={values.suffix}
               />
+              {suffixBlankInputError.suffix}
             </div>
           </div>
         </div>
@@ -199,12 +280,14 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             placeholder="Enter Email"
             onChange={handleChange("email")}
             onBlur={function (e) {
-              validateEmail(e.target.value);
+              validateEmail(e.target.value)
+              validateBlankspace(e.target.value, "email");
             }}
             defaultValue={values.email}
             required
           />
           {emailMessage}
+          {blankInputError.email}
         </div>
 
         <div className="row">
@@ -218,26 +301,34 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="9XX-XXX-XXXX"
                 onChange={handleChange("mobile")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "mobile");
+                }}
                 defaultValue={values.mobile}
                 maxLength={10}
                 required
               />
+              {blankInputError.mobile}
             </div>
           </div>
 
           <div className="col-6">
             <div className="mb-3">
               <label>
-                Telephone Number<span class="text-danger">*</span>
+                Telephone Number
               </label>
               <input
                 type="tel"
                 className="form-control"
                 placeholder="123-456-789"
                 onChange={handleChange("tellphone")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "tellphone");
+                }}
                 defaultValue={values.tellphone}
                 maxLength={10}
               />
+              {blankInputError.tellphone}
             </div>
           </div>
         </div>
@@ -255,12 +346,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                       type="radio"
                       onChange={handleChange("gender")}
                       defaultValue={values.gender}
+                      onBlur={function (e) {
+                        validateBlankspace(e.target.value, "gender");
+                      }}
                       className="form-check-input"
                       value="Female"
                       name="gender"
                       required
                     />
                     <span>Female</span>
+                    {blankInputError.gender}
                   </label>
                 </div>
               </div>
@@ -269,12 +364,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                   <input
                     type="radio"
                     onChange={handleChange("gender")}
+                    onBlur={function (e) {
+                      validateBlankspace(e.target.value, "gender");
+                    }}
                     className="form-check-input"
                     name="gender"
                     value="Male"
                     required
-                  />{" "}
-                  Male
+                  />
+                  <span>Male</span>
+                  {blankInputError.gender}
                 </div>
               </div>
             </div>
@@ -290,11 +389,15 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 className="form-control"
                 placeholder="Enter birthday"
                 onChange={handleChange("bday")}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "bday");
+                }}
                 defaultValue={values.bday}
                 required
                 min="1960-01-01"
                 max="2005-12-31"
               />
+              {blankInputError.bday}
             </div>
           </div>
         </div>
@@ -308,9 +411,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             className="form-control"
             placeholder="(e.g. Student, Government Employee, etc.)"
             onChange={handleChange("profession")}
+            onBlur={function (e) {
+              validateBlankspace(e.target.value, "profession");
+            }}
             defaultValue={values.profession}
             required
           />
+          {blankInputError.profession}
         </div>
 
         <div className="row">
@@ -329,13 +436,16 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 }}
                 onBlur={function (e) {
                   validatePassword(e.target.value);
+                  validateBlankspace(e.target.value, "password");
                 }}
                 defaultValue={values.password}
                 required
               />
               {passwordError}
+              {blankInputError.password}
             </div>
           </div>
+
           <div className="col">
             <div className="mb-3">
               <label>
@@ -348,24 +458,23 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 placeholder="Re-enter password"
                 onChange={handleChange("confirmPassword")}
                 onBlur={function (e) {
-                  validatePassword(e.target.value);
+                  validatePasswordMatch(e.target.value);
+                  validateBlankspace(e.target.value, "confirmPassword");
                 }}
                 defaultValue={values.confirmPassword}
                 required
               />
+              {passwordNotMatchError}
+              {blankInputError.confirmPassword}
             </div>
           </div>
         </div>
 
-        {blankInputError}
         <div className="d-grid justify-content-center">
           <button
             type="submit"
             className="btn btn-primary"
             style={{ padding: "10px 30px" }}
-            onClick={(e) => {
-              validateBlankspace(e.target.value)
-            }}
             disabled={isFormValid}
           >
             Next
