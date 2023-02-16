@@ -2,8 +2,6 @@ import "../../styles/login-signup.css";
 import Axios from "axios";
 import React, { useState } from "react";
 import validator from "validator";
-import Alert from "react-bootstrap/Alert";
-import Form from 'react-bootstrap/Form';
 
 const SignUp1 = ({ nextStep, handleChange, values }) => {
   const [isFormValid, setIsFormValid] = useState(true);
