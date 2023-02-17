@@ -67,16 +67,17 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
     } else {
       // If other checkboxes are checked, add them to the array
       if (checked) {
-        isSelected.push([value]);
+        isSelected.push(value);
       } else {
         // If unchecked, remove the value from the array
         setIsSelected(isSelected.filter((item) => item !== value));
       }
     }
+
+    handleChange("conditions",isSelected)(e);
   };
 
  const handleCheckbox = (e) => {
-  handleChange("conditions")(e);
   handleChangeCheckbox(e); 
  }
 

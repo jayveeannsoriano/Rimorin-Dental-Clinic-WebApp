@@ -48,14 +48,17 @@ class SignUpMain extends Component {
     }
 
     //handles the navigations to retain data past the prevStep
-    handleChange = input => e => {
-        this.setState({[input]: e.target.value});
-        console.log(input);
+    handleChange = (input,arr) => e => {
+        if(input!="conditions"){
+            this.setState({[input]: e.target.value});
+        }else{
+            this.setState({conditions: arr});
+        }
+        console.log(e.target.value);
+        console.log(arr);
     }
 
     handleChangeEmail = input => e => {
-
-      
         this.setState({[input]: e.target.value});
         console.log(input);
     }
