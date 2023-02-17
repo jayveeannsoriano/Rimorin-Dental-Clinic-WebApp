@@ -18,7 +18,6 @@ function ApptDetails(pName,appNum,date,time,appStats,procedures) {
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g,"");
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
   const proceduresValue = ConvertStringfyValues.procedures;
-  console.log("asd",proceduresValue)
 
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {

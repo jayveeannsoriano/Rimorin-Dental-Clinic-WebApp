@@ -2132,6 +2132,64 @@ app.post(
   }
 );
 
+app.post("/insertDentalRecords", async (req, res) => {
+  //Patient ID name
+  const PatientIDnum = req.body.patientIDnumber;
+  console.log(PatientIDnum);
+
+  //User Info value
+  const userNameApp = req.body.pName;
+  console.log(userNameApp);
+
+  //Doctor name
+  const docName = req.body.dName;
+  console.log(docName);
+
+  //Appointment Number
+
+  const appNumber = req.body.appNum;
+  console.log(appNumber);
+
+  //date value
+  const dateValue = req.body.date;
+  console.log(dateValue);
+
+  //consul value
+const procValue = req.body.procedures;
+
+  //time value
+  const getTime = req.body.time;
+  console.log(getTime);
+
+  //appt status default when appointment is accepted by the dentist
+  const insertAppStatus = "No Show";
+  console.log(insertAppStatus);
+
+  //inserting all data
+  const AppData = new DentalRecords({
+    patientIDnumber: PatientIDnum,
+    pName: userNameApp,
+    dName: docName,
+    appNum: appNumber,
+    date: dateValue,
+    procedures:procValue,
+    time: getTime,
+    appStatus: insertAppStatus,
+  });
+
+  try {
+    await AppData.save();
+    console.log(
+      "Successfully inserted No Show ",
+      AppData,
+      " to the History database."
+    );
+    await AppDetails.findOneAndDelete({ appNum: appNumber });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.post("/createReceipt", async (req, res) => {
   const PatientIDNumber = req.body.patientIDnumber;
   const appNumber = "#" + req.body.appNum;
