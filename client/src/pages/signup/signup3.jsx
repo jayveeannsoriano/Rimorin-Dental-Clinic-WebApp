@@ -1,5 +1,5 @@
 import Form from "react-bootstrap/Form";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
   const [isFormValid, setIsFormValid] = useState(true);
@@ -56,16 +56,17 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
     }
   }
 
+  const [checkBoxError, setCheckboxError] = useState(true);
   const [isSelected, setIsSelected] = useState([]);
-  const handleChangeCheckbox = e => { 
+  const handleChangeCheckbox = (e) => {
     const value = e.target.value;
     const checked = e.target.checked;
 
-    // If "None" checkbox is checked, remove all other selections
+    // If "None" checkbox is checked, remove all other selections and set selected value as "NONE"
     if (value === "NONE" && checked) {
       var item = document.getElementsByClassName("form-check-input");
       for (var i = 0; i < item.length; i++) {
-        if(item.item(i).value != "NONE"){
+        if (item.item(i).value != "NONE") {
           item.item(i).checked = false;
         }
       }
@@ -80,25 +81,37 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
       }
     }
 
-    handleChange("conditions",isSelected)(e);
+    handleChange("conditions", isSelected)(e);
+
+    if (!checked) {
+      setCheckboxError(
+        <div style={{ fontSize: "12px" }} className="text-danger">
+          <strong>Please select at least one option.</strong>
+        </div>
+      );
+      setIsFormValid(true);
+    } else {
+      setCheckboxError("");
+      setIsFormValid(false);
+    }
   };
 
- const handleCheckbox = (e) => {
-  handleChangeCheckbox(e); 
- }
+  const handleCheckbox = (e) => {
+    handleChangeCheckbox(e);
+  };
 
- //Checks all checkbox according to Values
- useEffect(() => {
-  values.conditions.forEach((cond)=>{
-    console.log(cond);
+  //Checks all checkbox according to Values
+  useEffect(() => {
+    values.conditions.forEach((cond) => {
+      console.log(cond);
       var item = document.getElementsByClassName("form-check-input");
       for (var i = 0; i < item.length; i++) {
-        if(item.item(i).value == cond){
+        if (item.item(i).value == cond) {
           item.item(i).checked = true;
         }
       }
-  })
- },[]);
+    });
+  }, []);
 
   return (
     <>
@@ -177,6 +190,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
             <span class="text-danger">*</span>
           </label>
           <br />
+          {checkBoxError}
           <div class="container">
             <div class="row">
               <div class="col-sm">
@@ -377,6 +391,7 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
               <button
                 type="submit"
                 className="btn btn-primary"
+                //onClick={handleCheckbox}
                 style={{ padding: "10px 30px" }}
                 disabled={isFormValid}
               >
