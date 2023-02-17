@@ -19,29 +19,31 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   //Password Validator
   const [passwordError, setPasswordError] = useState("");
 
-  function validatePassword() {
-    let newPassword = document.getElementById("newPassword").value;
-        
+  function validatePassword(input) {
+    const newPassword = input;
     const containsUppercase = /[A-Z]/.test(newPassword);
     const containsNumber = /\d/.test(newPassword);
     const isPasswordValid =
       newPassword.length >= 6 && containsUppercase && containsNumber;
 
-    !isPasswordValid
-      ? setPasswordError(
-          <div style={{ fontSize: "12px" }} className="text-danger">
-            <strong>
-              Password must be at least 6 characters long and contain at least
-              one capital letter (A-Z) and one number (0-9)
-            </strong>
-          </div>
-        )
-      : setPasswordError(
-          <div style={{ fontSize: "12px" }} className="text-success">
-            <strong>Password is valid!</strong>
-          </div>
-        );
-
+    if(!isPasswordValid){
+      setIsFormValid(true);
+      setPasswordError(
+              <div style={{ fontSize: "12px" }} className="text-danger">
+                <strong>
+                  Password must be at least 6 characters long and contain at least
+                  one capital letter (A-Z) and one number (0-9)
+                </strong>
+              </div>
+      );
+    } else {
+      setIsFormValid(false);
+      setPasswordError(
+        <div style={{ fontSize: "12px" }} className="text-success">
+          <strong>Password is valid!</strong>
+        </div>
+      );
+    }
     return isPasswordValid;
   }
 
@@ -49,24 +51,29 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   const [passwordNotMatchError, setPasswordNotMatchError] = useState("");
 
   function validatePasswordMatch(input) {
-    let newPassword = document.getElementById("newPassword").value;
-    let reEnteredPassword = document.getElementById("reEnteredPassword").value;
+    const [newPassword, reEnteredPassword] = input;
+    const isPasswordMatch = newPassword === reEnteredPassword;
 
-    newPassword !== reEnteredPassword
-      ? setPasswordNotMatchError(
-          <div style={{ fontSize: "12px" }}>
-            <a class="text-danger">
-              <strong>Passwords does not match!</strong>
-            </a>
-          </div>
-        )
-      : setPasswordNotMatchError(
-          <div style={{ fontSize: "12px" }}>
-            <a class="text-success">
-              <strong>Passwords match!</strong>
-            </a>
-          </div>
+    if (newPassword !== reEnteredPassword){
+      setIsFormValid(true);
+      setPasswordNotMatchError(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>Passwords do not match!</strong>
+          </a>
+        </div>
         );
+    } else {
+      setIsFormValid(false);
+      setPasswordNotMatchError(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-success">
+            <strong>Passwords match!</strong>
+          </a>
+        </div>
+      );
+    }
+    return isPasswordMatch;
   }
 
   //Email Validator
@@ -106,6 +113,32 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           }
         });
       }
+    }
+  }
+
+  //Special Characters input validation
+  const [specialCharacterError, setSpecialCharacterError] = useState(true);
+  function validateSpecialCharacters(input, field){
+    const hasSpecialCharacters = /[^A-Za-z0-9\s]/.test(input);
+
+    if(hasSpecialCharacters){
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field] : (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Please do not use special characters.</strong>
+            </a>
+          </div>
+        ),
+      })); 
+      setIsFormValid(true);
+    } else {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
     }
   }
 
@@ -200,11 +233,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("fname")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "fname");
+                  validateSpecialCharacters(e.target.value, "fname");
                 }}
                 defaultValue={values.fname}
                 required
               />
               {blankInputError.fname}
+              {specialCharacterError.fname}
             </div>
           </div>
 
@@ -220,11 +255,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("mname")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "mname");
+                  validateSpecialCharacters(e.target.value, "mname");
                 }}
                 defaultValue={values.mname}
                 required
               />
               {blankInputError.mname}
+              {specialCharacterError.mname}
             </div>
           </div>
         </div>
@@ -242,11 +279,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("lname")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "lname");
+                  validateSpecialCharacters(e.target.value, "lname");
                 }}
                 defaultValue={values.lname}
                 required
               />
               {blankInputError.lname}
+              {specialCharacterError.lname}
             </div>
           </div>
 
@@ -260,10 +299,12 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("suffix")}
                 onBlur={function (e) {
                   suffixValidateBlankspace(e.target.value, "suffix");
+                  setSpecialCharacterError(e.target.value, "suffix");
                 }}
                 defaultValue={values.suffix}
               />
               {suffixBlankInputError.suffix}
+              {specialCharacterError.suffix}
             </div>
           </div>
         </div>
@@ -301,12 +342,14 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("mobile")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "mobile");
+                  validateSpecialCharacters(e.target.value, "mobile");
                 }}
                 defaultValue={values.mobile}
                 maxLength={10}
                 required
               />
               {blankInputError.mobile}
+              {specialCharacterError.mobile}
             </div>
           </div>
 
@@ -322,11 +365,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 onChange={handleChange("tellphone")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "tellphone");
+                  validateSpecialCharacters(e.target.value, "tellphone");
                 }}
                 defaultValue={values.tellphone}
                 maxLength={10}
               />
               {blankInputError.tellphone}
+              {specialCharacterError.tellphone}
             </div>
           </div>
         </div>
@@ -411,11 +456,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             onChange={handleChange("profession")}
             onBlur={function (e) {
               validateBlankspace(e.target.value, "profession");
+              validateSpecialCharacters(e.target.value, "profession");
             }}
             defaultValue={values.profession}
             required
           />
           {blankInputError.profession}
+          {specialCharacterError.profession}
         </div>
 
         <div className="row">

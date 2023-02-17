@@ -57,6 +57,32 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
     }
   }
 
+  //Special Characters input validation
+  const [specialCharacterError, setSpecialCharacterError] = useState(true);
+  function validateSpecialCharacters(input, field){
+    const hasSpecialCharacters = /[^A-Za-z0-9\s.#]/.test(input);
+
+    if(hasSpecialCharacters){
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field] : (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Please do not use special characters.</strong>
+            </a>
+          </div>
+        ),
+      })); 
+      setIsFormValid(true);
+    } else {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
+  }
+
   return (
     <>
       <form className="auth-inner-signup" isFormValid={isFormValid} onSubmit={Continue}>
@@ -75,11 +101,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
             onChange={handleChange("house")}
             onBlur={function (e) {
                 validateBlankspace(e.target.value, "house");
+                validateSpecialCharacters(e.target.value, "house");
               }}
             defaultValue={values.house}
             required
           />
           {blankInputError.house}
+          {specialCharacterError.house}
         </div>
 
         <div className="row">
@@ -95,11 +123,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 onChange={handleChange("brgy")}
                 onBlur={function (e) {
                     validateBlankspace(e.target.value, "brgy");
+                    validateSpecialCharacters(e.target.value, "brgy");
                   }}
                 defaultValue={values.brgy}
                 required
               />
               {blankInputError.brgy}
+              {specialCharacterError.brgy}
             </div>
           </div>
 
@@ -116,11 +146,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 onChange={handleChange("municipality")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "municipality");
+                  validateSpecialCharacters(e.target.value, "municipality");
                 }}
                 defaultValue={values.municipality}
                 required
               />
               {blankInputError.municipality}
+              {specialCharacterError.municipality}
             </div>
           </div>
         </div>
@@ -139,11 +171,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 onChange={handleChange("province")}
                 onBlur={function (e) {
                     validateBlankspace(e.target.value, "province");
+                    validateSpecialCharacters(e.target.value, "province");
                   }}
                 defaultValue={values.province}
                 required
               />
               {blankInputError.province}
+              {specialCharacterError.province}
             </div>
           </div>
 
@@ -160,11 +194,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
                 onChange={handleChange("zipcode")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "zipcode");
+                  validateSpecialCharacters(e.target.value, "zipcode");
                 }}
                 defaultValue={values.zipcode}
                 required
               />
               {blankInputError.zipcode}
+              {specialCharacterError.zipcode}
             </div>
           </div>
         </div>
@@ -180,11 +216,13 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
             onChange={handleChange("country")}
             onBlur={function (e) {
                 validateBlankspace(e.target.value, "country");
+                validateSpecialCharacters(e.target.value, "country");
               }}
             defaultValue={values.country}
             required
           />
           {blankInputError.country}
+          {specialCharacterError.country}
         </div>
 
         <div className="container">
