@@ -48,34 +48,19 @@ class SignUpMain extends Component {
     }
 
     //handles the navigations to retain data past the prevStep
-    handleChange = input => e => {
-        this.setState({[input]: e.target.value});
-        console.log(input);
+    handleChange = (input,arr) => e => {
+        if(input!="conditions"){
+            this.setState({[input]: e.target.value});
+        }else{
+            this.setState({conditions: arr});
+        }
+        console.log(e.target.value);
+        console.log(arr);
     }
 
     handleChangeEmail = input => e => {
-
-      
         this.setState({[input]: e.target.value});
         console.log(input);
-    }
-
-    //handlebox for checkbox
-    tempArr = [];
-    handleChangeCheckbox = input => e =>{
-        
-        const checked = e.target.checked;
-        let { conditions } = this.state;
-        if(checked){
-            conditions.push(e.target.value);
-        }else{
-            const index = conditions.indexOf(e.target.value);
-            if (index > -1) { // only splice array when item is found
-                conditions.splice(index, 1); // 2nd parameter means remove one item only
-            }
-        }
-
-        console.log(conditions);
     }
 
     render() {
@@ -109,7 +94,6 @@ class SignUpMain extends Component {
                     prevStep = {this.prevStep}
                     nextStep = {this.nextStep}
                     handleChange = {this.handleChange}
-                    handleChangeCheckbox = {this.handleChangeCheckbox}
                     values = {values}
                     />
                 )
