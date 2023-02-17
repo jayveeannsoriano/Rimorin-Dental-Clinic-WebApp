@@ -39,13 +39,13 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   
   const AcceptAppointment = async () => {
     handleShow();
-    const response = await Axios.get('http://localhost:3001/getUserInfo',{
+    const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
       params: {
         PatientIDnumber:PatientIDnumber.substring(3)
       }
     })
     Axios.post(
-      "http://localhost:3001/acceptAppointment",
+      "https://rimorin-dental-clinic.herokuapp.com/acceptAppointment",
       {
         dentistIDnumber: dentistNumber,
         patientIDnumber: PatientIDnumber,
@@ -58,7 +58,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         getTime: TimeValue,
       }
     );
-    Axios.post("http://localhost:3001/sendSMS", {
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
       phone: "0" + response["data"][0]["mobile"],
       message:
         "Hi " +

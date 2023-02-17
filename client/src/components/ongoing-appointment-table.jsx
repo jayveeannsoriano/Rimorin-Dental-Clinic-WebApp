@@ -32,7 +32,7 @@ const OnGoingTable = () => {
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/getOngoingUserAppointment",
+        "https://rimorin-dental-clinic.herokuapp.com/getOngoingUserAppointment",
         {
           params: {
             patientIDnumber: patientIDnumber,

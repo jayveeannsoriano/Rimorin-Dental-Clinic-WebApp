@@ -50,7 +50,7 @@ export default function ProfileInfoEditSaved() {
     const defaultUserInfo = async () => {
         try {
 
-            const response = await Axios.get("http://localhost:3001/getUserInfo", {
+            const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getUserInfo", {
                 params: {
                     patientIDnumber: patientIDnumber
                 }
@@ -91,7 +91,7 @@ export default function ProfileInfoEditSaved() {
 
     const updatePatientInfo = async () => {
         handleShow();
-        await Axios.put("http://localhost:3001/updatePatientInfo", {
+        await Axios.put("https://rimorin-dental-clinic.herokuapp.com/updatePatientInfo", {
 
             patientIDnumber: patientIDnumber,
 

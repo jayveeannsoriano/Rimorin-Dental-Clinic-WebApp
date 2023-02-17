@@ -26,7 +26,7 @@ function Calendar() {
 
           var response;
           if(userInfo['user_role_id']==1){
-            var dataApp1 = await axios.get('http://localhost:3001/getUserAppts', { params: { 
+            var dataApp1 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserAppts', { params: { 
               pName: userInfo['fname'] + " " + userInfo['lname'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
@@ -35,7 +35,7 @@ function Calendar() {
               can:(checkBox4.checked==true?"No Show":""),
               fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
-            var dataApp2 = await axios.get('http://localhost:3001/getUserApptsReq', { params: { 
+            var dataApp2 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsReq', { params: { 
               pName: userInfo['fname'] + " " + userInfo['lname'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
@@ -47,7 +47,7 @@ function Calendar() {
             response = [...dataApp1.data,...dataApp2.data];
 
           }else if(userInfo['user_role_id']==2||userInfo['user_role_id']==4){
-            var dataApp1 = await axios.get('http://localhost:3001/getUserApptsOthers',{params:{
+            var dataApp1 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
               res:(checkBox2.checked==true?"Rescheduled":""),
@@ -55,7 +55,7 @@ function Calendar() {
               can:(checkBox4.checked==true?"No Show":""),
               fol:(checkBox5.checked==true?"Follow-Up":"")
             }});
-            var dataApp2 = await axios.get('http://localhost:3001/getUserApptsReqOthers',{params:{
+            var dataApp2 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsReqOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
               res:(checkBox2.checked==true?"Rescheduled":""),
@@ -63,7 +63,7 @@ function Calendar() {
               can:(checkBox4.checked==true?"No Show":""),
               fol:(checkBox5.checked==true?"Follow-Up":"")
             }});
-            var dataApp3 = await axios.get('http://localhost:3001/getUserApptsHistOthers',{params:{
+            var dataApp3 = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsHistOthers',{params:{
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
               res:(checkBox2.checked==true?"Rescheduled":""),
@@ -76,7 +76,7 @@ function Calendar() {
 
 
           }else if(userInfo['user_role_id']==3){
-            var dataApp1  = await axios.get('http://localhost:3001/getUserApptsDent', { params: { 
+            var dataApp1  = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsDent', { params: { 
               dentistIDnumber: userInfo['dentistIDnumber'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),
@@ -85,7 +85,7 @@ function Calendar() {
               can:(checkBox4.checked==true?"No Show":""),
               fol:(checkBox5.checked==true?"Follow-Up":"")
             } });
-            var dataApp2  = await axios.get('http://localhost:3001/getUserApptsHistDent', { params: { 
+            var dataApp2  = await axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserApptsHistDent', { params: { 
               dentistIDnumber: userInfo['dentistIDnumber'],
               pend:(checkBox1.checked==true?"Pending":""),
               acc:(checkBox2.checked==true?"Accepted":""),

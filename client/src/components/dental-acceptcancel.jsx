@@ -22,7 +22,7 @@ const AcceptCancel = () => {
   const getAppointment = async () => {
     try {
       const responses = await axios.get(
-        "http://localhost:3001/getAppointmentDetailsForDentist",{
+        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentDetailsForDentist",{
           params: {
             dentistIDNumber: dentistIDnumber,
           }

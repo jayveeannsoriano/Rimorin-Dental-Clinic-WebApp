@@ -138,7 +138,7 @@ const ClinicHours = () => {
   const updateClinicHours = async () => {
     console.log("Clicked");
     try {
-      axios.put("http://localhost:3001/updateClinicHours", {
+      axios.put("https://rimorin-dental-clinic.herokuapp.com/updateClinicHours", {
         clinicHours: timeSlot,
       });
       handleShow();
@@ -151,7 +151,7 @@ const ClinicHours = () => {
   const getAvailableTimes = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/getAvailableTimes"
+        "https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes"
       );
 
       var intervalField = document.querySelector("#Interval");

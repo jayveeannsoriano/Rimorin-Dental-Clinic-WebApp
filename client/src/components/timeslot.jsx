@@ -45,7 +45,7 @@ const Timeslot = ({ GetTimeCheck, takenAppointments, chosenDate, totalApptTime }
     try {
       console.log(date);
       const response = await axios.get(
-        "http://localhost:3001/getAvailableTimes",
+        "https://rimorin-dental-clinic.herokuapp.com/getAvailableTimes",
         {
           params: {
             date: date,

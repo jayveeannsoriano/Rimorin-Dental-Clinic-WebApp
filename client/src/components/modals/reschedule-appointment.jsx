@@ -54,7 +54,7 @@ function RescheduleAppointment(dName,pName,appNum,patientIDnumber) {
     try{
         
         setChosenDate(date);
-        const response = await Axios.get('http://localhost:3001/getAppointmentsbyDate',{
+        const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate',{
             params:{
                 date: date
             }
@@ -79,7 +79,7 @@ useEffect(() => {
 const getAppDetails = async () => {
   try {
     const response = await Axios.get(
-      "http://localhost:3001/getDetailsforReceipt",
+      "https://rimorin-dental-clinic.herokuapp.com/getDetailsforReceipt",
       {
         params: {
           patientIDNum: PatientIDnum,
@@ -103,12 +103,12 @@ useEffect(() => {
   const newDateTime = async () =>{
     console.log("Updating " + AppNumber);
     console.log("Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput);
-    const response = await Axios.get('http://localhost:3001/getUserInfo',{
+    const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
       params: {
         PatientIDnumber:"PT#"+PatientIDnum
       }
     })
-    Axios.put("http://localhost:3001/rescheduleAppointment",{
+    Axios.put("https://rimorin-dental-clinic.herokuapp.com/rescheduleAppointment",{
      patientIDNum: PatientIDnum,
      appNum: AppNumber,
      pName: PatientName,
@@ -118,7 +118,7 @@ useEffect(() => {
      newTime: timeCheck,
      newConsultation: newConsulInput});
     setModalState("modal-2");
-    Axios.post("http://localhost:3001/sendSMS", {phone: "0" + response['data'][0]['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
+    Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
 
   }
 

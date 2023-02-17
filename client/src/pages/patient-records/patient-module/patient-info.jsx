@@ -18,7 +18,7 @@ const PatientInfo = () => {
     var patientIDnumbers = patientIDnumber.replace("PT#","");
 
     try {
-      const response = await Axios.get('http://localhost:3001/getUserInfo', {
+      const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo', {
         params: {
           PatientIDnumber: patientIDnumbers,
         }

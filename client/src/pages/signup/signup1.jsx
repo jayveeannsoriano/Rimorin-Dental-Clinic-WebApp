@@ -88,7 +88,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   function validateEmail(input) {
     if (validator.isEmail(input)) {
       if (validator.isEmail(input)) {
-        const response = Axios.get("http://localhost:3001/checkEmail", {
+        const response = Axios.get("https://rimorin-dental-clinic.herokuapp.com/checkEmail", {
           params: {
             email: input,
           },
