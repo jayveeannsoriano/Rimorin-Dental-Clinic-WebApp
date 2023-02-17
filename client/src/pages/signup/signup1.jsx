@@ -1,6 +1,6 @@
 import "../../styles/login-signup.css";
 import Axios from "axios";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import validator from "validator";
 
 const SignUp1 = ({ nextStep, handleChange, values }) => {
@@ -23,26 +23,31 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
     const newPassword = input;
     const containsUppercase = /[A-Z]/.test(newPassword);
     const containsNumber = /\d/.test(newPassword);
+    const hasBlankspace = input === input.trim();
     const isPasswordValid =
-      newPassword.length >= 6 && containsUppercase && containsNumber;
+      newPassword.length >= 6 &&
+      containsUppercase &&
+      containsNumber &&
+      hasBlankspace;
 
-    if(!isPasswordValid){
-      setIsFormValid(true);
+    if (!isPasswordValid) {
       setPasswordError(
-              <div style={{ fontSize: "12px" }} className="text-danger">
-                <strong>
-                  Password must be at least 6 characters long and contain at least
-                  one capital letter (A-Z) and one number (0-9)
-                </strong>
-              </div>
+        <div style={{ fontSize: "12px" }} className="text-danger">
+          <strong>
+            Password must be at least 6 characters long and contain at least one
+            capital letter (A-Z) and one number (0-9). Do not use any spaces in
+            your password.
+          </strong>
+        </div>
       );
+      setIsFormValid(true);
     } else {
-      setIsFormValid(false);
       setPasswordError(
         <div style={{ fontSize: "12px" }} className="text-success">
           <strong>Password is valid!</strong>
         </div>
       );
+      setIsFormValid(false);
     }
     return isPasswordValid;
   }
@@ -50,21 +55,22 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   //Password match Validator
   const [passwordNotMatchError, setPasswordNotMatchError] = useState("");
 
-  function validatePasswordMatch(input) {
-    const [newPassword, reEnteredPassword] = input;
+  function validatePasswordMatch() {
+    const newPassword = document.getElementById("newPassword").value;
+    const reEnteredPassword =
+      document.getElementById("reEnteredPassword").value;
     const isPasswordMatch = newPassword === reEnteredPassword;
 
-    if (newPassword !== reEnteredPassword){
-      setIsFormValid(true);
+    if (!isPasswordMatch) {
       setPasswordNotMatchError(
         <div style={{ fontSize: "12px" }}>
           <a class="text-danger">
             <strong>Passwords do not match!</strong>
           </a>
         </div>
-        );
+      );
+      setIsFormValid(true);
     } else {
-      setIsFormValid(false);
       setPasswordNotMatchError(
         <div style={{ fontSize: "12px" }}>
           <a class="text-success">
@@ -72,6 +78,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           </a>
         </div>
       );
+      setIsFormValid(false);
     }
     return isPasswordMatch;
   }
@@ -81,14 +88,11 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   function validateEmail(input) {
     if (validator.isEmail(input)) {
       if (validator.isEmail(input)) {
-        const response = Axios.get(
-          "http://localhost:3001/checkEmail",
-          {
-            params: {
-              email: input,
-            },
-          }
-        ).then((response) => {
+        const response = Axios.get("http://localhost:3001/checkEmail", {
+          params: {
+            email: input,
+          },
+        }).then((response) => {
           console.log(response.data.status);
           if (response.data.status == "ok") {
             setIsFormValid(false);
@@ -118,20 +122,20 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
 
   //Special Characters input validation
   const [specialCharacterError, setSpecialCharacterError] = useState(true);
-  function validateSpecialCharacters(input, field){
-    const hasSpecialCharacters = /[^A-Za-z0-9\s]/.test(input);
+  function validateSpecialCharacters(input, field) {
+    const hasSpecialCharacters = /[^A-Za-z0-9\sÑñ]/.test(input);
 
-    if(hasSpecialCharacters){
+    if (hasSpecialCharacters) {
       setSpecialCharacterError((prevErrors) => ({
         ...prevErrors,
-        [field] : (
+        [field]: (
           <div style={{ fontSize: "12px" }}>
             <a class="text-danger">
               <strong>Please do not use special characters.</strong>
             </a>
           </div>
         ),
-      })); 
+      }));
       setIsFormValid(true);
     } else {
       setSpecialCharacterError((prevErrors) => ({
@@ -147,7 +151,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   function validateBlankspace(input, field) {
     const trimmedInput = input.trim();
     const hasBlankspace = input !== trimmedInput;
-    
+
     if (hasBlankspace) {
       setBlankInputError((prevErrors) => ({
         ...prevErrors,
@@ -183,10 +187,10 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
 
   //Suffix Blankspace input validator
   const [suffixBlankInputError, setSuffixBlankInputError] = useState(true);
-  function suffixValidateBlankspace(input, field){
+  function suffixValidateBlankspace(input, field) {
     const trimmedInput = input.trim();
     const hasBlankspace = input !== trimmedInput;
-    
+
     if (hasBlankspace) {
       setSuffixBlankInputError((prevErrors) => ({
         ...prevErrors,
@@ -199,24 +203,24 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
         ),
       }));
       setIsFormValid(true);
-  }else {
-    setSuffixBlankInputError((prevErrors) => ({
-      ...prevErrors,
-      [field]: "",
-    }));
-    setIsFormValid(false);
+    } else {
+      setSuffixBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
   }
-}
 
-useEffect(() => {
+  useEffect(() => {
     var item = document.getElementsByClassName("form-check-input");
     for (var i = 0; i < item.length; i++) {
-      if(item.item(i).value == values.gender){
+      if (item.item(i).value == values.gender) {
         item.item(i).checked = true;
       }
     }
- },[]);
-  
+  }, []);
+
   return (
     <>
       <form
@@ -328,7 +332,7 @@ useEffect(() => {
             placeholder="Enter Email"
             onChange={handleChange("email")}
             onBlur={function (e) {
-              validateEmail(e.target.value)
+              validateEmail(e.target.value);
               validateBlankspace(e.target.value, "email");
             }}
             defaultValue={values.email}
@@ -344,6 +348,7 @@ useEffect(() => {
               <label>
                 Mobile Number<span class="text-danger">*</span>
               </label>
+              <span class="input-group-text input-group-prepend">+63</span>
               <input
                 type="text"
                 className="form-control"
@@ -363,21 +368,25 @@ useEffect(() => {
           </div>
 
           <div className="col-6">
-            <div className="mb-3">
+            <div className="input-group mb-3">
               <label>
-                Telephone Number
+                Telephone Number<span class="text-danger">*</span>
               </label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">+02</span>
+              </div>
               <input
                 type="tel"
                 className="form-control"
-                placeholder="123-456-789"
+                placeholder="1234-5678"
                 onChange={handleChange("tellphone")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "tellphone");
                   validateSpecialCharacters(e.target.value, "tellphone");
                 }}
                 defaultValue={values.tellphone}
-                maxLength={10}
+                maxLength={8}
+                required
               />
               {blankInputError.tellphone}
               {specialCharacterError.tellphone}
@@ -485,18 +494,14 @@ useEffect(() => {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
-                onChange={(e) => {
-                  handleChange("password")(e);
-                }}
+                onChange={handleChange("password")}
                 onBlur={function (e) {
                   validatePassword(e.target.value);
-                  validateBlankspace(e.target.value, "password");
                 }}
                 defaultValue={values.password}
                 required
               />
               {passwordError}
-              {blankInputError.password}
             </div>
           </div>
 
@@ -513,13 +518,11 @@ useEffect(() => {
                 onChange={handleChange("confirmPassword")}
                 onBlur={function (e) {
                   validatePasswordMatch(e.target.value);
-                  validateBlankspace(e.target.value, "confirmPassword");
                 }}
                 defaultValue={values.confirmPassword}
                 required
               />
               {passwordNotMatchError}
-              {blankInputError.confirmPassword}
             </div>
           </div>
         </div>

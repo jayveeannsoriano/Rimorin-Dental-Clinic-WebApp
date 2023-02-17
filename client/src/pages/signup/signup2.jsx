@@ -60,7 +60,7 @@ const SignUp2 = ({ prevStep, nextStep, handleChange, values }) => {
   //Special Characters input validation
   const [specialCharacterError, setSpecialCharacterError] = useState(true);
   function validateSpecialCharacters(input, field){
-    const hasSpecialCharacters = /[^A-Za-z0-9\s.#]/.test(input);
+    const hasSpecialCharacters = /[^A-Za-z0-9\s.#Ññ]/.test(input);
 
     if(hasSpecialCharacters){
       setSpecialCharacterError((prevErrors) => ({
