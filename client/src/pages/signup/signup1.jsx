@@ -354,7 +354,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="9XX-XXX-XXXX"
+                placeholder="912-345-678"
                 onChange={handleChange("mobile")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "mobile");
