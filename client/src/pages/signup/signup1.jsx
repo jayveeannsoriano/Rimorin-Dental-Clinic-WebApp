@@ -1,6 +1,6 @@
 import "../../styles/login-signup.css";
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import validator from "validator";
 
 const SignUp1 = ({ nextStep, handleChange, values }) => {
@@ -207,6 +207,15 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
     setIsFormValid(false);
   }
 }
+
+useEffect(() => {
+    var item = document.getElementsByClassName("form-check-input");
+    for (var i = 0; i < item.length; i++) {
+      if(item.item(i).value == values.gender){
+        item.item(i).checked = true;
+      }
+    }
+ },[]);
   
   return (
     <>

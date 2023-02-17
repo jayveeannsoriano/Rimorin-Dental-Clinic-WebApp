@@ -1,5 +1,5 @@
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
   const [isFormValid, setIsFormValid] = useState(true);
@@ -63,6 +63,12 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
 
     // If "None" checkbox is checked, remove all other selections
     if (value === "NONE" && checked) {
+      var item = document.getElementsByClassName("form-check-input");
+      for (var i = 0; i < item.length; i++) {
+        if(item.item(i).value != "NONE"){
+          item.item(i).checked = false;
+        }
+      }
       setIsSelected(["NONE"]);
     } else {
       // If other checkboxes are checked, add them to the array
@@ -80,6 +86,19 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
  const handleCheckbox = (e) => {
   handleChangeCheckbox(e); 
  }
+
+ //Checks all checkbox according to Values
+ useEffect(() => {
+  values.conditions.forEach((cond)=>{
+    console.log(cond);
+      var item = document.getElementsByClassName("form-check-input");
+      for (var i = 0; i < item.length; i++) {
+        if(item.item(i).value == cond){
+          item.item(i).checked = true;
+        }
+      }
+  })
+ },[]);
 
   return (
     <>
