@@ -23,20 +23,20 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
     const newPassword = input;
     const containsUppercase = /[A-Z]/.test(newPassword);
     const containsNumber = /\d/.test(newPassword);
-    const hasBlankspace = input === input.trim();
+    const containsBlankSpaces =/\s/.test(newPassword);
     const isPasswordValid =
       newPassword.length >= 6 &&
       containsUppercase &&
       containsNumber &&
-      hasBlankspace;
+      !containsBlankSpaces;
 
     if (!isPasswordValid) {
       setPasswordError(
         <div style={{ fontSize: "12px" }} className="text-danger">
           <strong>
             Password must be at least 6 characters long and contain at least one
-            capital letter (A-Z) and one number (0-9). Do not use any spaces in
-            your password.
+            capital letter (A-Z) and one number (0-9). <br />
+            Do not put any spaces in your password.
           </strong>
         </div>
       );
@@ -95,7 +95,6 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
         }).then((response) => {
           console.log(response.data.status);
           if (response.data.status == "ok") {
-            setIsFormValid(false);
             setEmailMessage(
               <div style={{ fontSize: "12px" }}>
                 <a class="text-success">
@@ -103,8 +102,8 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 </a>
               </div>
             );
+            setIsFormValid(false);
           } else {
-            setIsFormValid(true);
             setEmailMessage(
               <div style={{ fontSize: "12px" }}>
                 <a class="text-danger">
@@ -114,6 +113,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 </a>
               </div>
             );
+            setIsFormValid(true);
           }
         });
       }
@@ -237,12 +237,12 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           <div className="col">
             <div className="mb-3">
               <label>
-                First name<span class="text-danger">*</span>
+                First Name<span class="text-danger">*</span>
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="First name"
+                placeholder="First Name"
                 onChange={handleChange("fname")}
                 onBlur={function (e) {
                   validateBlankspace(e.target.value, "fname");
@@ -344,11 +344,13 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
 
         <div className="row">
           <div className="col-6">
-            <div className="mb-3">
               <label>
                 Mobile Number<span class="text-danger">*</span>
               </label>
-              <span class="input-group-text input-group-prepend">+63</span>
+              <div className="input-group mb-3">
+                <div className="input-group=prepend">
+                  <span class="input-group-text">+63</span>
+                </div>
               <input
                 type="text"
                 className="form-control"
@@ -362,19 +364,19 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 maxLength={10}
                 required
               />
-              {blankInputError.mobile}
-              {specialCharacterError.mobile}
             </div>
+            {blankInputError.mobile}
+            {specialCharacterError.mobile}
           </div>
 
           <div className="col-6">
-            <div className="input-group mb-3">
               <label>
                 Telephone Number<span class="text-danger">*</span>
               </label>
-              <div class="input-group-prepend">
-                <span class="input-group-text">+02</span>
-              </div>
+              <div className="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">+02</span>
+                </div>
               <input
                 type="tel"
                 className="form-control"
@@ -388,9 +390,9 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
                 maxLength={8}
                 required
               />
-              {blankInputError.tellphone}
-              {specialCharacterError.tellphone}
             </div>
+            {blankInputError.tellphone}
+            {specialCharacterError.tellphone}
           </div>
         </div>
 
