@@ -78,7 +78,6 @@ function ApptPatientDetails(pName,dName,appNum,date,time,appStats,procedures) {
               {procValue.map((item, index) => (
                       <tr key={index}>
                         <td>{item.procedure}</td>
-                        <p>asgd</p>
                       </tr>
                     ))}
               </div>

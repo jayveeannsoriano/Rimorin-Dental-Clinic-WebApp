@@ -30,20 +30,6 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
   const proceduresValue = ConvertStringfyValues.procedures;
 
-  const [procValue, setProcedure] = useState([]);
-  useEffect(() => {
-    proceduresValue.map((item) =>
-      item.chosen != null
-        ? item.chosen.map(
-            (proc) => (
-              setProcedure((current) => [...current, proc])
-            )
-          )
-        : null
-    );
-  }, [1]);
-
-
   if (JSON.stringify(ConvertStringfyValues.dentistIDnumber) == undefined){
     console.log("THIS IS SEC")
      var dentistNumber = "SC#000XX"
@@ -68,7 +54,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         dentistValue: DentistValue,
         formattedDate: FormattedDateValue,
         dateValue: DateValue,
-        procedures:procValue,
+        procedures:proceduresValue,
         getTime: TimeValue,
       }
     );

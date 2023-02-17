@@ -35,6 +35,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, procedures) {
     setModalState("arrived-modal");
   };
 
+
   //retrieve app number
   const StringAppNum = JSON.stringify(
     patientIDnumber,
@@ -56,7 +57,6 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, procedures) {
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g, "");
   const passAppNumber = AppNumber.substring(1);
   const proceduresValue = ConvertStringApp.procedures;
-  console.log(proceduresValue);
 
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
