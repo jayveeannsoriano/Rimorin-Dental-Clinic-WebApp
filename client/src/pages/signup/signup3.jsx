@@ -83,16 +83,23 @@ const SignUp3 = ({ prevStep, nextStep, handleChange, values }) => {
 
     handleChange("conditions", isSelected)(e);
 
-    if (!checked) {
-      setCheckboxError(
-        <div style={{ fontSize: "12px" }} className="text-danger">
-          <strong>Please select at least one option.</strong>
-        </div>
-      );
-      setIsFormValid(true);
-    } else {
-      setCheckboxError("");
-      setIsFormValid(false);
+    var item = document.getElementsByClassName("form-check-input");
+    var num = 0;
+    for (var i = 0; i < item.length; i++) {
+      if(item.item(i).checked == true){
+        num++;
+      }
+      if (num<=0) {
+        setCheckboxError(
+          <div style={{ fontSize: "12px" }} className="text-danger">
+            <strong>Please select at least one option.</strong>
+          </div>
+        );
+        setIsFormValid(true);
+      } else {
+        setCheckboxError("");
+        setIsFormValid(false);
+      }
     }
   };
 
