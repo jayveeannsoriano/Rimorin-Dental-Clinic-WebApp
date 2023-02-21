@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 const BookingDetail = ({ nextStep, prevStep, values }) => {
   const [dentistDetails, setDentistDetails] = useState();
@@ -134,8 +135,10 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
 
             <div className="appointment-info">
               <h1>APPOINTMENT INFORMATION</h1>
+              <br />
               <h2>Doctor's Name</h2>
               Dr. {dentistDetails}
+              <br />
               <br />
               <h2>Date of Appointment</h2>
               {JSON.stringify(window.localStorage.getItem("date"))
@@ -144,13 +147,26 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
                 " | " +
                 window.localStorage.getItem("time")}
               <br />
+              <br />
               <h2>Treatment Procedure</h2>
-              {dentalItem.map((item, index) => (
-                      <tr key={index}>
-                        <td>{item.procedure}</td>
-                        <td>{item.price}</td>
-                      </tr>
-                    ))}
+              <div className="col-3">
+                <Table striped responsive="sm" style={{fontSize: '14px'}}>
+                  <thead>
+                    <tr>
+                      <th>Selected Treatment/s</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {dentalItem.map((item, index) => (
+                          <tr key={index}>
+                            <td>{item.procedure}</td>
+                            <td>{item.price}</td>
+                          </tr>
+                        ))}
+                  </tbody>
+                </Table>
+              </div>
             </div>
 
             <div className="divider"></div>

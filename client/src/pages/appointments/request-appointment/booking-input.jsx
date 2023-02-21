@@ -23,7 +23,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   //user info
   try {
     var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
-    var patientIDnumber = userInfo['patientIDnumber'];
+    var patientIDnumber = userInfo["patientIDnumber"];
     var getUserName = JSON.stringify(
       userInfo["fname"] + " " + userInfo["lname"]
     );
@@ -34,7 +34,8 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   }
 
   //calendar input
-  const [startDate, setStartDate] = useState(new Date());
+  //const [selectedApptDate, setStartDate] = useState(new Date());
+  const [selectedApptDate, setSelectedApptDate] = useState("");
   var [totalApptTime, settotalApptTime] = useState(0);
   const [buttonMessage, setButtonMessage] = useState(true);
 
@@ -48,23 +49,10 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const [takenAppointments, setTakenAppointments] = useState([]);
   const [userAppointments, setUserAppointments] = useState([]);
 
-  console.log("CURRENT DATE BOOKING", startDate);
-  window.localStorage.setItem("date", startDate);
-  window.localStorage.setItem(
-    "formattedDate",
-    startDate != null
-      ? startDate.getFullYear() +
-          "-" +
-          ("0" + (startDate.getMonth() + 1)).slice(-2) +
-          "-" +
-          ("0" + startDate.getDate()).slice(-2)
-      : ""
-  );
-
   //useNavigate
   const navigate = useNavigate();
 
-  const dateValue = "" + startDate;
+  const dateValue = "" + selectedApptDate;
   const stringDateValue = dateValue.toString().substring(0, 10);
 
   //Get All appointments on date
@@ -109,11 +97,11 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   // const appointmentStatus = userAppointments.map(function (item) {
   //   return item.date;
   // });
-  
+
   // const [validated, setValidateValue] = useState(false)
   // const ValidateButton = () => {
   //   console.log(appointmentStatus)
-  //   if (appointmentStatus.includes(startDate.toString().substring(0, 15))) {
+  //   if (appointmentStatus.includes(selectedApptDate.toString().substring(0, 15))) {
   //     console.log("nope");
   //     // setValidateValue(true)
   //     // setButtonMessage(
@@ -181,59 +169,62 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   console.log(totalApptTime);
   console.log(checked, "values");
 
-  localStorage.setItem('totalProcedure', JSON.stringify(checked));
+  localStorage.setItem("totalProcedure", JSON.stringify(checked));
 
   //time is in minutes
   const generalOptions = [
-    { procedure: "CONSULTATION", time: 30 ,price: 300},
+    { procedure: "CONSULTATION", time: 30, price: 300 },
     { procedure: "COMPOSITE FILLING", time: 60, price: 700 },
     { procedure: "ORAL PROPHYLAXIS", time: 60, price: 1000 },
-    { procedure: "TOOTH EXTRACTION", time: 90 , price: 800 },
-    { procedure: "TOOTH RESTORATION", time: 90 , price: 1200 },
-    { procedure: "PTS AND FISSURES SEALANT", time: 60 , price: 700},
-    { procedure: "FLOURIDE TREATMENT", time: 90 , price: 5500},
-    { procedure: "INTERMEDIATE RESTORATION", time: 120 , price: 7000},
+    { procedure: "TOOTH EXTRACTION", time: 90, price: 800 },
+    { procedure: "TOOTH RESTORATION", time: 90, price: 1200 },
+    { procedure: "PTS AND FISSURES SEALANT", time: 60, price: 700 },
+    { procedure: "FLOURIDE TREATMENT", time: 90, price: 5500 },
+    { procedure: "INTERMEDIATE RESTORATION", time: 120, price: 7000 },
   ];
   const cosmeticOptions = [
-    { procedure: "GLASS IONOMER", time: 60 , price: 11000},
-    { procedure: "DIRECT COMPOSITE VENEER", time: 60 , price: 3000},
-    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60 , price: 2000},
-    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90 , price: 1000},
-    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180 , price: 20000 },
+    { procedure: "GLASS IONOMER", time: 60, price: 11000 },
+    { procedure: "DIRECT COMPOSITE VENEER", time: 60, price: 3000 },
+    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60, price: 2000 },
+    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90, price: 1000 },
+    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180, price: 20000 },
   ];
   const orthodonticOptions = [
-    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90 , price: 45000 },
-    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90 , price: 52000 },
-    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180 , price: 95000},
-    { procedure: "RETAINER (BOTH ARCH'S)", time: 90 , price: 8000},
+    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90, price: 45000 },
+    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90, price: 52000 },
+    {
+      procedure: "ORTHODONTICS- UPPER AND LOWER BRACES",
+      time: 180,
+      price: 95000,
+    },
+    { procedure: "RETAINER (BOTH ARCH'S)", time: 90, price: 8000 },
   ];
   const endodonticOptions = [
-    { procedure: "ROOT CANAL THERAPY", time: 90 , price: 4400 },
-    { procedure: "PULPOTOMY", time: 60 , price: 5300},
-    { procedure: "POST AND CORE", time: 60 , price: 6200},
-    { procedure: "DEEP SCALING", time: 120 , price: 10200},
+    { procedure: "ROOT CANAL THERAPY", time: 90, price: 4400 },
+    { procedure: "PULPOTOMY", time: 60, price: 5300 },
+    { procedure: "POST AND CORE", time: 60, price: 6200 },
+    { procedure: "DEEP SCALING", time: 120, price: 10200 },
   ];
   const prostheticOptions = [
-    { procedure: "DENTAL REPAIR", time: 60 , price: 12000},
-    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60 , price: 35000},
-    { procedure: "DENTURE RELINE (DIRECT)", time: 60 , price: 30000 },
-    { procedure: "SOFT RELINE", time: 60 , price: 16000 },
-    { procedure: "DENTURE REPLACEMENT", time: 90 , price: 15000},
-    { procedure: "FULL DENTURE PLASTIC", time: 90 , price: 7500},
-    { procedure: "FULL DENTURE PORCELAIN", time: 90 , price: 15000},
+    { procedure: "DENTAL REPAIR", time: 60, price: 12000 },
+    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60, price: 35000 },
+    { procedure: "DENTURE RELINE (DIRECT)", time: 60, price: 30000 },
+    { procedure: "SOFT RELINE", time: 60, price: 16000 },
+    { procedure: "DENTURE REPLACEMENT", time: 90, price: 15000 },
+    { procedure: "FULL DENTURE PLASTIC", time: 90, price: 7500 },
+    { procedure: "FULL DENTURE PORCELAIN", time: 90, price: 15000 },
   ];
   const surgicalOptions = [
-    { procedure: "ODONTECTOMY", time: 60 , price: 5000},
-    { procedure: "OPERCULECTOMY", time: 90 , price: 5000},
-    { procedure: "FRENECTOMY", time: 60 , price: 5200},
-    { procedure: "ALVEOLECTOMY", time: 60 , price: 8300},
-    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60 , price: 5000},
-    { procedure: "APICOECTOMY", time: 90 , price: 8500},
+    { procedure: "ODONTECTOMY", time: 60, price: 5000 },
+    { procedure: "OPERCULECTOMY", time: 90, price: 5000 },
+    { procedure: "FRENECTOMY", time: 60, price: 5200 },
+    { procedure: "ALVEOLECTOMY", time: 60, price: 8300 },
+    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60, price: 5000 },
+    { procedure: "APICOECTOMY", time: 90, price: 8500 },
   ];
 
-  //Radio handleChange
+  //Checkbox handleChange
   const [selectedValue, setSelectedValue] = useState({});
-  //const [selectedOption, setSelectedOption] = useState("");
   const [isSelected, setIsSelected] = useState();
 
   const handleChangeCheckbox = (input) => (event) => {
@@ -249,7 +240,11 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       setIsSelected(null);
       settotalApptTime(tempVar);
     }
-    var tempArr = { procedure: value[0].procedure, time: value[0].time, price: value[0].price };
+    var tempArr = {
+      procedure: value[0].procedure,
+      time: value[0].time,
+      price: value[0].price,
+    };
     setChecked((current) =>
       current.map((obj) => {
         if (obj.option === input) {
@@ -271,7 +266,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const [errorCheckBox, setCheckBoxError] = useState("");
   const Continue = (e) => {
     e.preventDefault();
-    //time slot validation
     if (!timeCheck) {
       setError(
         <div style={{ fontSize: "12px" }}>
@@ -281,17 +275,17 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
         </div>
       );
     }
-    if (!selectedValue) {
+    if (!isSelected) {
       setCheckBoxError(
         <div>
           <Alert key={"danger"} variant={"danger"}>
-            Please select one a treatment procedure.
+            Please select a treatment procedure.
           </Alert>
         </div>
       );
       return;
     }
-    if (startDate && timeCheck && selectedValue) {
+    if (selectedApptDate && timeCheck && selectedValue) {
       nextStep();
       setError("");
       setCheckBoxError("");
@@ -313,7 +307,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
 
   const getDentistInfo = async () => {
     try {
-      const responses = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getDentistInfo");
+      const responses = await Axios.get(
+        "https://rimorin-dental-clinic.herokuapp.com/getDentistInfo"
+      );
       console.log(responses.data);
       setDentistInfo(responses.data);
     } catch (error) {
@@ -324,8 +320,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   useEffect(() => {
     getDentistInfo();
   }, []);
-
-
 
   return (
     <>
@@ -391,6 +385,32 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
               <h1>APPOINTMENT INFORMATION</h1>
             </div>
 
+            {/* Select a dentist */}
+              <form onSubmit={Continue}>
+                  <div className="col-md-3 ms-5">
+                    <label className="form-label">
+                      <strong>
+                      Select a Dentist{" "}
+                      <span className="text-danger font-weight-bold">*</span>
+                      </strong>
+                    </label>
+                    <Form.Select
+                      value={values.doctor}
+                      onChange={handleChange("doctor")}
+                      required
+                    >
+                      <option value="" selected disabled>
+                        --Dentist--
+                      </option>
+                      {dentistInfo.map((item, index) => (
+                        <option value={item.dentistIDnumber}>
+                          Dr. {item.fname} {item.mname} {item.lname}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </div>
+                </form>
+
             {/* Select Treatment Procedure */}
             <div className="container procedure-container">
               <div className="row procedure-row">
@@ -414,10 +434,10 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
-                        onClick={ 
-                        handleChangeCheckbox("General")
-                      }
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
+                        onClick={handleChangeCheckbox("General")}
                         required
                       />
                     </div>
@@ -434,7 +454,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Cosmetic")}
@@ -455,7 +477,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Orthodontic")}
@@ -476,7 +500,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Endodontic")}
@@ -495,7 +521,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Prosthetic")}
@@ -514,7 +542,9 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={isSelected ? isSelected !== item.procedure : false}
+                        disabled={
+                          isSelected ? isSelected !== item.procedure : false
+                        }
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Surgical")}
@@ -523,33 +553,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   ))}
                 </div>
               </div>
+              {errorCheckBox}
             </div>
 
             {/* Booking deets */}
             <form onSubmit={Continue}>
               <div className="appointment-form mt-5 mb-5" id="appointment-form">
                 <div className="col-md-3">
-                  {/* Select a dentist */}
-                  <label className="form-label">
-                    Select a Dentist{" "}
-                    <span className="text-danger font-weight-bold">*</span>
-                  </label>
-                  <Form.Select
-                    value={values.doctor}
-                    onChange={handleChange("doctor")}
-                    required
-                  >
-                    <option value="" selected disabled>
-                      --Dentist--
-                    </option>
-                    {dentistInfo.map((item, index) => (
-                      <option value={item.dentistIDnumber}>
-                        Dr. {item.fname} {item.mname} {item.lname}
-                      </option>
-                    ))}
-                  </Form.Select>
-
-                  <br />
 
                   {/* Select Appt Date */}
                   <label className="form-label">
@@ -558,7 +568,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   </label>
 
                   <DatePicker
-                    selected={startDate}
+                    selected={selectedApptDate}
                     className="form-control col-md-3"
                     style={{
                       backgroundColor: "white",
@@ -567,8 +577,21 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       color: "#495057",
                       width: "300px",
                     }}
+                    required
                     onChange={(date) => {
-                      setStartDate(date);
+                      setSelectedApptDate(date);
+                      window.localStorage.setItem("date", date);
+                      window.localStorage.setItem(
+                        "formattedDate",
+                        date != null
+                          ? date.getFullYear() +
+                              "-" +
+                              ("0" + (date.getMonth() + 1)).slice(-2) +
+                              "-" +
+                              ("0" + date.getDate()).slice(-2)
+                          : ""
+                      );
+                      console.log("CURRENT DATE BOOKING", selectedApptDate);
                       getAppointmenstbyDate(date.toString().substring(0, 15));
                     }}
                     placeholderText="Choose a date"
@@ -587,12 +610,14 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     <span className="text-danger font-weight-bold">*</span>
                   </label>
                   <p> Available Times </p>
-                  <Timeslot
-                    GetTimeCheck={setTimeCheck}
-                    takenAppointments={takenAppointments}
-                    chosenDate={chosenDate}
-                    totalApptTime={totalApptTime}
-                  />
+                  {selectedApptDate && (
+                    <Timeslot
+                      GetTimeCheck={setTimeCheck}
+                      takenAppointments={takenAppointments}
+                      chosenDate={chosenDate}
+                      totalApptTime={totalApptTime}
+                    />
+                  )}
                   {error}
                 </div>
               </div>
@@ -620,7 +645,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     <span className="text-danger font-weight-bold">*</span>
                   </label>
                 </div>
-                {errorCheckBox}
               </div>
 
               <div className="col-12">
