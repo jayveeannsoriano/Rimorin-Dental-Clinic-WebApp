@@ -35,13 +35,14 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const StringfyDocID = useMemo(() =>
     JSON.stringify(getDocID).replace(/"/g, "")
   );
-    window.localStorage.setItem("patientIDNum", "PT#" + StringfyPatientID);
+  window.localStorage.setItem("patientIDNum", "PT#" + StringfyPatientID);
   window.localStorage.setItem("userName", patientUser);
   window.localStorage.setItem("userPhone", patientMobile);
   window.localStorage.setItem("userEmail", patientEmail);
   window.localStorage.setItem("prevAppNum", "#" + StringfygetPrevID);
   window.localStorage.setItem("docName", StringfyDocName);
   window.localStorage.setItem("docID", "DT#" + StringfyDocID);
+  window.localStorage.setItem("totalProcedure", JSON.stringify(checked));
 
   const getUser = async () => {
     try {
@@ -152,66 +153,85 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
         : null
     );
     console.log(totalApptTime);
-
-
   }, [checked]);
   //time is in minutes
   const generalOptions = [
-    { procedure: "CONSULTATION", time: 30 },
-    { procedure: "COMPOSITE FILLING", time: 60 },
-    { procedure: "ORAL PROPHYLAXIS", time: 60 },
-    { procedure: "TOOTH EXTRACTION", time: 90 },
-    { procedure: "TOOTH RESTORATION", time: 90 },
-    { procedure: "PTS AND FISSURES SEALANT", time: 60 },
-    { procedure: "FLOURIDE TREATMENT", time: 90 },
-    { procedure: "INTERMEDIATE RESTORATION", time: 120 },
+    { procedure: "CONSULTATION", time: 30, price: 300 },
+    { procedure: "COMPOSITE FILLING", time: 60, price: 700 },
+    { procedure: "ORAL PROPHYLAXIS", time: 60, price: 1000 },
+    { procedure: "TOOTH EXTRACTION", time: 90, price: 800 },
+    { procedure: "TOOTH RESTORATION", time: 90, price: 1200 },
+    { procedure: "PTS AND FISSURES SEALANT", time: 60, price: 700 },
+    { procedure: "FLOURIDE TREATMENT", time: 90, price: 5500 },
+    { procedure: "INTERMEDIATE RESTORATION", time: 120, price: 7000 },
   ];
   const cosmeticOptions = [
-    { procedure: "GLASS IONOMER", time: 60 },
-    { procedure: "DIRECT COMPOSITE VENEER", time: 60 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180 },
+    { procedure: "GLASS IONOMER", time: 60, price: 11000 },
+    { procedure: "DIRECT COMPOSITE VENEER", time: 60, price: 3000 },
+    { procedure: "DIRECT COMPOSITE CLASS IV", time: 60, price: 2000 },
+    { procedure: "DIASTEMA CLOSURE (BONDING)", time: 90, price: 1000 },
+    { procedure: "CERAMIC/PORCELAIN VENEER", time: 180, price: 20000 },
   ];
   const orthodonticOptions = [
-    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90 },
-    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90 },
-    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180 },
-    { procedure: "RETAINER (BOTH ARCH'S)", time: 90 },
+    { procedure: "ORTHODONTICS- UPPER BRACES", time: 90, price: 45000 },
+    { procedure: "ORTHODONTICS- LOWER BRACES", time: 90, price: 52000 },
+    {
+      procedure: "ORTHODONTICS- UPPER AND LOWER BRACES",
+      time: 180,
+      price: 95000,
+    },
+    { procedure: "RETAINER (BOTH ARCH'S)", time: 90, price: 8000 },
   ];
   const endodonticOptions = [
-    { procedure: "ROOT CANAL THERAPY", time: 90 },
-    { procedure: "PULPOTOMY", time: 60 },
-    { procedure: "POST AND CORE", time: 60 },
-    { procedure: "DEEP SCALING", time: 120 },
+    { procedure: "ROOT CANAL THERAPY", time: 90, price: 4400 },
+    { procedure: "PULPOTOMY", time: 60, price: 5300 },
+    { procedure: "POST AND CORE", time: 60, price: 6200 },
+    { procedure: "DEEP SCALING", time: 120, price: 10200 },
   ];
   const prostheticOptions = [
-    { procedure: "DENTAL REPAIR", time: 60 },
-    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60 },
-    { procedure: "DENTURE RELINE (DIRECT)", time: 60 },
-    { procedure: "SOFT RELINE", time: 60 },
-    { procedure: "DENTURE REPLACEMENT", time: 90 },
-    { procedure: "FULL DENTURE PLASTIC", time: 90 },
-    { procedure: "FULL DENTURE PORCELAIN", time: 90 },
+    { procedure: "DENTAL REPAIR", time: 60, price: 12000 },
+    { procedure: "DENTURE RELINE (LABORATORY MADE)", time: 60, price: 35000 },
+    { procedure: "DENTURE RELINE (DIRECT)", time: 60, price: 30000 },
+    { procedure: "SOFT RELINE", time: 60, price: 16000 },
+    { procedure: "DENTURE REPLACEMENT", time: 90, price: 15000 },
+    { procedure: "FULL DENTURE PLASTIC", time: 90, price: 7500 },
+    { procedure: "FULL DENTURE PORCELAIN", time: 90, price: 15000 },
   ];
   const surgicalOptions = [
-    { procedure: "ODONTECTOMY", time: 60 },
-    { procedure: "OPERCULECTOMY", time: 90 },
-    { procedure: "FRENECTOMY", time: 60 },
-    { procedure: "ALVEOLECTOMY", time: 60 },
-    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60 },
-    { procedure: "APICOECTOMY", time: 90 },
+    { procedure: "ODONTECTOMY", time: 60, price: 5000 },
+    { procedure: "OPERCULECTOMY", time: 90, price: 5000 },
+    { procedure: "FRENECTOMY", time: 60, price: 5200 },
+    { procedure: "ALVEOLECTOMY", time: 60, price: 8300 },
+    { procedure: "GINGIVECTOMY OR CONTOURING", time: 60, price: 5000 },
+    { procedure: "APICOECTOMY", time: 90, price: 8500 },
   ];
-  //const [checked, setChecked] = useState([{ option: "Others", chosen: [] }]);
+
+  //Checkbox handleChange
+  const [isSelected, setIsSelected] = useState();
+  const [selectedCount, setSelectedCount] = useState(0);
+
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
     var tempVar = totalApptTime;
+
+    // Check if two checkboxes are already selected
+    if (isChecked && selectedCount >= 2) {
+      event.preventDefault(); // Prevent checkbox from being checked
+      return;
+    }
+
+    // Update selected count
+    const countChange = isChecked ? 1 : -1;
+    setSelectedCount(selectedCount + countChange);
+
     if (isChecked) {
       tempVar = totalApptTime + parseInt(event.target.id);
       settotalApptTime(tempVar);
-    }else{
+      !isSelected && setIsSelected(event.target.name);
+    } else {
       tempVar = totalApptTime - parseInt(event.target.id);
+      setIsSelected(null);
       settotalApptTime(tempVar);
     }
     var tempArr = { procedure: value[0].procedure, time: value[0].time };
@@ -220,14 +240,12 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
         if (obj.option === input) {
           if (isChecked) {
             return { ...obj, chosen: [...obj.chosen, tempArr] };
-            
           } else {
             var newArr = obj.chosen;
             var index = newArr.indexOf(event.target.value);
             newArr.splice(index, 1); // 2nd parameter means remove one item only
             return { ...obj, chosen: newArr };
           }
-          
         }
         return obj;
       })
@@ -250,7 +268,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
     //checkbox validation
-    if (checked.length === 0 ||!checked) {
+    if (!isSelected) {
       setErrorCheckbox(
         <div>
           <Alert key={"danger"} variant={"danger"}>
@@ -260,14 +278,13 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
 
-    if (
-      startDate &&
-      timeCheck &&
-      checked.length > 0
-    ) {
+    if (startDate &&
+      timeCheck && isSelected) {
+      e.preventDefault();
+      e.stopPropagation();
+      nextStep();
       setError("");
       setErrorCheckbox("");
-      nextStep();
     }
   };
 
@@ -361,7 +378,9 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
                 <div className="col-lg-4 col-xl-4 col-md-6">
-                  <div className="procedure-label">General Dentistry Services</div>
+                  <div className="procedure-label">
+                    General Dentistry Services
+                  </div>
                   <div className="divider procedure-div"></div>
 
                   {generalOptions.map((item, index) => (
@@ -372,6 +391,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("General")}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         required
                       />
                     </div>
@@ -384,26 +404,30 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {cosmeticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                       value={JSON.stringify([item])}
+                        value={JSON.stringify([item])}
                         id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Cosmetic")}
                       />
                     </div>
                   ))}
                 </div>
                 <div className="col-lg-4 col-xl-4 col-md-6">
-                  <div className="procedure-label">Orthodontic Dentistry Services</div>
+                  <div className="procedure-label">
+                    Orthodontic Dentistry Services
+                  </div>
                   <div className="divider procedure-div"></div>
 
                   {orthodonticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                       value={JSON.stringify([item])}
+                        value={JSON.stringify([item])}
                         id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Orthodontic")}
                       />
                     </div>
@@ -418,10 +442,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {endodonticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                       value={JSON.stringify([item])}
+                        value={JSON.stringify([item])}
                         id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Endodontic")}
                       />
                     </div>
@@ -434,10 +459,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {prostheticOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                       value={JSON.stringify([item])}
+                        value={JSON.stringify([item])}
                         id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Prosthetic")}
                       />
                     </div>
@@ -450,10 +476,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   {surgicalOptions.map((item, index) => (
                     <div key={index} className="mb-3">
                       <Form.Check
-                       value={JSON.stringify([item])}
+                        value={JSON.stringify([item])}
                         id={item.time}
                         type="checkbox"
                         label={`${item.procedure}`}
+                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Surgical")}
                       />
                     </div>

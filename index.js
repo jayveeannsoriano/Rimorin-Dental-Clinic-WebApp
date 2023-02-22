@@ -277,7 +277,7 @@ app.post("/insertAppointment", async (req, res) => {
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
-    dentistIDnumber:docIDnum,
+    dentistIDnumber: docIDnum,
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
@@ -290,7 +290,7 @@ app.post("/insertAppointment", async (req, res) => {
   const AppDets = new AppDetails({
     patientIDnumber: patientIDnumber,
     pName: userNameApp,
-    dentistIDnumber:docIDnum,
+    dentistIDnumber: docIDnum,
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
@@ -424,13 +424,11 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   const startDate = req.body.startDate;
   const slidedDate = startDate.substring(0, 15);
 
-  //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput);
-
   //time value
   const getTime = req.body.getTime;
   console.log(getTime);
+
+  const proceduresData = req.body.procedures;
 
   const formattedDate = req.body.formattedDate;
   console.log(formattedDate);
@@ -447,7 +445,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
     dName: docName,
     appNum: appNumberUUID,
     date: slidedDate,
-    consultation: consulInput,
+    procedures: proceduresData,
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
@@ -494,7 +492,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
 });
 
 app.put("/updateClinicHours", async (req, res) => {
-  await AvailableTime.findOneAndUpdate({}, { config: req.body.clinicHours});
+  await AvailableTime.findOneAndUpdate({}, { config: req.body.clinicHours });
   console.log(req.body.clinicHours);
   console.log("Clinic Hours Updated!");
 });
@@ -511,9 +509,8 @@ app.get("/getAppointmentDetails", async (req, res) => {
 });
 
 app.get("/getAppointmentDetailsForDentist", async (req, res) => {
-
   const DentistIDnumber = req.query.dentistIDNumber;
-  await AppRequest.find({dentistIDnumber: DentistIDnumber})
+  await AppRequest.find({ dentistIDnumber: DentistIDnumber })
     .then((data) => {
       res.json(data);
     })
@@ -672,10 +669,9 @@ app.get("/getUserAppointmentDetails", async (req, res) => {
 });
 
 app.get("/getUserAppointmentDetailsforDuplicate", async (req, res) => {
-
   const userID = req.query.patientIDnum;
 
-  await AppDetails.find({patientIDnumber: userID})
+  await AppDetails.find({ patientIDnumber: userID })
     .then((data) => {
       res.json(data);
     })
@@ -683,7 +679,6 @@ app.get("/getUserAppointmentDetailsforDuplicate", async (req, res) => {
       console.log("error: ", error);
     });
 });
-
 
 //filtered TODAY
 app.get("/getTodayUserAppointmentDetails", async (req, res) => {
@@ -799,7 +794,7 @@ app.get("/getOngoingUserAppointment", async (req, res) => {
 app.get("/getAppointmenstToDisableDate", async (req, res) => {
   const patientIDNumber = req.query.patientIDnumber;
 
-  await AppDetails.find({patientIDnumber: patientIDNumber})
+  await AppDetails.find({ patientIDnumber: patientIDNumber })
     .then((data) => {
       res.json(data);
     })
@@ -1782,29 +1777,28 @@ app.get("/getTotalAppts", async (req, res) => {
 });
 
 app.get("/getTotalPendingAppts", async (req, res) => {
-
   const dentistIDnum = req.query.dentistIDnumber;
 
-    await AppRequest.countDocuments({dentistIDnumber : dentistIDnum, appStatus: "Pending" })
+  await AppRequest.countDocuments({
+    dentistIDnumber: dentistIDnum,
+    appStatus: "Pending",
+  })
     .then((data) => {
       res.json(data);
     })
     .catch((error) => {
       console.log("error: ", error);
     });
-
 });
 
 app.get("/getTotalPendingApp", async (req, res) => {
-
-    await AppRequest.countDocuments({ appStatus: "Pending"})
+  await AppRequest.countDocuments({ appStatus: "Pending" })
     .then((data) => {
       res.json(data);
     })
     .catch((error) => {
       console.log("error: ", error);
     });
-
 });
 
 //updateDataTable
@@ -1973,7 +1967,7 @@ app.post("/acceptAppointment", async (req, res) => {
     appNum: appNumber,
     date: slicedDate,
     formattedDate: formattedDate,
-    procedures:procValue,
+    procedures: procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2155,7 +2149,7 @@ app.post("/insertDentalRecords", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-const procValue = req.body.procedures;
+  const procValue = req.body.procedures;
 
   //time value
   const getTime = req.body.time;
@@ -2172,7 +2166,7 @@ const procValue = req.body.procedures;
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    procedures:procValue,
+    procedures: procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2494,8 +2488,6 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-  const consulInput = req.body.consulInput;
-  console.log(consulInput);
 
   //time value
   const getTime = req.body.getTime;
@@ -2512,7 +2504,6 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req, res) => {
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    consultation: consulInput,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2549,7 +2540,7 @@ app.post("/moveToAppointmentHistoryAsNoShow", async (req, res) => {
   console.log(dateValue);
 
   //consul value
-const procValue = req.body.procedures;
+  const procValue = req.body.procedures;
 
   //time value
   const getTime = req.body.time;
@@ -2566,7 +2557,7 @@ const procValue = req.body.procedures;
     dName: docName,
     appNum: appNumber,
     date: dateValue,
-    procedures:procValue,
+    procedures: procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2629,7 +2620,7 @@ app.post("/moveToAppointmentHistoryAsFinished", async (req, res) => {
     appNum: appNumber,
     date: dateValue,
     formattedDate: formattedDate,
-    procedures:procValue,
+    procedures: procValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
@@ -2671,7 +2662,6 @@ app.post("/moveToAppointmentHistoryAsExpired", async (req, res) => {
 
   //consul value
   const procValue = req.body.procedures;
-  console.log(consulInput);
 
   //time value
   const getTime = req.body.time;

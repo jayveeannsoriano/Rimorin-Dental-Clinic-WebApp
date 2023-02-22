@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 //Axios
 import axios from "axios";
@@ -53,6 +54,25 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
       console.log(error);
     }
   };
+
+  var retrievedObject = localStorage.getItem("totalProcedure");
+
+  var totalProcedures = JSON.parse(retrievedObject);
+
+  const [dentalItem, setDentalItem] = useState([]);
+  // const [dentPrice, setDentalPrice] = useState([]);
+
+  useEffect(() => {
+    const price = totalProcedures.map((item) =>
+      item.chosen != null
+        ? item.chosen.map((proc) =>
+            // setDentalPrice((current) => [...current, parseInt(proc.price)]),
+            setDentalItem((current) => [...current, proc])
+          )
+        : null
+    );
+  }, [1]);
+
   useEffect(() => {
     getUser();
   }, []);
@@ -153,8 +173,30 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
                       " | " +
                       window.localStorage.getItem("time")}
                     <h2>Treatment Procedures</h2>
-                    {/* map selected treatment procedures */}
-                    <h3>{values.consulation}</h3>
+                    <div className="col-3">
+                      <Table
+                        striped
+                        responsive="sm"
+                        style={{ fontSize: "14px" }}
+                      >
+                        <thead>
+                          <tr>
+                            <th>Selected Treatment/s</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {dentalItem.map((item, index) => (
+                            <tr key={index}>
+                              <td>{item.procedure}</td>
+                              <td>{item.time} mins</td>
+                              <td>{item.price}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    </div>
                   </div>
                 </div>
               </div>
