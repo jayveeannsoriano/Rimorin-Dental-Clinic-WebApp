@@ -34,7 +34,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   }
 
   //calendar input
-  //const [selectedApptDate, setStartDate] = useState(new Date());
   const [selectedApptDate, setSelectedApptDate] = useState("");
   var [totalApptTime, settotalApptTime] = useState(0);
   const [buttonMessage, setButtonMessage] = useState(true);
@@ -60,7 +59,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
     try {
       setChosenDate(date);
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate",
+        "http://localhost:3001/getAppointmentsbyDate",
         {
           params: {
             date: date,
@@ -82,7 +81,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   // const getAppointmenstToDisableDate = async () => {
   //   try {
   //     const response = await Axios.get(
-  //       "https://rimorin-dental-clinic.herokuapp.com/getAppointmenstToDisableDate",
+  //       "http://localhost:3001/getAppointmenstToDisableDate",
   //       {
   //         params: {
   //           patientIDnumber:patientIDnumber,
@@ -224,13 +223,24 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   ];
 
   //Checkbox handleChange
-  const [selectedValue, setSelectedValue] = useState({});
   const [isSelected, setIsSelected] = useState();
+  const [selectedCount, setSelectedCount] = useState(0);
 
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
     var tempVar = totalApptTime;
+
+    // Check if two checkboxes are already selected
+    if (isChecked && selectedCount >= 2) {
+      event.preventDefault(); // Prevent checkbox from being checked
+      return;
+    }
+
+    // Update selected count
+    const countChange = isChecked ? 1 : -1;
+    setSelectedCount(selectedCount + countChange);
+
     if (isChecked) {
       tempVar = totalApptTime + parseInt(event.target.id);
       settotalApptTime(tempVar);
@@ -265,7 +275,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const [error, setError] = useState("");
   const [errorCheckBox, setCheckBoxError] = useState("");
   const Continue = (e) => {
-    e.preventDefault();
     if (!timeCheck) {
       setError(
         <div style={{ fontSize: "12px" }}>
@@ -279,13 +288,15 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       setCheckBoxError(
         <div>
           <Alert key={"danger"} variant={"danger"}>
-            Please select a treatment procedure.
+            Please select at least one treatment procedure.
           </Alert>
         </div>
       );
       return;
     }
-    if (selectedApptDate && timeCheck && selectedValue) {
+    if (selectedApptDate && timeCheck && isSelected) {
+      e.preventDefault();
+      e.stopPropagation();
       nextStep();
       setError("");
       setCheckBoxError("");
@@ -308,7 +319,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getDentistInfo"
+        "http://localhost:3001/getDentistInfo"
       );
       console.log(responses.data);
       setDentistInfo(responses.data);
@@ -397,6 +408,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     <Form.Select
                       value={values.doctor}
                       onChange={handleChange("doctor")}
+                      className="form-select"
                       required
                     >
                       <option value="" selected disabled>
@@ -409,14 +421,13 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                       ))}
                     </Form.Select>
                   </div>
-                </form>
 
             {/* Select Treatment Procedure */}
             <div className="container procedure-container">
               <div className="row procedure-row">
                 <h6>
                   {" "}
-                  <strong>Select Treatment Procedure</strong>{" "}
+                  <strong>Select Treatment Procedure (maximum of 2)</strong>{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
                 <div className="col-lg-4 col-xl-4 col-md-6">
@@ -434,11 +445,8 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("General")}
-                        required
                       />
                     </div>
                   ))}
@@ -454,9 +462,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Cosmetic")}
@@ -477,9 +483,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Orthodontic")}
@@ -500,9 +504,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Endodontic")}
@@ -521,9 +523,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Prosthetic")}
@@ -542,9 +542,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                         id={item.time}
                         key={item.procedure}
                         name={item.procedure}
-                        disabled={
-                          isSelected ? isSelected !== item.procedure : false
-                        }
+                        disabled={selectedCount >= 2 && isSelected != item.procedure && !checked}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("Surgical")}
@@ -557,7 +555,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
             </div>
 
             {/* Booking deets */}
-            <form onSubmit={Continue}>
               <div className="appointment-form mt-5 mb-5" id="appointment-form">
                 <div className="col-md-3">
 
