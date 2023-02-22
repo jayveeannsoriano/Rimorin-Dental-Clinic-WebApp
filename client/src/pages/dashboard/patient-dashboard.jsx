@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import DashboardTable from "../../components/dashboardTable";
 import UpcomingDashboardTable from "../../components/dashboardUpcomingTable";
 import moment from "moment";
+import Alert from "react-bootstrap/Alert";
 import { useState, useEffect, useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +21,7 @@ const PatientDashboard = () => {
   const getAppInfo = async () => {
     try {
       const responses = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserAppointmentDetailsforDuplicate",
+        "http://localhost:3001/getUserAppointmentDetailsforDuplicate",
         {
           params: {
             patientIDnum: patientIDnumber,
@@ -50,27 +51,28 @@ const PatientDashboard = () => {
   const appointmentStatus = userAppointment.map(function (item) {
     return item.appStatus;
   });
-  
 
-const [validated, setValidateValue] = useState(false)
+  const [validated, setValidateValue] = useState(false);
   const ValidateButton = () => {
-    console.log(appointmentStatus)
-    if (appointmentStatus.includes("Pending") || appointmentStatus.includes("Rescheduled") || appointmentStatus.includes("Follow-Up")) {
+    console.log(appointmentStatus);
+    if (
+      appointmentStatus.includes("Pending") ||
+      appointmentStatus.includes("Rescheduled") ||
+      appointmentStatus.includes("Follow-Up")
+    ) {
       console.log("nope");
-      setValidateValue(true)
+      setValidateValue(true);
       setButtonMessage(
         <div style={{ fontSize: "12px" }}>
-          <a class="text-error">
-            <strong>
-              You can only submit another appointment if your current
-              appointment is Finished.
-            </strong>
-          </a>
+          <Alert key={"primary"} variant={"primary"}>
+            You can only request another appointment if your current appointment
+            is <strong>Finished</strong>.
+          </Alert>
         </div>
       );
     } else {
       console.log("yup");
-      setValidateValue(false)
+      setValidateValue(false);
       setButtonMessage(
         <div style={{ fontSize: "12px" }}>
           <a class="text-success">
@@ -100,13 +102,6 @@ const [validated, setValidateValue] = useState(false)
           </nav>
 
           {/* Page Title */}
-          {/*{userInformation.map((item, index) => (
-        <div className="pagetitle">
-          <h1>Welcome, {item.fname}!</h1>
-          <h2>{moment(new Date()).format('MMMM Do YYYY')}</h2>
-          <h2>{time}</h2>
-        </div>
-        ))}*/}
           <div className="pagetitle">
             <h1>Welcome, {userInfo["fname"]}!</h1>
             <h2>{moment(new Date()).format("MMMM Do YYYY")}</h2>
@@ -134,18 +129,17 @@ const [validated, setValidateValue] = useState(false)
                       >
                         UPCOMING
                       </Button>
-                      <div>
-                        <Button
-                          className="table-button reqdash-btn"
-                          href="/patient/appointments/request-appointment"
-                          disabled={validated}
-                        >
-                          <i class="bi bi-plus-lg"></i> REQUEST APPOINTMENT
-                        </Button>
-                        <ValidateButton/>
-                      </div>
-                        {buttonMessage}
+                      <Button
+                        className="table-button reqdash-btn"
+                        href="/patient/appointments/request-appointment"
+                        disabled={validated}
+                      >
+                        <i class="bi bi-plus-lg"></i> REQUEST APPOINTMENT
+                      </Button>
+                      <ValidateButton />
                     </div>
+
+                    <div className="col-6 mt-2">{buttonMessage}</div>
 
                     <div className="tab-content">
                       <div
@@ -180,7 +174,7 @@ const [validated, setValidateValue] = useState(false)
 
   const getAppointment = async () => {
     try {
-      const response = await Axios.get("https://rimorin-dental-clinic.herokuapp.com/getUserInfo", {
+      const response = await Axios.get("http://localhost:3001/getUserInfo", {
         params: {
           patientIDnumber: patientIDnumber,
         },

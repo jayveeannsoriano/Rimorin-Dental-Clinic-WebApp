@@ -1,6 +1,7 @@
 import "../../styles/login-signup.css";
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
 import validator from "validator";
 
 const SignUp1 = ({ nextStep, handleChange, values }) => {
@@ -88,7 +89,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
   function validateEmail(input) {
     if (validator.isEmail(input)) {
       if (validator.isEmail(input)) {
-        const response = Axios.get("https://rimorin-dental-clinic.herokuapp.com/checkEmail", {
+        const response = Axios.get("http://localhost:3001/checkEmail", {
           params: {
             email: input,
           },
@@ -469,7 +470,20 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
           <label>
             Profession<span class="text-danger">*</span>
           </label>
-          <input
+          <Form.Select
+              defaultValue={values.profession}
+              onChange={handleChange("profession")}
+              required
+              className="form-select"
+            >
+              <option value="" selected disabled>
+                Select Profession
+              </option>
+              <option value="Employed">Employed</option>
+              <option value="Unemployed">Unemployed</option>
+              <option value="Student">Student</option>
+            </Form.Select>
+          {/*<input
             type="text"
             className="form-control"
             placeholder="(e.g. Student, Government Employee, etc.)"
@@ -482,7 +496,7 @@ const SignUp1 = ({ nextStep, handleChange, values }) => {
             required
           />
           {blankInputError.profession}
-          {specialCharacterError.profession}
+          {specialCharacterError.profession}*/}
         </div>
 
         <div className="row">
