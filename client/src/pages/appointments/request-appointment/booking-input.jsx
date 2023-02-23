@@ -275,6 +275,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const [error, setError] = useState("");
   const [errorCheckBox, setCheckBoxError] = useState("");
   const Continue = (e) => {
+    e.preventDefault();
     if (!timeCheck) {
       setError(
         <div style={{ fontSize: "12px" }}>
@@ -295,8 +296,8 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       return;
     }
     if (selectedApptDate && timeCheck && isSelected) {
-      e.preventDefault();
-      e.stopPropagation();
+      //e.preventDefault();
+      //e.stopPropagation();
       nextStep();
       setError("");
       setCheckBoxError("");
