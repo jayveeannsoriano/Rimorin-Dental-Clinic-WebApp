@@ -59,7 +59,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
     try {
       setChosenDate(date);
       const response = await Axios.get(
-        "http://localhost:3001/getAppointmentsbyDate",
+        "https://rimorin-dental-clinic.herokuapp.com/getAppointmentsbyDate",
         {
           params: {
             date: date,
@@ -81,7 +81,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   // const getAppointmenstToDisableDate = async () => {
   //   try {
   //     const response = await Axios.get(
-  //       "http://localhost:3001/getAppointmenstToDisableDate",
+  //       "https://rimorin-dental-clinic.herokuapp.com/getAppointmenstToDisableDate",
   //       {
   //         params: {
   //           patientIDnumber:patientIDnumber,
@@ -319,7 +319,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
-        "http://localhost:3001/getDentistInfo"
+        "https://rimorin-dental-clinic.herokuapp.com/getDentistInfo"
       );
       console.log(responses.data);
       setDentistInfo(responses.data);

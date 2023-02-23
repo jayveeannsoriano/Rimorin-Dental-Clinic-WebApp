@@ -33,7 +33,7 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
   const getDentistInfo = async () => {
     try {
       const responses = await Axios.get(
-        "http://localhost:3001/getDentistIDdetails",
+        "https://rimorin-dental-clinic.herokuapp.com/getDentistIDdetails",
         {
           params: {
             ObjectID: values.doctor,

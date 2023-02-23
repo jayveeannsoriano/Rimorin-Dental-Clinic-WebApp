@@ -20,7 +20,7 @@
     "node": "16.17.0",
     "npm": "8.19.2"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://rimorin-dental-clinic.herokuapp.com",
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
     "@reach/router": "^1.3.4",
