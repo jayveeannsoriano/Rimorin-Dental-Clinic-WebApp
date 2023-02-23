@@ -66,11 +66,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   }, []);
 
   //calendar input
-  const [startDate, setStartDate] = useState(new Date());
-  window.localStorage.setItem(
-    "formattedDate",
-    startDate != null ? startDate.toISOString().substring(0, 10) : ""
-  );
+  const [selectedApptDate, setSelectedApptDate] = useState("");
 
   //time input
   const [time, setGetTime] = useState("");
@@ -83,7 +79,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
 
   const [takenAppointments, setTakenAppointments] = useState([]);
 
-  window.localStorage.setItem("date", startDate);
+  window.localStorage.setItem("date", selectedApptDate);
 
   const navigate = useNavigate();
 
@@ -278,7 +274,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
 
-    if (startDate &&
+    if (selectedApptDate &&
       timeCheck && isSelected) {
       e.preventDefault();
       e.stopPropagation();
@@ -369,12 +365,13 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
 
             <div className="divider"></div>
 
+            <form onSubmit={Continue}>
             {/* Select Treatment Procedure */}
             <div className="container procedure-container">
               <div className="row procedure-row">
                 <h6>
                   {" "}
-                  <strong>Select Treatment Procedure</strong>{" "}
+                  <strong>Select Treatment Procedure (maximum of 2)</strong>{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
                 <div className="col-lg-4 col-xl-4 col-md-6">
@@ -388,11 +385,12 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
                         onClick={handleChangeCheckbox("General")}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
-                        required
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                       />
                     </div>
                   ))}
@@ -406,9 +404,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Cosmetic")}
                       />
                     </div>
@@ -425,9 +425,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Orthodontic")}
                       />
                     </div>
@@ -444,9 +446,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Endodontic")}
                       />
                     </div>
@@ -461,9 +465,11 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Prosthetic")}
                       />
                     </div>
@@ -478,28 +484,31 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                       <Form.Check
                         value={JSON.stringify([item])}
                         id={item.time}
+                        key={item.procedure}
+                        name={item.procedure}
                         type="checkbox"
                         label={`${item.procedure}`}
-                        disabled = {selectedCount > 1 && isSelected != item.procedure && !checked}
+                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
                         onClick={handleChangeCheckbox("Surgical")}
                       />
                     </div>
                   ))}
                 </div>
               </div>
+              {errorCheckbox}
             </div>
 
             {/* Select Appt Date */}
             <div className="appointment-form" id="appointment-form">
-              <form className="row g-3" />
               <div className="col-md-4">
                 <label className="form-label">
                   Select Follow-Up Appointment Date{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </label>
                 <DatePicker
-                  selected={startDate}
+                  selected={selectedApptDate}
                   className="form-control col-md-3"
+                  required
                   style={{
                     backgroundColor: "white",
                     border: "1px solid #ced4da",
@@ -508,7 +517,12 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                     width: "300px",
                   }}
                   onChange={(date) => {
-                    setStartDate(date);
+                    setSelectedApptDate(date);
+                    window.localStorage.setItem("date", date);
+                    window.localStorage.setItem(
+                      "formattedDate",
+                      date != null ? date.toISOString().substring(0, 10) : ""
+                    );
                     getAppointmenstbyDate(date.toString().substring(0, 15));
                   }}
                   placeholderText="Choose a date"
@@ -527,17 +541,18 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   <span className="text-danger font-weight-bold">*</span>
                 </label>
                 <p> Available Times </p>
-                <Timeslot
-                  GetTimeCheck={setTimeCheck}
-                  takenAppointments={takenAppointments}
-                  chosenDate={chosenDate}
-                  totalApptTime={totalApptTime}
-                />
-                {error}
+                {selectedApptDate && (
+                    <Timeslot
+                      GetTimeCheck={setTimeCheck}
+                      takenAppointments={takenAppointments}
+                      chosenDate={chosenDate}
+                      totalApptTime={totalApptTime}
+                    />
+                  )}
+                  {error}
               </div>
             </div>
-
-            {errorCheckbox}
+            
 
             <div className="col-12">
               <div className="appt-bttns">
@@ -549,7 +564,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                   Cancel
                 </button>
                 <button
-                  onClick={Continue}
                   className="btn btn-primary"
                   type="submit"
                 >
@@ -557,6 +571,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                 </button>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </section>
