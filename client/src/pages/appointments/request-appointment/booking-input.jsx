@@ -39,10 +39,8 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   const [buttonMessage, setButtonMessage] = useState(true);
 
   const [chosenDate, setChosenDate] = useState("");
-  console.log("DENTIST ID NUMBER", values.doctor);
 
   const [timeCheck, setTimeCheck] = useState("");
-  console.log("CURRENT TIME BOOKING", timeCheck);
   window.localStorage.setItem("time", timeCheck);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
@@ -73,10 +71,12 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
         tempArr.push(appt.time);
       });
       setTakenAppointments(tempArr);
+      console.log("TAKEN APPOINTMENTS:",takenAppointments)
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   // const getAppointmenstToDisableDate = async () => {
   //   try {
@@ -164,9 +164,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
         : null
     );
   }, [checked]);
-
-  console.log(totalApptTime);
-  console.log(checked, "values");
 
   localStorage.setItem("totalProcedure", JSON.stringify(checked));
 
@@ -308,6 +305,10 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
     var initialDate = new Date();
     getAppointmenstbyDate(initialDate.toString().substring(0, 15));
   }, []);
+
+  useEffect(() => {
+    getAppointmenstbyDate(selectedApptDate.toString().substring(0, 10) + " 2023");
+  }, [selectedApptDate]);
 
   // useEffect(() => {
   //   getAppointmenstToDisableDate();

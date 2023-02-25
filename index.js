@@ -1757,19 +1757,31 @@ app.get("/getAppointmentsbyDate", async (req, res) => {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   console.log(query.date);
-  await AppRequest.find({ date: query.date })
+  var returnData = [];
+  await AppRequest.find({date:query.date})
     .then((data) => {
-      res.json(data);
+      returnData=data;
     })
     .catch((error) => {
       console.log("error: ", error);
     });
+
+  await AppDetails.find({date:query.date,appStatus:"Accepted"})
+  .then((data) => {
+    data.forEach(function(item) {
+      returnData.push(item);
+    })
+    res.json(returnData);
+  })
+  .catch((error) => {
+    console.log("error: ", error);
+  });
 });
 
 app.get("/getTotalAppts", async (req, res) => {
   await AppDetails.countDocuments({})
     .then((data) => {
-      res.json(data);
+      res.json(data.toArray);
     })
     .catch((error) => {
       console.log("error: ", error);
