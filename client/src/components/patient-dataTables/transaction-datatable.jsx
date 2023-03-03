@@ -91,15 +91,7 @@ const TransactionDataTable = () => {
               <PrintFile data={["print", "receipt", row, patientList]} />
               <ExportFile data={["download", "receipt", row, patientList]} />
             </>
-          ) : (
-            <Button
-              id="create-button"
-              className="create-button"
-              href={createReceiptPatientRef(row)}
-            >
-              Create Receipt
-            </Button>
-          )}
+          ) : null}
         </div>
       ),
     },
