@@ -147,7 +147,7 @@ function rebook(patientIDnumber, appNum, pName, dName, date, time, procedures) {
               </div>
             </div>
             <div class="row">
-              <div class="col modal-label">Reason for Consultation:</div>
+              <div class="col modal-label">Procedures Chosen:</div>
               <div class="col modal-values">
                 {procValue.map((item, index) => (
                   <tr key={index}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -10,7 +10,7 @@ import successful from '../../../assets/img/check.png';
 import FinishedAppointment from '../success-modals/appt-finished';
 import NoShow from '../success-modals/appt-noshow';
 
-function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consultation) {
+function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, procedures) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleModalClose = () => setShow(false);
@@ -39,7 +39,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
   }
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(patientIDnumber, appNum, pName, dName, date, time, consultation);
+  const StringAppNum = JSON.stringify(patientIDnumber, appNum, pName, dName, date, time, procedures);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const PatientIDNumber = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g, "");
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
@@ -48,7 +48,20 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
   const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g, "");
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g, "");
   const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g, "");
-  const passAppNumber = AppNumber.substring(1);
+  const proceduresValue = ConvertStringApp.procedures;
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   console.log("SUBSTRING APPNUMBER",PatientIDNumber)
 
@@ -70,7 +83,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
     if (selectValue == "Finished") {
       Axios.post("https://rimorin-dental-clinic.herokuapp.com/createDentalRecordforSec", {
         patientIDNum: PatientIDNumber,
-        appNum: passAppNumber,
+        appNum: AppNumber,
         dentalStatus: "Pending",
     })
 
@@ -90,7 +103,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
         dName: dentistValue,
         date: dateValue,
         time: timeValue,
-        consultation: consultationValue
+        procedures: proceduresValue,
       })
       console.log("Moving ", appNum, pName, " to Appointment History")
     } else {
@@ -143,8 +156,13 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, consu
               <div class="col modal-values">{dateValue} | {timeValue}</div>
             </div>
             <div class="row">
-              <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">{consultationValue}</div>
+              <div class="col modal-label">Procedures Chosen:</div>
+              <div class="col modal-values">
+                {procValue.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.procedure}</td>
+                  </tr>
+                ))}</div>
             </div>
           </div>
           <Form>
