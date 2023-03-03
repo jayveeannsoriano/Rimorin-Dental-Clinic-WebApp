@@ -195,6 +195,11 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
                             </tr>
                           ))}
                         </tbody>
+                        <tr style={{fontWeight: "bold"}}>
+                          <td>Total:</td>
+                          <td>{dentalItem.reduce((total, { time }) => total + time, 0)} mins</td>
+                          <td>₱{dentalItem.reduce((total, { price }) => total + price, 0)}</td>
+                        </tr>
                       </Table>
                     </div>
                   </div>

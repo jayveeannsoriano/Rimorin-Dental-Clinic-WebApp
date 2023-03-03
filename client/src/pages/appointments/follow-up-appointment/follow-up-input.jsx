@@ -72,7 +72,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const [time, setGetTime] = useState("");
 
   const [chosenDate, setChosenDate] = useState("");
-  var [totalApptTime, settotalApptTime] = useState(0);
 
   const [timeCheck, setTimeCheck] = useState("");
   window.localStorage.setItem("time", timeCheck);
@@ -171,11 +170,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const orthodonticOptions = [
     { procedure: "ORTHODONTICS- UPPER BRACES", time: 90, price: 45000 },
     { procedure: "ORTHODONTICS- LOWER BRACES", time: 90, price: 52000 },
-    {
-      procedure: "ORTHODONTICS- UPPER AND LOWER BRACES",
-      time: 180,
-      price: 95000,
-    },
+    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", time: 180, price: 95000 },
     { procedure: "RETAINER (BOTH ARCH'S)", time: 90, price: 8000 },
   ];
   const endodonticOptions = [
@@ -203,34 +198,28 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   ];
 
   //Checkbox handleChange
-  const [isSelected, setIsSelected] = useState();
-  const [selectedCount, setSelectedCount] = useState(0);
+  const [isSelected, setIsSelected] = useState([]);
+  var [totalApptTime, settotalApptTime] = useState(0);
 
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);
     var isChecked = event.target.checked;
     var tempVar = totalApptTime;
 
-    // Check if two checkboxes are already selected
-    if (isChecked && selectedCount >= 2) {
-      event.preventDefault(); // Prevent checkbox from being checked
-      return;
-    }
-
-    // Update selected count
-    const countChange = isChecked ? 1 : -1;
-    setSelectedCount(selectedCount + countChange);
-
     if (isChecked) {
       tempVar = totalApptTime + parseInt(event.target.id);
       settotalApptTime(tempVar);
-      !isSelected && setIsSelected(event.target.name);
+      setIsSelected([...isSelected, value[0].procedure]);
     } else {
       tempVar = totalApptTime - parseInt(event.target.id);
-      setIsSelected(null);
+      setIsSelected(isSelected.filter((procedure) => procedure !== value[0].procedure));
       settotalApptTime(tempVar);
     }
-    var tempArr = { procedure: value[0].procedure, time: value[0].time };
+    var tempArr = {
+      procedure: value[0].procedure,
+      time: value[0].time,
+      price: value[0].price,
+    };
     setChecked((current) =>
       current.map((obj) => {
         if (obj.option === input) {
@@ -247,6 +236,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       })
     );
   };
+
 
   //form validations
   const [error, setError] = useState("");
@@ -371,7 +361,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
               <div className="row procedure-row">
                 <h6>
                   {" "}
-                  <strong>Select Treatment Procedure (maximum of 2)</strong>{" "}
+                  <strong>Select Treatment Procedure (maximum of 180 mins/appointment)</strong>{" "}
                   <span className="text-danger font-weight-bold">*</span>
                 </h6>
                 <div className="col-lg-4 col-xl-4 col-md-6">
@@ -388,9 +378,9 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
+                        label={`${item.procedure} | ${item.time}mins`}
                         onClick={handleChangeCheckbox("General")}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
+                        disabled={!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
                       />
                     </div>
                   ))}
@@ -407,8 +397,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
+                        label={`${item.procedure} | ${item.time}mins`}
+                        disabled = {!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
                         onClick={handleChangeCheckbox("Cosmetic")}
                       />
                     </div>
@@ -428,9 +418,9 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
-                        onClick={handleChangeCheckbox("Orthodontic")}
+                        label={`${item.procedure} | ${item.time}mins`}
+                        disabled = {!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
+                        onClick={handleChangeCheckbox("Orthodontics")}
                       />
                     </div>
                   ))}
@@ -449,8 +439,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
+                        label={`${item.procedure} | ${item.time}mins`}
+                        disabled = {!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
                         onClick={handleChangeCheckbox("Endodontic")}
                       />
                     </div>
@@ -468,8 +458,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
+                        label={`${item.procedure} | ${item.time}mins`}
+                        disabled = {!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
                         onClick={handleChangeCheckbox("Prosthetic")}
                       />
                     </div>
@@ -487,8 +477,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                         key={item.procedure}
                         name={item.procedure}
                         type="checkbox"
-                        label={`${item.procedure}`}
-                        disabled = {selectedCount >= 2 && isSelected != item.procedure && !checked}
+                        label={`${item.procedure} | ${item.time}mins`}
+                        disabled = {!isSelected.includes(item.procedure) && totalApptTime + item.time > 180}
                         onClick={handleChangeCheckbox("Surgical")}
                       />
                     </div>
