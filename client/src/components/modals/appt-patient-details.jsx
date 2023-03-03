@@ -73,7 +73,7 @@ function ApptPatientDetails(pName,dName,appNum,date,time,appStats,procedures) {
               <div class="col modal-values">{DateValue} | {TimeValue}</div>
             </div>
             <div class="row">
-              <div class="col modal-label">Choosen Procedure:</div>
+              <div class="col modal-label">Chosen Procedure:</div>
               <div class="col modal-values"> 
               {procValue.map((item, index) => (
                       <tr key={index}>

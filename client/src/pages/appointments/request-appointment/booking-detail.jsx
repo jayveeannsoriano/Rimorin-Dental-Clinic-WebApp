@@ -28,7 +28,6 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
   }, [1]);
 
 
-
   window.localStorage.setItem("doctorName", dentistDetails);
   const getDentistInfo = async () => {
     try {
@@ -166,6 +165,11 @@ const BookingDetail = ({ nextStep, prevStep, values }) => {
                             <td>{item.price}</td>
                           </tr>
                         ))}
+                        <tr style={{fontWeight: "bold"}}>
+                          <td>Total:</td>
+                          <td>{dentalItem.reduce((total, { time }) => total + time, 0)} mins</td>
+                          <td>₱{dentalItem.reduce((total, { price }) => total + price, 0)}</td>
+                        </tr>
                   </tbody>
                 </Table>
               </div>
