@@ -50,9 +50,9 @@ const SecAcceptCancel = () => {
             name: "Action",
             selector: row =>
                 <div className="action-buttons">
-                    <AcceptDental dentistIDnumber = {row.dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} formattedDate={row.formattedDate} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
-                    <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} consultation={row.consultation} />
-                    <ApptDetails pName = {row.pName} consultation={row.consultation} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} />
+                    <AcceptDental dentistIDnumber = {row.dentistIDnumber} patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} formattedDate={row.formattedDate} appNum={row.appNum} date={row.date} time={row.time} procedures={row.procedures} />
+                    <CancelDental patientIDnumber={row.patientIDnumber} pName={row.pName} dName={row.dName} appNum={row.appNum} date={row.date} time={row.time} procedures={row.procedures} />
+                    <ApptDetails pName = {row.pName} appNum={row.appNum} date={row.date} time={row.time} appStats={row.appStatus} procedures={row.procedures}/>
                 </div>
         },
     ];
