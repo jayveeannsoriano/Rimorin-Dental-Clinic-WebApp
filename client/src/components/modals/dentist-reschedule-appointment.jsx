@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
@@ -14,10 +15,7 @@ function DentistRescheduleAppointment(
   patientIDnumber,
   appNum,
   pName,
-  dName,
-  date,
-  time,
-  consultation
+  dName
 ) {
   const [modalState, setModalState] = useState("close");
 
@@ -30,18 +28,18 @@ function DentistRescheduleAppointment(
   };
 
   //calendar input
-  const [newStartDate, setStartDate] = useState(new Date());
-  const stringDate = newStartDate.toString();
+  const [selectedApptDate, setSelectedApptDate] = useState("");
+  const stringDate = selectedApptDate.toString();
 
   const [newFormattedDate, setFormattedDate] = useState(
     new Date().toISOString()
   );
 
   var date = window.localStorage.getItem("date");
-  window.localStorage.setItem("date", newStartDate);
+  window.localStorage.setItem("date", selectedApptDate);
 
-  //reasonforconsultation input
-  const [newConsulInput, setConsulInput] = useState("");
+  //reason for reschedule input
+  const [reschedReason, setReschedReason] = useState("");
 
   //time input
   const [timeCheck, setTimeCheck] = useState("");
@@ -117,14 +115,15 @@ function DentistRescheduleAppointment(
     getAppDetails();
   }, []);
 
-  //form validation error message
-  const [error, setError] = useState("");
-  const [errorReason, setErrorReason] = useState("");
-  //update date and time
-  const newDateTime = () => {
+  const rescheduleAppt = (e) => {
     console.log("Updating " + AppNumber);
     console.log(
-      "Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput
+      "Update values: " +
+        selectedApptDate +
+        " " +
+        timeCheck +
+        " " +
+        reschedReason
     );
     Axios.put(
       "https://rimorin-dental-clinic.herokuapp.com/rescheduleDentistAppointment",
@@ -137,40 +136,111 @@ function DentistRescheduleAppointment(
         newDate: stringDate,
         newFormattedDate: newFormattedDate,
         newTime: timeCheck,
-        newConsultation: newConsulInput,
+        newConsultation: reschedReason,
       }
     );
-    //time slot validation
+    setModalState("modal-2");
+  };
+
+  //Special Characters input validation
+  const [specialCharacterError, setSpecialCharacterError] = useState(true);
+  function validateSpecialCharacters(input, field) {
+    const hasSpecialCharacters = /[^A-Za-z0-9\sÑñ]/.test(input);
+
+    if (hasSpecialCharacters) {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Please do not use special characters.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
+    } else {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
+  }
+
+  //Blank input validator
+  const [blankInputError, setBlankInputError] = useState(true);
+  function validateBlankspace(input, field) {
+    const trimmedInput = input.trim();
+    const hasBlankspace = input !== trimmedInput;
+
+    if (hasBlankspace) {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Blank spaces are not allowed.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
+    } else {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
+  }
+
+  //form validation error message
+  const [isFormValid, setIsFormValid] = useState(true);
+  const [errorDate, setErrorDate] = useState("");
+  const [errorReason, setErrorReason] = useState("");
+  const [error, setError] = useState("");
+
+  const Continue = (e) => {
+    e.preventDefault();
     if (!timeCheck) {
       setError(
         <div style={{ fontSize: "12px" }}>
           <a class="text-danger">
-            <strong>Please select a new time for the appointment.</strong>
+            <strong>Please select a time for the appointment.</strong>
           </a>
         </div>
       );
+    } else {
+      setError("");
     }
-    //resched validation
-    if (!newConsulInput || !newConsulInput.trim().length) {
+    if(!reschedReason){
       setErrorReason(
         <div style={{ fontSize: "12px" }}>
           <a class="text-danger">
-            <strong>
-              Please provide a reason for rescheduling the appointment.
-            </strong>
+            <strong>Please provide a reason for rescheduling the appointment.</strong>
           </a>
         </div>
       );
-    }
-    if (
-      newStartDate &&
-      timeCheck &&
-      newConsulInput &&
-      newConsulInput.trim().length
-    ) {
-      setError("");
+    } else {
       setErrorReason("");
-      setModalState("modal-2");
+    }
+    if(!selectedApptDate){
+      setErrorDate(
+        <div style={{ fontSize: "12px" }}>
+          <a class="text-danger">
+            <strong>Please select a date for the appointment.</strong>
+          </a>
+        </div>
+      );
+    } else {
+      setErrorDate("");
+    }
+    if (selectedApptDate && timeCheck && reschedReason) {
+      rescheduleAppt();
+      setError("");
+      setErrorDate("");
+      setErrorReason("");
     }
   };
 
@@ -195,7 +265,7 @@ function DentistRescheduleAppointment(
         </Modal.Header>
 
         <Modal.Body>
-          {/* Appointment Details  */}
+
           <div className="appointment-details-modal">
             <h4>Appointment Details</h4>
             {userDetails.map((item) => (
@@ -220,87 +290,99 @@ function DentistRescheduleAppointment(
             ))}
             {userDetails.map((item) => (
               <div class="row">
-                <div class="col modal-label">Reason for Consultation:</div>
-                <div class="col modal-values">{item.consultation}</div>
+                <div class="col modal-label">Chosen Procedures:</div>
+                <div class="col modal-values">{}</div>
               </div>
             ))}
           </div>
 
+          <form isFormValid={isFormValid}>
           <div className="divider"></div>
-
           {/* Select New Appt Date */}
-          <div className="modal-date-selection" id="modal-date-selection">
-            <form className="row g-3 needs-validation" noValidate />
-            <div className="col-md-4">
-              <label htmlFor="validationCustom01" className="form-label">
-                Select Appointment Date{" "}
-                <span className="text-danger font-weight-bold">*</span>
-              </label>
-              <DatePicker
-                selected={newStartDate}
-                className="form-control col-md-3"
-                style={{
-                  backgroundColor: "white",
-                  border: "1px solid #ced4da",
-                  borderRadius: "5px",
-                  color: "#495057",
-                  width: "300px",
-                }}
-                onChange={(date) => {
-                  setStartDate(date);
-                  setFormattedDate(date);
-                  getAppointmenstbyDate(date.toString().substring(0, 15));
-                  console.log("This is the calendar data:", date);
-                  setTakenAppointments([]);
-                }}
-                placeholderText="Choose a date"
-                minDate={new Date()}
-                shouldCloseOnSelect={false}
-                filterDate={(date) =>
-                  date.getDay() !== 7 && date.getDay() !== 0
-                }
-              />
+            <div className="modal-date-selection" id="modal-date-selection">
+              <div className="col-md-4">
+                <label className="form-label">
+                  Select Appointment Date{" "}
+                  <span className="text-danger font-weight-bold">*</span>
+                </label>
+                <DatePicker
+                  selected={selectedApptDate}
+                  className="form-control col-md-3"
+                  style={{
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "5px",
+                    color: "#495057",
+                    width: "300px",
+                  }}
+                  required
+                  onChange={(date) => {
+                    setSelectedApptDate(date);
+                    window.localStorage.setItem("date", date);
+                    setFormattedDate(date);
+                    getAppointmenstbyDate(date.toString().substring(0, 15));
+                    console.log("This is the calendar data:", date);
+                    setTakenAppointments([]);
+                  }}
+                  onBlur={!selectedApptDate}
+                  placeholderText="Choose a date"
+                  minDate={new Date()}
+                  shouldCloseOnSelect={false}
+                  filterDate={(date) =>
+                    date.getDay() !== 7 && date.getDay() !== 0
+                  }
+                />
+                {errorDate}
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">
+                  Select Time for Appointment{" "}
+                  <span className="text-danger font-weight-bold">*</span>
+                </label>
+                <p> Available Times </p>
+                {selectedApptDate && (
+                  <Timeslot2
+                    GetTimeCheck={setTimeCheck}
+                    takenAppointments={takenAppointments}
+                    chosenDate={chosenDate}
+                  />
+                )}
+                {error}
+              </div>
             </div>
 
-            <div className="col-md-6">
+            {/* Reason for Reschedule */}
+            <div className="col-12 reason-form">
               <label className="form-label">
-                Select Time for Appointment{" "}
+                Reason for Reschedule{" "}
                 <span className="text-danger font-weight-bold">*</span>
               </label>
-              <p> Available Times </p>
-              <Timeslot2
-                GetTimeCheck={setTimeCheck}
-                takenAppointments={takenAppointments}
-                chosenDate={chosenDate}
-              />
-              {error}
+              <textarea
+                className="form-control"
+                id="reason"
+                rows="5"
+                placeholder="Write reason here..."
+                value={reschedReason}
+                onChange={(e) => setReschedReason(e.target.value)}
+                onBlur={function (e) {
+                  validateBlankspace(e.target.value, "reschedReason")
+                  validateSpecialCharacters(e.target.value, "reschedReason");
+                }}
+                required
+              ></textarea>
+              {errorReason}
+              {blankInputError.reschedReason}
+              {specialCharacterError.reschedReason}
             </div>
-          </div>
-
-          {/* Reason for Reschedule */}
-          <div className="col-12 reason-form">
-            <label className="form-label">
-              Reason for Reschedule{" "}
-              <span className="text-danger font-weight-bold">*</span>
-            </label>
-            <textarea
-              className="form-control"
-              id="reason"
-              rows="5"
-              value={newConsulInput}
-              placeholder="Write reason here..."
-              onChange={(e) => setConsulInput(e.target.value)}
-              required
-            ></textarea>
-            {errorReason}
-          </div>
+          </form>
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={newDateTime}>
+          <Button variant="primary" onClick={Continue}>
             Reschedule
           </Button>
         </Modal.Footer>

@@ -60,10 +60,10 @@ const CreateDentalRecord = lazy(() =>
   import("../pages/patient-records/dentist-module/create-dental-record")
 );
 
-//create receipt routing
-const CreateReceipt = lazy(() =>
-  import("../pages/payment-records/secretary-module/create-receipt")
-);
+////create receipt routing
+//const CreateReceipt = lazy(() =>
+//  import("../pages/payment-records/secretary-module/create-receipt")
+//);
 
 //edit dental record routing
 const EditDentalRecord = lazy(() =>
@@ -180,15 +180,14 @@ const DentistRoutes = {
           path: "/dentist/payment-records/:fname",
           element: <PaymentRecords />,
         },
-        {
-          path: "/dentist/payment-records/create-receipt",
-          element: <CreateReceipt />,
-        },
+        //{
+        //  path: "/dentist/payment-records/create-receipt",
+        //  element: <CreateReceipt />,
+        //},
       ],
     },
     {
       path: "/dentist/userprofile",
-      // path: '/dashboard/userprofile/:username', <-- put /:username to insert username of user in url path
       element: <DentistUserProfile />,
     },
   ],
