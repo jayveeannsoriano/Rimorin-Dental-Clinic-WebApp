@@ -147,6 +147,7 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
+            procedures={row.procedures}
             />
           ) : (
             <ApptPatientDetails
