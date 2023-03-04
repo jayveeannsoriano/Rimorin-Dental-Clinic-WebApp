@@ -9,7 +9,7 @@ import Timeslot2 from '../timeslot2';
 import '../../styles/modals.css';
 import '../../styles/booking.css'
 
-function RescheduleAppointment(dName,pName,appNum,patientIDnumber) {
+function RescheduleAppointment(dName,pName,appNum,patientIDnumber,procedures) {
   const [modalState, setModalState] = useState('close');
   
   
@@ -39,12 +39,26 @@ function RescheduleAppointment(dName,pName,appNum,patientIDnumber) {
   const [timeCheck, setTimeCheck] = useState("")
 
   //retrieve app number
-  const StringAppNum = JSON.stringify(dName,pName,appNum,patientIDnumber);
+  const StringAppNum = JSON.stringify(dName,pName,appNum,patientIDnumber,procedures);
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g,"");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g,"");
   const DoctorName = JSON.stringify(ConvertStringApp.dName).replace(/"/g,"");
   const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g,"");
+  const proceduresValue = ConvertStringApp.procedures;
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
   const [chosenDate, setChosenDate] = useState("");
@@ -101,8 +115,6 @@ useEffect(() => {
 
   //update date and time
   const newDateTime = async () =>{
-    console.log("Updating " + AppNumber);
-    console.log("Update values: " + newStartDate + " " + timeCheck + " " + newConsulInput);
     const response = await Axios.get('https://rimorin-dental-clinic.herokuapp.com/getUserInfo',{
       params: {
         PatientIDnumber:"PT#"+PatientIDnum
@@ -116,7 +128,7 @@ useEffect(() => {
      newDate: stringDate,
      newFormattedDate: newFormattedDate,
      newTime: timeCheck,
-     newConsultation: newConsulInput});
+     procedures: proceduresValue});
     setModalState("modal-2");
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {phone: "0" + response['data'][0]['mobile'],message:"Hi "+PatientName+"! This is from Rimorin Dental Clinic notifying you that your requested Appointment at "+date+" "+stringDate+" due to '" + newConsulInput + "' has been rescheduled to "+stringDate +". See you there!"})
 
@@ -167,8 +179,14 @@ useEffect(() => {
         ))}
         {userDetails.map((item)=>(
             <div class="row">
-              <div class="col modal-label">Reason for Consultation:</div>
-              <div class="col modal-values">{item.consultation}</div>
+              <div class="col modal-label">Chosen Procedure:</div>
+              <div class="col modal-values"> 
+              {procValue.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                      </tr>
+                    ))}
+              </div>
             </div>
         ))}
           </div>

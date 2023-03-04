@@ -1841,7 +1841,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const updateDate = req.body.newDate.substring(0, 15);
   const formattedDate = req.body.newFormattedDate.substring(0, 10);
   const updateTime = req.body.newTime;
-  const updateConsult = req.body.newConsultation;
+  const updateProcedure = req.body.procedures;
   const insertAppStatus = "Rescheduled";
   const docName = req.body.dName;
 
@@ -1852,7 +1852,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
     appNum: appNumber,
     date: updateDate,
     formattedDate: formattedDate,
-    consultation: updateConsult,
+    procedures:updateProcedure,
     time: updateTime,
     appStatus: insertAppStatus,
   });
