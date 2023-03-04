@@ -55,7 +55,7 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
     }
   };
 
-  var retrievedObject = localStorage.getItem("totalProcedure");
+  var retrievedObject = localStorage.getItem("totalProcedures");
 
   var totalProcedures = JSON.parse(retrievedObject);
 

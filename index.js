@@ -469,7 +469,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
             ],
             dynamic_template_data: {
               firstName: userNameApp,
-              Appttime: slicedDate + " " + getTime,
+              Appttime: slidedDate + " " + getTime,
               consultation: consulInput,
             },
           },

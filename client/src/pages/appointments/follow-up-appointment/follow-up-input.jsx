@@ -42,7 +42,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   window.localStorage.setItem("prevAppNum", "#" + StringfygetPrevID);
   window.localStorage.setItem("docName", StringfyDocName);
   window.localStorage.setItem("docID", "DT#" + StringfyDocID);
-  window.localStorage.setItem("totalProcedure", JSON.stringify(checked));
 
   const getUser = async () => {
     try {
@@ -149,6 +148,10 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
     );
     console.log(totalApptTime);
   }, [checked]);
+
+  localStorage.setItem("totalProcedures", JSON.stringify(checked));
+  console.log("yes sir", checked);
+
   //time is in minutes
   const generalOptions = [
     { procedure: "CONSULTATION", time: 30, price: 300 },

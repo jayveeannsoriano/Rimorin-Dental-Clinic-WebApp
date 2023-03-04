@@ -165,6 +165,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   }, [checked]);
 
   localStorage.setItem("totalProcedure", JSON.stringify(checked));
+  console.log("yes sir", checked);
 
   //time is in minutes
   const generalOptions = [

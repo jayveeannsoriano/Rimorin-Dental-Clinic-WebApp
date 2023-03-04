@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../styles/modals.css';
 
-function ApptDetailsFollowUp(pName,appNum,date,time,appStats) {
+function ApptDetailsFollowUp(pName,appNum,date,time,appStats,procedures) {
   const [modalState, setModalState] = useState('close');
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
     setModalState("modal-1")
   }
   //Get values 
-  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats);
+  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats,procedures);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   const PatientNameValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g,"");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g,"");
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
-  const ConsulValue = JSON.stringify(ConvertStringfyValues.consultation).replace(/"/g,"");
-  
+  const proceduresValue = ConvertStringfyValues.procedures;
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   return (
     <>
@@ -55,8 +67,14 @@ function ApptDetailsFollowUp(pName,appNum,date,time,appStats) {
               <div class="col modal-values">{DateValue} | {TimeValue}</div>
             </div>
             <div class="row">
-              <div class="col modal-label">Reason for Follow-Up:</div>
-              <div class="col modal-values"></div>
+            <div class="col modal-label">Follow-up Procedures:</div>
+              <div class="col modal-values"> 
+              {procValue.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                      </tr>
+                    ))}
+              </div>
             </div>
             <div class="row">
               <div className="col modal-label">Appointment Status:</div>

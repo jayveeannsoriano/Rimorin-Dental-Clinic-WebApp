@@ -17,7 +17,7 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
   var prevAppNum = window.localStorage.getItem("prevAppNum");
   var docName = window.localStorage.getItem("docName");
   var docID = window.localStorage.getItem("docID");
-  var retrievedObject = localStorage.getItem("totalProcedure");
+  var retrievedObject = localStorage.getItem("totalProcedures");
   var totalProcedures = JSON.parse(retrievedObject);
   console.log(values);
 
@@ -42,7 +42,6 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
       userNameApp: getUserName,
       startDate: date,
       formattedDate: formattedDate,
-      consulInput: values.consultation,
       getTime: time,
       procedures: totalProcedures,
       recep: getUserEmail,
