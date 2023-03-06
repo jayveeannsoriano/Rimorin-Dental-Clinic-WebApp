@@ -1083,7 +1083,7 @@ app.get("/getUserAppts", async (req, res) => {
             dent: data[key].dName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1119,7 +1119,7 @@ app.get("/getUserAppts", async (req, res) => {
             dent: data[key].dName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1182,7 +1182,7 @@ app.get("/getUserApptsReq", async (req, res) => {
             patient: data[key].dName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1217,7 +1217,7 @@ app.get("/getUserApptsReq", async (req, res) => {
             patient: data[key].dName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1280,7 +1280,7 @@ app.get("/getUserApptsOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1315,7 +1315,7 @@ app.get("/getUserApptsOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1378,7 +1378,7 @@ app.get("/getUserApptsReqOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1413,7 +1413,7 @@ app.get("/getUserApptsReqOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1477,7 +1477,7 @@ app.get("/getUserApptsHistOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1513,7 +1513,7 @@ app.get("/getUserApptsHistOthers", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1578,7 +1578,7 @@ app.get("/getUserApptsDent", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1618,7 +1618,7 @@ app.get("/getUserApptsDent", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1683,7 +1683,7 @@ app.get("/getUserApptsHistDent", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
@@ -1723,7 +1723,7 @@ app.get("/getUserApptsHistDent", async (req, res) => {
             patient: data[key].pName,
             date: data[key].formattedDate,
             time: data[key].time,
-            cons: data[key].consultation,
+            cons: data[key].procedures,
             color: color,
           };
           allEvents.push(tempArr);
