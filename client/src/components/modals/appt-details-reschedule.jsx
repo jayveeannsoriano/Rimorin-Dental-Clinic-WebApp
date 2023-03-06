@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../styles/modals.css';
@@ -10,15 +10,27 @@ function ApptDetailsResched(pName,appNum,date,time,appStats,procedures) {
     setModalState("modal-1")
   }
   //Get values 
-  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats);
+  const StringfyValues = JSON.stringify(pName,appNum,date,time,appStats,procedures);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   const PatientNameValue = JSON.stringify(ConvertStringfyValues.pName).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringfyValues.appNum).replace(/"/g,"");
   const DateValue = JSON.stringify(ConvertStringfyValues.date).replace(/"/g,"");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g,"");
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
+  const proceduresValue = ConvertStringfyValues.procedures;
   
-  
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   return (
     <>
@@ -56,11 +68,9 @@ function ApptDetailsResched(pName,appNum,date,time,appStats,procedures) {
             </div>
             <div class="row">
               <div class="col modal-label">Procedures Selected:</div>
-              {procedures.map((item, index) => (
+              {procValue.map((item, index) => (
                       <tr key={index}>
                         <td>{item.procedure}</td>
-                        <td style={{ textAlign: "center" }}>1</td>
-                        <td>{item.price}</td>
                       </tr>
                     ))}
               <div class="col modal-values"></div>
