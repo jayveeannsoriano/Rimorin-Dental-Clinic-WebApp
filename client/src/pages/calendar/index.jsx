@@ -104,20 +104,29 @@ function Calendar() {
             var pastDate = new Date(item.date+" "+item.time);
             var futureDate = new Date(item.date+" "+item.time);
             futureDate.setHours(pastDate.getHours()+1);
-            if(userInfo['user_role_id']==1){
-              arr.push({
-                start: pastDate,
-                end: futureDate,
-                title: item.cons,
-                color: item.color
-              })
-            }else{
+
+            if (userInfo["user_role_id"] == 1) {
+              const color = item.color;
+              item.cons.forEach((item) => {
+                if (item.chosen.length > 0) {
+                  const procedureNames = item.chosen.map(
+                    (chosenItem) => chosenItem.procedure
+                  );
+                  arr.push({
+                    start: pastDate,
+                    end: futureDate,
+                    title: procedureNames,
+                    color: color,
+                  });
+                }
+              });
+            } else {
               arr.push({
                 start: pastDate,
                 end: futureDate,
                 title: item.patient,
-                color: item.color
-              })
+                color: item.color,
+              });
             }
 
 
