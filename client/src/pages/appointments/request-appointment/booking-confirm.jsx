@@ -17,8 +17,6 @@ const BookingConfirm = ({values}) => {
     var formattedDate = window.localStorage.getItem('formattedDate');
     console.log(values);
   
-
-
     //insert data
     Axios.post(
       "https://rimorin-dental-clinic.herokuapp.com/insertAppointment",
@@ -35,20 +33,33 @@ const BookingConfirm = ({values}) => {
         recep: userInfo["email"],
       }
     );
+
+    const procedureNames = [];
+
+    totalProcedures.forEach((item) => {
+      if (item.chosen.length > 0) {
+        item.chosen.forEach((chosenProcedure) => {
+          procedureNames.push(chosenProcedure.procedure);
+        });
+      }
+    });
+
+    const message =
+      "Hi " +
+      userInfo["fname"] +
+      "! This is from Rimorin Dental Clinic notifying you of your requested Appointment on " +
+      date +
+      " at " +
+      time +
+      " with Dr. " +
+      dentistDetails +
+      " for the following procedure/s:\n" +
+      procedureNames.join("\n") +
+      " \nPlease wait for the clinic's approval of your appointment request. Thank you!";
+
     Axios.post("https://rimorin-dental-clinic.herokuapp.com/sendSMS", {
       phone: userInfo["mobile"],
-      message:
-        "Hi " +
-        userInfo["fname"] +
-        "! This is from Rimorin Dental Clinic notifying you of your requested Appointment on " +
-        date +
-        " at " +
-        time +
-        " with Dr. " +
-        dentistDetails +
-        " due to '" +
-        values.consultation +
-        "'. Please wait for the clinic's approval of your appointment request. Thank you!",
+      message: message,
     });
     
     return(
