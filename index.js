@@ -781,7 +781,7 @@ app.get("/getOngoingUserAppointment", async (req, res) => {
 
   await AppDetails.find({
     patientIDnumber: patientIDNumber,
-    appStatus: "Accepted",
+    appStatus: { $in: ["Accepted", "Pending"] },
   })
     .then((data) => {
       res.json(data);
