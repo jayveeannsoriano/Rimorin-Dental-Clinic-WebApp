@@ -76,7 +76,7 @@ const OnGoingTable = () => {
       name: "Action",
       selector: (row) => (
         <div className="action-buttons">
-          {row.appStats == "Pending" ? (
+          {row.appStats == "Accepted" ? (
             <>
             <ApptPatientDetails
             dName={row.dName}
@@ -85,7 +85,8 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            procedures={row.procedures}/>
+            procedures={row.procedures}
+            />
           </>
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched
@@ -94,8 +95,8 @@ const OnGoingTable = () => {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
-            procedures={row.procedures}/>
-
+            procedures={row.procedures}
+            />
           ) : row.appStatus == "Follow-Up" ? (
             <ApptDetailsFollowUp
             pName={row.pName}

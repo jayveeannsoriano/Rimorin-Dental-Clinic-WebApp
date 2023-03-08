@@ -75,34 +75,7 @@ const FollowUpTable = () => {
     {
       name: "Action",
       selector: (row) => (
-        <div className="action-buttons">
-          {row.appStats == "Pending" ? (
-            <>
-              <ReschedConfirmation
-                patientIDnumber={row.patientIDnumber}
-                pName={row.pName}
-                appNum={row.appNum}
-              />
-              <CancelAppointment appNum={row.appNum} />
-            </>
-          ) : row.appStatus == "Rescheduled" ? (
-            <ApptDetailsResched
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
-          ) : row.appStatus == "Follow-Up" ? (
-            <>
-              <ReschedConfirmation
-                patientIDnumber={row.patientIDnumber}
-                pName={row.pName}
-                dName={row.dName}
-                appNum={row.appNum}
-                procedures={row.procedures}
-              />
+        <div className="action-buttons"> 
               <ApptDetailsFollowUp
                 pName={row.pName}
                 appNum={row.appNum}
@@ -111,18 +84,6 @@ const FollowUpTable = () => {
                 appStats={row.appStatus}
                 procedures={row.procedures}
               />
-            </>
-          ) : (
-            <ApptPatientDetails
-              dName={row.dName}
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
-          )}
         </div>
       ),
     },

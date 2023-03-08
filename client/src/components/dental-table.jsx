@@ -12,7 +12,6 @@ import FollowUp from "./modals/followUp";
 import ApptDetailsText from "./modals/appt-details-text";
 import ApptDetailsResched from "./modals/appt-details-reschedule";
 import ApptDetailsFollowUp from "./modals/appt-details-followup";
-import PaymentStatusText from "../pages/payment-records/secretary-module/payment-status-text";
 
 const DashboardTable = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -28,6 +27,14 @@ const DashboardTable = () => {
   const getTodayDate = new Date();
   const convertDate = getTodayDate.toString().substring(0, 15);
   // console.log(convertDate, "dateToday");
+
+  //const hasFollowUp = ({ row, followUpAppointments }) => {
+  //  const hasFollowUp = followUpAppointments.some(
+  //    (appt) =>
+  //      appt.patientIDnumber === row.patientIDnumber &&
+  //      appt.appStatus === 'Follow-up'
+  //  );
+  //}
 
   const getAppointment = async () => {
     try {
@@ -47,6 +54,7 @@ const DashboardTable = () => {
       console.log(error);
     }
   };
+
 
   const columns = [
     {
@@ -130,15 +138,26 @@ const DashboardTable = () => {
               procedures={row.procedures}
             />
           ) : row.appStatus == "Follow-Up" ? (
-            <ApptDetailsFollowUp
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
-          ) : (
+            <>
+              <Rebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
+              />
+              <ApptDetailsFollowUp
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
+          ) : row.appStatus == "Finished" ? (
             <>
               <FollowUp
                 dentistIDnumber={row.dentistIDnumber}
@@ -155,10 +174,19 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
+          ) : (
+            <ApptDetails
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              procedures={row.procedures}
+            />
           )}
         </div>
       ),
-    },
+    }
   ];
 
   // Loading effect
