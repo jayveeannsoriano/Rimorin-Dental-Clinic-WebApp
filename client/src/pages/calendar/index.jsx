@@ -107,18 +107,20 @@ function Calendar() {
 
             if (userInfo["user_role_id"] == 1) {
               const color = item.color;
+              const procedures = [];
               item.cons.forEach((item) => {
                 if (item.chosen.length > 0) {
                   const procedureNames = item.chosen.map(
                     (chosenItem) => chosenItem.procedure
                   );
-                  arr.push({
-                    start: pastDate,
-                    end: futureDate,
-                    title: procedureNames,
-                    color: color,
-                  });
+                  procedures.push(...procedureNames);
                 }
+              });
+              arr.push({
+                start: pastDate,
+                end: futureDate,
+                title: procedures.join(", "),
+                color: color,
               });
             } else {
               arr.push({
@@ -128,6 +130,7 @@ function Calendar() {
                 color: item.color,
               });
             }
+            
 
 
           })
