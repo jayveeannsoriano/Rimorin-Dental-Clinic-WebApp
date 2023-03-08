@@ -42,6 +42,7 @@ export default function AppointmentPage() {
     console.log(appointmentStatus);
     if (
       appointmentStatus.includes("Pending") ||
+      appointmentStatus.includes("Accepted") ||
       appointmentStatus.includes("Rescheduled") ||
       appointmentStatus.includes("Follow-Up")
     ) {
