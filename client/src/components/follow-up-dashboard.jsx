@@ -100,6 +100,7 @@ const FollowUpTable = () => {
                 patientIDnumber={row.patientIDnumber}
                 pName={row.pName}
                 appNum={row.appNum}
+                procedures={row.procedures}
               />
               <ApptDetailsFollowUp
                 pName={row.pName}
