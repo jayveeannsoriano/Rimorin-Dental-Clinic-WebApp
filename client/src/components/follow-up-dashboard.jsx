@@ -99,6 +99,7 @@ const FollowUpTable = () => {
               <ReschedConfirmation
                 patientIDnumber={row.patientIDnumber}
                 pName={row.pName}
+                dName={row.dName}
                 appNum={row.appNum}
                 procedures={row.procedures}
               />
