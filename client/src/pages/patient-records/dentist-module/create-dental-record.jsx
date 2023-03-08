@@ -60,16 +60,32 @@ const CreateDentalRecord = () => {
       console.log(response.data);
       setPatientIDNumber(response.data[0].patientIDnumber);
       setPatientObjID(response.data[0]._id);
+      setPatientProcedures(response.data[0].procedures);
+
       console.log(response.data[0]._id);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const [patientProcedures, setPatientProcedures] = useState([]);
+  const [patientObjID, setPatientObjID] = useState("");
+  console.log("Procedures Value", patientProcedures);
+
+  const [procValue, setProcedure] = useState([]);
+
+  console.log("Procedures Mapped:", procValue);
+
   useEffect(() => {
     getPatientIDnumber();
-  }, []);
-
-  const [patientObjID, setPatientObjID] = useState("");
+    patientProcedures.map((item) =>
+      item.chosen != null
+        ? item.chosen.map((proc) =>
+            setProcedure((current) => [...current, proc])
+          )
+        : null
+    );
+  }, [patientProcedures.length]);
 
   //patient reference for receipt creation
   const getPatientReference = {
@@ -84,120 +100,34 @@ const CreateDentalRecord = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const [chartedTeeth, setchartedTeeth] = useState([]);
-  //procedure checkbox options
-  const [checked, setChecked] = useState([
-    {
-      option: "General",
-      chosen: [],
-    },
-    {
-      option: "Cosmetic",
-      chosen: [],
-    },
-    {
-      option: "Orthodontic",
-      chosen: [],
-    },
-    {
-      option: "Endodontic",
-      chosen: [],
-    },
-    {
-      option: "Prosthetic",
-      chosen: [],
-    },
-    {
-      option: "Surgical",
-      chosen: [],
-    },
-  ]);
-  console.log(checked, "values");
-  const [dentalItem, setDentalItem] = useState([]);
-  useEffect(() => {
-    checked.map((item) =>
-      item.chosen != null
-        ? item.chosen.map((proc) =>
-            setDentalItem((current) => [...current, proc])
-          )
-        : null
-    );
-  }, [checked]);
-  const generalOptions = [
-    { procedure: "CONSULTATION", price: 300 },
-    { procedure: "COMPOSITE FILLING", price: 700 },
-    { procedure: "ORAL PROPHYLAXIS", price: 1000 },
-    { procedure: "TOOTH EXTRACTION", price: 800 },
-    { procedure: "TOOTH RESTORATION", price: 1200 },
-    { procedure: "PTS AND FISSURES SEALANT", price: 700 },
-    { procedure: "FLOURIDE TREATMENT", price: 5500 },
-    { procedure: "INTERMEDIATE RESTORATION", price: 7000 },
-  ];
-  const cosmeticOptions = [
-    { procedure: "GLASS IONOMER", price: 11000 },
-    { procedure: "DIRECT COMPOSITE VENEER", price: 3000 },
-    { procedure: "DIRECT COMPOSITE CLASS IV", price: 2000 },
-    { procedure: "DIASTEMA CLOSURE (BONDING)", price: 1000 },
-    { procedure: "CERAMIC/PORCELAIN VENEER", price: 20000 },
-  ];
-  const orthodonticOptions = [
-    { procedure: "ORTHODONTICS- UPPER BRACES", price: 45000 },
-    { procedure: "ORTHODONTICS- LOWER BRACES", price: 52000 },
-    { procedure: "ORTHODONTICS- UPPER AND LOWER BRACES", price: 95000 },
-    { procedure: "RETAINER (BOTH ARCH'S)", price: 8000 },
-  ];
-  const endodonticOptions = [
-    { procedure: "ROOT CANAL THERAPY", price: 4400 },
-    { procedure: "PULPOTOMY", price: 5300 },
-    { procedure: "POST AND CORE", price: 6200 },
-    { procedure: "DEEP SCALING", price: 10200 },
-  ];
-  const prostheticOptions = [
-    { procedure: "DENTAL REPAIR", price: 12000 },
-    { procedure: "DENTURE RELINE (LABORATORY MADE)", price: 35000 },
-    { procedure: "DENTURE RELINE (DIRECT)", price: 30000 },
-    { procedure: "SOFT RELINE", price: 16000 },
-    { procedure: "DENTURE REPLACEMENT", price: 15000 },
-    { procedure: "PLASTIC JACKET CROWN", price: 3000 },
-    { procedure: "FULL DENTURE PLASTIC", price: 7500 },
-    { procedure: "FULL DENTURE PORCELAIN", price: 15000 },
-  ];
-  const surgicalOptions = [
-    { procedure: "ODONTECTOMY", price: 5000 },
-    { procedure: "OPERCULECTOMY", price: 5000 },
-    { procedure: "FRENECTOMY", price: 5200 },
-    { procedure: "ALVEOLECTOMY", price: 8300 },
-    { procedure: "GINGIVECTOMY OR CONTOURING", price: 5000 },
-    { procedure: "APICOECTOMY", price: 8500 },
-  ];
-  //const [checked, setChecked] = useState([{ option: "Others", chosen: [] }]);
-  const handleChangeCheckbox = (input) => (event) => {
-    var value = JSON.parse(event.target.value);
-    var isChecked = event.target.checked;
-    console.log("value is:", value[0].procedure);
-    var tempArr = { procedure: value[0].procedure, price: value[0].price };
-    setChecked((current) =>
-      current.map((obj) => {
-        if (obj.option === input) {
-          if (isChecked) {
-            return { ...obj, chosen: [...obj.chosen, tempArr] };
-          } else {
-            var newArr = obj.chosen;
-            var index = newArr.indexOf(event.target.value);
-            newArr.splice(index, 1); // 2nd parameter means remove one item only
-            return { ...obj, chosen: newArr };
-          }
-        }
-        return obj;
-      })
-    );
-  };
+
   const [treatDesc, getTreatDesc] = useState("");
-  const [CheckboxIndex, getBoxIndex] = useState([]);
   //drag n drop
   const [getFile, setGetFile] = useState("");
   // console.log(getFile, "this is the img value");
   const onFileChange = (files) => {
     setGetFile(files);
+  };
+
+  const handleShow = () => {
+    setModalState("show-modal");
+  };
+  const handleClickTeeth = (event) => {
+    event.currentTarget.classList.toggle("unmarked");
+    event.currentTarget.classList.toggle("marked");
+    var chosenTeeth = event.currentTarget.id;
+    // console.log(chosenTeeth);
+    var index = chartedTeeth.indexOf(chosenTeeth);
+    // console.log(index);
+    if (index > -1) {
+      const shallowChartedTeeth = [...chartedTeeth];
+      shallowChartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
+      setchartedTeeth(shallowChartedTeeth);
+      console.log(chartedTeeth);
+    } else {
+      setchartedTeeth((chartedTeeth) => [...chartedTeeth, chosenTeeth]);
+      console.log(chartedTeeth);
+    }
   };
 
   const uploadDentalRecords = () => {
@@ -221,8 +151,8 @@ const CreateDentalRecord = () => {
           ("0" + startDate.getDate()).slice(-2),
         descValue: treatDesc,
         imgValue: getFile[0],
-        procedures: checked,
         chartedTeeth: chartedTeeth,
+        procedures: patientProcedures,
       },
       {
         headers: { "Content-Type": "multipart/form-data" },
@@ -240,27 +170,6 @@ const CreateDentalRecord = () => {
         ("0" + startDate.getDate()).slice(-2),
     });
     console.log("Receipt Created with ", patientIDNumber, StringfyAppNumber);
-  };
-
-  const handleShow = () => {
-    setModalState("show-modal");
-  };
-  const handleClickTeeth = (event) => {
-    event.currentTarget.classList.toggle("unmarked");
-    event.currentTarget.classList.toggle("marked");
-    var chosenTeeth = event.currentTarget.id;
-    // console.log(chosenTeeth);
-    var index = chartedTeeth.indexOf(chosenTeeth);
-    // console.log(index);
-    if (index > -1) {
-      const shallowChartedTeeth = [...chartedTeeth];
-      shallowChartedTeeth.splice(index, 1); // 2nd parameter means remove one item only
-      setchartedTeeth(shallowChartedTeeth);
-      console.log(chartedTeeth);
-    } else {
-      setchartedTeeth((chartedTeeth) => [...chartedTeeth, chosenTeeth]);
-      console.log(chartedTeeth);
-    }
   };
 
   return (
@@ -356,101 +265,117 @@ const CreateDentalRecord = () => {
                 </div>
               </div>
             </div>
-            {/* Dental Teeth Chart */}
-            <div className="container dental-chart-container">
-              <div className="row">
-                <h4>Dental Record</h4>
-                <DentalChart handleClickTeeth={handleClickTeeth} />
+            <div class="row">
+              {/* <div class="col modal-label">Procedure/s Selected:</div>
+              <div class="col modal-values"> 
+              {procValue.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                      </tr>
+                    ))}
               </div>
+            </div> */}
+              {/* Dental Teeth Chart */}
+              <div className="container dental-chart-container">
+                <div className="row">
+                  <h4>Dental Record</h4>
+                  <DentalChart handleClickTeeth={handleClickTeeth} />
+                </div>
+              </div>
+              {/* Procedure */}
             </div>
-            {/* Procedure */}
-
           </div>
         </div>
-      </div>
-      {/* summary of treatment */}
-      <div class="col-xl-auto col-md-auto col-lg-auto">
-        <div className="card dental-record-form">
-          <div className="card-body pt-3">
-            <h5 className="card-title">Summary of Treatment</h5>
-            <div className="divider"></div>
-            <div class="row">
-              <div className="col-3">
-                <h6>Selected Tooth/Teeth</h6>
-                {chartedTeeth.map((item) => (
-                  <p>{item}</p>
-                ))}
-              </div>
-              <div className="col-3">
-                <h6>Date of Treatment</h6>
-                <p>
-                  {JSON.stringify(startDate).replace(/"/g, "").substring(0, 10)}
-                </p>
-              </div>
-              <div className="col-3">
-                <h6>Treatment Description</h6>
-                <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
-              </div>
+        {/* summary of treatment */}
+        <div class="col-xl-auto col-md-auto col-lg-auto">
+          <div className="card dental-record-form">
+            <div className="card-body pt-3">
+              <h5 className="card-title">Summary of Treatment</h5>
+              <div className="divider"></div>
+              <div class="row">
+                <div className="col-3">
+                  <h6>Selected Tooth/Teeth</h6>
+                  {chartedTeeth.map((item) => (
+                    <p>{item}</p>
+                  ))}
+                </div>
+                <div className="col-3">
+                  <h6>Date of Treatment</h6>
+                  <p>
+                    {JSON.stringify(startDate)
+                      .replace(/"/g, "")
+                      .substring(0, 10)}
+                  </p>
+                </div>
+                <div className="col-3">
+                  <h6>Treatment Description</h6>
+                  <p>{JSON.stringify(treatDesc).replace(/"/g, "")}</p>
+                </div>
 
-              <div className="col-3">
-                <h6>Procedure/s</h6>
-                {/* {checked.map((item) =>
+                <div className="col-3">
+                  <h6>Procedure/s</h6>
+                  {/* {checked.map((item) =>
                   item.chosen != null
                     ? item.chosen.map((proc) => <p>{proc.procedure}</p>)
                     : null
                 )} */}
-              </div>
 
-              <div class="dental-form-buttons">
-                <Button
-                  type="submit"
-                  class="btn btn-primary"
-                  onClick={() => {
-                    uploadDentalRecords();
-                    handleModal();
-                  }}
-                >
-                  Create
-                </Button>
-                <button
-                  class="btn btn-outline-secondary"
-                  onClick={() => navigate(-1)}
-                >
-                  Cancel
-                </button>
+                  {procValue.map((item) => (
+                    <p>{item.procedure}</p>
+                  ))}
+                </div>
+
+                <div class="dental-form-buttons">
+                  <Button
+                    type="submit"
+                    class="btn btn-primary"
+                    onClick={() => {
+                      uploadDentalRecords();
+                      handleModal();
+                    }}
+                  >
+                    Create
+                  </Button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    onClick={() => navigate(-1)}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <Modal
-        show={modalState == "show-modal"}
-        onHide={handleModalClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        
-        <Modal.Header closeButton>
-          <Modal.Title>Dental Record Created!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body closeButton>
-          <p className="modal-txt">You have created a dental record!</p>
-        </Modal.Body>
+        <Modal
+          show={modalState == "show-modal"}
+          onHide={handleModalClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Dental Record Created!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body closeButton>
+            <p className="modal-txt">You have created a dental record!</p>
+          </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleModalClose}>
-            Close
-          </Button>
-          {/*<Button
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleModalClose}>
+              Close
+            </Button>
+            {/*<Button
             variant="primary"
             href={createReceiptPatientRef(getPatientReference)}
           >
             Proceed to Payment
           </Button>*/}
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 };
+
 export default CreateDentalRecord;

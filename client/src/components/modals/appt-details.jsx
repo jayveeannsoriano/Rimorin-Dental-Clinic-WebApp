@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import '../../styles/modals.css';
 
 function ApptDetails(pName,appNum,date,time,appStats,procedures) {
+  
+  console.log("Procedures:", procedures);
   const [modalState, setModalState] = useState('close');
   const handleClose = () => setModalState(false);
   const handleModal1= () => {
@@ -19,6 +21,8 @@ function ApptDetails(pName,appNum,date,time,appStats,procedures) {
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
   const proceduresValue = ConvertStringfyValues.procedures;
 
+  console.log("Procedures Parsed:", proceduresValue);
+
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
     proceduresValue.map((item) =>
@@ -31,6 +35,7 @@ function ApptDetails(pName,appNum,date,time,appStats,procedures) {
         : null
     );
   }, [1]);
+  console.log("Procedures Mapped:", procValue);
 
   return (
     <>

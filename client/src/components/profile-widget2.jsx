@@ -39,7 +39,6 @@ const ProfileWidgetTwo = (patientID) => {
                     }
                 });
             }
-            console.log(response, "Responses");
             setPatientList(response.data);
         }catch (error){
             console.log(error)
