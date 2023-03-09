@@ -1877,8 +1877,9 @@ app.put("/rescheduleDentistAppointment", async (req, res) => {
   const firstNumber = event.toISOString().substring(20, 23);
   const appNumberUUID = "#APT" + firstNumber;
   const proceduresData = req.body.procedures;
+  const reasonText = req.body.reasontext;
 
-  const AppData = new AppDetails({
+  const AppData = new AppDetails({ 
     patientIDnumber: patientIDnumber,
     dentistIDnumber: dentistIDnum,
     pName: userNameApp,
@@ -1889,6 +1890,7 @@ app.put("/rescheduleDentistAppointment", async (req, res) => {
     procedures: proceduresData,
     time: updateTime,
     appStatus: insertAppStatus,
+    reasonCancel: reasonText,
   });
 
   await AppData.save();

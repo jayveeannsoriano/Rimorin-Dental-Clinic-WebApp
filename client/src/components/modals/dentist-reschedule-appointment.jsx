@@ -62,6 +62,8 @@ function DentistRescheduleAppointment(
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
+  console.log("Procedures: ", proceduresValue);
+
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
     proceduresValue.map((item) =>
@@ -148,6 +150,7 @@ function DentistRescheduleAppointment(
         newFormattedDate: newFormattedDate,
         newTime: timeCheck,
         procedures: proceduresValue,
+        reasontext: reschedReason,
       }
     );
     setModalState("modal-2");
@@ -302,7 +305,13 @@ function DentistRescheduleAppointment(
             {userDetails.map((item) => (
               <div class="row">
                 <div class="col modal-label">Chosen Procedures:</div>
-                <div class="col modal-values">{}</div>
+                <div class="col modal-values"> 
+              {procValue.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.procedure}</td>
+                      </tr>
+                    ))}
+              </div>
               </div>
             ))}
           </div>
