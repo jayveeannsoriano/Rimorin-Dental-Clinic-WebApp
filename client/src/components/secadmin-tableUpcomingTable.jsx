@@ -91,14 +91,16 @@ const UpSecAdminDashboardTable = () => {
             name: "Action",
             selector: row =>
             <div className="action-buttons">
-                          {row.appStatus == "Accepted" ? (
+            {row.appStatus == "Accepted" ? (
                 <>
                     <ReschedConfirmation
                         dentistIDnumber={row.dentistIDnumber}
                         patientIDnumber={row.patientIDnumber}
                         appNum={row.appNum}
                         pName={row.pName}
-                        dName={row.dName} />
+                        dName={row.dName} 
+                        procedures={row.procedures}
+                        />
                     <ApptDetails
                         pName={row.pName}
                         appNum={row.appNum}
