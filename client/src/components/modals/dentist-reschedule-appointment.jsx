@@ -32,12 +32,10 @@ function DentistRescheduleAppointment(
   const [selectedApptDate, setSelectedApptDate] = useState("");
   const stringDate = selectedApptDate.toString();
 
-  const [newFormattedDate, setFormattedDate] = useState(
-    new Date().toISOString()
-  );
-
-  var date = window.localStorage.getItem("date");
+  const newFormattedDate = window.localStorage.getItem("formattedDate");
   window.localStorage.setItem("date", selectedApptDate);
+
+  //const [newFormattedDate, setFormattedDate] = useState(new Date().toISOString());
 
   //reason for reschedule input
   const [reschedReason, setReschedReason] = useState("");
@@ -339,12 +337,19 @@ function DentistRescheduleAppointment(
                   onChange={(date) => {
                     setSelectedApptDate(date);
                     window.localStorage.setItem("date", date);
-                    setFormattedDate(date);
-                    getAppointmenstbyDate(date.toString().substring(0, 15));
-                    console.log("This is the calendar data:", date);
+                    window.localStorage.setItem(
+                      "formattedDate",
+                      date != null
+                        ? date.getFullYear() +
+                            "-" +
+                            ("0" + (date.getMonth() + 1)).slice(-2) +
+                            "-" +
+                            ("0" + date.getDate()).slice(-2)
+                        : ""
+                    );
+                    console.log("Rescheduled date", selectedApptDate);
                     setTakenAppointments([]);
                   }}
-                  onBlur={!selectedApptDate}
                   placeholderText="Choose a date"
                   minDate={new Date()}
                   shouldCloseOnSelect={false}

@@ -22,15 +22,15 @@ function RescheduleAppointment(dName,pName,appNum,patientIDnumber,procedures) {
   }
 
   //calendar input
-  const [newStartDate, setStartDate] = useState(new Date());
-  const stringDate = newStartDate.toString();
+  const [selectedApptDate, setSelectedApptDate] = useState("");
+  const stringDate = selectedApptDate.toString();
 
   const [newFormattedDate,setFormattedDate] = useState(new Date().toISOString())
-  console.log("THIS IS THE dsa DATE" ,newStartDate);
+  console.log("THIS IS THE dsa DATE" ,selectedApptDate);
   console.log("THIS IS THE FORMATTED DATE" ,newFormattedDate);
 
   var date = window.localStorage.getItem('date');
-  window.localStorage.setItem('date',newStartDate);
+  window.localStorage.setItem('date',selectedApptDate);
 
   //reasonforconsultation input
   const [newConsulInput, setConsulInput] = useState("");
@@ -198,17 +198,33 @@ useEffect(() => {
             <form className="row g-3 needs-validation" noValidate/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">Select Appointment Date <span className="text-danger font-weight-bold">*</span></label>
-                      {/* New Calendar from https://reactdatepicker.com/#example-default */}
                     <DatePicker 
-                        selected={newStartDate} 
-                        onChange={(date) => {
-                            setStartDate(date);
-                            setFormattedDate(date);
-                            getAppointmenstbyDate(date.toString().substring(0, 15));
-                            console.log("This is the calendar data:", date)
-                            setTakenAppointments([]);
+                        selected={selectedApptDate} 
+                        required
+                        style={{
+                          backgroundColor: "white",
+                          border: "1px solid #ced4da",
+                          borderRadius: "5px",
+                          color: "#495057",
+                          width: "300px",
                         }}
-                        isClearable
+                        onChange={(date) => {
+                          setSelectedApptDate(date);
+                          setFormattedDate(date);
+                          window.localStorage.setItem("date", date);
+                          window.localStorage.setItem(
+                            "formattedDate",
+                            date != null
+                              ? date.getFullYear() +
+                                  "-" +
+                                  ("0" + (date.getMonth() + 1)).slice(-2) +
+                                  "-" +
+                                  ("0" + date.getDate()).slice(-2)
+                              : ""
+                          );
+                          console.log("Rescheduled date", selectedApptDate);
+                          setTakenAppointments([]);
+                        }}
                         placeholderText="Choose a date"
                         minDate={new Date()}
                         shouldCloseOnSelect={false}
