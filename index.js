@@ -1065,7 +1065,7 @@ app.get("/getUserAppts", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
@@ -1101,7 +1101,7 @@ app.get("/getUserAppts", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
@@ -1262,7 +1262,7 @@ app.get("/getUserApptsOthers", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
@@ -1297,7 +1297,7 @@ app.get("/getUserApptsOthers", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
@@ -1559,7 +1559,7 @@ app.get("/getUserApptsDent", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
@@ -1599,7 +1599,7 @@ app.get("/getUserApptsDent", async (req, res) => {
         for (var key in data) {
           let color = "";
           if (data[key].appStatus === "Pending") {
-            color = "#FFC107";
+            continue;
           } else if (data[key].appStatus === "Accepted") {
             color = "#0DCAF0";
           } else if (data[key].appStatus === "Rescheduled") {
