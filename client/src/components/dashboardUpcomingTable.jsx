@@ -107,6 +107,7 @@ appointment.map(function (item) {
                 pName={row.pName}
                 dName={row.dName}
                 appNum={row.appNum}
+                procedures={row.procedures}
               />
               <CancelAppointment appNum={row.appNum} />
               <ApptPatientDetails

@@ -15,7 +15,8 @@ function DentistRescheduleAppointment(
   patientIDnumber,
   appNum,
   pName,
-  dName
+  dName, 
+  procedures
 ) {
   const [modalState, setModalState] = useState("close");
 
@@ -50,19 +51,29 @@ function DentistRescheduleAppointment(
     patientIDnumber,
     appNum,
     pName,
-    dName
+    dName,
+    procedures
   );
   const ConvertStringApp = JSON.parse(StringAppNum);
-  const DentistIDNumber = JSON.stringify(
-    ConvertStringApp.dentistIDnumber
-  ).replace(/"/g, "");
-  const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(
-    /"/g,
-    ""
-  );
+  const DentistIDNumber = JSON.stringify(ConvertStringApp.dentistIDnumber).replace(/"/g, "");
+  const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g,"");
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
+  const proceduresValue = ConvertStringApp.procedures;
+
+  const [procValue, setProcedure] = useState([]);
+  useEffect(() => {
+    proceduresValue.map((item) =>
+      item.chosen != null
+        ? item.chosen.map(
+            (proc) => (
+              setProcedure((current) => [...current, proc])
+            )
+          )
+        : null
+    );
+  }, [1]);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
   const [chosenDate, setChosenDate] = useState("");
@@ -136,7 +147,7 @@ function DentistRescheduleAppointment(
         newDate: stringDate,
         newFormattedDate: newFormattedDate,
         newTime: timeCheck,
-        newConsultation: reschedReason,
+        procedures: proceduresValue,
       }
     );
     setModalState("modal-2");
