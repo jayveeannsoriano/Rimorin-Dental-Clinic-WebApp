@@ -148,6 +148,13 @@ const DashboardTable = () => {
                 time={row.time}
                 procedures={row.procedures}
               />
+              <DentistRescheduleAppointment
+                dentistIDnumber={row.dentistIDnumber}
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+              />
               <ApptDetailsFollowUp
                 pName={row.pName}
                 appNum={row.appNum}

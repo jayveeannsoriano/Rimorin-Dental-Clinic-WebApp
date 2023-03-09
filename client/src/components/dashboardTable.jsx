@@ -76,8 +76,8 @@ const DashboardTable = () => {
       name: "Action",
       selector: (row) => (
         <div className="action-buttons">
-          {row.appStats == "Pending" ? (
-            <>
+          {row.appStatus == "Pending" ? (
+          <>
             <ReschedConfirmation
               patientIDnumber={row.patientIDnumber}
               pName={row.pName}
@@ -86,6 +86,15 @@ const DashboardTable = () => {
               procedures={row.procedures}
               />
             <CancelAppointment appNum={row.appNum} />
+            <ApptPatientDetails
+              dName={row.dName}
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              procedures={row.procedures}
+            />
           </>
           ) : row.appStatus == "Rescheduled" ? (
             <ApptDetailsResched

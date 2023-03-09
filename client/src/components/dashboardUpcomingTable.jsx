@@ -100,7 +100,7 @@ appointment.map(function (item) {
       name: "Action",
       selector: (row) => (
         <div className="action-buttons">
-          {row.appStats == "Pending" ? (
+          {row.appStatus == "Pending" ? (
             <>
               <ReschedConfirmation
                 patientIDnumber={row.patientIDnumber}
