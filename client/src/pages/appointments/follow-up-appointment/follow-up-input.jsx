@@ -514,8 +514,15 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
                     window.localStorage.setItem("date", date);
                     window.localStorage.setItem(
                       "formattedDate",
-                      date != null ? date.toISOString().substring(0, 10) : ""
+                      date != null
+                        ? date.getFullYear() +
+                            "-" +
+                            ("0" + (date.getMonth() + 1)).slice(-2) +
+                            "-" +
+                            ("0" + date.getDate()).slice(-2)
+                        : ""
                     );
+                    console.log("Follow-Up Booking Date", selectedApptDate);
                     getAppointmenstbyDate(date.toString().substring(0, 15));
                   }}
                   placeholderText="Choose a date"
