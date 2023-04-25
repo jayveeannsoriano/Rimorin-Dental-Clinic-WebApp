@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from "axios";
-import Timeslot2 from "../timeslot2";
+import Timeslot from "../timeslot";
 //project imports
 import "../../styles/modals.css";
 import "../../styles/booking.css";
@@ -34,8 +34,6 @@ function DentistRescheduleAppointment(
 
   const newFormattedDate = window.localStorage.getItem("formattedDate");
   window.localStorage.setItem("date", selectedApptDate);
-
-  //const [newFormattedDate, setFormattedDate] = useState(new Date().toISOString());
 
   //reason for reschedule input
   const [reschedReason, setReschedReason] = useState("");
@@ -106,6 +104,8 @@ function DentistRescheduleAppointment(
     getAppointmenstbyDate(initialDate.toString().substring(0, 10));
   }, []);
 
+  var [totalApptTime, settotalApptTime] = useState(0);
+
   const getAppDetails = async () => {
     try {
       const response = await Axios.get(
@@ -126,6 +126,8 @@ function DentistRescheduleAppointment(
     getAppDetails();
   }, []);
 
+
+  //update date and time
   const rescheduleAppt = (e) => {
     console.log("Updating " + AppNumber);
     console.log(
@@ -349,6 +351,7 @@ function DentistRescheduleAppointment(
                     );
                     console.log("Rescheduled date", selectedApptDate);
                     setTakenAppointments([]);
+                    getAppointmenstbyDate(date.toString().substring(0, 15));
                   }}
                   placeholderText="Choose a date"
                   minDate={new Date()}
@@ -367,10 +370,11 @@ function DentistRescheduleAppointment(
                 </label>
                 <p> Available Times </p>
                 {selectedApptDate && (
-                  <Timeslot2
+                  <Timeslot
                     GetTimeCheck={setTimeCheck}
                     takenAppointments={takenAppointments}
                     chosenDate={chosenDate}
+                    totalApptTime={totalApptTime}
                   />
                 )}
                 {error}
