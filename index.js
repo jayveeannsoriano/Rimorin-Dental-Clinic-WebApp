@@ -2529,6 +2529,7 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req, res) => {
     await AppData.save();
     console.log("Successfully inserted ", AppData, " to the History database.");
     await AppRequest.findOneAndDelete({ appNum: appNumber });
+    await AppDetails.findOneAndDelete({ appNum: appNumber });
   } catch (err) {
     console.log(err);
   }
