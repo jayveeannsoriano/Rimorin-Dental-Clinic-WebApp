@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState, useMemo  } from 'react';
+import React, { useEffect, useState, useMemo } from "react";
 import DataTable, { Alignment } from "react-data-table-component";
 import { useSearchParams, useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
@@ -55,7 +55,6 @@ const DashboardTable = () => {
     }
   };
 
-
   const columns = [
     {
       name: "Patient",
@@ -80,6 +79,7 @@ const DashboardTable = () => {
     {
       name: "Action",
       selector: (row) => (
+        //TODO: remove follow-up button when appt already has a follow-up in finished status
         <div className="action-buttons">
           {row.appStatus == "Accepted" ? (
             <>
@@ -131,14 +131,25 @@ const DashboardTable = () => {
               />
             </>
           ) : row.appStatus == "Rescheduled" ? (
-            <ApptDetailsResched
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
+            <>
+              <Rebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
+              />
+              <ApptDetailsResched
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
           ) : row.appStatus == "Follow-Up" ? (
             <>
               <Rebook
@@ -196,7 +207,7 @@ const DashboardTable = () => {
           )}
         </div>
       ),
-    }
+    },
   ];
 
   // Loading effect
