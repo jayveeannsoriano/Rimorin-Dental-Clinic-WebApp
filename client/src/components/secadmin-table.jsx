@@ -72,6 +72,8 @@ const SecAdminDashboardTable = () => {
     {
       name: "Action",
       selector: (row) => (
+        //TODO: remove follow-up button when appt already has a follow-up in finished status
+
         <div className="action-buttons">
           {row.appStatus == "Accepted" ? (
             <>
@@ -121,40 +123,51 @@ const SecAdminDashboardTable = () => {
               />
             </>
           ) : row.appStatus == "Rescheduled" ? (
-            <ApptDetailsResched
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
+            <>
+              <SecAdminRebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
+              />
+              <ApptDetailsResched
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
           ) : row.appStatus == "Follow-Up" ? (
             <>
-            <SecAdminRebook
-              patientIDnumber={row.patientIDnumber}
-              appNum={row.appNum}
-              pName={row.pName}
-              dName={row.dName}
-              date={row.date}
-              time={row.time}
-              procedures={row.procedures}
+              <SecAdminRebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
               />
-            <ReschedConfirmation
-              patientIDnumber={row.patientIDnumber}
-              appNum={row.appNum}
-              pName={row.pName}
-              dName={row.dName}
-              procedures={row.procedures}
-            />
-            <ApptDetailsFollowUp
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
+              <ReschedConfirmation
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                procedures={row.procedures}
+              />
+              <ApptDetailsFollowUp
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
             </>
           ) : row.appStatus == "Finished" ? (
             <>
