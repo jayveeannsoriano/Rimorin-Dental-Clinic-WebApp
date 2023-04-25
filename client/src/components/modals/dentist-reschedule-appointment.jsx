@@ -16,7 +16,8 @@ function DentistRescheduleAppointment(
   appNum,
   pName,
   dName, 
-  procedures
+  procedures,
+  procedureTime,
 ) {
   const [modalState, setModalState] = useState("close");
 
@@ -48,7 +49,8 @@ function DentistRescheduleAppointment(
     appNum,
     pName,
     dName,
-    procedures
+    procedures,
+    procedureTime
   );
   const ConvertStringApp = JSON.parse(StringAppNum);
   const DentistIDNumber = JSON.stringify(ConvertStringApp.dentistIDnumber).replace(/"/g, "");
@@ -56,6 +58,7 @@ function DentistRescheduleAppointment(
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
+  const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
   console.log("Procedures: ", proceduresValue);

@@ -218,6 +218,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
   //Checkbox handleChange
   const [isSelected, setIsSelected] = useState([]);
   var [totalApptTime, settotalApptTime] = useState(0);
+  window.localStorage.setItem("procedureTime", totalApptTime);
 
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);

@@ -14,7 +14,8 @@ function RescheduleAppointment(
   pName,
   appNum,
   patientIDnumber,
-  procedures
+  procedures,
+  procedureTime
 ) {
   const [modalState, setModalState] = useState("close");
 
@@ -51,7 +52,8 @@ function RescheduleAppointment(
     pName,
     appNum,
     patientIDnumber,
-    procedures
+    procedures,
+    procedureTime
   );
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
@@ -62,6 +64,8 @@ function RescheduleAppointment(
     ""
   );
   const proceduresValue = ConvertStringApp.procedures;
+  const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
+ 
 
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
@@ -106,6 +110,7 @@ function RescheduleAppointment(
   }, []);
 
   var [totalApptTime, settotalApptTime] = useState(0);
+
   useEffect(() => {});
 
   const getAppDetails = async () => {
@@ -235,27 +240,21 @@ function RescheduleAppointment(
 
   //update date and time
   const newDateTime = async () => {
-    const response = await Axios.get(
-      "http://localhost:3001/getUserInfo",
-      {
-        params: {
-          PatientIDnumber: "PT#" + PatientIDnum,
-        },
-      }
-    );
-    Axios.put(
-      "http://localhost:3001/rescheduleAppointment",
-      {
-        patientIDNum: PatientIDnum,
-        appNum: AppNumber,
-        pName: PatientName,
-        dName: DoctorName,
-        newDate: stringDate,
-        newFormattedDate: newFormattedDate,
-        newTime: timeCheck,
-        procedures: proceduresValue,
-      }
-    );
+    const response = await Axios.get("http://localhost:3001/getUserInfo", {
+      params: {
+        PatientIDnumber: "PT#" + PatientIDnum,
+      },
+    });
+    Axios.put("http://localhost:3001/rescheduleAppointment", {
+      patientIDNum: PatientIDnum,
+      appNum: AppNumber,
+      pName: PatientName,
+      dName: DoctorName,
+      newDate: stringDate,
+      newFormattedDate: newFormattedDate,
+      newTime: timeCheck,
+      procedures: proceduresValue,
+    });
     setModalState("modal-2");
     Axios.post("http://localhost:3001/sendSMS", {
       phone: "0" + response["data"][0]["mobile"],
@@ -412,7 +411,7 @@ function RescheduleAppointment(
                 value={reschedReason}
                 onChange={(e) => setReschedReason(e.target.value)}
                 onBlur={function (e) {
-                  validateBlankspace(e.target.value, "reschedReason")
+                  validateBlankspace(e.target.value, "reschedReason");
                   validateSpecialCharacters(e.target.value, "reschedReason");
                 }}
                 required

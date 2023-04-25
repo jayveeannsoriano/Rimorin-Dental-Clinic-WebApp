@@ -15,6 +15,7 @@ const BookingConfirm = ({values}) => {
     var retrievedObject = localStorage.getItem('totalProcedure');
     var totalProcedures = JSON.parse(retrievedObject)
     var formattedDate = window.localStorage.getItem('formattedDate');
+    var procedureTime = window.localStorage.getItem('procedureTime');
     console.log(values);
   
     //insert data
@@ -30,6 +31,7 @@ const BookingConfirm = ({values}) => {
         consulInput: values.consultation,
         getTime: time,
         procedures: totalProcedures,
+        procedureTime: procedureTime,
         recep: userInfo["email"],
       }
     );

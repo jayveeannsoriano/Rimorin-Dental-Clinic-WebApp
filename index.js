@@ -268,6 +268,7 @@ app.post("/insertAppointment", async (req, res) => {
   console.log(formattedDate);
 
   const proceduresData = req.body.procedures;
+  const procedureTime = req.body.procedureTime;
 
   //appt status default when creating an appointment
   const insertAppStatus = "Pending";
@@ -285,6 +286,7 @@ app.post("/insertAppointment", async (req, res) => {
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
+    procedureTime:procedureTime,
   });
 
   const AppDets = new AppDetails({
@@ -298,6 +300,7 @@ app.post("/insertAppointment", async (req, res) => {
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
+    procedureTime:procedureTime,
   });
 
   try {

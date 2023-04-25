@@ -120,6 +120,7 @@ const UpDentalDashboardTable = () => {
                 pName={row.pName}
                 dName={row.dName}
                 procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <ApptDetails
                 pName={row.pName}

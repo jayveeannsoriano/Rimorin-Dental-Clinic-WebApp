@@ -19,6 +19,8 @@ function ApptDetailsResched(pName,appNum,date,time,appStats,procedures) {
   const StatsValue = JSON.stringify(ConvertStringfyValues.appStats).replace(/"/g,"");
   const proceduresValue = ConvertStringfyValues.procedures;
   
+
+  
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
     proceduresValue.map((item) =>
