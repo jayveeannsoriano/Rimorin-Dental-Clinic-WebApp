@@ -29,7 +29,7 @@ const Patients = () => {
   useEffect(async () => {
     try {
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserDetails"
+        "http://localhost:3001/getUserDetails"
       );
       console.log(response, "Responses");
       setWidgetData(response.data);

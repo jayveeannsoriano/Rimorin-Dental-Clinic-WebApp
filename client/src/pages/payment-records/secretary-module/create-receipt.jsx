@@ -66,7 +66,7 @@ const createReceipt = () => {
   const getPatientIDnumber = async () => {
     try {
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getPatientAppNumforDental",
+        "http://localhost:3001/getPatientAppNumforDental",
         {
           params: {
             appNumber: StringfyAppNumber,
@@ -89,7 +89,7 @@ const createReceipt = () => {
   const getUser = async () => {
     try {
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserInfoFollowUp",
+        "http://localhost:3001/getUserInfoFollowUp",
         {
           params: {
             patientIDNum: "PT#" + getPatientID,
@@ -126,7 +126,7 @@ const createReceipt = () => {
   const getAppDetails = async () => {
     try {
       const response = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getDetailsforReceipt",
+        "http://localhost:3001/getDetailsforReceipt",
         {
           params: {
             patientIDNum: "PT#" + getPatientID,
@@ -205,7 +205,7 @@ const createReceipt = () => {
   console.log(recordProcedures, "this are the vals");
   const addPreviousReceipt = async () => {
     const response = await Axios.get(
-      "https://rimorin-dental-clinic.herokuapp.com/getUserDentalRecordforReceipt",
+      "http://localhost:3001/getUserDentalRecordforReceipt",
       {
         params: {
           patientIDnumber: StringfyIDNumber,
@@ -273,7 +273,7 @@ const createReceipt = () => {
 
   const createUserReceipt = () => {
     Axios.put(
-      "https://rimorin-dental-clinic.herokuapp.com/getandUpdateReceipt",
+      "http://localhost:3001/getandUpdateReceipt",
       {
         OBJECTID: ObjectID,
         addedItem: serviceItem,
@@ -294,7 +294,7 @@ const createReceipt = () => {
     );
 
     Axios.post(
-      "https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsFinished",
+      "http://localhost:3001/moveToAppointmentHistoryAsFinished",
       {
         patientIDnumber: StringfyIDNumber,
         appNum: StringfyAppNumber,

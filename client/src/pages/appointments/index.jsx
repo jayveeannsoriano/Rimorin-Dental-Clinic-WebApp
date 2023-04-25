@@ -19,7 +19,7 @@ export default function AppointmentPage() {
   const getAppInfo = async () => {
     try {
       const responses = await Axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserAppointmentDetailsforDuplicate",
+        "http://localhost:3001/getUserAppointmentDetailsforDuplicate",
         {
           params: {
             patientIDnum: patientIDnumber,

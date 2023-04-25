@@ -40,7 +40,7 @@ const FollowUpDetail = ({ nextStep, prevStep, handleChange, values }) => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserInfoFollowUp",
+        "http://localhost:3001/getUserInfoFollowUp",
         {
           params: {
             patientIDNum: "PT#" + StringfyPatientID,

@@ -32,7 +32,7 @@ const TransactionDataTable = () => {
   const getAppointment = async () => {
     try {
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getUserTransaction",
+        "http://localhost:3001/getUserTransaction",
         {
           params: {
             patientIDnumber: patientIDnumber,
@@ -50,7 +50,7 @@ const TransactionDataTable = () => {
   const getPatientDetails = async () => {
     try {
       const response = await axios.get(
-        "https://rimorin-dental-clinic.herokuapp.com/getPatientInfo",
+        "http://localhost:3001/getPatientInfo",
         {
           params: {
             patientIDnumber: StringfyIDnumber,

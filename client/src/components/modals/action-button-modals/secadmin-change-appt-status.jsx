@@ -68,7 +68,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, proce
     console.log("Updating " + AppNumber);
     console.log("Update values: " + selectValue);
 
-    Axios.put("https://rimorin-dental-clinic.herokuapp.com/updateStatus", {
+    Axios.put("http://localhost:3001/updateStatus", {
       appNum: AppNumber,
       newAppStatus: selectValue
     });
@@ -80,7 +80,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, proce
     }
 
     if (selectValue == "Finished") {
-      Axios.post("https://rimorin-dental-clinic.herokuapp.com/createDentalRecordforSec", {
+      Axios.post("http://localhost:3001/createDentalRecordforSec", {
         patientIDNum: PatientIDNumber,
         appNum: AppNumber,
         dentalStatus: "Pending",
@@ -95,7 +95,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, proce
 
     if (selectValue == "No Show") {
       handleNoShow();
-      Axios.post("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsNoShow", {
+      Axios.post("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
         patientIDnumber: PatientIDNumber,
         appNum: AppNumber,
         pName: patientValue,
@@ -114,7 +114,7 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, proce
   }
 
   const finishedAppointments = () => {
-    Axios.put("https://rimorin-dental-clinic.herokuapp.com/moveToAppointmentHistoryAsNoShow", {
+    Axios.put("http://localhost:3001/moveToAppointmentHistoryAsNoShow", {
         patientIDnumber: PatientIDNumber,
         appNum: AppNumber,
       })
