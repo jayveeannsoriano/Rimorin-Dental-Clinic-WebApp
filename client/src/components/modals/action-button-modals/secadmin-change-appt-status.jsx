@@ -47,7 +47,6 @@ function SecAdminrebook(patientIDnumber, appNum, pName, dName, date, time, proce
   const dentistValue = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
   const dateValue = JSON.stringify(ConvertStringApp.date).replace(/"/g, "");
   const timeValue = JSON.stringify(ConvertStringApp.time).replace(/"/g, "");
-  const consultationValue = JSON.stringify(ConvertStringApp.consultation).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
   const [procValue, setProcedure] = useState([]);

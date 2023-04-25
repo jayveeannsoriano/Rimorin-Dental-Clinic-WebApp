@@ -86,6 +86,7 @@ const SecAdminDashboardTable = () => {
               />
               <ReschedConfirmation
                 patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
                 pName={row.pName}
                 dName={row.dName}
                 procedures={row.procedures}
@@ -129,6 +130,23 @@ const SecAdminDashboardTable = () => {
               procedures={row.procedures}
             />
           ) : row.appStatus == "Follow-Up" ? (
+            <>
+            <SecAdminRebook
+              patientIDnumber={row.patientIDnumber}
+              appNum={row.appNum}
+              pName={row.pName}
+              dName={row.dName}
+              date={row.date}
+              time={row.time}
+              procedures={row.procedures}
+              />
+            <ReschedConfirmation
+              patientIDnumber={row.patientIDnumber}
+              appNum={row.appNum}
+              pName={row.pName}
+              dName={row.dName}
+              procedures={row.procedures}
+            />
             <ApptDetailsFollowUp
               pName={row.pName}
               appNum={row.appNum}
@@ -137,7 +155,8 @@ const SecAdminDashboardTable = () => {
               appStats={row.appStatus}
               procedures={row.procedures}
             />
-          ) : (
+            </>
+          ) : row.appStatus == "Finished" ? (
             <>
               <FollowUp
                 dentistIDnumber={row.dentistIDnumber}
@@ -145,6 +164,17 @@ const SecAdminDashboardTable = () => {
                 appNum={row.appNum}
                 dName={row.dName}
               />
+              <ApptDetails
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
+          ) : (
+            <>
               <ApptDetails
                 pName={row.pName}
                 appNum={row.appNum}
