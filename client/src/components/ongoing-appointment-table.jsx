@@ -92,10 +92,12 @@ const OnGoingTable = () => {
             <>
             <ReschedConfirmation
               patientIDnumber={row.patientIDnumber}
+              dentistIDnumber={row.dentistIDnumber}
               pName={row.pName}
               dName={row.dName}
               appNum={row.appNum}
               procedures={row.procedures}
+              procedureTime={row.procedureTime}
               />
             <CancelAppointment appNum={row.appNum} />
             <ApptPatientDetails

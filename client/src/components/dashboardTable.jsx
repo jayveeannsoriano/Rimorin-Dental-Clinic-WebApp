@@ -80,6 +80,7 @@ const DashboardTable = () => {
           <>
             <ReschedConfirmation
               patientIDnumber={row.patientIDnumber}
+              dentistIDnumber={row.dentistIDnumber}
               pName={row.pName}
               dName={row.dName}
               appNum={row.appNum}
