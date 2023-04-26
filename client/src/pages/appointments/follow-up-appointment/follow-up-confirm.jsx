@@ -19,6 +19,7 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
   var docID = window.localStorage.getItem("docID");
   var retrievedObject = localStorage.getItem("totalProcedures");
   var totalProcedures = JSON.parse(retrievedObject);
+  var procedureTime = window.localStorage.getItem('procedureTime');
   console.log(values);
 
   const Continue = (e) => {
@@ -45,6 +46,7 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
       getTime: time,
       procedures: totalProcedures,
       recep: getUserEmail,
+      procedureTime: procedureTime,
     }
   );
   Axios.post("http://localhost:3001/sendSMS", {

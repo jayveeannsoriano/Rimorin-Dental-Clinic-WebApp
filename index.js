@@ -432,6 +432,7 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   console.log(getTime);
 
   const proceduresData = req.body.procedures;
+  const procedureTime = req.body.procedureTime;
 
   const formattedDate = req.body.formattedDate;
   console.log(formattedDate);
@@ -439,6 +440,8 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
   //appt status default when creating an appointment
   const insertAppStatus = "Follow-Up";
   console.log(insertAppStatus);
+
+  const followUpStatus = true;
 
   //inserting all data
   const AppData = new AppDetails({
@@ -452,6 +455,8 @@ app.post("/insertFollowUpAppointment", async (req, res) => {
     time: getTime,
     formattedDate: formattedDate,
     appStatus: insertAppStatus,
+    followUpStatus:followUpStatus,
+    procedureTime:procedureTime,
   });
 
   try {

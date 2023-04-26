@@ -168,6 +168,7 @@ const DashboardTable = () => {
                 pName={row.pName}
                 dName={row.dName}
                 procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <ApptDetailsFollowUp
                 pName={row.pName}
@@ -185,6 +186,35 @@ const DashboardTable = () => {
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}
                 dName={row.dName}
+              />
+              <ApptDetails
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
+          ) : row.followUpStatus == true ? (
+            <>
+              <Rebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
+              />
+              <DentistRescheduleAppointment
+                dentistIDnumber={row.dentistIDnumber}
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <ApptDetails
                 pName={row.pName}

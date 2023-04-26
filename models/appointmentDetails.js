@@ -14,6 +14,7 @@ const AppointmentDetails = new mongoose.Schema(
     reasonCancel: String,
     procedures: Object,
     procedureTime: String,
+    followUpStatus: Boolean,
   },
   {
     collection: "AppointmentDetails",

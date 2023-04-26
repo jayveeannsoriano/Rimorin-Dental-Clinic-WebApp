@@ -150,7 +150,6 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   }, [checked]);
 
   localStorage.setItem("totalProcedures", JSON.stringify(checked));
-  console.log("yes sir", checked);
 
   //time is in minutes
   const generalOptions = [
@@ -203,6 +202,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   //Checkbox handleChange
   const [isSelected, setIsSelected] = useState([]);
   var [totalApptTime, settotalApptTime] = useState(0);
+  window.localStorage.setItem("procedureTime", totalApptTime);
 
   const handleChangeCheckbox = (input) => (event) => {
     var value = JSON.parse(event.target.value);

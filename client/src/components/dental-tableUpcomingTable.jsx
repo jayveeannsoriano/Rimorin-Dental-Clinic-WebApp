@@ -59,13 +59,13 @@ const UpDentalDashboardTable = () => {
     }
   });
 
-  const hasFollowUp = ({ row, followUpAppointments }) => {
-    const hasFollowUp = followUpAppointments.some(
-      (appt) =>
-        appt.patientIDnumber === row.patientIDnumber &&
-        appt.appStatus === 'Follow-up'
-    );
-  }
+  // const hasFollowUp = ({ row, followUpAppointments }) => {
+  //   const hasFollowUp = followUpAppointments.some(
+  //     (appt) =>
+  //       appt.patientIDnumber === row.patientIDnumber &&
+  //       appt.appStatus === 'Follow-up'
+  //   );
+  // }
 
   const getAppointment = async () => {
     try {
@@ -149,15 +149,35 @@ const UpDentalDashboardTable = () => {
               appStats={row.appStatus}
               procedures={row.procedures}
             />
-          ) : hasFollowUp ? (
-            <ApptDetails
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
+          ) : row.followUpStatus == true ? (
+            <>
+              <Rebook
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                date={row.date}
+                time={row.time}
+                procedures={row.procedures}
+              />
+              <DentistRescheduleAppointment
+                dentistIDnumber={row.dentistIDnumber}
+                patientIDnumber={row.patientIDnumber}
+                appNum={row.appNum}
+                pName={row.pName}
+                dName={row.dName}
+                procedures={row.procedures}
+                procedureTime={row.procedureTime}
+              />
+              <ApptDetails
+                pName={row.pName}
+                appNum={row.appNum}
+                date={row.date}
+                time={row.time}
+                appStats={row.appStatus}
+                procedures={row.procedures}
+              />
+            </>
           ) : (
             <>
               <FollowUp
