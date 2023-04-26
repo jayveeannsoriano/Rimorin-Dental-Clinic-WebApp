@@ -1840,6 +1840,7 @@ app.put("/updateDateTime", async (req, res) => {
 app.put("/rescheduleAppointment", async (req, res) => {
   const appNumber = req.body.appNum;
   const patientIDnumber = req.body.patientIDNum;
+  const dentistIDnum = req.body.dentistIDnumber;
   const userNameApp = req.body.pName;
   const updateDate = req.body.newDate.substring(0, 15);
   const formattedDate = req.body.newFormattedDate.substring(0, 10);
@@ -1851,6 +1852,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
 
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
+    dentistIDnumber: dentistIDnum,
     pName: userNameApp,
     dName: docName,
     appNum: appNumber,

@@ -13,6 +13,7 @@ function RescheduleAppointment(
   dName,
   pName,
   appNum,
+  dentistIDnumber,
   patientIDnumber,
   procedures,
   procedureTime
@@ -51,6 +52,7 @@ function RescheduleAppointment(
     dName,
     pName,
     appNum,
+    dentistIDnumber,
     patientIDnumber,
     procedures,
     procedureTime
@@ -58,16 +60,12 @@ function RescheduleAppointment(
   const ConvertStringApp = JSON.parse(StringAppNum);
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
-  const DoctorName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
-  const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(
-    /"/g,
-    ""
-  );
+  const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
+  const DentistIDNumber = JSON.stringify(ConvertStringApp.dentistIDnumber).replace(/"/g, "");
+  const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
-  const procedureTimeValue = JSON.stringify(
-    ConvertStringApp.procedureTime
-  ).replace(/"/g, "");
+  const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
 
   const [totalApptTime, setTotalApptTime] = useState(0);
   console.log("asdafCCCC: " + totalApptTime);
@@ -199,9 +197,10 @@ function RescheduleAppointment(
     });
     Axios.put("http://localhost:3001/rescheduleAppointment", {
       patientIDNum: PatientIDnum,
+      dentistIDnumber: DentistIDNumber,
       appNum: AppNumber,
       pName: PatientName,
-      dName: DoctorName,
+      dName: DentistName,
       newDate: stringDate,
       newFormattedDate: newFormattedDate,
       newTime: timeCheck,

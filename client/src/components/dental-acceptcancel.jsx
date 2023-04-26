@@ -105,6 +105,7 @@ const AcceptCancel = () => {
                 date={row.date}
                 time={row.time}
                 procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <CancelDental
                 patientIDnumber={row.patientIDnumber}
