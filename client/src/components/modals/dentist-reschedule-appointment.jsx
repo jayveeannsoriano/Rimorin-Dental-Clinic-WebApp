@@ -58,10 +58,16 @@ function DentistRescheduleAppointment(
   const AppNumber = JSON.stringify(ConvertStringApp.appNum).replace(/"/g, "");
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
-  const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
   console.log("Procedures: ", proceduresValue);
+
+  const [totalApptTime, setTotalApptTime] = useState(0);
+  useEffect(() => {
+    const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
+    const parsedProcedureTimeValue = parseInt(procedureTimeValue);
+    setTotalApptTime(parsedProcedureTimeValue);
+  }, []);
 
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
@@ -107,7 +113,6 @@ function DentistRescheduleAppointment(
     getAppointmenstbyDate(initialDate.toString().substring(0, 10));
   }, []);
 
-  var [totalApptTime, settotalApptTime] = useState(0);
 
   const getAppDetails = async () => {
     try {

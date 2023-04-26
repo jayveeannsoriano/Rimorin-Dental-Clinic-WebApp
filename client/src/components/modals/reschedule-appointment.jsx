@@ -64,8 +64,15 @@ function RescheduleAppointment(
     ""
   );
   const proceduresValue = ConvertStringApp.procedures;
-  const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
- 
+
+  const [totalApptTime, setTotalApptTime] = useState(0);
+  useEffect(() => {
+    const procedureTimeValue = JSON.stringify(
+      ConvertStringApp.procedureTime
+    ).replace(/"/g, "");
+    const parsedProcedureTimeValue = parseInt(procedureTimeValue);
+    setTotalApptTime(parsedProcedureTimeValue);
+  }, []);
 
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
@@ -108,10 +115,6 @@ function RescheduleAppointment(
     var initialDate = new Date();
     getAppointmenstbyDate(initialDate.toString().substring(0, 10));
   }, []);
-
-  var [totalApptTime, settotalApptTime] = useState(0);
-
-  useEffect(() => {});
 
   const getAppDetails = async () => {
     try {
@@ -187,6 +190,41 @@ function RescheduleAppointment(
     }
   }
 
+  //update date and time
+  const rescheduleAppointment = async () => {
+    const response = await Axios.get("http://localhost:3001/getUserInfo", {
+      params: {
+        PatientIDnumber: "PT#" + PatientIDnum,
+      },
+    });
+    Axios.put("http://localhost:3001/rescheduleAppointment", {
+      patientIDNum: PatientIDnum,
+      appNum: AppNumber,
+      pName: PatientName,
+      dName: DoctorName,
+      newDate: stringDate,
+      newFormattedDate: newFormattedDate,
+      newTime: timeCheck,
+      procedures: proceduresValue,
+    });
+    setModalState("modal-2");
+    Axios.post("http://localhost:3001/sendSMS", {
+      phone: "0" + response["data"][0]["mobile"],
+      message:
+        "Hi " +
+        PatientName +
+        "! This is from Rimorin Dental Clinic notifying you that your requested Appointment at " +
+        date +
+        " " +
+        stringDate +
+        " due to '" +
+        reschedReason +
+        "' has been rescheduled to " +
+        stringDate +
+        ". See you there!",
+    });
+  };
+
   //form validation error message
   const [isFormValid, setIsFormValid] = useState(true);
   const [errorDate, setErrorDate] = useState("");
@@ -231,46 +269,11 @@ function RescheduleAppointment(
       setErrorDate("");
     }
     if (selectedApptDate && timeCheck && reschedReason) {
-      newDateTime();
+      rescheduleAppointment();
       setError("");
       setErrorDate("");
       setErrorReason("");
     }
-  };
-
-  //update date and time
-  const newDateTime = async () => {
-    const response = await Axios.get("http://localhost:3001/getUserInfo", {
-      params: {
-        PatientIDnumber: "PT#" + PatientIDnum,
-      },
-    });
-    Axios.put("http://localhost:3001/rescheduleAppointment", {
-      patientIDNum: PatientIDnum,
-      appNum: AppNumber,
-      pName: PatientName,
-      dName: DoctorName,
-      newDate: stringDate,
-      newFormattedDate: newFormattedDate,
-      newTime: timeCheck,
-      procedures: proceduresValue,
-    });
-    setModalState("modal-2");
-    Axios.post("http://localhost:3001/sendSMS", {
-      phone: "0" + response["data"][0]["mobile"],
-      message:
-        "Hi " +
-        PatientName +
-        "! This is from Rimorin Dental Clinic notifying you that your requested Appointment at " +
-        date +
-        " " +
-        stringDate +
-        " due to '" +
-        reschedReason +
-        "' has been rescheduled to " +
-        stringDate +
-        ". See you there!",
-    });
   };
 
   return (
@@ -282,7 +285,6 @@ function RescheduleAppointment(
       <Modal
         show={modalState == "modal-1"}
         size="xl"
-        // show={show}
         onHide={handleClose}
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -436,7 +438,6 @@ function RescheduleAppointment(
       <Modal
         show={modalState == "modal-2"}
         size="lg"
-        // show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
