@@ -65,15 +65,12 @@ function RescheduleAppointment(
   );
   const proceduresValue = ConvertStringApp.procedures;
 
-  const [totalApptTime, setTotalApptTime] = useState(0);
-  useEffect(() => {
-    const procedureTimeValue = JSON.stringify(
-      ConvertStringApp.procedureTime
-    ).replace(/"/g, "");
-    const parsedProcedureTimeValue = parseInt(procedureTimeValue);
-    setTotalApptTime(parsedProcedureTimeValue);
-  }, []);
+  const procedureTimeValue = JSON.stringify(
+    ConvertStringApp.procedureTime
+  ).replace(/"/g, "");
 
+  const [totalApptTime, setTotalApptTime] = useState(0);
+  console.log("asdafCCCC: " + totalApptTime);
   const [procValue, setProcedure] = useState([]);
   useEffect(() => {
     proceduresValue.map((item) =>
@@ -83,6 +80,9 @@ function RescheduleAppointment(
           )
         : null
     );
+
+    const parsedProcedureTimeValue = parseInt(procedureTimeValue);
+    setTotalApptTime(parsedProcedureTimeValue);
   }, [1]);
 
   const [takenAppointments, setTakenAppointments] = useState([]);
@@ -206,6 +206,7 @@ function RescheduleAppointment(
       newFormattedDate: newFormattedDate,
       newTime: timeCheck,
       procedures: proceduresValue,
+      procedureTime: procedureTimeValue,
     });
     setModalState("modal-2");
     Axios.post("http://localhost:3001/sendSMS", {

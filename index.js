@@ -1847,6 +1847,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const updateProcedure = req.body.procedures;
   const insertAppStatus = "Rescheduled";
   const docName = req.body.dName;
+  const procedureTime = req.body.procedureTime;
 
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
@@ -1858,6 +1859,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
     procedures:updateProcedure,
     time: updateTime,
     appStatus: insertAppStatus,
+    procedureTime: procedureTime,
   });
 
   await AppData.save();
