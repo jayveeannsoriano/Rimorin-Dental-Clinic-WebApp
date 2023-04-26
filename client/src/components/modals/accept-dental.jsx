@@ -5,7 +5,7 @@ import '../../styles/accounts.css';
 import successful from '../../assets/img/check.png';
 import Modal from 'react-bootstrap/Modal';
 
-function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time,procedures) {
+function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate, time,procedures,procedureTime) {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false)
@@ -18,7 +18,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   //   dentistIDnumber = "DT#000SC"
   // }
   //Get values 
-  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate,time,procedures);
+  const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate,time,procedures,procedureTime);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
   //values
   const PatientIDnumber = JSON.stringify(ConvertStringfyValues.patientIDnumber).replace(/"/g, "");
@@ -29,6 +29,9 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const FormattedDateValue = JSON.stringify(ConvertStringfyValues.formattedDate).replace(/"/g, "");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
   const proceduresValue = ConvertStringfyValues.procedures;
+  const procedureTimeValue = JSON.stringify(
+    ConvertStringfyValues.procedureTime
+  ).replace(/"/g, "");
 
   if (JSON.stringify(ConvertStringfyValues.dentistIDnumber) == undefined){
     console.log("THIS IS SEC")
@@ -56,6 +59,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         dateValue: DateValue,
         procedures:proceduresValue,
         getTime: TimeValue,
+        procedureTime: procedureTimeValue,
       }
     );
     Axios.post("http://localhost:3001/sendSMS", {

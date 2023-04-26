@@ -1969,6 +1969,8 @@ app.post("/acceptAppointment", async (req, res) => {
 
   const procValue = req.body.procedures;
 
+  const procTimeValue = req.body.procedureTime;
+
   //time value
   const getTime = req.body.getTime;
   console.log(getTime);
@@ -1987,6 +1989,7 @@ app.post("/acceptAppointment", async (req, res) => {
     date: slicedDate,
     formattedDate: formattedDate,
     procedures: procValue,
+    procedureTime:procTimeValue,
     time: getTime,
     appStatus: insertAppStatus,
   });
