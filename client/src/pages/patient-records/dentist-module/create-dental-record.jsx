@@ -231,10 +231,6 @@ const CreateDentalRecord = () => {
                       minDate={new Date()}
                       shouldCloseOnSelect={false}
                       dateFormat="MMMM d, yyyy"
-                      //exclude sundays
-                      filterDate={(date) =>
-                        date.getDay() !== 7 && date.getDay() !== 0
-                      }
                     />
                   </div>
                   <div className="treatment-desc">

@@ -8,7 +8,7 @@ import ErrorPage from '../components/errorpage';
 //sidebar routing
 const Dashboard = lazy(() => import('../pages/dashboard/admin-dashboard'));
 const Calendar = lazy(() => import('../pages/calendar/index'));
-const ClinicHours = lazy(() => import('../pages/clinic-hours'));
+const ClinicSchedule = lazy(() => import('../pages/clinic-schedule'));
 const Accounts = lazy(() => import('../pages/accounts/index'));
 const Patients = lazy(() => import('../pages/patients/index'));
 const AdminUserProfile = lazy(() => import('../pages/userprofile/admin-module/index'));
@@ -41,8 +41,8 @@ const AdminRoute ={
             element: <CreateFollowUpAppointment />
         },
         {
-            path: '/admin/clinic-days',
-            element: <ClinicHours />
+            path: '/admin/clinic-schedule',
+            element: <ClinicSchedule />
         },
         {
             path: '/admin/calendar',
