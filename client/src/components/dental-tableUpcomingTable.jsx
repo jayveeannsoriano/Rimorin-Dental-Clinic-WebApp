@@ -110,6 +110,7 @@ const UpDentalDashboardTable = () => {
     {
       name: "Action",
       selector: (row) => (
+        //TODO: conditional rendering for follow-up status to be fixed
         <div className="action-buttons">
           {row.appStatus == "Accepted" ? (
             <>
@@ -151,24 +152,6 @@ const UpDentalDashboardTable = () => {
             />
           ) : row.followUpStatus == true ? (
             <>
-              <Rebook
-                patientIDnumber={row.patientIDnumber}
-                appNum={row.appNum}
-                pName={row.pName}
-                dName={row.dName}
-                date={row.date}
-                time={row.time}
-                procedures={row.procedures}
-              />
-              <DentistRescheduleAppointment
-                dentistIDnumber={row.dentistIDnumber}
-                patientIDnumber={row.patientIDnumber}
-                appNum={row.appNum}
-                pName={row.pName}
-                dName={row.dName}
-                procedures={row.procedures}
-                procedureTime={row.procedureTime}
-              />
               <ApptDetails
                 pName={row.pName}
                 appNum={row.appNum}

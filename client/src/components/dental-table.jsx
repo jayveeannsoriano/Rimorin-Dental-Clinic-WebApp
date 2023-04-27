@@ -79,7 +79,6 @@ const DashboardTable = () => {
     {
       name: "Action",
       selector: (row) => (
-        //TODO: remove follow-up button when appt already has a follow-up in finished status
         <div className="action-buttons">
           {row.appStatus == "Accepted" ? (
             <>
@@ -196,7 +195,7 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
-          ) : row.followUpStatus == true ? (
+          ) : row.appStatus == "Follow-Up" ? (
             <>
               <Rebook
                 patientIDnumber={row.patientIDnumber}
@@ -225,6 +224,15 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
+          ) : row.appStatus == "Finished" && row.followUpStatus == true ? (
+            <ApptDetails
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              procedures={row.procedures}
+            />
           ) : (
             <ApptDetails
               pName={row.pName}
