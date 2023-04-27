@@ -346,6 +346,7 @@ function RescheduleAppointment(
                 <DatePicker
                   selected={selectedApptDate}
                   required
+                  className="form-control col-md-3"
                   style={{
                     backgroundColor: "white",
                     border: "1px solid #ced4da",
