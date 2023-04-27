@@ -6,12 +6,9 @@ import "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from "axios";
-import PrescriptionDetails from "../../../components/modals/preview-prescription";
-import DropFileInput from "../../../components/signature";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
-import success from "../../../assets/img/check.png";
 
 const createEprescription = () => {
   var userInfo = JSON.parse(window.localStorage.getItem("current-session"));
@@ -31,7 +28,7 @@ const createEprescription = () => {
     dentistPTRDisplay = userInfo["ptr"];
   }
 
-  const dentistFullName = userInfo["fname"] + " " + userInfo["lname"];
+  const dentistFullName = `${userInfo["fname"]} ${userInfo["mname"]} ${userInfo["lname"]}`;
   const location = useLocation();
 
   const paramsID = new URLSearchParams(location.search);
@@ -44,14 +41,12 @@ const createEprescription = () => {
     JSON.stringify(getPatientAppNum).replace(/"/g, "")
   );
   console.log(StringfyIDnumber, "create e-prescription");
-  // const [patientIDNumber, setPatientIDNumber] = useState("");
 
   //calendar input
   const [startDate, setStartDate] = useState(new Date());
   //input variables
   const [notesValue, setNotesValue] = useState("");
 
-  //hi dabe from line 56 - 67 pi <3
   //breadcrumb href ref
   var patientsRoute = "/dentist/patients/view-patient?patientIDNum=";
 
@@ -59,35 +54,13 @@ const createEprescription = () => {
   const navigate = useNavigate();
   const handleModalClose = () => {
     setModalState(false);
-    navigate(
-      "/dentist/patients/view-patient?patientIDNum=" + StringfyIDnumber
-    );
+    navigate("/dentist/patients/view-patient?patientIDNum=" + StringfyIDnumber);
     window.location.reload();
   };
 
   const handleModal = () => {
     setModalState("show-modal");
   };
-
-  // const getPatientIDnumber = async () => {
-  //   try {
-  //     const response = await Axios.get(
-  //       "http://localhost:3001/getPatientAppNumforDental",
-  //       {
-  //         params: {
-  //           appNumber: StringfyAppNumber,
-  //         },
-  //       }
-  //     );
-  //     console.log(response.data);
-  //     setPatientIDNumber(response.data[0].patientIDnumber);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getPatientIDnumber();
-  // }, []);
 
   const [getFile, setGetFile] = useState("");
   console.log(getFile, "this is the img value");
@@ -158,24 +131,74 @@ const createEprescription = () => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
+    handleModal();
   };
+  
+  //form validation state
+  const [isFormValid, setIsFormValid] = useState(true);
 
-  // function handleSubmit(event) {
-  //     event.preventDefault()
-  //     const url = 'http://localhost:3001/uploadFile';
-  //     const formData = new FormData();
-  //     formData.append('file', imgFile);
-  //     formData.append('fileName', imgFile.name);
-  //     const config = {
-  //         headers: {
-  //             'content-type': 'multipart/form-data',
-  //         },
-  //     };
-  //     axios.post(url, formData, config).then((response) => {
-  //         console.log(response.data);
-  //     });
+  //Special Characters input validation
+  const [specialCharacterError, setSpecialCharacterError] = useState(true);
+  function validateSpecialCharacters(input, field) {
+    const hasSpecialCharacters = /[^A-Za-z0-9\sÑñ]/.test(input);
 
-  // }
+    if (hasSpecialCharacters) {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Please do not use special characters.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
+    } else {
+      setSpecialCharacterError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
+  }
+
+  //Blank input validator
+  const [blankInputError, setBlankInputError] = useState(true);
+  function validateBlankspace(input, field) {
+    const trimmedInput = input.trim();
+    const hasBlankspace = input !== trimmedInput;
+
+    if (hasBlankspace) {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: (
+          <div style={{ fontSize: "12px" }}>
+            <a class="text-danger">
+              <strong>Blank spaces are not allowed.</strong>
+            </a>
+          </div>
+        ),
+      }));
+      setIsFormValid(true);
+    } else {
+      setBlankInputError((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      setIsFormValid(false);
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } 
+    setIsFormValid(true);
+    createEPrescription();
+  };
 
   return (
     <>
@@ -194,7 +217,9 @@ const createEprescription = () => {
                         <a href="/dentist">Home</a>
                       </li>
                       <li className="breadcrumb-item">
-                        <a href={patientsRoute + StringfyIDnumber}>View Patient Records</a>
+                        <a href={patientsRoute + StringfyIDnumber}>
+                          View Patient Records
+                        </a>
                       </li>
                       <li className="breadcrumb-item active">
                         Create E-Prescription
@@ -220,7 +245,6 @@ const createEprescription = () => {
                   <div className="divider"></div>
 
                   {/* Professional information */}
-
                   <div className="biller-info">
                     <h5 className="rx-pr"> Professional Information </h5>
                     <p> PTR Number: {dentistPTRDisplay}</p>
@@ -228,6 +252,7 @@ const createEprescription = () => {
                   </div>
 
                   {/* <Form> */}
+                  <form onSubmit={handleSubmit} isFormValid={isFormValid}>
                     <div className="biller-info">
                       <br />
                       <h5 className="rx-pr"> Prescription Information </h5>
@@ -238,6 +263,14 @@ const createEprescription = () => {
                         </label>
                         <DatePicker
                           selected={startDate}
+                          className="form-control col-md-3"
+                          style={{
+                            backgroundColor: "white",
+                            border: "1px solid #ced4da",
+                            borderRadius: "5px",
+                            color: "#495057",
+                            width: "300px",
+                          }}
                           onChange={(date) => {
                             setStartDate(date);
                             console.log(
@@ -247,12 +280,11 @@ const createEprescription = () => {
                             console.log("set Start: ", startDate.toString());
                             window.localStorage.setItem("date", date);
                           }}
-                          isClearable
+                          required
                           placeholderText="Choose a date"
                           minDate={new Date()}
                           shouldCloseOnSelect={false}
                           dateFormat="MMMM d, yyyy"
-                          //exclude sundays
                           filterDate={(date) =>
                             date.getDay() !== 7 && date.getDay() !== 0
                           }
@@ -260,7 +292,6 @@ const createEprescription = () => {
                       </div>
                     </div>
 
-                    {/* Add Item */}
                     <div className="add-more-item text-left">
                       <button
                         className="btn btn-primary rx-btn"
@@ -273,7 +304,6 @@ const createEprescription = () => {
                     <div className="card-form">
                       <div className="card-body-form">
                         <div className="col-12 col-md-10 col-lg-12">
-                          {/* row for prescription fields */}
                           {prescriptionItem.map((singleItem, index) => (
                             <div key={index}>
                               <div className="row form row">
@@ -421,45 +451,47 @@ const createEprescription = () => {
                       </div>
                       {/* general row  */}
                       <div className="form-row">
-                        <label>Instructions/Notes</label>
+                        <label>
+                          Instructions/Notes <span class="text-danger">*</span>
+                        </label>
                         <textarea
                           class="form-control"
                           rows="5"
-                          onChange={(e) => {
-                            setNotesValue(e.target.value);
+                          value={notesValue}
+                          onChange={(e) => setNotesValue(e.target.value)}
+                          onBlur={function (e) {
+                            validateBlankspace(e.target.value, "notesValue");
+                            validateSpecialCharacters(
+                              e.target.value,
+                              "notesValue"
+                            );
                           }}
                           required
                         ></textarea>
+                        {blankInputError.notesValue}
+                        {specialCharacterError.notesValue}
                       </div>
                       <br />
                       {/* Signature */}
                       <div className="col-6">
-                        {/*<DropFileInput
-                                                    onFileChange={(files) => onFileChange(files)}
-                                                />*/}
-
                         <Form.Group controlId="formFile" className="mb-3">
-                          <Form.Label>Upload Signature</Form.Label>
-                          <Form.Control type="file" />
+                          <Form.Label>
+                            Upload Signature <span class="text-danger">*</span>
+                          </Form.Label>
+                          <Form.Control type="file" required />
                         </Form.Group>
 
                         <div className="sign-name">
-                          <p className="mb-0">
-                            ( Dr. Pamela Rimorin Concepcion )
-                          </p>
+                          <p className="mb-0">( Dr. {dentistFullName} )</p>
                           <span className="text-muted">Signature</span>
                         </div>
                       </div>
-                      {/* Submit Section */}
+
                       <div className="row rx-btn">
                         <div className="submit-section">
                           <Button
                             type="submit"
                             className="btn btn-primary submit-btn rx-btn"
-                            onClick={() => {
-                              createEPrescription();
-                              handleModal();
-                            }}
                           >
                             Create Prescription
                           </Button>
@@ -472,16 +504,13 @@ const createEprescription = () => {
                         </div>
                       </div>
                     </div>
-                  {/* </Form> */}
+                  </form>
                 </div>
               </div>
             </div>
-            {/* end of prescription */}
           </div>
-          {/* end of row */}
         </section>
       </div>
-      {/* /Main Wrapper */}
 
       <Modal
         show={modalState == "show-modal"}
