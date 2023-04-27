@@ -178,9 +178,19 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
-          ) : row.appStatus == "Finished" ? (
+          )  : (row.appStatus == "Finished" && row.followUpStatus == true) ? (
+            <ApptDetails
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              procedures={row.procedures}
+            />
+          ): row.appStatus == "Finished" ? (
             <>
               <FollowUp
+                apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}
@@ -224,15 +234,6 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
-          ) : row.appStatus == "Finished" && row.followUpStatus == true ? (
-            <ApptDetails
-              pName={row.pName}
-              appNum={row.appNum}
-              date={row.date}
-              time={row.time}
-              appStats={row.appStatus}
-              procedures={row.procedures}
-            />
           ) : (
             <ApptDetails
               pName={row.pName}

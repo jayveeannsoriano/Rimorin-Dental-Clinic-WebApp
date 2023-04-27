@@ -19,8 +19,10 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
   var docID = window.localStorage.getItem("docID");
   var retrievedObject = localStorage.getItem("totalProcedures");
   var totalProcedures = JSON.parse(retrievedObject);
-  var procedureTime = window.localStorage.getItem('procedureTime');
+  var procedureTime = window.localStorage.getItem("procedureTime");
+  var apptUUID = window.localStorage.getItem("apptUUID");
   console.log(values);
+  console.log("THIS IS THE APPT UUID: " + apptUUID);
 
   const Continue = (e) => {
     e.preventDefault();
@@ -33,22 +35,22 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
   };
 
   //insert data
-  Axios.post(
-    "http://localhost:3001/insertFollowUpAppointment",
-    {
-      patientIDnumber: patientIDNum,
-      docID: docID,
-      docName: docName,
-      prevAppNum: prevAppNum,
-      userNameApp: getUserName,
-      startDate: date,
-      formattedDate: formattedDate,
-      getTime: time,
-      procedures: totalProcedures,
-      recep: getUserEmail,
-      procedureTime: procedureTime,
-    }
-  );
+  Axios.post("http://localhost:3001/insertFollowUpAppointment", {
+    patientIDnumber: patientIDNum,
+    docID: docID,
+    docName: docName,
+    prevAppNum: prevAppNum,
+    userNameApp: getUserName,
+    startDate: date,
+    formattedDate: formattedDate,
+    getTime: time,
+    procedures: totalProcedures,
+    recep: getUserEmail,
+    procedureTime: procedureTime,
+  });
+  Axios.put("http://localhost:3001/updateFollowUpStatus", {
+    apptUUID: apptUUID,
+  });
   Axios.post("http://localhost:3001/sendSMS", {
     phone: getUserPhone,
     message:

@@ -1941,6 +1941,17 @@ app.put("/updateStatus", async (req, res) => {
   console.log("Appointment Status Successfully Updated!");
 });
 
+//update follow up status
+app.put("/updateFollowUpStatus", async (req, res) => {
+  const apptUUID = req.body.apptUUID;
+
+  await AppDetails.findOneAndUpdate(
+    { _id:apptUUID },
+    { followUpStatus: true }
+  );
+  console.log("Appointment Follow up Status Successfully Updated!");
+});
+
 app.get("/sendApptEmail", function (req, res) {});
 
 //Accept Appointment

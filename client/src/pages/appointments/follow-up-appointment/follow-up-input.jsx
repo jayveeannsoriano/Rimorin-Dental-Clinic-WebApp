@@ -20,6 +20,8 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   const getPrevID = paramsID.get("patientAppNum");
   const getDocName = paramsID.get("dentistName");
   const getDocID = paramsID.get("dentistIDnumber");
+  const apptUUID = paramsID.get("apptUUID");
+
   const [patientUser, setPatientUser] = useState([]);
   const [patientMobile, setPatientNumber] = useState([]);
   const [patientEmail, setPatientEmail] = useState([]);
@@ -42,6 +44,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
   window.localStorage.setItem("prevAppNum", "#" + StringfygetPrevID);
   window.localStorage.setItem("docName", StringfyDocName);
   window.localStorage.setItem("docID", "DT#" + StringfyDocID);
+  window.localStorage.setItem("apptUUID", apptUUID);
 
   const getUser = async () => {
     try {
