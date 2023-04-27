@@ -88,10 +88,12 @@ const SecAdminDashboardTable = () => {
               />
               <ReschedConfirmation
                 patientIDnumber={row.patientIDnumber}
+                dentistIDnumber={row.dentistIDnumber}
                 appNum={row.appNum}
                 pName={row.pName}
                 dName={row.dName}
                 procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <ApptDetails
                 pName={row.pName}
@@ -155,10 +157,12 @@ const SecAdminDashboardTable = () => {
               />
               <ReschedConfirmation
                 patientIDnumber={row.patientIDnumber}
+                dentistIDnumber={row.dentistIDnumber}
                 appNum={row.appNum}
                 pName={row.pName}
                 dName={row.dName}
                 procedures={row.procedures}
+                procedureTime={row.procedureTime}
               />
               <ApptDetailsFollowUp
                 pName={row.pName}
