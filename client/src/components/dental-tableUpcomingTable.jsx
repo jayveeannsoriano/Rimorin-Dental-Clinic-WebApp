@@ -163,13 +163,6 @@ const UpDentalDashboardTable = () => {
             </>
           ) : (
             <>
-              <FollowUp
-                dentistIDnumber={row.dentistIDnumber}
-                patientIDnumber={row.patientIDnumber}
-                appNum={row.appNum}
-                dName={row.dName}
-                apptUUID={row._id}
-              />
               <ApptDetails
                 pName={row.pName}
                 appNum={row.appNum}

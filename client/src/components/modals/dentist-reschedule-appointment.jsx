@@ -133,7 +133,6 @@ function DentistRescheduleAppointment(
     getAppDetails();
   }, []);
 
-
   //update date and time
   const rescheduleAppt = async () => {
     const response = await Axios.get("http://localhost:3001/getUserInfo", {
@@ -141,15 +140,6 @@ function DentistRescheduleAppointment(
         PatientIDnumber: "PT#" + PatientIDnum,
       },
     });
-    console.log("Updating " + AppNumber);
-    console.log(
-      "Update values: " +
-        selectedApptDate +
-        " " +
-        timeCheck +
-        " " +
-        reschedReason
-    );
     Axios.put(
       "http://localhost:3001/rescheduleDentistAppointment",
       {
@@ -163,11 +153,9 @@ function DentistRescheduleAppointment(
         newTime: timeCheck,
         procedures: proceduresValue,
         reasontext: reschedReason,
-      }
-    );
+      });
 
     const procedureNames = [];
-
     proceduresValue.forEach((item) => {
       if (item.chosen.length > 0) {
         item.chosen.forEach((chosenProcedure) => {
@@ -189,12 +177,12 @@ function DentistRescheduleAppointment(
     procedureNames.join("\n") +
     " \nPlease wait for the clinic's approval of your rescheduled appointment request. Thank you!";
 
+    setModalState("modal-2");
+    
     Axios.post("http://localhost:3001/sendSMS", {
       phone: "0" + response["data"][0]["mobile"],
       message:message
       });
-
-    setModalState("modal-2");
   };
 
   //Special Characters input validation
@@ -458,6 +446,7 @@ function DentistRescheduleAppointment(
       {/* Success Modal */}
       <Modal
         show={modalState == "modal-2"}
+        size="lg"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
