@@ -10,6 +10,7 @@ import "../../styles/modals.css";
 import "../../styles/booking.css";
 
 function RescheduleAppointment(
+  apptUUID,
   dName,
   pName,
   appNum,
@@ -49,6 +50,7 @@ function RescheduleAppointment(
 
   //retrieve app number
   const StringAppNum = JSON.stringify(
+    apptUUID,
     dName,
     pName,
     appNum,
@@ -63,6 +65,7 @@ function RescheduleAppointment(
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
   const DentistIDNumber = JSON.stringify(ConvertStringApp.dentistIDnumber).replace(/"/g, "");
   const PatientIDnum = JSON.stringify(ConvertStringApp.patientIDnumber).replace(/"/g, "");
+  const apptUUIDvalue = JSON.stringify(ConvertStringApp.apptUUID).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
   const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
@@ -206,6 +209,7 @@ function RescheduleAppointment(
       newTime: timeCheck,
       procedures: proceduresValue,
       procedureTime: procedureTimeValue,
+      apptUUID: apptUUIDvalue,
     });
 
     const procedureNames = [];

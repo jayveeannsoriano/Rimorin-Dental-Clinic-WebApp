@@ -11,6 +11,7 @@ import "../../styles/modals.css";
 import "../../styles/booking.css";
 
 function DentistRescheduleAppointment(
+  apptUUID,
   dentistIDnumber,
   patientIDnumber,
   appNum,
@@ -44,6 +45,7 @@ function DentistRescheduleAppointment(
 
   //retrieve app number
   const StringAppNum = JSON.stringify(
+    apptUUID,
     dentistIDnumber,
     patientIDnumber,
     appNum,
@@ -59,9 +61,10 @@ function DentistRescheduleAppointment(
   const PatientName = JSON.stringify(ConvertStringApp.pName).replace(/"/g, "");
   const DentistName = JSON.stringify(ConvertStringApp.dName).replace(/"/g, "");
   const procedureTimeValue = JSON.stringify(ConvertStringApp.procedureTime).replace(/"/g, "");
+  const apptUUIDvalue = JSON.stringify(ConvertStringApp.apptUUID).replace(/"/g, "");
   const proceduresValue = ConvertStringApp.procedures;
 
-  console.log("Procedures: ", proceduresValue);
+  console.log("This is the current appt Value" + apptUUIDvalue);
 
   const [totalApptTime, setTotalApptTime] = useState(0);
 
@@ -153,7 +156,9 @@ function DentistRescheduleAppointment(
         newTime: timeCheck,
         procedures: proceduresValue,
         reasontext: reschedReason,
-      });
+        apptUUID: apptUUIDvalue,
+      }
+    );
 
     const procedureNames = [];
     proceduresValue.forEach((item) => {

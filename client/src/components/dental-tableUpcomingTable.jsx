@@ -115,6 +115,7 @@ const UpDentalDashboardTable = () => {
           {row.appStatus == "Accepted" ? (
             <>
               <DentistRescheduleAppointment
+              apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}

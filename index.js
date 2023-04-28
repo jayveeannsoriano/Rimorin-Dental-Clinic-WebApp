@@ -1854,6 +1854,7 @@ app.put("/rescheduleAppointment", async (req, res) => {
   const insertAppStatus = "Rescheduled";
   const docName = req.body.dName;
   const procedureTime = req.body.procedureTime;
+  const prevApptUUID = req.body.apptUUID;
 
   const AppData = new AppRequest({
     patientIDnumber: patientIDnumber,
@@ -1870,7 +1871,8 @@ app.put("/rescheduleAppointment", async (req, res) => {
   });
 
   await AppData.save();
-  await AppDetails.findOneAndDelete({ appNum: appNumber });
+  await AppDetails.findOneAndDelete({ _id: prevApptUUID });
+  await AppRequest.findOneAndDelete({ appNum: appNumber });
 
   console.log("Appointment Details Updated!");
 });
@@ -1890,6 +1892,7 @@ app.put("/rescheduleDentistAppointment", async (req, res) => {
   const appNumberUUID = "#APT" + firstNumber;
   const proceduresData = req.body.procedures;
   const reasonText = req.body.reasontext;
+  const prevApptUUID = req.body.apptUUID;
 
   const AppData = new AppDetails({ 
     patientIDnumber: patientIDnumber,
@@ -1906,7 +1909,7 @@ app.put("/rescheduleDentistAppointment", async (req, res) => {
   });
 
   await AppData.save();
-  await AppDetails.findOneAndDelete({ appNum: appNumber });
+  await AppDetails.findOneAndDelete({ _id: prevApptUUID });
 
   console.log("Appointment Details Updated!");
 });
