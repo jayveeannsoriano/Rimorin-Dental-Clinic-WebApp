@@ -92,6 +92,7 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
               <DentistRescheduleAppointment
+                apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}
@@ -161,6 +162,7 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
               <DentistRescheduleAppointment
+              apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}
@@ -217,6 +219,7 @@ const DashboardTable = () => {
                 procedures={row.procedures}
               />
               <DentistRescheduleAppointment
+              apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}

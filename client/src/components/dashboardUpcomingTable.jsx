@@ -103,6 +103,7 @@ appointment.map(function (item) {
           {row.appStatus == "Pending" ? (
             <>
               <ReschedConfirmation
+               apptUUID={row._id}
                 patientIDnumber={row.patientIDnumber}
                 dentistIDnumber={row.dentistIDnumber}
                 pName={row.pName}
@@ -141,6 +142,7 @@ appointment.map(function (item) {
             date={row.date}
             time={row.time}
             appStats={row.appStatus}
+            procedures={row.procedures}
             />
 
           ) : row.appStatus == "Follow-Up" ? (
