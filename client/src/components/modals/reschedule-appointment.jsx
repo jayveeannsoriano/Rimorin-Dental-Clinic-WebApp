@@ -207,22 +207,35 @@ function RescheduleAppointment(
       procedures: proceduresValue,
       procedureTime: procedureTimeValue,
     });
+
+    const procedureNames = [];
+
+    proceduresValue.forEach((item) => {
+      if (item.chosen.length > 0) {
+        item.chosen.forEach((chosenProcedure) => {
+          procedureNames.push(chosenProcedure.procedure);
+        });
+      }
+    });
+
+    const message =
+    "Hi " +
+    PatientName +
+    "! This is from Rimorin Dental Clinic notifying you of your rescheduled appointment request on " +
+    stringDate +
+    " at " +
+    timeCheck +
+    " with Dr. " +
+    DentistName +
+    " for the following procedure/s:\n" +
+    procedureNames.join("\n") +
+    " \nPlease wait for the clinic's approval of your rescheduled appointment request. Thank you!";
+
     setModalState("modal-2");
     Axios.post("http://localhost:3001/sendSMS", {
       phone: "0" + response["data"][0]["mobile"],
-      message:
-        "Hi " +
-        PatientName +
-        "! This is from Rimorin Dental Clinic notifying you that your requested Appointment at " +
-        date +
-        " " +
-        stringDate +
-        " due to '" +
-        reschedReason +
-        "' has been rescheduled to " +
-        stringDate +
-        ". See you there!",
-    });
+      message:message
+      });
   };
 
   //form validation error message

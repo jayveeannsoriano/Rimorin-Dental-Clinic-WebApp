@@ -135,7 +135,12 @@ function DentistRescheduleAppointment(
 
 
   //update date and time
-  const rescheduleAppt = (e) => {
+  const rescheduleAppt = async () => {
+    const response = await Axios.get("http://localhost:3001/getUserInfo", {
+      params: {
+        PatientIDnumber: "PT#" + PatientIDnum,
+      },
+    });
     console.log("Updating " + AppNumber);
     console.log(
       "Update values: " +
@@ -160,6 +165,35 @@ function DentistRescheduleAppointment(
         reasontext: reschedReason,
       }
     );
+
+    const procedureNames = [];
+
+    proceduresValue.forEach((item) => {
+      if (item.chosen.length > 0) {
+        item.chosen.forEach((chosenProcedure) => {
+          procedureNames.push(chosenProcedure.procedure);
+        });
+      }
+    });
+
+    const message =
+    "Hi " +
+    PatientName +
+    "! This is from Rimorin Dental Clinic notifying you of your rescheduled appointment request on " +
+    stringDate +
+    " at " +
+    timeCheck +
+    " with Dr. " +
+    DentistName +
+    " for the following procedure/s:\n" +
+    procedureNames.join("\n") +
+    " \nPlease wait for the clinic's approval of your rescheduled appointment request. Thank you!";
+
+    Axios.post("http://localhost:3001/sendSMS", {
+      phone: "0" + response["data"][0]["mobile"],
+      message:message
+      });
+
     setModalState("modal-2");
   };
 
