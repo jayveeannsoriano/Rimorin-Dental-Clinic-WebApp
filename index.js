@@ -2530,11 +2530,13 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req, res) => {
   const dateValue = req.body.dateValue;
   console.log(dateValue);
 
-  //consul value
-
   //time value
   const getTime = req.body.getTime;
   console.log(getTime);
+
+  //procedures value
+  const procedures = req.body.procedures;
+  console.log(procedures);
 
   //appt status default when appointment is accepted by the dentist
   const insertAppStatus = "Cancelled";
@@ -2549,6 +2551,7 @@ app.post("/moveToAppointmentHistoryAsCancelled", async (req, res) => {
     date: dateValue,
     time: getTime,
     appStatus: insertAppStatus,
+    procedures: procedures
   });
 
   try {

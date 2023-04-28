@@ -1,7 +1,5 @@
 import React from "react";
-import style from "../../../styles/booking.css";
 import "react-bootstrap";
-import Timeslot from "../../../components/timeslot.jsx";
 import Axios from "axios";
 
 // import Stepper from 'bs-stepper'
@@ -51,18 +49,31 @@ const BookingConfirm = ({ nextStep, prevStep, values }) => {
   Axios.put("http://localhost:3001/updateFollowUpStatus", {
     apptUUID: apptUUID,
   });
+
+  const procedureNames = [];
+
+  totalProcedures.forEach((item) => {
+    if (item.chosen.length > 0) {
+      item.chosen.forEach((chosenProcedure) => {
+        procedureNames.push(chosenProcedure.procedure);
+      });
+    }
+  });
+
   Axios.post("http://localhost:3001/sendSMS", {
     phone: getUserPhone,
     message:
       "Hi " +
       getUserName +
-      "! This is from Rimorin Dental Clinic notifying you of your requested Appointment at " +
+      "! This is from Rimorin Dental Clinic notifying you have a follow-up appointment on " +
       date +
-      " " +
+      " at " +
       time +
-      " due to '" +
-      values.consultation +
-      "'. See you there!",
+      " with Dr. " +
+      docName +
+      " for the following procedure/s:\n" +
+      procedureNames.join("\n") +
+      " \nPatients are expected to arrive 15 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule. Thank you!",
   });
 
   return (

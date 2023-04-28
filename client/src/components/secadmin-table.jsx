@@ -72,8 +72,6 @@ const SecAdminDashboardTable = () => {
     {
       name: "Action",
       selector: (row) => (
-        //TODO: remove follow-up button when appt already has a follow-up in finished status
-
         <div className="action-buttons">
           {row.appStatus == "Accepted" ? (
             <>
@@ -173,9 +171,19 @@ const SecAdminDashboardTable = () => {
                 procedures={row.procedures}
               />
             </>
+          ) : row.appStatus == "Finished" && row.followUpStatus == true ? (
+            <ApptDetails
+              pName={row.pName}
+              appNum={row.appNum}
+              date={row.date}
+              time={row.time}
+              appStats={row.appStatus}
+              procedures={row.procedures}
+            />
           ) : row.appStatus == "Finished" ? (
             <>
               <FollowUp
+                apptUUID={row._id}
                 dentistIDnumber={row.dentistIDnumber}
                 patientIDnumber={row.patientIDnumber}
                 appNum={row.appNum}

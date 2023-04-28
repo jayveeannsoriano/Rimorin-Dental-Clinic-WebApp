@@ -12,11 +12,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
     window.location.reload();
   };
   const handleShow = () => setShow(true);
-  // if(dentistIDnumber =! undefined || null){ 
-  //   console.log("This is Dentist")
-  // }else{
-  //   dentistIDnumber = "DT#000SC"
-  // }
+  
   //Get values 
   const StringfyValues = JSON.stringify(dentistIDnumber,patientIDnumber, pName, dName, appNum, date,formattedDate,time,procedures,procedureTime);
   const ConvertStringfyValues = JSON.parse(StringfyValues);
@@ -29,9 +25,7 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
   const FormattedDateValue = JSON.stringify(ConvertStringfyValues.formattedDate).replace(/"/g, "");
   const TimeValue = JSON.stringify(ConvertStringfyValues.time).replace(/"/g, "");
   const proceduresValue = ConvertStringfyValues.procedures;
-  const procedureTimeValue = JSON.stringify(
-    ConvertStringfyValues.procedureTime
-  ).replace(/"/g, "");
+  const procedureTimeValue = JSON.stringify(ConvertStringfyValues.procedureTime).replace(/"/g, "");
 
   if (JSON.stringify(ConvertStringfyValues.dentistIDnumber) == undefined){
     console.log("THIS IS SEC")
@@ -46,7 +40,8 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
       params: {
         PatientIDnumber:PatientIDnumber.substring(3)
       }
-    })
+    });
+
     Axios.post(
       "http://localhost:3001/acceptAppointment",
       {
@@ -62,6 +57,17 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         procedureTime: procedureTimeValue,
       }
     );
+
+    const procedureNames = [];
+
+    proceduresValue.forEach((item) => {
+      if (item.chosen.length > 0) {
+        item.chosen.forEach((chosenProcedure) => {
+          procedureNames.push(chosenProcedure.procedure);
+        });
+      }
+    });
+
     Axios.post("http://localhost:3001/sendSMS", {
       phone: "0" + response["data"][0]["mobile"],
       message:
@@ -73,9 +79,9 @@ function AcceptDental(dentistIDnumber,patientIDnumber, pName, dName, appNum, dat
         TimeValue +
         " with Dr. " +
         DentistValue +
-        " due to '" +
-
-        "' has been accepted. Patients are expected to arrive 15 minutes earlier. Please let us know in advance if you cannot make it or wish to reschedule through our website. Thank you!",
+        " for the following procedure/s:\n" +
+        procedureNames.join("\n") +
+        " \nhas been accepted. Patients are expected to arrive 15 minutes earlier. Please let us know in advance if you cannot make it. Thank you!",
     });
 
   }

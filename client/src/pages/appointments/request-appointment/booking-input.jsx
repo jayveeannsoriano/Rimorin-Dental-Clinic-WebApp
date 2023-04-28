@@ -580,9 +580,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     placeholderText="Choose a date"
                     minDate={new Date()}
                     shouldCloseOnSelect={false}
-                    filterDate={(date) =>
-                      date.getDay() !== 7 && date.getDay() !== 0
-                    }
                   />
                 </div>
 

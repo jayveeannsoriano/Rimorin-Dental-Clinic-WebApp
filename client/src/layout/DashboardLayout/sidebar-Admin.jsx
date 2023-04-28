@@ -38,11 +38,11 @@ function Sidebar_Admin(){
                      {/* Clinic Hours Nav */}
                      <li className="nav-item">
                         <a 
-                        className={"nav-link "+((window.location.href.split("/").pop()=='clinic-hours') ? 'active': 'collapsed')} 
-                        href="/admin/clinic-days"
+                        className={"nav-link "+((window.location.href.split("/").pop()=='clinic-schedule') ? 'active': 'collapsed')} 
+                        href="/admin/clinic-schedule"
                         bs-toggle="collapsed">
                         <i class="bi bi-calendar-week"></i>
-                        <span>Clinic Days</span>
+                        <span>Clinic Schedule</span>
                         </a>
                     </li>
 
