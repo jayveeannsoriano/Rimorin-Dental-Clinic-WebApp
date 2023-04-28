@@ -85,6 +85,7 @@ const SecAdminDashboardTable = () => {
                 procedures={row.procedures}
               />
               <ReschedConfirmation
+                apptUUID={row._id}
                 patientIDnumber={row.patientIDnumber}
                 dentistIDnumber={row.dentistIDnumber}
                 appNum={row.appNum}
@@ -154,6 +155,7 @@ const SecAdminDashboardTable = () => {
                 procedures={row.procedures}
               />
               <ReschedConfirmation
+                apptUUID={row._id}
                 patientIDnumber={row.patientIDnumber}
                 dentistIDnumber={row.dentistIDnumber}
                 appNum={row.appNum}

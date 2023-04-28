@@ -91,6 +91,7 @@ const OnGoingTable = () => {
           ) : (
             <>
             <ReschedConfirmation
+              apptUUID={row._id}
               patientIDnumber={row.patientIDnumber}
               dentistIDnumber={row.dentistIDnumber}
               pName={row.pName}
