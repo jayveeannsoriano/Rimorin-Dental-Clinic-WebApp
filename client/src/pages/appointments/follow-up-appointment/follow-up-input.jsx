@@ -260,7 +260,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
     //checkbox validation
-    if (!isSelected) {
+    if (isSelected.length === 0) {
       setErrorCheckbox(
         <div>
           <Alert key={"danger"} variant={"danger"}>
@@ -270,8 +270,7 @@ const FollowUpInput = ({ nextStep, handleChange, values }) => {
       );
     }
 
-    if (selectedApptDate &&
-      timeCheck && isSelected) {
+    if (selectedApptDate && timeCheck && isSelected.length > 0) {
       e.preventDefault();
       e.stopPropagation();
       nextStep();

@@ -75,55 +75,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       console.log(error);
     }
   };
-  
-
-  // const getAppointmenstToDisableDate = async () => {
-  //   try {
-  //     const response = await Axios.get(
-  //       "http://localhost:3001/getAppointmenstToDisableDate",
-  //       {
-  //         params: {
-  //           patientIDnumber:patientIDnumber,
-  //         },
-  //       }
-  //     );
-  //     setUserAppointments(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // const appointmentStatus = userAppointments.map(function (item) {
-  //   return item.date;
-  // });
-
-  // const [validated, setValidateValue] = useState(false)
-  // const ValidateButton = () => {
-  //   console.log(appointmentStatus)
-  //   if (appointmentStatus.includes(selectedApptDate.toString().substring(0, 15))) {
-  //     console.log("nope");
-  //     // setValidateValue(true)
-  //     // setButtonMessage(
-  //     //   <div style={{ fontSize: "12px" }}>
-  //     //     <a class="text-error">
-  //     //       <strong>
-  //     //         You already have an appointment on the choosen date. Please select another day.
-  //     //       </strong>
-  //     //     </a>
-  //     //   </div>
-  //     // );
-  //   } else {
-  //     console.log("yup");
-  //     // setValidateValue(false)
-  //     // setButtonMessage(
-  //     //   <div style={{ fontSize: "12px" }}>
-  //     //     <a class="text-success">
-  //     //       <strong> </strong>
-  //     //     </a>
-  //     //   </div>
-  //     // );
-  //   }
-  // };
-  // console.log(validated, "final value of validated");
 
   //treatment procedure radio options
   const [checked, setChecked] = useState([
@@ -269,7 +220,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
         </div>
       );
     }
-    if (!isSelected) {
+    if (isSelected.length === 0) {
       setCheckBoxError(
         <div>
           <Alert key={"danger"} variant={"danger"}>
@@ -279,9 +230,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
       );
       return;
     }
-    if (selectedApptDate && timeCheck && isSelected) {
-      //e.preventDefault();
-      //e.stopPropagation();
+    if (selectedApptDate && timeCheck && isSelected.length > 0) {
       nextStep();
       setError("");
       setCheckBoxError("");
@@ -537,7 +486,6 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   ))}
                 </div>
               </div>
-              {errorCheckBox}
             </div>
 
             {/* Booking deets */}
