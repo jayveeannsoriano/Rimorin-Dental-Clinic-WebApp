@@ -486,6 +486,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                   ))}
                 </div>
               </div>
+              {errorCheckBox}
             </div>
 
             {/* Booking deets */}
