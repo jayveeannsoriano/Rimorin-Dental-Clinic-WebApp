@@ -19,6 +19,8 @@ import Axios from "axios";
 //useNavigate (retains previous data)
 import { useNavigate } from "react-router-dom";
 
+var maxDateInput = new Date (2023, 11, 31);
+
 const BookingInput = ({ nextStep, handleChange, values }) => {
   //user info
   try {
@@ -528,6 +530,7 @@ const BookingInput = ({ nextStep, handleChange, values }) => {
                     }}
                     placeholderText="Choose a date"
                     minDate={new Date()}
+                    maxDate={maxDateInput}
                     shouldCloseOnSelect={false}
                   />
                 </div>
